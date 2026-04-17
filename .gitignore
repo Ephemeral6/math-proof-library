@@ -1,0 +1,7 @@
+papers/
+workspace/active/
+workspace/archive/
+buddy-reroll.js
+*.pdf
+.DS_Store
+Thumbs.db
