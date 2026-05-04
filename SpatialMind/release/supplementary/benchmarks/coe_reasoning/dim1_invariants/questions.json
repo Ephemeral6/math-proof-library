@@ -1,0 +1,2427 @@
+{
+  "benchmark": "coe_reasoning",
+  "dimension": 1,
+  "dimension_name": "invariants",
+  "n_questions": 16,
+  "conditions": [
+    "baseline",
+    "cot",
+    "coe_r",
+    "coe_ctr"
+  ],
+  "scoring": "0-4 per question via grade_coe_reasoning.py",
+  "questions": [
+    {
+      "question_id": "dim1_q01",
+      "type": "invariant_change",
+      "stem": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后 signature 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "knot": "3_1",
+        "operation": "R2",
+        "signature_pre": -2,
+        "signature_post": -2,
+        "signature_changed": 0,
+        "determinant_pre": 3,
+        "determinant_post": 3,
+        "determinant_changed": 0,
+        "alex_pre_norm": [
+          1,
+          -1,
+          1
+        ],
+        "alex_post_norm": [
+          1,
+          -1,
+          1
+        ],
+        "alex_changed": 0
+      },
+      "coe_data": {
+        "R": {
+          "knot_object_id": "3_1",
+          "operation_to_be_applied": "R2",
+          "n_crossings": 3,
+          "writhe_pre": -3,
+          "signature_pre": -2,
+          "determinant_pre": 3,
+          "alexander_polynomial_pre": "t**2 - t + 1",
+          "alexander_coeffs_pre": [
+            1,
+            -1,
+            1
+          ],
+          "alexander_coeffs_normalized_pre": [
+            1,
+            -1,
+            1
+          ],
+          "crossing_signs_pre": [
+            -1,
+            -1,
+            -1
+          ],
+          "pd_code_pre": [
+            [
+              5,
+              2,
+              0,
+              3
+            ],
+            [
+              3,
+              0,
+              4,
+              1
+            ],
+            [
+              1,
+              4,
+              2,
+              5
+            ]
+          ],
+          "note": "Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects."
+        },
+        "T": {
+          "operation": "R2",
+          "operation_params": {
+            "target_signs": [
+              1,
+              -1
+            ]
+          },
+          "before": {
+            "writhe": -3,
+            "n_crossings": 3,
+            "signs": [
+              -1,
+              -1,
+              -1
+            ]
+          },
+          "after": {
+            "writhe": -3,
+            "n_crossings": 5,
+            "signs": [
+              -1,
+              -1,
+              -1,
+              -1,
+              1
+            ]
+          },
+          "delta": {
+            "writhe_delta": 0,
+            "crossing_count_delta": 2
+          },
+          "note": "Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.",
+          "reidemeister_hint": "R1 / R2 are local moves; the underlying knot is unchanged topologically, so all topological invariants are preserved."
+        },
+        "C": {
+          "crossing_flip": {
+            "description": "Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not."
+          },
+          "trivial_isotopy": {
+            "description": "Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant."
+          }
+        }
+      },
+      "prompts": {
+        "baseline": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"knot_object_id\": \"3_1\",\n  \"operation_to_be_applied\": \"R2\",\n  \"n_crossings\": 3,\n  \"writhe_pre\": -3,\n  \"signature_pre\": -2,\n  \"determinant_pre\": 3,\n  \"alexander_polynomial_pre\": \"t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      5,\n      2,\n      0,\n      3\n    ],\n    [\n      3,\n      0,\n      4,\n      1\n    ],\n    [\n      1,\n      4,\n      2,\n      5\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"knot_object_id\": \"3_1\",\n  \"operation_to_be_applied\": \"R2\",\n  \"n_crossings\": 3,\n  \"writhe_pre\": -3,\n  \"signature_pre\": -2,\n  \"determinant_pre\": 3,\n  \"alexander_polynomial_pre\": \"t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      5,\n      2,\n      0,\n      3\n    ],\n    [\n      3,\n      0,\n      4,\n      1\n    ],\n    [\n      1,\n      4,\n      2,\n      5\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"R2\",\n  \"operation_params\": {\n    \"target_signs\": [\n      1,\n      -1\n    ]\n  },\n  \"before\": {\n    \"writhe\": -3,\n    \"n_crossings\": 3,\n    \"signs\": [\n      -1,\n      -1,\n      -1\n    ]\n  },\n  \"after\": {\n    \"writhe\": -3,\n    \"n_crossings\": 5,\n    \"signs\": [\n      -1,\n      -1,\n      -1,\n      -1,\n      1\n    ]\n  },\n  \"delta\": {\n    \"writhe_delta\": 0,\n    \"crossing_count_delta\": 2\n  },\n  \"note\": \"Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.\",\n  \"reidemeister_hint\": \"R1 / R2 are local moves; the underlying knot is unchanged topologically, so all topological invariants are preserved.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"crossing_flip\": {\n    \"description\": \"Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not.\"\n  },\n  \"trivial_isotopy\": {\n    \"description\": \"Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant.\"\n  }\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim1_q02",
+      "type": "invariant_change",
+      "stem": "考虑纽结 K = 4_1（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后 signature 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "knot": "4_1",
+        "operation": "R2",
+        "signature_pre": 0,
+        "signature_post": 0,
+        "signature_changed": 0,
+        "determinant_pre": 5,
+        "determinant_post": 5,
+        "determinant_changed": 0,
+        "alex_pre_norm": [
+          1,
+          -3,
+          1
+        ],
+        "alex_post_norm": [
+          1,
+          -3,
+          1
+        ],
+        "alex_changed": 0
+      },
+      "coe_data": {
+        "R": {
+          "knot_object_id": "4_1",
+          "operation_to_be_applied": "R2",
+          "n_crossings": 4,
+          "writhe_pre": 0,
+          "signature_pre": 0,
+          "determinant_pre": 5,
+          "alexander_polynomial_pre": "-t**2 + 3*t - 1",
+          "alexander_coeffs_pre": [
+            -1,
+            3,
+            -1
+          ],
+          "alexander_coeffs_normalized_pre": [
+            1,
+            -3,
+            1
+          ],
+          "crossing_signs_pre": [
+            -1,
+            -1,
+            1,
+            1
+          ],
+          "pd_code_pre": [
+            [
+              7,
+              4,
+              0,
+              5
+            ],
+            [
+              3,
+              0,
+              4,
+              1
+            ],
+            [
+              1,
+              7,
+              2,
+              6
+            ],
+            [
+              5,
+              3,
+              6,
+              2
+            ]
+          ],
+          "note": "Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects."
+        },
+        "T": {
+          "operation": "R2",
+          "operation_params": {
+            "target_signs": [
+              1,
+              -1
+            ]
+          },
+          "before": {
+            "writhe": 0,
+            "n_crossings": 4,
+            "signs": [
+              -1,
+              -1,
+              1,
+              1
+            ]
+          },
+          "after": {
+            "writhe": 0,
+            "n_crossings": 6,
+            "signs": [
+              -1,
+              -1,
+              1,
+              1,
+              -1,
+              1
+            ]
+          },
+          "delta": {
+            "writhe_delta": 0,
+            "crossing_count_delta": 2
+          },
+          "note": "Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.",
+          "reidemeister_hint": "R1 / R2 are local moves; the underlying knot is unchanged topologically, so all topological invariants are preserved."
+        },
+        "C": {
+          "crossing_flip": {
+            "description": "Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not."
+          },
+          "trivial_isotopy": {
+            "description": "Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant."
+          }
+        }
+      },
+      "prompts": {
+        "baseline": "考虑纽结 K = 4_1（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑纽结 K = 4_1（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑纽结 K = 4_1（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"knot_object_id\": \"4_1\",\n  \"operation_to_be_applied\": \"R2\",\n  \"n_crossings\": 4,\n  \"writhe_pre\": 0,\n  \"signature_pre\": 0,\n  \"determinant_pre\": 5,\n  \"alexander_polynomial_pre\": \"-t**2 + 3*t - 1\",\n  \"alexander_coeffs_pre\": [\n    -1,\n    3,\n    -1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -3,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    1,\n    1\n  ],\n  \"pd_code_pre\": [\n    [\n      7,\n      4,\n      0,\n      5\n    ],\n    [\n      3,\n      0,\n      4,\n      1\n    ],\n    [\n      1,\n      7,\n      2,\n      6\n    ],\n    [\n      5,\n      3,\n      6,\n      2\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑纽结 K = 4_1（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"knot_object_id\": \"4_1\",\n  \"operation_to_be_applied\": \"R2\",\n  \"n_crossings\": 4,\n  \"writhe_pre\": 0,\n  \"signature_pre\": 0,\n  \"determinant_pre\": 5,\n  \"alexander_polynomial_pre\": \"-t**2 + 3*t - 1\",\n  \"alexander_coeffs_pre\": [\n    -1,\n    3,\n    -1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -3,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    1,\n    1\n  ],\n  \"pd_code_pre\": [\n    [\n      7,\n      4,\n      0,\n      5\n    ],\n    [\n      3,\n      0,\n      4,\n      1\n    ],\n    [\n      1,\n      7,\n      2,\n      6\n    ],\n    [\n      5,\n      3,\n      6,\n      2\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"R2\",\n  \"operation_params\": {\n    \"target_signs\": [\n      1,\n      -1\n    ]\n  },\n  \"before\": {\n    \"writhe\": 0,\n    \"n_crossings\": 4,\n    \"signs\": [\n      -1,\n      -1,\n      1,\n      1\n    ]\n  },\n  \"after\": {\n    \"writhe\": 0,\n    \"n_crossings\": 6,\n    \"signs\": [\n      -1,\n      -1,\n      1,\n      1,\n      -1,\n      1\n    ]\n  },\n  \"delta\": {\n    \"writhe_delta\": 0,\n    \"crossing_count_delta\": 2\n  },\n  \"note\": \"Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.\",\n  \"reidemeister_hint\": \"R1 / R2 are local moves; the underlying knot is unchanged topologically, so all topological invariants are preserved.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"crossing_flip\": {\n    \"description\": \"Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not.\"\n  },\n  \"trivial_isotopy\": {\n    \"description\": \"Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant.\"\n  }\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim1_q03",
+      "type": "invariant_change",
+      "stem": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后 signature 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "knot": "5_1",
+        "operation": "R2",
+        "signature_pre": -4,
+        "signature_post": -4,
+        "signature_changed": 0,
+        "determinant_pre": 5,
+        "determinant_post": 5,
+        "determinant_changed": 0,
+        "alex_pre_norm": [
+          1,
+          -1,
+          1,
+          -1,
+          1
+        ],
+        "alex_post_norm": [
+          1,
+          -1,
+          1,
+          -1,
+          1
+        ],
+        "alex_changed": 0
+      },
+      "coe_data": {
+        "R": {
+          "knot_object_id": "5_1",
+          "operation_to_be_applied": "R2",
+          "n_crossings": 5,
+          "writhe_pre": -5,
+          "signature_pre": -4,
+          "determinant_pre": 5,
+          "alexander_polynomial_pre": "t**4 - t**3 + t**2 - t + 1",
+          "alexander_coeffs_pre": [
+            1,
+            -1,
+            1,
+            -1,
+            1
+          ],
+          "alexander_coeffs_normalized_pre": [
+            1,
+            -1,
+            1,
+            -1,
+            1
+          ],
+          "crossing_signs_pre": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "pd_code_pre": [
+            [
+              9,
+              4,
+              0,
+              5
+            ],
+            [
+              5,
+              0,
+              6,
+              1
+            ],
+            [
+              1,
+              6,
+              2,
+              7
+            ],
+            [
+              7,
+              2,
+              8,
+              3
+            ],
+            [
+              3,
+              8,
+              4,
+              9
+            ]
+          ],
+          "note": "Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects."
+        },
+        "T": {
+          "operation": "R2",
+          "operation_params": {
+            "target_signs": [
+              1,
+              -1
+            ]
+          },
+          "before": {
+            "writhe": -5,
+            "n_crossings": 5,
+            "signs": [
+              -1,
+              -1,
+              -1,
+              -1,
+              -1
+            ]
+          },
+          "after": {
+            "writhe": -5,
+            "n_crossings": 7,
+            "signs": [
+              -1,
+              -1,
+              -1,
+              -1,
+              -1,
+              1,
+              -1
+            ]
+          },
+          "delta": {
+            "writhe_delta": 0,
+            "crossing_count_delta": 2
+          },
+          "note": "Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.",
+          "reidemeister_hint": "R1 / R2 are local moves; the underlying knot is unchanged topologically, so all topological invariants are preserved."
+        },
+        "C": {
+          "crossing_flip": {
+            "description": "Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not."
+          },
+          "trivial_isotopy": {
+            "description": "Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant."
+          }
+        }
+      },
+      "prompts": {
+        "baseline": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"knot_object_id\": \"5_1\",\n  \"operation_to_be_applied\": \"R2\",\n  \"n_crossings\": 5,\n  \"writhe_pre\": -5,\n  \"signature_pre\": -4,\n  \"determinant_pre\": 5,\n  \"alexander_polynomial_pre\": \"t**4 - t**3 + t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      9,\n      4,\n      0,\n      5\n    ],\n    [\n      5,\n      0,\n      6,\n      1\n    ],\n    [\n      1,\n      6,\n      2,\n      7\n    ],\n    [\n      7,\n      2,\n      8,\n      3\n    ],\n    [\n      3,\n      8,\n      4,\n      9\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"knot_object_id\": \"5_1\",\n  \"operation_to_be_applied\": \"R2\",\n  \"n_crossings\": 5,\n  \"writhe_pre\": -5,\n  \"signature_pre\": -4,\n  \"determinant_pre\": 5,\n  \"alexander_polynomial_pre\": \"t**4 - t**3 + t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      9,\n      4,\n      0,\n      5\n    ],\n    [\n      5,\n      0,\n      6,\n      1\n    ],\n    [\n      1,\n      6,\n      2,\n      7\n    ],\n    [\n      7,\n      2,\n      8,\n      3\n    ],\n    [\n      3,\n      8,\n      4,\n      9\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"R2\",\n  \"operation_params\": {\n    \"target_signs\": [\n      1,\n      -1\n    ]\n  },\n  \"before\": {\n    \"writhe\": -5,\n    \"n_crossings\": 5,\n    \"signs\": [\n      -1,\n      -1,\n      -1,\n      -1,\n      -1\n    ]\n  },\n  \"after\": {\n    \"writhe\": -5,\n    \"n_crossings\": 7,\n    \"signs\": [\n      -1,\n      -1,\n      -1,\n      -1,\n      -1,\n      1,\n      -1\n    ]\n  },\n  \"delta\": {\n    \"writhe_delta\": 0,\n    \"crossing_count_delta\": 2\n  },\n  \"note\": \"Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.\",\n  \"reidemeister_hint\": \"R1 / R2 are local moves; the underlying knot is unchanged topologically, so all topological invariants are preserved.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"crossing_flip\": {\n    \"description\": \"Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not.\"\n  },\n  \"trivial_isotopy\": {\n    \"description\": \"Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant.\"\n  }\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim1_q04",
+      "type": "invariant_change",
+      "stem": "考虑纽结 K = 5_2（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后 signature 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "knot": "5_2",
+        "operation": "R2",
+        "signature_pre": 2,
+        "signature_post": 2,
+        "signature_changed": 0,
+        "determinant_pre": 7,
+        "determinant_post": 7,
+        "determinant_changed": 0,
+        "alex_pre_norm": [
+          2,
+          -3,
+          2
+        ],
+        "alex_post_norm": [
+          2,
+          -3,
+          2
+        ],
+        "alex_changed": 0
+      },
+      "coe_data": {
+        "R": {
+          "knot_object_id": "5_2",
+          "operation_to_be_applied": "R2",
+          "n_crossings": 5,
+          "writhe_pre": 5,
+          "signature_pre": 2,
+          "determinant_pre": 7,
+          "alexander_polynomial_pre": "2*t**4 - 3*t**3 + 2*t**2",
+          "alexander_coeffs_pre": [
+            2,
+            -3,
+            2,
+            0,
+            0
+          ],
+          "alexander_coeffs_normalized_pre": [
+            2,
+            -3,
+            2
+          ],
+          "crossing_signs_pre": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "pd_code_pre": [
+            [
+              4,
+              0,
+              5,
+              9
+            ],
+            [
+              0,
+              6,
+              1,
+              5
+            ],
+            [
+              8,
+              2,
+              9,
+              1
+            ],
+            [
+              2,
+              8,
+              3,
+              7
+            ],
+            [
+              6,
+              4,
+              7,
+              3
+            ]
+          ],
+          "note": "Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects."
+        },
+        "T": {
+          "operation": "R2",
+          "operation_params": {
+            "target_signs": [
+              1,
+              -1
+            ]
+          },
+          "before": {
+            "writhe": 5,
+            "n_crossings": 5,
+            "signs": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "after": {
+            "writhe": 5,
+            "n_crossings": 7,
+            "signs": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              -1,
+              1
+            ]
+          },
+          "delta": {
+            "writhe_delta": 0,
+            "crossing_count_delta": 2
+          },
+          "note": "Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.",
+          "reidemeister_hint": "R1 / R2 are local moves; the underlying knot is unchanged topologically, so all topological invariants are preserved."
+        },
+        "C": {
+          "crossing_flip": {
+            "description": "Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not."
+          },
+          "trivial_isotopy": {
+            "description": "Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant."
+          }
+        }
+      },
+      "prompts": {
+        "baseline": "考虑纽结 K = 5_2（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑纽结 K = 5_2（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑纽结 K = 5_2（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"knot_object_id\": \"5_2\",\n  \"operation_to_be_applied\": \"R2\",\n  \"n_crossings\": 5,\n  \"writhe_pre\": 5,\n  \"signature_pre\": 2,\n  \"determinant_pre\": 7,\n  \"alexander_polynomial_pre\": \"2*t**4 - 3*t**3 + 2*t**2\",\n  \"alexander_coeffs_pre\": [\n    2,\n    -3,\n    2,\n    0,\n    0\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    2,\n    -3,\n    2\n  ],\n  \"crossing_signs_pre\": [\n    1,\n    1,\n    1,\n    1,\n    1\n  ],\n  \"pd_code_pre\": [\n    [\n      4,\n      0,\n      5,\n      9\n    ],\n    [\n      0,\n      6,\n      1,\n      5\n    ],\n    [\n      8,\n      2,\n      9,\n      1\n    ],\n    [\n      2,\n      8,\n      3,\n      7\n    ],\n    [\n      6,\n      4,\n      7,\n      3\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑纽结 K = 5_2（snappy 标准命名）。\n对 K 施加操作：R2 (Reidemeister type II)：在图中加上 2 个反号的相邻交叉。R2 move (signs +/-)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"knot_object_id\": \"5_2\",\n  \"operation_to_be_applied\": \"R2\",\n  \"n_crossings\": 5,\n  \"writhe_pre\": 5,\n  \"signature_pre\": 2,\n  \"determinant_pre\": 7,\n  \"alexander_polynomial_pre\": \"2*t**4 - 3*t**3 + 2*t**2\",\n  \"alexander_coeffs_pre\": [\n    2,\n    -3,\n    2,\n    0,\n    0\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    2,\n    -3,\n    2\n  ],\n  \"crossing_signs_pre\": [\n    1,\n    1,\n    1,\n    1,\n    1\n  ],\n  \"pd_code_pre\": [\n    [\n      4,\n      0,\n      5,\n      9\n    ],\n    [\n      0,\n      6,\n      1,\n      5\n    ],\n    [\n      8,\n      2,\n      9,\n      1\n    ],\n    [\n      2,\n      8,\n      3,\n      7\n    ],\n    [\n      6,\n      4,\n      7,\n      3\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"R2\",\n  \"operation_params\": {\n    \"target_signs\": [\n      1,\n      -1\n    ]\n  },\n  \"before\": {\n    \"writhe\": 5,\n    \"n_crossings\": 5,\n    \"signs\": [\n      1,\n      1,\n      1,\n      1,\n      1\n    ]\n  },\n  \"after\": {\n    \"writhe\": 5,\n    \"n_crossings\": 7,\n    \"signs\": [\n      1,\n      1,\n      1,\n      1,\n      1,\n      -1,\n      1\n    ]\n  },\n  \"delta\": {\n    \"writhe_delta\": 0,\n    \"crossing_count_delta\": 2\n  },\n  \"note\": \"Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.\",\n  \"reidemeister_hint\": \"R1 / R2 are local moves; the underlying knot is unchanged topologically, so all topological invariants are preserved.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"crossing_flip\": {\n    \"description\": \"Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not.\"\n  },\n  \"trivial_isotopy\": {\n    \"description\": \"Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant.\"\n  }\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim1_q05",
+      "type": "invariant_change",
+      "stem": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=+1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后 signature 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "knot": "3_1",
+        "operation": "R1",
+        "signature_pre": -2,
+        "signature_post": -2,
+        "signature_changed": 0,
+        "determinant_pre": 3,
+        "determinant_post": 3,
+        "determinant_changed": 0,
+        "alex_pre_norm": [
+          1,
+          -1,
+          1
+        ],
+        "alex_post_norm": [
+          1,
+          -1,
+          1
+        ],
+        "alex_changed": 0
+      },
+      "coe_data": {
+        "R": {
+          "knot_object_id": "3_1",
+          "operation_to_be_applied": "R1",
+          "n_crossings": 3,
+          "writhe_pre": -3,
+          "signature_pre": -2,
+          "determinant_pre": 3,
+          "alexander_polynomial_pre": "t**2 - t + 1",
+          "alexander_coeffs_pre": [
+            1,
+            -1,
+            1
+          ],
+          "alexander_coeffs_normalized_pre": [
+            1,
+            -1,
+            1
+          ],
+          "crossing_signs_pre": [
+            -1,
+            -1,
+            -1
+          ],
+          "pd_code_pre": [
+            [
+              5,
+              2,
+              0,
+              3
+            ],
+            [
+              3,
+              0,
+              4,
+              1
+            ],
+            [
+              1,
+              4,
+              2,
+              5
+            ]
+          ],
+          "note": "Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects."
+        },
+        "T": {
+          "operation": "R1",
+          "operation_params": {
+            "target_sign": 1
+          },
+          "before": {
+            "writhe": -3,
+            "n_crossings": 3,
+            "signs": [
+              -1,
+              -1,
+              -1
+            ]
+          },
+          "after": {
+            "writhe": -2,
+            "n_crossings": 4,
+            "signs": [
+              -1,
+              -1,
+              -1,
+              1
+            ]
+          },
+          "delta": {
+            "writhe_delta": 1,
+            "crossing_count_delta": 1
+          },
+          "note": "Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.",
+          "reidemeister_hint": "R1 / R2 are local moves; the underlying knot is unchanged topologically, so all topological invariants are preserved."
+        },
+        "C": {
+          "crossing_flip": {
+            "description": "Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not."
+          },
+          "trivial_isotopy": {
+            "description": "Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant."
+          }
+        }
+      },
+      "prompts": {
+        "baseline": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=+1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=+1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=+1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"knot_object_id\": \"3_1\",\n  \"operation_to_be_applied\": \"R1\",\n  \"n_crossings\": 3,\n  \"writhe_pre\": -3,\n  \"signature_pre\": -2,\n  \"determinant_pre\": 3,\n  \"alexander_polynomial_pre\": \"t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      5,\n      2,\n      0,\n      3\n    ],\n    [\n      3,\n      0,\n      4,\n      1\n    ],\n    [\n      1,\n      4,\n      2,\n      5\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=+1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"knot_object_id\": \"3_1\",\n  \"operation_to_be_applied\": \"R1\",\n  \"n_crossings\": 3,\n  \"writhe_pre\": -3,\n  \"signature_pre\": -2,\n  \"determinant_pre\": 3,\n  \"alexander_polynomial_pre\": \"t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      5,\n      2,\n      0,\n      3\n    ],\n    [\n      3,\n      0,\n      4,\n      1\n    ],\n    [\n      1,\n      4,\n      2,\n      5\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"R1\",\n  \"operation_params\": {\n    \"target_sign\": 1\n  },\n  \"before\": {\n    \"writhe\": -3,\n    \"n_crossings\": 3,\n    \"signs\": [\n      -1,\n      -1,\n      -1\n    ]\n  },\n  \"after\": {\n    \"writhe\": -2,\n    \"n_crossings\": 4,\n    \"signs\": [\n      -1,\n      -1,\n      -1,\n      1\n    ]\n  },\n  \"delta\": {\n    \"writhe_delta\": 1,\n    \"crossing_count_delta\": 1\n  },\n  \"note\": \"Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.\",\n  \"reidemeister_hint\": \"R1 / R2 are local moves; the underlying knot is unchanged topologically, so all topological invariants are preserved.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"crossing_flip\": {\n    \"description\": \"Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not.\"\n  },\n  \"trivial_isotopy\": {\n    \"description\": \"Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant.\"\n  }\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim1_q06",
+      "type": "invariant_change",
+      "stem": "考虑纽结 K = 4_1（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=-1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后 signature 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "knot": "4_1",
+        "operation": "R1",
+        "signature_pre": 0,
+        "signature_post": 0,
+        "signature_changed": 0,
+        "determinant_pre": 5,
+        "determinant_post": 5,
+        "determinant_changed": 0,
+        "alex_pre_norm": [
+          1,
+          -3,
+          1
+        ],
+        "alex_post_norm": [
+          1,
+          -3,
+          1
+        ],
+        "alex_changed": 0
+      },
+      "coe_data": {
+        "R": {
+          "knot_object_id": "4_1",
+          "operation_to_be_applied": "R1",
+          "n_crossings": 4,
+          "writhe_pre": 0,
+          "signature_pre": 0,
+          "determinant_pre": 5,
+          "alexander_polynomial_pre": "-t**2 + 3*t - 1",
+          "alexander_coeffs_pre": [
+            -1,
+            3,
+            -1
+          ],
+          "alexander_coeffs_normalized_pre": [
+            1,
+            -3,
+            1
+          ],
+          "crossing_signs_pre": [
+            -1,
+            -1,
+            1,
+            1
+          ],
+          "pd_code_pre": [
+            [
+              7,
+              4,
+              0,
+              5
+            ],
+            [
+              3,
+              0,
+              4,
+              1
+            ],
+            [
+              1,
+              7,
+              2,
+              6
+            ],
+            [
+              5,
+              3,
+              6,
+              2
+            ]
+          ],
+          "note": "Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects."
+        },
+        "T": {
+          "operation": "R1",
+          "operation_params": {
+            "target_sign": -1
+          },
+          "before": {
+            "writhe": 0,
+            "n_crossings": 4,
+            "signs": [
+              -1,
+              -1,
+              1,
+              1
+            ]
+          },
+          "after": {
+            "writhe": -1,
+            "n_crossings": 5,
+            "signs": [
+              -1,
+              -1,
+              1,
+              1,
+              -1
+            ]
+          },
+          "delta": {
+            "writhe_delta": -1,
+            "crossing_count_delta": 1
+          },
+          "note": "Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.",
+          "reidemeister_hint": "R1 / R2 are local moves; the underlying knot is unchanged topologically, so all topological invariants are preserved."
+        },
+        "C": {
+          "crossing_flip": {
+            "description": "Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not."
+          },
+          "trivial_isotopy": {
+            "description": "Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant."
+          }
+        }
+      },
+      "prompts": {
+        "baseline": "考虑纽结 K = 4_1（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=-1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑纽结 K = 4_1（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=-1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑纽结 K = 4_1（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=-1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"knot_object_id\": \"4_1\",\n  \"operation_to_be_applied\": \"R1\",\n  \"n_crossings\": 4,\n  \"writhe_pre\": 0,\n  \"signature_pre\": 0,\n  \"determinant_pre\": 5,\n  \"alexander_polynomial_pre\": \"-t**2 + 3*t - 1\",\n  \"alexander_coeffs_pre\": [\n    -1,\n    3,\n    -1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -3,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    1,\n    1\n  ],\n  \"pd_code_pre\": [\n    [\n      7,\n      4,\n      0,\n      5\n    ],\n    [\n      3,\n      0,\n      4,\n      1\n    ],\n    [\n      1,\n      7,\n      2,\n      6\n    ],\n    [\n      5,\n      3,\n      6,\n      2\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑纽结 K = 4_1（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=-1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"knot_object_id\": \"4_1\",\n  \"operation_to_be_applied\": \"R1\",\n  \"n_crossings\": 4,\n  \"writhe_pre\": 0,\n  \"signature_pre\": 0,\n  \"determinant_pre\": 5,\n  \"alexander_polynomial_pre\": \"-t**2 + 3*t - 1\",\n  \"alexander_coeffs_pre\": [\n    -1,\n    3,\n    -1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -3,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    1,\n    1\n  ],\n  \"pd_code_pre\": [\n    [\n      7,\n      4,\n      0,\n      5\n    ],\n    [\n      3,\n      0,\n      4,\n      1\n    ],\n    [\n      1,\n      7,\n      2,\n      6\n    ],\n    [\n      5,\n      3,\n      6,\n      2\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"R1\",\n  \"operation_params\": {\n    \"target_sign\": -1\n  },\n  \"before\": {\n    \"writhe\": 0,\n    \"n_crossings\": 4,\n    \"signs\": [\n      -1,\n      -1,\n      1,\n      1\n    ]\n  },\n  \"after\": {\n    \"writhe\": -1,\n    \"n_crossings\": 5,\n    \"signs\": [\n      -1,\n      -1,\n      1,\n      1,\n      -1\n    ]\n  },\n  \"delta\": {\n    \"writhe_delta\": -1,\n    \"crossing_count_delta\": 1\n  },\n  \"note\": \"Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.\",\n  \"reidemeister_hint\": \"R1 / R2 are local moves; the underlying knot is unchanged topologically, so all topological invariants are preserved.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"crossing_flip\": {\n    \"description\": \"Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not.\"\n  },\n  \"trivial_isotopy\": {\n    \"description\": \"Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant.\"\n  }\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim1_q07",
+      "type": "invariant_change",
+      "stem": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=+1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后 signature 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "knot": "5_1",
+        "operation": "R1",
+        "signature_pre": -4,
+        "signature_post": -4,
+        "signature_changed": 0,
+        "determinant_pre": 5,
+        "determinant_post": 5,
+        "determinant_changed": 0,
+        "alex_pre_norm": [
+          1,
+          -1,
+          1,
+          -1,
+          1
+        ],
+        "alex_post_norm": [
+          1,
+          -1,
+          1,
+          -1,
+          1
+        ],
+        "alex_changed": 0
+      },
+      "coe_data": {
+        "R": {
+          "knot_object_id": "5_1",
+          "operation_to_be_applied": "R1",
+          "n_crossings": 5,
+          "writhe_pre": -5,
+          "signature_pre": -4,
+          "determinant_pre": 5,
+          "alexander_polynomial_pre": "t**4 - t**3 + t**2 - t + 1",
+          "alexander_coeffs_pre": [
+            1,
+            -1,
+            1,
+            -1,
+            1
+          ],
+          "alexander_coeffs_normalized_pre": [
+            1,
+            -1,
+            1,
+            -1,
+            1
+          ],
+          "crossing_signs_pre": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "pd_code_pre": [
+            [
+              9,
+              4,
+              0,
+              5
+            ],
+            [
+              5,
+              0,
+              6,
+              1
+            ],
+            [
+              1,
+              6,
+              2,
+              7
+            ],
+            [
+              7,
+              2,
+              8,
+              3
+            ],
+            [
+              3,
+              8,
+              4,
+              9
+            ]
+          ],
+          "note": "Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects."
+        },
+        "T": {
+          "operation": "R1",
+          "operation_params": {
+            "target_sign": 1
+          },
+          "before": {
+            "writhe": -5,
+            "n_crossings": 5,
+            "signs": [
+              -1,
+              -1,
+              -1,
+              -1,
+              -1
+            ]
+          },
+          "after": {
+            "writhe": -4,
+            "n_crossings": 6,
+            "signs": [
+              -1,
+              -1,
+              -1,
+              -1,
+              -1,
+              1
+            ]
+          },
+          "delta": {
+            "writhe_delta": 1,
+            "crossing_count_delta": 1
+          },
+          "note": "Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.",
+          "reidemeister_hint": "R1 / R2 are local moves; the underlying knot is unchanged topologically, so all topological invariants are preserved."
+        },
+        "C": {
+          "crossing_flip": {
+            "description": "Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not."
+          },
+          "trivial_isotopy": {
+            "description": "Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant."
+          }
+        }
+      },
+      "prompts": {
+        "baseline": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=+1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=+1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=+1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"knot_object_id\": \"5_1\",\n  \"operation_to_be_applied\": \"R1\",\n  \"n_crossings\": 5,\n  \"writhe_pre\": -5,\n  \"signature_pre\": -4,\n  \"determinant_pre\": 5,\n  \"alexander_polynomial_pre\": \"t**4 - t**3 + t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      9,\n      4,\n      0,\n      5\n    ],\n    [\n      5,\n      0,\n      6,\n      1\n    ],\n    [\n      1,\n      6,\n      2,\n      7\n    ],\n    [\n      7,\n      2,\n      8,\n      3\n    ],\n    [\n      3,\n      8,\n      4,\n      9\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=+1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"knot_object_id\": \"5_1\",\n  \"operation_to_be_applied\": \"R1\",\n  \"n_crossings\": 5,\n  \"writhe_pre\": -5,\n  \"signature_pre\": -4,\n  \"determinant_pre\": 5,\n  \"alexander_polynomial_pre\": \"t**4 - t**3 + t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      9,\n      4,\n      0,\n      5\n    ],\n    [\n      5,\n      0,\n      6,\n      1\n    ],\n    [\n      1,\n      6,\n      2,\n      7\n    ],\n    [\n      7,\n      2,\n      8,\n      3\n    ],\n    [\n      3,\n      8,\n      4,\n      9\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"R1\",\n  \"operation_params\": {\n    \"target_sign\": 1\n  },\n  \"before\": {\n    \"writhe\": -5,\n    \"n_crossings\": 5,\n    \"signs\": [\n      -1,\n      -1,\n      -1,\n      -1,\n      -1\n    ]\n  },\n  \"after\": {\n    \"writhe\": -4,\n    \"n_crossings\": 6,\n    \"signs\": [\n      -1,\n      -1,\n      -1,\n      -1,\n      -1,\n      1\n    ]\n  },\n  \"delta\": {\n    \"writhe_delta\": 1,\n    \"crossing_count_delta\": 1\n  },\n  \"note\": \"Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.\",\n  \"reidemeister_hint\": \"R1 / R2 are local moves; the underlying knot is unchanged topologically, so all topological invariants are preserved.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"crossing_flip\": {\n    \"description\": \"Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not.\"\n  },\n  \"trivial_isotopy\": {\n    \"description\": \"Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant.\"\n  }\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim1_q08",
+      "type": "invariant_change",
+      "stem": "考虑纽结 K = 5_2（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=-1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后 signature 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "knot": "5_2",
+        "operation": "R1",
+        "signature_pre": 2,
+        "signature_post": 2,
+        "signature_changed": 0,
+        "determinant_pre": 7,
+        "determinant_post": 7,
+        "determinant_changed": 0,
+        "alex_pre_norm": [
+          2,
+          -3,
+          2
+        ],
+        "alex_post_norm": [
+          2,
+          -3,
+          2
+        ],
+        "alex_changed": 0
+      },
+      "coe_data": {
+        "R": {
+          "knot_object_id": "5_2",
+          "operation_to_be_applied": "R1",
+          "n_crossings": 5,
+          "writhe_pre": 5,
+          "signature_pre": 2,
+          "determinant_pre": 7,
+          "alexander_polynomial_pre": "2*t**4 - 3*t**3 + 2*t**2",
+          "alexander_coeffs_pre": [
+            2,
+            -3,
+            2,
+            0,
+            0
+          ],
+          "alexander_coeffs_normalized_pre": [
+            2,
+            -3,
+            2
+          ],
+          "crossing_signs_pre": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "pd_code_pre": [
+            [
+              4,
+              0,
+              5,
+              9
+            ],
+            [
+              0,
+              6,
+              1,
+              5
+            ],
+            [
+              8,
+              2,
+              9,
+              1
+            ],
+            [
+              2,
+              8,
+              3,
+              7
+            ],
+            [
+              6,
+              4,
+              7,
+              3
+            ]
+          ],
+          "note": "Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects."
+        },
+        "T": {
+          "operation": "R1",
+          "operation_params": {
+            "target_sign": -1
+          },
+          "before": {
+            "writhe": 5,
+            "n_crossings": 5,
+            "signs": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "after": {
+            "writhe": 4,
+            "n_crossings": 6,
+            "signs": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              -1
+            ]
+          },
+          "delta": {
+            "writhe_delta": -1,
+            "crossing_count_delta": 1
+          },
+          "note": "Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.",
+          "reidemeister_hint": "R1 / R2 are local moves; the underlying knot is unchanged topologically, so all topological invariants are preserved."
+        },
+        "C": {
+          "crossing_flip": {
+            "description": "Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not."
+          },
+          "trivial_isotopy": {
+            "description": "Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant."
+          }
+        }
+      },
+      "prompts": {
+        "baseline": "考虑纽结 K = 5_2（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=-1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑纽结 K = 5_2（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=-1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑纽结 K = 5_2（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=-1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"knot_object_id\": \"5_2\",\n  \"operation_to_be_applied\": \"R1\",\n  \"n_crossings\": 5,\n  \"writhe_pre\": 5,\n  \"signature_pre\": 2,\n  \"determinant_pre\": 7,\n  \"alexander_polynomial_pre\": \"2*t**4 - 3*t**3 + 2*t**2\",\n  \"alexander_coeffs_pre\": [\n    2,\n    -3,\n    2,\n    0,\n    0\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    2,\n    -3,\n    2\n  ],\n  \"crossing_signs_pre\": [\n    1,\n    1,\n    1,\n    1,\n    1\n  ],\n  \"pd_code_pre\": [\n    [\n      4,\n      0,\n      5,\n      9\n    ],\n    [\n      0,\n      6,\n      1,\n      5\n    ],\n    [\n      8,\n      2,\n      9,\n      1\n    ],\n    [\n      2,\n      8,\n      3,\n      7\n    ],\n    [\n      6,\n      4,\n      7,\n      3\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑纽结 K = 5_2（snappy 标准命名）。\n对 K 施加操作：R1 (Reidemeister type I, sign=-1)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"knot_object_id\": \"5_2\",\n  \"operation_to_be_applied\": \"R1\",\n  \"n_crossings\": 5,\n  \"writhe_pre\": 5,\n  \"signature_pre\": 2,\n  \"determinant_pre\": 7,\n  \"alexander_polynomial_pre\": \"2*t**4 - 3*t**3 + 2*t**2\",\n  \"alexander_coeffs_pre\": [\n    2,\n    -3,\n    2,\n    0,\n    0\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    2,\n    -3,\n    2\n  ],\n  \"crossing_signs_pre\": [\n    1,\n    1,\n    1,\n    1,\n    1\n  ],\n  \"pd_code_pre\": [\n    [\n      4,\n      0,\n      5,\n      9\n    ],\n    [\n      0,\n      6,\n      1,\n      5\n    ],\n    [\n      8,\n      2,\n      9,\n      1\n    ],\n    [\n      2,\n      8,\n      3,\n      7\n    ],\n    [\n      6,\n      4,\n      7,\n      3\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"R1\",\n  \"operation_params\": {\n    \"target_sign\": -1\n  },\n  \"before\": {\n    \"writhe\": 5,\n    \"n_crossings\": 5,\n    \"signs\": [\n      1,\n      1,\n      1,\n      1,\n      1\n    ]\n  },\n  \"after\": {\n    \"writhe\": 4,\n    \"n_crossings\": 6,\n    \"signs\": [\n      1,\n      1,\n      1,\n      1,\n      1,\n      -1\n    ]\n  },\n  \"delta\": {\n    \"writhe_delta\": -1,\n    \"crossing_count_delta\": 1\n  },\n  \"note\": \"Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.\",\n  \"reidemeister_hint\": \"R1 / R2 are local moves; the underlying knot is unchanged topologically, so all topological invariants are preserved.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"crossing_flip\": {\n    \"description\": \"Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not.\"\n  },\n  \"trivial_isotopy\": {\n    \"description\": \"Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant.\"\n  }\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim1_q09",
+      "type": "invariant_change",
+      "stem": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后 signature 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "knot": "3_1",
+        "operation": "mirror",
+        "signature_pre": -2,
+        "signature_post": 2,
+        "signature_changed": 1,
+        "determinant_pre": 3,
+        "determinant_post": 3,
+        "determinant_changed": 0,
+        "alex_pre_norm": [
+          1,
+          -1,
+          1
+        ],
+        "alex_post_norm": [
+          1,
+          -1,
+          1
+        ],
+        "alex_changed": 0
+      },
+      "coe_data": {
+        "R": {
+          "knot_object_id": "3_1",
+          "operation_to_be_applied": "mirror",
+          "n_crossings": 3,
+          "writhe_pre": -3,
+          "signature_pre": -2,
+          "determinant_pre": 3,
+          "alexander_polynomial_pre": "t**2 - t + 1",
+          "alexander_coeffs_pre": [
+            1,
+            -1,
+            1
+          ],
+          "alexander_coeffs_normalized_pre": [
+            1,
+            -1,
+            1
+          ],
+          "crossing_signs_pre": [
+            -1,
+            -1,
+            -1
+          ],
+          "pd_code_pre": [
+            [
+              5,
+              2,
+              0,
+              3
+            ],
+            [
+              3,
+              0,
+              4,
+              1
+            ],
+            [
+              1,
+              4,
+              2,
+              5
+            ]
+          ],
+          "note": "Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects."
+        },
+        "T": {
+          "operation": "mirror",
+          "operation_params": {},
+          "before": {
+            "writhe": -3,
+            "n_crossings": null,
+            "signs": [
+              -1,
+              -1,
+              -1
+            ]
+          },
+          "after": {
+            "writhe": 3,
+            "n_crossings": null,
+            "signs": [
+              1,
+              1,
+              1
+            ]
+          },
+          "delta": {
+            "writhe_delta": 6,
+            "crossing_count_delta": 0
+          },
+          "note": "Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.",
+          "mirror_rule_hint": "All crossing signs flip; writhe flips sign. Topological rule: signature(mirror(K)) = −signature(K); |det| same; Alexander coefficients unchanged under standard normalization."
+        },
+        "C": {
+          "crossing_flip": {
+            "description": "Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not."
+          },
+          "trivial_isotopy": {
+            "description": "Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant."
+          }
+        }
+      },
+      "prompts": {
+        "baseline": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"knot_object_id\": \"3_1\",\n  \"operation_to_be_applied\": \"mirror\",\n  \"n_crossings\": 3,\n  \"writhe_pre\": -3,\n  \"signature_pre\": -2,\n  \"determinant_pre\": 3,\n  \"alexander_polynomial_pre\": \"t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      5,\n      2,\n      0,\n      3\n    ],\n    [\n      3,\n      0,\n      4,\n      1\n    ],\n    [\n      1,\n      4,\n      2,\n      5\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"knot_object_id\": \"3_1\",\n  \"operation_to_be_applied\": \"mirror\",\n  \"n_crossings\": 3,\n  \"writhe_pre\": -3,\n  \"signature_pre\": -2,\n  \"determinant_pre\": 3,\n  \"alexander_polynomial_pre\": \"t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      5,\n      2,\n      0,\n      3\n    ],\n    [\n      3,\n      0,\n      4,\n      1\n    ],\n    [\n      1,\n      4,\n      2,\n      5\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"mirror\",\n  \"operation_params\": {},\n  \"before\": {\n    \"writhe\": -3,\n    \"n_crossings\": null,\n    \"signs\": [\n      -1,\n      -1,\n      -1\n    ]\n  },\n  \"after\": {\n    \"writhe\": 3,\n    \"n_crossings\": null,\n    \"signs\": [\n      1,\n      1,\n      1\n    ]\n  },\n  \"delta\": {\n    \"writhe_delta\": 6,\n    \"crossing_count_delta\": 0\n  },\n  \"note\": \"Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.\",\n  \"mirror_rule_hint\": \"All crossing signs flip; writhe flips sign. Topological rule: signature(mirror(K)) = −signature(K); |det| same; Alexander coefficients unchanged under standard normalization.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"crossing_flip\": {\n    \"description\": \"Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not.\"\n  },\n  \"trivial_isotopy\": {\n    \"description\": \"Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant.\"\n  }\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim1_q10",
+      "type": "invariant_change",
+      "stem": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后 signature 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "knot": "5_1",
+        "operation": "mirror",
+        "signature_pre": -4,
+        "signature_post": 4,
+        "signature_changed": 1,
+        "determinant_pre": 5,
+        "determinant_post": 5,
+        "determinant_changed": 0,
+        "alex_pre_norm": [
+          1,
+          -1,
+          1,
+          -1,
+          1
+        ],
+        "alex_post_norm": [
+          1,
+          -1,
+          1,
+          -1,
+          1
+        ],
+        "alex_changed": 0
+      },
+      "coe_data": {
+        "R": {
+          "knot_object_id": "5_1",
+          "operation_to_be_applied": "mirror",
+          "n_crossings": 5,
+          "writhe_pre": -5,
+          "signature_pre": -4,
+          "determinant_pre": 5,
+          "alexander_polynomial_pre": "t**4 - t**3 + t**2 - t + 1",
+          "alexander_coeffs_pre": [
+            1,
+            -1,
+            1,
+            -1,
+            1
+          ],
+          "alexander_coeffs_normalized_pre": [
+            1,
+            -1,
+            1,
+            -1,
+            1
+          ],
+          "crossing_signs_pre": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "pd_code_pre": [
+            [
+              9,
+              4,
+              0,
+              5
+            ],
+            [
+              5,
+              0,
+              6,
+              1
+            ],
+            [
+              1,
+              6,
+              2,
+              7
+            ],
+            [
+              7,
+              2,
+              8,
+              3
+            ],
+            [
+              3,
+              8,
+              4,
+              9
+            ]
+          ],
+          "note": "Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects."
+        },
+        "T": {
+          "operation": "mirror",
+          "operation_params": {},
+          "before": {
+            "writhe": -5,
+            "n_crossings": null,
+            "signs": [
+              -1,
+              -1,
+              -1,
+              -1,
+              -1
+            ]
+          },
+          "after": {
+            "writhe": 5,
+            "n_crossings": null,
+            "signs": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "delta": {
+            "writhe_delta": 10,
+            "crossing_count_delta": 0
+          },
+          "note": "Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.",
+          "mirror_rule_hint": "All crossing signs flip; writhe flips sign. Topological rule: signature(mirror(K)) = −signature(K); |det| same; Alexander coefficients unchanged under standard normalization."
+        },
+        "C": {
+          "crossing_flip": {
+            "description": "Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not."
+          },
+          "trivial_isotopy": {
+            "description": "Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant."
+          }
+        }
+      },
+      "prompts": {
+        "baseline": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"knot_object_id\": \"5_1\",\n  \"operation_to_be_applied\": \"mirror\",\n  \"n_crossings\": 5,\n  \"writhe_pre\": -5,\n  \"signature_pre\": -4,\n  \"determinant_pre\": 5,\n  \"alexander_polynomial_pre\": \"t**4 - t**3 + t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      9,\n      4,\n      0,\n      5\n    ],\n    [\n      5,\n      0,\n      6,\n      1\n    ],\n    [\n      1,\n      6,\n      2,\n      7\n    ],\n    [\n      7,\n      2,\n      8,\n      3\n    ],\n    [\n      3,\n      8,\n      4,\n      9\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"knot_object_id\": \"5_1\",\n  \"operation_to_be_applied\": \"mirror\",\n  \"n_crossings\": 5,\n  \"writhe_pre\": -5,\n  \"signature_pre\": -4,\n  \"determinant_pre\": 5,\n  \"alexander_polynomial_pre\": \"t**4 - t**3 + t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      9,\n      4,\n      0,\n      5\n    ],\n    [\n      5,\n      0,\n      6,\n      1\n    ],\n    [\n      1,\n      6,\n      2,\n      7\n    ],\n    [\n      7,\n      2,\n      8,\n      3\n    ],\n    [\n      3,\n      8,\n      4,\n      9\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"mirror\",\n  \"operation_params\": {},\n  \"before\": {\n    \"writhe\": -5,\n    \"n_crossings\": null,\n    \"signs\": [\n      -1,\n      -1,\n      -1,\n      -1,\n      -1\n    ]\n  },\n  \"after\": {\n    \"writhe\": 5,\n    \"n_crossings\": null,\n    \"signs\": [\n      1,\n      1,\n      1,\n      1,\n      1\n    ]\n  },\n  \"delta\": {\n    \"writhe_delta\": 10,\n    \"crossing_count_delta\": 0\n  },\n  \"note\": \"Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.\",\n  \"mirror_rule_hint\": \"All crossing signs flip; writhe flips sign. Topological rule: signature(mirror(K)) = −signature(K); |det| same; Alexander coefficients unchanged under standard normalization.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"crossing_flip\": {\n    \"description\": \"Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not.\"\n  },\n  \"trivial_isotopy\": {\n    \"description\": \"Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant.\"\n  }\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim1_q11",
+      "type": "invariant_change",
+      "stem": "考虑纽结 K = 5_2（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后 signature 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "knot": "5_2",
+        "operation": "mirror",
+        "signature_pre": 2,
+        "signature_post": -2,
+        "signature_changed": 1,
+        "determinant_pre": 7,
+        "determinant_post": 7,
+        "determinant_changed": 0,
+        "alex_pre_norm": [
+          2,
+          -3,
+          2
+        ],
+        "alex_post_norm": [
+          2,
+          -3,
+          2
+        ],
+        "alex_changed": 0
+      },
+      "coe_data": {
+        "R": {
+          "knot_object_id": "5_2",
+          "operation_to_be_applied": "mirror",
+          "n_crossings": 5,
+          "writhe_pre": 5,
+          "signature_pre": 2,
+          "determinant_pre": 7,
+          "alexander_polynomial_pre": "2*t**4 - 3*t**3 + 2*t**2",
+          "alexander_coeffs_pre": [
+            2,
+            -3,
+            2,
+            0,
+            0
+          ],
+          "alexander_coeffs_normalized_pre": [
+            2,
+            -3,
+            2
+          ],
+          "crossing_signs_pre": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "pd_code_pre": [
+            [
+              4,
+              0,
+              5,
+              9
+            ],
+            [
+              0,
+              6,
+              1,
+              5
+            ],
+            [
+              8,
+              2,
+              9,
+              1
+            ],
+            [
+              2,
+              8,
+              3,
+              7
+            ],
+            [
+              6,
+              4,
+              7,
+              3
+            ]
+          ],
+          "note": "Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects."
+        },
+        "T": {
+          "operation": "mirror",
+          "operation_params": {},
+          "before": {
+            "writhe": 5,
+            "n_crossings": null,
+            "signs": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          "after": {
+            "writhe": -5,
+            "n_crossings": null,
+            "signs": [
+              -1,
+              -1,
+              -1,
+              -1,
+              -1
+            ]
+          },
+          "delta": {
+            "writhe_delta": -10,
+            "crossing_count_delta": 0
+          },
+          "note": "Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.",
+          "mirror_rule_hint": "All crossing signs flip; writhe flips sign. Topological rule: signature(mirror(K)) = −signature(K); |det| same; Alexander coefficients unchanged under standard normalization."
+        },
+        "C": {
+          "crossing_flip": {
+            "description": "Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not."
+          },
+          "trivial_isotopy": {
+            "description": "Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant."
+          }
+        }
+      },
+      "prompts": {
+        "baseline": "考虑纽结 K = 5_2（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑纽结 K = 5_2（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑纽结 K = 5_2（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"knot_object_id\": \"5_2\",\n  \"operation_to_be_applied\": \"mirror\",\n  \"n_crossings\": 5,\n  \"writhe_pre\": 5,\n  \"signature_pre\": 2,\n  \"determinant_pre\": 7,\n  \"alexander_polynomial_pre\": \"2*t**4 - 3*t**3 + 2*t**2\",\n  \"alexander_coeffs_pre\": [\n    2,\n    -3,\n    2,\n    0,\n    0\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    2,\n    -3,\n    2\n  ],\n  \"crossing_signs_pre\": [\n    1,\n    1,\n    1,\n    1,\n    1\n  ],\n  \"pd_code_pre\": [\n    [\n      4,\n      0,\n      5,\n      9\n    ],\n    [\n      0,\n      6,\n      1,\n      5\n    ],\n    [\n      8,\n      2,\n      9,\n      1\n    ],\n    [\n      2,\n      8,\n      3,\n      7\n    ],\n    [\n      6,\n      4,\n      7,\n      3\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑纽结 K = 5_2（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"knot_object_id\": \"5_2\",\n  \"operation_to_be_applied\": \"mirror\",\n  \"n_crossings\": 5,\n  \"writhe_pre\": 5,\n  \"signature_pre\": 2,\n  \"determinant_pre\": 7,\n  \"alexander_polynomial_pre\": \"2*t**4 - 3*t**3 + 2*t**2\",\n  \"alexander_coeffs_pre\": [\n    2,\n    -3,\n    2,\n    0,\n    0\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    2,\n    -3,\n    2\n  ],\n  \"crossing_signs_pre\": [\n    1,\n    1,\n    1,\n    1,\n    1\n  ],\n  \"pd_code_pre\": [\n    [\n      4,\n      0,\n      5,\n      9\n    ],\n    [\n      0,\n      6,\n      1,\n      5\n    ],\n    [\n      8,\n      2,\n      9,\n      1\n    ],\n    [\n      2,\n      8,\n      3,\n      7\n    ],\n    [\n      6,\n      4,\n      7,\n      3\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"mirror\",\n  \"operation_params\": {},\n  \"before\": {\n    \"writhe\": 5,\n    \"n_crossings\": null,\n    \"signs\": [\n      1,\n      1,\n      1,\n      1,\n      1\n    ]\n  },\n  \"after\": {\n    \"writhe\": -5,\n    \"n_crossings\": null,\n    \"signs\": [\n      -1,\n      -1,\n      -1,\n      -1,\n      -1\n    ]\n  },\n  \"delta\": {\n    \"writhe_delta\": -10,\n    \"crossing_count_delta\": 0\n  },\n  \"note\": \"Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.\",\n  \"mirror_rule_hint\": \"All crossing signs flip; writhe flips sign. Topological rule: signature(mirror(K)) = −signature(K); |det| same; Alexander coefficients unchanged under standard normalization.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"crossing_flip\": {\n    \"description\": \"Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not.\"\n  },\n  \"trivial_isotopy\": {\n    \"description\": \"Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant.\"\n  }\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim1_q12",
+      "type": "invariant_change",
+      "stem": "考虑纽结 K = 6_2（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后 signature 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "knot": "6_2",
+        "operation": "mirror",
+        "signature_pre": 2,
+        "signature_post": -2,
+        "signature_changed": 1,
+        "determinant_pre": 11,
+        "determinant_post": 11,
+        "determinant_changed": 0,
+        "alex_pre_norm": [
+          1,
+          -3,
+          3,
+          -3,
+          1
+        ],
+        "alex_post_norm": [
+          1,
+          -3,
+          3,
+          -3,
+          1
+        ],
+        "alex_changed": 0
+      },
+      "coe_data": {
+        "R": {
+          "knot_object_id": "6_2",
+          "operation_to_be_applied": "mirror",
+          "n_crossings": 6,
+          "writhe_pre": 2,
+          "signature_pre": 2,
+          "determinant_pre": 11,
+          "alexander_polynomial_pre": "-t**4 + 3*t**3 - 3*t**2 + 3*t - 1",
+          "alexander_coeffs_pre": [
+            -1,
+            3,
+            -3,
+            3,
+            -1
+          ],
+          "alexander_coeffs_normalized_pre": [
+            1,
+            -3,
+            3,
+            -3,
+            1
+          ],
+          "crossing_signs_pre": [
+            1,
+            1,
+            1,
+            1,
+            -1,
+            -1
+          ],
+          "pd_code_pre": [
+            [
+              11,
+              7,
+              0,
+              6
+            ],
+            [
+              7,
+              1,
+              8,
+              0
+            ],
+            [
+              1,
+              9,
+              2,
+              8
+            ],
+            [
+              5,
+              3,
+              6,
+              2
+            ],
+            [
+              3,
+              10,
+              4,
+              11
+            ],
+            [
+              9,
+              4,
+              10,
+              5
+            ]
+          ],
+          "note": "Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects."
+        },
+        "T": {
+          "operation": "mirror",
+          "operation_params": {},
+          "before": {
+            "writhe": 2,
+            "n_crossings": null,
+            "signs": [
+              1,
+              1,
+              1,
+              1,
+              -1,
+              -1
+            ]
+          },
+          "after": {
+            "writhe": -2,
+            "n_crossings": null,
+            "signs": [
+              -1,
+              -1,
+              -1,
+              -1,
+              1,
+              1
+            ]
+          },
+          "delta": {
+            "writhe_delta": -4,
+            "crossing_count_delta": 0
+          },
+          "note": "Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.",
+          "mirror_rule_hint": "All crossing signs flip; writhe flips sign. Topological rule: signature(mirror(K)) = −signature(K); |det| same; Alexander coefficients unchanged under standard normalization."
+        },
+        "C": {
+          "crossing_flip": {
+            "description": "Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not."
+          },
+          "trivial_isotopy": {
+            "description": "Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant."
+          }
+        }
+      },
+      "prompts": {
+        "baseline": "考虑纽结 K = 6_2（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑纽结 K = 6_2（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑纽结 K = 6_2（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"knot_object_id\": \"6_2\",\n  \"operation_to_be_applied\": \"mirror\",\n  \"n_crossings\": 6,\n  \"writhe_pre\": 2,\n  \"signature_pre\": 2,\n  \"determinant_pre\": 11,\n  \"alexander_polynomial_pre\": \"-t**4 + 3*t**3 - 3*t**2 + 3*t - 1\",\n  \"alexander_coeffs_pre\": [\n    -1,\n    3,\n    -3,\n    3,\n    -1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -3,\n    3,\n    -3,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    1,\n    1,\n    1,\n    1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      11,\n      7,\n      0,\n      6\n    ],\n    [\n      7,\n      1,\n      8,\n      0\n    ],\n    [\n      1,\n      9,\n      2,\n      8\n    ],\n    [\n      5,\n      3,\n      6,\n      2\n    ],\n    [\n      3,\n      10,\n      4,\n      11\n    ],\n    [\n      9,\n      4,\n      10,\n      5\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑纽结 K = 6_2（snappy 标准命名）。\n对 K 施加操作：mirror (镜像，所有交叉号翻转)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"knot_object_id\": \"6_2\",\n  \"operation_to_be_applied\": \"mirror\",\n  \"n_crossings\": 6,\n  \"writhe_pre\": 2,\n  \"signature_pre\": 2,\n  \"determinant_pre\": 11,\n  \"alexander_polynomial_pre\": \"-t**4 + 3*t**3 - 3*t**2 + 3*t - 1\",\n  \"alexander_coeffs_pre\": [\n    -1,\n    3,\n    -3,\n    3,\n    -1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -3,\n    3,\n    -3,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    1,\n    1,\n    1,\n    1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      11,\n      7,\n      0,\n      6\n    ],\n    [\n      7,\n      1,\n      8,\n      0\n    ],\n    [\n      1,\n      9,\n      2,\n      8\n    ],\n    [\n      5,\n      3,\n      6,\n      2\n    ],\n    [\n      3,\n      10,\n      4,\n      11\n    ],\n    [\n      9,\n      4,\n      10,\n      5\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"mirror\",\n  \"operation_params\": {},\n  \"before\": {\n    \"writhe\": 2,\n    \"n_crossings\": null,\n    \"signs\": [\n      1,\n      1,\n      1,\n      1,\n      -1,\n      -1\n    ]\n  },\n  \"after\": {\n    \"writhe\": -2,\n    \"n_crossings\": null,\n    \"signs\": [\n      -1,\n      -1,\n      -1,\n      -1,\n      1,\n      1\n    ]\n  },\n  \"delta\": {\n    \"writhe_delta\": -4,\n    \"crossing_count_delta\": 0\n  },\n  \"note\": \"Diagram-level changes are shown. Topological invariants (signature, det, Alexander) are NOT pre-computed.\",\n  \"mirror_rule_hint\": \"All crossing signs flip; writhe flips sign. Topological rule: signature(mirror(K)) = −signature(K); |det| same; Alexander coefficients unchanged under standard normalization.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"crossing_flip\": {\n    \"description\": \"Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not.\"\n  },\n  \"trivial_isotopy\": {\n    \"description\": \"Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant.\"\n  }\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim1_q13",
+      "type": "invariant_change",
+      "stem": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 3_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后 signature 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "knot": "3_1",
+        "operation": "connected_sum",
+        "signature_pre": -2,
+        "signature_post": -4,
+        "signature_changed": 1,
+        "determinant_pre": 3,
+        "determinant_post": 9,
+        "determinant_changed": 1,
+        "alex_pre_norm": [
+          1,
+          -1,
+          1
+        ],
+        "alex_post_norm": [
+          1,
+          -2,
+          3,
+          -2,
+          1
+        ],
+        "alex_changed": 1
+      },
+      "coe_data": {
+        "R": {
+          "knot_object_id": "3_1",
+          "operation_to_be_applied": "connected_sum",
+          "n_crossings": 3,
+          "writhe_pre": -3,
+          "signature_pre": -2,
+          "determinant_pre": 3,
+          "alexander_polynomial_pre": "t**2 - t + 1",
+          "alexander_coeffs_pre": [
+            1,
+            -1,
+            1
+          ],
+          "alexander_coeffs_normalized_pre": [
+            1,
+            -1,
+            1
+          ],
+          "crossing_signs_pre": [
+            -1,
+            -1,
+            -1
+          ],
+          "pd_code_pre": [
+            [
+              5,
+              2,
+              0,
+              3
+            ],
+            [
+              3,
+              0,
+              4,
+              1
+            ],
+            [
+              1,
+              4,
+              2,
+              5
+            ]
+          ],
+          "note": "Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects."
+        },
+        "T": {
+          "operation": "connected_sum",
+          "other_knot_id": "3_1",
+          "other_invariants": {
+            "signature": -2,
+            "determinant": 3,
+            "alexander_polynomial": "t**2 - t + 1",
+            "alexander_coeffs_normalized": [
+              1,
+              -1,
+              1
+            ],
+            "writhe": -3
+          },
+          "before": {
+            "n_crossings": null,
+            "writhe": null
+          },
+          "after": {
+            "n_crossings": 6,
+            "writhe": null
+          },
+          "note": "K_b's invariants are listed. Combine using K # K_b rules yourself; we don't pre-compute K # K_b's invariants."
+        },
+        "C": {
+          "crossing_flip": {
+            "description": "Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not."
+          },
+          "trivial_isotopy": {
+            "description": "Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant."
+          }
+        }
+      },
+      "prompts": {
+        "baseline": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 3_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 3_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 3_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"knot_object_id\": \"3_1\",\n  \"operation_to_be_applied\": \"connected_sum\",\n  \"n_crossings\": 3,\n  \"writhe_pre\": -3,\n  \"signature_pre\": -2,\n  \"determinant_pre\": 3,\n  \"alexander_polynomial_pre\": \"t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      5,\n      2,\n      0,\n      3\n    ],\n    [\n      3,\n      0,\n      4,\n      1\n    ],\n    [\n      1,\n      4,\n      2,\n      5\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 3_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"knot_object_id\": \"3_1\",\n  \"operation_to_be_applied\": \"connected_sum\",\n  \"n_crossings\": 3,\n  \"writhe_pre\": -3,\n  \"signature_pre\": -2,\n  \"determinant_pre\": 3,\n  \"alexander_polynomial_pre\": \"t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      5,\n      2,\n      0,\n      3\n    ],\n    [\n      3,\n      0,\n      4,\n      1\n    ],\n    [\n      1,\n      4,\n      2,\n      5\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"connected_sum\",\n  \"other_knot_id\": \"3_1\",\n  \"other_invariants\": {\n    \"signature\": -2,\n    \"determinant\": 3,\n    \"alexander_polynomial\": \"t**2 - t + 1\",\n    \"alexander_coeffs_normalized\": [\n      1,\n      -1,\n      1\n    ],\n    \"writhe\": -3\n  },\n  \"before\": {\n    \"n_crossings\": null,\n    \"writhe\": null\n  },\n  \"after\": {\n    \"n_crossings\": 6,\n    \"writhe\": null\n  },\n  \"note\": \"K_b's invariants are listed. Combine using K # K_b rules yourself; we don't pre-compute K # K_b's invariants.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"crossing_flip\": {\n    \"description\": \"Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not.\"\n  },\n  \"trivial_isotopy\": {\n    \"description\": \"Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant.\"\n  }\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim1_q14",
+      "type": "invariant_change",
+      "stem": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 4_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后 signature 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "knot": "3_1",
+        "operation": "connected_sum",
+        "signature_pre": -2,
+        "signature_post": -2,
+        "signature_changed": 0,
+        "determinant_pre": 3,
+        "determinant_post": 15,
+        "determinant_changed": 1,
+        "alex_pre_norm": [
+          1,
+          -1,
+          1
+        ],
+        "alex_post_norm": [
+          1,
+          -4,
+          5,
+          -4,
+          1
+        ],
+        "alex_changed": 1
+      },
+      "coe_data": {
+        "R": {
+          "knot_object_id": "3_1",
+          "operation_to_be_applied": "connected_sum",
+          "n_crossings": 3,
+          "writhe_pre": -3,
+          "signature_pre": -2,
+          "determinant_pre": 3,
+          "alexander_polynomial_pre": "t**2 - t + 1",
+          "alexander_coeffs_pre": [
+            1,
+            -1,
+            1
+          ],
+          "alexander_coeffs_normalized_pre": [
+            1,
+            -1,
+            1
+          ],
+          "crossing_signs_pre": [
+            -1,
+            -1,
+            -1
+          ],
+          "pd_code_pre": [
+            [
+              5,
+              2,
+              0,
+              3
+            ],
+            [
+              3,
+              0,
+              4,
+              1
+            ],
+            [
+              1,
+              4,
+              2,
+              5
+            ]
+          ],
+          "note": "Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects."
+        },
+        "T": {
+          "operation": "connected_sum",
+          "other_knot_id": "4_1",
+          "other_invariants": {
+            "signature": 0,
+            "determinant": 5,
+            "alexander_polynomial": "-t**2 + 3*t - 1",
+            "alexander_coeffs_normalized": [
+              1,
+              -3,
+              1
+            ],
+            "writhe": 0
+          },
+          "before": {
+            "n_crossings": null,
+            "writhe": null
+          },
+          "after": {
+            "n_crossings": 7,
+            "writhe": null
+          },
+          "note": "K_b's invariants are listed. Combine using K # K_b rules yourself; we don't pre-compute K # K_b's invariants."
+        },
+        "C": {
+          "crossing_flip": {
+            "description": "Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not."
+          },
+          "trivial_isotopy": {
+            "description": "Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant."
+          }
+        }
+      },
+      "prompts": {
+        "baseline": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 4_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 4_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 4_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"knot_object_id\": \"3_1\",\n  \"operation_to_be_applied\": \"connected_sum\",\n  \"n_crossings\": 3,\n  \"writhe_pre\": -3,\n  \"signature_pre\": -2,\n  \"determinant_pre\": 3,\n  \"alexander_polynomial_pre\": \"t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      5,\n      2,\n      0,\n      3\n    ],\n    [\n      3,\n      0,\n      4,\n      1\n    ],\n    [\n      1,\n      4,\n      2,\n      5\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑纽结 K = 3_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 4_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"knot_object_id\": \"3_1\",\n  \"operation_to_be_applied\": \"connected_sum\",\n  \"n_crossings\": 3,\n  \"writhe_pre\": -3,\n  \"signature_pre\": -2,\n  \"determinant_pre\": 3,\n  \"alexander_polynomial_pre\": \"t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      5,\n      2,\n      0,\n      3\n    ],\n    [\n      3,\n      0,\n      4,\n      1\n    ],\n    [\n      1,\n      4,\n      2,\n      5\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"connected_sum\",\n  \"other_knot_id\": \"4_1\",\n  \"other_invariants\": {\n    \"signature\": 0,\n    \"determinant\": 5,\n    \"alexander_polynomial\": \"-t**2 + 3*t - 1\",\n    \"alexander_coeffs_normalized\": [\n      1,\n      -3,\n      1\n    ],\n    \"writhe\": 0\n  },\n  \"before\": {\n    \"n_crossings\": null,\n    \"writhe\": null\n  },\n  \"after\": {\n    \"n_crossings\": 7,\n    \"writhe\": null\n  },\n  \"note\": \"K_b's invariants are listed. Combine using K # K_b rules yourself; we don't pre-compute K # K_b's invariants.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"crossing_flip\": {\n    \"description\": \"Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not.\"\n  },\n  \"trivial_isotopy\": {\n    \"description\": \"Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant.\"\n  }\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim1_q15",
+      "type": "invariant_change",
+      "stem": "考虑纽结 K = 4_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 4_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后 signature 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "knot": "4_1",
+        "operation": "connected_sum",
+        "signature_pre": 0,
+        "signature_post": 0,
+        "signature_changed": 0,
+        "determinant_pre": 5,
+        "determinant_post": 25,
+        "determinant_changed": 1,
+        "alex_pre_norm": [
+          1,
+          -3,
+          1
+        ],
+        "alex_post_norm": [
+          1,
+          -6,
+          11,
+          -6,
+          1
+        ],
+        "alex_changed": 1
+      },
+      "coe_data": {
+        "R": {
+          "knot_object_id": "4_1",
+          "operation_to_be_applied": "connected_sum",
+          "n_crossings": 4,
+          "writhe_pre": 0,
+          "signature_pre": 0,
+          "determinant_pre": 5,
+          "alexander_polynomial_pre": "-t**2 + 3*t - 1",
+          "alexander_coeffs_pre": [
+            -1,
+            3,
+            -1
+          ],
+          "alexander_coeffs_normalized_pre": [
+            1,
+            -3,
+            1
+          ],
+          "crossing_signs_pre": [
+            -1,
+            -1,
+            1,
+            1
+          ],
+          "pd_code_pre": [
+            [
+              7,
+              4,
+              0,
+              5
+            ],
+            [
+              3,
+              0,
+              4,
+              1
+            ],
+            [
+              1,
+              7,
+              2,
+              6
+            ],
+            [
+              5,
+              3,
+              6,
+              2
+            ]
+          ],
+          "note": "Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects."
+        },
+        "T": {
+          "operation": "connected_sum",
+          "other_knot_id": "4_1",
+          "other_invariants": {
+            "signature": 0,
+            "determinant": 5,
+            "alexander_polynomial": "-t**2 + 3*t - 1",
+            "alexander_coeffs_normalized": [
+              1,
+              -3,
+              1
+            ],
+            "writhe": 0
+          },
+          "before": {
+            "n_crossings": null,
+            "writhe": null
+          },
+          "after": {
+            "n_crossings": 8,
+            "writhe": null
+          },
+          "note": "K_b's invariants are listed. Combine using K # K_b rules yourself; we don't pre-compute K # K_b's invariants."
+        },
+        "C": {
+          "crossing_flip": {
+            "description": "Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not."
+          },
+          "trivial_isotopy": {
+            "description": "Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant."
+          }
+        }
+      },
+      "prompts": {
+        "baseline": "考虑纽结 K = 4_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 4_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑纽结 K = 4_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 4_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑纽结 K = 4_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 4_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"knot_object_id\": \"4_1\",\n  \"operation_to_be_applied\": \"connected_sum\",\n  \"n_crossings\": 4,\n  \"writhe_pre\": 0,\n  \"signature_pre\": 0,\n  \"determinant_pre\": 5,\n  \"alexander_polynomial_pre\": \"-t**2 + 3*t - 1\",\n  \"alexander_coeffs_pre\": [\n    -1,\n    3,\n    -1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -3,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    1,\n    1\n  ],\n  \"pd_code_pre\": [\n    [\n      7,\n      4,\n      0,\n      5\n    ],\n    [\n      3,\n      0,\n      4,\n      1\n    ],\n    [\n      1,\n      7,\n      2,\n      6\n    ],\n    [\n      5,\n      3,\n      6,\n      2\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑纽结 K = 4_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 4_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"knot_object_id\": \"4_1\",\n  \"operation_to_be_applied\": \"connected_sum\",\n  \"n_crossings\": 4,\n  \"writhe_pre\": 0,\n  \"signature_pre\": 0,\n  \"determinant_pre\": 5,\n  \"alexander_polynomial_pre\": \"-t**2 + 3*t - 1\",\n  \"alexander_coeffs_pre\": [\n    -1,\n    3,\n    -1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -3,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    1,\n    1\n  ],\n  \"pd_code_pre\": [\n    [\n      7,\n      4,\n      0,\n      5\n    ],\n    [\n      3,\n      0,\n      4,\n      1\n    ],\n    [\n      1,\n      7,\n      2,\n      6\n    ],\n    [\n      5,\n      3,\n      6,\n      2\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"connected_sum\",\n  \"other_knot_id\": \"4_1\",\n  \"other_invariants\": {\n    \"signature\": 0,\n    \"determinant\": 5,\n    \"alexander_polynomial\": \"-t**2 + 3*t - 1\",\n    \"alexander_coeffs_normalized\": [\n      1,\n      -3,\n      1\n    ],\n    \"writhe\": 0\n  },\n  \"before\": {\n    \"n_crossings\": null,\n    \"writhe\": null\n  },\n  \"after\": {\n    \"n_crossings\": 8,\n    \"writhe\": null\n  },\n  \"note\": \"K_b's invariants are listed. Combine using K # K_b rules yourself; we don't pre-compute K # K_b's invariants.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"crossing_flip\": {\n    \"description\": \"Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not.\"\n  },\n  \"trivial_isotopy\": {\n    \"description\": \"Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant.\"\n  }\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim1_q16",
+      "type": "invariant_change",
+      "stem": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 3_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后 signature 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "knot": "5_1",
+        "operation": "connected_sum",
+        "signature_pre": -4,
+        "signature_post": -6,
+        "signature_changed": 1,
+        "determinant_pre": 5,
+        "determinant_post": 15,
+        "determinant_changed": 1,
+        "alex_pre_norm": [
+          1,
+          -1,
+          1,
+          -1,
+          1
+        ],
+        "alex_post_norm": [
+          1,
+          -2,
+          3,
+          -3,
+          3,
+          -2,
+          1
+        ],
+        "alex_changed": 1
+      },
+      "coe_data": {
+        "R": {
+          "knot_object_id": "5_1",
+          "operation_to_be_applied": "connected_sum",
+          "n_crossings": 5,
+          "writhe_pre": -5,
+          "signature_pre": -4,
+          "determinant_pre": 5,
+          "alexander_polynomial_pre": "t**4 - t**3 + t**2 - t + 1",
+          "alexander_coeffs_pre": [
+            1,
+            -1,
+            1,
+            -1,
+            1
+          ],
+          "alexander_coeffs_normalized_pre": [
+            1,
+            -1,
+            1,
+            -1,
+            1
+          ],
+          "crossing_signs_pre": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "pd_code_pre": [
+            [
+              9,
+              4,
+              0,
+              5
+            ],
+            [
+              5,
+              0,
+              6,
+              1
+            ],
+            [
+              1,
+              6,
+              2,
+              7
+            ],
+            [
+              7,
+              2,
+              8,
+              3
+            ],
+            [
+              3,
+              8,
+              4,
+              9
+            ]
+          ],
+          "note": "Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects."
+        },
+        "T": {
+          "operation": "connected_sum",
+          "other_knot_id": "3_1",
+          "other_invariants": {
+            "signature": -2,
+            "determinant": 3,
+            "alexander_polynomial": "t**2 - t + 1",
+            "alexander_coeffs_normalized": [
+              1,
+              -1,
+              1
+            ],
+            "writhe": -3
+          },
+          "before": {
+            "n_crossings": null,
+            "writhe": null
+          },
+          "after": {
+            "n_crossings": 8,
+            "writhe": null
+          },
+          "note": "K_b's invariants are listed. Combine using K # K_b rules yourself; we don't pre-compute K # K_b's invariants."
+        },
+        "C": {
+          "crossing_flip": {
+            "description": "Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not."
+          },
+          "trivial_isotopy": {
+            "description": "Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant."
+          }
+        }
+      },
+      "prompts": {
+        "baseline": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 3_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 3_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 3_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"knot_object_id\": \"5_1\",\n  \"operation_to_be_applied\": \"connected_sum\",\n  \"n_crossings\": 5,\n  \"writhe_pre\": -5,\n  \"signature_pre\": -4,\n  \"determinant_pre\": 5,\n  \"alexander_polynomial_pre\": \"t**4 - t**3 + t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      9,\n      4,\n      0,\n      5\n    ],\n    [\n      5,\n      0,\n      6,\n      1\n    ],\n    [\n      1,\n      6,\n      2,\n      7\n    ],\n    [\n      7,\n      2,\n      8,\n      3\n    ],\n    [\n      3,\n      8,\n      4,\n      9\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑纽结 K = 5_1（snappy 标准命名）。\n对 K 施加操作：connected_sum with K_b = 3_1 (K # K_b)\n我们关注三个经典不变量：\n  • signature σ(K)：来自 Seifert 矩阵 S 的 (S + S^T) 的特征值符号差\n  • determinant |det(S + S^T)|\n  • Alexander 多项式（按标准化规则取消 ±t^k 的歧义）\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"knot_object_id\": \"5_1\",\n  \"operation_to_be_applied\": \"connected_sum\",\n  \"n_crossings\": 5,\n  \"writhe_pre\": -5,\n  \"signature_pre\": -4,\n  \"determinant_pre\": 5,\n  \"alexander_polynomial_pre\": \"t**4 - t**3 + t**2 - t + 1\",\n  \"alexander_coeffs_pre\": [\n    1,\n    -1,\n    1,\n    -1,\n    1\n  ],\n  \"alexander_coeffs_normalized_pre\": [\n    1,\n    -1,\n    1,\n    -1,\n    1\n  ],\n  \"crossing_signs_pre\": [\n    -1,\n    -1,\n    -1,\n    -1,\n    -1\n  ],\n  \"pd_code_pre\": [\n    [\n      9,\n      4,\n      0,\n      5\n    ],\n    [\n      5,\n      0,\n      6,\n      1\n    ],\n    [\n      1,\n      6,\n      2,\n      7\n    ],\n    [\n      7,\n      2,\n      8,\n      3\n    ],\n    [\n      3,\n      8,\n      4,\n      9\n    ]\n  ],\n  \"note\": \"Pre-state invariants are given. Post-state invariants are NOT given; predict them from the operation type. Reidemeister moves are isotopies (all classical invariants preserved); mirror flips signature sign; connected_sum has additive/multiplicative effects.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"connected_sum\",\n  \"other_knot_id\": \"3_1\",\n  \"other_invariants\": {\n    \"signature\": -2,\n    \"determinant\": 3,\n    \"alexander_polynomial\": \"t**2 - t + 1\",\n    \"alexander_coeffs_normalized\": [\n      1,\n      -1,\n      1\n    ],\n    \"writhe\": -3\n  },\n  \"before\": {\n    \"n_crossings\": null,\n    \"writhe\": null\n  },\n  \"after\": {\n    \"n_crossings\": 8,\n    \"writhe\": null\n  },\n  \"note\": \"K_b's invariants are listed. Combine using K # K_b rules yourself; we don't pre-compute K # K_b's invariants.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"crossing_flip\": {\n    \"description\": \"Flipping a single crossing sign turns over/under at that crossing — this is not an ambient isotopy, and it generally changes signature, determinant, AND Alexander polynomial. Use this contrast to confirm: a *Reidemeister* move (R1/R2) preserves all three; a crossing flip does not.\"\n  },\n  \"trivial_isotopy\": {\n    \"description\": \"Translating / scaling the diagram in the plane is an isotopy and preserves every classical invariant.\"\n  }\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后 signature 是否变化？请回答 1（变化）或 0（不变）。\n  (b) 操作后 determinant 是否变化？请回答 1（变化）或 0（不变）。\n  (c) 操作后归一化的 Alexander 系数是否变化？请回答 1（变化）或 0（不变）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    }
+  ]
+}

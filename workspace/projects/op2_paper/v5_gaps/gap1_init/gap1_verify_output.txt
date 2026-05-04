@@ -1,0 +1,145 @@
+======================================================================
+Gap 1 verification — Route A: zero-momentum cycling on positive-measure
+subset of F_{K=3}.  mpmath dps = 50
+======================================================================
+--- (S1) SymPy kinematic identity ---
+  x_1 (basis form) - x_1 (cartesian form) = Matrix([[0, 0]])
+  ||x_1||^2 - lam^2(1 + 3 beta^2) = 0
+  ||x_1||^2 - lam^2(1+beta+beta^2)  = beta*lam**2*(2*beta - 1)    (direction_1 claim — should be NON-zero, hence wrong)
+  S1 PASS: True
+
+--- (S2) SymPy Vieta identity (1-r1)(1-r2) = eta*mu ---
+  (1-r_1)(1-r_2) - eta*mu = 0
+  p(1) - eta*mu             = 0    (sanity: p(1) should equal (1-r_1)(1-r_2))
+  S2 PASS: True
+
+--- (M1) mpmath anchor verification (0.8, 3.247, 0.387) ---
+  ||x_t|| at T=10000:                    0.707106781186547524400844362105
+  lam = D/sqrt(2):                        0.707106781186547524400844362105
+  min ||x_t|| over t in [100,10000]:     0.70701770810215967481
+  ||x_{T+3} - x_T||:                       5.3455294201843912923e-51
+  Cycle-attractor PASS: True
+  asymptotic ||grad f_0||^2 (at T=10000):  0.347149471275
+  min ||grad f_0||^2 for t in [100,10000]: 0.347109959841
+  Constant grad-floor PASS (min > 1e-3):  True
+  min_t (t * f_0_floor(x_t) / (kappa L D^2)) over t in [1,10000]:  0.04371019879
+  binding t (the worst t):                                         4
+  Empirical achievable constant c such that bias >= c*kappa LD^2/t: 0.043710199 (so c ~= 1/22.878)
+    Restricted to t >=    10: min ratio = 0.36879887
+    Restricted to t >=    30: min ratio = 5.5112685
+    Restricted to t >=   100: min ratio = 24.999597
+    Restricted to t >=   300: min ratio = 75.0
+    Restricted to t >=  1000: min ratio = 250.0
+  c = kappa/10 over t >= 1:   False  (direction_1 v5 claim, REFUTED here)
+  c = kappa/10 over t >= 10:  True
+
+--- (M2) mpmath Floquet eigenvalue |lambda| = beta^{3/2} ---
+  |J^3 eigenvalues|: ['0.7155417528', '0.7155417528', '0.7155417528', '0.7155417528']
+  beta^{3/2}        = 0.7155417528
+  M2 PASS: True
+
+--- (M3) mpmath grid scan over F_{K=3} ---
+  beta=0.400  etaL=2.6167  kappa=0.0265  final=0.0000e+00  ->  decay
+  beta=0.400  etaL=2.6500  kappa=0.0679  final=0.0000e+00  ->  decay
+  beta=0.400  etaL=2.6833  kappa=0.0986  final=0.0000e+00  ->  decay
+  beta=0.400  etaL=2.7167  kappa=0.1221  final=0.0000e+00  ->  decay
+  beta=0.400  etaL=2.7500  kappa=0.1403  final=7.5496e-204  ->  decay
+  beta=0.400  etaL=2.7833  kappa=0.1546  final=1.1438e-63  ->  decay
+  beta=0.500  etaL=2.6562  kappa=0.0753  final=0.0000e+00  ->  decay
+  beta=0.500  etaL=2.7188  kappa=0.1576  final=0.0000e+00  ->  decay
+  beta=0.500  etaL=2.7812  kappa=0.1998  final=0.0000e+00  ->  decay
+  beta=0.500  etaL=2.8438  kappa=0.2238  final=0.0000e+00  ->  decay
+  beta=0.500  etaL=2.9062  kappa=0.2382  final=0.0000e+00  ->  decay
+  beta=0.500  etaL=2.9688  kappa=0.2470  final=2.6867e-152  ->  decay
+  beta=0.600  etaL=2.7167  kappa=0.1525  final=0.0000e+00  ->  decay
+  beta=0.600  etaL=2.8045  kappa=0.2528  final=0.0000e+00  ->  decay
+  beta=0.600  etaL=2.8924  kappa=0.2857  final=0.0000e+00  ->  decay
+  beta=0.600  etaL=2.9803  kappa=0.2985  final=0.0000e+00  ->  decay
+  beta=0.600  etaL=3.0682  kappa=0.3028  final=0.0000e+00  ->  decay
+  beta=0.600  etaL=3.1561  kappa=0.3030  final=0.0000e+00  ->  decay
+  beta=0.700  etaL=2.7927  kappa=0.2559  final=0.0000e+00  ->  decay
+  beta=0.700  etaL=2.9031  kappa=0.3370  final=0.0000e+00  ->  decay
+  beta=0.700  etaL=3.0135  kappa=0.3506  final=0.0000e+00  ->  decay
+  beta=0.700  etaL=3.1240  kappa=0.3502  final=0.0000e+00  ->  decay
+  beta=0.700  etaL=3.2344  kappa=0.3450  final=0.0000e+00  ->  decay
+  beta=0.700  etaL=3.3448  kappa=0.3379  final=7.0711e-01  ->  cycle
+  beta=0.750  etaL=2.8354  kappa=0.3118  final=8.4998e-313  ->  decay
+  beta=0.750  etaL=2.9562  kappa=0.3716  final=7.0711e-01  ->  cycle
+  beta=0.750  etaL=3.0771  kappa=0.3752  final=7.0711e-01  ->  cycle
+  beta=0.750  etaL=3.1979  kappa=0.3691  final=7.0711e-01  ->  cycle
+  beta=0.750  etaL=3.3188  kappa=0.3601  final=7.0711e-01  ->  cycle
+  beta=0.750  etaL=3.4396  kappa=0.3502  final=7.0711e-01  ->  cycle
+  beta=0.800  etaL=2.8808  kappa=0.3653  final=6.8038e-243  ->  decay
+  beta=0.800  etaL=3.0115  kappa=0.4003  final=1.9627e-243  ->  decay
+  beta=0.800  etaL=3.1423  kappa=0.3951  final=7.0711e-01  ->  cycle
+  beta=0.800  etaL=3.2731  kappa=0.3843  final=7.0711e-01  ->  cycle
+  beta=0.800  etaL=3.4038  kappa=0.3722  final=7.0711e-01  ->  cycle
+  beta=0.800  etaL=3.5346  kappa=0.3601  final=7.0711e-01  ->  cycle
+  beta=0.850  etaL=2.9285  kappa=0.4120  final=7.0628e-01  ->  cycle
+  beta=0.850  etaL=3.0688  kappa=0.4232  final=7.0711e-01  ->  cycle
+  beta=0.850  etaL=3.2090  kappa=0.4109  final=7.0711e-01  ->  cycle
+  beta=0.850  etaL=3.3493  kappa=0.3963  final=7.0711e-01  ->  cycle
+  beta=0.850  etaL=3.4896  kappa=0.3818  final=7.0711e-01  ->  cycle
+  beta=0.850  etaL=3.6299  kappa=0.3679  final=7.0711e-01  ->  cycle
+  beta=0.900  etaL=2.9783  kappa=0.4486  final=8.0108e-81  ->  decay
+  beta=0.900  etaL=3.1277  kappa=0.4406  final=9.7909e-01  ->  other
+  beta=0.900  etaL=3.2771  kappa=0.4232  final=9.8803e-01  ->  other
+  beta=0.900  etaL=3.4265  kappa=0.4058  final=9.9191e-01  ->  other
+  beta=0.900  etaL=3.5759  kappa=0.3894  final=9.9407e-01  ->  other
+  beta=0.900  etaL=3.7253  kappa=0.3742  final=9.9546e-01  ->  other
+  beta=0.950  etaL=3.0300  kappa=0.4734  final=1.1883e+00  ->  other
+  beta=0.950  etaL=3.1881  kappa=0.4532  final=1.2058e+00  ->  other
+  beta=0.950  etaL=3.3463  kappa=0.4324  final=1.2094e+00  ->  other
+  beta=0.950  etaL=3.5045  kappa=0.4131  final=1.2109e+00  ->  other
+  beta=0.950  etaL=3.6627  kappa=0.3954  final=1.2118e+00  ->  other
+  beta=0.950  etaL=3.8209  kappa=0.3791  final=1.2123e+00  ->  other
+
+  Total: 54, Cycle: 16, Decay: 27, Other: 11
+  Cycle fraction: 0.296
+
+  Cycling points found:
+    (beta, etaL, kappa) = (0.700, 3.3448, 0.3379)
+    (beta, etaL, kappa) = (0.750, 2.9562, 0.3716)
+    (beta, etaL, kappa) = (0.750, 3.0771, 0.3752)
+    (beta, etaL, kappa) = (0.750, 3.1979, 0.3691)
+    (beta, etaL, kappa) = (0.750, 3.3188, 0.3601)
+    (beta, etaL, kappa) = (0.750, 3.4396, 0.3502)
+    (beta, etaL, kappa) = (0.800, 3.1423, 0.3951)
+    (beta, etaL, kappa) = (0.800, 3.2731, 0.3843)
+    (beta, etaL, kappa) = (0.800, 3.4038, 0.3722)
+    (beta, etaL, kappa) = (0.800, 3.5346, 0.3601)
+    (beta, etaL, kappa) = (0.850, 2.9285, 0.4120)
+    (beta, etaL, kappa) = (0.850, 3.0688, 0.4232)
+    (beta, etaL, kappa) = (0.850, 3.2090, 0.4109)
+    (beta, etaL, kappa) = (0.850, 3.3493, 0.3963)
+    (beta, etaL, kappa) = (0.850, 3.4896, 0.3818)
+    (beta, etaL, kappa) = (0.850, 3.6299, 0.3679)
+  M3 PASS (>=3 cycling pts, evidencing positive measure): True
+
+--- (M4) mpmath period-6 anchor (0.9, 3.78, 0.05) ---
+  ||x_t - x_{t-6}||:        1.9273580418976111176e-50  (must be ~0 for period-6)
+  ||x_t - x_{t-2}||:        3.6486507728408159361  (must be ~3.6 — NOT period-2)
+  norms over period:        [2.106549505878581, 2.2079530039073885, 2.106549505878581, 2.2079530039073885, 2.106549505878581, 2.2079530039073885]
+  distinct norms (rounded): [2.107, 2.208]
+  M4 PASS: True
+
+======================================================================
+SUMMARY
+======================================================================
+  S1_kinematic        : PASS
+  S2_vieta            : PASS
+  M2_floquet          : PASS
+  M1_anchor (cycle+gradfloor): PASS
+    asymptotic ||grad f_0||^2 = 3.4715e-01
+    min ||grad f_0||^2 t>=100 = 3.4711e-01
+    min t*f_0_floor/(kappa L D^2) over t in [1, 10000] = 0.0437  at t = 4
+    min ratio for t >= 10  = 0.3688
+    min ratio for t >= 100 = 24.9996
+    min ratio for t >= 1000= 250.0000
+  M3_grid            : PASS  (16/54 cycling)
+  M4_period6         : PASS  (period6_err = 1.927e-50, min_norm = 2.107)
+
+  Wall time: 77.3s
+  Overall:   ALL PASS
+
+  Saved results to C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap1_init\gap1_verify_results.json

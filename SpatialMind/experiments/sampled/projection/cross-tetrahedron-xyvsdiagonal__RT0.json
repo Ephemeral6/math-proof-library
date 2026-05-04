@@ -1,0 +1,203 @@
+{
+ "domain": "projection",
+ "condition": "RT0",
+ "primitives": {
+  "relation": true,
+  "transform": true,
+  "contrastive": false
+ },
+ "case_id": "cross-tetrahedron-xyvsdiagonal",
+ "case_data": {
+  "case_id": "cross-tetrahedron-xyvsdiagonal",
+  "summary_delta": {
+   "dimension_a": -1,
+   "edge_crossings_a": {
+    "pre": null,
+    "post": 1
+   },
+   "edge_crossings_b": 0,
+   "diameter_a": 0.0,
+   "diameter_b": 0.0,
+   "n_points_b": 0,
+   "n_points_a": 0,
+   "dimension_b": 0
+  },
+  "metadata": {
+   "case_type": "cross_projection",
+   "object": "tetrahedron",
+   "plane_a": "xy",
+   "plane_b": "diagonal",
+   "n_points": 4,
+   "n_edges": 6
+  },
+  "detailed_comparison": {
+   "collisions_introduced": 0,
+   "crossings_introduced": 1,
+   "fraction_distances_preserved": 0.3333,
+   "diameter_change": 0.0
+  },
+  "structural_comparison": {
+   "distances_preserved_count": 2,
+   "distances_total": 6,
+   "dimension_before": 3,
+   "dimension_after": 2,
+   "information_loss_summary": {
+    "collisions": 0,
+    "crossings": 1,
+    "distance_distortion": 0.6667
+   },
+   "invariants_preserved": {
+    "n_points": true,
+    "dimension": false,
+    "diameter": true
+   },
+   "invariants_delta": {
+    "n_points": 0,
+    "dimension": -1,
+    "diameter": 0.0
+   }
+  },
+  "transform_trace": {
+   "operation_name": "projection",
+   "operation_params": {
+    "plane": "xy",
+    "dropped_axis": "z"
+   },
+   "before_state": {
+    "dimension": 3,
+    "n_points": 4,
+    "diameter": 2.828427
+   },
+   "after_state": {
+    "dimension": 2,
+    "n_points": 4,
+    "diameter": 2.828427,
+    "edge_crossings": 1
+   },
+   "delta": {
+    "dimension_lost": 1,
+    "n_point_collisions": 0,
+    "n_edge_crossings_introduced": 1,
+    "fraction_distances_preserved": 0.3333,
+    "distances_total": 6,
+    "distances_preserved": 2,
+    "diameter_change": 0.0
+   },
+   "region_affected": {
+    "collided_point_pairs": [],
+    "most_distorted_pairs": [
+     {
+      "pair": [
+       2,
+       3
+      ],
+      "dist_3d": 2.828427,
+      "dist_2d": 2.828427,
+      "ratio": 1.0,
+      "preserved": true
+     },
+     {
+      "pair": [
+       0,
+       2
+      ],
+      "dist_3d": 2.828427,
+      "dist_2d": 2.0,
+      "ratio": 0.7071,
+      "preserved": false
+     },
+     {
+      "pair": [
+       0,
+       3
+      ],
+      "dist_3d": 2.828427,
+      "dist_2d": 2.0,
+      "ratio": 0.7071,
+      "preserved": false
+     },
+     {
+      "pair": [
+       1,
+       2
+      ],
+      "dist_3d": 2.828427,
+      "dist_2d": 2.0,
+      "ratio": 0.7071,
+      "preserved": false
+     },
+     {
+      "pair": [
+       1,
+       3
+      ],
+      "dist_3d": 2.828427,
+      "dist_2d": 2.0,
+      "ratio": 0.7071,
+      "preserved": false
+     }
+    ],
+    "n_collisions": 0,
+    "n_crossings": 1
+   },
+   "sub_steps": []
+  },
+  "reference_in_transform_region": {
+   "collided_point_pairs": [],
+   "most_distorted_pairs": [
+    {
+     "pair": [
+      2,
+      3
+     ],
+     "dist_3d": 2.828427,
+     "dist_2d": 2.828427,
+     "ratio": 1.0,
+     "preserved": true
+    },
+    {
+     "pair": [
+      0,
+      2
+     ],
+     "dist_3d": 2.828427,
+     "dist_2d": 2.0,
+     "ratio": 0.7071,
+     "preserved": false
+    },
+    {
+     "pair": [
+      0,
+      3
+     ],
+     "dist_3d": 2.828427,
+     "dist_2d": 2.0,
+     "ratio": 0.7071,
+     "preserved": false
+    },
+    {
+     "pair": [
+      1,
+      2
+     ],
+     "dist_3d": 2.828427,
+     "dist_2d": 2.0,
+     "ratio": 0.7071,
+     "preserved": false
+    },
+    {
+     "pair": [
+      1,
+      3
+     ],
+     "dist_3d": 2.828427,
+     "dist_2d": 2.0,
+     "ratio": 0.7071,
+     "preserved": false
+    }
+   ],
+   "n_collisions": 0,
+   "n_crossings": 1
+  }
+ }
+}

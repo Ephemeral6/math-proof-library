@@ -1,0 +1,199 @@
+﻿
+==============================================================================
+[reduced LMI]  beta=3/5, eta=1/2, L=1
+==============================================================================
+  [reduced] status=optimal_inaccurate  s=0.2700  c=3.9782  W=4.2482  C=2.0241
+  [tight] denom=   50  fail  s=10/37  c=183/46  W=7231/1702  C=2.0100  [Mnpsd,Qnpsd]
+  [tight] denom=  100  fail  s=27/100  c=183/46  W=9771/2300  C=2.0221  [Mnpsd,Qnpsd]
+  [tight] denom=  250  fail  s=64/237  c=911/229  W=230563/54273  C=2.0242  [Mnpsd]
+  [tight] denom=  500  fail  s=118/437  c=1277/321  W=595927/140277  C=2.0241  [Mnpsd]
+  [tight] denom= 1000  fail  s=118/437  c=3648/917  W=1702382/400729  C=2.0241  [Mnpsd]
+  [tight] denom= 2500  fail  s=563/2085  c=6019/1513  W=13401434/3154605  C=2.0241  [Mnpsd]
+  [tight] denom= 5000  fail  s=1035/3833  c=14409/3622  W=58978467/13883126  C=2.0241  [Mnpsd]
+  [tight] denom=10000  fail  s=1952/7229  c=20428/5135  W=157697532/37120915  C=2.0241  [Mnpsd]
+  (tight rounding failed; C-pinned interior fallback)
+  [Cmax=2.0341]  W=4.2682  C_achieved=2.0341
+  [Cmax=2.034] denom=   20  fail  s=7/5  c=43/15  W=64/15  C=2.0398  [Mnpsd]
+  [Cmax=2.034] denom=   50  fail  s=7/5  c=43/15  W=64/15  C=2.0424  [Mnpsd]
+  [Cmax=2.034] denom=  100  fail  s=136/97  c=43/15  W=6211/1455  C=2.0335  [Mnpsd]
+  [Cmax=2.034] denom=  250  fail  s=321/229  c=708/247  W=241419/56563  C=2.0342  [Mnpsd]
+  [Cmax=2.034] denom=  500  fail  s=321/229  c=794/277  W=270743/63433  C=2.0341  [Mnpsd]
+  [Cmax=2.034] denom= 1000  fail  s=321/229  c=2339/816  W=797567/186864  C=2.0341  [Mnpsd]
+  [Cmax=2.034] denom= 2500  fail  s=2411/1720  c=4721/1647  W=12091037/2832840  C=2.0341  [Mnpsd]
+  [Cmax=2.034] denom= 5000  fail  s=6912/4931  c=8648/3017  W=63496792/14876827  C=2.0341  [Mnpsd]
+  [Cmax=2.034] denom=10000  fail  s=11413/8142  c=8648/3017  W=104845037/24564414  C=2.0341  [Mnpsd]
+  [Cmax=2.0441]  W=4.2882  C_achieved=2.0441
+  [Cmax=2.044] denom=   20  fail  s=0  c=64/15  W=64/15  C=2.0333  [Mnpsd]
+  [Cmax=2.044] denom=   50  OK  s=1/49  c=175/41  W=8616/2009  C=2.0444
+
+==============================================================================
+[reduced LMI]  beta=4/5, eta=1/5, L=1
+==============================================================================
+  [reduced] status=optimal_inaccurate  s=2.2527  c=5.6740  W=7.9267  C=3.9632
+  [tight] denom=   50  fail  s=106/47  c=261/46  W=17143/2162  C=3.9666  [Mnpsd]
+  [tight] denom=  100  fail  s=205/91  c=261/46  W=33181/4186  C=3.9634  [Mnpsd]
+  [tight] denom=  250  fail  s=205/91  c=1288/227  W=163743/20657  C=3.9632  [Mnpsd]
+  [tight] denom=  500  fail  s=829/368  c=1810/319  W=930531/117392  C=3.9632  [Mnpsd]
+  [tight] denom= 1000  fail  s=1863/827  c=5169/911  W=5971956/753397  C=3.9632  [Mnpsd]
+  [tight] denom= 2500  fail  s=2692/1195  c=5169/911  W=8629367/1088645  C=3.9632  [Mnpsd]
+  [tight] denom= 5000  fail  s=2692/1195  c=24035/4236  W=40125137/5062020  C=3.9632  [Mnpsd]
+  [tight] denom=10000  fail  s=22365/9928  c=39542/6969  W=548434661/69188232  C=3.9632  [Mnpsd]
+  (tight rounding failed; C-pinned interior fallback)
+  [Cmax=3.9732]  W=7.9468  C_achieved=3.9732
+  [Cmax=3.973] denom=   20  fail  s=29/18  c=19/3  W=143/18  C=3.9985  [Mnpsd]
+  [Cmax=3.973] denom=   50  fail  s=29/18  c=19/3  W=143/18  C=3.9785  [Mnpsd]
+  [Cmax=3.973] denom=  100  fail  s=153/95  c=621/98  W=73989/9310  C=3.9698  [Mnpsd]
+  [Cmax=3.973] denom=  250  fail  s=182/113  c=1489/235  W=211027/26555  C=3.9732  [Mnpsd]
+  [Cmax=3.973] denom=  500  fail  s=182/113  c=2243/354  W=317887/40002  C=3.9733  [Mnpsd]
+  [Cmax=3.973] denom= 1000  fail  s=182/113  c=5975/943  W=846801/106559  C=3.9733  [Mnpsd]
+  [Cmax=3.973] denom= 2500  fail  s=3975/2468  c=10461/1651  W=32380473/4074668  C=3.9729  [Mnpsd,Qnpsd]
+  [Cmax=3.973] denom= 5000  fail  s=6159/3824  c=29140/4599  W=139756601/17586576  C=3.9731  [Mnpsd,Qnpsd]
+  [Cmax=3.973] denom=10000  fail  s=12136/7535  c=29140/4599  W=275383364/34653465  C=3.9732  [Mnpsd]
+  [Cmax=3.9832]  W=7.9657  C_achieved=3.9832
+  [Cmax=3.983] denom=   20  fail  s=9/17  c=119/16  W=2167/272  C=3.9840  [Mnpsd]
+  [Cmax=3.983] denom=   50  fail  s=19/36  c=119/16  W=1147/144  C=3.9837  [Mnpsd]
+  [Cmax=3.983] denom=  100  fail  s=19/36  c=119/16  W=1147/144  C=3.9834  [Mnpsd]
+  [Cmax=3.983] denom=  250  fail  s=123/233  c=1376/185  W=343363/43105  C=3.9834  [Mnpsd]
+  [Cmax=3.983] denom=  500  fail  s=161/305  c=1376/185  W=89893/11285  C=3.9834  [Mnpsd]
+  [Cmax=3.983] denom= 1000  fail  s=502/951  c=1376/185  W=1401446/175935  C=3.9824  [Mnpsd,Qnpsd]
+  [Cmax=3.983] denom= 2500  fail  s=663/1256  c=17769/2389  W=23901771/3000584  C=3.9832  [Mnpsd]
+  [Cmax=3.983] denom= 5000  fail  s=2150/4073  c=23273/3129  W=101518279/12744417  C=3.9833  [Mnpsd]
+  [Cmax=3.983] denom=10000  fail  s=2150/4073  c=71195/9572  W=310557035/38986756  C=3.9832  [Mnpsd]
+  [Cmax=4.0132]  W=8.0264  C_achieved=4.0132
+  [Cmax=4.013] denom=   20  OK  s=7/19  c=23/3  W=458/57  C=4.0175
+
+==============================================================================
+[reduced LMI]  beta=7/10, eta=2/5, L=1
+==============================================================================
+  [reduced] status=optimal_inaccurate  s=0.4256  c=6.9062  W=7.3318  C=3.5409
+  [tight] denom=   50  fail  s=20/47  c=221/32  W=11027/1504  C=3.5438  [Mnpsd]
+  [tight] denom=  100  fail  s=20/47  c=221/32  W=11027/1504  C=3.5406  [Mnpsd]
+  [tight] denom=  250  fail  s=103/242  c=221/32  W=28389/3872  C=3.5409  [Mnpsd]
+  [tight] denom=  500  fail  s=143/336  c=3239/469  W=23579/3216  C=3.5408  [Mnpsd]
+  [tight] denom= 1000  fail  s=266/625  c=5228/757  W=3468862/473125  C=3.5408  [Mnpsd]
+  [tight] denom= 2500  fail  s=941/2211  c=15905/2303  W=37333078/5091933  C=3.5409  [Mnpsd]
+  [tight] denom= 5000  fail  s=1207/2836  c=21133/3060  W=3976663/542385  C=3.5409  [Mnpsd]
+  [tight] denom=10000  fail  s=3887/9133  c=21133/3060  W=204901909/27946980  C=3.5409  [Mnpsd]
+  (tight rounding failed; C-pinned interior fallback)
+  [Cmax=3.5509]  W=7.3517  C_achieved=3.5509
+  [Cmax=3.551] denom=   20  fail  s=20/19  c=63/10  W=1397/190  C=3.5481  [Mnpsd]
+  [Cmax=3.551] denom=   50  fail  s=20/19  c=296/47  W=6564/893  C=3.5508  [Mnpsd]
+  [Cmax=3.551] denom=  100  fail  s=99/94  c=422/67  W=46301/6298  C=3.5503  [Mnpsd]
+  [Cmax=3.551] denom=  250  fail  s=99/94  c=422/67  W=46301/6298  C=3.5509  [Mnpsd]
+  [Cmax=3.551] denom=  500  fail  s=475/451  c=422/67  W=222147/30217  C=3.5509  [Mnpsd]
+  [Cmax=3.551] denom= 1000  fail  s=475/451  c=422/67  W=222147/30217  C=3.5509  [Mnpsd]
+  [Cmax=3.551] denom= 2500  fail  s=475/451  c=14285/2268  W=7519835/1022868  C=3.5509  [Mnpsd]
+  [Cmax=3.551] denom= 5000  fail  s=4651/4416  c=14285/2268  W=6135919/834624  C=3.5509  [Mnpsd]
+  [Cmax=3.551] denom=10000  fail  s=4651/4416  c=57562/9139  W=296699281/40357824  C=3.5509  [Mnpsd]
+  [Cmax=3.5609]  W=7.3717  C_achieved=3.5609
+  [Cmax=3.561] denom=   20  fail  s=3/5  c=88/13  W=479/65  C=3.5846  [Mnpsd]
+  [Cmax=3.561] denom=   50  fail  s=3/5  c=88/13  W=479/65  C=3.5573  [Mnpsd]
+  [Cmax=3.561] denom=  100  fail  s=59/98  c=677/100  W=36123/4900  C=3.5613  [Mnpsd]
+  [Cmax=3.561] denom=  250  fail  s=59/98  c=1117/165  W=119201/16170  C=3.5609  [Mnpsd]
+  [Cmax=3.561] denom=  500  fail  s=298/495  c=1117/165  W=3649/495  C=3.5609  [Mnpsd]
+  [Cmax=3.561] denom= 1000  fail  s=357/593  c=1117/165  W=721286/97845  C=3.5609  [Mnpsd]
+  [Cmax=3.561] denom= 2500  fail  s=357/593  c=15726/2323  W=10154829/1377539  C=3.5609  [Mnpsd]
+  [Cmax=3.561] denom= 5000  fail  s=2915/4842  c=15726/2323  W=82916837/11247966  C=3.5609  [Mnpsd]
+  [Cmax=3.561] denom=10000  fail  s=5057/8400  c=61787/9127  W=565166039/76666800  C=3.5609  [Mnpsd]
+  [Cmax=3.5909]  W=7.4317  C_achieved=3.5909
+  [Cmax=3.591] denom=   20  fail  s=13/8  c=93/16  W=119/16  C=3.6003  [Mnpsd]
+  [Cmax=3.591] denom=   50  fail  s=47/29  c=215/37  W=7974/1073  C=3.5906  [Mnpsd]
+  [Cmax=3.591] denom=  100  fail  s=47/29  c=215/37  W=7974/1073  C=3.5906  [Mnpsd]
+  [Cmax=3.591] denom=  250  fail  s=389/240  c=1383/238  W=212251/28560  C=3.5909  [Mnpsd]
+  [Cmax=3.591] denom=  500  fail  s=483/298  c=1383/238  W=131772/17731  C=3.5909  [Mnpsd]
+  [Cmax=3.591] denom= 1000  fail  s=1496/923  c=4364/751  W=5151468/693173  C=3.5909  [Mnpsd]
+  [Cmax=3.591] denom= 2500  fail  s=2509/1548  c=7345/1264  W=3635359/489168  C=3.5908  [Mnpsd]
+  [Cmax=3.591] denom= 5000  fail  s=6514/4019  c=25016/4305  W=128582074/17301795  C=3.5909  [Mnpsd]
+  [Cmax=3.591] denom=10000  fail  s=11532/7115  c=32361/5569  W=294470223/39623435  C=3.5909  [Mnpsd]
+  [Cmax=3.6409]  W=7.5317  C_achieved=3.6409
+  [Cmax=3.641] denom=   20  fail  s=15/13  c=51/8  W=783/104  C=3.6434  [Mnpsd]
+  [Cmax=3.641] denom=   50  fail  s=53/46  c=185/29  W=10047/1334  C=3.6422  [Mnpsd]
+  [Cmax=3.641] denom=  100  fail  s=53/46  c=185/29  W=10047/1334  C=3.6405  [Mnpsd]
+  [Cmax=3.641] denom=  250  fail  s=174/151  c=1429/224  W=254755/33824  C=3.6409  [Mnpsd]
+  [Cmax=3.641] denom=  500  fail  s=174/151  c=2354/369  W=419660/55719  C=3.6409  [Mnpsd]
+  [Cmax=3.641] denom= 1000  fail  s=1097/952  c=2354/369  W=2645801/351288  C=3.6408  [Mnpsd]
+  [Cmax=3.641] denom= 2500  fail  s=1967/1707  c=2354/369  W=1581367/209961  C=3.6409  [Mnpsd]
+  [Cmax=3.641] denom= 5000  fail  s=1967/1707  c=2354/369  W=1581367/209961  C=3.6409  [Mnpsd]
+  [Cmax=3.641] denom=10000  fail  s=9661/8384  c=63373/9934  W=313645803/41643328  C=3.6409  [Mnpsd]
+  [Cmax=3.7409]  W=7.7317  C_achieved=3.7409
+  [Cmax=3.741] denom=   20  fail  s=22/17  c=103/16  W=2103/272  C=3.7407  [Mnpsd]
+  [Cmax=3.741] denom=   50  fail  s=53/41  c=264/41  W=317/41  C=3.7416  [Mnpsd]
+  [Cmax=3.741] denom=  100  fail  s=84/65  c=425/66  W=33169/4290  C=3.7414  [Mnpsd]
+  [Cmax=3.741] denom=  250  fail  s=305/236  c=425/66  W=60215/7788  C=3.7409  [Mnpsd]
+  [Cmax=3.741] denom=  500  fail  s=473/366  c=2814/437  W=1236625/159942  C=3.7408  [Mnpsd]
+  [Cmax=3.741] denom= 1000  fail  s=473/366  c=3664/569  W=1610161/208254  C=3.7409  [Mnpsd]
+  [Cmax=3.741] denom= 2500  fail  s=473/366  c=11417/1773  W=1672417/216306  C=3.7409  [Mnpsd]
+  [Cmax=3.741] denom= 5000  fail  s=473/366  c=11417/1773  W=1672417/216306  C=3.7409  [Mnpsd]
+  [Cmax=3.741] denom=10000  fail  s=473/366  c=60749/9434  W=6674104/863211  C=3.7409  [Mnpsd]
+  [Cmax=4.0409]  W=8.0329  C_achieved=3.8914
+  [Cmax=4.041] denom=   20  fail  s=0  c=8  W=8  C=3.8652  [Mnpsd]
+  [Cmax=4.041] denom=   50  fail  s=1/50  c=369/46  W=4624/575  C=3.8963  [Mnpsd]
+  [Cmax=4.041] denom=  100  fail  s=1/90  c=369/46  W=8314/1035  C=3.8919  [Mnpsd]
+  [Cmax=4.041] denom=  250  fail  s=1/90  c=1837/229  W=165559/20610  C=3.8915  [Mnpsd]
+  [Cmax=4.041] denom=  500  fail  s=5/451  c=2575/321  W=1162930/144771  C=3.8915  [Mnpsd]
+  [Cmax=4.041] denom= 1000  fail  s=7/631  c=7356/917  W=4648055/578627  C=3.8914  [Mnpsd]
+  [Cmax=4.041] denom= 2500  fail  s=22/1983  c=16918/2109  W=11198264/1394049  C=3.8914  [Mnpsd]
+  [Cmax=4.041] denom= 5000  fail  s=37/3335  c=29055/3622  W=97032439/12079370  C=3.8914  [Mnpsd]
+  [Cmax=4.041] denom=10000  fail  s=37/3335  c=70247/8757  W=234597754/29204595  C=3.8914  [Mnpsd]
+  [Cmax=4.5409]  W=8.0328  C_achieved=3.8914
+  [Cmax=4.541] denom=   20  fail  s=18/13  c=113/17  W=1775/221  C=3.8810  [Mnpsd]
+  [Cmax=4.541] denom=   50  fail  s=18/13  c=113/17  W=1775/221  C=3.8913  [Mnpsd]
+  [Cmax=4.541] denom=  100  fail  s=133/96  c=585/88  W=8483/1056  C=3.8913  [Mnpsd]
+  [Cmax=4.541] denom=  250  fail  s=151/109  c=924/139  W=121705/15151  C=3.8914  [Mnpsd]
+  [Cmax=4.541] denom=  500  fail  s=622/449  c=924/139  W=501334/62411  C=3.8914  [Mnpsd]
+  [Cmax=4.541] denom= 1000  fail  s=773/558  c=6355/956  W=2142539/266724  C=3.8914  [Mnpsd]
+  [Cmax=4.541] denom= 2500  fail  s=2470/1783  c=13634/2051  W=29375392/3656933  C=3.8914  [Mnpsd]
+  [Cmax=4.541] denom= 5000  fail  s=6637/4791  c=13634/2051  W=78932981/9826341  C=3.8914  [Mnpsd]
+  [Cmax=4.541] denom=10000  fail  s=10804/7799  c=60891/9160  W=573853549/71438840  C=3.8914  [Mnpsd]
+  [Cmax=5.5409]  W=8.0329  C_achieved=3.8915
+  [Cmax=5.541] denom=   20  fail  s=19/15  c=115/17  W=2048/255  C=3.8808  [Mnpsd]
+  [Cmax=5.541] denom=   50  fail  s=19/15  c=318/47  W=5663/705  C=3.8918  [Mnpsd]
+  [Cmax=5.541] denom=  100  fail  s=19/15  c=521/77  W=9278/1155  C=3.8919  [Mnpsd]
+  [Cmax=5.541] denom=  250  fail  s=19/15  c=1360/201  W=2691/335  C=3.8914  [Mnpsd]
+  [Cmax=5.541] denom=  500  fail  s=622/491  c=1360/201  W=792782/98691  C=3.8915  [Mnpsd]
+  [Cmax=5.541] denom= 1000  fail  s=1021/806  c=1360/201  W=1301381/162006  C=3.8915  [Mnpsd]
+  [Cmax=5.541] denom= 2500  fail  s=2061/1627  c=15799/2335  W=30517408/3799045  C=3.8914  [Mnpsd]
+  [Cmax=5.541] denom= 5000  fail  s=5143/4060  c=18519/2737  W=12751933/1587460  C=3.8915  [Mnpsd]
+  [Cmax=5.541] denom=10000  fail  s=9265/7314  c=38398/5675  W=333421847/41506950  C=3.8915  [Mnpsd]
+  (interior fallback failed; pinning (s, c) to clean rationals)
+  trying 25 (s,c)-pin pairs near s*=0.426, c*=6.906
+  pin loop: 25 feasible, 173 only-M-failed
+  ALL FALLBACKS FAILED.
+
+==============================================================================
+[reduced LMI]  beta=9/10, eta=1/5, L=1
+==============================================================================
+  [reduced] status=optimal_inaccurate  s=326.4169  c=659.5222  W=985.9391  C=492.7186
+  [tight] denom=   50  fail  s=3917/12  c=15169/23  W=272119/276  C=492.7171  [Mnpsd]
+  [tight] denom=  100  fail  s=3917/12  c=59357/90  W=177469/180  C=492.7182  [Mnpsd]
+  [tight] denom=  250  fail  s=80625/247  c=59357/90  W=21917429/22230  C=492.7187  [Mnpsd]
+  [tight] denom=  500  fail  s=104127/319  c=59357/90  W=28306313/28710  C=492.7186  [Mnpsd]
+  [tight] denom= 1000  fail  s=104127/319  c=59357/90  W=28306313/28710  C=492.7186  [Mnpsd]
+  [tight] denom= 2500  fail  s=104127/319  c=1439737/2183  W=686585344/696377  C=492.7186  [Mnpsd]
+  [tight] denom= 5000  fail  s=104127/319  c=2938831/4456  W=1401477001/1421464  C=492.7186  [Mnpsd]
+  [tight] denom=10000  fail  s=104127/319  c=2938831/4456  W=1401477001/1421464  C=492.7186  [Mnpsd]
+  (tight rounding failed; C-pinned interior fallback)
+  [Cmax=492.7286] -> infeasible
+  [Cmax=492.7386] -> infeasible
+  [Cmax=492.7686] -> infeasible
+  [Cmax=492.8186] -> infeasible
+  [Cmax=492.9186] -> infeasible
+  [Cmax=493.2186] -> infeasible
+  [Cmax=493.7186] -> infeasible
+  [Cmax=494.7186] -> infeasible
+  (interior fallback failed; pinning (s, c) to clean rationals)
+  trying 25 (s,c)-pin pairs near s*=326.417, c*=659.522
+  pin loop: 25 feasible, 175 only-M-failed
+  ALL FALLBACKS FAILED.
+
+==============================================================================
+SUMMARY (Phase 3 — high-beta exact QQ certificates)
+==============================================================================
+   beta    eta                 status  denom          W          C   C(decimal)
+-------------------------------------------------------------------------------
+    3/5    1/2      EXACT_QQ_VERIFIED     50  8616/2009 41071/20090       2.0444
+    4/5    1/5      EXACT_QQ_VERIFIED     20     458/57     229/57       4.0175
+   7/10    2/5                   FAIL      -          -          -            -
+   9/10    1/5                   FAIL      -          -          -            -
+
+Results written to C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap2_ub\resolution\theorem3_new\route_T\44_high_beta_results.json

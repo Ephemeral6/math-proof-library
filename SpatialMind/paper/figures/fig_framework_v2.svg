@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 500" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#1A1A1A">
+  <defs>
+    <marker id="ah-dark" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+    <marker id="ah-R-end" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2E86C1"/>
+    </marker>
+    <marker id="ah-R-start" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M10,0 L0,5 L10,10 z" fill="#2E86C1"/>
+    </marker>
+    <marker id="ah-T-end" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#E67E22"/>
+    </marker>
+    <marker id="ah-T-start" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M10,0 L0,5 L10,10 z" fill="#E67E22"/>
+    </marker>
+    <marker id="ah-C-end" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#27AE60"/>
+    </marker>
+    <marker id="ah-C-start" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M10,0 L0,5 L10,10 z" fill="#27AE60"/>
+    </marker>
+  </defs>
+
+  <!-- ============= PANEL (a)  Concrete example ============= -->
+  <text x="28" y="30" font-size="14" font-weight="bold">a</text>
+  <text x="46" y="30" font-size="11" fill="#666666">Concrete example &#8212; hexagon 3-colouring under Z&#8326;</text>
+
+  <!-- Question box -->
+  <rect x="80" y="55" width="400" height="80" rx="6" fill="#FFFFFF" stroke="#888888" stroke-width="1.2"/>
+  <text x="95" y="73" font-size="10" font-weight="bold" fill="#666666" letter-spacing="0.5">QUESTION</text>
+  <text x="95" y="96" font-size="11.5">How many distinct 3-colourings of a</text>
+  <text x="95" y="114" font-size="11.5">hexagon under the Z&#8326; rotation action?</text>
+
+  <!-- Hexagon icon -->
+  <g transform="translate(435, 95)">
+    <polygon points="0,-18 15.6,-9 15.6,9 0,18 -15.6,9 -15.6,-9" fill="none" stroke="#444444" stroke-width="1.2"/>
+    <circle cx="0" cy="-18" r="3.8" fill="#C0392B"/>
+    <circle cx="15.6" cy="-9" r="3.8" fill="#F39C12"/>
+    <circle cx="15.6" cy="9" r="3.8" fill="#8E44AD"/>
+    <circle cx="0" cy="18" r="3.8" fill="#C0392B"/>
+    <circle cx="-15.6" cy="9" r="3.8" fill="#F39C12"/>
+    <circle cx="-15.6" cy="-9" r="3.8" fill="#8E44AD"/>
+  </g>
+
+  <!-- Arrow Question -> Engine -->
+  <line x1="280" y1="135" x2="280" y2="162" stroke="#333333" stroke-width="1.5" marker-end="url(#ah-dark)"/>
+
+  <!-- Engine box -->
+  <rect x="80" y="165" width="400" height="80" rx="6" fill="#4A90D9" stroke="#3A7BBA" stroke-width="1.2"/>
+  <text x="95" y="188" font-size="13" font-weight="bold" fill="#FFFFFF">Engine</text>
+  <text x="95" y="206" font-size="10.5" fill="#FFFFFF" opacity="0.95">Reflective &#183; Tool-augmented &#183; Compositional streams</text>
+  <!-- R / T / C badges -->
+  <rect x="115" y="217" width="50" height="20" rx="3" fill="#FFFFFF"/>
+  <text x="140" y="231" font-size="11" font-weight="bold" fill="#2E86C1" text-anchor="middle">R</text>
+  <rect x="255" y="217" width="50" height="20" rx="3" fill="#FFFFFF"/>
+  <text x="280" y="231" font-size="11" font-weight="bold" fill="#E67E22" text-anchor="middle">T</text>
+  <rect x="395" y="217" width="50" height="20" rx="3" fill="#FFFFFF"/>
+  <text x="420" y="231" font-size="11" font-weight="bold" fill="#27AE60" text-anchor="middle">C</text>
+
+  <!-- Three colored streams Engine -> LLM -->
+  <line x1="140" y1="247" x2="140" y2="318" stroke="#2E86C1" stroke-width="2" marker-end="url(#ah-R-end)"/>
+  <line x1="280" y1="247" x2="280" y2="318" stroke="#E67E22" stroke-width="2" marker-end="url(#ah-T-end)"/>
+  <line x1="420" y1="247" x2="420" y2="318" stroke="#27AE60" stroke-width="2" marker-end="url(#ah-C-end)"/>
+
+  <!-- LLM box -->
+  <rect x="80" y="320" width="400" height="120" rx="6" fill="#F5F5F5" stroke="#888888" stroke-width="1.2"/>
+  <text x="95" y="343" font-size="10" font-weight="bold" fill="#666666" letter-spacing="0.5">LLM REASONS</text>
+  <line x1="95" y1="358" x2="465" y2="358" stroke="#DDDDDD" stroke-width="1"/>
+  <text x="280" y="392" font-size="15" font-weight="bold" text-anchor="middle">Burnside sum  =  130</text>
+  <text x="280" y="416" font-size="10" fill="#666666" text-anchor="middle">aggregate over R / T / C streams</text>
+
+  <!-- ============= PANEL (b)  Abstract framework ============= -->
+  <text x="595" y="30" font-size="14" font-weight="bold">b</text>
+  <text x="613" y="30" font-size="11" fill="#666666">Abstract framework</text>
+
+  <!-- LLM box (left) -->
+  <rect x="610" y="170" width="180" height="180" rx="6" fill="#F5F5F5" stroke="#888888" stroke-width="1.2"/>
+  <text x="700" y="268" font-size="22" font-weight="bold" text-anchor="middle">LLM</text>
+
+  <!-- Engine box (right) -->
+  <rect x="880" y="170" width="180" height="180" rx="6" fill="#4A90D9" stroke="#3A7BBA" stroke-width="1.2"/>
+  <text x="970" y="268" font-size="22" font-weight="bold" text-anchor="middle" fill="#FFFFFF">Engine</text>
+
+  <!-- Three bidirectional channels -->
+  <line x1="795" y1="210" x2="875" y2="210" stroke="#2E86C1" stroke-width="2"
+        marker-start="url(#ah-R-start)" marker-end="url(#ah-R-end)"/>
+  <text x="835" y="202" font-size="12" font-weight="bold" fill="#2E86C1" text-anchor="middle">R</text>
+
+  <line x1="795" y1="260" x2="875" y2="260" stroke="#E67E22" stroke-width="2"
+        marker-start="url(#ah-T-start)" marker-end="url(#ah-T-end)"/>
+  <text x="835" y="252" font-size="12" font-weight="bold" fill="#E67E22" text-anchor="middle">T</text>
+
+  <line x1="795" y1="310" x2="875" y2="310" stroke="#27AE60" stroke-width="2"
+        marker-start="url(#ah-C-start)" marker-end="url(#ah-C-end)"/>
+  <text x="835" y="302" font-size="12" font-weight="bold" fill="#27AE60" text-anchor="middle">C</text>
+</svg>

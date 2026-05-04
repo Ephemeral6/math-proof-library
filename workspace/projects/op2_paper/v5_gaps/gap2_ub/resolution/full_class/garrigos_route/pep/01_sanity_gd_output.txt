@@ -1,0 +1,139 @@
+   T        eta          PEP τ   L D^2/(4T+2)      ratio
+(PEPit) Setting up the problem: performance measure is the minimum of 1 element(s)
+(PEPit) Setting up the problem: Adding initial conditions and general constraints ...
+(PEPit) Setting up the problem: initial conditions and general constraints (1 constraint(s) added)
+(PEPit) Setting up the problem: interpolation conditions for 1 function(s)
+			Function 1 : Adding 6 scalar constraint(s) ...
+			Function 1 : 6 scalar constraint(s) added
+(PEPit) Setting up the problem: additional constraints for 0 function(s)
+(PEPit) Setting up the problem: size of the Gram matrix: 4x4
+(PEPit) Compiling SDP
+(PEPit) Calling SDP solver
+(PEPit) Solver status: optimal (wrapper:cvxpy, solver: SCS); optimal value: 0.16667048324097516
+[96m(PEPit) Postprocessing: solver's output is not entirely feasible (smallest eigenvalue of the Gram matrix is: -2.02e-06 < 0).
+ Small deviation from 0 may simply be due to numerical error. Big ones should be deeply investigated.
+ In any case, from now the provided values of parameters are based on the projection of the Gram matrix onto the cone of symmetric semi-definite matrix.[0m
+(PEPit) Primal feasibility check:
+		The solver found a Gram matrix that is positive semi-definite up to an error of 2.0175667401181522e-06
+		All the primal scalar constraints are verified up to an error of 3.9745349100783756e-06
+(PEPit) Dual feasibility check:
+		The solver found a residual matrix that is positive semi-definite up to an error of 1.742718055074322e-16
+		All the dual scalar values associated with inequality constraints are nonnegative
+(PEPit) The worst-case guarantee proof is perfectly reconstituted up to an error of 1.9110019045726068e-05
+(PEPit) Final upper bound (dual): 0.16667148926063252 and lower bound (primal example): 0.16667048324097516 
+(PEPit) Duality gap: absolute: 1.0060196573569158e-06 and relative: 6.0359797235506575e-06
+   1     1.0000   1.666715e-01   1.666667e-01     1.0000
+(PEPit) Setting up the problem: performance measure is the minimum of 1 element(s)
+(PEPit) Setting up the problem: Adding initial conditions and general constraints ...
+(PEPit) Setting up the problem: initial conditions and general constraints (1 constraint(s) added)
+(PEPit) Setting up the problem: interpolation conditions for 1 function(s)
+			Function 1 : Adding 12 scalar constraint(s) ...
+			Function 1 : 12 scalar constraint(s) added
+(PEPit) Setting up the problem: additional constraints for 0 function(s)
+(PEPit) Setting up the problem: size of the Gram matrix: 5x5
+(PEPit) Compiling SDP
+(PEPit) Calling SDP solver
+(PEPit) Solver status: optimal (wrapper:cvxpy, solver: SCS); optimal value: 0.0999988162332979
+(PEPit) Primal feasibility check:
+		The solver found a Gram matrix that is positive semi-definite
+		All the primal scalar constraints are verified up to an error of 2.637205123307007e-07
+(PEPit) Dual feasibility check:
+		The solver found a residual matrix that is positive semi-definite up to an error of 1.1321505753145578e-16
+		All the dual scalar values associated with inequality constraints are nonnegative up to an error of 8.05694871437611e-18
+(PEPit) The worst-case guarantee proof is perfectly reconstituted up to an error of 1.1841093971801109e-06
+(PEPit) Final upper bound (dual): 0.10000021970613539 and lower bound (primal example): 0.0999988162332979 
+(PEPit) Duality gap: absolute: 1.4034728374884287e-06 and relative: 1.4034894515292233e-05
+   2     1.0000   1.000002e-01   1.000000e-01     1.0000
+(PEPit) Setting up the problem: performance measure is the minimum of 1 element(s)
+(PEPit) Setting up the problem: Adding initial conditions and general constraints ...
+(PEPit) Setting up the problem: initial conditions and general constraints (1 constraint(s) added)
+(PEPit) Setting up the problem: interpolation conditions for 1 function(s)
+			Function 1 : Adding 20 scalar constraint(s) ...
+			Function 1 : 20 scalar constraint(s) added
+(PEPit) Setting up the problem: additional constraints for 0 function(s)
+(PEPit) Setting up the problem: size of the Gram matrix: 6x6
+(PEPit) Compiling SDP
+(PEPit) Calling SDP solver
+(PEPit) Solver status: optimal (wrapper:cvxpy, solver: SCS); optimal value: 0.0714275603665244
+(PEPit) Primal feasibility check:
+		The solver found a Gram matrix that is positive semi-definite
+		All the primal scalar constraints are verified up to an error of 8.747795461616636e-08
+(PEPit) Dual feasibility check:
+		The solver found a residual matrix that is positive semi-definite up to an error of 4.7359507989047647e-17
+		All the dual scalar values associated with inequality constraints are nonnegative
+(PEPit) The worst-case guarantee proof is perfectly reconstituted up to an error of 3.4133737361174282e-06
+(PEPit) Final upper bound (dual): 0.07142813009889544 and lower bound (primal example): 0.0714275603665244 
+(PEPit) Duality gap: absolute: 5.697323710446289e-07 and relative: 7.97636609903931e-06
+   3     1.0000   7.142813e-02   7.142857e-02     1.0000
+(PEPit) Setting up the problem: performance measure is the minimum of 1 element(s)
+(PEPit) Setting up the problem: Adding initial conditions and general constraints ...
+(PEPit) Setting up the problem: initial conditions and general constraints (1 constraint(s) added)
+(PEPit) Setting up the problem: interpolation conditions for 1 function(s)
+			Function 1 : Adding 42 scalar constraint(s) ...
+			Function 1 : 42 scalar constraint(s) added
+(PEPit) Setting up the problem: additional constraints for 0 function(s)
+(PEPit) Setting up the problem: size of the Gram matrix: 8x8
+(PEPit) Compiling SDP
+(PEPit) Calling SDP solver
+(PEPit) Solver status: optimal (wrapper:cvxpy, solver: SCS); optimal value: 0.045458217268796966
+[96m(PEPit) Postprocessing: solver's output is not entirely feasible (smallest eigenvalue of the Gram matrix is: -3.13e-06 < 0).
+ Small deviation from 0 may simply be due to numerical error. Big ones should be deeply investigated.
+ In any case, from now the provided values of parameters are based on the projection of the Gram matrix onto the cone of symmetric semi-definite matrix.[0m
+(PEPit) Primal feasibility check:
+		The solver found a Gram matrix that is positive semi-definite up to an error of 3.126665721240499e-06
+		All the primal scalar constraints are verified up to an error of 4.60994404420656e-06
+(PEPit) Dual feasibility check:
+		The solver found a residual matrix that is positive semi-definite up to an error of 2.236359008053246e-16
+		All the dual scalar values associated with inequality constraints are nonnegative
+(PEPit) The worst-case guarantee proof is perfectly reconstituted up to an error of 8.935849596616863e-06
+(PEPit) Final upper bound (dual): 0.045455061083192264 and lower bound (primal example): 0.045458217268796966 
+(PEPit) Duality gap: absolute: -3.156185604702433e-06 and relative: -6.943047471570941e-05
+   5     1.0000   4.545506e-02   4.545455e-02     1.0000
+(PEPit) Setting up the problem: performance measure is the minimum of 1 element(s)
+(PEPit) Setting up the problem: Adding initial conditions and general constraints ...
+(PEPit) Setting up the problem: initial conditions and general constraints (1 constraint(s) added)
+(PEPit) Setting up the problem: interpolation conditions for 1 function(s)
+			Function 1 : Adding 132 scalar constraint(s) ...
+			Function 1 : 132 scalar constraint(s) added
+(PEPit) Setting up the problem: additional constraints for 0 function(s)
+(PEPit) Setting up the problem: size of the Gram matrix: 13x13
+(PEPit) Compiling SDP
+(PEPit) Calling SDP solver
+(PEPit) Solver status: optimal (wrapper:cvxpy, solver: SCS); optimal value: 0.02380527538519667
+[96m(PEPit) Postprocessing: solver's output is not entirely feasible (smallest eigenvalue of the Gram matrix is: -6.48e-07 < 0).
+ Small deviation from 0 may simply be due to numerical error. Big ones should be deeply investigated.
+ In any case, from now the provided values of parameters are based on the projection of the Gram matrix onto the cone of symmetric semi-definite matrix.[0m
+(PEPit) Primal feasibility check:
+		The solver found a Gram matrix that is positive semi-definite up to an error of 6.476874072977422e-07
+		All the primal scalar constraints are verified up to an error of 1.0803875375303695e-06
+(PEPit) Dual feasibility check:
+		The solver found a residual matrix that is positive semi-definite up to an error of 4.2366687514406366e-17
+		All the dual scalar values associated with inequality constraints are nonnegative up to an error of 1.6958235642952385e-18
+(PEPit) The worst-case guarantee proof is perfectly reconstituted up to an error of 1.0226698720163657e-05
+(PEPit) Final upper bound (dual): 0.02380947235085373 and lower bound (primal example): 0.02380527538519667 
+(PEPit) Duality gap: absolute: 4.196965657059237e-06 and relative: 0.00017630401619588587
+  10     1.0000   2.380947e-02   2.380952e-02     1.0000
+(PEPit) Setting up the problem: performance measure is the minimum of 1 element(s)
+(PEPit) Setting up the problem: Adding initial conditions and general constraints ...
+(PEPit) Setting up the problem: initial conditions and general constraints (1 constraint(s) added)
+(PEPit) Setting up the problem: interpolation conditions for 1 function(s)
+			Function 1 : Adding 462 scalar constraint(s) ...
+			Function 1 : 462 scalar constraint(s) added
+(PEPit) Setting up the problem: additional constraints for 0 function(s)
+(PEPit) Setting up the problem: size of the Gram matrix: 23x23
+(PEPit) Compiling SDP
+(PEPit) Calling SDP solver
+(PEPit) Solver status: optimal (wrapper:cvxpy, solver: SCS); optimal value: 0.012192299379458356
+[96m(PEPit) Postprocessing: solver's output is not entirely feasible (smallest eigenvalue of the Gram matrix is: -9e-06 < 0).
+ Small deviation from 0 may simply be due to numerical error. Big ones should be deeply investigated.
+ In any case, from now the provided values of parameters are based on the projection of the Gram matrix onto the cone of symmetric semi-definite matrix.[0m
+(PEPit) Primal feasibility check:
+		The solver found a Gram matrix that is positive semi-definite up to an error of 8.997975136323814e-06
+		All the primal scalar constraints are verified up to an error of 2.9312504966227395e-05
+(PEPit) Dual feasibility check:
+		The solver found a residual matrix that is positive semi-definite up to an error of 2.414205650240033e-16
+		All the dual scalar values associated with inequality constraints are nonnegative up to an error of 1.0257727391391708e-18
+(PEPit) The worst-case guarantee proof is perfectly reconstituted up to an error of 5.228310485507474e-05
+(PEPit) Final upper bound (dual): 0.012194974035007185 and lower bound (primal example): 0.012192299379458356 
+(PEPit) Duality gap: absolute: 2.6746555488298823e-06 and relative: 0.00021937252896989676
+  20     1.0000   1.219497e-02   1.219512e-02     1.0000

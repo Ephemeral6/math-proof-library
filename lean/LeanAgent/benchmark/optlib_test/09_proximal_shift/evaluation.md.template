@@ -1,0 +1,41 @@
+# Evaluation — <theorem name>
+
+## Verdict
+[ ] CERTIFIED   [ ] PARTIAL(N STUCK)   [ ] FAIL   [ ] TIMEOUT   [ ] NOT_RUN_THIS_SESSION
+
+## 1. Signature equivalence (sanity_check.lean)
+
+- Compile result: ____________
+- If failed, type-mismatch diff:
+  ```
+  (paste lean error)
+  ```
+
+## 2. Line counts
+
+| Source | Non-empty non-comment lines | Notes |
+|--------|-----------------------------|-------|
+| optlib | __ | run `grep -cvE '^[[:space:]]*($|--)' ground_truth.lean` |
+| agent  | __ | run `grep -cvE '^[[:space:]]*($|--)' agent_output.lean` |
+| ratio  | __ |     |
+
+## 3. Mathlib API overlap (Jaccard)
+
+- Optlib lemmas referenced: { ___ }
+- Agent lemmas referenced:  { ___ }
+- |A ∩ B| / |A ∪ B| = ___ / ___ = ___
+
+## 4. Naming consistency
+
+- Optlib name: ___
+- Agent name:  ___
+- Match: identical / kebab-snake variant / unrelated
+
+## 5. STUCK analysis (only fill in if PARTIAL or FAIL)
+
+| # | Goal state | Cause category | Notes |
+|---|------------|----------------|-------|
+| 1 |            | mathlib-lookup / chain-rule / integral / pp-display / algebra / other |  |
+
+## 6. Agent's run summary excerpts
+(paste from output/<run_dir>/run_summary.md)

@@ -1,0 +1,30 @@
+{
+  "theorem_name": "proximal_add_sq",
+  "layer": 2,
+  "substitution_note": "Substitute for 'projection firm-nonexpansiveness' since optlib has no projection theory; this is the prox quadratic addition / completing-the-square identity at the same difficulty level.",
+  "natural_language_statement": "Let f : E → ℝ, a ∈ E and l > 0. Then z is a proximal point of x with respect to g(x) = f(x) + (l/2)·‖x - a‖^2 if and only if z is a proximal point of (1/(l+1))·(x + l·a) with respect to (1/(l+1))·f.",
+  "assumptions": [
+    "E is a real inner product space",
+    "f : E → ℝ",
+    "a : E",
+    "l : ℝ, lpos : 0 < l",
+    "x : E"
+  ],
+  "conclusion": "∀ z : E, prox_prop (fun x ↦ f x + l / 2 * ‖x - a‖ ^ 2) x z ↔ prox_prop ((1 / (l + 1)) • f) ((1 / (l + 1)) • (x + l • a)) z",
+  "proof_sketch": [
+    "Unfold prox_prop as IsMinOn over univ on both sides.",
+    "Establish the algebraic identity aux: for any v, ‖v - (1/(l+1)) · (x + l·a)‖^2 / 2 equals (l+1)^{-1} times (l/2 ·‖v - a‖^2 + ‖v - x‖^2/2 + constant) via norm_sub_sq_real, norm_smul, distributing through.",
+    "Forward (and backward symmetrically): for arbitrary y, expand both sides via aux, multiply by the positive factor (l+1) (mul_le_mul_left), the constant cancels, leaving the original IsMinOn condition.",
+    "Conclude the bidirectional equivalence by inspection of inequalities."
+  ],
+  "key_mathlib_lemmas": [
+    "norm_sub_sq_real",
+    "norm_smul",
+    "inner_smul_right",
+    "inner_add_right",
+    "isMinOn_univ_iff"
+  ],
+  "registry_dependencies": [
+    "prox_prop"
+  ]
+}

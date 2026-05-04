@@ -1,0 +1,1338 @@
+arXiv:2102.07002v3 [cs.LG] 24 Jul 2022        On the Last Iterate Convergence of Momentum Methods
+
+                                                                                             Xiaoyu Li
+                                                 Division of System Engineering, Boston University, Boston, MA 02215, USA
+
+                                                                                                            xiaoyuli@bu.edu
+
+                                                                                           Mingrui Liu
+                                           Department of Computer Science, George Mason University, Fairfax, VA 22030, USA
+
+                                                                                                          mingruil@gmu.edu
+
+                                                                                       Francesco Orabona
+                                               Electrical & Computer Engineering, Boston University, Boston, MA 02215, USA
+
+                                                                                                       francesco@orabona.com
+
+                                                                                          July 26, 2022
+
+                                                                                                                Abstract
+
+                                                     SGD with Momentum (SGDM) is a widely used family of algorithms for large-scale optimization of
+                                                machine learning problems. Yet, when optimizing generic convex functions, no advantage is known for any
+                                                SGDM algorithm over plain SGD. Moreover, even the most recent results require changes to the SGDM
+                                                algorithms, like averaging of the iterates and a projection onto a bounded domain, which are rarely used
+                                                in practice. In this paper, we focus on the convergence rate of the last iterate of SGDM. For the first time,
+                                                we prove that for any constant momentum factor, there exists a Lipschitz and convex function for which
+                                                the last iterate of SGDM suffers from a suboptimal convergence rate of ( ln T ) after T iterations. Based
+
+                                                                                                                                                                                                               T
+
+                                                on this fact, we study a class of (both adaptive and non-adaptive) Follow-The-Regularized-Leader-based
+                                                SGDM algorithms with increasing momentum and shrinking updates. For these algorithms, we show
+                                                that the last iterate has optimal convergence O( 1 ) for unconstrained convex stochastic optimization
+
+                                                                                                                                                            T
+
+                                                problems without projections onto bounded domains nor knowledge of T . Further, we show a variety of
+                                                results for FTRL-based SGDM when used with adaptive stepsizes. Empirical results are shown as well.
+
+                                        1 Introduction
+
+                                        Momentum methods have become one of the most used first-order optimization algorithms in machine learning
+                                        applications. When momentum is used together with Stochastic Gradient Descent (SGD), there are two main
+                                        variants considered in the literature: the stochastic version of the Heavy Ball momentum (SHB) (Polyak,
+                                        1964) and Nesterov's momentum (also called Nesterov Accelerate Gradient method) (Nesterov, 1983). Besides
+                                        these two, there are other variations as well. For example, an exponential moving average of the (stochastic)
+                                        gradients can be used to replace the gradients in the updates (Kingma and Ba, 2015; Reddi et al., 2016;
+                                        Alacaoglu et al., 2020; Liu et al., 2020).
+
+                                            Despite this zoo of variants, due to the presence of noise, it is well-known that Stochastic Gradient
+                                        Descent with Momentum (SGDM) does not guarantee an accelerated rate of convergence of noise nor any
+                                        real advantage over plain SGD on generic convex problems. For example, recent works have proved that a
+                                        variant of SGD with momentum improves only the non-dominant terms in the convergence rate on some
+                                        specific stochastic problems (Dieuleveut et al., 2017; Jain et al., 2018). Moreover, often an idealized version of
+                                        SGDM is used in the theoretical analysis rather than the actual SGDM people use in practice. For example,
+                                        projections onto bounded domains at each step, averaging of the iterates (e.g., Alacaoglu et al., 2020), and
+                                        knowledge of the total number of iterations (Ghadimi and Lan, 2012) are often assumed. The mismatch
+                                        between theory and practice is concerning because, for example, it is known that in some cases the lack of
+                                        projections can destroy the convergence of some algorithms (Orabona and Pa´l, 2018). Overall, recent analyses
+
+                                                                                                              1
+seem unable to pinpoint any advantage of using a momentum term in SGD in the stochastic optimization of
+general convex functions.
+
+    In the following, we denote by SGDM the following updates
+
+                xt+1 = xt - tmt, mt = tmt-1 + (1 - t)gt,                       (1)
+
+where 0  t  1.
+    In this paper, to show a discriminant difference between SGD and SGDM, we focus on the convergence of
+
+the last iterate. Hence, we study the convergence of the last iterate of SGDM for unconstrained optimization
+of convex functions. Unfortunately, our first result is a negative one: We show that the last iterate of SGDM
+can have a suboptimal convergence rate for any constant momentum setting.
+
+    Hence, motivated by the above result, we analyze yet another variant of SGDM. We start from the
+very recent observation (Defazio, 2020) that SGDM can be seen as a primal averaging procedure (Nesterov
+and Shikhman, 2015; Tao et al., 2018; Cutkosky, 2019) applied to the iterates of Online Mirror Descent
+(OMD) (Nemirovsky and Yudin, 1983; Warmuth and Jagota, 1997). Based on this fact, we analyze SGDM
+algorithms based on the Follow-the-Regularized-Leader (FTRL) framework1 (Shalev-Shwartz, 2007; Abernethy
+et al., 2008) and the primal averaging. The use of FTRL instead of OMD removes the necessity of projections
+onto bounded domains, while the primal averaging acts as a momentum term and guarantees the optimal
+convergence of the last iterate. The resulting algorithm has an increasing momentum and shrinking updates
+that precisely allow to avoid our lower bound.
+
+    More in detail, we prove that the expected suboptimality gap of the last iterate of FTRL-based SGDM
+converges at the optimal rate of O(1/ T ) on convex functions, without assuming bounded domains nor the
+knowledge of the total number of iterations. This also disproves a more general conjecture than the one in
+(Jain et al., 2019, 2021), removing the bounded assumption. Moreover, we show that our construction is
+general enough to allow for an entire family of FTRL-based SGDM methods, both adaptive and non-adaptive.
+For example, we show that "adaptive" learning rates give rise to convergence rates that are adaptive to
+gradients, noise, and to the interpolation regime.
+
+    The rest of the paper is organized as follows: We discuss the related work in Section 2 and the setting
+and assumptions in Section 3. We then present our main results: the lower bound (Section 4) and the new
+FTRL-based SGDM (Section 5). Finally, in Section 6 we present an empirical evaluation of our algorithms
+and in Section 7 we outline a future work direction.
+
+2 Related Work
+
+Stochastic Momentum Methods SGDM has become a popular tool in deep learning and its importance
+
+has been discussed by recent studies (Sutskever et al., 2013). Polyak (1964) first proposed the use of
+
+momentum in gradient descent, calling it the Heavy-Ball method. In the stochastic setting, there are multiple
+
+work analyzing the use of momentum in SGD. In particular, Yang et al. (2016) prove a convergence rate of
+O(1/ T ) for the averaged iterate in the convex setting, and for an iterate taken uniformly at random in
+
+the nonconvex setting. Liu et al. (2020) provide a convergence analysis for SGDM and Multistage SGDM
+
+for smooth functions in the strongly convex and nonconvex settings. Also, adaptive variants of momentum
+
+methods (Kingma and Ba, 2015; Reddi et al., 2018; Luo et al., 2018) are very popular in the deep learning
+
+literature, even if their guarantees are only for the online convex optimization setting assuming a decreasing
+
+momentum factor and projections onto bounded domains. Alacaoglu et al. (2020) recently removed the
+
+assumption of a vanishing momentum factor, but they still require projections over a bounded domain.
+
+In the non-convex and smooth case, Cutkosky and Orabona (2019) introduce a variant of SGDM with a
+
+variance-reduction effect and a faster convergence rate than SGD on non-convex functions, but it requires
+
+two stochastic gradients per step.                                           
+
+Lower Bound Harvey et al. (2019) prove the tight convergence bound O(ln T / T ) of the last iterate of
+
+SGD for convex and Lipschitz functions. Kidambi et al. (2018) provide a lower bound for the Heavy Ball
+
+method for least square regression problems. To the best of our knowledge, there is no lower bound for the
+
+last iterate of SGDM in the general non-smooth non-strongly-convex setting.
+
+    1FTRL is known in the offline optimization literature as Dual Averaging (DA) (Nesterov, 2009), but in reality, DA is a special
+case of FTRL when the functions are linearized.
+
+                                    2
+             Table 1: Last iterate convergence of momentum methods in convex setting
+
+  Algorithm           Assumption    Bounded     Requires           Rate                   Reference
+Adaptive-HB                         Domain          T             O( 1 )             Tao et al. (2021)
+                         (H3')                     No                             Sebbouh et al. (2021)
+  SHB-IMA                              Yes         Yes                    T
+                    (H1) + (H2)        No          No                           Ghadimi and Lan (2012)
+    AC-SA                                                         O( 1 )        This paper, Corollary 1
+                    (H2) + (H1)        No          Yes                          This paper, Corollary 4
+FTRL-SGDM                   or                                            T
+                                       No          No
+                  (H2) + Lipschitz     No          No             O( ln T )
+                          (H3)
+                                                                          T
+                (H1)+(H2)+(H3')
+                                                                  O( 1 )
+
+                                                                          T
+
+                                                                  O( 1 )
+
+                                                                          T
+
+                                                              O(  ln T  +   )
+                                                                   T
+                                                                             T
+
+Last Iterate Convergence of SGDM Nesterov and Shikhman (2015) introduces a quasi-monotone
+
+subgradient method, which uses double averaging (both in Primal and Dual) based on Dual Averaging, to
+
+achieve the optimal convergence of the last iterate for the convex and Lipschitz functions. However, they
+
+just considered the batch case. This approach was then rediscovered and extended by Cutkosky (2019).
+
+Our FTRL-based SGDM is a generalization of the approach in Nesterov and Shikhman (2015) with generic
+
+regularizers and stochastic gradients. Tao et al. (2018) extends Nesterov and Shikhman (2015)'s method to
+
+Mirror Descent, calling it stochastic primal averaging. They recover the same bound for convex functions,
+
+again with a bounded domain assumption. Defazio (2020) points out that the sequence generated by the
+
+stochastic primal averaging (Tao et al., 2018) can be identical to that of stochastic gradient descent with
+
+momentum for specific choices of the hyper-parameters. Accordingly, they give a Lyapunov analysis in the
+
+nonconvex and smooth case. Based on this work, Jelassi and Defazio (2020) introduce "Modernized dual
+
+averaging method", which is actually equal to the one by Nesterov and Shikhman (2015). They also give a
+
+similar Lyapunov analysis as in Defazio (2020) with specific choices of hyper-parameters in the non-convexand
+smooth optimization setting, where they assume a bounded domain and get a convergence bound O(ln T / T ).
+
+Recently, Tao et al. (2021) propose the very same algorithm as in Tao et al. (2018) and analyze it as a
+
+modified Polyak's Heavy-ball method (already pointed out by Defazio (2020)). They give an analysis in the
+
+convex cases and extend it to an adaptive version, obtaining in both cases an optimal convergence of the last
+
+iterate. However, they still assume the use of projections onto bounded domains.
+    Last iterate convergence rate O( 1 ) Ghadimi and Lan (2012) present the last iterate of AC-
+
+                                                                                   T
+
+SA (Nemirovski et al., 2009; Lan, 2012) for convex functions in the unconstrained setting, that in the
+
+Euclidean case reduces to SGD with an increasing Nesterov momentum, showing that it can achieve a
+
+convergence rate O( 1 ) if the number of iterations T is known in advance. Sebbouh et al. (2021) analyze
+
+                                         T
+
+Stochastic Heavy Ball-Iterave Moving Average method (SHB-IMA), which is equal to the Stochastic Heavy
+
+Ball method (SHB) with a specific choice of hyper-parameters. They prove a convergence rate for the last
+
+iterate of of O( 1 ) if T is given in advance, and is O( ln T ) if T is unknown. Jain et al. (2019, 2021) conjecture
+             T                                     T
+
+that under assumption (H3') (see next Section) "for any-time algorithm (i.e., without apriori knowledge
+
+of T ) expected error rate of DGln T is information-theoretically optimal", where D is the diameter of the
+
+                                                              T
+
+bounded domain. This was already disproved by the results in Tao et al. (2021), but here we disprove it even
+
+in the more challenging unconstrained setting.
+
+We summarize the results on the last iterate convergence for convex optimization and their assumptions
+
+in Table 1. The assumptions are defined in the next section.
+
+3 Problem Set-up
+
+Notation We denote vectors by bold letters, e.g. x  Rd. All standard operations on the vectors, e.g.,
+xy, x/y, x and x < y, are to be considered element-wise. We denote by E[·] the expectation with respect
+to the underlying probability space and by Et[·] the conditional expectation with respect to the past. Any
+norm without particular notation in this work is the 2 norm.
+
+                                                3
+Setting We consider the unconstrained optimization problem minxRd f (x), where f (x) : Rd  R is a
+convex function and we denote its infimum by f . We also assume to have access to a first-order black-box
+optimization oracle that returns a stochastic subgradient in any point x  Rd. In particular, we assume that
+we receive a vector g(x, ) such that E [g(x, )] = f (x) for any x  Rd. To make the notation concise, we
+let gt g(xt, t) and Et[gt] = f (xt), t.
+
+    We will make different assumptions on the objective function f . Sometimes, we will assume that
+
+    · (H1) f is L-smooth, that is, f is continuously differentiable and its gradient is L-Lipschitz, i.e.,
+         f (x) - f (y)  L x - y .
+
+We also use one or more of the following assumptions on the stochastic gradients gt.
+
+    · (H2) bounded variance: Et gt - f (xt) 2  2.
+    · (H3) bounded in expectation: E gt 2  G2.
+    · (H3') 2 bounded: gt  G.
+    · (H3")  bounded: gt   G.
+
+4 Lower bound for SGDM
+
+First of all, as we discussed in the related work, most of the analyses of SGDM assume a vanishing momentum
+or a constant one. However, is constant momentum the best setting for stochastic optimization of convex
+functions, especially for the convergence of the last iterate? For this question, it is worth remembering that
+the use of a constant momentum term is mainly motivated by the empirical evidence in the deep learning
+literature. However, deep learning objective functions are non-convex and the convex setting might be
+different. Also, the deep learning literature offers no theoretical explanations.
+
+    In this section, we show the surprising result that for SGD with any constant momentum, there exists a
+function for which the lower bound of the last iterate is  ln T / T . Our proof extends the one in Harvey
+
+et al. (2019) to SGD with momentum.
+
+We consider SGDM with constant momentum factor  in (1), where gt  f (xt) and a polynomial
+                c · t-, 0        1
+stepsize  t  =                   2  .
+
+Let X denote the Euclidean ball         with        radius   2c  in  RT .  For  any  fixed    and      and  L > 0,  we  introduce
+                                                            1-
+
+the following function. Define f : X  R and hi  RT for i  [T + 1] by
+
+                                                                     
+
+                                                                     aj, 1  j < i
+                                                                     
+                                                       hiT
+                                 f (x)  =    max            x,   hi,j = -bj ,       i=j<T                               (2)
+                                                                         0,         i<jT
+                                            i[T +1]
+
+where  bj  =    Lj   and aj  =     L(1-)    .  We have that f (xt) is the convex hull of hi : i  I(x) where
+                2T               8(T -j+1)
+
+I(x) = {i : hiT x = f (x)}. Note that f is L-Lipschitz over RT since
+
+                                        T                       L2(1 - )2  T    1      L2
+                                                                     64         i2     4
+                                hi 2           ai2  +  b2T                          +         L2  .
+
+                                        i=1                                i=1
+
+Claim 1. For f defined in (2), it satisfies that infxRT f (x) = 0.
+
+Proof. First, since f (0) = 0, we have that infxRT f (x)  0.
+We continue to prove this claim by contradiction. Assume that there exists x = [x1, x2, . . . , xT ] such that
+
+                                                            f (x ) < 0 .
+
+By the definition of f , it satisfies that
+
+                                               hiT x < 0, i  [T + 1] .                                                  (3)
+
+                                                                 4
+In particular, h1T x = -b1x1 < 0. Since that b1 is positive, we know that x1 > 0. Also, hT2 x = a1x1 -b2x2 <
+0. Due to the positiveness of a1, x1, and b2, x2 has to be positive. Similarly, we have that for any xj , j  [T ],
+xj > 0.
+Then, we have
+
+                                                                                                    T
+
+                                                      hTT +1x = aj xj > 0 .
+
+                                                                                                   j=1
+
+However, this is contradict with (3).
+Thus, we conclude that infxRT f (x) = 0.
+
+Theorem      1    (Lower bound of           SGDM).     Fix   a  polynomial  stepsize  sequence     t = c · t-,   where  0    1  ,  a
+                                                                                                                             2
+
+momentum factors   [0, 1), a Lipschitz constant L > 0 and a number of iterations T . Then, there exists a
+
+sequence zt generated by SGDM with stepsizes t and momentum factor  on the function f in (2), where
+
+the T -th iterate satisfies
+
+                                                    f (zT ) - f      L2(1 - )2c ln T      .
+
+                                                                             4T 
+
+      We stress that ln T cannot be cancelled by any setting of  or c. Indeed, the above lower bound can
+
+be instantiated by any  and any T . Hence, for a given , there exists T large enough such that ln T is
+
+constant-times    bigger      than          1  .
+                                        (1-)2
+
+      When  = 1, the algorithm is basically staying at the initial point. We can choose an arbitrary positive
+
+number C > 0 and let z1 = C, then
+
+                                                       f (zT ) - f  C, C > 0 .
+
+      We will use the following lemma in the proof.
+
+Proof. Define a sequence zt for t  [T + 1] as follows: z = 0, where s is a positive number decided later, and
+
+                                                                             t
+
+                                                  zt+1 = zt - (1 - )t t-ihi .                                                   (4)
+
+                                                                             i=1
+
+We will show that zt are exactly the updates of SGDM and f (zT +1)                                 ln T  . We will use the following
+                                                                                                   T
+
+two lemmas.
+
+Lemma        1.   Let  bj  =  Lj   ,    aj  =    L(1-)    ,  and  j  = c · j-.    zt  is  defined  as  in  (4).  Then,  for  1  t < j,
+                              2T               8(T -j+1)
+
+zt,j  =  0,  and  for  t   >  j,  zt,j      L(1-)c  .
+                                               4T 
+
+Proof. We first prove by induction that when 1  t  j, zt,j = 0. First, z1 = 0 Also, suppose it holds for t.
+Then, in the case of t + 1, for any j  t + 1,
+
+                                                                                          t
+
+                                          zt+1,j = zt,j - (1 - )t t-ihi,j = 0 - 0 = 0,
+
+                                                                                        i=1
+
+which implies t  j, zt,j = 0 holds. Next, we claim that zt satisfies
+
+                                                                        t-1
+
+                                  zt,j  zj,j + (1 - )bj j - aj               k, 1  j < t  T .                                   (5)
+
+                                                                     k=j+1
+
+We prove (5) by induction. For any t, zt,t-1 satisfies (5) since
+
+                                                                          t
+
+                           zt+1,t = zt,t - (1 - )t t-ihi,t = -(1 - )tht,t = (1 - )tbt .
+
+                                                                        i=1
+
+                                                                     5
+Then, suppose (5) holds for any j < t. We show that it holds for any j < t + 1. We already proved for j = t.
+For j < t,
+
+                                                                 t                                        t
+
+                         zt+1,j = zt,j - (1 - )t t-ihi,j = zt,j - (1 - )t t-ihi,j
+
+                                                              i=1                                         i=j
+
+                                                                                            t
+
+                                     = zt,j + (1 - )tt-j bj - (1 - )t                              t-ihi,j
+
+                                                                                            i=j+1
+
+                                                                    t
+
+                                      zt,j - (1 - )t                      t-iaj
+
+                                                              i=j+1
+
+                                                                    t-1                            t
+
+                                      (1 - )bjj - aj                          k - (1 - )ajt               t-i
+
+                                                              k=j+1                                i=j+1
+
+                                                                       t
+
+                                      (1 - )bjj - aj                          k ,                                                      (6)
+
+                                                              k=j+1
+
+where in the second inequality we used the induction hypothesis.
+
+    Using  that  bj  =  Lj    ,  aj   =    L(1-)     and      j     =      c  ,  we   have
+                        2T               8(T -j+1)                        j
+
+                                                 L(1 - )c L(1 - )c t 1
+                                         (6) =                         -                           k .                                 (7)
+                                                        2T                8(T - j + 1)
+                                                                                            k=j+1
+
+By  Lemma  5  in  the   Appendix,        we  have       that  for      0  <           1  ,
+                                                                                      2
+
+                                                 L(1 - )c L(1 - )c L(1 - )c
+                                         (7)  2T  - 4T   4T  ,
+
+and for  = 0,
+
+                                 (7)     L(1 - )c L(1 - )(t - j - 1)c L(1 - )c
+                                                        -                                                      .
+                                             2                            8(T - j + 1)                4
+
+Thus,  we  have  zt,j    L(1-)c          L(1-    )c  .
+                            4T              4T 
+
+Lemma 2. f (zt) = hTt zt for any t  [T + 1]. The subgradient oracle for f at zt returns ht.
+
+Proof. We claim that htT zt = hTi zt for all i > t  1 and hTt zt > hiT zt for all 1  i < t.
+    When i > t  2, zt is supported on the first t - 1 coordinates, while ht and hi agree on the first t - 1
+
+coordinates.
+
+    In the case of 1  i < t, by the definition of zt and ht, we have
+
+                                 t-1                             t-1                                              t-1
+
+           ztT (ht - hi) = zt,j (ht,j - hi,j ) = zt,j (ht,j - hi,j ) = zt,i(ai + bi) +                                   zt,j aj > 0,
+
+                                 j=1                             j=i                                              j=i+1
+
+where in the last inequality we used the fact that ai, bi and zt,i are at least non-negative.
+    Thus, we have proved f (zt) = hTt zt by the definition. Moreover, I(zt) = {i : hiT zt = f (zt)} =
+
+{t, . . . , T + 1}. So the subgradient evaluated at zt is ht.
+
+    Now, we first get a lower bound and an upper bound of zt using Lemma 1. Then, by Lemma 2, we have
+shown that zt are exactly the updates of SGDM.
+
+                                                                                 6
+Algorithm 1 FTRL-based SGDM
+
+1: Input: A sequence 1, ..., T , with 1 > 0. Non-increasing sequence 1, . . . , T -1. m0 = 0. x1  Rd.
+2: for t = 1, . . . , T do
+
+3: Get gt at xt such that Et [gt] = f (xt)
+             t-1
+4:  t =      i=1  i    (Define     0         i  =   0)
+                                   i=1
+             t    i
+             i=1
+
+5: mt = tmt-1 + (1 - t)gt
+                     t
+                     i=1
+6:   =  t+1               i
+
+    t             t+1  i        t
+                  i=1
+                  x + t
+7:  xt+1 =             i           x -  m t+1
+                  i=1
+                  t+1  i     t     t+1    i  1      tt
+                  i=1              i=1
+
+8: end for
+
+    Thus, for   [0, 1), we have
+
+                                                                T
+
+                                f (zT +1) = hTT +1zT +1 =            hT +1,j zT +1,j
+
+                                                                j=1
+
+                                                L2(1 - )2c T            1             L2(1 - )2c ln T   .
+                                                                                  
+                                                    4T               T -j+1           4T 
+                                                                j=1
+
+5 FTRL-based SGDM
+
+The lower bound for the last iterate in the previous section motivates us to study a different variant of SGDM.
+In particular, we aim to find a way to remove the ln T term from the convergence rate.
+
+    Defazio (2020) points out that the stochastic primal averaging method (Tao et al., 2018) (which is also an
+instance of Algorithm 1 in Cutkosky (2019) with OMD):
+
+                                         zt+1 = zt - tgt, xt+1 = stxt + (1 - st)zt
+could be one-to-one mapped to the momentum method
+
+                                             mt+1 = tmt + gt, xt+1 = xt - tmt
+
+by  setting  t+1  =  . t -t        While  this  is  true,  the  convergence  rate     depends  on  the  convergence  rate  of  OMD
+
+                      t+1
+
+with time-varying stepsizes, that in turn requires to assume that xt - x 2  D2. This is possible only by
+
+using a projection onto a bounded domain in each step.
+
+    Thus, to go beyound bounded domains, we propose to study a new variant of SGDM which has the
+
+following form (details in Algorithm 1),
+
+                                     mt+1 = tmt + (1 - t)gt, xt+1 = stxt - tmt .
+
+Note the presence of a shrinking factor st  1 in the iterates in each step. This variant comes naturally when
+using the primal averaging scheme with FTRL rather than OMD. Hence, we just denote it by FTRL-based
+SGDM. Now, this momentum variant inherits all the good properties of FTRL. In particular, we no longer
+need the bounded domain assumption. Moreover, we will show that it guarantees the optimal convergence
+O( 1 ) (Agarwal et al., 2012) of the last iterate for convex and Lipschitz functions.
+
+        T
+
+5.1 Convergence Rates for FTRL-based SGDM
+
+We first present a very general theorem for FTRL-based SGDM.
+
+                                                                     7
+Theorem 2. Under the assumption in Section 3, Algorithm 1 guarantees
+
+                                                                                         2                          
+
+                                                         1              x1-T     x                T
+
+                          E [f (xT )] - f             T        E                 -1         +        t-1, t2g2t  .
+                                                      t=1
+                                                            t                                  t=1
+
+The above theorem is very general and it gives rise to a number of different variations of the FTRL-based
+
+SGDM. In particular, we can instantiate it with the following choices.
+    First, we consider the most used polynomial stepsize c for convex and Lipschitz function, and the
+
+                                                                                                                   t
+
+constant stepsize c if T is given in advance.
+
+                                    T
+
+Corollary      1.  Assume  (H3)    and  set  t  =     1  for  all  t.  Algorithm         1  with     either    t-1  =   c ·1  or   t-1  =     c  ·1
+                                                                                                                                            GT
+guarantees                                                                                                             Gt
+
+                                        E [f (xT )] - f                 x1  -x         2G 2cG
+                                                                                           + .
+                                                                            cT                       T
+
+    The above corollary tells that both of these two stepsizes give the optimal bound O( 1 ) for the last iterate.
+
+                                                                                                                                                                    T
+
+Next, we will show that if we use an adaptive2 stepsize, Algorithm 1 gives a data-dependent convergence rate
+
+for the last iterate. We first consider a global version of the AdaGrad stepsize as in Streeter and McMahan
+
+(2010); Li and Orabona (2019); Ward et al. (2019).
+
+Corollary 2. Assume (H3') and take t =  +                          ·1               ,    > 0, 1  t  T and t = 1. Then, Algorithm 1
+
+                                                                   t    i2  gi   2
+                                                                   i=1
+guarantees
+
+                                                                                                                       
+                                                 1
+                          E [f (xT )] - f  T             x1 - x        2                       T                 G2
+                                                                                                              +  .
+                                                                         + 2 E                       gt 2 +
+
+                                                                                            t=1
+
+    We also state a result for the coordinate-wise AdaGrad stepsizes (McMahan and Streeter, 2010; Duchi
+et al., 2010).
+
+Corollary 3. Assume (H3") and set t =  +                                         ,     > 0, 1  t  T and t = 1. Then, Algorithm 1
+
+guarantees                                                         t    i2 g i2
+                                                                   i=1
+
+                                                      x1 - x       2                d                                     
+                                          1                                                     T gt2,j + + dG2  .
+                   E [f (xT )] - f  T                                + 2               E
+                                                                                               t=1
+                                                                                    j=1
+
+The above two corollaries show that the convergence bound are adaptive to the stochastic gradients. In
+
+words, in the worst case (i.e.,         T    gt       2 = O(T ) and             T -1   g2t,j   =     O(T )),  the   convergence   rate  is  O( 1       ).
+                                        t=1                                     t=1
+                                                                                                                                                    T
+
+However, when the stochastic gradients are small or sparse, the rate could be much faster than O( 1 ).
+
+                                                                                                                                                                                                      T
+
+Moreover, the above results give very simple ways to obtain optimal convergence for the last iterate of
+
+first-order stochastic methods, that was still unclear if it could be obtained as discussed in Jain et al. (2019,
+
+2021).
+
+Also, we now show that if in addition f is smooth, the last iterate of FTRL-based momentum with the
+
+global adaptive stepsize of Corollary 2 gives adaptive rates of convergence that interpolate between O( 1 )
+                                                                                                                                                 T
+
+and  O(  ln T  ).
+          T
+
+Corollary 4. Assume (H1). Then, under the same assumption and parameter setting of Corollary 2,
+
+Algorithm 1 guarantees
+
+                                   C                                                              2G2            G2      
+                                                                           4LC                 +              +        + 2C .
+               E [f (xT )] - f               +   4L2 C 2      ln2  T   +               ln T                                   T
+                                   T
+
+where C            x1 -x  2
+                        
+                            + 2 .
+
+    2Even if widely used in the literature, it is a misnomer to call these stepsize "adaptive": an algorithm can be adaptive to
+some unknown quantities (if proved so), not the stepsizes.
+
+                                                                        8
+Algorithm 2 Anytime Online-to-Batch (Cutkosky, 2019)
+
+1: Input: Online learning algorithm A with convex domain D, 1, ..., T , with 1 > 0.
+
+2: Get Initial point w1 from A
+
+3: for t = 1, . . . , T do
+
+4:  xt =     t        i wi
+             i=1
+                  t
+                  i=1  i
+
+5: Play xt, receive subgradient gt
+
+6: Send t(x) = tgt, x to A as the tth loss
+
+7: Get wt+1 from A
+
+8: end for
+
+    Observe  that     when         =  0,  namely  when  there  is  no  noise  on  the  gradients,  the  rate  of  O(  ln T  )  is  obtained.
+                                                                                                                       T
+
+As far as we know, the above theorems are the first convergence guarantees for the last iterate of momentum
+
+algorithms with adaptive learning rates in unconstrained convex optimization.
+
+5.2 Convergence Rate in Interpolation Regime
+
+Now we assume that F (x) = E[f (x, )] and that the stochastic gradient is calculated drawing one function
+
+in each time step and calculating its gradient: gt = f (xt, t). In this scenario, it makes sense to consider
+the interpolation condition (Needell et al., 2015; Ma et al., 2018)
+
+                                          x  argmin F (x)  x  argmin f (x, ),  .                                                   (8)
+
+                                                  x                           x
+
+This condition says that the problem is "easy", in the sense that all the functions in the expectation share
+the same minimizer. This case morally corresponds to the case in which there is no noise on the stochastic
+gradients. However, this condition seems weaker because it says that only in the optimum the gradient is
+exact and noisy everywhere else. We will also assume that each function f (x, ) is L-smooth in the first
+argument.
+
+Theorem 3. Assume (H1) (H3'). Then, under the interpolation assumption in (8), Algorithm 1 with
+
+t =  +       ·1               ,  > 0 guarantees
+
+             t    2i   gi  2
+             i=1
+
+                                               C        +  4L2 C 2  ln2  T  +                   2G2        G2         .
+                  E [F (xT )] - F (x )  T                                      4LC     ln T +           +
+
+where C      x1 -x         2
+                  
+                             + 2 .
+
+    To the best of our knowledge, this is the first convergence rate for the last iterate of momentum methods
+in the interpolation setting.
+
+5.3 Proofs
+
+Before presenting the proofs of our convergence rates, we revisit the Online-to-Batch algorithm (Algorithm 2)
+by Cutkosky (2019), which introduce a modification to any online learning algorithm to obtain a guarantee
+on the last iterate in the stochastic convex setting.
+
+Lemma 3. (Cutkosky, 2019, Theorem 1) Assume (H2). Then, for all x  D, Algorithm 2 guarantees
+
+                                                  E[f (xT )] - f   E        RT (x )    .
+
+                                                                              T    t
+                                                                              t=1
+
+    Set t(x) = x1-t-x1 2, 1  t  T as the regularizers of FTRL, where t+1  t and 0 > 0. Then, we
+write FTRL with loss t(w) = tgt, w as
+
+                                                           t-1                            t-1
+
+                                   wt  argmin t(w) + igi, w = w1 - t-1 igi .
+                                          wRd
+                                                           i=1                            i=1
+
+                                                                    9
+Algorithm 3 Anytime Online-to-Batch with FTRL
+
+1: Input: 1, ..., T , with t > 0. 0 < t+1  t.
+
+2: Initialize w1
+
+3: for t = 1, . . . , T do
+
+4:  xt =        t    i wi
+                i=1
+                t
+                i=1      i
+
+5: Play xt, receive subgradient gt
+                                 t
+6:  wt+1 = w1 - t                i=1   i    gi
+
+7: end for
+
+    We then plug FTRL into Algorithm 2 and it gives Algorithm 3. Hence, using the well-known regret upper
+bound of FTRL (Lemma 6 in the Appendix B), we get the following Lemma.
+
+Lemma 4. Under the same setting with Lemma 3, Algorithm 3 guarantees
+
+                                                                                           2                             
+
+                                                            1                 u - x1               T
+                                                                              T -1
+                              E [f (xT )] - f              T        E                         +         t-1, t2g2t  .
+                                                           t=1
+                                                                t                                  t=1
+
+    Now we prove the connection between the FTRL-based SGDM and Algorithm 3.
+
+Proof of Theorem 2. We prove that the updates of xt in Algorithm 1 can be one-to-one mapped to the
+updates of xt Algorithm 3 when w1 = x1.
+
+    The update of xt in Algorithm 3 can be written as following:
+
+             xt+1 =           t    i  xt    +   t+1        wt+1    =          t    i  xt   +       t+1                             t    .
+                              i=1  i                                          i=1  i
+                              t+1               t+1     i                     t+1                  t+1  i        w1 - t igi
+                              i=1               i=1                           i=1                  i=1
+                                                                                                                                 i=1
+
+It is enough to prove that for any t, tmt =                        t+1           t      t     igi       .  We claim it is true and prove it by
+                                                                                        i=1
+                                                                    t+1   i
+                                                                    i=1
+
+induction.
+
+    When  t  =  1,   it  holds   that  1m1      =     2 1       1  g1  .  Suppose      it  holds   for     t  =  k  - 1, k    2.  Then  in  the  case  of
+                                                     1 +2
+t = k, we have
+
+           k mk
+
+            =        k-1    i   mk-1     +      k       gk      ·  k+1          k    i  
+                     i=1    i                                                   i=1
+                     k                          k
+                     i=1                        i=1  i                      k+1  i         k
+                                                                            i=1
+
+            =        k-1    i        1          k              k-1  i     gi     +     k           gk      ·  k+1   k       i  
+                     i=1           k-1                         i=1                                                  i=1
+                                                k                                      k
+                     k      i                   i=1  i    k-1                          i=1    i                     k+1  i        k
+                     i=1                                                                                            i=1
+
+            =   k+1         k    i       ·      k-1     i          k-1    igi       +      k          gk      =     k+1            k   igi  .
+                            i=1                 i=1                i=1                                                            i=1
+                                                                                           k
+                         k+1  i       k         k    i             k-1    i                i=1     i                k+1  i     k
+                         i=1                    i=1                i=1                                              i=1
+
+where in the first equation we used the definitions of k and mk and in the second equality we used the
+induction step. So we proved the above claim. Thus, we can directly use Lemma 4.
+
+    The proof of Corollary 1 is immediate and we omit it, while the proofs of Corollaries 2-4 are standard and
+they are presented in the Appendix C. Instead, here we show the proof of Theorem 3.
+
+Proof of Theorem 3. By Theorem 2, we have
+
+                                             2            x1 - x          2                     T     f (xt, t) 2 +            G2                (9)
+                E [F (xT )] - F (x )  T                                                                                     + .
+                                                                            + 2            E
+
+                                                                                              t=1
+
+                                                                            10
+     Figure 1: Squared hinge loss for classification, objective value vs number of epoch.
+
+         Figure 2: Hinge loss for classification, objective value vs number of epoch.
+
+Under the interpolation condition and L-smoothness of the functions f , it satisfies that
+
+      T                                   T                                        T
+
+   E       f (xt, t) 2  2LE                     (f (xt, t) - f (x , t))  2L E [F (xt)] - F (x ) .
+
+      t=1                               t=1                                        t=1
+
+Use (9) on each t to get
+
+                                                                                                        
+
+T                                  T1           x1 - x     2                    t                    G2
+                                                                                                  + 
+     E [F (xt)] - F (x )  t                                  + 2          E        f (xi, i) 2 +
+
+t=1                                t=1                                      i=1
+
+                                                                                                  
+
+                                   x1 - x       2          ·           T    f (xt, t) 2 +     G2
+                                                                                           +   ln T .
+                                                  + 2             E
+
+                                                                  t=1
+
+Then, we solve for E  T    f (xt, t) 2 and get
+                      t=1
+
+           T
+
+      E               f (xt, t) 2
+
+         t=1
+
+                          x1 - x   2         2                    x1 - x           2               2G2
+                                                           4L                             ln T +  .
+       4L2                           + 2        ln2  T  +                            + 2
+
+Using this expression in (9), we have the stated bound.
+
+6 Empirical Results
+
+We have presented a family of FTRL-based SGDM algorithms, that exhibit optimal convergence of the last
+iteration. These algorithms are motivated by a new lower bound that shows that constant momentum SGDM
+
+                                                           11
+is provably suboptimal to minimize convex Lipschitz functions. However, the theory guarantees only an
+
+improvement of ln T , so it is unlikely to make a difference in practical applications. Yet, we also perform
+
+some experiments to show that FTRL-based momentum methods have also interesting empirical properties.
+
+We   compare  FTRL-M       (Algorithm  1,  t   =  c·1 ),  AdaFTRL-M  (Algorithm  1,  t  =                       ) with
+
+                                                     t                                       +     t    2i gi2
+                                                                                                   i=1
+
+classic SGDM ( = 0.9), SGDM-AVG (averaged iterates of SGDM,  = 0.9), and AdaGrad (McMahan
+
+and Streeter, 2010; Duchi et al., 2010). The initial stepsizes for all the algorithms were tuned with a fine
+
+grid-searching procedure.
+
+Synthetic Data For the first experiment, we generate synthetic data and test the algorithms following
+
+the protocol in Vaswani et al. (2019). We generate a synthetic binary classification dataset with n =
+
+8000 and the dimension d = 100. We make the data linearly separable with a margin, in which case
+
+the interpolation condition is satisfied. We train linear classifiers with the squared hinge loss: f (w) =
+
+n    max  0, 1 - yiwT xi   2. Note that the loss function is smooth and f (w ) = 0. In this case, the optimal
+i=1
+
+convergence rate is at least as fast as 1/T .
+
+We plot the suboptimality gap versus the number of epochs with different margin values in Figure 1,
+
+in loglog plots. Also, we add a line to fit the curves, where the slopes represent the power of t. From
+
+Figure 1, we observe that two adaptive algorithms AdaGrad and AdaFTRL-M bring faster convergence and
+
+AdaFTRL-M has the biggest slope in all the cases. Also, the performance of FTRL-M is on par with SGDM
+
+and SGDM-AVG.
+
+Real Data We also test the algorithms on real datasets. We use classification datasets from the LIBSVM
+
+website (Chang and Lin, 2011); real-sim, w8a, and phishing. The details of the datasets are in Appendix D.
+
+We train linear classifiers with the hinge loss and no regularization: f (w) =       n    (max(0,  1  -  yi  wT  xi  )).
+                                                                                     i=1
+
+The stochastic gradients are obtained evaluating the subgradient on one example at the time. We repeat the
+
+experiments for 5 times for each algorithm and report the average of 5 repetitions. We show the objective
+
+value versus the number of epochs in Figure 2.
+
+The results show that the algorithms with non-adaptive stepsizes tend to perform worse than the ones
+
+with adaptive stepsizes. Moreover, the performance of AdaFTRL-M is close to the last iterate of AdaGrad
+
+and sometimes outperforms all the other algorithms, especially in the last iterations.
+
+7 Conclusion
+
+We have presented an analysis of the convergence of the last iterate of SGDM in the convex setting. We
+prove for the first time through a lower bound the suboptimal convergence rate for the last iterate of SGDM
+with constant momentum after T iterations. Moreover, we study a class of FTRL-based SGDM algorithms
+with increasing momentum and shrinking updates, of which the last iterate has optimal convergence rate
+without projections onto bounded domain nor knowledge of T . Furthermore, we present empirical results
+showing that FTRL-based SGDM with adaptive stepsize matches or outperforms the other similar algorithms
+in the last iterations.
+
+    In the future, we plan on studying the convergence in high probability of FTRL-based SGDM, similarly
+to the analysis in Li and Orabona (2020).
+
+Acknowledgements
+
+This material is based upon work supported by the National Science Foundation under the grants no. 1925930
+"Collaborative Research: TRIPODS Institute for Optimization and Learning", no. 2022446 "Foundations of
+Data Science Institute", and no. 2046096 "CAREER: Parameter-free Optimization Algorithms for Machine
+Learning".
+
+                                                          12
+References
+
+J. D. Abernethy, E. Hazan, and A. Rakhlin. Competing in the dark: An efficient algorithm for bandit linear
+   optimization. In Rocco A. Servedio and Tong Zhang, editors, Proc. of Conference on Learning Theory
+  (COLT), pages 263­274. Omnipress, 2008.
+
+A. Agarwal, P. L. Bartlett, P. Ravikumar, and M. J. Wainwright. Information-theoretic lower bounds on the
+   oracle complexity of stochastic convex optimization. IEEE Transactions on Information Theory, 58(5):
+  3235­3249, 2012.
+
+A. Alacaoglu, Y. Malitsky, P. Mertikopoulos, and V. Cevher. A new regret analysis for Adam-type algorithms.
+   In International Conference on Machine Learning, pages 202­210. PMLR, 2020.
+
+C.-C. Chang and C.-J. Lin. LIBSVM: a library for support vector machines. ACM Transactions on Intelligent
+  Systems and Technology, 2(3):1­27, 2011. Software available at http://www.csie.ntu.edu.tw/~cjlin/
+   libsvm.
+
+A. Cutkosky. Anytime online-to-batch, optimism and acceleration. In K. Chaudhuri and R. Salakhutdinov,
+   editors, Proc. of the 36th International Conference on Machine Learning, volume 97 of Proc. of Machine
+  Learning Research, pages 1446­1454, Long Beach, California, USA, 09­15 Jun 2019. PMLR.
+
+A. Cutkosky and F. Orabona. Momentum-based variance reduction in non-convex SGD. In Advances in
+  Neural Information Processing Systems, pages 15236­15245, 2019.
+
+A. Defazio. Understanding the role of momentum in non-convex optimization: Practical insights from a
+   lyapunov analysis. arXiv preprint arXiv:2010.00406, 2020.
+
+A. Dieuleveut, N. Flammarion, and F. Bach. Harder, better, faster, stronger convergence rates for least-squares
+   regression. J. Mach. Learn. Res., 18(1):3520­3570, January 2017.
+
+J. Duchi, E. Hazan, and Y. Singer. Adaptive subgradient methods for online learning and stochastic
+   optimization. In COLT, 2010.
+
+P. Gaillard, G. Stoltz, and T. Van Erven. A second-order bound with excess losses. In Conference on Learning
+  Theory, pages 176­196. PMLR, 2014.
+
+S. Ghadimi and G. Lan. Optimal stochastic approximation algorithms for strongly convex stochastic composite
+   optimization i: A generic algorithmic framework. SIAM Journal on Optimization, 22(4):1469­1492, 2012.
+
+N. J. Harvey, C. Liaw, Y. Plan, and S. Randhawa. Tight analyses for non-smooth stochastic gradient descent.
+   In Conference on Learning Theory, pages 1579­1613, 2019.
+
+P. Jain, S. M. Kakade, R. Kidambi, P. Netrapalli, and A. Sidford. Accelerating stochastic gradient descent
+   for least squares regression. In S. Bubeck, V. Perchet, and P. Rigollet, editors, Proceedings of the 31st
+  Conference On Learning Theory, volume 75 of Proceedings of Machine Learning Research, pages 545­604.
+   PMLR, 06­09 Jul 2018.
+
+P. Jain, D. Nagaraj, and P. Netrapalli. Making the last iterate of SGD information theoretically optimal. In
+  A. Beygelzimer and D. Hsu, editors, Proc. of the Conference on Learning Theory (COLT), volume 99 of
+  Proceedings of Machine Learning Research, pages 1752­1755, Phoenix, USA, 25­28 Jun 2019. PMLR.
+
+P. Jain, D. M. Nagaraj, and P. Netrapalli. Making the last iterate of sgd information theoretically optimal.
+  SIAM Journal on Optimization, 31(2):1108­1130, 2021. doi: 10.1137/19M128908X.
+
+S. Jelassi and A. Defazio. Dual averaging is surprisingly effective for deep learning optimization. arXiv
+   preprint arXiv:2010.10502, 2020.
+
+R. Kidambi, P. Netrapalli, P. Jain, and S. Kakade. On the insufficiency of existing momentum schemes for
+   stochastic optimization. In 2018 Information Theory and Applications Workshop (ITA), pages 1­9. IEEE,
+  2018.
+
+                                                                     13
+D. P. Kingma and J. Ba. Adam: A method for stochastic optimization. In International Conference on
+  Learning Representations (ICLR), 2015.
+
+G. Lan. An optimal method for stochastic composite optimization. Mathematical Programming, 133(1):
+  365­397, 2012.
+
+X. Li and F. Orabona. On the convergence of stochastic gradient descent with adaptive stepsizes. In Proc. of
+  the 22nd International Conference on Artificial Intelligence and Statistics, AISTATS, 2019.
+
+X. Li and F. Orabona. A high probability analysis of adaptive SGD with momentum. In ICML 2020
+  Workshop on Beyond First Order Methods in ML Systems, 2020.
+
+Y. Liu, Y. Gao, and W. Yin. An improved analysis of stochastic gradient descent with momentum. Advances
+  in Neural Information Processing Systems, 33, 2020.
+
+L. Luo, Y. Xiong, Y. Liu, and X. Sun. Adaptive gradient methods with dynamic bound of learning rate. In
+  International Conference on Learning Representations, 2018.
+
+S. Ma, R. Bassily, and M. Belkin. The power of interpolation: Understanding the effectiveness of SGD in
+   modern over-parametrized learning. In International Conference on Machine Learning, pages 3325­3334.
+   PMLR, 2018.
+
+H. B. McMahan and M. J. Streeter. Adaptive bound optimization for online convex optimization. In COLT,
+  2010.
+
+D. Needell, N. Srebro, and R. Ward. Stochastic gradient descent, weighted sampling, and the randomized
+   Kaczmarz algorithm. Mathematical Programming, 155:549­573, 2015.
+
+A. Nemirovski, A. Juditsky, G. Lan, and A. Shapiro. Robust stochastic approximation approach to stochastic
+   programming. SIAM Journal on optimization, 19(4):1574­1609, 2009.
+
+A. S. Nemirovsky and D. Yudin. Problem complexity and method efficiency in optimization. Wiley, New York,
+   NY, USA, 1983.
+
+Y. Nesterov. A method for unconstrained convex minimization problem with the rate of convergence O(1/k2).
+   In Doklady AN SSSR (translated as Soviet. Math. Docl.), volume 269, pages 543­547, 1983.
+
+Y. Nesterov. Primal-dual subgradient methods for convex problems. Mathematical programming, 120(1):
+  221­259, 2009.
+
+Y. Nesterov and V. Shikhman. Quasi-monotone subgradient methods for nonsmooth convex minimization.
+  Journal of Optimization Theory and Applications, 165(3):917­940, 2015.
+
+F. Orabona. A modern introduction to online learning. arXiv preprint arXiv:1912.13213, 2019.
+
+F. Orabona and D. P´al. Scale-free online learning. Theoretical Computer Science, 716:50­69, 2018. Special
+   Issue on ALT 2015.
+
+B. T. Polyak. Some methods of speeding up the convergence of iteration methods. USSR Computational
+  Mathematics and Mathematical Physics, 4(5):1­17, 1964.
+
+S. J. Reddi, A. Hefny, S. Sra, B. Poczos, and A. Smola. Stochastic variance reduction for nonconvex
+   optimization. In International conference on machine learning, pages 314­323, 2016.
+
+S. J. Reddi, S. Kale, and S. Kumar. On the convergence of Adam and beyond. In International Conference
+  on Learning Representations, 2018.
+
+O. Sebbouh, R. M Gower, and A. Defazio. Almost sure convergence rates for stochastic gradient descent and
+   stochastic heavy ball. In Conference on Learning Theory, pages 3935­3971. PMLR, 2021.
+
+S. Shalev-Shwartz. Online Learning: Theory, Algorithms, and Applications. PhD thesis, The Hebrew
+   University, 2007.
+
+                                                                     14
+M. Streeter and H. B. McMahan. Less regret via online conditioning, 2010. arXiv:1002.4862.
+
+I. Sutskever, J. Martens, G. Dahl, and G. Hinton. On the importance of initialization and momentum in
+   deep learning. In International conference on machine learning, pages 1139­1147, 2013.
+
+W. Tao, Z. Pan, G. Wu, and Q. Tao. Primal averaging: A new gradient evaluation step to attain the optimal
+   individual convergence. IEEE transactions on cybernetics, 50(2):835­845, 2018.
+
+W. Tao, S. Long, G. Wu, and Q. Tao. The role of momentum parameters in the optimal convergence of
+   adaptive Polyak's heavy-ball methods. In International Conference on Learning Representations, 2021.
+
+S. Vaswani, F. Bach, and M. Schmidt. Fast and faster convergence of SGD for over-parameterized models
+   and an accelerated Perceptron. In K. Chaudhuri and M. Sugiyama, editors, Proc. of the 22nd International
+  Conference on Artificial Intelligence and Statistics, volume 89 of Proc. of Machine Learning Research, pages
+  1195­1204. PMLR, 16­18 Apr 2019.
+
+R. Ward, X. Wu, and L. Bottou. AdaGrad stepsizes: Sharp convergence over nonconvex landscapes. In
+  International Conference on Machine Learning, pages 6677­6686. PMLR, 2019.
+
+M. K. Warmuth and A. K. Jagota. Continuous and discrete-time nonlinear gradient descent: Relative
+   loss bounds and convergence. In Electronic proceedings of the 5th International Symposium on Artificial
+  Intelligence and Mathematics, volume 326, 1997.
+
+T. Yang, Q. Lin, and Z. Li. Unified convergence analysis of stochastic momentum methods for convex and
+   non-convex optimization. arXiv preprint arXiv:1604.03257, 2016.
+
+A Lemma for the Proof of Theorem 1
+
+Lemma       5.  For  any  1jtT             and   0<      1  ,  we  have         1   t       1         2  .
+                                                         2                  T -j+1  k=j+1  j         T
+
+Proof. First, we observe that
+
+                                t1               t1      t1- - j1-             1 t2-2 - j2-2
+                                    k            x dx =                     =
+                                              j                1-              1-   t1- + j1-
+                            k=j+1
+
+                                                 1 (2 - 2)t1-2(t - j) 2(t - j)
+                                                                             t ,
+                                          1-            t1- + j1-
+
+where  in  the  second    inequality  we  used   the  convexity  of  f (x)  =  x2-2, 0  <      1  .
+                                                                                               2
+                              1 t-j
+     Then,  we  claim     T -j+1 t      1  .
+                                       T
+
+     Let g(x) =  x-j   .  The derivative g (x) =      1-+   j    is positive for all x > 0 and j  0.        So it satisfies that
+                  x                                        x
+
+t-j    T -j                                             x
+ t      T
+             ,  which  implies  the  claim.
+
+B Lemma for the Proof of Theorem 2
+
+Algorithm 4 Follow-the-Regularized-Leader on Linearized Losses
+
+1: Input: Regularizers 1, . . . , T : Rd  (-, ].
+
+2: for t = 1, . . . , T do
+
+3:     wt  argminwRd t(w) +                t-1   gi, w
+                                           i=1
+4: Receive t : Rd  (-, ] and pay t(wt)
+
+5: Set gt   t(wt)
+
+6: end for
+
+     The following lemma is a well-known result for FTRL (see, e.g., Orabona, 2019).
+
+                                                               15
+                                                                                                                                                                                                        2
+
+Lemma 6. Let t a sequence of convex loss functions. Set the sequence of regularizers as t(x) = x1-t-u1 ,
+where t+1  t, t = 1, . . . , T . Then, FTRL (Algorithm 4) guarantees
+
+                                T                                u -Tx-11    2 1T           t-1, gt2    .
+                                                                               +
+                                    t(xt) - t(u)                                  2
+                                                                                       t=1
+                               t=1
+
+C Proofs of Corollaries 2-4
+
+First, we state some technical lemmas.
+
+Lemma 7. (Li and Orabona, 2019, Lemma 4) Let f : Rd  R be M -smooth and bounded from below, then
+
+for all x  Rd
+                                                 f (x) 2  2M (f (x) - inf f (y)) .
+
+                                                                                                                  yR
+
+Lemma 8. (Gaillard et al., 2014, Lemma 14) Let a0 > 0 and a1, . . . , am  [0, A] be real numbers and let
+f : (0, +)  [0, +) nonincreasing function. Then
+
+                           m                                               m    ai
+                                                                           i=0
+
+                                  aif (a0 + · · · + ai-1)                           f (u)du + Af (a0) .
+
+                           i=1                                        a0
+
+Proof. Denote by st =    t     ai    .
+                         i=0
+
+                           m                        m                 m
+
+                               aif (si-1) = aif (si) + ai(f (si-1) - f (si))
+
+                         i=1                   i=1                    i=1
+
+                                                    m                      m
+
+                                            aif (si) + A (f (si-1) - f (si))
+
+                                               i=1                        i=1
+
+                                                    m   si                          m
+
+                                                                 f (x)dx + A (f (si-1) - f (si))
+
+                                               i=1 si-1                             i=1
+
+                                                        m    ai
+                                                        i=0
+
+                                                                 f (u)du + Af (a0) ,
+
+                                                    a0
+
+where the first inequality holds because f (xi-1)  f (si) and ai  A, while the second inequality uses the fact
+that f is nonincreasing together with si - si-1 = ai.
+
+We can now present the proofs of the Corollaries 2-4.
+
+Proof of Corollary 2 and Corollary 3. By Lemma 8, for adaptive stepsize t =  +                                    ·1           , we have
+
+                                                                                                               t    i2  gi  2
+                                                                                                               i=1
+
+     T                                     T             gt 2                               T              G2
+                                                                                                           
+                         t-1 gt 2 =                                              2               gt  2  +      .
+
+   t=1                                     t=1          +        t-1  gi     2              t=1
+                                                                 i=1
+
+Similarly for t =  +                    , we have
+
+                         t    i2 g 2i
+                         i=1
+
+T                                          dT              g2t,j                         d      T g2t,j + dG 2 .
+
+                         t-1,  g  2     =                        t-1          2                t=1
+                                  t                              i=1
+                                                                      g2i,j
+t=1                                        j=1 t=1      +                           j=1
+
+                                                                  16
+Proof of Corollary 4. By Corollary 2, we have
+
+                                                                                                     
+
+                                    1          x1 - x  2                       T     gt   2  +   G2    .           (10)
+             E [f (xT )] - f  T                                                                  
+                                                         + 2          +E                             
+
+                                                                              t=1
+
+From the unbiasedness of the gradients, we have
+
+                                     T                 T
+
+                                  E       gt 2  E             f (xt) 2 + T 2,
+
+                                     t=1               t=1
+
+and
+
+             T                       T
+
+             E f (xt) 2  2L E [f (xt)] - f
+
+             t=1                     t=1
+
+                                          x1 - x     2        T       +E             t    gi  2
+                                                                                     i=1
+                         2L                            + 2
+                                                                                  t
+                                                              t=1
+
+                                                                                                     
+
+                         2L               x1 - x     2        ·            T  gt 2 +             G2
+                                                                                              +   ln T,
+                                                       + 2            E
+
+                                                                      t=1
+
+where in the second inequality we used Lemma 7 and Holder's and Jensen's inequalities in the third inequality.
+
+Solve for E  T     gt  2 to have
+             t=1
+
+        T
+
+     E       gt 2
+
+        t=1
+
+      4L2 x1 - x        2            2                        x1 - x  2                          2G2
+                                                     4L                                           
+                          + 2             ln2  T  +                     + 2          ln T     +        +  2T 2  .
+
+Putting it back to (10), we get the stated bound.
+
+D Details of Experiments
+
+                                   Table 2: Real datasets
+                        Name # of Samples # of Features
+
+                        real-sim                     72,309           20,958
+                          w8a                        49,749            300
+                                                     11,055             68
+                        phishing
+
+                                                          17
+

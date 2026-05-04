@@ -1,0 +1,29 @@
+{
+ "domain": "surface_topology_s21",
+ "condition": "000",
+ "primitives": {
+  "relation": false,
+  "transform": false,
+  "contrastive": false
+ },
+ "case_id": "a151-b103",
+ "case_data": {
+  "case_id": "a151-b103",
+  "summary_delta": {
+   "weight_a": -9,
+   "intersection_number": 0,
+   "weight_b": 0
+  },
+  "metadata": {
+   "surface": [
+    2,
+    1
+   ],
+   "alpha_index": 151,
+   "beta_index": 103,
+   "alpha_level": 2,
+   "beta_level": 0,
+   "i_alpha_beta": 1
+  }
+ }
+}

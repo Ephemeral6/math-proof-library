@@ -1,0 +1,18 @@
+Computing Betti numbers for 309 target α...
+  progress: 25/309, 25 contractible
+  progress: 50/309, 50 contractible
+  progress: 75/309, 75 contractible
+  progress: 100/309, 100 contractible
+  progress: 125/309, 125 contractible
+  progress: 150/309, 150 contractible
+  progress: 175/309, 175 contractible
+  progress: 200/309, 200 contractible
+  progress: 225/309, 225 contractible
+  progress: 250/309, 250 contractible
+  progress: 275/309, 275 contractible
+  progress: 300/309, 300 contractible
+
+309/309 are contractible (b_0=1, b_i=0 for i≥1)
+  α with non-trivial higher Betti: 0
+
+Wrote C:\Users\12729\Desktop\Math\SpatialMind\experiments\op1_homology.json

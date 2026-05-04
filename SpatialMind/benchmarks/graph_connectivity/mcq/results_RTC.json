@@ -1,0 +1,250 @@
+{
+  "domain": "graph_connectivity",
+  "condition": "RTC",
+  "label": "CoE-CTR",
+  "subject": "claude-as-test-subject",
+  "n": 34,
+  "n_correct": 34,
+  "n_error": 0,
+  "accuracy": 1.0,
+  "results": [
+    {
+      "question_id": "graph_connectivity_001",
+      "condition": "RTC",
+      "predicted": "C",
+      "correct": "C",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_002",
+      "condition": "RTC",
+      "predicted": "D",
+      "correct": "D",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_003",
+      "condition": "RTC",
+      "predicted": "B",
+      "correct": "B",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_004",
+      "condition": "RTC",
+      "predicted": "B",
+      "correct": "B",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_005",
+      "condition": "RTC",
+      "predicted": "B",
+      "correct": "B",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_006",
+      "condition": "RTC",
+      "predicted": "C",
+      "correct": "C",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_007",
+      "condition": "RTC",
+      "predicted": "D",
+      "correct": "D",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_008",
+      "condition": "RTC",
+      "predicted": "D",
+      "correct": "D",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_009",
+      "condition": "RTC",
+      "predicted": "A",
+      "correct": "A",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_010",
+      "condition": "RTC",
+      "predicted": "D",
+      "correct": "D",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_011",
+      "condition": "RTC",
+      "predicted": "C",
+      "correct": "C",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_012",
+      "condition": "RTC",
+      "predicted": "C",
+      "correct": "C",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_013",
+      "condition": "RTC",
+      "predicted": "C",
+      "correct": "C",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_014",
+      "condition": "RTC",
+      "predicted": "A",
+      "correct": "A",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_015",
+      "condition": "RTC",
+      "predicted": "C",
+      "correct": "C",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_016",
+      "condition": "RTC",
+      "predicted": "B",
+      "correct": "B",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_017",
+      "condition": "RTC",
+      "predicted": "A",
+      "correct": "A",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_018",
+      "condition": "RTC",
+      "predicted": "B",
+      "correct": "B",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_019",
+      "condition": "RTC",
+      "predicted": "B",
+      "correct": "B",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_020",
+      "condition": "RTC",
+      "predicted": "C",
+      "correct": "C",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_021",
+      "condition": "RTC",
+      "predicted": "D",
+      "correct": "D",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_022",
+      "condition": "RTC",
+      "predicted": "B",
+      "correct": "B",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_023",
+      "condition": "RTC",
+      "predicted": "C",
+      "correct": "C",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_024",
+      "condition": "RTC",
+      "predicted": "C",
+      "correct": "C",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_025",
+      "condition": "RTC",
+      "predicted": "C",
+      "correct": "C",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_026",
+      "condition": "RTC",
+      "predicted": "A",
+      "correct": "A",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_027",
+      "condition": "RTC",
+      "predicted": "D",
+      "correct": "D",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_028",
+      "condition": "RTC",
+      "predicted": "D",
+      "correct": "D",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_029",
+      "condition": "RTC",
+      "predicted": "D",
+      "correct": "D",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_030",
+      "condition": "RTC",
+      "predicted": "D",
+      "correct": "D",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_031",
+      "condition": "RTC",
+      "predicted": "C",
+      "correct": "C",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_032",
+      "condition": "RTC",
+      "predicted": "B",
+      "correct": "B",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_033",
+      "condition": "RTC",
+      "predicted": "B",
+      "correct": "B",
+      "is_correct": true
+    },
+    {
+      "question_id": "graph_connectivity_034",
+      "condition": "RTC",
+      "predicted": "B",
+      "correct": "B",
+      "is_correct": true
+    }
+  ]
+}

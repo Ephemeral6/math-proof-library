@@ -1,0 +1,110 @@
+{
+  "dim4_q01": {
+    "baseline": "[ANSWER]\n(a) 3\n(b) {0, 3}\n(c) 130\n[/ANSWER]\n\n[REASONING]\nc is period-3, so r^3 fixes c ⇒ Stab={0,3}, |Orbit|=6/2=3. Burnside on Z_6 hexagon-3-colorings = 780/6 = 130.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 3\n(b) {0, 3}\n(c) 130\n[/ANSWER]\n\n[REASONING]\nc is period-3, so r^3 fixes c ⇒ Stab={0,3}, |Orbit|=6/2=3. Burnside on Z_6 hexagon-3-colorings = 780/6 = 130.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 3\n(b) {0, 3}\n(c) 130\n[/ANSWER]\n\n[REASONING]\nc is period-3, so r^3 fixes c ⇒ Stab={0,3}, |Orbit|=6/2=3. Burnside on Z_6 hexagon-3-colorings = 780/6 = 130.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 3\n(b) {0, 3}\n(c) 130\n[/ANSWER]\n\n[REASONING]\nc is period-3, so r^3 fixes c ⇒ Stab={0,3}, |Orbit|=6/2=3. Burnside on Z_6 hexagon-3-colorings = 780/6 = 130.\n[/REASONING]"
+  },
+  "dim4_q02": {
+    "baseline": "[ANSWER]\n(a) 2\n(b) {0, 2, 4}\n(c) 130\n[/ANSWER]\n\n[REASONING]\nc is period-2 alternation, fixed by r^2 and r^4. Stab={0,2,4}, |Orbit|=6/3=2. Total=130.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 2\n(b) {0, 2, 4}\n(c) 130\n[/ANSWER]\n\n[REASONING]\nc is period-2 alternation, fixed by r^2 and r^4. Stab={0,2,4}, |Orbit|=6/3=2. Total=130.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 2\n(b) {0, 2, 4}\n(c) 130\n[/ANSWER]\n\n[REASONING]\nc is period-2 alternation, fixed by r^2 and r^4. Stab={0,2,4}, |Orbit|=6/3=2. Total=130.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 2\n(b) {0, 2, 4}\n(c) 130\n[/ANSWER]\n\n[REASONING]\nc is period-2 alternation, fixed by r^2 and r^4. Stab={0,2,4}, |Orbit|=6/3=2. Total=130.\n[/REASONING]"
+  },
+  "dim4_q03": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) {0, 1, 2, 3, 4, 5}\n(c) 130\n[/ANSWER]\n\n[REASONING]\nMonochromatic, every rotation fixes it. Stab=Z_6, orbit=1. Total=130.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) {0, 1, 2, 3, 4, 5}\n(c) 130\n[/ANSWER]\n\n[REASONING]\nMonochromatic, every rotation fixes it. Stab=Z_6, orbit=1. Total=130.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) {0, 1, 2, 3, 4, 5}\n(c) 130\n[/ANSWER]\n\n[REASONING]\nMonochromatic, every rotation fixes it. Stab=Z_6, orbit=1. Total=130.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) {0, 1, 2, 3, 4, 5}\n(c) 130\n[/ANSWER]\n\n[REASONING]\nMonochromatic, every rotation fixes it. Stab=Z_6, orbit=1. Total=130.\n[/REASONING]"
+  },
+  "dim4_q04": {
+    "baseline": "[ANSWER]\n(a) 6\n(b) {0}\n(c) 130\n[/ANSWER]\n\n[REASONING]\n(0,0,1,1,2,2) has no rotational period, orbit=6, |Stab|=1. Total=130.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 6\n(b) {0}\n(c) 130\n[/ANSWER]\n\n[REASONING]\n(0,0,1,1,2,2) has no rotational period, orbit=6, |Stab|=1. Total=130.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 6\n(b) {0}\n(c) 130\n[/ANSWER]\n\n[REASONING]\n(0,0,1,1,2,2) has no rotational period, orbit=6, |Stab|=1. Total=130.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 6\n(b) {0}\n(c) 130\n[/ANSWER]\n\n[REASONING]\n(0,0,1,1,2,2) has no rotational period, orbit=6, |Stab|=1. Total=130.\n[/REASONING]"
+  },
+  "dim4_q05": {
+    "baseline": "[ANSWER]\n(a) 6\n(b) {0}\n(c) 130\n[/ANSWER]\n\n[REASONING]\n(0,1,0,2,0,1) has no rotational period, orbit=6, Stab={0}. Total=130.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 6\n(b) {0}\n(c) 130\n[/ANSWER]\n\n[REASONING]\n(0,1,0,2,0,1) has no rotational period, orbit=6, Stab={0}. Total=130.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 6\n(b) {0}\n(c) 130\n[/ANSWER]\n\n[REASONING]\n(0,1,0,2,0,1) has no rotational period, orbit=6, Stab={0}. Total=130.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 6\n(b) {0}\n(c) 130\n[/ANSWER]\n\n[REASONING]\n(0,1,0,2,0,1) has no rotational period, orbit=6, Stab={0}. Total=130.\n[/REASONING]"
+  },
+  "dim4_q06": {
+    "baseline": "[ANSWER]\n(a) 3\n(b) 6\n(c) 130 -> 92\n[/ANSWER]\n\n[REASONING]\nZ_6: period-3 ⇒ |Orbit|=3. Reflection of (0,1,2,0,1,2) gives (0,2,1,0,2,1), not in Z_6 orbit ⇒ D_6 orbit doubles to 6. Totals 130→92.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 3\n(b) 6\n(c) 130 -> 92\n[/ANSWER]\n\n[REASONING]\nZ_6: period-3 ⇒ |Orbit|=3. Reflection of (0,1,2,0,1,2) gives (0,2,1,0,2,1), not in Z_6 orbit ⇒ D_6 orbit doubles to 6. Totals 130→92.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 3\n(b) 6\n(c) 130 -> 92\n[/ANSWER]\n\n[REASONING]\nZ_6: period-3 ⇒ |Orbit|=3. Reflection of (0,1,2,0,1,2) gives (0,2,1,0,2,1), not in Z_6 orbit ⇒ D_6 orbit doubles to 6. Totals 130→92.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 3\n(b) 6\n(c) 130 -> 92\n[/ANSWER]\n\n[REASONING]\nZ_6: period-3 ⇒ |Orbit|=3. Reflection of (0,1,2,0,1,2) gives (0,2,1,0,2,1), not in Z_6 orbit ⇒ D_6 orbit doubles to 6. Totals 130→92.\n[/REASONING]"
+  },
+  "dim4_q07": {
+    "baseline": "[ANSWER]\n(a) 2\n(b) 2\n(c) 130 -> 92\n[/ANSWER]\n\n[REASONING]\n(0,1,0,1,0,1) is fixed by reflection through edge midpoints. D_6 stab has 6 elements ⇒ |Orbit_D6|=12/6=2.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 2\n(b) 2\n(c) 130 -> 92\n[/ANSWER]\n\n[REASONING]\n(0,1,0,1,0,1) is fixed by reflection through edge midpoints. D_6 stab has 6 elements ⇒ |Orbit_D6|=12/6=2.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 2\n(b) 2\n(c) 130 -> 92\n[/ANSWER]\n\n[REASONING]\n(0,1,0,1,0,1) is fixed by reflection through edge midpoints. D_6 stab has 6 elements ⇒ |Orbit_D6|=12/6=2.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 2\n(b) 2\n(c) 130 -> 92\n[/ANSWER]\n\n[REASONING]\n(0,1,0,1,0,1) is fixed by reflection through edge midpoints. D_6 stab has 6 elements ⇒ |Orbit_D6|=12/6=2.\n[/REASONING]"
+  },
+  "dim4_q08": {
+    "baseline": "[ANSWER]\n(a) 6\n(b) 12\n(c) 130 -> 92\n[/ANSWER]\n\n[REASONING]\nGeneric c with trivial Z_6 stab; reflection gives non-orbit element ⇒ D_6 orbit = 12.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 6\n(b) 12\n(c) 130 -> 92\n[/ANSWER]\n\n[REASONING]\nGeneric c with trivial Z_6 stab; reflection gives non-orbit element ⇒ D_6 orbit = 12.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 6\n(b) 12\n(c) 130 -> 92\n[/ANSWER]\n\n[REASONING]\nGeneric c with trivial Z_6 stab; reflection gives non-orbit element ⇒ D_6 orbit = 12.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 6\n(b) 12\n(c) 130 -> 92\n[/ANSWER]\n\n[REASONING]\nGeneric c with trivial Z_6 stab; reflection gives non-orbit element ⇒ D_6 orbit = 12.\n[/REASONING]"
+  },
+  "dim4_q09": {
+    "baseline": "[ANSWER]\n(a) 6\n(b) 12\n(c) 130 -> 92\n[/ANSWER]\n\n[REASONING]\nSame as q8: generic asymmetric coloring.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 6\n(b) 12\n(c) 130 -> 92\n[/ANSWER]\n\n[REASONING]\nSame as q8: generic asymmetric coloring.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 6\n(b) 12\n(c) 130 -> 92\n[/ANSWER]\n\n[REASONING]\nSame as q8: generic asymmetric coloring.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 6\n(b) 12\n(c) 130 -> 92\n[/ANSWER]\n\n[REASONING]\nSame as q8: generic asymmetric coloring.\n[/REASONING]"
+  },
+  "dim4_q10": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) {1, 4}\n(c) 2\n[/ANSWER]\n\n[REASONING]\nb is a rotated by 1 (cyclic left). |Stab(a)|=2 (period-3), so connecting set has 2 elements: {1, 1+3=4}.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) {1, 4}\n(c) 2\n[/ANSWER]\n\n[REASONING]\nb is a rotated by 1 (cyclic left). |Stab(a)|=2 (period-3), so connecting set has 2 elements: {1, 1+3=4}.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) {1, 4}\n(c) 2\n[/ANSWER]\n\n[REASONING]\nb is a rotated by 1 (cyclic left). |Stab(a)|=2 (period-3), so connecting set has 2 elements: {1, 1+3=4}.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) {1, 4}\n(c) 2\n[/ANSWER]\n\n[REASONING]\nb is a rotated by 1 (cyclic left). |Stab(a)|=2 (period-3), so connecting set has 2 elements: {1, 1+3=4}.\n[/REASONING]"
+  },
+  "dim4_q11": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) {2}\n(c) 1\n[/ANSWER]\n\n[REASONING]\nb is a shifted by 2 (a[2:]+a[:2]). Stab(a)={0} so unique connecting g_2.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) {2}\n(c) 1\n[/ANSWER]\n\n[REASONING]\nb is a shifted by 2 (a[2:]+a[:2]). Stab(a)={0} so unique connecting g_2.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) {2}\n(c) 1\n[/ANSWER]\n\n[REASONING]\nb is a shifted by 2 (a[2:]+a[:2]). Stab(a)={0} so unique connecting g_2.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) {2}\n(c) 1\n[/ANSWER]\n\n[REASONING]\nb is a shifted by 2 (a[2:]+a[:2]). Stab(a)={0} so unique connecting g_2.\n[/REASONING]"
+  },
+  "dim4_q12": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) {}\n(c) 2\n[/ANSWER]\n\n[REASONING]\na is period-3, b is generic; no rotation maps period-3 to period-1. |Stab(a)|=2.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) {}\n(c) 2\n[/ANSWER]\n\n[REASONING]\na is period-3, b is generic; no rotation maps period-3 to period-1. |Stab(a)|=2.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) {}\n(c) 2\n[/ANSWER]\n\n[REASONING]\na is period-3, b is generic; no rotation maps period-3 to period-1. |Stab(a)|=2.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) {}\n(c) 2\n[/ANSWER]\n\n[REASONING]\na is period-3, b is generic; no rotation maps period-3 to period-1. |Stab(a)|=2.\n[/REASONING]"
+  },
+  "dim4_q13": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) {}\n(c) 1\n[/ANSWER]\n\n[REASONING]\na has half-half pattern (orbit_size 2 actually, wait let me think). (0,0,0,1,1,1) shifted: (0,0,1,1,1,0),(0,1,1,1,0,0),(1,1,1,0,0,0),(1,1,0,0,0,1),(1,0,0,0,1,1) — all distinct, |Orbit_a|=6, |Stab|=1. b is alternating period-2; clearly different orbit.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) {}\n(c) 1\n[/ANSWER]\n\n[REASONING]\na has half-half pattern (orbit_size 2 actually, wait let me think). (0,0,0,1,1,1) shifted: (0,0,1,1,1,0),(0,1,1,1,0,0),(1,1,1,0,0,0),(1,1,0,0,0,1),(1,0,0,0,1,1) — all distinct, |Orbit_a|=6, |Stab|=1. b is alternating period-2; clearly different orbit.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) {}\n(c) 1\n[/ANSWER]\n\n[REASONING]\na has half-half pattern (orbit_size 2 actually, wait let me think). (0,0,0,1,1,1) shifted: (0,0,1,1,1,0),(0,1,1,1,0,0),(1,1,1,0,0,0),(1,1,0,0,0,1),(1,0,0,0,1,1) — all distinct, |Orbit_a|=6, |Stab|=1. b is alternating period-2; clearly different orbit.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) {}\n(c) 1\n[/ANSWER]\n\n[REASONING]\na has half-half pattern (orbit_size 2 actually, wait let me think). (0,0,0,1,1,1) shifted: (0,0,1,1,1,0),(0,1,1,1,0,0),(1,1,1,0,0,0),(1,1,0,0,0,1),(1,0,0,0,1,1) — all distinct, |Orbit_a|=6, |Stab|=1. b is alternating period-2; clearly different orbit.\n[/REASONING]"
+  },
+  "dim4_q14": {
+    "baseline": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]"
+  },
+  "dim4_q15": {
+    "baseline": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]"
+  },
+  "dim4_q16": {
+    "baseline": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]"
+  },
+  "dim4_q17": {
+    "baseline": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]"
+  },
+  "dim4_q18": {
+    "baseline": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 780\n(b) 130\n(c) 92\n[/ANSWER]\n\n[REASONING]\nZ_6 fixes: identity 729, r/r^5 ⇒ 3, r^2/r^4 ⇒ 9, r^3 ⇒ 27. Sum=780, /6=130. D_6 adds 6 reflections: 3 vertex-axis (each fix 3^4=81) + 3 edge-axis (each 3^3=27) = 324. Total 1104/12 = 92.\n[/REASONING]"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "dim2_q01": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 2\n(c) 2\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 2\n(c) 2\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 2\n(c) 2\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 2\n(c) 2\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]"
+  },
+  "dim2_q02": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 2\n(c) 1\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 2\n(c) 1\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 2\n(c) 1\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 2\n(c) 1\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]"
+  },
+  "dim2_q03": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 2\n(c) 1\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 2\n(c) 1\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 2\n(c) 1\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 2\n(c) 1\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]"
+  },
+  "dim2_q04": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 2\n(c) 7\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 2\n(c) 7\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 2\n(c) 7\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 2\n(c) 7\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]"
+  },
+  "dim2_q05": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) 1\n(c) 0\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) 1\n(c) 0\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 1\n(c) 0\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 1\n(c) 0\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]"
+  },
+  "dim2_q06": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 2\n(c) 1\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 2\n(c) 1\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 2\n(c) 1\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 2\n(c) 1\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]"
+  },
+  "dim2_q07": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 2\n(c) 7\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 2\n(c) 7\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 2\n(c) 7\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 2\n(c) 7\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]"
+  },
+  "dim2_q08": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) 1\n(c) 0\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) 1\n(c) 0\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 1\n(c) 0\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 1\n(c) 0\n[/ANSWER]\n\n[REASONING]\nVisualize the graph from edge list; check if edge endpoints lie on a cycle (non-bridge) or only on a tree-path (bridge). Count bridges directly.\n[/REASONING]"
+  },
+  "dim2_q09": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]"
+  },
+  "dim2_q10": {
+    "baseline": "[ANSWER]\n(a) 3\n(b) 3\n(c) 0\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 3\n(b) 3\n(c) 0\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 3\n(b) 3\n(c) 0\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 3\n(b) 3\n(c) 0\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]"
+  },
+  "dim2_q11": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]"
+  },
+  "dim2_q12": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) 1\n(c) 2\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) 1\n(c) 2\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 1\n(c) 2\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 1\n(c) 2\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]"
+  },
+  "dim2_q13": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]"
+  },
+  "dim2_q14": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]"
+  },
+  "dim2_q15": {
+    "baseline": "[ANSWER]\n(a) 2\n(b) 2\n(c) 2\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 2\n(b) 2\n(c) 2\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 2\n(b) 2\n(c) 2\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 2\n(b) 2\n(c) 2\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]"
+  },
+  "dim2_q16": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) 2\n(c) 4\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) 2\n(c) 4\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 2\n(c) 4\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 2\n(c) 4\n[/ANSWER]\n\n[REASONING]\nWalk the adjacency, identify cycles vs trees, count bridges (edges not on any cycle) and articulation points (vertices whose removal increases component count).\n[/REASONING]"
+  }
+}

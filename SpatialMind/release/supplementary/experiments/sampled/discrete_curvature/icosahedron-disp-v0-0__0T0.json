@@ -1,0 +1,108 @@
+{
+ "domain": "discrete_curvature",
+ "condition": "0T0",
+ "primitives": {
+  "relation": false,
+  "transform": true,
+  "contrastive": false
+ },
+ "case_id": "icosahedron-disp-v0-0",
+ "case_data": {
+  "case_id": "icosahedron-disp-v0-0",
+  "summary_delta": {
+   "n_vertices_a": 0,
+   "euler_characteristic_match": 0,
+   "euler_characteristic_a": 0,
+   "euler_characteristic_b": 0,
+   "n_edges_a": 0,
+   "gauss_bonnet_ratio_b": 0.0,
+   "total_curvature_b": 0.0,
+   "n_vertices_b": 0,
+   "n_faces_b": 0,
+   "total_curvature_a": 0.0,
+   "n_edges_b": 0,
+   "gauss_bonnet_ratio_a": 0.0,
+   "n_faces_a": 0
+  },
+  "metadata": {
+   "preset": "icosahedron",
+   "operation": "vertex_displacement",
+   "vertex_index": 0,
+   "displacement": [
+    0.003815249216031602,
+    0.15008807420769954,
+    0.0600991481934493
+   ],
+   "ref_preset": "tetrahedron",
+   "kind": "intra_transform"
+  },
+  "transform_trace": {
+   "operation_name": "vertex_displacement",
+   "operation_params": {
+    "vertex": 0,
+    "displacement": [
+     0.003815249216031602,
+     0.15008807420769954,
+     0.0600991481934493
+    ]
+   },
+   "before_state": {
+    "euler_characteristic": 2,
+    "total_curvature": 12.566371,
+    "gauss_bonnet_ratio": 2.0,
+    "vertex_defect": 1.047198
+   },
+   "after_state": {
+    "euler_characteristic": 2,
+    "total_curvature": 12.566371,
+    "gauss_bonnet_ratio": 2.0,
+    "vertex_defect": 1.248066
+   },
+   "delta": {
+    "euler_change": 0,
+    "curvature_change": 0.0,
+    "local_defect_change": 0.200869
+   },
+   "region_affected": {
+    "displaced_vertex": 0,
+    "neighbor_faces": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "affected_vertices": [
+     0,
+     2,
+     4,
+     5,
+     8,
+     9
+    ],
+    "n_vertices_total": 12
+   },
+   "sub_steps": []
+  },
+  "reference_in_transform_region": {
+   "displaced_vertex": 0,
+   "neighbor_faces": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "affected_vertices": [
+    0,
+    2,
+    4,
+    5,
+    8,
+    9
+   ],
+   "n_vertices_total": 12,
+   "operation_name": "vertex_displacement"
+  }
+ }
+}

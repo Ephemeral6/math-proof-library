@@ -1,0 +1,15 @@
+Tool-augmented LLMs (ToRA~\citep{gou2024tora},
+MATHSENSEI~\citep{das2024mathsensei},
+AgentMath~\citep{luo2025agentmath}) pair the model with a generic code
+interpreter; CoE commits to a domain-specific engine returning typed
+R/T/C data, addressing object grounding rather than execution
+(Table~\ref{tab:methods}: CoT+Code matches CoE on graph connectivity but
+scores zero on surface topology).
+AlphaGeometry~\citep{trinh2024alphageometry,trinh2025alphageometry2}
+trains on synthetic Euclidean data; CoE is training-free.
+Cognitive scaffolds (CoALA~\citep{sumers2023coala}, Cognitive
+Tools~\citep{ebouky2025cogtools}, Olivier and
+Bouraoui~\citep{olivier2025embodied}) are content-agnostic; CoE fills
+them with R/T/C. Probing work~\citep{an2026humancog} finds a decomposition
+paralleling R/T; RLVR~\citep{yang2025rlvr} shows post-training does not
+create new patterns, complementing CoE's structured signals.

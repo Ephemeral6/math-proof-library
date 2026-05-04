@@ -1,0 +1,1875 @@
+{
+  "experiment": "cross_model_5family_scored_opus_inline",
+  "judge_model": "claude-opus-4-7 (inline, no API)",
+  "rubric": {
+    "0": "completely wrong / no real reasoning",
+    "1": "wrong conclusion or fundamentally confused",
+    "2": "correct conclusion but weak / hand-wavy reasoning",
+    "3": "correct conclusion + sound reasoning",
+    "4": "correct + rigorous explicit verification + invariant identification"
+  },
+  "scoring_method": "Opus 4.7 read each response and assigned a 0-4 score directly, no API call.",
+  "models": {
+    "deepseek": {
+      "model_id": "deepseek-chat",
+      "trials": [
+        {
+          "domain": "symmetry",
+          "case_id": "same-006",
+          "condition": "baseline",
+          "response": "根据提供的元数据，着色a和b的具体颜色序列如下：\n\n- a = [1, 0, 2, 1, 0, 2]  \n- b = [2, 1, 0, 2, 1, 0]  \n\n元数据中显示 `same_orbit: true`，且给出的见证群元素索引 `g_idx = 3`，对应的置换为 `[3, 4, 5, 0, 1, 2]`，即旋转180°（移动3个位置）。\n\n我们验证：  \n将a旋转3位：  \na[3]=1, a[4]=0, a[5]=2, a[0]=1, a[1]=0, a[2]=2 → 得到 [1, 0, 2, 1, 0, 2] ？  \n等一下，这里顺序需要明确。置换 `[3,4,5,0,1,2]` 表示新位置i的颜色来自旧位置 perm[i]。  \n对于新位置0取旧位置3 → a[3]=1  \n新位置1取旧位置4 → a[4]=0  \n新位置2取旧位置5 → a[5]=2  \n新位置3取旧位置0 → a[0]=1  \n新位置4取旧位置1 → a[1]=0  \n新位置5取旧位置2 → a[2]=2  \n得到的结果是 [1,0,2,1,0,2] ，但是b是 [2,1,0,2,1,0]，看起来不是直接相等。这提示我们检查旋转方向。其实常见的群作用中，旋转方向也可能相反。若采用另一种理解：对于旋转3位，原来顶点0移到顶点3的位置，那么着色方式是把a向后移3位：  \n取a的后半部分[1,0,2]拼上前半部分[1,0,2] 得到 [1,0,2,1,0,2] 同上面结果，确实不等于b。\n\n但是我们换一种方式理解——是否循环左移3位？  \n左移3位：a[3]=1→新0位，a[4]=0→新1位，a[5]=2→新2位，a[0]=1→新3位，a[1]=0→新4位，a[2]=2→新5位，结果依然是[1,0,2,1,0,2]。  \n\n看起来直接旋转3次没有把a变成b，但元数据明确说相同轨道且g_idx=3，所以可能是底层用了不同的下标对应规则（可能将颜色序列按逆时针/顺时针调整）。另一种可能是，b是由a经过某种反射或旋转再结合颜色值轮换？不过这里只有旋转，且数据表明轨道大小为3，意味着旋转每3步回到相同着色。\n\n观察a与b的模式：a = 1,0,2,1,0,2（周期3），b = 2,1,0,2,1,0（也是周期3）。其实a加一个颜色循环映射（比如把0→1,1→2,2→0）得到的正是b。但在群作用中，只允许顶点置换而不改变颜色标签，所以不同颜色数值不算相同轨道——这里显然有颜色轮换，但元数据依然标为same_orbit。这说明在该问题定义中，颜色值可能是模3加法意义下的等价？或者这里”3色着色“中的颜色本质是等价类？但从给出的序列数字看，他们是不同数值，但通过旋转确实能够匹配：  \n若将a旋转1位（即g_idx=1，置换[1,2,3,4,5,0]）得到：  \n[0,2,1,0,2,1] 与b [2,1,0,2,1,0] 不一致。  \n旋转2位： [2,1,0,2,1,0] — 这正是b！  \n旋转2位对应的置换是 [2,3,4,5,0,1]，但元数据给的g_idx=3，或许群元素编号方式不同，例如索引从0开始且顺序不同。\n\n综上，虽然初看g_idx=3有疑惑，但旋转2步的事实明确说明a与b在同一轨道。见证群元素可以是旋转2步（对应移动索引+2）。\n\n**结论**：a与b在同一轨道，一个见证是旋转2步（将顶点编号增加2 mod 6）。",
+          "elapsed_sec": 14.34,
+          "score": 2,
+          "rationale": "Correct (same orbit, rotation by 2) but reasoning confused along the way about g_idx=3."
+        },
+        {
+          "domain": "symmetry",
+          "case_id": "same-006",
+          "condition": "rtc",
+          "response": "根据提供的结构数据（R）、变换轨迹（T）和反事实对比（C），我们可以分析问题：正六边形顶点3色着色a与b是否在循环群Z_6的同一轨道下。\n\n### 关键数据解读\n\n**metadata** 中明确：\n- `same_orbit: true`\n- `g_idx: 3`\n- `g_perm: [3, 4, 5, 0, 1, 2]` —— 这是旋转180度的操作（旋转3个位置，因为6个顶点，旋转半圈）\n- `a_coloring: [1, 0, 2, 1, 0, 2]`\n- `b_coloring: [2, 1, 0, 2, 1, 0]`\n\n将旋转180度（即群元素索引3）作用于a：\n- a: [1, 0, 2, 1, 0, 2]  \n  旋转3位后为：[1, 0, 2, 1, 0, 2]（因为a本身有周期3的重复模式，旋转3位得到相同模式）\n\n但这并不直接给出b。观察b的排列：\n- b: [2, 1, 0, 2, 1, 0]  \n  实际上它是a中每个颜色都加1（模3）后的结果：  \n  1→2, 0→1, 2→0。\n\n然而**transform_trace**显示：应用群元素3（旋转180°）时，a保持不变（固定点），但b并不是由这一个元素直接得到的——说明需要的不是这个元素，而是另一个群元素。\n\n实际比对发现：旋转1位（g_idx=1，置换[1,2,3,4,5,0]）作用于a：\n- a: [1, 0, 2, 1, 0, 2]  →  [0, 2, 1, 0, 2, 1]  \n并不等于b。再旋转2位（g_idx=2，置换[2,3,4,5,0,1]）：\n- a → [2, 1, 0, 2, 1, 0] = b ✅\n\n因此群元素索引2（旋转120°）将a映射到b。\n\n### 不变量检查（阻止等价的因素）\n\n1. **轨道大小**：  \n   - orbit_size_a = 3  \n   - orbit_size_b = 3  \n   一致，没有矛盾。\n\n2. **颜色计数**：  \n   - a: 颜色0出现2次，颜色1出现2次，颜色2出现2次  \n   - b: 同样，每个颜色出现2次  \n   颜色频率分布相同，没有被阻止。\n\n3. **稳定子大小**：  \n   - 稳定子大小均为2（旋转180°使a、b各自不变），是一致的。\n\n4. **其他标准不变量**（如相同位置颜色差异模式等）均无阻断。\n\n### 反事实分析\n\n- **去除对称性（G={e}）**：same_orbit变为false，说明a和b的等价依赖Z_6的对称性，这是关键条件。\n- **扩大为D_6**：结论依然为true，说明即使加入反射对称性，它们仍然在同一轨道，Z_6已经足够。\n- **非群置换**：破坏了轨道等价，确认只有在群作用下才等价。\n\n### 结论\n\n着色a和着色b在Z_6的同一轨道下。  \n**见证群元素**：旋转2位（索引2），对应置换 `[2, 3, 4, 5, 0, 1]`，即旋转120°。  \n没有不变量阻断等价，因为a与b的轨道大小、稳定子大小、颜色计数完全一致。",
+          "elapsed_sec": 11.32,
+          "score": 3,
+          "rationale": "Correct (same orbit, witness g_idx=2). Mentions invariants but verification is brief."
+        },
+        {
+          "domain": "symmetry",
+          "case_id": "diff-163",
+          "condition": "baseline",
+          "response": "根据给出的数据，我们来分析着色 a 与 b 是否在 Z_6 的同一个轨道上。\n\n- 已知 Z_6 在正六边形顶点上的作用是循环移位（由 g_perm 给出的排列 [4,5,0,1,2,3] 表示旋转 4 步，恰好生成了整个六元循环群）。\n- 着色 a = [0,1,0,2,2,1]  \n- 着色 b = [1,2,0,2,0,0]\n\nmetadata 中 `same_orbit: false` 明确表示它们不在同一轨道。  \n摘要中的 `same_orbit: 0` 也一致。\n\n此外，两个着色各自的轨道大小都是 6（`orbit_size_a: 6, orbit_size_b: 6`），说明每个着色都没有对称性，两者的轨道都包含了 6 个不同的着色。但即使如此，它们仍然可能是不同轨道——因为存在两个互不相交的大小为 6 的轨道。\n\n要判断不变量：  \n可以看颜色模式在循环下的全局特征。例如统计各位置颜色的循环模式向量是否可以通过旋转匹配。这里只需比较 a 与 b 在旋转下的“循环位移等价类”即可判断。\n\n手动检查会发现，不管怎么旋转 a，都无法得到 b。比如旋转后检查颜色序列：  \na 中 0 出现在位置 0 和 2，但 b 中 0 的位置是 2,4,5，分布不同，且连续段的模式也不同（a 有连续两个 2，b 没有）。这类“颜色间相对距离模式”是一个循环不变量，阻断了等价。\n\n**结论**：a 与 b 不在同一个 Z_6 轨道下。阻挡的不仅是轨道大小（两者大小相同），而是颜色排列的相对结构无法通过旋转匹配。",
+          "elapsed_sec": 6.06,
+          "score": 3,
+          "rationale": "Correct (different orbit). Identifies cyclic-pattern blocker, though color-count is the cleaner invariant."
+        },
+        {
+          "domain": "symmetry",
+          "case_id": "diff-163",
+          "condition": "rtc",
+          "response": "好的，我们来根据你提供的结构数据（R）、变换轨迹（T）和反事实对比（C）进行推理，并给出最终结论。\n\n### 第一步：分析核心数据（R 部分）\n\n从 `metadata` 中可以看到：\n- `same_orbit`: **false**\n- `orbit_size_a`: 6\n- `orbit_size_b`: 6\n- 两个着色 `a` 和 `b` 各自包含3种颜色，且轨道的长度都为6（即在Z_6作用下都是“满轨道”，没有任何旋转对称性使着色保持不变，即稳定子大小为1）。\n\n既然两个轨道的大小都是6，而群本身大小也是6，从轨道-稳定子定理来看，两者都是“自由轨道”。然而 `same_orbit` 是 **false**，这说明它们并不在同一个轨道中。这提示我们：虽然两个着色都没有旋转对称性（稳定子平凡），但它们对应的着色模式不同，彼此无法通过旋转相互转换。\n\n### 第二步：检查变换轨迹（T 部分）\n\n在 `transform_trace` 中，给出了 `g_idx = 4`（对应旋转4步，旋转阶为3）作用在着色 `a` 上的结果：\n- 输入 `a`：`[0,1,0,2,2,1]`\n- 输出 `g·a`：`[2,1,0,1,0,2]`\n\n对比着色 `b`：`[1,2,0,2,0,0]`  \n可以看到，`g·a` 和 `b` 无论在排列上还是颜色分布上都不同。  \n`reference_in_transform_region` 中进一步比较了在移动顶点上的颜色分布：b在移动顶点上颜色为 `[1,2,0,0]`，而a经变换后在同样位置是 `[2,1,0,2]`，不匹配。这意味着单个群元素4不能把a变成b。\n\n由于群只有6个元素，如果a和b同轨道，一定有一个`g`使得`g·a = b`。但我们从 `detailed_comparison` 看到 `connecting_pre = 0`，说明在这个变换轨迹中没有任何一个群元素能把a直接映到b。这也和 `same_orbit = false` 一致。\n\n### 第三步：从反事实对比（C）中获取关键解释\n\n第一个反事实（边界松弛）：  \n将群从Z_6扩大为D_6（加入反射），结果仍然是 `same_orbit = true`。但注意这里原结果是 `true` 吗？原数据中 `same_orrit` 是 **false**，而反事实描述写的是 `original same_orbit=True`，这里不矛盾，因为反事实中的“original”指代的是反事实分析中该条测试的原始设定，不等于本次问题的最终答案。实际数据告诉我们，在Z_6中它们是不同的轨道。\n\n第二个反事实（条件去除）：  \n将群缩小为平凡群{e}后，结果变为 `same_orbit = false`。原结果为 `true` 是指“如果群是Z_6时原本它们是在同一轨道吗？”——不是，这里反事实说明当完全没有对称性时它们不可能等价，而Z_6提供了旋转对称性，但依然不足以让它们等价——也就是说这个反事实强调了“对称性群是必要条件，但不是充分条件”。\n\n第三个反事实（操作扰动）：  \n使用一个不在群中的置换（交换顶点0和1），结果变成不能保持轨道等价。这说明能够使a和b等价的变换**必须**是群作用下的旋转，而不是任意置换。\n\n### 第四步：结论\n\n综合以上信息：\n1. 轨道大小相同（都是6），稳定子大小相同（都是1），但不意味着两个着色在同一个轨道。这是因为它们有不同的颜色排列模式。\n2. 实际检验所有旋转都无法将a变成b（从变换轨迹可确认）。\n3. 群Z_6提供了对称性约束，但**不够**让这两个着色归入同一轨道；必须要有特定旋转匹配，但不存在这样的旋转。\n\n**最终结论：**  \n着色a与b不在同一个Z_6轨道下。阻断它们等价的**不变量**是：在旋转群作用下，颜色在顶点上的循环模式不同——具体来说，两种颜色的相对排列和间隔无法通过任何旋转重合，所以尽管两者都没有对称性（稳定子平凡），它们仍分属两个不同的轨道。",
+          "elapsed_sec": 12.72,
+          "score": 3,
+          "rationale": "Correct (different orbit). Sound reasoning with counterfactuals, but doesn't name color-count blocker crisply."
+        },
+        {
+          "domain": "symmetry",
+          "case_id": "same-028",
+          "condition": "baseline",
+          "response": "根据你提供的数据，这是 case \"same-028\"，metadata 中明确标识 `same_orbit = true`，并且给出了具体的群元素索引 `g_idx = 5`，以及对应的置换 `g_perm = [5, 0, 1, 2, 3, 4]`，即旋转1个位置（因为索引5对应将顶点0移到原来顶点5的位置，实际上是逆时针旋转60度）。  \n\n我们验证一下：  \n- a 着色: [0, 1, 1, 0, 2, 1]  \n- 应用旋转（每个位置移+1，按置换映射）得到：  \n  新顶点0 ← 原顶点5 = 1  \n  新顶点1 ← 原顶点0 = 0  \n  新顶点2 ← 原顶点1 = 1  \n  新顶点3 ← 原顶点2 = 1  \n  新顶点4 ← 原顶点3 = 0  \n  新顶点5 ← 原顶点4 = 2  \n  结果为 [1, 0, 1, 1, 0, 2]，正好是 b 着色。  \n\n因此，结论是 **a 和 b 在同一个 Z_6 轨道下**，见证元素为旋转1个位置的群元素（g=5 对应的旋转）。",
+          "elapsed_sec": 3.93,
+          "score": 4,
+          "rationale": "Correct + explicit step-by-step verification of g_idx=5 applied to a yields b."
+        },
+        {
+          "domain": "symmetry",
+          "case_id": "same-028",
+          "condition": "rtc",
+          "response": "根据提供的 R、T、C 数据，可以逐步推理如下：\n\n### 1. 直接判断是否同轨道\n- **metadata** 中 `same_orbit` 为 `true`，并给出了群元素索引 `g_idx = 5`，对应置换 `[5, 0, 1, 2, 3, 4]`。\n- **transform_trace** 中显示：对着色 a `[0, 1, 1, 0, 2, 1]` 应用该置换后，恰好得到着色 b `[1, 0, 1, 1, 0, 2]`。\n- 因此，**a 和 b 在同一个 Z₆ 轨道下**，见证群元素为旋转 5 步（即逆时针旋转 300°，或顺时针旋转 60°）。\n\n### 2. 不变量分析\n- **orbit_size_a = 6**, **orbit_size_b = 6**，两者轨道大小一致，且等于群阶，说明它们的稳定子群都是平凡的（`stabilizer_a_size_pre = 1`），没有额外的对称性破坏等价性。\n- **n_distinct_a = n_distinct_b = 3**，颜色种类数相同，没有简单的颜色计数不变量阻止等价。\n- **Burnside 计数为 130**，总轨道数 130，说明在 Z₆ 作用下确实存在许多不同轨道，a 和 b 属于同一个轨道是合理的。\n\n### 3. 反事实分析支持\n- **边界放松（Z₆ → D₆）**：即使扩大群到二面体群，a 和 b 仍然同轨道，说明这个等价关系在更大对称性下依然成立，不冲突。\n- **条件移除（Z₆ → {e}）**：去除所有对称性后，a 和 b 不再同轨道，说明 **它们的等价完全依赖于旋转对称性**（而非偶然的颜色相同）。\n- **操作扰动（非群置换）**：使用非群中的置换（交换顶点 0 和 1）无法使 a 与 b 等价，进一步说明只有旋转这个特定的群结构才能建立联系。\n\n### 结论\na 与 b 在 Z₆ 作用下属于同一轨道，见证群元素为旋转 5（索引 5，置换 `[5,0,1,2,3,4]`）。等价性完全依赖于循环群的旋转结构，任何非群置换或完全去除对称性都会破坏这种等价。",
+          "elapsed_sec": 6.7,
+          "score": 4,
+          "rationale": "Correct + invariants (orbit size, stabilizer, color count) + counterfactuals."
+        },
+        {
+          "domain": "knot_theory",
+          "case_id": "3_1-r2-3",
+          "condition": "baseline",
+          "response": "好的，我们先来提炼一下这个问题的核心：对三叶结（3_1）的一个特定图示（图代码）进行了一次Reidemeister 2变换操作，现在要根据给出的数据判断这次R2变换是否合法，并且分析签名、行列式、Alexander多项式和拧率（writhe）的变化情况。\n\n从 `metadata` 中可以看到：\n- 变换前交点数 `n_crossings_pre` = 3  \n- 变换后交点数 `n_crossings_post` = 5  \n- 变换前拧率 `writhe_pre` = -3  \n- 变换后拧率 `writhe_post` = -3  \n- 拧率差 `writhe_delta` = 0\n\n这说明R2的插入是**一对符号相反的交叉**，这对交叉的局部拧率贡献互相抵消，因此全局拧率保持不变。这是合法的R2变换的典型特征。\n\n**合法性判断：**  \nR2变换是在结的图示中插入或移除一对符号相反的交叉。这种操作保持结的类型不变，是Reidemeister定理保证的三种基本操作之一。因此该操作用于**同一个结**（3_1）时一定合法，不会改变结的同痕类。这里数据也支持合法性：拧率没变，交叉数只是增加了一对可消去的交叉。\n\n**各不变量的变化分析：**\n\n1. **Writhe（拧率）**：  \n   如上所述，插入一对一正一负的交叉，writhe变化为 0。与数据一致。\n\n2. **Signature（签名）**：  \n   签名是Reidemeister不变量，在R2变换下不变。因为R2不改变Seifert矩阵的某个对称化形式的符号差。所以签名**不变**。对于3_1结，签名为 -2（或不依赖于具体图示的确定值），现在仍然是 -2。\n\n3. **Determinant（行列式）**：  \n   行列式是结的一个不变量，在R2下也不变。三叶结的行列式为 3，依然是 3。\n\n4. **Alexander多项式**：  \n   同样是不变量，R2不影响Alexander多项式。对于三叶结，它的Alexander多项式是 \\( t^{-1} - 1 + t \\)（或规范化形式），保持不变。\n\n**结论：**  \n这次R2应用是合法的，结类型保持不变。所有标准不变量（signature、determinant、Alexander多项式、writhe）均未发生任何变化。数据中的 `writhe_delta = 0` 和前后 writhe 一致也印证了这一点。",
+          "elapsed_sec": 8.08,
+          "score": 3,
+          "rationale": "Correct (R2 valid, all invariants preserved). Sound but no explicit pre/post numerical values."
+        },
+        {
+          "domain": "knot_theory",
+          "case_id": "3_1-r2-3",
+          "condition": "rtc",
+          "response": "好的，我们来分析这个案例。\n\n### 核心问题判断\n\n根据提供的数据，**该 R2 变换是合法的**。它保持了结的类型以及所有的标准不变量。\n\n### 推理过程\n\n1.  **检查变换合法性**：\n    -   R2 变换的合法要求是插入一对符号相反的交叉（一个 +1，一个 -1），这样整体的拧数 (writhe) 保持不变。\n    -   从 `detailed_comparison` 和 `transform_trace` 可以看到，插入的两个交叉符号分别是 `[1, -1]` (或表述为 `[-1, 1]` 对)。插入前的拧数是 -3，插入后依然是 -3，拧数变化为 0。\n    -   这完全符合合法 R2 变换的定义。\n\n2.  **检查不变量变化**：\n    -   **符号差 (Signature)**：变换前为 -2，变换后为 -2，保持不变 (`signature_preserved: true`)。\n    -   **行列式 (Determinant)**：变换前为 3，变换后为 3，保持不变 (`determinant_preserved: true`)。\n    -   **Alexander 多项式**：\n        -   原始：`t**2 - t + 1`，归一化系数为 `[1, -1, 1]`。\n        -   变换后：`t**4 - t**3 + t**2`，归一化后为 `t**2 * (t**2 - t + 1)`，其归一化系数也是 `[1, -1, 1]`。\n        -   归一化后的形式完全一致，说明该不变量被保持 (`alexander_preserved: true`)。\n    -   **拧数 (Writhe)**：变换前后均为 -3，保持不变 (`writhe_preserved: true`)。\n    -   **综合结论**：`structural_comparison` 中明确给出 `all_topological_invariants_preserved: true`，表明所有标准拓扑不变量均未变化。\n\n### 反事实对比的佐证\n\n反事实数据从反面验证了合法 R2 变换的关键约束：\n\n1.  **边界松弛 (boundary_relaxation)**：如果插入的不是符号相反的 `[-1, 1]` 对，而是相同符号的 `[-1, -1]` 对，那么：\n    -   拧数会变化 -2 (从 -3 变为 -5)。\n    -   行列式会从 3 变为 7。\n    -   Alexander 多项式会从 `[1, -1, 1]` 变为 `[2, -3, 2]`。\n    -   这证明**符号相反的交叉对**是 R2 合法性的关键，没有这个条件，不变量就会被破坏。\n\n2.  **操作扰动 (operation_perturbation)**：如果翻转一个已有的交叉（这不是 Reidemeister 变换），不变量同样会被破坏（签名从 -2 变为 0，行列式从 3 变为 1，Alexander多项式也改变）。\n\n3.  **条件移除 (condition_removal)**：如果放弃平面性检查，交换任意两条边的标签，得到的图虽然看起来可能有效，但其拓扑不变量（如签名、行列式）会改变，说明图的编码必须是合法的平面投影。\n\n### 结论\n\n-   **该 R2 应用是否合法？**：**是，完全合法。**\n-   **结类型是否保持？**：**是，结类型不变。**\n-   **不变量变化情况**：\n    -   **符号差 (Signature)**：**不变**（仍为 -2）。\n    -   **行列式 (Determinant)**：**不变**（仍为 3）。\n    -   **Alexander 多项式**：**不变**（归一化后为 `[1, -1, 1]`）。\n    -   **拧数 (Writhe)**：**不变**（仍为 -3）。",
+          "elapsed_sec": 11.46,
+          "score": 4,
+          "rationale": "Correct + explicit signature, det, Alexander pre/post + counterfactual analysis."
+        },
+        {
+          "domain": "knot_theory",
+          "case_id": "4_1-r2-4",
+          "condition": "baseline",
+          "response": "好的，我们根据提供的数据来判断该 Reidemeister 2 (R2) 操作是否合法，以及几个标准不变量的变化情况。\n\n**前提回顾**：  \nR2 操作是在结图中插入或删除一对方向相反、相互抵消的交叉。合法的 R2 变换不会改变结的类型，因此所有结不变量应保持不变。  \n\n---\n\n### 1. 判断 R2 是否合法\n\n在这个案例中：\n- 交叉数从 4 增加到 6，说明这里执行的是“插入一对相消交叉”的 R2 操作。\n- 提供的 writhe_delta = 0，writhe_pre = 0，writhe_post = 0，表明这一对插入的交叉具有相反的符号（一正一负），这正是标准 R2 的特征。\n- 由于是 Reidemeister 2 移动，理论上它保持结的类型不变。\n\n**结论**：该 R2 应用是合法的。结类型保持为 4_1（Figure-eight knot）不变。\n\n---\n\n### 2. 各不变量的变化情况\n\n#### （1）writhe（环绕数 / 扭率）\n- 数据给出 writhe_delta = 0，pre 和 post 都是 0  \n- 因为一正一负交叉相互抵消，writhe 不变。\n\n#### （2）signature（符号差）\n- Signature 在 R2 操作下保持不变，因为 R2 不改变 Seifert 矩阵的对称化形式的符号惯性指数。  \n- 对于 4_1 结，signature 为 0，操作后仍为 0。\n\n#### （3）determinant（行列式）\n- Determinant 在合法的 R2 下也不变。  \n- 4_1 结的 determinant 为 5，这一个值不会因R2插入而改变。\n\n#### （4）Alexander 多项式\n- Alexander 多项式在 Reidemeister 2 下保持不变。  \n- 4_1 结的 Alexander 多项式为 \\( t^2 - 3t + 1 \\)（标准化后），保持不变。\n\n#### （5）linking number（环绕数）\n- 对于单组分 knot，linking number 通常指自环绕数或为0。数据给出 linking_number = 0.0，且在 R2 下保持 0。\n\n---\n\n### 最终结论\n\n| 量 | 变化情况 |\n|---|---|\n| 结类型 | **不变**（4_1 结） |\n| R2 合法性 | **合法** |\n| writhe | 不变（仍为 0） |\n| signature | 不变（仍为 0） |\n| determinant | 不变（仍为 5） |\n| Alexander 多项式 | 不变（仍为 \\( t^2 - 3t + 1 \\)） |\n| linking number | 不变（仍为 0） |\n\n因此，该 R2 操作合法，所有标准不变量均保持不变。",
+          "elapsed_sec": 8.6,
+          "score": 3,
+          "rationale": "Correct (R2 valid, 4_1 invariants). Tabular sound reasoning."
+        },
+        {
+          "domain": "knot_theory",
+          "case_id": "4_1-r2-4",
+          "condition": "rtc",
+          "response": "根据提供的数据，我们可以对案例 **4_1-r2-4** 中 R2 变换的合法性及其对各个不变量的影响进行如下推理和结论。\n\n### 1. R2 变换是否合法？\n\n**结论：合法。**\n\n#### 推理依据：\n- 在 **structural_comparison** 中，明确列出：\n  - `signature_preserved: true`\n  - `determinant_preserved: true`\n  - `alexander_preserved: true`\n  - `writhe_preserved: true`\n  - `all_topological_invariants_preserved: true`\n\n这些数据直接表明，R2 变换前后，所有标准拓扑不变量都保持不变，因此该 R2 应用是合法的，不会改变结的类型。\n\n---\n\n### 2. 各不变量在 R2 前后的具体变化情况\n\n| 不变量 | 变换前 | 变换后 | 是否变化 | 说明 |\n|--------|--------|--------|----------|------|\n| **writhe** | 0 | 0 | 不变 | writhe_delta = 0，且新增的交叉点符号为 +1 和 -1，相互抵消 |\n| **signature** | 0 | 0 | 不变 | 保留 |\n| **determinant** | 5 | 5 | 不变 | 保留 |\n| **Alexander 多项式（对称归一化形式）** | [1, -3, 1] | [1, -3, 1] | 不变 | 保留 |\n\n虽然 **Alexander 多项式原始形式** 从 `-t^2 + 3t - 1` 变为 `-t^5 + 3t^4 - t^3`，但这是因交叉点数增加导致的变量尺度变化（t^3 因子），归一化后形式一致，说明拓扑等价。\n\n---\n\n### 3. 反事实对比提供的额外验证\n\n反事实分析进一步确认了 R2 变换的关键约束条件：\n\n- **反事实 1（boundary_relaxation）**：如果插入的交叉对符号相同（如 (-1, -1)），会导致 writhe 变化为 -2，同时 signature、determinant、Alexander 多项式全部改变。说明 R2 必须要求符号对为 (+1, -1) 或 (-1, +1) 以保持 writhe 不变才合法。\n- **反事实 2（operation_perturbation）**：如果翻转已有交叉点的类型，则会改变 knot 类型，导致所有不变量变化。这反证了 R2 变换不会改变交叉的符号类型。\n- **反事实 3（condition_removal）**：如果忽略平面性（planarity），会得到不一致的图形和不变量，说明 R2 变换必须在平面图中进行。\n\n这些反事实表明，当前 R2 变换满足所有必要约束条件，是合法的。\n\n---\n\n### 最终结论\n\n**R2 变换在案例 4_1-r2-4 中是合法的。**  \n- **writhe**：不变（0 → 0）  \n- **signature**：不变（0 → 0）  \n- **determinant**：不变（5 → 5）  \n- **Alexander 多项式（归一化）**：不变（[1, -3, 1]）  \n\n所有标准不变量均保持，结类型未改变。",
+          "elapsed_sec": 9.35,
+          "score": 4,
+          "rationale": "Correct + explicit pre/post for all 4 invariants (incl. normalized Alexander)."
+        },
+        {
+          "domain": "knot_theory",
+          "case_id": "5_2-r2-5",
+          "condition": "baseline",
+          "response": "根据你给出的数据，可以逐步进行分析：\n\n1. **R2 变换是否合法？**  \n   R2 变换是在扭结图中插入或移除一对符号相反、相互抵消的交叉点，本质上是 Reidemeister 第二类移动。这种移动不改变扭结的类型，也不改变任何标准的光滑或拓扑不变量（如 Alexander 多项式、行列式、签名等）。  \n   输入数据中 `writhe_pre` 和 `writhe_post` 均为 5，交叉数从 5 变为 7，正是增加了一对符号相消的交叉，这是合法的 R2 变换。\n\n2. **writhe 变化**  \n   `writhe_delta = 0`（即插入的两个交叉点正负抵消，总环数不变），所以 writhe 保持不变。\n\n3. **signature / determinant / Alexander 多项式**  \n   这些量均是扭结的同痕不变量，在 R2 变换下不会改变。因此：\n   - 签名不变；\n   - 行列式不变；\n   - Alexander 多项式不变。\n\n4. **结论**  \n   该 R2 变换是合法的；扭结类型为 5₂，所有不变量保持不变，writhe 也不变。\n\n### 简要回答\n- R2 应用合法：结类型不变。  \n- writhe 变化：0（无变化）。  \n- signature / determinant / Alexander 多项式：全部保持不变。",
+          "elapsed_sec": 3.95,
+          "score": 3,
+          "rationale": "Correct (R2 valid for 5_2) and brief but sound."
+        },
+        {
+          "domain": "knot_theory",
+          "case_id": "5_2-r2-5",
+          "condition": "rtc",
+          "response": "根据提供的引擎结构数据（R）、变换轨迹（T）和反事实对比（C），我们可以对案例 5_2-r2-5 中应用的 R2（Reidemeister 2）变换是否合法进行如下推理和结论：\n\n---\n\n### 合法性判断\n\n**结论：该 R2 变换是合法的。**\n\n#### 推理依据：\n\n1. **保持不变量的关键条件**  \n   - 在 `structural_comparison` 中明确指出：  \n     - **signature**：前 2，后 2 → 不变  \n     - **determinant**：前 7，后 7 → 不变  \n     - **Alexander 多项式（归一化后）**：前 [2, -3, 2]，后 [2, -3, 2] → 不变  \n     - **writhe**：前后均为 5 → 不变  \n   - 综合标示：`\"all_topological_invariants_preserved\": true`\n\n2. **R2 变换的核心特征满足**  \n   - 新增交叉数目为 2 个，符号分别为 +1 和 -1（一对相消交叉）  \n   - writhe 变化为 0，符合标准 R2 操作\n\n3. **实际变换前后 knot 类型未变**  \n   - 原始 knot 为 `5_2`，变换后仍然是同一结类型，数据中无 knot type 改变提示\n\n---\n\n### 各不变量变化情况\n\n| 不变量 | 应用前 | 应用后 | 是否变化 |\n|--------|--------|--------|----------|\n| signature | 2 | 2 | ✅ 不变 |\n| determinant | 7 | 7 | ✅ 不变 |\n| Alexander 多项式 | 2t² - 3t + 2（归一化） | 相同 | ✅ 不变 |\n| writhe | 5 | 5 | ✅ 不变 |\n\n结论：**所有标准不变量均保持**，符合合法 R2 变换预期。\n\n---\n\n### 反事实对比（C）的辅助说明\n\n反事实案例进一步支持该 R2 操作的“关键条件”必须被满足：\n\n- **反事实 1**：如果新增的交叉对符号为 `(-1, -1)` 而不是 `(-1, +1)`，writhe 变化为 -2，Alexander 多项式也发生改变。说明**符号配对必须是一正一负**，否则不是合法 R2。\n- **反事实 2**：翻转一个已有交叉的上下关系改变结类型，不变量均变，说明**R2 不能随意修改已有交叉**。\n- **反事实 3**：丢弃平面性（随意交换 strand 标签）导致 diagram 不一致，不变量也变化，说明**R2 必须在平面图中进行**。\n\n这些反事实说明：本案例中的条件（符号相反、writhe 不变、平面性保持）**全部满足**，因此操作合法。\n\n---\n\n### 最终结论\n\n**R2 应用合法**。所有不变量（signature、determinant、Alexander 多项式、writhe）均无变化，结类型保持为 5_2。  \n反事实对比进一步验证了该操作满足所有必要约束条件。",
+          "elapsed_sec": 8.61,
+          "score": 4,
+          "rationale": "Correct + explicit pre/post for all invariants + counterfactuals."
+        },
+        {
+          "domain": "graph_connectivity",
+          "case_id": "R16_n12-t1",
+          "condition": "baseline",
+          "response": "根据给出的数据，我们可以逐步分析：\n\n**已知信息：**  \n- 初始图的顶点数：12  \n- 初始边数：17  \n- 删除的边：2–11  \n- `n_edges_a = n_edges_b + (-1)`，意味着删除后边数减少1  \n- 连通性相关字段：`is_connected_b = 0` 表示删除前图不连通；`is_connected_a = 0` 表示删除后图依然不连通  \n- `n_components_b = 0` 和 `n_components_a = 0` — 这里0不代表实际的分量数，而是表示无变化或缺失，结合连通性为0，说明删除前后图都不连通，并且分量数没有变化。\n\n**逐项判断：**\n\n1. **该边是否为桥？**  \n   桥是指删除后会使连通分量数增加的边。由于删除前图已经不连通，且删除后分量数未变化（从数值0推测没有新增分量），所以这条边不是桥。\n\n2. **删除后图是否仍连通？**  \n   删除前图已经是不连通的，删除后仍不连通。答案：不连通。\n\n3. **删除后桥数与关节点变化？**  \n   这条边不是桥，所以桥数不会因此边删除而减少。关节点（割点）数据没有直接给出，但由于图本身不连通且边不是桥，割点是否变化不能仅由当前信息断定，但若边两端点都不是连接不同分量的唯一路径，则割点情况一般不变。根据删除不影响连通分量数，可以推测关节点数量不变。\n\n**结论：**  \n- (1) 该边不是桥。  \n- (2) 删除后图仍不连通。  \n- (3) 桥数不变；关节点数通常也不发生变化。",
+          "elapsed_sec": 5.44,
+          "score": 1,
+          "rationale": "Wrong on Q2 (claims graph was disconnected; actually connected) — misreads delta encoding."
+        },
+        {
+          "domain": "graph_connectivity",
+          "case_id": "R16_n12-t1",
+          "condition": "rtc",
+          "response": "好的，我们来根据提供的R、T、C数据进行分析和推理。\n\n### 问题分析与数据解读\n\n问题要求我们基于给定图的数据，针对删除指定边（2, 11）这个操作，判断三个问题：\n1. 该边是否为桥？\n2. 删除后图是否仍连通？\n3. 删除后桥数与关节点（articulation point）的变化。\n\n首先，我们从**变换轨迹 (T)** 和**详细比较 (detailed_comparison)** 中直接提取明确信息：\n\n- **删除的边**: `[2, 11]`\n- **操作前边数**: 17\n- **操作后边数**: 16\n- **操作前连通性**: 是 (is_connected_pre = true)\n- **操作后连通性**: 是 (is_connected_post = true)\n- **该边删除前是否为桥**: 否 (deleted_edge_was_bridge = false)\n- **操作后连通性是否丢失**: 否 (connectivity_lost = false)\n- **操作前桥数**: 0 (n_bridges_pre = 0)\n- **操作后桥数**: 2 (n_bridges_post = 2)\n- **操作前关节点**: 无 (articulation_points_pre = [])\n- **操作后关节点**: [3, 8] (articulation_points_post = [3, 8])\n\n---\n\n### 逐步推理与结论\n\n#### (1) 该边是否为桥？\n\n根据 `detailed_comparison.deleted_edge_was_bridge = false`，我们得出结论：  \n**边 (2, 11) 在删除前不是桥。**\n\n进一步看 `transform_trace.delta.is_bridge = false` 也印证了这一结果。\n\n#### (2) 删除后图是否仍连通？\n\n根据 `detailed_comparison.connectivity_lost = false` 和 `is_connected_post = true`，虽然删除了一条边，但图仍然保持连通。  \n再看 `components_post` 也显示只有一个分量（包含所有12个顶点）。  \n因此，**删除后图仍然是连通的**。\n\n#### (3) 删除后桥数与关节点的变化\n\n- **桥数变化**: 删除前桥数为0，删除后桥数为2。桥数**增加了2个**。\n- **关节点变化**: 删除前没有任何关节点，删除后出现了两个关节点：顶点3和顶点8。关节点从无到有，**增加了2个**。\n\n这两点变化是相关的：原本一条非桥边 (2, 11) 被删除，使得原本在其两端之间存在的备用路径被切断，因此这条边变成了桥；同时，图的局部结构被削弱，使得原本不是关节点的顶点3和8变成了关节点（即删除它们会导致图不再连通）。\n\n**反事实对比 (C)** 也支持这一结论。在“边界松弛”策略的反事实中，明确指出：  \n> “删除非桥边保持连通；删除桥边则会断开连通。桥属性（端点间没有替代路径）决定了删除边后连通性是否保持。”\n\n在我们的实际数据中，删除的是非桥边，所以连通性保持，这与反事实的分析一致。\n\n---\n\n### 最终结论\n\n综合所有数据，我们可以得出对案例 `R16_n12-t1` 的明确判断：\n\n1. **边 (2, 11) 是否为桥？**  \n   **否**。它不是桥。\n\n2. **删除后图是否仍连通？**  \n   **是**。删除该边后，图仍然保持连通（1个连通分量）。\n\n3. **删除后桥数与关节点变化？**  \n   - **桥数**：从0个增加到2个（增加了2条桥）。\n   - **关节点**：从0个增加到2个（增加了顶点3和顶点8）。",
+          "elapsed_sec": 9.98,
+          "score": 4,
+          "rationale": "All correct: not bridge, still connected, bridges 0→2, articulation 0→2."
+        },
+        {
+          "domain": "graph_connectivity",
+          "case_id": "R02_n12-t4",
+          "condition": "baseline",
+          "response": "根据提供的数据，可以分析如下：\n\n- **基础信息**：图有12个顶点，删除前有14条边，删除的边是连接顶点6和7的边。  \n- `n_edges_a` 比 `n_edges_b` 少1，符合删除一条边的操作。  \n- `n_components_b` 和 `n_components_a` 均为0（缺失或未变化提示），但结合 `is_connected_b` 和 `is_connected_a` 均为0，这里的0可能表示“假”或“不连通”，而非连通分量数量为零。  \n  通常在这种数据格式中，`is_connected`为1表示连通，0表示不连通。因此删除前后图都不连通。  \n- 如果原图已经不连通，则被删除的边必然不是桥——因为桥的定义要求删除后增加连通分量数，而原图不连通，边可能处于某个连通分量内部或连接不同分量，但其是否为桥需具体看它所在的那个连通分量。不过数据没有给出连通分量数目变化（两项均为0），因此无法直接判断该边是否为桥。  \n  但根据 `is_connected_b = 0`，原图已不连通；既然已经存在至少两个连通分量，即使删除的边断开其所在分量，全图的连通分量数变化未必会反映在差的“0”上（可能统计有缺失）。  \n  再结合常见情况，这种小图大多计算得出此边是否为桥需通过图结构分析；但从现有数值来看，没有负值或分量数变化，不能断定。  \n- 关节点（articulation point）变化：题目没有提供关节点的delta数据，本次summary_delta中也无相关字段，无法直接说出变化。\n\n**结论**：  \n1. **该边是否为桥**：根据数据无法完全确认。但由于删除边前后 `is_connected` 均为0且 `n_components` 未变化（均为0表示缺失或保持不变），这暗示图本来就含有多个连通分量，因此该边不是桥（桥的删除会使连通分量增加，但这里无变化）。  \n2. **删除后图是否仍连通**：否（`is_connected_a=0`），且原图也不连通（`is_connected_b=0`）。  \n3. **桥数与关节点变化**：summary_delta未提供，无法判断。",
+          "elapsed_sec": 7.7,
+          "score": 1,
+          "rationale": "Wrong on connectivity (claims disconnected). Hedges on bridge classification."
+        },
+        {
+          "domain": "graph_connectivity",
+          "case_id": "R02_n12-t4",
+          "condition": "rtc",
+          "response": "根据提供的 R/T/C 数据，我们针对案例 **R02_n12-t4** 分析删除边 (6,7) 后的三个问题：\n\n### (1) 该边是否为桥？\n**结论：否（不是桥）**  \n从 `detailed_comparison` 中的 `deleted_edge_was_bridge: false` 直接可知。  \n删除前该边两个端点的度数分别为 5 和 3（来自 `transform_trace` 的 `endpoint_degrees_before`），且删除后图仍连通（`is_connected_post: true`），说明 (6,7) 不是桥。\n\n### (2) 删除后图是否仍连通？\n**结论：是的，仍连通**  \n- `detailed_comparison` 中 `connectivity_lost: false`  \n- `structural_comparison` 中 `components_post` 只有一个包含所有 12 个顶点的连通分量  \n- `n_components_post: 1`，与删除前一致  \n\n因此删除该边后图依然连通。\n\n### (3) 删除后桥数与关节点的变化\n**变化情况：**  \n- **桥数变化**：从 5 条增加到 7 条（`n_bridges_pre: 5` → `n_bridges_post: 7`）  \n- **关节点变化**：没有变化，前后均为 [6, 7, 8, 11]（`articulation_points_pre` 与 `articulation_points_post` 完全相同）\n\n删除一条非桥边，导致桥数增加了 2 条，这是因为原本路径中一些边在 (6,7) 被移除后成为新的唯一连接通路，从而变成桥。同时关节点集合未变，说明该边的删除没有改变图中关键分离节点的分布。\n\n### 补充说明（基于反事实对比）\n- 反事实 `boundary_relaxation` 明确演示了如果删除的是桥，则会导致连通性丧失（分量数增加），而原条件是非桥边，保持了连通性，说明该边不是桥符合这一关键判定条件。  \n- 反事实 `operation_perturbation` 进一步说明“删除边”与“添加边”的不对称性：删除边只会增加或维持分量数，而不会减少，这印证了删除 (6,7) 未引起分量数变化的合理性。\n\n---\n\n**最终结论：**  \n1. 边 (6,7) **不是桥**；  \n2. 删除后图**仍连通**；  \n3. 删除后桥数**增加**（从 5 增至 7），关节点**无变化**（仍为 {6,7,8,11}）。",
+          "elapsed_sec": 7.99,
+          "score": 4,
+          "rationale": "All correct: not bridge, still connected, bridges 5→7, articulation unchanged."
+        },
+        {
+          "domain": "graph_connectivity",
+          "case_id": "R00_n8-t3",
+          "condition": "baseline",
+          "response": "好的，我们先理清问题的三个判断。  \n\n根据你提供的元数据，删除的边是 (4,7)。  \n从 summary_delta 中我们可以提取出以下几个关键变化：\n\n1. **边数变化**: `n_edges_a` 为 -1，说明删除了一条边，原来有 9 条边，删除后变为 8 条。\n2. **连通性变化**:  \n   - `is_connected_b` 为 0（无明确值，但 pre 为 true），表示删除前图是连通的。  \n   - `is_connected_a` 的 pre 为 true，post 为 false，说明删除边后图变得不连通。  \n3. **连通分量变化**: `n_components_a` 是 1，并且 `n_components_b` 为 0（可能是表示删除前只有一个连通分量）。这样看，删除后多出来一个连通分量，从 1 个变为 2 个。\n\n这表明删除边 (4,7) 直接让图分成了两个不同的连通分量。  \n\n---\n\n### 回答你的问题：\n\n(1) **该边是否为桥？**  \n是的。因为边删除后，连通分量数目增加（从 1 变成 2），所以这条边是桥。\n\n(2) **删除后图是否仍连通？**  \n不连通。因为 `post` 的连通性是 false，且多出了一个连通分量。\n\n(3) **删除后桥数与关节点（articulation point）的变化**  \n这个具体的变化数量不能直接从 delta 数据里完整读出，但我们可以推理：  \n- 删除一条桥边本身并不会改变其他桥的状态（但可能会暴露出新的桥，如果边原本在局部结构中也有支撑）。  \n- 关节点：原来图中如果 (4,7) 的两个端点 4 和 7 是关节点，删除这条边可能使其不再成为关节点（因为关节点定义是删除该点会使图不连通，现在边删了并不直接改变顶点的度数结构对关节点的判定）；或者，图的某部分由于删除桥把原来非关节点变成关节点吗？通常不是，因为桥两端若之前只有这一条路径连到另一部分，它们已经是关节点。**结论：一般删除一条桥边，两个端点若原来仅靠此桥连接其他部分，那它们仍可能是关节点（或者其中一个在去掉桥后变成叶子节点，不再是关节点，情况需要看具体图结构）。**  \n\n基于手头数据只能判断 (1) 和 (2) 明确，对于 (3)，只能说：该桥两端的顶点 4 和 7 在删除前极可能是关节点（由于删除后图不再连通），但确切个数变化需原图邻接关系判断。数据不足以定量给出。  \n\n---\n\n**最终结论**：\n- (1) 是桥  \n- (2) 删除后不连通  \n- (3) 桥数量减少 1，关节点数量可能减少（端点 4 和 7 可能不再是关节点）或不变，视图结构而定。",
+          "elapsed_sec": 9.37,
+          "score": 3,
+          "rationale": "Correct (bridge, disconnected). Hedges on articulation but in right direction."
+        },
+        {
+          "domain": "graph_connectivity",
+          "case_id": "R00_n8-t3",
+          "condition": "rtc",
+          "response": "好的，我们将基于提供的结构数据 (R)、变换轨迹 (T) 和反事实对比 (C) 来对案例 R00_n8-t3 进行分析和推理。\n\n### 问题拆解\n题目要求针对**删除指定边**这一操作回答三个问题：\n1. 该边是否为桥？\n2. 删除后图是否仍连通？\n3. 删除后桥数与关节点的变化。\n\n---\n\n### 第一步：分析 R 和 T 数据，回答问题 (1) 与 (2)\n\n**关于问题 (1)：该边是否为桥**\n\n- 从`detailed_comparison`中我们看到：\n  > `\"deleted_edge_was_bridge\": true`\n- 同时，`detailed_comparison`中显示删除前的桥数量为 `1`，删除后降为 `0`，因为被删的边本身就是唯一的桥。\n- 从`transform_trace`的`delta`中也能确认：\n  > `\"is_bridge\": true`\n\n**结论 (1)：** 被删除的边 `[4, 7]` 是桥。\n\n**关于问题 (2)：删除后图是否仍连通**\n\n- 从`summary_delta`和`structural_comparison`我们看到：\n  > 删除前：`is_connected_pre = true`，`n_components_pre = 1`  \n  > 删除后：`is_connected_post = false`，`n_components_post = 2`\n- 从`transform_trace`也能确认：\n  > `\"connectivity_lost\": true`\n\n**结论 (2)：** 删除该边后，图不再连通（变为两个连通分量）。\n\n---\n\n### 第二步：分析桥数的变化\n\n- **删除前的桥数**：`n_bridges_pre = 1`  \n- **删除后的桥数**：`n_bridges_post = 0`  \n- **变化**：减少了 1（因为被删除的边本身是唯一的桥，删除后该桥边消失）。\n\n**结论 (3) 之一 — 桥数变化：** 桥的数量从 1 变为 0，减少 1。\n\n---\n\n### 第三步：分析关节点（articulation point）数的变化\n\n- **删除前的关节点列表**：`articulation_points_pre = [7]`（原本有一个关节点，顶点 7）\n- **删除后的关节点列表**：`articulation_points_post = []`（没有关节点）\n\n**关键推理：**\n\n1. 顶点 7 在原图中是关节点，主要是因为边 `(4,7)` 是一条桥，并且顶点 7 删掉后会导致图分裂？不对，关节点是指删除该顶点（及其关联的边）会导致连通分量增加。  \n2. 在原图（拥有唯一的桥`(4,7)`）中，若删除顶点 7，会断开多条路径，但此数据告诉我们它是关节点，说明删除顶点 7 会使连通性受损。\n3. 删除边 `(4,7)` 后，顶点 4 变为孤立点（度数从 1 变为 0），图的其余部分（0,1,2,3,5,6,7）仍然连通，且在这个连通子图里，顶点 7 也不再是关节点。所以关节点的数量变为 0。\n\n**结论 (3) 之二 — 关节点数变化：** 关节点数从 1 变为 0，减少 1 。\n\n---\n\n### 第四步：结合反事实对比 (C) 验证推理\n\n**第一个反事实（边界松弛）：**\n- 原始例子是删除非桥边（如 `(1,2)`），图保持连通。\n- 反事实修改为删除桥边 `(4,5)`（类似本例），结果图不连通，分量增加。  \n- 说明桥的性质是决定连通性是否丧失的关键条件，我们的结论与此一致：`(4,7)` 是桥，所以连通性丧失，符合逻辑。\n\n**第二个反事实（操作扰动）：**\n- 原本是删除边 `(0,1)`，导致分量数增加。\n- 反事实改为添加边 `(0,5)`，分量数减少。\n- 说明删除和添加具有不对称性；删除桥一定会增加分量，而本案例中删除 `(4,7)` 确实增加了 1 个分量，结果完全吻合。\n\n两个反事实都强化了我们的判断：被删边是桥，且删除后分量增加、连通性丧失。\n\n---\n\n### 最终总结\n\n对于案例 R00_n8-t3：\n\n1. **被删除边 (4,7) 是否为桥？**  \n   → **是**。\n\n2. **删除后图是否仍连通？**  \n   → **否**，图分裂为两个分量：分量1: `[0,1,2,3,5,6,7]`，分量2: `[4]`。\n\n3. **桥数与关节点变化**  \n   - 桥数：由 **1** 变为 **0**（减少1）。  \n   - 关节点数：由 **1**（顶点7）变为 **0**（减少1）。",
+          "elapsed_sec": 13.28,
+          "score": 4,
+          "rationale": "All correct: bridge, disconnected, bridges 1→0, articulation 1→0."
+        },
+        {
+          "domain": "boundary_interior",
+          "case_id": "crosspair-4-L_shape-vs-staircase",
+          "condition": "baseline",
+          "response": "基于提供的 JSON 数据，所有关于面积、边界格点数、内部格点数的数值均为 0，并且两个多边形的 Pick 关系标志位 `pick_holds_a` 和 `pick_holds_b` 也为 0，这意味着：\n\n- 两个多边形的面积、边界格点数、内部格点数均被记录为 0（可能是数据缺失或未正确计算）；\n- Pick 定理的关系（A = I + B/2 - 1）对于这两个多边形均未满足。\n\n**结论：** 从现有数据无法判断给定的 L 形和 staircase 多边形是否面积、边界格点数、内部格点数一致，也无法验证 Pick 关系是否成立。数据中的零值表明这是一个无效或不完整的记录，需要重新进行正确的几何计算才能得出结论。",
+          "elapsed_sec": 2.5,
+          "score": 1,
+          "rationale": "Wrong — claims Pick fails because reads delta=0 as actual values."
+        },
+        {
+          "domain": "boundary_interior",
+          "case_id": "crosspair-4-L_shape-vs-staircase",
+          "condition": "rtc",
+          "response": "根据提供的结构数据 (R)、变换轨迹 (T) 和反事实对比 (C)，可以得出以下结论：\n\n**结论：**  \n本案例中，两个多边形（L_shape 与 staircase）实际上是**同一个多边形**，并且满足 Pick 定理。它们的面积、边界格点数 B、内部格点数 I 完全一致，Pick 关系成立。\n\n---\n\n### 推理过程\n\n#### 1. 结构数据 (R) 分析\n- `summary_delta` 中所有字段均为 0，说明两个多边形之间没有任何差异（面积差为 0，B、I 变化均为 0）。\n- `detailed_comparison` 中 `edges_pre` 和 `edges_post` 完全一致，顶点序列相同。\n- `structural_comparison` 显示：\n  - 前后 Pick 定理均成立（`pick_holds_pre` 和 `pick_holds_post` 均为 true）。\n  - 面积（Shoelace 和 Pick 公式计算均为 12.0）一致。\n  - 边界格点数 B = 16，内部格点数 I = 5，满足 Pick 定理：  \n    \\( A = I + B/2 - 1 = 5 + 16/2 - 1 = 5 + 8 - 1 = 12 \\)。\n\n#### 2. 变换轨迹 (T) 分析\n- 操作为“平移”，平移向量为 (0, 0)，因此多边形根本没有移动。\n- `before_state` 和 `after_state` 相同：面积 12.0，B=16，I=5。\n- 这表明两个输入多边形实际上是**同一个几何对象**，只是被标记为不同的预设名称（L_shape 和 staircase），但实际顶点坐标完全一致。\n\n#### 3. 反事实对比 (C) 分析\n反事实对比验证了 Pick 定理成立的关键前提条件：\n\n- **反事实 1（顶点非整点）**：将一个顶点移动 0.5 个单位后，多边形不再是格点多边形，Pick 定理不再适用。这确认了“顶点为整点”是 Pick 定理的必要条件。\n- **反事实 2（非等面积线性变换）**：使用行列式不为 1 的整数矩阵进行缩放，虽然仍然是格点多边形，但面积发生变化，说明面积与 B、I 的关系会随行列式缩放，但 Pick 定理仍然成立（因为仍为格点多边形）。\n- **反事实 3（非简单多边形）**：交换顶点顺序使多边形自交后，内部格点定义失效，Pick 定理不再成立。这确认了“简单多边形”是另一个必要条件。\n\n本案例中的多边形满足所有条件：整点、简单、无平移变化，因此 Pick 定理成立。\n\n#### 4. 综合结论\n- 两个多边形在顶点坐标、边、面积、B、I 上完全一致。\n- Pick 定理成立，且保持不变。\n- “crosspair-4-L_shape-vs-staircase” 实际是比较同一个多边形，结果自然是所有属性一致，Pick 关系成立。",
+          "elapsed_sec": 8.76,
+          "score": 4,
+          "rationale": "Correct: identifies polygons identical, A=12 B=16 I=5, Pick verified."
+        },
+        {
+          "domain": "boundary_interior",
+          "case_id": "rectangle_4x3-shear-0",
+          "condition": "baseline",
+          "response": "根据提供的数据，这个案例的基础信息是：\n\n- 多边形经过一个剪切变换（shear），变换矩阵的行列式为 1，说明变换是等面积的。\n- summary_delta 中的数据大多是 0 或接近 0，表示两个多边形（变换前与变换后）的几何参数差异极小。\n- 其中面积差 (area_b、area_a) 为 0.0，Pick 公式成立标识 (pick_holds_a, pick_holds_b) 也均为 0。\n\n**分析步骤**：\n\n1. Pick 定理要求：  \n   面积 A = I + B/2 - 1。  \n   这里 pick_holds_a、pick_holds_b 均为 0（可能表示不符合或未检测到成立，视具体编码而定），需要结合其他数据判断。\n\n2. 数据显示 I_a、I_b、B_a、B_b 均为 0，这意味着在记录时内部和边界格点数可能未正确计数（或数据不完整），导致无法直接用 Pick 定理判断。\n\n3. 由于 B、I 都是 0，而面积也标为 0，表面上看代数关系 0 = 0 + 0/2 - 1 并不成立（相差 1）。这表明要么顶点坐标不是整点，要么多边形退化了（如只记录顶点偏移而非实际多边形），或者 summary_delta 中存放的是差值信息，而非绝对数值。\n\n**推理结论**：  \n从现有数据无法确认 Pick 定理是否对该多边形成立。最可能的情况是 summary_delta 存放的是变换前后的差值，而非多边形本身的绝对参数。因此，不能据此断言面积、边界格点数、内部格点数一致关系或 Pick 定理成立。需要更完整的绝对几何数据才能做出判断。",
+          "elapsed_sec": 5.5,
+          "score": 2,
+          "rationale": "Hedges 'data unclear' but does note shear det=1; weak."
+        },
+        {
+          "domain": "boundary_interior",
+          "case_id": "rectangle_4x3-shear-0",
+          "condition": "rtc",
+          "response": "好的，我们一步步分析题目和提供的数据，然后给出结论。\n\n**1. 题目回顾**  \n题目要求我们判断多边形是否满足 Pick 定理，其关系为：  \n面积 A = I + B/2 - 1  \n其中 I 是内部格点数，B 是边上格点数。同时需要对比变换前后的数值是否一致。\n\n**2. 案例基本信息**  \n案例是“rectangle_4x3-shear-0”——一个 4×3 矩形经剪切变换（shear）后的结果。  \n从 metadata 可得：\n- 变换矩阵：[[1,1],[0,1]]，行列式 = 1（面积不变）。\n- 变换前后顶点数均为 4。\n\n**3. 从结构数据（R）中的核心结论**  \n`structural_comparison` 明确写出：\n- pick_holds_pre: true\n- pick_holds_post: true\n- pick_preserved: true\n- area_from_pick_pre 和 post 都是 12.0\n- area_from_shoelace_pre 和 post 都是 12.0\n\n这说明：  \n- 原始矩形满足 Pick 定理。  \n- 剪切后多边形同样满足 Pick 定理。  \n- Pick 定理在这种剪切变换下被保持。\n\n**4. 变换轨迹（T）的核心发现**  \n`transform_trace` 显示：\n- before_state: 面积=12, B=14, I=6, pick_holds=true  \n- after_state: 面积=12, B=14, I=6, pick_holds=true  \n- delta: area_change=0, B_change=0, I_change=0  \n\n这印证了：  \n- 剪切变换不仅保持面积（行列式为1），而且保持多边形边上的格点数和内部格点数，因此 Pick 关系完全不变。\n\n**5. 反事实对比（C）提供的支持性推理**  \n反事实给了三个关键对比策略：\n\n- **边界松弛**：把一个顶点移动为非整点后，B 和 I 变得无定义，Pick 失效——说明“格点多边形”是 Pick 定理的前提。\n- **操作扰动**：若将剪切换成非均匀缩放（行列式≠1），Pick 仍然成立，但面积和格点数都会改变，这表明变换行列式为1是保持 Pick 各部分数值不变的条件。\n- **条件移除（非简单多边形）**：将顶点顺序打乱成自交多边形之后，Pick 定理不再适用，说明“简单”也是必要条件。\n\n这些反事实从反面证明了当前剪切操作下的 Pick 一致性：该变换同时满足  \n- 格点性（Lattice）  \n- 简单性（Simple）  \n- 行列式为1（面积与格点数结构不变）\n\n**最终结论**  \n根据结构数据、变换轨迹与反事实对比，给定多边形（rectangle_4x3-shear-0）及其原始矩形：\n- 两者的面积 A 都是 12  \n- 边界格点数 B 都是 14  \n- 内部格点数 I 都是 6  \n- Pick 关系 A = I + B/2 - 1 对两者均成立（12 = 6 + 7 - 1）  \n\n**结论**：多边形数据一致，Pick 关系成立，且在剪切变换下保持不变。",
+          "elapsed_sec": 9.12,
+          "score": 4,
+          "rationale": "Correct: A=12 B=14 I=6, Pick verified, counterfactual analysis."
+        },
+        {
+          "domain": "boundary_interior",
+          "case_id": "unit_square-shear-0",
+          "condition": "baseline",
+          "response": "根据你提供的案例数据，我们可以分析如下：\n\n**已知信息：**  \n- 原始多边形是 unit_square（单位正方形），经过剪切变换（shear），变换矩阵的行列式为1，意味着面积保持不变。  \n- summary_delta 中各字段的值都是0（包括面积、边界格点数、内部格点数等），这说明在计算过程中前后多边形之间的差值为零，也就是变换前后的多边形在这些量上完全一致。  \n\n**Pick 定理的验证：**  \n对于单位正方形（面积为1），其边界格点数 B = 4，内部格点数 I = 0，代入 Pick 公式：  \nA = I + B/2 - 1 = 0 + 4/2 - 1 = 2 - 1 = 1，成立。  \n经过剪切变换后的多边形仍然是平行四边形，顶点为整点（因为剪切矩阵是整数矩阵且行列式为1），它的面积仍是1，边界上的格点数还是4，内部格点数仍是0，因此 Pick 定理依然成立。  \n\n**结论：**  \n- 变换前后面积、边界格点数 B、内部格点数 I 完全一致。  \n- Pick 关系成立，且前后都是正确的。  \n\n所以，该案例表明：对于单位正方形应用保持面积的剪切变换后，所有相关几何参数与 Pick 定理关系保持不变。",
+          "elapsed_sec": 3.8,
+          "score": 4,
+          "rationale": "Correct using external knowledge: B=4 I=0 A=1, Pick verified explicitly."
+        },
+        {
+          "domain": "boundary_interior",
+          "case_id": "unit_square-shear-0",
+          "condition": "rtc",
+          "response": "好的，我们来分析这个案例与数据，并给出结论。\n\n### 结论\n\n在这个 “unit_square-shear-0” 案例中，经过剪切变换前后，多边形（单位正方形）的面积、边界格点数 B、内部格点数 I 完全一致，Pick 定理始终成立。这个变换是一个**保面积、保格点结构**的初等变换（单模线性变换），因此与 Pick 定理相关的所有几何属性都保持不变。\n\n### 推理过程\n\n根据提供的 R（结构数据）、T（变换轨迹）、C（反事实对比）信息，我们可以分步骤得出上述结论：\n\n1.  **变换前后状态一致**\n    从 `transform_trace` (T) 中我们看到：\n    - **变换前**：`before_state` 中面积 = 1.0, B = 4, I = 0, `pick_holds` = true。\n    - **变换后**：`after_state` 中面积 = 1.0, B = 4, I = 0, `pick_holds` = true。\n    - `delta` 显示面积变化、B变化、I变化均为 0，并且 `area_preserved` 与 `pick_preserved` 都为真。\n\n2.  **结构数据验证一致性**\n    从 `structural_comparison` (R) 中：\n    - `pick_holds_pre` 为 true，`pick_holds_post` 为 true，`pick_preserved` 为 true。\n    - 变换前后，由鞋带公式（shoelace）计算的面积与由 Pick 定理（`area_from_pick`）计算的面积完全一致，均为 1.0。\n    - 多边形在变换前后都是**格点多边形**（`is_lattice_pre` / `is_lattice_post` 均为 true）且都是**简单多边形**（`is_simple_pre` / `is_simple_post` 均为 true）。\n\n3.  **Δ summary 的一致性**\n    `summary_delta` 中显示 `area_b` 为 0.0，`B_a` 与 `B_b` 均为 0，`I_a` 与 `I_b` 均为 0，与变换前后无变化完全对应。其中 `perimeter_a` 和 `perimeter_b` 有所不同（周长变了，但是 B 没变），这符合剪切变换会改变边长但不会改变边上格点数的事实（因为边从水平变成斜边时，虽然没有格点落在边中间，但长度增加了，边长不等于格点数）。\n\n4.  **基于反事实对比 (C) 的验证**\n    为了将结论上升到“稳定性”与“条件依赖”层面，反事实对比非常有帮助：\n    - **反事实 1 — 边界松弛化**：证明如果顶点不再都是整数格点（例如一个顶点偏移 0.5），Pick 定理就不再适用（B、I 定义不清晰），说明**“格点多边形”是 Pick 定理的前提条件**。\n    - **反事实 2 — 变换扰动**：证明如果将剪切（行列式为 1）换成缩放（行列式为 2），那么新多边形仍是格点多边形，Pick 定理仍然适用，但面积会改变。该对比强调**单模变换（行列式绝对值为 1）可以保持面积和格点属性不变**，这是本案例的核心不变量。\n    - **反事实 3 — 条件移除（简单性）**：证明如果顶点顺序错乱导致多边形自交（非简单），那么 Pick 定理会失效（B 不再表示边界点数，I 无意义），说明**简单性也是 Pick 定理的的必要前提**，而我们的变换保持了简单性。\n\n### 总结\n\n综合来看，本案例中的剪切对角矩阵 `[[1,1],[0,1]]` 的行列式为 1，是一个**单模变换**（unimodular transformation），它：\n- 将整点映射为整点（保持格点结构）\n- 保持多边形简单性\n- 保持面积不变\n\n这正是为什么 B、I、A 以及 Pick 定理关系能完全保持不变的根本原因。",
+          "elapsed_sec": 11.74,
+          "score": 4,
+          "rationale": "Correct + extensive analysis with single-modular framing."
+        },
+        {
+          "domain": "discrete_curvature",
+          "case_id": "cross-octahedron-vs-icosahedron-f1-1",
+          "condition": "baseline",
+          "response": "根据提供的数据和案例描述，这个案例是对一个八面体（octahedron）的一个面（face index 1）进行星形细分（stellar subdivision），然后与一个正二十面体（icosahedron）进行比较。  \n\n从 summary_delta 的数据来看，两个多面体各自的 Euler 示性数和总曲率均为 0，Gauss-Bonnet 比率也是 0.0。这显然是不合理的，因为标准八面体 χ=2，二十面体 χ=2，Gauss-Bonnet 比率应为 2π·χ，所以肯定是非零的。这说明文件中的数值不是真实的具体曲率值，而是可能表示某种“差量”或“变化量”，而且在变换前后发生了变化。  \n\n核心判断如下：  \n1. **Euler 特征 χ**：八面体有 6 个顶点、12 条边、8 个面，χ=2；二十面体有 12 个顶点、30 条边、20 个面，χ=2。因此两者的 Euler 特征保持相等（χ=2），但在本数据中以 0 表示，很可能是在比较差值时两者相同，差值为 0。  \n2. **总曲率**：根据 Gauss-Bonnet 定理，总曲率 = 2π·χ。对八面体和二十面体来说均为 4π，因此总曲率保持不变。  \n3. **Gauss-Bonnet 比率（总曲率 / 2π）**：该比率等于 χ，因此也保持不变（均为 2）。  \n\n**结论**：  \n- 八面体经过一次面星形细分后，仍然是一个拓扑球面，Euler 示性数保持为 2。  \n- 与二十面体比较时，两者都是球面多面体，χ、总曲率、Gauss-Bonnet 比率完全一致。  \n- 数据中显示 0.0 是因为记录的是两者之间的差异，并非实际数值，差异为 0 说明这些量在比较中是守恒的。  \n\n因此，该案例中 Euler 特征、总曲率以及 Gauss-Bonnet 比率均保持不变。",
+          "elapsed_sec": 6.7,
+          "score": 3,
+          "rationale": "Correct (χ=2 for both, total curv 4π). Sound but largely from external knowledge."
+        },
+        {
+          "domain": "discrete_curvature",
+          "case_id": "cross-octahedron-vs-icosahedron-f1-1",
+          "condition": "rtc",
+          "response": "好的，我们一起来分析这个案例。根据给出的 R（结构数据）、T（变换轨迹）和 C（反事实对比），下面依次推理并得出结论。\n\n---\n\n### 1. 核心变换与不变量检查\n\n从 `transform_trace` 可见，该操作是 **星形细分（stellar subdivision）**：在一个三角面上加一个新顶点，并把该面分成三个三角形。\n\n- **Delta 记录**：  \n  - 顶点数 +1（ΔV = 1）  \n  - 边数 +3（ΔE = 3）  \n  - 面数 +2（ΔF = 2）  \n- **Euler 特征数变化**：  \n  Δχ = ΔV − ΔE + ΔF = 1 − 3 + 2 = 0  \n  → 因此 χ 保持不变（原本为 2，之后仍为 2）。\n- **总曲率（角度亏格之和）**：  \n  局部上，新增的顶点缺陷为 -0.0（≈0），局部缺陷之和在细分前后均为 6.283185（即 2π），全局总曲率也为 12.566371（即 4π）保持不变。\n- **Gauss-Bonnet 比率**：  \n  前后都是 `total_curvature / (2πχ) = 12.566371 / (2π·2) = 1.0`（满足等式），因此 Gauss-Bonnet 保持成立。\n\n**结论1**：这是一个保持 Euler 特征、总曲率以及 Gauss-Bonnet 公式的合法变换。\n\n---\n\n### 2. 反事实对比：关键条件分析\n\nC 部分设计了三种反事实场景，用于说明哪些条件是 **必须同时满足的**：\n\n#### 反事实1（边界松弛法）\n- 假设动作为退化操作（增加 1 个顶点、2 条边、1 个退化面），虽然 Δχ 仍然为 0，但新顶点的缺陷变为 2π（因为周围没有有效内角），导致总曲率增加 2π，从而 **破坏了 Gauss-Bonnet 等式**。\n- **条件关键点**：在星形细分中，不仅是 Δχ=0 要成立，新插入的顶点必须有恰好 2π 的周围角总和，让它的缺陷为0。否则几何与组合不同步。\n\n#### 反事实2（操作扰动）\n- 删除一个面但不删除边：Δχ = -1，且缺陷和发生变化，曲率增加 π，造成 Gauss-Bonnet 不成立。\n- **条件关键点**：封闭流形性（每个边被两个面共享）及面的完整性不可或缺。细分的每一步必须在流形结构内进行。\n\n#### 反事实3（条件移除）\n- 引入一个索引越界的无效面，导致网格无效，无法计算任何 Euler 特征或曲率。\n- **条件关键点**：拓扑一致性及合法索引是 Gauss-Bonnet 应用的前提，缺少它就无定义。\n\n---\n\n### 3. 综合结论\n\n对于 `cross-octahedron-vs-icosahedron-f1-1` 案例：\n\n- **Euler 特征 χ**：在细分操作下 **保持**（χ = 2, Δχ = 0）。  \n- **总曲率**：在细分操作下 **保持**（12.566371 = 4π）。  \n- **Gauss-Bonnet 比率**：保持成立（总曲率 / 2πχ = 1）。  \n\n这些保持依赖于以下关键条件：\n1. 该操作为合法的星形细分（ΔV=1, ΔE=3, ΔF=2）。\n2. 新顶点的周围角总和为 2π，因此缺陷为零。\n3. 网格保持封闭流形结构（每个边恰好两个面，无退化面或无效索引）。\n\n**结论**：对于此案例，Euler特征、总曲率和Gauss-Bonnet等式均在变换中保持不变。反事实对比进一步确认了若要维持此不变性，必须同时满足组合与几何上的精确定义条件。",
+          "elapsed_sec": 11.51,
+          "score": 4,
+          "rationale": "Correct + explicit Δχ=1−3+2=0 + new vertex defect=0."
+        },
+        {
+          "domain": "discrete_curvature",
+          "case_id": "cube_triangulated-subdiv-f0-0",
+          "condition": "baseline",
+          "response": "根据提供的数据和问题背景，分析如下：\n\n1. **Euler 特征 χ**  \n   - 数据中 `euler_characteristic_a` 和 `euler_characteristic_b` 均为 0，且 `euler_characteristic_match` 标识为 0（可能表示匹配或不匹配？通常 1 表示匹配，0 表示不匹配）。  \n   - 从顶点、边、面数量来看，transform 前（a）是 1 个顶点、3 条边、2 个面，χ = V - E + F = 1 - 3 + 2 = 0。  \n   - 变换后（b）顶点、边、面数均为 0，Euler 特征也为 0。  \n   - 所以变换前后 χ 保持不变（均为 0）。\n\n2. **总曲率**  \n   - `total_curvature_a` 和 `total_curvature_b` 都为 0.0，说明变换前后总曲率相同（均为 0）。\n\n3. **Gauss-Bonnet 比率**  \n   - `gauss_bonnet_ratio_a` 和 `gauss_bonnet_ratio_b` 均为 0.0，表明该比率也未被改变。\n\n**结论**：  \n对于该 `stellar_subdivision` 操作（对立方体三角化网格的一个面进行星形细分），多面体的 Euler 特征 χ、总曲率以及 Gauss-Bonnet 比率在变换前后均保持不变。这与离散 Gauss-Bonnet 定理（总曲率 = 2πχ）一致，因为细分是一种拓扑保持的局部操作。",
+          "elapsed_sec": 4.73,
+          "score": 2,
+          "rationale": "Confused about delta encoding but conclusion (preserved) correct."
+        },
+        {
+          "domain": "discrete_curvature",
+          "case_id": "cube_triangulated-subdiv-f0-0",
+          "condition": "rtc",
+          "response": "好的，我们基于提供的结构数据（R）、变换轨迹（T）和反事实对比（C）来进行推理分析。  \n\n首先，问题是要求我们判断在细分变换（这里是星形细分，stellar subdivision）前后，欧拉示性数χ、总曲率以及Gauss-Bonnet比率是否被保持。  \n\n---\n\n**从引擎结构数据 (R) 和变换轨迹 (T) 中可以得到以下关键信息：**\n\n1. **欧拉示性数**：  \n   - 变换前：n_vertices=8, n_edges=18, n_faces=12 → χ = 8 - 18 + 12 = 2  \n   - 变换后：n_vertices=9, n_edges=21, n_faces=14 → χ = 9 - 21 + 14 = 2  \n   - 数据明确标记 `euler_preserved: true`，χ保持不变。\n\n2. **总曲率**：  \n   - 变换前：12.566371（即 4π ≈ 12.56637）  \n   - 变换后：也是 12.566371  \n   - `total_curvature_preserved: true`，总曲率保持不变。\n\n3. **Gauss-Bonnet 比率（总曲率 / 2π）**：  \n   - 变换前后均为 2.0（因为总曲率为 4π，χ=2，满足 Gauss-Bonnet 定理 总曲率 = 2πχ）。  \n   - `all_global_invariants_preserved: true`。\n\n4. **局部细节验证**：  \n   - 新插入顶点位于一个三角形面内部，将原面分为 3 个新三角形。  \n   - 新顶点的角度缺陷为 0.0（即该顶点周围角度和正好为 2π）。  \n   - 受影响区域的局部缺陷和也保持不变（4.712389 → 4.712389）。  \n   这保证了总曲率不因为细分而改变。\n\n---\n\n**从反事实对比 (C) 中，我们可以确认哪些条件是关键：**\n\n1. **反事实 1 (boundary_relaxation)**：  \n   如果只添加1个顶点和2条边、1个退化面（不完全的细分），虽然 χ 可能不变，但新顶点角度缺陷为2π，导致总曲率增加2π，破坏了 Gauss-Bonnet 等式。  \n   → **结论：完成一个“完备的”星形细分（ΔV=+1, ΔE=+3, ΔF=+2）是保持 Gauss-Bonnet 成立的关键。**\n\n2. **反事实 2 (operation_perturbation)**：  \n   如果删除一个面而不删除边（造成边界），χ 减少1，顶点角度缺陷改变，总曲率不再等于 2πχ。  \n   → **结论：闭流形（无边界）是 Gauss-Bonnet 成立的前提。**\n\n3. **反事实 3 (condition_removal)**：  \n   如果索引越界、流形结构无效，则无法计算曲率和χ。  \n   → **结论：必须保证网格是有效的闭三角剖分流形。**\n\n---\n\n### 最终结论\n\n基于以上数据：\n\n- **欧拉示性数 χ** 在星形细分下确实保持（Δχ=0）。\n- **总曲率** 在星形细分下被保持（新顶点缺陷=0，区域局部缺陷和不变）。\n- **Gauss-Bonnet 比率** 也被保持，因为 χ 和总曲率均不变，所以 总曲率/(2π) = χ 仍然成立。\n\n所有这些保持成立的关键条件是：\n1. 必须在闭流形上进行；\n2. 细分必须完整（每插入一个顶点，相应地增加 3 条边和 2 个面）；\n3. 网格需保持有效的三角化结构（无退化、无边界、顶点索引有效）。\n\n因此，这种星形细分（stellar subdivision）是一个**保持所有全局 Gauss-Bonnet 不变量**的操作。",
+          "elapsed_sec": 11.63,
+          "score": 4,
+          "rationale": "Correct + explicit V/E/F pre/post, χ=2, total curv=4π."
+        },
+        {
+          "domain": "discrete_curvature",
+          "case_id": "tetrahedron-subdiv-f3-3",
+          "condition": "baseline",
+          "response": "根据提供的数据，这个案例是对一个四面体（tetrahedron）执行了面 3 的星形细分（stellar subdivision）操作，并且比较的是变换前后的两个多面体（属于同一拓扑类型的“intra_transform”）。\n\n让我们逐一分析关键指标：\n\n1. **Euler 特征 χ**  \n   - summary_delta 中 `euler_characteristic_a` 和 `euler_characteristic_b` 都显示为 0。  \n   - 但对一个四面体来说，正确的 Euler 特征应为 χ = 2（V - E + F = 4 - 6 + 4 = 2）。  \n   - 这里显示为 0，是因为 summary_delta 只记录了**增量**（即变化量）而非绝对数值——变换前后 χ 不变，所以差值为 0，意味着 Euler 特征被保持。\n\n2. **总曲率（total curvature）**  \n   - `total_curvature_a` 和 `total_curvature_b` 都是 0.0。这表示变换前后离散 Gauss-Bonnet 和（角度亏格的总和）相同（差值 0），因此总曲率也被保持。\n\n3. **Gauss-Bonnet 比率**  \n   - `gauss_bonnet_ratio_a` 和 `gauss_bonnet_ratio_b` 都为 0.0。  \n   - 真实情况下总曲率应为 2πχ = 4π，而比率若定义为总曲率 / (2π)，则应等于 χ。这里差值为 0，说明变换前后的这个比值也没有变化。\n\n### 结论\n- **Euler 特征 χ**：保持（变换前后一致，差值为 0）。  \n- **总曲率**：保持。  \n- **Gauss-Bonnet 比率**：保持。  \n\n**简要推理**：星形细分是一种保持曲面拓扑的细分操作，不改变多面体的亏格和 Euler 特征。因此根据离散 Gauss-Bonnet 定理，所有与拓扑相关的曲率积分量（总曲率、比率）也会保持不变。数据中的“0”表示变换前后的差值，恰好证明了这一点。",
+          "elapsed_sec": 6.24,
+          "score": 3,
+          "rationale": "Correct (χ=2 from V−E+F=4−6+4=2, preserved)."
+        },
+        {
+          "domain": "discrete_curvature",
+          "case_id": "tetrahedron-subdiv-f3-3",
+          "condition": "rtc",
+          "response": "好的，我们先来梳理事例中给出的数据，并使用这些信息来回答预设的问题。这个例子是“tetrahedron-subdiv-f3-3”的星形细分（Stellar Subdivision）。核心问题是判断：在变换过程中，Euler示性数χ、总曲率、以及 Gauss-Bonnet 比率是否被保持。\n\n---\n\n### 步骤 1 —— 从 R 和 T 数据中提取实际变换结果\n\n在 **transform_trace（变换轨迹）** 中可以看到：\n\n| 指标 | 变换前 (四面体) | 变换后 (细分后) | 是否保持 |\n| --- | --- | --- | --- |\n| 顶点数 | 4 | 5 | — |\n| 边数 | 6 | 9 | — |\n| 面数 | 4 | 6 | — |\n| **Euler示性数 χ** | 2 | 2 | **是 (Δχ = 0)** |\n| **总曲率** | 12.566371 | 12.566371 | **是（保持不变）** |\n| **Gauss-Bonnet比率** (总曲率/(2π)) | 2.0 | 2.0 | **是（比率不变）** |\n\n**total_curvature_preserved** 和 **euler_preserved** 两个字段明确标记为 `true`。\n\n结论（从R+T）：所有三个量都被保持。\n\n---\n\n### 步骤 2 —— 从反事实数据（C）分析这条结论的稳健性\n\n三组反事实检验分别指出，如果操作稍有偏差，Gauss-Bonnet 就会失效。\n\n- **反事实 1（边界松弛）**：如果细分时加入一个退化的面（两个顶点重合），虽然Δχ路径可能一样，但是新顶点周围角度和为0，导致缺陷=2π，总曲率增加6.283185，就不再满足 Gauss-Bonnet。  \n  → 这说明 **顶点的角度完整闭合** 是关键条件。\n\n- **反事实 2（操作扰动）**：如果直接删除一个有效面，就会出现一个洞，χ下降1，曲率却增加3.141592，Euler与曲率不再匹配。  \n  → 这说明 **闭流形性质**（每个边被两个面共享）是关键条件。\n\n- **反事实 3（条件移除）**：如果网格引用无效顶点，整个结构被破坏，Gauss-Bonnet 根本不可定义。  \n  → 这说明 **流形的组合一致性** 是前提条件。\n\n这些反事实实验都验证了：**真正的星形细分之所以能保持 Gauss-Bonnet，是因为它同时满足了**：\n1. 组合结构变化严格为 ΔV=1, ΔE=3, ΔF=2（Δχ=0）；\n2. 新顶点的缺陷精确为 0（2π - 周围角度和 = 0）；\n3. 不破坏闭流形结构。\n\n---\n\n### 步骤 3 —— 最终结论与推理\n\n在“tetrahedron-subdiv-f3-3”这个案例中：\n\n- **Euler示性数 χ**：保持为 **2**。\n- **总曲率 Σδ**：保持为 **12.566371**（即 4π）。\n- **Gauss-Bonnet 比率**：保持为 **2.0**（等于 χ）。\n\n因此，**这个星形细分操作是一个 Gauss-Bonnet 保持的变换**。\n\n推理的关键在于：  \n细分过程中，局部顶点缺陷变化和新增顶点的缺陷总和为 0，不改变总曲率；同时组合变化不改变 Eular 示性数（Δχ=0），因而 Gauss-Bonnet 等式自动保持。\n\n反事实则进一步给出了反面证据：任何偏离“标准细分”或“闭合流形条件”的行为都会导致 Gauss-Bonnet 失效。所以这个保持性是 **非平凡的，依赖于特定的几何与组合一致性**。\n\n---\n\n**最终回答**：  \n在变换 `tetrahedron-subdiv-f3-3`（四面体上的星形细分）中，**Euler特征χ、总曲率、Gauss-Bonnet比率全部被保持**。实例数据通过变换前后对比直接确认，三个反事实情境也从反面支撑了该结论，表明只有在严格满足闭合流形和标准细分条件时，该不变量才成立。",
+          "elapsed_sec": 12.08,
+          "score": 4,
+          "rationale": "Correct + explicit ΔV=1, ΔE=3, ΔF=2 + invariants identified."
+        },
+        {
+          "domain": "projection",
+          "case_id": "self-triangular_prism-yz",
+          "condition": "baseline",
+          "response": "好的，我们先理解这个案例的核心信息，然后逐步推理分析结构差异。\n\n**第一步：解析基础数据**\n\n- `case_id`: \"self-triangular_prism-yz\"  \n  代表这是一个**自配对**案例：同一个三棱柱在 YZ 平面上的投影。  \n- `metadata`:\n  - 物体：三棱柱（6个顶点，9条棱）\n  - 投影平面：yz\n  - 原三维多面体（在三维空间）具有6个顶点和9条边。\n- `summary_delta` 表示“投影前后结构差量”：\n\n| 指标 | 值 | 含义 |\n|---|---|---|\n| dimension_a | -1 | 投影后的维度比原三维物体下降1维（从3D到2D投影） |\n| dimension_b | 0 | 没有另一个不同物体配对时的维度差 |\n| n_points_a | 0 | 投影后**顶点数不变**（因为自配对，自身投影前后点数不变） |\n| n_points_b | 0 | 另一物体无 |\n| diameter_a | -0.091... | 投影后直径略微缩短（因为从3D投影到2D，部分深度信息丢失，导致两端点距离可能缩小） |\n| diameter_b | 0.0 | 无 |\n| edge_crossings_a: post | 0 | 投影后的边在平面上无交叉 |\n\n**第二步：理解 self_projection 的特点**\n\n当一个三维凸多面体（如三棱柱）投影到一个平面上时：\n- 维度从3 → 2（维度差 = -1）。\n- 点数一般保持不变（因为所有顶点投影后仍可见，除非某些顶点被遮挡，但三棱柱投影到yz平面时，6个顶点投影为6个不同点）。\n- 边数也保持不变，但仍为9条直线段。\n- 由于是凸多面体的平行投影，边在平面上的投影一般没有交叉（交叉数为0，与数据一致）。\n- 直径会略微减小（因为丢失高度方向的延伸，三维中最远的两点可能不是投影后最远两点，或者竖直方向被压缩）。\n\n**第三步：对比“两不同物体配对”的情况（虽然不是本案例）**\n\n如果是两个不同物体投影配对：\n- 维度差可能会更大（例如一个物体是3D、另一个是2D，则维度差可能为1或更多）。\n- 点数会有变化（因为不同物体有不同顶点数）。\n- 直径变化可能不同（因为两个物体的实际尺寸可能不同）。\n- 边交叉数一般不为0（两个不同物体的边投影后可能在平面上交错）。\n\n**第四步：结论**\n\n在本案例（self-triangular_prism-yz）中：\n- **维度变化**：投影将三维降为二维（dimension_a = -1）。\n- **点数**：因是自投影，点数不变（n_points_a = 0）。\n- **直径**：略微缩短（-0.091），因为空间伸展方向被压缩到平面上。\n- **边交叉数**：投影后为0，说明这是一个无自交的平面嵌入（凸多面体平行投影一般不产生交叉）。\n\n**最终结论**  \n\n自配对投影的特点是：维度降1，点数和边数不变，直径略微缩小，边交叉数通常为0。这与不同物体配对时可能出现的点数突变、维度差不同以及边交叉增多形成明显结构差异。",
+          "elapsed_sec": 9.34,
+          "score": 3,
+          "rationale": "Correct (dim drops, points unchanged, diameter ↓, no edge crossings). Sound."
+        },
+        {
+          "domain": "projection",
+          "case_id": "self-triangular_prism-yz",
+          "condition": "rtc",
+          "response": "好的，我们来基于提供的R/T/C数据进行分析和推理。\n\n### 1. 问题理解\n\n本案例 “self-triangular_prism-yz” 是一个**自投影**案例，即同一个物体（三棱柱）从三维空间投影到二维平面（yz平面）后，比较投影前后的结构变化。我们需要从维度、点数、直径、边交叉数等方面分析结构差异。\n\n### 2. 基于结构数据 (R) 与变换轨迹 (T) 的分析\n\n#### 关键指标变化：\n- **维度 (dimension):** 从三维降为二维，`dimension_delta = -1`。这是最本质的变化。\n- **点数 (n_points):** 点数没有变化（`n_points_a = 0`），因为投影过程中没有发生点与点的完全重合碰撞导致合并。但注意，存在**碰撞**（collisions），即不同三维点投影到了同一个二维位置。具体有2对碰撞点：`(0,1)`和`(3,4)`。这说明投影造成了“信息混淆”，但数据结构中点的数量如果按原始点计，没有减少；如果按唯一投影点计，点数会减少（6个点 -> 4个唯一点）。\n- **直径 (diameter):** 直径从1.414214减少到1.322859，变化量为 `-0.091355`。这说明投影后物体在平面上的“最大跨度”变小了。\n- **边交叉数 (edge_crossings):** 投影后边交叉数为0，表明投影后的图是一个平面非自交的图形。这是好的性质，因为三维棱柱的边在yz平面上投影没有产生新的交叉。\n- **距离保持 (distance preservation):** 总共15对点距离，只有3对被完全保持（占比20%），其余80%的距离发生了扭曲。最极端的扭曲是碰撞对（距离从1.0变为0.0）。\n\n#### 结构差异结论（基于R/T）：\n| 特征 | 投影前 (3D) | 投影后 (2D yz平面) | 差异 |\n|------|-------------|-------------------|------|\n| 维度 | 3 | 2 | 降低1 |\n| 点数(唯一点) | 6 | 4 (因2对碰撞) | 减少2个唯一点 |\n| 直径 | ~1.414 | ~1.323 | 缩小约9.1% |\n| 边交叉数 | 0 (3D中) | 0 | 无变化 |\n| 距离保持率 | 100% | 20% | 严重失真 |\n\n### 3. 基于反事实对比 (C) 的推理\n\n反事实数据提供了三个关键实验，揭示了投影的性质：\n\n1. **边界放松（Boundary Relaxation）：**  \n   - 将投影（drop axis）改为保留全维度（identity）。  \n   - 结果：距离保持率从42.86%变为100%，碰撞从4降为0。  \n   - 推理：**维度降低是信息损失和碰撞的根本原因**。如果不降低维度，所有结构都可以完美保留。\n\n2. **条件移除（Condition Removal - 去重）：**  \n   - 模拟将发生碰撞的点合并（dedupe）。  \n   - 结果：点数从8变为4，边交叉从8降为0。  \n   - 推理：**碰撞点（投影重合的点）包含了关键的3D拓扑信息**。如果简单去重，会丢失这些对应关系，破坏结构信息；如果保留碰撞点，就能反推原始三维中的空间关系。\n\n3. **操作扰动（Operation Perturbation）：**  \n   - 将正交投影（轴缩放为0）改为部分挤压（轴缩放0.5）。  \n   - 结果：距离保持率相同（42.86%），但部分挤压没有产生碰撞（0 collisions），而完全投影产生了4个碰撞。  \n   - 推理：**“将某一维度彻底压缩为0”比“部分压缩”更具破坏性**，它不会改善距离保持，但会引入额外的碰撞，导致更多歧义。\n\n### 4. 最终结论\n\n综合R/T/C数据，针对“self-triangular_prism-yz”案例，可以得出以下结论：\n\n- **维度降低是主要结构变化**，直接导致直径缩小、距离严重失真以及点对碰撞。\n- **点数**（按原始索引计）未变，但**唯一点数减少（6→4）**，因为存在2对点投影后重合。\n- **边交叉数**：投影后为0，表明此投影在拓扑上是“干净”的，没有产生新的边交叉。\n- **反事实分析确认**：\n  1. 维度降低是信息丢失的必要条件。\n  2. 碰撞点反映了三维结构的关键对应关系，不能简单地通过去重消除。\n  3. 完全投影（压缩维度至0）比部分挤压更差，因为它额外引入了碰撞而不提高距离保持率。\n\n**最终结论：** 对于三棱柱的yz平面投影，其结构差异主要表现为**维度降低1、距离严重失真（仅20%保持）、唯一点数损失2个、直径缩小9.1%**。该投影虽然避免了边交叉，但引入了点碰撞，并且压缩维度是所有这些变化的根本原因。",
+          "elapsed_sec": 15.23,
+          "score": 4,
+          "rationale": "Correct + explicit collisions + counterfactuals + numerical values."
+        },
+        {
+          "domain": "projection",
+          "case_id": "self-cube-diagonal",
+          "condition": "baseline",
+          "response": "好的，我们根据你提供的几何/拓扑问题背景及案例数据，来分析这个三维多面体投影的结构差异。  \n\n### 推理过程\n\n1. **案例类型与投影对象**  \n   - 案例 “self-cube-diagonal” 是**自配对**（self-projection），即同一个立方体从两个不同方向投影到同一平面，然后比较这两个投影。  \n   - 立方体的基本拓扑结构：8个顶点、12条边。\n\n2. **维度变化（dimension_a / dimension_b）**  \n   - `dimension_a = -1`：这里的“维度”可能是投影后有效几何维度的变化指标，-1表示投影后图形在某个对比意义下比原立方体投影少了1维（比如原来是2D投影，对比时有效维度下降），但这在自配对中通常表示两个投影在平面上的维数相同，没有升维或降维的相对差异。  \n   - `dimension_b = 0`：表示另一度量上的维数变化为0，即几何维度一致。\n\n3. **点数变化（n_points_a, n_points_b）**  \n   - `n_points_a = 0`，`n_points_b = 0`：表示在两个投影对比中，顶点数目没有差异。因为立方体投影到平面上的顶点数一般都是8个（除非特殊方向导致重合，但这里重合情况可能已在其他参数中体现）。所以自配对不会引入新的顶点或减少顶点数量。\n\n4. **直径变化（diameter_a, diameter_b）**  \n   - `diameter_a = -0.099...`：表示在配对A的投影中，直径（最远两点距离）较原立方体投影的某个参考值减少了约0.1。说明沿对角方向投影时，原本在空间中的最长对角线被压缩了。  \n   - `diameter_b = 0.0`：说明另一种比较方式下直径没有变化（可能因为是同一立方体，不同投影方向造成的拉伸/压缩程度不同）。\n\n5. **边交叉数（edge_crossings_a）**  \n   - `\"pre\": null, \"post\": 2`：说明投影前没有边交叉（原始立方体在三维空间中边不相交），投影后产生了 **2次边交叉**（平面投影中边与边的交点）。这在自配对中的意义是：同一个立方体在不同视角下的投影，可能产生不同的交点数；而这里比较的特定对角线投影，结果是增加了2个交叉点。\n\n6. **与两不同物体配对的差异**  \n   - 对于**两不同物体配对**，通常会看到点数、边数、直径的不同（n_points_a 或 n_points_b 不为0），因为两个物体本身结构不同。而这里自配对的 n_points = 0，交叉变化完全由投影方向造成，而不是由物体差异造成。  \n   - 在边交叉上，两不同物体配对可能产生更多交叉，因为两个独立投影图形重叠时，原有边交叉数会叠加且可能产生额外交叉。\n\n### 结论\n\n在“self-cube-diagonal”案例中：\n\n- 结构差异主要由**投影方向**引起，而非物体不同。  \n- **维度**：两个投影在同一平面，维度无相对差异（dimension变化为0或-1表示无实际升/降维）。  \n- **点数**：完全相同（0变化），因为同一立方体的顶点数固定。  \n- **直径**：沿对角线投影会使一个方向上的直径略有收缩（约-0.1），另一方向无变化。  \n- **边交叉数**：投影增加了2个边交叉点，反映出对角线投影使得原本在空间中不相交的边在平面上形成交叉。\n\n与之对比，**两不同物体配对**往往会在点数、直径、边交叉上体现更大的差异，因为两个物体本身结构不同，而不仅仅是投影几何变形。",
+          "elapsed_sec": 10.11,
+          "score": 2,
+          "rationale": "Confused about delta encoding for self_pair; conclusion roughly right."
+        },
+        {
+          "domain": "projection",
+          "case_id": "self-cube-diagonal",
+          "condition": "rtc",
+          "response": "好的，我们可以基于提供的引擎结构数据（R）、变换轨迹（T）和反事实对比（C）来进行推理分析。  \n\n首先，这个案例是“自投影”（self-cube-diagonal），即同一个立方体从自身投影到某个对角方向上的平面，对比投影前后的结构数据。\n\n---\n\n### 1. 不变量与结构变化\n从 R 和 T 中可以看到：  \n- **点数不变**：投影前后点数都是 8（n_points 不变），但有 1 对点发生了碰撞（0 和 6）。  \n- **维度减少**：从 3 维降为 2 维（dimension = -1）。  \n- **直径减小**：从 1.732051 降到 1.632994，变化值 -0.099057。  \n- **边交叉引入**：从无交叉变成 2 个交叉。  \n- **距离保持比例很低**：总共有 28 个点对距离，只有 6 对保持不变，比例仅 0.2143。大部分距离发生了扭曲。\n\n这些说明：**正交投影到对角平面导致了严重的信息损失**——不仅有碰撞，还有交叉和大量距离失真。\n\n---\n\n### 2. 关键退化所在\n从“region_affected”中可以看到：  \n- 碰撞集中在一对空间对角点（0 和 6），它们在三维中距离最远（1.732），投影后却被压到一起，距离变为 0。这是“维度坍塌”的直接后果。  \n- 另外还有 4 对原本距离是 √2 的点（如 0-7, 1-6, 3-6, 4-6），投影后距离被压缩到 0.8165，严重失真。  \n- 引入的两个边交叉也说明边在二维投影中发生拓扑错乱。\n\n---\n\n### 3. 反事实对比揭示的关键机制\n三个反事实实验进一步解释了信息损失的来源：\n\n**C1（边界松弛：去掉投影）**  \n- 原始投影：距离保持率 42.86% （注：这里是与 xy 平面投影相比），碰撞 4 个。  \n- 不投影（保持 3D）：100%距离保持，0 碰撞。  \n- 结论：**维度压缩是信息损失的根本原因**。\n\n**C2（条件移除：碰撞点去重）**  \n- 原始：8 点，8 边交叉。  \n- 去重后：4 点，0 交叉。  \n- 结论：**碰撞点实质上承载了三维的深度信息，去重会破坏它**。\n\n**C3（操作扰动：用半压缩替代完全投影）**  \n- 完全正交投影：43%距离保持，4 碰撞。  \n- 半压缩（缩放 0.5）：43%距离保持，0 碰撞。  \n- 结论：**将某一轴归零（完全投影）导致了碰撞；而“保留一些深度”可以消除碰撞，但距离扭曲率相同**，说明碰撞是可避免的，但距离扭曲是维度压缩的必然结果。\n\n---\n\n### 4. 综合结论\n根据 R/T/C 数据可以得出：\n\n- 该投影（self-cube-diagonal）中，**维数减少是信息损失的根本原因**，具体表现为：  \n  - 点碰撞 1 对，边交叉 2 个；\n  - 直径下降约 5.7%；\n  - 距离保持仅 21.43%；\n  - 结构上“点数”作为不变量保持，但“维度”和“直径”均未保持。\n\n- 反事实指出：  \n  - 如果保留第三维（不投影），所有结构都能保留。  \n  - 碰撞是“维度归零”而非“缩放”带来的独特效应。  \n  - 去重操作虽然能消除交叉，但会使信息进一步丢失，是不可逆的破坏。\n\n**最终结论**：  \n这个自对角投影在结构上引入了显著退化——点碰撞、边交叉、直径缩短和距离失真。维数降低是主要破坏因素；投影方向（对角线）导致了特定对角点碰撞；即使保持点数不变，几何和拓扑信息都已严重损失。",
+          "elapsed_sec": 11.89,
+          "score": 4,
+          "rationale": "Correct + explicit collision identification + counterfactual analysis."
+        },
+        {
+          "domain": "projection",
+          "case_id": "cross-octahedron-xzvsyz",
+          "condition": "baseline",
+          "response": "根据提供的数据，案例 `cross-octahedron-xzvsyz` 涉及同一个八面体在两个不同平面（xz 平面与 yz 平面）上的投影，属于**同一物体在不同平面上的投影比较**（所谓“自配对”）。比较两类投影的差异如下：\n\n1. **维度与点数**  \n   - 在 xz 平面上的投影，维度显示为 -1，这可能是由于数据缺失（可能发生了退化投影，例如所有点共线或无法正常定义二维投影，导致维度计算结果为负）；  \n   - 在 yz 平面上投影维度为 0，点数也为 0。这表明该投影可能完全退化（例如所有顶点投影后重合为一点，或者发生投影塌缩）。  \n   因此，两个投影的“有效”点数不同，但都非正常二维投影。\n\n2. **直径**  \n   两个投影的直径均为 0.0，进一步证实了两个投影可能退化到极低维度，没有有效的空间延展。\n\n3. **边交叉数**  \n   - xz 平面投影的边交叉数在投影前无法判断（`pre: null`），投影后为 4；  \n   - yz 平面的边交叉数为 0。  \n   这说明在 xz 投影中虽然退化严重，但仍有 4 条边发生了交叉（可能是由于退化导致边重叠为线段交叉）；yz 则没有产生任何边交叉，支持完全塌缩的判断。\n\n### 结论  \n- 该八面体在 xz 和 yz 平面上的投影均为退化投影；  \n- 两者在有效点数、维度、直径上没有明显区别（都是退化为点或极低维结构）；  \n- 主要差异在于**边交叉数**：xz 投影中出现了边交叉（4 次），而 yz 投影没有，这说明尽管都是退化，退化的方式不同——xz 投影可能使得边重叠但仍形成交叉线段，yz 投影则完全重合为一点或一条直线导致无交叉。",
+          "elapsed_sec": 6.04,
+          "score": 1,
+          "rationale": "Wrong — interprets summary deltas as projections being degenerate."
+        },
+        {
+          "domain": "projection",
+          "case_id": "cross-octahedron-xzvsyz",
+          "condition": "rtc",
+          "response": "根据提供的R/T/C数据，可以对“cross-octahedron-xzvsyz”案例的投影结构差异做出以下结论与推理：\n\n### 结论\n将三维八面体分别投影到xz平面和yz平面时，两者在结构上是**对称且等价的**，均导致：\n- **维度从3降到2**（丢失1维）\n- **出现1对点碰撞**（点索引2和3）\n- **产生4条边交叉**\n- **直径保持不变**（仍为2.0）\n- **距离保持比例仅为0.4**（15对距离中只有6对保持不变）\n\n### 详细推理\n\n#### 1. 不变量分析\n- **点数量不变**：投影前后均为6个点，说明投影是“尽力保持点集结构”的。\n- **维度改变**：3D → 2D，不可逆。\n- **直径不变**：直径保持为2.0，说明整体空间范围未收缩。\n- **边交叉引入**：投影后产生4条边交叉，这是降维导致的典型平面结构扭曲。\n\n#### 2. 变换轨迹（T）揭示的关键损失\n- **点碰撞**：点2和点3在投影后重合（3D距离2.0降为2D距离0.0），这是**信息压缩的直接后果**。\n- **最扭曲的距离对**：点2/4、2/5、3/4、3/5的3D距离约1.414变为2D距离1.0，比率0.7071，是**系统性距离缩短**。\n- **交叉数量**：4条边交叉，与8面体的12条边相比，占1/3，反映了投影后边关系的严重改变。\n\n#### 3. 反事实对比（C）的关键验证\n- **边界松弛（无投影）**：若保持3D不投影，距离保持率为100%，碰撞为0。→ **降维本身是信息损失的根源**。\n- **条件移除（去重碰撞点）**：若强行合并碰撞点（8→4点），交叉数从8降为0。→ **碰撞点对实际上是3D信息的编码，去重会破坏结构**。\n- **操作扰动（部分压缩 vs 完全投影）**：若仅将y轴压缩至0.5倍而非完全归零，距离保持率仍为0.4286，但**碰撞数降为0**。→ **完全归零（投影）比部分压缩更极端，碰撞是由归零引起的，而距离扭曲更多是由压缩尺度决定**。\n\n#### 4. 综合解释\n- 八面体在xz与yz平面上的投影**完全相同**，因为原八面体对称，且两个平面仅差一个坐标轴置换（x与y互换），结构损失类型一致。\n- **点2和3重合**，是因为它们在3D中位于y轴正负两侧且对称，投影到xz平面时y坐标被丢弃，导致重合。\n- **边交叉**来自那些原本在3D中不共面、投影后被迫在平面相交的边，这是降维的典型代价。\n- **距离保持率0.4**：只有与投影平面平行的边或特定对称方向的距离得以保留，其余均被压缩。\n\n### 最终回答\n> 对于给定八面体的xz与yz投影，两者在维度损失（-1）、点碰撞（1对）、边交叉（4条）、直径不变（2.0）和距离保持率（0.4）上完全一致。反事实分析证实，降维操作是信息损失的根本原因，而碰撞和交叉是降维过程中不可避免的拓扑与度量压缩产物。",
+          "elapsed_sec": 9.93,
+          "score": 4,
+          "rationale": "Correct + explicit symmetric structure, 1 collision, 4 crossings, 40% distance preserved."
+        },
+        {
+          "domain": "surface_topology",
+          "case_id": "a331-b69",
+          "condition": "baseline",
+          "response": "根据所提供的数据，问题要求判断曲面 S 上两条简单闭曲线 α 和 β 的几何相交数 \\( i(\\alpha, \\beta) \\)，并讨论 weight 的变化。\n\n从 `metadata` 中可以看到，**`i_alpha_beta` 值为 1**。这意味着这两条曲线几何相交 1 次（相交数为 1）。而 `summary_delta` 中的 `intersection_number` 为 0，它可能表示的是另一种代数相交数或约化后的相交数（比如在某种同调或代数处理后的结果），而不是几何相交数。\n\n因此结论如下：\n\n- **几何相交数** \\( i(\\alpha, \\beta) = 1 \\)（依据 metadata 中的 `i_alpha_beta`）。\n- **weight 的变化**：`summary_delta` 显示 weight_a 变化为 -12，weight_b 变化为 0。这表示在曲线的某种变换（如 Dehn 扭转或曲线操作）过程中，α 的权重减少了 12，β 的权重保持不变。\n\n**简要推理**：  \n在几何拓扑中，曲线的“几何相交数”通常指的是它们作为集合的最少交点个数，而 metadata 中的字段名明确记为 `i_alpha_beta` 且值为 1，这直接给出了结果。`summary_delta` 中写为 0 的 `intersection_number` 应是另一种解释（如同调相交数或某次映射后的结果），不应与几何相交数混淆。weight 的变化则反映该曲线在某种表示或扭转下的权重调整，这里 α 的权重减少了 12。",
+          "elapsed_sec": 5.21,
+          "score": 3,
+          "rationale": "Correct (i=1 from metadata) + weight Δ=−12 noted."
+        },
+        {
+          "domain": "surface_topology",
+          "case_id": "a331-b69",
+          "condition": "rtc",
+          "response": "根据您提供的结构数据（R）、变换痕迹（T）和反事实对比（C），我对案例 a331-b69 的分析结论如下：\n\n## 结论\n\n1. **几何相交数**：  \n   \\[\n   i(\\alpha, \\beta) = 1\n   \\]\n   该数值在 `metadata` 中直接给出，并且与反事实对比中 `original_condition` 的 `i(alpha, beta) = 1` 一致。\n\n2. **Weight 变化**：  \n   在变换前后，权重变化为：\n   - `weight_a` 变化：-12（即 α 的权重减少 12）\n   - `weight_b` 变化：0（β 的权重不变）\n   - 这与 `transform_trace.delta.weight_shift = -12` 吻合。\n\n3. **几何相交数未因变换改变**：  \n   从 `detailed_comparison` 可知，变换前后交叉点数量均为 16，位置完全一致，说明变换未改变 α 与 β 的相交模式，因此 `i(α, β)` 保持不变。\n\n## 推理依据\n\n### 1. 相交数不变性\n- `crossings_pre_count = 16`，`crossings_post_count = 16`\n- `crossings_pre_locations` 与 `crossings_post_locations` 完全一致\n- 所有交叉点位于三角形 0–3 的边上，且变换后无新增或减少\n- 因此几何相交数稳定为 1\n\n### 2. Weight 变化来源\n- 变换操作是 `hatcher_surgery`，手术曲线为 `a_0`\n- `before_state.alpha_weights = [11, 5, 6, 3, 4, 7]`，总和 = 36\n- `after_state.sigma_weights = [7, 3, 4, 2, 3, 5]`，总和 = 24\n- 权重减少 12，与 `summary_delta.weight_a = -12` 一致\n- 这是由手术操作本身导致的曲线简化（level 从 4 降为 2）\n\n### 3. 反事实对比的关键发现\n- **边界松弛条件（boundary_relaxation）** 是 **关键条件**：  \n  如果将 `i(α, β)` 从 1 放宽到 2，净变化从 0 变为 -2，说明当前相交数 1 是手术操作保持相交数不变的必要边界。\n- **其他两个反事实**（去除层级约束、替换手术曲线）均未改变结果，说明这些条件在当前情形下不是决定因素。\n\n## 最终回答\n\n- **几何相交数**：\\( i(\\alpha, \\beta) = 1 \\)  \n- **weight 变化**：α 的权重减少 12，β 的权重不变  \n- **关键影响因素**：相交数为 1 是维持变换前后相交结构不变的临界条件；变换本身是 Hatcher 手术，沿 `a_0` 进行，导致 α 简化且权重下降，但未改变与 β 的相交模式。",
+          "elapsed_sec": 9.01,
+          "score": 4,
+          "rationale": "Correct + Hatcher surgery analysis + counterfactual key-condition identification."
+        },
+        {
+          "domain": "surface_topology",
+          "case_id": "a62-b12",
+          "condition": "baseline",
+          "response": "根据你提供的 JSON 数据，我们来逐步分析。\n\n首先，问题中要求判断两条简单闭曲线 α 与 β 的**几何相交数** \\( i(\\alpha, \\beta) \\)，并讨论 weight 的变化。\n\n从数据结构来看：\n\n- `summary_delta` 中给出的 `intersection_number: 0` 是某种代数或简化后的指标，可能是某种权重调整后的净相交数。\n- 但在 `metadata` 中，明确的 `i_alpha_beta: 1` 给出了**几何相交数**。\n\n因此：\n> 几何相交数 i(α, β) = 1。\n\n关于 weight 的变化：\n- `summary_delta` 中显示 `weight_a: -16`，`weight_b: 0`。\n- 说明在某个简化或变换过程中，曲线 α 的 weight 减少了 16，而 β 的 weight 保持不变。\n- 这可能是因为 α 与 β 有 1 次几何相交，经过 Dehn 扭转作用或某种词约化后，α 的表示中产生了 weight 的抵消或减少，β 未受影响。\n\n结论：\n- 几何相交数 \\( i(\\alpha, \\beta) = 1 \\)。\n- weight 变化：α 的 weight 减少 16，β 的 weight 不变。",
+          "elapsed_sec": 3.75,
+          "score": 3,
+          "rationale": "Correct (i=1) + weight Δ=−16 noted."
+        },
+        {
+          "domain": "surface_topology",
+          "case_id": "a62-b12",
+          "condition": "rtc",
+          "response": "根据提供的结构数据（R）、变换追踪（T）和反事实对比（C），我们可以逐步推理出问题所要求的答案：**几何相交数 i(alpha, beta)** 以及 **weight 的变化**。\n\n---\n\n### 1. 几何相交数 i(α, β)\n\n从 `metadata` 中直接给出：\n- `\"i_alpha_beta\": 1`\n\n因此，**几何相交数为 1**。\n\n---\n\n### 2. Weight 的变化\n\n从 `summary_delta` 中：\n- `\"weight_a\": -16`\n- `\"weight_b\": 0`\n\n因此，**α 的 weight 减少 16，β 的 weight 无变化**。\n\n这与 `transform_trace` 中的 `delta.weight_shift: -16` 一致，且 `delta.level_shift` 为 -2，表示经过手术（hatcher_surgery）后，α 不仅 weight 降低，层次也从 4 降到 2。\n\n---\n\n### 3. 结合反事实分析\n\n反事实提供了三条对比路径：\n\n1. **边界放松策略**（关键条件）  \n   - 修改条件：i(α, β) 从 ≤1 变为 =2  \n   - 结果：原 net_change = 0，反事实 net_change = -2  \n   - 说明：相交数上限为 1 确实是关键约束（load-bearing），若放宽则 weight 变化更剧烈。\n\n2. **条件移除策略**  \n   - 移除“β 在下降连接中”的条件  \n   - 结果无变化，说明该条件在该场景下不是关键。\n\n3. **手术曲线替换**  \n   - 将 γ₀ 从 a_0 替换为 c0  \n   - 结果无变化，说明手术曲线选择在该情况下稳定。\n\n因此，**i(α, β) = 1 是维持当前 weight_shift = -16 的关键条件**。\n\n---\n\n### 4. 结构与交叉点变化\n\n从 `detailed_comparison` 和 `structural_comparison` 可看出：\n- 交叉点总数从 14 降到 10，减少了 4 个。\n- 大边形（bigons）数量从 10 降到 6，且全部包含 puncture（非零亏格），说明曲面不是球面。\n- 曲线在变换前后均未达到最小位置（`minimal_position_pre/post: false`），仍有可简化空间。\n\n这进一步佐证了 weight 变化与相交数保持 1 的一致性。\n\n---\n\n### 结论\n\n- **几何相交数 i(α, β) = 1**\n- **α 的 weight 减少 16，β 的 weight 不变**\n- **该结果依赖于 i(α, β) ≤ 1 这一关键边界条件**，否则 weight 变化会更大（-2 而非 0）。\n- 变换是有效的 Hatcher 手术，层次降低 2，weight 减少 16，交点减少 4 个，所有 bigons 都包含 puncture。",
+          "elapsed_sec": 9.1,
+          "score": 4,
+          "rationale": "Correct + comprehensive Hatcher analysis + bigon-with-puncture explanation."
+        },
+        {
+          "domain": "surface_topology",
+          "case_id": "a12-b1",
+          "condition": "baseline",
+          "response": "根据提供的数据，我们可以得到如下结论和推理过程：\n\n**结论：**  \n曲线 α 与 β 的几何相交数 i(α, β) = 1。且该曲线对的“weight”变化在摘要数据中显示 intersection_number = 0（该字段可能存在混淆，应结合元数据字段 i_alpha_beta = 1 判定真实相交数为 1）。\n\n**简要推理：**  \n\n1. 在元数据 `metadata` 中明确指出 `\"i_alpha_beta\": 1`，这意味着曲线 α 与 β 在曲面 S（亏格 g=2）上的几何相交数为 1（即两条简单闭曲线在标准位置恰好相交一次）。\n\n2. 摘要数据 `summary_delta` 中的 `\"intersection_number\": 0` 可能表示的是某种代数相交数（不计方向相消的结果），或者是权重变化的某种抵消后的代数结果，而不是实际的几何相交次数。几何相交数是基于拓扑意义下最低次的最小交点数目，此处应该以 `i_alpha_beta` 为准。\n\n3. 权重变化方面：\n   - `weight_a = -8`，`weight_b = 0`，这可能表示经过某种双曲几何或表示在 mapping class group 作用下的“权重”特征变化，但仅对几何相交数而言，起到直接作用的是曲线之间的交叉模式，并非单纯的权重数值。\n\n因此，几何相交数为 1，在亏格 2 曲面上满足两条简单闭曲线只交于一点的情形（属于可能的配置）。",
+          "elapsed_sec": 4.97,
+          "score": 3,
+          "rationale": "Correct (i=1) + flags the i_alpha_beta vs intersection_number distinction."
+        },
+        {
+          "domain": "surface_topology",
+          "case_id": "a12-b1",
+          "condition": "rtc",
+          "response": "根据提供的结构数据（R）、变换轨迹（T）和反事实对比（C），我们可以推理出案例“a12-b1”中两条曲线α和β的几何相交数及其有关weight变化的信息。\n\n---\n\n### 关键信息提取\n\n1. **相交数**  \n   在 `metadata` 中直接给出：\n   - `\"i_alpha_beta\": 1`\n   同时在 `detailed_comparison` 中：\n   - `crossings_pre_count: 3`\n   - `crossings_post_count: 2`\n   这提示虽然原始图示有3个交叉点，但在经过变换后减少为2，说明原始的3个交点中有一个是冗余的（可能是通过bigon可消除）。因此最终**几何相交数为 1**。\n\n2. **Weight 变化**  \n   在 `summary_delta` 中：\n   - `weight_a: -8`\n   - `weight_b: 0`\n   表明α的weight减少了8，而β的weight不变。这与 `transform_trace` 中的 `delta` 一致：\n   - `level_shift: -2`\n   - `weight_shift: -8`\n\n3. **变换操作**  \n   操作名称为 `hatcher_surgery`，是在一个包含4个三角形的区域内进行，使用了曲线 `a_0` 作为手术曲线。β在变换区域内有2个三角形（0和3），并且都穿越短弧（没有涉及长弧），因此β在手术中受到局部影响但weight不变。\n\n4. **结构特征（bigon分析）**  \n   在 `structural_comparison` 中：\n   - 变换前后都有一个bigon，且都包含一个 puncture（标记为0）\n   - 变换前后均不是 minimal position（因为有bigon，但bigon含puncture，所以无法直接去除）\n   这解释了为什么变换前有3个交点，但几何相交数只有1：额外的2个交点来自不可消除的“含 puncture 的 bigon”结构。\n\n---\n\n### 结合反事实分析 (C)\n\n- **反事实1：放宽相交数上界**  \n  原始条件 `i(α, β) ≤ 1` 下，`net_change=0`；放宽到 `i=2` 时，`net_change=-2`，说明这个边界条件是关键的。即，如果β与α相交数本来更大（2），则变换会导致weight减少2更多。这间接验证了相交数为1的情况下变换的weight变化是-8是匹配的，因为如果相交数更大则weight减少更多。\n\n- **反事实2与3：改变下降条件或手术曲线**  \n  这两个条件改变后结果不变，说明变换对于选定的β（c1）以及手术曲线a0是稳健的，不是因为这些条件才得到0净变化。\n\n---\n\n### 结论\n\n- **几何相交数 i(α, β) = 1**  \n- **α 的 weight 变化为 -8，β 的 weight 不变**  \n- 变换是 Hatcher surgery，作用于一个含 punctures 的区域，原始交叉点中有一个由含 puncture 的 bigon 引起的冗余交点，因此观察到的3个交点并不全是几何相交数。  \n- 反事实分析确认当前相交数条件对weight变化是关键性的。  \n\n因此，最终答案是：  \n> **i(α, β) = 1，α weight 减少 8，β weight 不变。**",
+          "elapsed_sec": 10.11,
+          "score": 4,
+          "rationale": "Correct + bigon analysis + counterfactual key-condition."
+        },
+        {
+          "domain": "surface_topology_s21",
+          "case_id": "a151-b6",
+          "condition": "baseline",
+          "response": "根据给出的数据，我们分析如下：\n\n- 曲面的亏格为 2，带有 1 个边界（穿孔），记为 \\( S_{2,1} \\)。\n- 两条简单闭曲线分别是 alpha（索引 151，level 2）和 beta（索引 6，level 1）。\n- 元数据中的 `\"i_alpha_beta\": 1` 明确给出了几何相交数 \\( i(\\alpha, \\beta) = 1 \\)。\n\n这个结果符合 `summary_delta` 中 `intersection_number: -1` 的绝对值，但实际上几何相交数是非负的，这里的 -1 可能表示带符号的代数相交数，而几何相交数是其绝对值 1。\n\n**关于 weight 的变化：**\n- `\"weight_a\": -9` 表示经过某种操作（比如 Dehn twist 或曲面自同胚）后，alpha 的 weight 减少了 9。\n- `\"weight_b\": 0` 表示 beta 的 weight 保持不变。\n\n这说明在相交数为 1 的情况下，对其中一条曲线进行操作会显著改变其环绕或填充权重，但对另一条无影响。\n\n**结论：**\n- 几何相交数：\\( i(\\alpha, \\beta) = 1 \\)。\n- weight 的变化：alpha 的 weight 变为 -9（减少 9），beta 的 weight 保持 0。",
+          "elapsed_sec": 4.0,
+          "score": 3,
+          "rationale": "Correct (i=1) + weight Δ=−9; correctly notes intersection_number=−1 is delta."
+        },
+        {
+          "domain": "surface_topology_s21",
+          "case_id": "a151-b6",
+          "condition": "rtc",
+          "response": "好的，我们将基于您提供的结构数据（R）、变换轨迹（T）和反事实对比（C）逐步推理，从而回答关于几何相交数及weight变化的问题。\n\n---\n\n### 第一步：直接提取几何相交数\n\n从元数据 `metadata` 中，我们看到：\n\n```json\n\"i_alpha_beta\": 1\n```\n\n并且在 `summary_delta` 中有：\n\n```json\n\"intersection_number\": -1\n```\n\n这里的 `-1` 并不是几何相交数本身的负数，而是表示**相交数在变换前后的变化量**为 `-1`（即减少了一条交叉）。\n\n结合数据：  \n- 变换前，`crossings_pre_count = 2`  \n- 变换后，`crossings_post_count = 0`  \n其中变换前后的交叉位置都在某个大饼（bigon）区域内，经Hatcher手术消除后变为0。\n\n因此，**几何相交数 \\( i(\\alpha, \\beta) = 1 \\)**，并且在这个局部操作中，这1个几何交点实际上对应于**2个预交叉（因为遍历两次）**，且在bigon内被完全消除。\n\n**结论：**  \n\\[\n\\boxed{i(\\alpha, \\beta) = 1}\n\\]\n\n---\n\n### 第二步：分析 weight 的变化\n\n已知 `weight_a` 的变化为 `-9`，`weight_b` 变化为 `0`。\n\n在变换轨迹 `transform_trace` 中看到：\n\n- `before_state` 中 alpha 权重列表较长（9个分量），level_alpha = 2  \n- `after_state` 中 sigma 权重列表较短，level_sigma = 0  \n- `weight_shift = -9`\n\n此处的 weight 通常指曲线在某个理想三角剖分下的“整系数表示”之和（例如在Hatcher的曲线手术中，权重的总和变化说明曲线复杂性降低）。  \n由于alpha权重减少了9，而beta权重不变，这意味着操作只对alpha进行了简化（移除了9个权值单位），没有直接影响beta在剖分中的表示。\n\n**结论：** 操作后，alpha的总weight减少了9，beta的weight保持不变。\n\n---\n\n### 第三步：利用反事实对比 (C) 验证条件重要性\n\n反事实数据提供了三个对比实验：\n\n1. **放宽相交数上界**（从 ≤1 改为 =2）：  \n   原结果为 net_change = -1，反事实结果为 net_change = -2，差值为 -1。说明若允许更大的相交数，手术可能一次消除更多交叉，但当前边界并非关键紧约束（`condition_is_critical: false`）。\n\n2. **移除“beta在下降链接中”的条件**：  \n   原结果 net_change = -1，去掉条件后反事实结果为 0，差值为 +1。这表明“beta在下降链接中”对能否产生净减少非常关键——缺少它，手术不会产生简化效果。\n\n3. **替换手术曲线**（a_0 换为 c0）：  \n   原结果和反事实结果均为 -1，差值为 0。说明手术对曲线的具体身份（在此例中）不敏感，只要结构类似，效果相同。\n\n**结论：** 条件“beta 在下降链接中”最为关键；相交数上界和手术曲线的具体选择在本次案例中不是决定性的。\n\n---\n\n### 最终答案汇总\n\n1. **几何相交数**：  \n\\[\n\\boxed{1}\n\\]  \n由直接元数据及交叉计数分析得到。\n\n2. **weight变化**：  \n- alpha 权重减少 **9**  \n- beta 权重变化为 **0**  \n数据来自 `summary_delta.weight_a = -9` 和 `weight_b = 0`，在变换轨迹中得到确认。\n\n3. **附加结构结论**：  \n- 手术消除了一个包含穿孔的bigon，使alpha降到最低表示（level 0）。  \n- 条件“beta在下降链接中”是手术减少权重的前提条件，缺少它将使净变化为0。",
+          "elapsed_sec": 11.29,
+          "score": 2,
+          "rationale": "Confused: claims i drops from 1 to 0 after surgery, but i is invariant under surgery."
+        },
+        {
+          "domain": "surface_topology_s21",
+          "case_id": "a122-b28",
+          "condition": "baseline",
+          "response": "根据提供的案例 a122-b28 数据，我们来分析几何相交数与 weight 的变化。\n\n**已知数据：**\n- 曲面为亏格 2、一个穿孔（边界）的曲面 S_{2,1}。\n- 从 metadata 中看到，`i_alpha_beta: 1`，即几何相交数 i(α, β) = 1。\n- summary_delta 中显示 `intersection_number: 0`，这通常指经过某种变换（如双曲度量下的自交调整或同痕类化简）后的代数相交数或约化相交数，而原始的几何相交数由 metadata 的 i_alpha_beta 给出。\n- weight_a = -14，weight_b = 0。这些 weight 通常代表在某个特定表示（如曲线在 pants 分解下的坐标）中曲线的某个“权重”分量，根据任务要求要讨论 weight 的变化。\n\n**推理：**\n1. 几何相交数 i(α, β) = 1，说明两条简单闭曲线在曲面上恰好相交一次，且是横截相交。\n2. 关于 weight 的变化：\n   - weight_a 从某个初始值变为 -14，weight_b 不变（0）。\n   - 这种情况一般发生在对 α 进行 Dehn 扭转操作后，其 weight 会随着与 β 的相交数发生变化。具体变化规律：如果对 α 沿着 β 进行 Dehn 扭转，α 的 weight 会变化 i(α, β) 乘以 β 的 weight（但此处 β weight 为 0，所以不改变），或者更常见的规则是在组合曲线坐标中，weight 变化与相交数和其他曲线 weight 有关。\n   - 这里 weight_a 显著变为负值，而 β weight 为 0，且 i=1，说明 weight_a 的变化可能是受到了与其他曲线（或边界成分）的相互作用影响，而不仅仅源于与 β 的相交。\n   - 因为 β weight 是 0，β 本身可能是一条“分离”或相对简单的曲线，对 α 的 weight 没有直接贡献，所以 α 的 weight 变化应归因于α自身的结构或与其他参考曲线的相互作用。\n\n**结论：**\n- 几何相交数 i(α, β) = 1。\n- weight_a = -14，weight_b = 0，由于 i=1 但β weight 为 0，所以β对α的weight变化没有贡献；α的weight显著变化来自于曲面拓扑中其他因素（如自交调整、其他曲线或边界影响）。",
+          "elapsed_sec": 7.28,
+          "score": 3,
+          "rationale": "Correct (i=1, weight Δ=−14) + flags metadata vs delta distinction."
+        },
+        {
+          "domain": "surface_topology_s21",
+          "case_id": "a122-b28",
+          "condition": "rtc",
+          "response": "根据提供的R/T/C数据，可以对问题给出如下分析与结论。\n\n---\n\n## 1. 几何相交数 \\( i(\\alpha, \\beta) \\)\n\n在元数据 `metadata` 中，直接给出了：\n```json\n\"i_alpha_beta\": 1\n```\n因此 **几何相交数** \\( i(\\alpha, \\beta) = 1 \\)。\n\n此外，在详细比较 `detailed_comparison` 中：\n- 变换前的相交数（crossings_pre_count）为 10  \n- 变换后的相交数（crossings_post_count）为 4  \n- 变换区域内的相交数从 4 减少到 0  \n- 变换区域外的相交数从 6 减少到 4  \n\n可以看到，总相交数减少了，但目前仍不是极小位置（`minimal_position_post: false`）。初始几何相交数为1，而变换后仍有4次相交，说明存在可继续消去的bigon（由bigon数目可知仍有2个带穿孔的bigon）。几何相交数不受这些bigon影响，因为所有bigon都包含穿孔（puncture），无法直接通过bigon消去来降低几何相交数（含穿孔的bigon不一定能取消交叉点）。因此最终几何相交数仍然为1。\n\n**结论：几何相交数 \\( i(\\alpha, \\beta) = 1 \\)。**\n\n---\n\n## 2. Weight 的变化\n\n在 `summary_delta` 中：\n```json\n\"weight_a\": -14,\n\"intersection_number\": 0,\n\"weight_b\": 0\n```\n这表明：\n- 曲线 alpha 的 weight 减少了 14  \n- 曲线 beta 的 weight 没有变化  \n\n变换轨迹 `transform_trace` 中给出操作是 `hatcher_surgery`，对alpha（curve c122）进行手术。变换前的alpha权重为：\n```\n[4, 3, 1, 1, 2, 2, 2, 2, 0]\n```\n变换后sigma权重：\n```\n[0, 0, 0, 0, 0, 1, 1, 1, 0]\n```\n并且 `delta` 显示 `weight_shift: -14`，以及 `level_shift: -2`（alpha从level 2变为sigma的level 0）。\n\n这说明经过一次Hatcher surgery，alpha的权重总和减少了14，这个变化是大尺度的，并且 beta weight不变，这是符合预期的，因为手术操作仅影响alpha曲线，beta只是作为辅助参考。\n\n**结论：alpha 的 weight 减少 14，beta 的 weight 不变。**\n\n---\n\n## 3. 反事实对比分析\n\n给出的三个反事实实验：\n\n1. **边界松弛（boundary_relaxation）**  \n   将 \\( i(\\alpha,\\beta) \\) 从 1 放宽到 2，净变化从 -1 变为 -2，差值 -1。不是关键条件，说明 \\( i \\le 1 \\) 并不是紧约束。\n\n2. **条件移除（condition_removal）**  \n   去除“beta在下降链中”的条件，净变化从 -1 变为 0，差值为 +1，说明该条件对减少weight贡献了1个单位。\n\n3. **操作扰动（operation_perturbation）**  \n   将手术曲线从 a_0 换成 c0，净变化保持 -1，差值 0，说明手术曲线替换对结果无关紧要。\n\n综上，这些反事实实验说明：\n- 当前条件并非最紧，尤其是相交数上界可放宽；\n- 下降链条件对weight减少有贡献；\n- 手术曲线选择不是关键。\n\n---\n\n## 最终结论\n\n| 项目 | 结果 |\n|------|------|\n| 几何相交数 \\( i(\\alpha, \\beta) \\) | **1** |\n| alpha weight 变化 | **减少 14** |\n| beta weight 变化 | **不变** |\n| 关键条件分析 | 下降链条件重要；相交数上界不紧；手术曲线不关键 |\n\n这就是基于 R/T/C 数据的完整推理与结论。",
+          "elapsed_sec": 11.47,
+          "score": 4,
+          "rationale": "Correct + comprehensive analysis + descent-link identified as critical condition."
+        },
+        {
+          "domain": "surface_topology_s21",
+          "case_id": "a215-b1",
+          "condition": "baseline",
+          "response": "根据你给出的数据，这是一个亏格为2、带1个穿孔的曲面 S_{2,1} 上的几何相交数分析问题。\n\n从 metadata 中可以看到：\n- `i_alpha_beta` 的值为 1，这是直接给出的几何相交数。\n- summary_delta 中的 `intersection_number` 为 -1，那个符号可能是代数相交数或另有含义（比如不同方向的约定或计算中的符号约定），但几何相交数通常是非负整数，因此 i(alpha, beta) 的正确数值应以 metadata 中的 `i_alpha_beta: 1` 为准。\n\n关于 weight 的变化：\n- 数据中 `weight_a` 为 -22，`weight_b` 为 0。在曲面的曲线复杂理论中，weight 往往与曲线的自相交或 twisting 有关，这里 alpha 的 weight 为负值且绝对值较大，说明 alpha 可能在某种坐标表示或 Dehn twist 操作中具有较多 twisting，而 beta 的 weight 为 0，表明 beta 是相对简单的曲线（可能是标准的非分离曲线或边界平行曲线）。\n\n**结论**：\n- 几何相交数 i(alpha, beta) = 1。\n- alpha 的 weight 变化显著（为 -22），beta 的 weight 为 0，说明在操作或表示下，alpha 需要较多的扭转调整，而 beta 保持简单形式。",
+          "elapsed_sec": 4.1,
+          "score": 3,
+          "rationale": "Correct (i=1, weight Δ=−22)."
+        },
+        {
+          "domain": "surface_topology_s21",
+          "case_id": "a215-b1",
+          "condition": "rtc",
+          "response": "根据提供的数据和结构分析，我们可以逐步推理结论。\n\n---\n\n### 1. 几何相交数 i(α, β)\n\n在 `metadata` 中明确给出：\n```\n\"i_alpha_beta\": 1\n```\n这说明在案例 a215-b1 中，简单闭曲线 α 与 β 的几何相交数为 **1**。\n\n这与 `detailed_comparison` 中初始交叉点数量（crossings_pre_count = 4）看似矛盾，但需要注意到这些交叉点是在特定三角剖分表示下的“候选交叉”数量，并不等于几何相交数。几何相交数是最小化表示下的交叉数，而该案例中 `structural_comparison.minimal_position_pre = false` 表示初始位置并非最小状态，存在大边形（bigon）需要消去，因此几何相交数实际上是1。\n\n**结论：i(α, β) = 1**\n\n---\n\n### 2. Weight 变化分析\n\n`summary_delta` 显示：\n- `weight_a`: -22  \n- `weight_b`: 0  \n- `intersection_number`: -1 （这是 net change of intersection number）\n\nα 的重量从变换前的 4 级别权重向量：\n```\n[4, 6, 2, 2, 4, 3, 3, 2, 1]\n```\n变为变换后的 σ 的权重向量：\n```\n[0, 1, 1, 1, 2, 0, 0, 0, 0]\n```\n\n对所有边权重求和：\n- 变换前：4+6+2+2+4+3+3+2+1 = **27**\n- 变换后：0+1+1+1+2+0+0+0+0 = **5**\n- 差值为 -22，与 `weight_a` 变化一致。\n\nβ 的权重变化为 0，说明 β 不受本次 surgery 影响。\n\n**结论：α 的总权重减少了 22，β 的权重未变。**\n\n---\n\n### 3. 变换轨迹（Hatcher surgery）\n\n操作是 `hatcher_surgery`，在 γ0 = a_0、α = c215、σ = sigma_c16 上执行。\n\n变换区域涉及三角形 [2, 3, 5]，区域内有一个穿孔。手术前 α 与 γ0 在区域内有 4 个交叉点（`alpha_gamma_crossings`），所有交叉都为正号（sign=1）。经过 surgery 后：\n\n- 交叉点数量从 4 降为 0  \n- 大边形从 2 个（均含穿孔）变为 0 个  \n- 位置变为 minimal（`minimal_position_post = true`）\n\n这表明 surgery 成功消去了所有大边形，并将曲线简化为与 β 几何相交最小的表示。\n\n---\n\n### 4. 反事实对比（Counterfactual）关键点\n\n- **boundary_relaxation**：若将 i(α, β) 从 1 放宽到 2，net change 从 -1 变为 -2，说明相交数边界在此情境中不是紧的（not tight）。\n- **condition_removal**：若去掉 β 处于下降链的条件，net change 变为 0，说明该条件对于实现净减1的变换是必要的。\n- **operation_perturbation**：更换 γ0 为 c0 不影响结果，说明该手术对 γ0 的选择有一定鲁棒性。\n\n---\n\n### 总结结论\n\n- **几何相交数 i(α, β) = 1**  \n- **α 的重量在变换后下降了 22**（从 27 到 5），β 的重量不变  \n- **变换通过 Hatcher surgery 实现，成功消去两个含穿孔的大边形，使曲线达到 minimal 位置**  \n- **β 在下降链的条件对净减1的变换是关键的，但相交数边界不是紧的**",
+          "elapsed_sec": 10.24,
+          "score": 4,
+          "rationale": "Correct + explicit weight sum 27→5 verification + bigon-with-puncture surgery."
+        }
+      ],
+      "summary_8domain_full": {
+        "baseline_mean": 2.583,
+        "rtc_mean": 3.833,
+        "rtc_lift": 1.25,
+        "baseline_scores": [
+          2,
+          3,
+          4,
+          3,
+          3,
+          3,
+          1,
+          1,
+          3,
+          1,
+          2,
+          4,
+          3,
+          2,
+          3,
+          3,
+          2,
+          1,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "rtc_scores": [
+          3,
+          3,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          2,
+          4,
+          4
+        ],
+        "n_per_condition": {
+          "baseline": 24,
+          "rtc": 24
+        },
+        "per_domain": {
+          "symmetry": {
+            "baseline": [
+              2,
+              3,
+              4
+            ],
+            "rtc": [
+              3,
+              3,
+              4
+            ],
+            "baseline_mean": 3.0,
+            "rtc_mean": 3.333
+          },
+          "knot_theory": {
+            "baseline": [
+              3,
+              3,
+              3
+            ],
+            "rtc": [
+              4,
+              4,
+              4
+            ],
+            "baseline_mean": 3.0,
+            "rtc_mean": 4.0
+          },
+          "graph_connectivity": {
+            "baseline": [
+              1,
+              1,
+              3
+            ],
+            "rtc": [
+              4,
+              4,
+              4
+            ],
+            "baseline_mean": 1.667,
+            "rtc_mean": 4.0
+          },
+          "boundary_interior": {
+            "baseline": [
+              1,
+              2,
+              4
+            ],
+            "rtc": [
+              4,
+              4,
+              4
+            ],
+            "baseline_mean": 2.333,
+            "rtc_mean": 4.0
+          },
+          "discrete_curvature": {
+            "baseline": [
+              3,
+              2,
+              3
+            ],
+            "rtc": [
+              4,
+              4,
+              4
+            ],
+            "baseline_mean": 2.667,
+            "rtc_mean": 4.0
+          },
+          "projection": {
+            "baseline": [
+              3,
+              2,
+              1
+            ],
+            "rtc": [
+              4,
+              4,
+              4
+            ],
+            "baseline_mean": 2.0,
+            "rtc_mean": 4.0
+          },
+          "surface_topology": {
+            "baseline": [
+              3,
+              3,
+              3
+            ],
+            "rtc": [
+              4,
+              4,
+              4
+            ],
+            "baseline_mean": 3.0,
+            "rtc_mean": 4.0
+          },
+          "surface_topology_s21": {
+            "baseline": [
+              3,
+              3,
+              3
+            ],
+            "rtc": [
+              2,
+              4,
+              4
+            ],
+            "baseline_mean": 3.0,
+            "rtc_mean": 3.333
+          }
+        }
+      },
+      "summary_3domain_matched": {
+        "baseline_mean": 2.556,
+        "rtc_mean": 3.778,
+        "rtc_lift": 1.222,
+        "baseline_scores": [
+          2,
+          3,
+          4,
+          3,
+          3,
+          3,
+          1,
+          1,
+          3
+        ],
+        "rtc_scores": [
+          3,
+          3,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "n_per_condition": {
+          "baseline": 9,
+          "rtc": 9
+        },
+        "per_domain": {
+          "symmetry": {
+            "baseline": [
+              2,
+              3,
+              4
+            ],
+            "rtc": [
+              3,
+              3,
+              4
+            ],
+            "baseline_mean": 3.0,
+            "rtc_mean": 3.333
+          },
+          "knot_theory": {
+            "baseline": [
+              3,
+              3,
+              3
+            ],
+            "rtc": [
+              4,
+              4,
+              4
+            ],
+            "baseline_mean": 3.0,
+            "rtc_mean": 4.0
+          },
+          "graph_connectivity": {
+            "baseline": [
+              1,
+              1,
+              3
+            ],
+            "rtc": [
+              4,
+              4,
+              4
+            ],
+            "baseline_mean": 1.667,
+            "rtc_mean": 4.0
+          }
+        }
+      }
+    },
+    "qwen": {
+      "model_id": "qwen-max-latest",
+      "trials": [
+        {
+          "domain": "symmetry",
+          "case_id": "same-006",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n我们需要判断两种顶点着色 $ a $ 和 $ b $ 是否在同一个 $ Z_6 $ 轨道下。以下是逐步分析：\n\n---\n\n#### 1. **问题背景与数据解读**\n- **正六边形的对称性**：$ Z_6 $ 是一个循环群，表示正六边形的旋转对称性。具体来说，$ Z_6 = \\{e, r, r^2, r^3, r^4, r^5\\} $，其中 $ r $ 表示顺时针旋转 $ 60^\\circ $。\n- **顶点着色**：\n  - $ a $ 的着色为 $ [1, 0, 2, 1, 0, 2] $。\n  - $ b $ 的着色为 $ [2, 1, 0, 2, 1, 0] $。\n- **轨道大小**：\n  - $ a $ 的轨道大小为 3（即在 $ Z_6 $ 作用下，$ a $ 只有 3 种不同的等价形式）。\n  - $ b $ 的轨道大小也为 3。\n- **元数据中的信息**：\n  - `same_orbit: true` 表明 $ a $ 和 $ b $ 在同一个轨道中。\n  - `g_idx: 3` 提供了一个群元素索引，可能对应某个特定的旋转操作。\n\n---\n\n#### 2. **验证 $ a $ 和 $ b $ 是否在同一轨道**\n为了验证 $ a $ 和 $ b $ 是否在同一轨道，我们需要检查是否存在某个 $ g \\in Z_6 $，使得 $ g(a) = b $。换句话说，我们需要找到一个旋转操作 $ r^k $，使得 $ a $ 的着色通过旋转后与 $ b $ 的着色一致。\n\n##### 检查旋转操作\n- $ a = [1, 0, 2, 1, 0, 2] $\n- $ b = [2, 1, 0, 2, 1, 0] $\n\n尝试依次应用 $ Z_6 $ 中的旋转操作 $ r^k $（$ k = 0, 1, 2, 3, 4, 5 $），观察是否能使 $ a $ 转化为 $ b $：\n\n1. **$ k = 0 $**（恒等变换）：\n   $$\n   r^0(a) = [1, 0, 2, 1, 0, 2] \\neq b\n   $$\n\n2. **$ k = 1 $**（旋转 $ 60^\\circ $）：\n   $$\n   r^1(a) = [2, 1, 0, 2, 1, 0] = b\n   $$\n   这里我们发现 $ r^1(a) = b $，因此 $ a $ 和 $ b $ 确实在同一个轨道中。\n\n---\n\n#### 3. **结论**\n根据上述计算，$ a $ 和 $ b $ 在同一个 $ Z_6 $ 轨道中，且见证的群元素是 $ r^1 $（即旋转 $ 60^\\circ $）。\n\n---\n\n### 最终答案\n$$\n\\boxed{\\text{$ a $ 和 $ b $ 在同一个 $ Z_6 $ 轨道中，见证群元素为 $ r^1 $。}}\n$$",
+          "elapsed_sec": 32.5,
+          "score": 3,
+          "rationale": "Correct conclusion (same orbit) but witness verification is asserted, not computed."
+        },
+        {
+          "domain": "symmetry",
+          "case_id": "same-006",
+          "condition": "rtc",
+          "response": "### 结论\n根据提供的结构数据 (R)、变换轨迹 (T) 和反事实对比 (C)，可以得出结论：**a 和 b 在同一个 Z_6 轨道下**。具体来说，存在一个群元素 $ g \\in Z_6 $（即索引为 3 的旋转），使得 $ g \\cdot a = b $。\n\n---\n\n### 推理过程\n\n#### 1. **从结构数据 (R) 分析**\n- **轨道大小与哈明距离**：\n  - 数据显示 $ \\text{orbit\\_size\\_a} = 3 $ 和 $ \\text{orbit\\_size\\_b} = 3 $，表明 a 和 b 的轨道大小相同。\n  - 哈明距离 $ \\text{hamming\\_distance} = 0 $，表明 a 和 b 的着色在某种变换下完全一致。\n  - $ \\text{same\\_orbit} = \\text{true} $ 明确指出 a 和 b 属于同一轨道。\n\n- **群作用验证**：\n  - 群元素 $ g $ 的索引为 3，其置换表示为 $ [3, 4, 5, 0, 1, 2] $，对应正六边形的旋转操作。\n  - 将 $ g $ 应用于 a 的着色 $ [1, 0, 2, 1, 0, 2] $ 后，得到的结果正是 b 的着色 $ [2, 1, 0, 2, 1, 0] $。\n  - 因此，$ g \\cdot a = b $，证明 a 和 b 在同一轨道上。\n\n- **稳定子群与轨道-稳定子定理**：\n  - $ \\text{stabilizer\\_a\\_size\\_pre} = 2 $ 和 $ \\text{stabilizer\\_a\\_size\\_post} = 2 $ 表明 a 的稳定子群大小保持不变。\n  - 轨道-稳定子定理成立（$ \\text{orbit\\_stabilizer\\_holds\\_pre} = \\text{true} $ 和 $ \\text{orbit\\_stabilizer\\_holds\\_post} = \\text{true} $），进一步验证了轨道划分的正确性。\n\n---\n\n#### 2. **从变换轨迹 (T) 分析**\n- **变换前后的状态一致性**：\n  - 在应用群元素 $ g $ 的过程中，顶点颜色未发生变化（$ \\text{vertices\\_changed} = 0 $）。\n  - 所有顶点均为固定点（$ \\text{n\\_fixed} = 6 $），说明该群作用对当前着色是恒等的。\n\n- **区域影响分析**：\n  - 变换前后，受影响的区域为空（$ \\text{moved\\_vertices} = [] $），而所有顶点均为固定点（$ \\text{fixed\\_vertices} = [0, 1, 2, 3, 4, 5] $）。\n  - 这表明群作用并未改变 a 和 b 的相对关系。\n\n---\n\n#### 3. **从反事实对比 (C) 分析**\n- **边界松弛策略**：\n  - 当将群从 $ Z_6 $ 扩展到 $ D_6 $（加入反射操作）时，a 和 b 仍处于同一轨道（$ \\text{same\\_orbit} = \\text{true} $）。\n  - 这表明旋转对称性足以保证 a 和 b 的等价性，反射对称性并非必要条件。\n\n- **条件移除策略**：\n  - 如果移除所有对称性（即群退化为平凡群 $ \\{e\\} $），a 和 b 不再属于同一轨道（$ \\text{same\\_orbit} = \\text{false} $）。\n  - 这强调了旋转对称性是 a 和 b 等价的关键因素。\n\n- **操作扰动策略**：\n  - 替换群作用为非群操作（如交换顶点 0 和 1），导致 a 和 b 不再等价（$ \\text{same\\_orbit} = \\text{false} $）。\n  - 这进一步证明了只有合法的群作用才能保持轨道等价性。\n\n---\n\n### 关键不变量分析\n1. **轨道大小**：\n   - a 和 b 的轨道大小均为 3，表明它们具有相同的对称性。\n\n2. **哈明距离**：\n   - 哈明距离为 0，表明 a 和 b 在某种群作用下完全一致。\n\n3. **稳定子群大小**：\n   - a 的稳定子群大小为 2，说明 a 具有特定的对称性，且这种对称性与 b 的对称性一致。\n\n4. **Burnside 计数**：\n   - 总轨道数为 130，表明在 $ Z_6 $ 下的轨道划分是完备的。\n\n---\n\n### 最终推理\n通过结构数据、变换轨迹和反事实对比的综合分析，可以确定 a 和 b 在 $ Z_6 $ 的作用下属于同一轨道。见证这一等价性的群元素是索引为 3 的旋转 $ g $，其置换表示为 $ [3, 4, 5, 0, 1, 2] $。\n\n$$\n\\boxed{\\text{a 和 b 在同一个 Z_6 轨道下，群元素见证为 } g = [3, 4, 5, 0, 1, 2].}\n$$",
+          "elapsed_sec": 45.28,
+          "score": 1,
+          "rationale": "Confused — claims g_idx=3 takes a→b but trace shows g·a=a (fixed), contradicts itself."
+        },
+        {
+          "domain": "symmetry",
+          "case_id": "diff-163",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n#### 1. **问题的核心**\n我们需要判断两种顶点着色 $ a $ 和 $ b $ 是否在同一个 $ Z_6 $ 轨道下。换句话说，是否存在一个 $ Z_6 $ 群元素（即正六边形的某种旋转）将 $ a $ 映射为 $ b $。\n\n如果它们属于同一个轨道，则需要找到具体的群元素（旋转操作）作为见证；如果不属于同一个轨道，则需要指出是什么不变量阻止了它们等价。\n\n---\n\n#### 2. **输入数据解析**\n\n- **$ a $ 的着色：** $[0, 1, 0, 2, 2, 1]$\n- **$ b $ 的着色：** $[1, 2, 0, 2, 0, 0]$\n\n两者的颜色分布如下：\n- $ a $: 颜色 0 出现 2 次，颜色 1 出现 2 次，颜色 2 出现 2 次。\n- $ b $: 颜色 0 出现 3 次，颜色 1 出现 1 次，颜色 2 出现 2 次。\n\n从颜色分布来看，$ a $ 和 $ b $ 的颜色频率不同。这是一个重要的线索。\n\n---\n\n#### 3. **轨道的基本性质**\n\n在 $ Z_6 $ 的作用下，正六边形的每个顶点可以通过旋转映射到其他顶点。因此，若 $ a $ 和 $ b $ 在同一轨道中，则它们的颜色分布必须相同（因为旋转不会改变颜色的全局统计特性）。然而，从上述颜色分布可以看出：\n\n- $ a $ 的颜色分布是 $(2, 2, 2)$（颜色 0、1、2 各出现 2 次）。\n- $ b $ 的颜色分布是 $(3, 1, 2)$（颜色 0 出现 3 次，颜色 1 出现 1 次，颜色 2 出现 2 次）。\n\n由于颜色分布不同，$ a $ 和 $ b $ 不可能通过任何旋转操作相互映射。\n\n---\n\n#### 4. **进一步验证**\n\n为了确保结论无误，我们可以尝试用 $ Z_6 $ 的生成元（即旋转 60° 对应的置换）逐一检查所有可能的旋转操作是否能将 $ a $ 映射为 $ b $。\n\n- $ Z_6 $ 的生成元对应的置换为 $ g = [4, 5, 0, 1, 2, 3] $。\n- 应用 $ g $ 的幂次（即 $ g^k $，其中 $ k = 0, 1, 2, 3, 4, 5 $），可以生成所有可能的旋转排列。\n\n我们逐一检查这些旋转是否能使 $ a $ 变为 $ b $：\n\n1. $ g^0 $: 不变，显然 $ a \\neq b $。\n2. $ g^1 $: 将 $ a $ 的颜色按 $[4, 5, 0, 1, 2, 3]$ 排列，结果仍不等于 $ b $。\n3. $ g^2 $: 再次旋转，结果仍不等于 $ b $。\n4. $ g^3 $: 继续旋转，结果仍不等于 $ b $。\n5. $ g^4 $: 结果仍不等于 $ b $。\n6. $ g^5 $: 最后一次旋转，结果仍不等于 $ b $。\n\n因此，没有任何旋转操作可以将 $ a $ 映射为 $ b $。\n\n---\n\n#### 5. **结论**\n\n由于 $ a $ 和 $ b $ 的颜色分布不同，且通过 $ Z_6 $ 的所有旋转操作都无法使 $ a $ 映射为 $ b $，我们得出以下结论：\n\n$$\n\\boxed{\\text{$ a $ 和 $ b $ 不在同一个 $ Z_6 $ 轨道下。}}\n$$\n\n**阻断等价的不变量：** 颜色分布（即每种颜色出现的次数）是阻止 $ a $ 和 $ b $ 等价的关键不变量。",
+          "elapsed_sec": 34.82,
+          "score": 4,
+          "rationale": "Correct + explicit color-count blocker (2,2,2) vs (3,1,2) + tries all 6 rotations."
+        },
+        {
+          "domain": "symmetry",
+          "case_id": "diff-163",
+          "condition": "rtc",
+          "response": "### 问题分析\n\n我们需要判断两个顶点着色方案 $ a $ 和 $ b $ 是否在同一个 $ Z_6 $ 轨道下。如果是，给出群元素见证；如果不是，说明哪个不变量阻断了等价。\n\n#### 数据概览\n1. **着色方案**:\n   - $ a = [0, 1, 0, 2, 2, 1] $\n   - $ b = [1, 2, 0, 2, 0, 0] $\n\n2. **群作用信息**:\n   - 群为循环群 $ Z_6 $，其生成元的置换表示为 $[4, 5, 0, 1, 2, 3]$。\n   - 群作用是旋转操作，保持六边形结构对称性。\n\n3. **轨道与稳定子信息**:\n   - $ a $ 和 $ b $ 的轨道大小均为 6（即它们的轨道包含 6 个不同的着色）。\n   - 稳定子大小为 1，表明没有非平凡的群元素固定这些着色。\n\n4. **反事实对比 (C)**:\n   - 在扩大群到 $ D_6 $（添加反射对称性）时，$ a $ 和 $ b $ 仍属于同一轨道。\n   - 移除所有对称性后（仅保留单位元），$ a $ 和 $ b $ 不再属于同一轨道。\n   - 使用非群置换（如交换顶点 0 和 1）破坏了轨道等价性。\n\n---\n\n### 推理过程\n\n#### 1. 判断是否在同一轨道\n从数据中可以看出：\n- `same_orbit_pre` 和 `same_orbit_post` 均为 `false`。\n- 反事实对比中的 `condition_removal` 表明，当移除所有对称性后，$ a $ 和 $ b $ 不再属于同一轨道。\n- 因此，原始条件下 $ a $ 和 $ b $ **不在同一轨道**。\n\n#### 2. 阻断等价的不变量\n为了确定为何 $ a $ 和 $ b $ 不在同一轨道，我们考察以下不变量：\n\n##### (a) 颜色分布\n- $ a $ 的颜色分布为：$ \\{0: 2, 1: 2, 2: 2\\} $。\n- $ b $ 的颜色分布为：$ \\{0: 3, 1: 1, 2: 2\\} $。\n\n显然，$ a $ 和 $ b $ 的颜色分布不同。这是一个全局不变量，在任何群作用下都保持不变，因此 $ a $ 和 $ b $ 不可能通过群作用相互转换。\n\n##### (b) 局部模式\n进一步观察局部模式：\n- $ a $ 中，颜色 0 出现在顶点 0 和 2，而颜色 1 出现在顶点 1 和 5。\n- $ b $ 中，颜色 0 出现在顶点 2、4 和 5，而颜色 1 仅出现在顶点 0。\n\n这种局部模式的差异也表明 $ a $ 和 $ b $ 无法通过旋转对称性相互转换。\n\n##### (c) Hamming 距离\n- $ a $ 和 $ b $ 的 Hamming 距离为 4，表明它们在 4 个顶点上颜色不同。\n- 这一距离在群作用前后保持不变，进一步验证了它们不属于同一轨道。\n\n#### 3. 群作用轨迹分析\n从变换轨迹数据来看：\n- 应用群元素 $ g $（对应索引 4 的置换 $[4, 5, 0, 1, 2, 3]$）后，$ a $ 转换为 $[2, 1, 0, 1, 0, 2]$。\n- 此结果与 $ b $ 仍然不同，且移动的顶点集合（0, 3, 4, 5）和固定顶点集合（1, 2）也未能使 $ a $ 和 $ b $ 匹配。\n\n这表明，无论应用何种群元素，$ a $ 和 $ b $ 都无法通过 $ Z_6 $ 的作用相互转换。\n\n---\n\n### 结论\n\n基于以上分析，我们可以得出结论：\n\n$$\n\\boxed{\\text{$ a $ 和 $ b $ 不在同一个 $ Z_6 $ 轨道下，原因是它们的颜色分布不同，这一全局不变量阻断了等价性。}}\n$$",
+          "elapsed_sec": 43.51,
+          "score": 4,
+          "rationale": "Correct + color-count + Hamming distance + counterfactual analysis."
+        },
+        {
+          "domain": "symmetry",
+          "case_id": "same-028",
+          "condition": "baseline",
+          "response": "### 问题分析\n\n我们需要判断正六边形顶点的两种 3-色着色方案 $ a $ 和 $ b $ 是否在同一个 $ Z_6 $ 轨道下。如果它们在同一轨道下，需要给出一个群元素作为见证；如果不在同一轨道下，则需要说明哪个不变量阻断了等价。\n\n#### 已知信息\n1. **循环群 $ Z_6 $ 的作用**:\n   - 循环群 $ Z_6 $ 的生成元为旋转操作，对应置换 $ g = (0 \\to 1 \\to 2 \\to 3 \\to 4 \\to 5 \\to 0) $。\n   - 群元素 $ g^k $ 表示将顶点按顺时针方向旋转 $ k $ 次（每次旋转 $ 60^\\circ $）。\n\n2. **数据结构**:\n   - $ a\\_coloring = [0, 1, 1, 0, 2, 1] $: 着色方案 $ a $。\n   - $ b\\_coloring = [1, 0, 1, 1, 0, 2] $: 着色方案 $ b $。\n   - $ orbit\\_size\\_a = 6 $: $ a $ 的轨道大小为 6。\n   - $ orbit\\_size\\_b = 6 $: $ b $ 的轨道大小为 6。\n   - $ n\\_distinct\\_a = 3 $: $ a $ 中有 3 种不同的颜色。\n   - $ n\\_distinct\\_b = 3 $: $ b $ 中有 3 种不同的颜色。\n   - $ same\\_orbit = true $: 数据标记表明 $ a $ 和 $ b $ 在同一轨道中。\n\n3. **群元素信息**:\n   - $ g\\_idx = 5 $: 群元素的索引为 5。\n   - $ g\\_perm = [5, 0, 1, 2, 3, 4] $: 对应的置换表示。\n\n---\n\n### 推理过程\n\n#### 1. 同一轨道的必要条件\n为了验证 $ a $ 和 $ b $ 是否在同一轨道中，必须满足以下条件：\n- $ a $ 和 $ b $ 的颜色分布相同（即每种颜色出现的次数一致）。\n- 存在一个群元素 $ g^k $，使得 $ g^k(a) = b $。\n\n从数据中可以看到：\n- $ a\\_coloring $ 和 $ b\\_coloring $ 的颜色分布均为 $ [2, 3, 1] $（颜色 0 出现 2 次，颜色 1 出现 3 次，颜色 2 出现 1 次）。\n- 因此，颜色分布一致，满足必要条件。\n\n#### 2. 验证群元素作用\n根据 $ g\\_idx = 5 $，对应的群元素为 $ g^5 $。置换 $ g^5 $ 的作用是将顶点按逆时针方向旋转 $ 5 \\times 60^\\circ = 300^\\circ $，等价于顺时针旋转 $ 60^\\circ $。其置换形式为：\n$$\ng^5 = (0 \\to 5, 1 \\to 0, 2 \\to 1, 3 \\to 2, 4 \\to 3, 5 \\to 4)\n$$\n\n将 $ g^5 $ 应用于 $ a\\_coloring $：\n$$\ng^5(a\\_coloring) = [a[5], a[0], a[1], a[2], a[3], a[4]] = [1, 0, 1, 1, 0, 2]\n$$\n结果恰好等于 $ b\\_coloring $。\n\n因此，$ g^5 $ 是将 $ a $ 映射到 $ b $ 的群元素。\n\n---\n\n### 结论\n\n1. **$ a $ 和 $ b $ 是否在同一轨道中？**\n   - 是的，$ a $ 和 $ b $ 在同一轨道中。\n\n2. **群元素见证：**\n   - 群元素 $ g^5 $ 将 $ a $ 映射到 $ b $。\n\n3. **简要推理：**\n   - $ a $ 和 $ b $ 的颜色分布一致，满足必要条件。\n   - 通过计算 $ g^5(a) $，验证了 $ g^5(a) = b $。\n\n$$\n\\boxed{\\text{$ a $ 和 $ b $ 在同一轨道中，群元素 $ g^5 $ 是见证。}}\n$$",
+          "elapsed_sec": 34.63,
+          "score": 4,
+          "rationale": "Correct + explicit step-by-step verification of g^5(a)=b."
+        },
+        {
+          "domain": "symmetry",
+          "case_id": "same-028",
+          "condition": "rtc",
+          "response": "### 问题分析与推理\n\n我们需要判断正六边形顶点的两种着色方案 $a$ 和 $b$ 是否在同一个 $Z_6$ 轨道下。如果它们在同一个轨道中，则需要找到一个群元素作为见证；如果不在同一个轨道中，则需要说明哪个不变量阻断了等价性。\n\n#### 数据解读\n1. **引擎结构数据 (R)**:\n   - **元数据** (`metadata`):\n     - `same_orbit: true` 表明 $a$ 和 $b$ 在同一个轨道中。\n     - `g_idx: 5` 和 `g_perm: [5, 0, 1, 2, 3, 4]` 提供了一个具体的群元素，表明通过该群作用可以将 $a$ 映射到 $b$。\n     - `orbit_size_a` 和 `orbit_size_b` 都为 6，表明 $a$ 和 $b$ 的轨道大小相同。\n     - `n_distinct_a` 和 `n_distinct_b` 都为 3，表明 $a$ 和 $b$ 使用的颜色数量相同。\n   - **变换轨迹 (T)**:\n     - `transform_trace` 显示了群元素 $g = (5, 0, 1, 2, 3, 4)$ 的作用过程：\n       - 初始状态 $a = [0, 1, 1, 0, 2, 1]$。\n       - 应用群作用后变为 $b = [1, 0, 1, 1, 0, 2]$。\n       - 变换过程中改变了 5 个顶点的颜色，且固定了顶点 2。\n   - **反事实对比 (C)**:\n     - **边界松弛策略**:\n       - 将群从 $Z_6$ 扩展到 $D_6$（加入反射操作），结果未改变：$a$ 和 $b$ 仍然在同一个轨道中。\n     - **条件移除策略**:\n       - 移除所有对称性（群变为平凡群 $\\{e\\}$），结果改变：$a$ 和 $b$ 不再属于同一个轨道。\n       - 这表明 $a$ 和 $b$ 的等价性依赖于旋转对称性。\n     - **操作扰动策略**:\n       - 替换群元素为非群操作（如交换顶点 0 和 1），结果改变：$a$ 和 $b$ 不再属于同一个轨道。\n       - 这表明只有群内的合法操作才能保持轨道等价性。\n\n#### 结论推理\n1. **是否在同一轨道中**:\n   - 根据引擎结构数据和变换轨迹，$a$ 和 $b$ 确实在同一个 $Z_6$ 轨道中。\n   - 具体见证群元素为 $g = (5, 0, 1, 2, 3, 4)$，即旋转操作使得 $a$ 映射到 $b$。\n\n2. **不变量分析**:\n   - 如果 $a$ 和 $b$ 不在同一轨道中，通常是因为某些不变量不同。例如：\n     - 颜色分布（颜色频率）。\n     - 对称性特征（如稳定子群大小）。\n   - 在本例中，$a$ 和 $b$ 的颜色分布相同（`n_distinct_a = n_distinct_b = 3`），且稳定子群大小一致（`stabilizer_a_size_pre = stabilizer_a_size_post = 1`）。因此没有不变量阻断等价性。\n\n3. **反事实验证**:\n   - 边界松弛策略表明，即使加入反射对称性，$a$ 和 $b$ 仍然等价。\n   - 条件移除策略表明，移除旋转对称性后，$a$ 和 $b$ 不再等价，证明等价性依赖于旋转对称性。\n   - 操作扰动策略表明，非群操作会破坏等价性，进一步验证了群作用的重要性。\n\n#### 最终结论\n$$\n\\boxed{\\text{$a$ 和 $b$ 在同一个 $Z_6$ 轨道中，见证群元素为 } g = (5, 0, 1, 2, 3, 4).}\n$$",
+          "elapsed_sec": 34.89,
+          "score": 4,
+          "rationale": "Correct + 5/6 vertices changed + counterfactual key-condition."
+        },
+        {
+          "domain": "knot_theory",
+          "case_id": "3_1-r2-3",
+          "condition": "baseline",
+          "response": "### 问题分析\n\nReidemeister 移动（R1、R2、R3）是研究纽结理论中等价类的重要工具。它们允许我们在不改变纽结拓扑类型的情况下对纽结图进行变形。其中，R2 移动涉及在图上插入或删除一对相消的交叉点。\n\n#### 数据解读\n根据提供的 `summary_delta` 和 `metadata`：\n1. **初始状态**：\n   - 纽结为 $3_1$（三叶结）。\n   - 初始交叉数为 3，初始 writhe 为 -3。\n2. **应用 R2 后的状态**：\n   - 交叉数增加到 5（增加了 2 个交叉点）。\n   - Writhe 保持不变（仍为 -3）。\n3. **Delta 数据**：\n   - `writhe_delta = 0`：说明 writhe 没有变化。\n   - `crossing_count_a = 2`：表示新增了 2 个交叉点。\n   - `writhe_a = 0`：说明新增的交叉点对 writhe 的贡献为 0。\n\n#### 任务目标\n我们需要判断该 R2 应用是否合法，并分析 signature、determinant、Alexander 多项式和 writhe 的变化情况。\n\n---\n\n### 推理与结论\n\n#### 1. **R2 的合法性**\nR2 移动的定义是在纽结图中插入或删除一对相消的交叉点，且这对交叉点不会改变纽结的拓扑类型。从数据来看：\n- 新增的两个交叉点没有改变 writhe（`writhe_delta = 0`），这符合 R2 的要求。\n- 交叉数从 3 增加到 5，增量为 2，也符合 R2 的操作特征。\n\n因此，R2 应用是**合法的**，它没有改变纽结的拓扑类型。\n\n---\n\n#### 2. **Writhe 的变化**\nWrithe 是纽结图中所有交叉点的符号和。对于 R2 移动：\n- 插入的一对相消交叉点必然具有相反的符号（一个正交叉和一个负交叉），因此它们对 writhe 的总贡献为 0。\n- 数据中 `writhe_pre = -3` 和 `writhe_post = -3`，表明 writhe 没有变化。\n\n结论：**Writhe 保持不变**。\n\n---\n\n#### 3. **Signature 的变化**\nSignature 是纽结的一个重要拓扑不变量，用于区分纽结的镜像和其他拓扑特性。R2 移动不会改变纽结的拓扑类型，因此也不会改变 signature。\n\n结论：**Signature 保持不变**。\n\n---\n\n#### 4. **Determinant 的变化**\nDeterminant 是纽结的另一个拓扑不变量，通常通过 Seifert 矩阵计算得到。R2 移动不会改变纽结的拓扑类型，因此 determinant 也不会发生变化。\n\n结论：**Determinant 保持不变**。\n\n---\n\n#### 5. **Alexander 多项式的变化**\nAlexander 多项式是纽结的多项式不变量，用于区分不同的纽结类型。R2 移动不会改变纽结的拓扑类型，因此 Alexander 多项式也不会发生变化。\n\n结论：**Alexander 多项式保持不变**。\n\n---\n\n### 总结\n\n基于以上分析，我们可以得出以下结论：\n\n1. **R2 应用是合法的**，因为它没有改变纽结的拓扑类型。\n2. **各不变量的变化情况**：\n   - Writhe：保持不变。\n   - Signature：保持不变。\n   - Determinant：保持不变。\n   - Alexander 多项式：保持不变。\n\n$$\n\\boxed{\\text{R2 应用合法，所有不变量均保持不变。}}\n$$",
+          "elapsed_sec": 31.02,
+          "score": 3,
+          "rationale": "Correct (R2 valid, all preserved). Sound but no explicit pre/post values."
+        },
+        {
+          "domain": "knot_theory",
+          "case_id": "3_1-r2-3",
+          "condition": "rtc",
+          "response": "### 结论与推理\n\n#### 1. **R2 变换的合法性**\n根据提供的数据，应用 R2 变换后，所有标准拓扑不变量（signature、determinant、Alexander 多项式、writhe）均保持不变。具体表现为：\n- **Signature**：从 -2 到 -2，保持不变。\n- **Determinant**：从 3 到 3，保持不变。\n- **Alexander 多项式**：标准化形式为 `[1, -1, 1]`，保持一致。\n- **Writhe**：从 -3 到 -3，保持不变。\n\n此外，变换轨迹（T）显示新增了一对交叉点，其符号分别为 `+1` 和 `-1`，满足 R2 变换的要求（插入一对相消的交叉）。因此，该 R2 应用是合法的。\n\n---\n\n#### 2. **不变量的变化分析**\n##### (a) **Writhe 的变化**\n- R2 变换中新增的交叉点符号为 `+1` 和 `-1`，它们相互抵消，导致 writhe 的变化为 0。\n- 数据验证了这一点：`writhe_pre = -3`，`writhe_post = -3`。\n\n##### (b) **Signature 的变化**\n- Signature 是一个结的拓扑不变量，表示结的某种对称性特性。在合法的 R2 变换下，signature 不会发生变化。\n- 数据显示：`signature_pre = -2`，`signature_post = -2`，符合预期。\n\n##### (c) **Determinant 的变化**\n- Determinant 是 Alexander 多项式在特定值下的绝对值，也是一个拓扑不变量。\n- 数据显示：`determinant_pre = 3`，`determinant_post = 3`，保持不变。\n\n##### (d) **Alexander 多项式的变化**\n- Alexander 多项式是描述结类型的重要不变量。标准化后的多项式为 `[1, -1, 1]`，在变换前后完全一致。\n- 原始形式虽然看起来不同（`t^2 - t + 1` vs `t^4 - t^3 + t^2`），但这是由于多项式的展开形式不同，本质上它们是等价的。\n\n---\n\n#### 3. **反事实对比的验证**\n反事实对比（C）提供了对 R2 变换条件的关键性验证：\n\n##### (a) **边界松弛策略**\n- 在原始条件下，R2 插入的交叉点符号为 `(+1, -1)`，使得 writhe 保持不变。\n- 如果强制插入相同符号的交叉点（如 `(-1, -1)`），会导致 writhe 发生变化（`writhe_delta = -2`），并且 determinant 和 Alexander 多项式也会改变。\n- 这表明 R2 的合法性依赖于交叉点符号的严格配对规则。\n\n##### (b) **操作扰动策略**\n- 如果翻转某个交叉点的上下关系（非 Reidemeister 移动），会改变结的类型，导致 signature、determinant 和 Alexander 多项式发生变化。\n- 这说明 R2 必须严格遵循交叉点的插入规则，不能随意修改现有结构。\n\n##### (c) **条件移除策略**\n- 如果忽略平面性约束（planarity check），会导致不一致的图解，进而改变 signature 和 determinant。\n- 这强调了平面性约束在拓扑推理中的重要性。\n\n---\n\n#### 4. **总结**\n综合以上分析，可以得出以下结论：\n1. **R2 变换是合法的**，因为所有标准拓扑不变量（signature、determinant、Alexander 多项式、writhe）均保持不变。\n2. **R2 的合法性依赖于严格的符号配对规则**（`+1` 和 `-1`），以及平面性约束。\n3. **反事实对比验证了这些条件的必要性**，任何偏离都会破坏拓扑不变量的一致性。\n\n因此，案例 `3_1-r2-3` 中的 R2 应用是合法的，并且所有不变量均未发生变化。\n\n**最终结论**：  \n$$\n\\boxed{\\text{R2 变换合法，所有不变量保持不变。}}\n$$",
+          "elapsed_sec": 34.43,
+          "score": 4,
+          "rationale": "Correct + explicit signature, det, Alexander pre/post."
+        },
+        {
+          "domain": "knot_theory",
+          "case_id": "4_1-r2-4",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n#### 1. **Reidemeister Move R2 的定义**\nReidemeister Move R2 是一种基本的结图变换，允许在图上插入或删除一对相消的交叉（即两个交叉可以相互抵消）。R2 变换的核心性质是它不会改变结的拓扑类型（即不会改变结的本质结构），因此所有结的拓扑不变量（如 signature、determinant、Alexander 多项式等）都应保持不变。\n\n#### 2. **数据解读**\n根据提供的 JSON 数据：\n- **初始状态**：这是一个 $4_1$ 结（figure-eight knot），具有 4 个交叉点，writhe 值为 0。\n- **变换后状态**：经过 R2 变换后，交叉点数量从 4 增加到 6，但 writhe 值仍为 0。\n\n具体来看：\n- `writhe_delta` 为 0，说明 writhe 值没有变化。\n- `crossing_count_a` 为 2，表示插入了两个新的交叉点。\n- `crossing_count_b` 为 0，表示没有删除任何交叉点。\n- `n_crossings_pre` 和 `n_crossings_post` 分别为 4 和 6，验证了交叉点数量的变化。\n\n#### 3. **合法性判断**\nR2 变换的合法性要求：\n1. 插入的交叉对必须是相消的（即它们不会引入新的拓扑复杂性）。\n2. 变换后的图必须仍然表示同一个结类型。\n\n从数据来看：\n- 交叉点数量增加了 2，这符合 R2 变换的定义。\n- Writhe 值保持不变（`writhe_pre` 和 `writhe_post` 都为 0），说明插入的交叉对确实是相消的。\n- 因此，R2 应用是合法的。\n\n#### 4. **不变量分析**\n以下是对几个关键不变量的影响分析：\n\n##### (a) **Signature**\nSignature 是一个结的拓扑不变量，描述了结的某种对称性。由于 R2 不改变结的拓扑类型，signature 应保持不变。\n\n##### (b) **Determinant**\nDeterminant 是另一个拓扑不变量，与结的 Alexander 多项式相关。R2 变换不会改变 determinant，因为插入的交叉对不会影响结的基本拓扑结构。\n\n##### (c) **Alexander 多项式**\nAlexander 多项式是一个强不变量，能够区分不同的结类型。R2 变换不会改变 Alexander 多项式，因为插入的交叉对不会改变结的拓扑本质。\n\n##### (d) **Writhe**\nWrithe 是一个几何量，表示结图中所有交叉的符号和。虽然 writhe 本身不是拓扑不变量（因为它依赖于具体的投影方式），但在本例中，`writhe_pre` 和 `writhe_post` 都为 0，说明 R2 变换未改变 writhe 值。\n\n#### 5. **结论**\n基于以上分析，我们可以得出以下结论：\n1. **R2 应用是合法的**，因为它满足 Reidemeister Move 的定义，并且未改变结的拓扑类型。\n2. **不变量的变化情况**：\n   - Signature：保持不变。\n   - Determinant：保持不变。\n   - Alexander 多项式：保持不变。\n   - Writhe：保持不变（在本例中为 0）。\n\n$$\n\\boxed{\\text{R2 应用合法，所有不变量均保持不变。}}\n$$",
+          "elapsed_sec": 33.87,
+          "score": 3,
+          "rationale": "Correct (R2 valid for 4_1)."
+        },
+        {
+          "domain": "knot_theory",
+          "case_id": "4_1-r2-4",
+          "condition": "rtc",
+          "response": "",
+          "elapsed_sec": 20.46,
+          "error": "BadRequestError: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-e2c78193-7870-95b7-82ba-06519a8b73c7', 'request_id': 'e2c78193-7870-95b7-82ba-06519a8b73c7'}",
+          "score": null,
+          "rationale": "(empty response — API failure)"
+        },
+        {
+          "domain": "knot_theory",
+          "case_id": "5_2-r2-5",
+          "condition": "baseline",
+          "response": "",
+          "elapsed_sec": 20.45,
+          "error": "BadRequestError: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-c762e262-3f2b-99a9-a4ce-d2ee1848dd53', 'request_id': 'c762e262-3f2b-99a9-a4ce-d2ee1848dd53'}",
+          "score": null,
+          "rationale": "(empty response — API failure)"
+        },
+        {
+          "domain": "knot_theory",
+          "case_id": "5_2-r2-5",
+          "condition": "rtc",
+          "response": "",
+          "elapsed_sec": 20.4,
+          "error": "BadRequestError: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-df221eb4-a694-9737-9f7e-4691f00f4dd9', 'request_id': 'df221eb4-a694-9737-9f7e-4691f00f4dd9'}",
+          "score": null,
+          "rationale": "(empty response — API failure)"
+        },
+        {
+          "domain": "graph_connectivity",
+          "case_id": "R16_n12-t1",
+          "condition": "baseline",
+          "response": "",
+          "elapsed_sec": 20.38,
+          "error": "BadRequestError: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-baf6d9da-04ca-9645-b6ac-00737338a55b', 'request_id': 'baf6d9da-04ca-9645-b6ac-00737338a55b'}",
+          "score": null,
+          "rationale": "(empty response — API failure)"
+        },
+        {
+          "domain": "graph_connectivity",
+          "case_id": "R16_n12-t1",
+          "condition": "rtc",
+          "response": "",
+          "elapsed_sec": 20.52,
+          "error": "BadRequestError: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-98d12eaa-b39f-9820-903e-b7632b191d00', 'request_id': '98d12eaa-b39f-9820-903e-b7632b191d00'}",
+          "score": null,
+          "rationale": "(empty response — API failure)"
+        },
+        {
+          "domain": "graph_connectivity",
+          "case_id": "R02_n12-t4",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n我们根据提供的数据和问题背景逐步分析。\n\n---\n\n#### **1. 该边是否为桥？**\n\n**定义：**\n- 桥（bridge）是指在图中删除后会增加连通分量数的边。\n- 如果删除一条边后，图的连通性发生变化（即从连通变为不连通或连通分量数增加），则该边是桥。\n\n**已知信息：**\n- `summary_delta[\"n_components_a\"] = 0` 表示删除边 `[6, 7]` 后，连通分量数没有变化。\n- 因此，删除这条边不会使图分裂成更多的连通分量。\n\n**结论：**\n- 边 `[6, 7]` 不是桥。\n\n---\n\n#### **2. 删除后图是否仍连通？**\n\n**定义：**\n- 图是连通的，当且仅当任意两个顶点之间都存在路径。\n- 如果删除某条边后图仍然是连通的，则说明删除该边不会破坏图的整体连通性。\n\n**已知信息：**\n- `summary_delta[\"is_connected_b\"] = 0` 和 `summary_delta[\"is_connected_a\"] = 0` 表示删除边之前和之后，图的连通性状态没有改变。\n- 结合 `summary_delta[\"n_components_a\"] = 0`，可以推断删除边 `[6, 7]` 后，图的连通分量数保持不变。\n\n**结论：**\n- 删除边 `[6, 7]` 后，图仍然连通。\n\n---\n\n#### **3. 删除后桥数与关节点的变化**\n\n##### **(a) 桥数的变化**\n- 根据 `summary_delta[\"n_edges_b\"] = 0`，删除边 `[6, 7]` 后，桥的数量没有变化。\n- 这意味着删除边 `[6, 7]` 并未导致其他边成为新的桥，也没有使原有的桥失去其性质。\n\n##### **(b) 关节点的变化**\n- 数据中没有直接提到关节点数量的变化，但我们可以通过以下逻辑推断：\n  - 如果删除一条非桥边（如 `[6, 7]`），通常不会影响关节点的数量。\n  - 因为关节点的存在与否主要取决于顶点的邻接关系，而非单条边的删除。\n- 因此，关节点的数量很可能保持不变。\n\n**结论：**\n- 删除边 `[6, 7]` 后，桥的数量保持不变。\n- 关节点的数量也保持不变。\n\n---\n\n### **总结**\n\n基于以上分析，得出以下结论：\n\n1. 边 `[6, 7]` **不是桥**。\n2. 删除边 `[6, 7]` 后，图 **仍然连通**。\n3. 删除边 `[6, 7]` 后：\n   - 桥的数量 **保持不变**。\n   - 关节点的数量 **保持不变**。\n\n**最终答案：**\n$$\n\\boxed{\n\\text{边 [6, 7] 不是桥；删除后图仍连通；桥数与关节点数均不变。}\n}\n$$",
+          "elapsed_sec": 34.87,
+          "score": 2,
+          "rationale": "Correct on Q1 (not bridge) + Q2 (still connected) but wrong on Q3 bridge count change."
+        },
+        {
+          "domain": "graph_connectivity",
+          "case_id": "R02_n12-t4",
+          "condition": "rtc",
+          "response": "### 分析与推理\n\n#### 问题背景\n我们需要分析删除边 `[6, 7]` 对简单无向图的影响，具体包括：\n1. 判断该边是否为桥（bridge）。\n2. 删除后图是否仍连通。\n3. 删除后桥数和关节点（articulation points）的变化。\n\n以下是基于提供的数据（R、T、C）的详细推理过程。\n\n---\n\n### **1. 判断边 `[6, 7]` 是否为桥**\n\n#### 数据支持：\n- `detailed_comparison.deleted_edge_was_bridge: false`\n- `transform_trace.delta.is_bridge: false`\n\n**结论**：边 `[6, 7]` 不是桥。\n\n#### 推理：\n根据定义，桥是指删除后会导致图不连通的边。然而，从以下数据可以看出：\n- 删除边 `[6, 7]` 后，图仍然连通（`is_connected_post: true`）。\n- 图的连通分量数未发生变化（`n_components_pre: 1`, `n_components_post: 1`）。\n- 反事实对比中提到，只有当删除的边是桥时，图才会变得不连通（见 `boundary_relaxation` 策略的解释）。因此，边 `[6, 7]` 不是桥。\n\n---\n\n### **2. 删除后图是否仍连通**\n\n#### 数据支持：\n- `structural_comparison.is_connected_preserved: true`\n- `transform_trace.after_state.is_connected: true`\n- `detailed_comparison.connectivity_lost: false`\n\n**结论**：删除边 `[6, 7]` 后，图仍然连通。\n\n#### 推理：\n- 删除边 `[6, 7]` 后，图的连通性得以保持（`is_connected_post: true`）。\n- 图的连通分量数未增加（`n_components_pre: 1`, `n_components_post: 1`），表明图没有分裂成多个部分。\n- 反事实对比中进一步验证了这一点：如果删除的是桥，则图会变得不连通（见 `boundary_relaxation` 策略的解释）。但边 `[6, 7]` 不是桥，因此删除它不会破坏连通性。\n\n---\n\n### **3. 删除后桥数和关节点的变化**\n\n#### 数据支持：\n- 桥数变化：`n_bridges_pre: 5`, `n_bridges_post: 7`。\n- 关节点变化：`articulation_points_pre: [6, 7, 8, 11]`, `articulation_points_post: [6, 7, 8, 11]`。\n\n**结论**：\n1. 删除边 `[6, 7]` 后，桥的数量增加了 2 条（从 5 条变为 7 条）。\n2. 删除边 `[6, 7]` 后，关节点的数量和集合未发生变化。\n\n#### 推理：\n##### (1) 桥数增加的原因：\n- 边 `[6, 7]` 虽然本身不是桥，但它的删除可能影响了其他边的“替代路径”性质。\n- 具体来说，删除边 `[6, 7]` 后，某些原本可以通过该边形成替代路径的边失去了这种能力，从而成为了新的桥。\n- 这种现象在复杂图结构中常见，尤其是当删除的边位于某些关键区域时。\n\n##### (2) 关节点未变化的原因：\n- 关节点是指删除某个顶点后会导致图不连通的顶点。\n- 删除边 `[6, 7]` 并未改变顶点之间的连通性（`is_connected_preserved: true`），因此关节点集合保持不变。\n- 顶点 `6` 和 `7` 的度数虽然减少了（`endpoint_degrees_before: [5, 3]`, `endpoint_degrees_after: [4, 2]`），但这并未使它们失去作为关节点的性质。\n\n---\n\n### **反事实对比验证**\n\n#### (1) 边界松弛策略（`boundary_relaxation`）\n- 原始条件：删除非桥边 `[1, 2]`，图保持连通。\n- 修改条件：删除桥边 `[4, 5]`，图变得不连通。\n- 验证了桥的定义：只有桥的删除才会导致图不连通。\n\n#### (2) 操作扰动策略（`operation_perturbation`）\n- 原始操作：删除边 `[0, 1]`，图分裂为两个连通分量。\n- 修改操作：添加边 `[0, 5]`，图重新连通。\n- 验证了删除和添加操作的不对称性：删除操作可能导致连通性丧失，而添加操作通常用于恢复连通性。\n\n---\n\n### **最终结论**\n\n1. **边 `[6, 7]` 是否为桥？**\n   - **否**，边 `[6, 7]` 不是桥。\n\n2. **删除后图是否仍连通？**\n   - **是**，删除边 `[6, 7]` 后，图仍然连通。\n\n3. **删除后桥数和关节点的变化？**\n   - 桥的数量 **增加 2 条**（从 5 条变为 7 条）。\n   - 关节点的数量和集合 **未发生变化**（仍然是 `[6, 7, 8, 11]`）。\n\n---\n\n### **总结**\n通过结合结构数据（R）、变换轨迹（T）和反事实对比（C），我们得出了上述结论。这些分析不仅验证了删除边 `[6, 7]` 的直接影响，还揭示了其对全局拓扑结构的间接影响（如桥数的增加）。",
+          "elapsed_sec": 42.25,
+          "score": 4,
+          "rationale": "All correct + explicit bridge count 5→7 + articulation set unchanged."
+        },
+        {
+          "domain": "graph_connectivity",
+          "case_id": "R00_n8-t3",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n我们基于提供的数据和问题背景逐步分析，回答三个问题。\n\n---\n\n#### **(1) 该边是否为桥？**\n\n**定义：**\n- 桥（bridge）是指在图中删除后会使图的连通分量增加的边。\n\n**数据分析：**\n- `is_connected_a` 的值为 `{ \"pre\": true, \"post\": false }`，表明：\n  - 删除边 `[4, 7]` 前，图是连通的。\n  - 删除边 `[4, 7]` 后，图变得不连通。\n- `n_components_a` 的值为 `1`，表明删除边 `[4, 7]` 后，连通分量增加了 1。\n\n**结论：**\n- 删除边 `[4, 7]` 后，图从连通变为不连通，且连通分量增加了 1。因此，边 `[4, 7]` 是一个**桥**。\n\n---\n\n#### **(2) 删除后图是否仍连通？**\n\n**数据分析：**\n- `is_connected_a[\"post\"]` 的值为 `false`，表明删除边 `[4, 7]` 后，图不再连通。\n\n**结论：**\n- 删除边 `[4, 7]` 后，图**不再连通**。\n\n---\n\n#### **(3) 删除后桥数与关节点的变化**\n\n**桥数变化：**\n- 初始时，图有 `n_edges_b = 0` 条桥（即没有明确记录初始桥数）。\n- 删除边 `[4, 7]` 后，由于它本身是一条桥，删除后这条桥自然消失。\n- 然而，删除桥可能导致其他原本不是桥的边变成桥（因为删除桥可能分割了某些路径）。但由于题目未提供进一步信息，我们无法直接判断其他边是否成为新的桥。\n- 因此，桥数的变化需要更多信息才能完全确定。\n\n**关节点变化：**\n- 关节点（articulation point）是指删除该点后会使图的连通分量增加的顶点。\n- 删除边 `[4, 7]` 后，如果顶点 `4` 或 `7` 在原图中是关节点，则它们可能不再是关节点（因为删除边可能减少了它们的重要性）。\n- 如果顶点 `4` 或 `7` 在原图中不是关节点，则它们可能成为关节点（因为删除边可能使它们成为分割点）。\n- 由于题目未提供关节点的初始状态，我们无法准确判断关节点的具体变化。\n\n**结论：**\n- 删除边 `[4, 7]` 后，桥数和关节点的数量可能会发生变化，但具体变化需要更多信息来确定。\n\n---\n\n### 总结\n\n1. **该边是否为桥？**\n   - **是桥**。\n\n2. **删除后图是否仍连通？**\n   - **不连通**。\n\n3. **删除后桥数与关节点的变化？**\n   - 桥数和关节点数量可能会发生变化，但具体变化需要更多信息来确定。\n\n**最终答案：**\n$$\n\\boxed{\n\\text{(1) 是桥；(2) 不连通；(3) 桥数和关节点数量可能变化，需更多信息确定。}\n}\n$$",
+          "elapsed_sec": 29.93,
+          "score": 2,
+          "rationale": "Correct on Q1 (bridge) + Q2 (disconnected) but hedges on Q3."
+        },
+        {
+          "domain": "graph_connectivity",
+          "case_id": "R00_n8-t3",
+          "condition": "rtc",
+          "response": "### 问题分析与推理\n\n我们需要基于给定的结构数据 (R)、变换轨迹 (T) 和反事实对比 (C)，回答以下三个问题：\n\n1. **该边是否为桥？**\n2. **删除后图是否仍连通？**\n3. **删除后桥数与关节点（articulation point）的变化。**\n\n以下是逐步推理过程。\n\n---\n\n### **1. 该边是否为桥？**\n\n#### 数据支持：\n- **结构数据 (R)** 中明确指出：\n  - `deleted_edge_was_bridge: true`。\n  - 删除边 `[4, 7]` 后，`n_components_post` 从 1 增加到 2 (`n_components_preserved: false`)，表明删除该边导致图不再连通。\n  - `connectivity_lost: true` 表明删除该边破坏了图的连通性。\n- **变换轨迹 (T)** 中也确认：\n  - `is_bridge: true`。\n  - 删除边 `[4, 7]` 后，端点度数变化为 `[1, 3] -> [0, 2]`，其中一端点变为孤立点（度数为 0），进一步验证该边是桥。\n\n#### 反事实对比 (C) 的支持：\n- 在第一个反事实案例中，通过比较删除非桥边和桥边的结果：\n  - 删除非桥边时，`is_connected_after: true`，图仍然连通。\n  - 删除桥边时，`is_connected_after: false`，图被断开。\n  - 这说明桥边的删除会破坏连通性，而非桥边不会。\n\n#### 结论：\n**边 `[4, 7]` 是桥。**\n\n---\n\n### **2. 删除后图是否仍连通？**\n\n#### 数据支持：\n- **结构数据 (R)** 显示：\n  - `is_connected_pre: true`，初始图是连通的。\n  - `is_connected_post: false`，删除边后图不再连通。\n  - `n_components_post: 2`，删除边后图分裂为两个连通分量。\n- **变换轨迹 (T)** 确认：\n  - `connectivity_lost: true`。\n  - 删除边后，`components_change: 1`，即连通分量数量增加了 1。\n\n#### 反事实对比 (C) 的支持：\n- 第一个反事实案例中，删除非桥边时：\n  - `is_connected_after: true`，图保持连通。\n- 而删除桥边时：\n  - `is_connected_after: false`，图被断开。\n- 这再次验证了桥边对连通性的重要性。\n\n#### 结论：\n**删除边 `[4, 7]` 后，图不再连通。**\n\n---\n\n### **3. 删除后桥数与关节点的变化**\n\n#### 桥数变化：\n- **结构数据 (R)** 显示：\n  - 删除前：`n_bridges_pre: 1`。\n  - 删除后：`n_bridges_post: 0`。\n  - 因此，桥的数量减少了 1。\n- **原因分析**：\n  - 删除的边 `[4, 7]` 本身是唯一的桥，删除后它不再存在，因此桥数减少。\n  - 删除桥后，图分裂为多个连通分量，每个分量内部可能不再包含桥。\n\n#### 关节点变化：\n- **结构数据 (R)** 显示：\n  - 删除前：`articulation_points_pre: [7]`，顶点 7 是唯一的关节点。\n  - 删除后：`articulation_points_post: []`，没有关节点。\n- **原因分析**：\n  - 删除桥边 `[4, 7]` 后，顶点 7 不再连接其他顶点，因此失去了作为关节点的性质。\n  - 图分裂为两个连通分量，且每个分量内部没有关节点。\n\n#### 反事实对比 (C) 的支持：\n- 第二个反事实案例中提到：\n  - 边删除操作会导致连通分量增加，而边添加操作会减少连通分量。\n  - 桥的删除直接影响图的连通性和关节点分布。\n\n#### 结论：\n- **桥数减少了 1。**\n- **关节点数量从 1 减少到 0。**\n\n---\n\n### **综合结论**\n\n基于以上分析，我们可以得出以下结论：\n\n1. **该边 `[4, 7]` 是桥。**\n2. **删除该边后，图不再连通。**\n3. **删除该边后，桥数减少了 1，关节点数量从 1 减少到 0。**\n\n**最终答案：**\n$$\n\\boxed{\n\\text{1. 是桥；2. 不再连通；3. 桥数减少 1，关节点数量减少到 0。}\n}\n$$",
+          "elapsed_sec": 35.81,
+          "score": 4,
+          "rationale": "All correct: bridge, disconnected, bridges 1→0, articulation 1→0."
+        },
+        {
+          "domain": "boundary_interior",
+          "case_id": "crosspair-4-L_shape-vs-staircase",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n#### 1. **问题背景回顾**\nPick 定理描述了网格多边形（顶点为整点的简单多边形）的面积 $ A $、边界格点数 $ B $ 和内部格点数 $ I $ 的关系：\n$$\nA = I + \\frac{B}{2} - 1\n$$\n其中：\n- $ A $ 是多边形的面积。\n- $ B $ 是多边形边界上的整点数。\n- $ I $ 是多边形内部的整点数。\n\n我们需要验证两个多边形（L 形状和阶梯形状）是否满足 Pick 定理，并判断它们的几何属性是否一致。\n\n---\n\n#### 2. **数据解读**\n从提供的 JSON 数据中，`summary_delta` 部分的所有值均为 0。这意味着：\n- **面积差**：`area_a` 和 `area_b` 相等，且两者均为 0。\n- **边界格点数差**：`B_a` 和 `B_b` 相等，且两者均为 0。\n- **内部格点数差**：`I_a` 和 `I_b` 相等，且两者均为 0。\n- **顶点数差**：`n_vertices_a` 和 `n_vertices_b` 相等，且两者均为 0。\n\n此外，`metadata` 提供了以下信息：\n- 多边形 A 是 L 形状，多边形 B 是阶梯形状。\n- 操作是 `identity_compare`，即直接比较两者的几何属性。\n- 两者的顶点数均为 6。\n\n---\n\n#### 3. **初步观察**\n由于 `summary_delta` 中所有值均为 0，这表明：\n1. 两个多边形的面积 $ A $ 相等。\n2. 边界格点数 $ B $ 相等。\n3. 内部格点数 $ I $ 相等。\n4. 顶点数相等。\n\n因此，从数值上看，这两个多边形在 Pick 定理相关的几何属性上完全一致。\n\n---\n\n#### 4. **Pick 定理验证**\n根据 Pick 定理：\n$$\nA = I + \\frac{B}{2} - 1\n$$\n我们代入已知条件：\n- $ A_a = A_b $\n- $ B_a = B_b $\n- $ I_a = I_b $\n\n显然，对于两个多边形，Pick 定理均成立，因为它们的几何属性完全一致。\n\n---\n\n#### 5. **进一步分析**\n尽管两个多边形在 Pick 定理相关的几何属性上一致，但它们的形状不同（一个是 L 形状，另一个是阶梯形状）。这说明：\n- Pick 定理仅依赖于 $ A $、$ B $ 和 $ I $，而不依赖于具体的形状。\n- 不同形状的多边形可以具有相同的 $ A $、$ B $ 和 $ I $ 值。\n\n---\n\n### 结论\n基于以上分析，我们可以得出以下结论：\n\n1. **Pick 定理成立**：对于给定的两个多边形（L 形状和阶梯形状），Pick 定理均成立。\n2. **几何属性一致**：两个多边形的面积 $ A $、边界格点数 $ B $ 和内部格点数 $ I $ 完全一致。\n3. **形状无关性**：尽管两个多边形的形状不同，它们在 Pick 定理相关的几何属性上没有差异。\n\n$$\n\\boxed{\\text{Pick 定理成立，且两个多边形的几何属性一致。}}\n$$",
+          "elapsed_sec": 26.98,
+          "score": 2,
+          "rationale": "Correct conclusion (Pick holds, equal attributes) but argues from delta=0 abstractly without computing A,B,I."
+        },
+        {
+          "domain": "boundary_interior",
+          "case_id": "crosspair-4-L_shape-vs-staircase",
+          "condition": "rtc",
+          "response": "### 结论与推理\n\n基于提供的结构数据 (R)、变换轨迹 (T) 和反事实对比 (C)，我们对问题进行了全面分析。以下是逐步推理和最终结论：\n\n---\n\n### **1. Pick 定理的适用性**\nPick 定理 $ A = I + \\frac{B}{2} - 1 $ 的成立依赖于以下条件：\n- 多边形必须是**简单多边形**（无自交）。\n- 多边形的顶点必须是**整数格点**（lattice polygon）。\n\n#### **案例 crosspair-4-L_shape-vs-staircase 的验证**\n- **初始状态（L_shape）：**\n  - 面积 $ A = 12.0 $，边界格点数 $ B = 16 $，内部格点数 $ I = 5 $。\n  - 根据 Pick 公式计算：$ A = I + \\frac{B}{2} - 1 = 5 + \\frac{16}{2} - 1 = 12.0 $，与实际面积一致。\n  - 结论：Pick 定理在初始状态下成立。\n\n- **变换后状态（staircase）：**\n  - 变换为平移操作（translate），且平移向量为 $[0, 0]$，即多边形未发生实际变化。\n  - 面积 $ A = 12.0 $，边界格点数 $ B = 16 $，内部格点数 $ I = 5 $。\n  - 再次验证 Pick 公式：$ A = I + \\frac{B}{2} - 1 = 5 + \\frac{16}{2} - 1 = 12.0 $，与实际面积一致。\n  - 结论：Pick 定理在变换后仍然成立。\n\n#### **不变量分析**\n- **面积不变性：**\n  - 平移操作不改变多边形的几何形状或位置，因此面积保持不变。\n  - 数据显示 $ \\text{area_preserved} = \\text{true} $，验证了这一点。\n  \n- **边界格点数 $ B $ 和内部格点数 $ I $ 不变性：**\n  - 平移操作不会改变多边形的边界和内部格点分布。\n  - 数据显示 $ \\Delta B = 0 $ 和 $ \\Delta I = 0 $，进一步验证了这一点。\n\n- **Pick 定理的保持性：**\n  - 数据显示 $ \\text{pick_preserved} = \\text{true} $，表明 Pick 定理在变换前后均成立。\n\n---\n\n### **2. 反事实对比的启示**\n\n#### **(a) 边界松弛策略（boundary_relaxation）**\n- **修改条件：**\n  - 将一个顶点从 $[0, 0]$ 移动到 $[0.5, 0]$，使多边形不再是整数格点多边形。\n- **结果：**\n  - 面积从 $ 12.0 $ 减少到 $ 11.25 $。\n  - 边界格点数 $ B $ 和内部格点数 $ I $ 无法定义（非整数格点多边形）。\n  - Pick 定理不再适用。\n- **启示：**\n  - Pick 定理严格要求顶点为整数格点。一旦顶点偏离整数格点，Pick 定理失效。\n\n#### **(b) 操作扰动策略（operation_perturbation）**\n- **修改条件：**\n  - 将剪切操作（shear，行列式为 1）替换为非均匀缩放操作（scale_non_uniform，行列式为 2）。\n- **结果：**\n  - 面积从 $ 12.0 $ 增加到 $ 24.0 $。\n  - 边界格点数 $ B $ 和内部格点数 $ I $ 增加，但 Pick 定理仍然成立。\n- **启示：**\n  - 行列式为 1 的线性变换（如剪切）保持面积不变，并且保持 Pick 定理成立。\n  - 行列式不为 1 的线性变换（如缩放）会改变面积，但只要变换后的多边形仍然是整数格点多边形，Pick 定理仍然适用。\n\n#### **(c) 条件移除策略（condition_removal）**\n- **修改条件：**\n  - 将简单多边形变为自交多边形（如蝴蝶结形状）。\n- **结果：**\n  - 面积从 $ 12.0 $ 变为 $ 0.0 $（鞋带公式计算的是有符号面积）。\n  - 边界格点数 $ B $ 和内部格点数 $ I $ 无法定义。\n  - Pick 定理不再适用。\n- **启示：**\n  - Pick 定理仅适用于简单多边形。自交多边形会导致“内部”概念模糊，从而破坏 Pick 定理的适用性。\n\n---\n\n### **3. 综合分析与结论**\n\n#### **(a) Pick 定理的适用范围**\nPick 定理仅适用于满足以下条件的多边形：\n1. **简单多边形**（无自交）。\n2. **整数格点多边形**（顶点均为整数坐标）。\n\n#### **(b) 变换对 Pick 定理的影响**\n- **平移操作：**\n  - 平移操作不会改变多边形的几何特性，因此 Pick 定理始终成立。\n- **剪切操作（行列式为 1 的线性变换）：**\n  - 剪切操作保持面积不变，并且保持 Pick 定理成立。\n- **缩放操作（行列式不为 1 的线性变换）：**\n  - 缩放操作会改变面积，但只要变换后的多边形仍然是整数格点多边形，Pick 定理仍然适用。\n- **其他操作（如旋转、变形）：**\n  - 如果操作导致多边形不再是整数格点多边形或不再是简单多边形，则 Pick 定理失效。\n\n#### **(c) 反事实对比的意义**\n- 反事实对比揭示了 Pick 定理的边界条件：\n  - 整数格点条件是硬性约束。\n  - 简单多边形条件是必要前提。\n  - 特定变换（如剪切、平移）可以保持 Pick 定理的适用性，而其他变换（如缩放、变形）可能破坏其适用性。\n\n---\n\n### **最终结论**\n对于案例 `crosspair-4-L_shape-vs-staircase`，由于多边形在变换前后均为整数格点简单多边形，且变换为平移操作，Pick 定理在变换前后均成立。\n\n$$\n\\boxed{\\text{Pick 定理在本案例中始终成立。}}\n$$",
+          "elapsed_sec": 59.71,
+          "score": 4,
+          "rationale": "Correct: A=12 B=16 I=5, Pick verified, comprehensive counterfactuals."
+        },
+        {
+          "domain": "boundary_interior",
+          "case_id": "rectangle_4x3-shear-0",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n#### 1. **Pick 定理简介**\nPick 定理描述了网格多边形（顶点为整点的简单多边形）的面积 $ A $、边界格点数 $ B $、内部格点数 $ I $ 之间的关系：\n$$\nA = I + \\frac{B}{2} - 1\n$$\n其中：\n- $ A $ 是多边形的面积；\n- $ B $ 是多边形边界上的整点数；\n- $ I $ 是多边形内部的整点数。\n\nPick 定理成立的前提是多边形必须是简单多边形（没有自交），且所有顶点均为整点。\n\n---\n\n#### 2. **案例背景分析**\n从提供的 JSON 数据来看，案例 `rectangle_4x3-shear-0` 涉及一个初始矩形多边形（`preset: rectangle_4x3`），经过剪切变换（`operation: shear`）后得到一个新的多边形。我们需要验证 Pick 定理是否在剪切变换前后仍然成立。\n\n##### 初始矩形数据\n- 矩形尺寸为 $ 4 \\times 3 $，因此其面积为：\n  $$\n  A_{\\text{pre}} = 4 \\times 3 = 12\n  $$\n- 边界格点数 $ B_{\\text{pre}} $ 和内部格点数 $ I_{\\text{pre}} $ 可以通过几何计算得出：\n  - 边界格点数 $ B_{\\text{pre}} = 14 $（矩形四条边上的整点总数）。\n  - 内部格点数 $ I_{\\text{pre}} = 6 $（矩形内部的整点总数）。\n\n验证 Pick 定理：\n$$\nA_{\\text{pre}} = I_{\\text{pre}} + \\frac{B_{\\text{pre}}}{2} - 1\n$$\n代入数据：\n$$\n12 = 6 + \\frac{14}{2} - 1\n$$\n$$\n12 = 6 + 7 - 1\n$$\n$$\n12 = 12\n$$\nPick 定理在初始矩形中成立。\n\n---\n\n##### 剪切变换后的多边形\n剪切变换由矩阵：\n$$\n\\begin{bmatrix}\n1 & 1 \\\\\n0 & 1\n\\end{bmatrix}\n$$\n表示，其行列式为 $ 1 $。由于行列式为 $ 1 $，剪切变换保持面积不变。\n\n然而，JSON 数据中关于剪切变换后的多边形信息几乎全部为零：\n- 面积 $ A_{\\text{post}} = 0.0 $\n- 边界格点数 $ B_{\\text{post}} = 0 $\n- 内部格点数 $ I_{\\text{post}} = 0 $\n\n这表明剪切变换后的多边形可能不再满足 Pick 定理的条件，或者数据记录存在问题。\n\n---\n\n#### 3. **问题排查**\n从 JSON 数据中可以观察到以下异常：\n1. **面积为零**：剪切变换不会改变面积，因此 $ A_{\\text{post}} = 0.0 $ 不合理。\n2. **边界和内部格点数为零**：剪切变换不会使多边形消失，因此 $ B_{\\text{post}} = 0 $ 和 $ I_{\\text{post}} = 0 $ 也不合理。\n3. **Pick 定理验证标志**：`pick_holds_a` 和 `pick_holds_b` 均为零，表明系统未正确验证 Pick 定理。\n\n这些异常可能是数据记录错误或算法实现问题导致的。\n\n---\n\n#### 4. **结论**\n基于上述分析，我们可以得出以下结论：\n\n1. **初始矩形满足 Pick 定理**：根据几何计算，初始矩形的面积、边界格点数和内部格点数均符合 Pick 定理。\n2. **剪切变换后的多边形数据异常**：JSON 数据中剪切变换后的多边形信息不合理，无法验证 Pick 定理是否成立。\n3. **建议检查数据来源**：需要重新检查剪切变换后的多边形数据，确保面积、边界格点数和内部格点数的计算正确。\n\n---\n\n#### 最终结论\n$$\n\\boxed{\\text{Pick 定理在初始矩形中成立，但剪切变换后的数据异常，需进一步核查。}}\n$$",
+          "elapsed_sec": 35.54,
+          "score": 2,
+          "rationale": "Verifies initial Pick (12=6+7−1) but mistakenly flags post-shear data as anomaly."
+        },
+        {
+          "domain": "boundary_interior",
+          "case_id": "rectangle_4x3-shear-0",
+          "condition": "rtc",
+          "response": "### 结论与推理\n\n基于提供的 **结构数据 (R)**、**变换轨迹 (T)** 和 **反事实对比 (C)**，我们可以得出以下结论并进行详细推理：\n\n---\n\n### 1. **Pick 定理的适用性**\nPick 定理适用于简单多边形（顶点为整点），其公式为：\n$$\nA = I + \\frac{B}{2} - 1\n$$\n其中：\n- $ A $ 是多边形的面积；\n- $ B $ 是边界上的格点数；\n- $ I $ 是内部的格点数。\n\n#### **案例 rectangle_4x3-shear-0 的验证**\n在本案例中：\n- **初始状态**：矩形的顶点为 $(0, 0), (4, 0), (4, 3), (0, 3)$，满足 Pick 定理。\n  - 面积 $ A = 12.0 $\n  - 边界格点数 $ B = 14 $\n  - 内部格点数 $ I = 6 $\n  - 验证：$ A = I + \\frac{B}{2} - 1 = 6 + \\frac{14}{2} - 1 = 12.0 $，成立。\n- **变换后状态**：经过剪切变换（shear），多边形仍然满足 Pick 定理。\n  - 面积 $ A = 12.0 $\n  - 边界格点数 $ B = 14 $\n  - 内部格点数 $ I = 6 $\n  - 验证：$ A = I + \\frac{B}{2} - 1 = 6 + \\frac{14}{2} - 1 = 12.0 $，成立。\n\n因此，Pick 定理在剪切变换前后均成立。\n\n---\n\n### 2. **不变量分析**\n从 **变换轨迹 (T)** 中可以看出：\n- **面积不变**：剪切变换是线性变换，且其行列式为 $ 1 $，因此面积保持不变。\n- **格点结构不变**：剪切变换保持了多边形的整点性质（即顶点仍为整点），因此 $ B $ 和 $ I $ 也未发生变化。\n- **Pick 定理的适用性不变**：由于上述条件均未破坏，Pick 定理在变换前后均适用。\n\n---\n\n### 3. **反事实对比分析**\n通过反事实对比 (C)，我们可以进一步理解 Pick 定理的关键条件及其破坏时的影响：\n\n#### **(1) 边界松弛 (boundary_relaxation)**\n- **修改条件**：将一个顶点移动到非整点位置（如 $(0.5, 0)$）。\n- **结果**：\n  - 多边形不再是整点多边形，Pick 定理不再适用。\n  - 边界格点数 $ B $ 和内部格点数 $ I $ 变得无意义。\n  - 面积仍可通过鞋带公式计算，但无法用 Pick 定理表示。\n- **关键条件**：Pick 定理要求顶点必须为整点。如果顶点偏离整点，定理失效。\n\n#### **(2) 操作扰动 (operation_perturbation)**\n- **修改条件**：将剪切变换替换为非均匀缩放（行列式为 $ 2 $）。\n- **结果**：\n  - 面积按行列式的绝对值缩放（从 $ 12.0 $ 变为 $ 24.0 $）。\n  - $ B $ 和 $ I $ 发生变化，但 Pick 定理仍然适用。\n- **关键条件**：Pick 定理适用于所有整点多边形，即使经过行列式不为 $ 1 $ 的线性变换，只要变换后的多边形仍是整点多边形，定理依然成立。\n\n#### **(3) 条件移除 (condition_removal)**\n- **修改条件**：将简单多边形改为自相交多边形（如交叉的“蝴蝶结”形状）。\n- **结果**：\n  - 自相交导致“内部”定义模糊，$ I $ 无法计算。\n  - 鞋带公式计算的面积变为 $ 0 $，与 Pick 定理不符。\n- **关键条件**：Pick 定理仅适用于简单多边形。自相交破坏了定理的适用性。\n\n---\n\n### 4. **综合推理**\n结合以上分析，可以得出以下结论：\n1. **Pick 定理的核心条件**：\n   - 多边形必须是简单多边形（无自相交）。\n   - 顶点必须为整点。\n2. **剪切变换的特性**：\n   - 剪切变换是行列式为 $ 1 $ 的线性变换，保持面积和整点性质不变。\n   - 因此，Pick 定理在剪切变换前后均成立。\n3. **反事实的重要性**：\n   - 如果破坏整点性质或简单性，Pick 定理失效。\n   - 不同类型的变换对 Pick 定理的影响不同：行列式为 $ 1 $ 的变换（如剪切）保持定理成立，而行列式不为 $ 1 $ 的变换可能改变 $ B $ 和 $ I $，但仍满足 Pick 定理。\n\n---\n\n### 5. **最终结论**\n对于案例 `rectangle_4x3-shear-0`，剪切变换前后：\n- 面积 $ A = 12.0 $ 保持不变；\n- 边界格点数 $ B = 14 $ 和内部格点数 $ I = 6 $ 保持不变；\n- Pick 定理始终成立。\n\n因此，**Pick 定理在该案例中完全适用，且剪切变换未破坏其适用性**。\n\n$$\n\\boxed{\\text{Pick 定理在剪切变换前后均成立，且面积、边界格点数和内部格点数一致。}}\n$$",
+          "elapsed_sec": 47.2,
+          "score": 4,
+          "rationale": "Correct: A=12 B=14 I=6, Pick verified pre & post."
+        },
+        {
+          "domain": "boundary_interior",
+          "case_id": "unit_square-shear-0",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n#### 1. **问题背景与 Pick 定理**\nPick 定理描述了网格多边形的面积 $ A $、边界格点数 $ B $、以及内部格点数 $ I $ 之间的关系：\n$$\nA = I + \\frac{B}{2} - 1\n$$\n其中：\n- $ A $ 是多边形的面积。\n- $ B $ 是多边形边界上的整点数。\n- $ I $ 是多边形内部的整点数。\n\n我们需要验证给定的多边形（或一对多边形）是否满足 Pick 定理的关系。\n\n#### 2. **案例数据解析**\n从 `summary_delta` 和 `metadata` 中提取关键信息：\n\n##### (a) 多边形 A 的数据：\n- 面积：$ \\text{area\\_a} = 0.0 $\n- 边界格点数：$ \\text{B\\_a} = 0 $\n- 内部格点数：$ \\text{I\\_a} = 0 $\n- Pick 定理是否成立：$ \\text{pick\\_holds\\_a} = 0 $（不成立）\n\n##### (b) 多边形 B 的数据：\n- 面积：$ \\text{area\\_b} = 0.0 $\n- 边界格点数：$ \\text{B\\_b} = 0 $\n- 内部格点数：$ \\text{I\\_b} = 0 $\n- Pick 定理是否成立：$ \\text{pick\\_holds\\_b} = 0 $（不成立）\n\n##### (c) 其他信息：\n- 操作类型：剪切变换（shear），矩阵为：\n  $$\n  \\begin{bmatrix}\n  1 & 1 \\\\\n  0 & 1\n  \\end{bmatrix}\n  $$\n  矩阵的行列式为 $ \\text{determinant} = 1 $，表明该变换保持面积不变。\n- 顶点数：变换前后均为 4 个顶点。\n\n#### 3. **验证 Pick 定理**\n根据 Pick 定理公式 $ A = I + \\frac{B}{2} - 1 $，我们分别检查多边形 A 和 B 的数据。\n\n##### (a) 多边形 A：\n- 面积 $ A = 0.0 $\n- 边界格点数 $ B = 0 $\n- 内部格点数 $ I = 0 $\n\n代入公式：\n$$\nA = I + \\frac{B}{2} - 1 \\implies 0.0 = 0 + \\frac{0}{2} - 1 \\implies 0.0 = -1\n$$\n显然不成立。因此，Pick 定理在多边形 A 上不成立。\n\n##### (b) 多边形 B：\n- 面积 $ A = 0.0 $\n- 边界格点数 $ B = 0 $\n- 内部格点数 $ I = 0 $\n\n代入公式：\n$$\nA = I + \\frac{B}{2} - 1 \\implies 0.0 = 0 + \\frac{0}{2} - 1 \\implies 0.0 = -1\n$$\n同样不成立。因此，Pick 定理在多边形 B 上也不成立。\n\n#### 4. **剪切变换的影响**\n剪切变换是一种线性变换，其矩阵行列式为 1，表示面积保持不变。然而，剪切变换可能改变多边形的形状和边界格点分布。从数据来看：\n- 变换后的多边形 B 的面积仍为 0.0，边界格点数和内部格点数也为 0。\n- 这表明剪切变换并未引入新的格点，但原始多边形 A 和变换后的多边形 B 均不符合 Pick 定理。\n\n#### 5. **结论**\n基于以上分析，可以得出以下结论：\n1. 给定的多边形 A 和 B 的面积、边界格点数、内部格点数均不符合 Pick 定理。\n2. 尽管剪切变换保持面积不变，但由于原始多边形 A 本身不符合 Pick 定理，变换后的多边形 B 也不符合。\n\n$$\n\\boxed{\\text{Pick 定理在该案例中不成立。}}\n$$",
+          "elapsed_sec": 35.07,
+          "score": 1,
+          "rationale": "Wrong — literally reads delta values as A=B=I=0 and concludes Pick fails."
+        },
+        {
+          "domain": "boundary_interior",
+          "case_id": "unit_square-shear-0",
+          "condition": "rtc",
+          "response": "### 结论与推理\n\n#### 1. **问题背景与目标**\nPick 定理描述了网格多边形（顶点为整点）的面积 $ A $、边界格点数 $ B $、内部格点数 $ I $ 的关系：\n$$\nA = I + \\frac{B}{2} - 1\n$$\n我们的任务是验证给定的多边形（或一对多边形）是否满足 Pick 定理，并分析变换过程中这些量的变化。\n\n#### 2. **案例分析：unit_square-shear-0**\n\n##### (a) **初始状态与变换后状态**\n根据 `transform_trace` 中的数据：\n- 初始状态（`before_state`）：\n  - 面积 $ A = 1.0 $\n  - 边界格点数 $ B = 4 $\n  - 内部格点数 $ I = 0 $\n  - Pick 定理成立（`pick_holds = true`）\n- 变换后状态（`after_state`）：\n  - 面积 $ A = 1.0 $ （保持不变）\n  - 边界格点数 $ B = 4 $ （保持不变）\n  - 内部格点数 $ I = 0 $ （保持不变）\n  - Pick 定理仍然成立（`pick_holds = true`）\n\n此外，`structural_comparison` 确认了以下几点：\n- 面积通过两种方法计算一致：Pick 公式和鞋带公式。\n- 多边形在变换前后均为网格多边形（`is_lattice_pre = true, is_lattice_post = true`）。\n- 多边形在变换前后均为简单多边形（`is_simple_pre = true, is_simple_post = true`）。\n\n##### (b) **变换性质**\n- 变换类型为剪切（shear），其变换矩阵为：\n  $$\n  \\begin{bmatrix}\n  1 & 1 \\\\\n  0 & 1\n  \\end{bmatrix}\n  $$\n  该矩阵的行列式为 1（`determinant = 1`），因此它是**单模变换**（unimodular transformation）。\n- 单模变换具有以下性质：\n  1. **面积保持不变**：因为行列式为 1。\n  2. **网格结构保持不变**：变换后的多边形仍然是网格多边形。\n  3. **Pick 定理适用性保持不变**：由于网格结构和简单性未被破坏。\n\n##### (c) **具体验证**\n从 `detailed_comparison` 中可以看到：\n- 变换前后的边界格点数 $ B $ 和内部格点数 $ I $ 均未发生变化。\n- 面积通过鞋带公式和 Pick 公式均计算为 1.0，且两者一致。\n\n综上所述，对于案例 `unit_square-shear-0`，Pick 定理在变换前后均成立，且所有关键量保持不变。\n\n---\n\n#### 3. **反事实对比分析**\n\n为了进一步验证结论的稳健性，我们分析反事实对比数据（C）中的三种策略：\n\n##### (a) **边界松弛（Boundary Relaxation）**\n- 修改条件：将一个顶点移动到非整点位置（如从 $[0, 0]$ 移动到 $[0.5, 0]$）。\n- 结果：\n  - 修改后的多边形不再是网格多边形（`is_lattice = false`）。\n  - Pick 定理不再适用（`pick_holds = false`）。\n  - 边界格点数 $ B $ 和内部格点数 $ I $ 不再有意义。\n- 推理：\n  - Pick 定理要求多边形的所有顶点必须为整点。一旦顶点偏离整点，Pick 定理失效。\n\n##### (b) **操作扰动（Operation Perturbation）**\n- 修改条件：将剪切操作替换为非均匀缩放（`scale_non_uniform`，比例因子为 $[2, 1]$）。\n- 结果：\n  - 面积扩大为原来的 2 倍（`area_after = 24.0`）。\n  - 边界格点数 $ B $ 和内部格点数 $ I $ 均发生变化，但 Pick 定理仍然成立（`pick_holds = true`）。\n- 推理：\n  - 非均匀缩放虽然改变了面积，但由于其变换矩阵的行列式为整数（`determinant = 2`），它仍然保持了网格结构，因此 Pick 定理依然适用。\n\n##### (c) **条件移除（Condition Removal）**\n- 修改条件：将简单多边形变为自相交多边形。\n- 结果：\n  - 自相交多边形的“内部”定义变得模糊，导致 $ I $ 和 $ B $ 的计数失去意义。\n  - Pick 定理不再适用（`pick_holds = false`）。\n- 推理：\n  - Pick 定理假设多边形是简单的（无自相交）。一旦多边形变为自相交，Pick 定理失效。\n\n---\n\n#### 4. **总结与最终结论**\n\n基于上述分析，我们可以得出以下结论：\n\n1. **对于案例 `unit_square-shear-0`**：\n   - 剪切变换是一种单模变换，保持了面积、边界格点数 $ B $、内部格点数 $ I $ 的不变性。\n   - Pick 定理在变换前后均成立。\n\n2. **反事实对比的启示**：\n   - Pick 定理对多边形的网格性和简单性有严格要求。一旦这些条件被破坏（如顶点偏离整点或出现自相交），Pick 定理将失效。\n   - 非均匀缩放等变换可能改变面积，但只要保持网格性，Pick 定理仍然适用。\n\n3. **一般性结论**：\n   - 对于任意网格多边形，如果对其进行单模变换（如剪切、旋转、平移等），Pick 定理始终成立。\n   - 如果变换破坏了网格性或简单性，则需要重新评估 Pick 定理的适用性。\n\n$$\n\\boxed{\\text{Pick 定理在案例 `unit_square-shear-0` 中成立，且在单模变换下保持不变。}}\n$$",
+          "elapsed_sec": 48.5,
+          "score": 4,
+          "rationale": "Correct: A=1 B=4 I=0, Pick verified, unimodular framing."
+        },
+        {
+          "domain": "discrete_curvature",
+          "case_id": "cross-octahedron-vs-icosahedron-f1-1",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n我们需要分析给定的三角化多面体变换（细分或比较）是否保持 Euler 特征 $\\chi$、总曲率（total curvature）、以及 Gauss-Bonnet 比率。以下是逐步分析：\n\n---\n\n#### **1. 数据解读**\n从 `summary_delta` 和 `metadata` 中提取关键信息：\n- **A 部分（初始结构，octahedron）**:\n  - $n_{\\text{vertices}_a} = 1$, $n_{\\text{edges}_a} = 3$, $n_{\\text{faces}_a} = 2$\n  - Euler 特征：$\\chi_a = V_a - E_a + F_a = 1 - 3 + 2 = 0$\n  - 总曲率：$\\text{total\\_curvature}_a = 0.0$\n  - Gauss-Bonnet 比率：$\\text{gauss\\_bonnet\\_ratio}_a = 0.0$\n\n- **B 部分（变换后结构，icosahedron 经过细分）**:\n  - $n_{\\text{vertices}_b} = 0$, $n_{\\text{edges}_b} = 0$, $n_{\\text{faces}_b} = 0$\n  - Euler 特征：$\\chi_b = V_b - E_b + F_b = 0 - 0 + 0 = 0$\n  - 总曲率：$\\text{total\\_curvature}_b = 0.0$\n  - Gauss-Bonnet 比率：$\\text{gauss\\_bonnet\\_ratio}_b = 0.0$\n\n- **元数据说明**:\n  - 初始结构为 octahedron（八面体），经过 stellar subdivision（星形细分）操作后，与 icosahedron（二十面体）相关联。\n  - 具体操作涉及对 face_index = 1 的面进行细分。\n\n---\n\n#### **2. 离散 Gauss-Bonnet 定理回顾**\n离散 Gauss-Bonnet 定理指出：\n$$\n\\sum \\text{(角度亏格)} = 2\\pi \\cdot \\chi\n$$\n其中：\n- 角度亏格是每个顶点处的角度缺陷（即 $2\\pi - \\text{周围角和}$）。\n- $\\chi = V - E + F$ 是 Euler 特征。\n\n在三角化的多面体中，总曲率等于角度亏格的总和，因此：\n$$\n\\text{total\\_curvature} = 2\\pi \\cdot \\chi\n$$\n\n---\n\n#### **3. Euler 特征是否被保持？**\n根据数据：\n- $\\chi_a = 0$, $\\chi_b = 0$\n- $\\text{euler\\_characteristic\\_match} = 0$ 表示 $\\chi_a \\neq \\chi_b$。\n\n然而，直接计算显示 $\\chi_a = \\chi_b = 0$，这表明 Euler 特征实际上被保持了。这里的 `euler_characteristic_match` 可能是一个标记错误。\n\n**结论**: Euler 特征 $\\chi$ 被保持。\n\n---\n\n#### **4. 总曲率是否被保持？**\n根据数据：\n- $\\text{total\\_curvature}_a = 0.0$, $\\text{total\\_curvature}_b = 0.0$\n\n由于总曲率与 Euler 特征直接相关（$\\text{total\\_curvature} = 2\\pi \\cdot \\chi$），而 $\\chi$ 被保持，因此总曲率也被保持。\n\n**结论**: 总曲率被保持。\n\n---\n\n#### **5. Gauss-Bonnet 比率是否被保持？**\nGauss-Bonnet 比率定义为：\n$$\n\\text{gauss\\_bonnet\\_ratio} = \\frac{\\text{total\\_curvature}}{2\\pi \\cdot \\chi}\n$$\n当 $\\chi = 0$ 时，分母为零，比率无意义（通常定义为 0）。因此：\n- $\\text{gauss\\_bonnet\\_ratio}_a = 0.0$, $\\text{gauss\\_bonnet\\_ratio}_b = 0.0$\n\n**结论**: Gauss-Bonnet 比率被保持（尽管其值恒为 0）。\n\n---\n\n#### **6. 其他观察**\n- 在细分操作中，顶点数、边数和面数的变化可能导致局部几何性质改变，但整体拓扑性质（如 $\\chi$ 和总曲率）保持不变。\n- 元数据中的 `kind: cross_pair` 表明这是两个不同多面体之间的比较，而非单一多面体的单纯细分。\n\n---\n\n### **最终结论**\n基于上述分析：\n1. Euler 特征 $\\chi$ 被保持。\n2. 总曲率被保持。\n3. Gauss-Bonnet 比率被保持（尽管其值为 0）。\n\n$$\n\\boxed{\\text{所有拓扑量均被保持。}}\n$$",
+          "elapsed_sec": 43.7,
+          "score": 2,
+          "rationale": "Confused (computes χ from delta values) but reaches 'preserved' conclusion in right direction."
+        },
+        {
+          "domain": "discrete_curvature",
+          "case_id": "cross-octahedron-vs-icosahedron-f1-1",
+          "condition": "rtc",
+          "response": "### 问题分析\n\n我们需要基于提供的结构数据 (R)、变换轨迹 (T) 和反事实对比 (C)，判断在给定的变换（stellar subdivision）中，Euler 特征 $\\chi$、总曲率（total curvature）、以及 Gauss-Bonnet 比率是否被保持，并结合反事实对比进一步验证这些不变量的性质。\n\n---\n\n### 数据解读与推理\n\n#### **1. 结构数据 (R)**\n- **初始状态**：\n  - 顶点数 $V = 6$\n  - 边数 $E = 12$\n  - 面数 $F = 8$\n  - Euler 特征 $\\chi = V - E + F = 2$\n  - 总曲率 $\\Sigma \\delta = 12.566371$（对应于 $4\\pi$，即球面的总曲率）\n  - Gauss-Bonnet 比率 $\\frac{\\Sigma \\delta}{2\\pi \\chi} = 2.0$\n\n- **变换后状态**：\n  - 顶点数 $V = 7$\n  - 边数 $E = 15$\n  - 面数 $F = 10$\n  - Euler 特征 $\\chi = V - E + F = 2$\n  - 总曲率 $\\Sigma \\delta = 12.566371$（未改变）\n  - Gauss-Bonnet 比率 $\\frac{\\Sigma \\delta}{2\\pi \\chi} = 2.0$\n\n- **结论**：\n  - Euler 特征 $\\chi$ 被保持。\n  - 总曲率 $\\Sigma \\delta$ 被保持。\n  - Gauss-Bonnet 比率 $\\frac{\\Sigma \\delta}{2\\pi \\chi}$ 被保持。\n\n此外，局部缺陷和全局不变量均未发生变化，表明变换是合法的 stellar subdivision。\n\n---\n\n#### **2. 变换轨迹 (T)**\n- **操作描述**：\n  - 对一个三角形面进行 stellar subdivision，新增一个顶点（索引为 6），并将其连接到原三角形的三个顶点。\n  - 新增了 1 个顶点、3 条边和 2 个面。\n\n- **关键观察**：\n  - 新增顶点的缺陷为 $-0.0$，即该顶点的角度亏格为零。\n  - 局部缺陷和总曲率均未发生变化。\n  - Euler 特征的变化量 $\\Delta \\chi = 0$，符合预期。\n\n- **结论**：\n  - 变换轨迹表明，stellar subdivision 是一种合法操作，不会破坏 Gauss-Bonnet 定理。\n\n---\n\n#### **3. 反事实对比 (C)**\n\n##### **(a) 边界松弛 (Boundary Relaxation)**\n- **修改条件**：\n  - 在 stellar subdivision 中，仅添加了一个退化三角形（两个顶点重合）。\n  - 这种操作导致新增顶点周围没有有效角度，其缺陷为 $2\\pi$。\n\n- **结果**：\n  - Euler 特征 $\\chi$ 保持不变。\n  - 总曲率增加 $6.283185$（即 $2\\pi$）。\n  - Gauss-Bonnet 定理不再成立。\n\n- **解释**：\n  - 退化三角形违反了几何一致性，导致总曲率与 Euler 特征之间的关系失效。\n\n##### **(b) 操作扰动 (Operation Perturbation)**\n- **修改条件**：\n  - 删除一个面，但保留其边界边。\n  - 这种操作创建了一个“洞”，破坏了闭合性。\n\n- **结果**：\n  - Euler 特征减少 $1$。\n  - 总曲率增加 $3.141592$（即 $\\pi$）。\n  - Gauss-Bonnet 定理不再成立。\n\n- **解释**：\n  - 删除面改变了拓扑结构，导致 Euler 特征和总曲率之间的平衡被打破。\n\n##### **(c) 条件移除 (Condition Removal)**\n- **修改条件**：\n  - 引入无效面索引（超出范围）。\n  - 这种操作破坏了几何网格的有效性。\n\n- **结果**：\n  - 网格无效，Gauss-Bonnet 定理无法计算。\n\n- **解释**：\n  - Gauss-Bonnet 定理依赖于闭合且一致的几何网格。任何违反流形一致性的操作都会使其失效。\n\n---\n\n### 综合结论\n\n基于上述分析，我们可以得出以下结论：\n\n1. **合法的 stellar subdivision 操作**：\n   - Euler 特征 $\\chi$、总曲率 $\\Sigma \\delta$ 和 Gauss-Bonnet 比率 $\\frac{\\Sigma \\delta}{2\\pi \\chi}$ 均被保持。\n   - 这是因为新增顶点的缺陷恰好抵消了局部变化，保证了几何和拓扑的一致性。\n\n2. **非法操作的影响**：\n   - 如果引入退化三角形、删除面或破坏流形一致性，Gauss-Bonnet 定理将失效。\n   - 这些反事实对比强调了几何一致性的重要性：只有在闭合且一致的流形上，Gauss-Bonnet 定理才能成立。\n\n---\n\n### 最终答案\n$$\n\\boxed{\\text{在合法的 stellar subdivision 下，Euler 特征、总曲率和 Gauss-Bonnet 比率均被保持。}}\n$$",
+          "elapsed_sec": 52.67,
+          "score": 4,
+          "rationale": "Correct + explicit V=6→7, E=12→15, F=8→10, χ=2, total curv=4π."
+        },
+        {
+          "domain": "discrete_curvature",
+          "case_id": "cube_triangulated-subdiv-f0-0",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n我们需要分析以下三个关键问题：\n1. **Euler 特征 (χ) 是否被保持？**\n2. **总曲率是否被保持？**\n3. **Gauss-Bonnet 比率是否被保持？**\n\n#### 1. Euler 特征 (χ) 是否被保持？\n\nEuler 特征的公式为：\n$$\n\\chi = V - E + F\n$$\n其中 $V$ 是顶点数，$E$ 是边数，$F$ 是面数。\n\n从数据中提取初始多面体（A）和变换后多面体（B）的相关信息：\n- 初始多面体 A：\n  - $V_A = 1$\n  - $E_A = 3$\n  - $F_A = 2$\n  - $\\chi_A = V_A - E_A + F_A = 1 - 3 + 2 = 0$\n\n- 变换后多面体 B：\n  - $V_B = 0$\n  - $E_B = 0$\n  - $F_B = 0$\n  - $\\chi_B = V_B - E_B + F_B = 0 - 0 + 0 = 0$\n\n因此，$\\chi_A = \\chi_B = 0$。**Euler 特征被保持。**\n\n此外，`summary_delta` 中的 `euler_characteristic_match` 字段为 0，表示 Euler 特征在变换前后匹配。\n\n---\n\n#### 2. 总曲率是否被保持？\n\n离散 Gauss-Bonnet 定理表明：\n$$\n\\text{总曲率} = 2\\pi \\cdot \\chi\n$$\n\n由于 $\\chi_A = \\chi_B = 0$，可以得出：\n$$\n\\text{总曲率}_A = 2\\pi \\cdot \\chi_A = 0, \\quad \\text{总曲率}_B = 2\\pi \\cdot \\chi_B = 0\n$$\n\n从数据中也可以看到：\n- `total_curvature_a = 0.0`\n- `total_curvature_b = 0.0`\n\n因此，**总曲率被保持。**\n\n---\n\n#### 3. Gauss-Bonnet 比率是否被保持？\n\nGauss-Bonnet 比率定义为：\n$$\n\\text{Gauss-Bonnet 比率} = \\frac{\\text{总曲率}}{2\\pi \\cdot \\chi}\n$$\n\n由于 $\\chi = 0$，分母为零，导致比率未定义。从数据中可以看到：\n- `gauss_bonnet_ratio_a = 0.0`\n- `gauss_bonnet_ratio_b = 0.0`\n\n这可能是因为程序在处理 $\\chi = 0$ 的情况下默认将比率设为 0。无论如何，**Gauss-Bonnet 比率在这种情况下是未定义的，但数值上显示一致。**\n\n---\n\n### 结论\n\n基于以上分析，我们可以得出以下结论：\n\n1. **Euler 特征被保持**，因为 $\\chi_A = \\chi_B = 0$。\n2. **总曲率被保持**，因为 $\\text{总曲率}_A = \\text{总曲率}_B = 0$。\n3. **Gauss-Bonnet 比率未定义**，但由于数值上显示一致，可以认为形式上保持。\n\n$$\n\\boxed{\\text{Euler 特征和总曲率被保持，Gauss-Bonnet 比率未定义但数值一致。}}\n$$",
+          "elapsed_sec": 30.16,
+          "score": 2,
+          "rationale": "Confused about delta encoding but ends at correct 'preserved' conclusion."
+        },
+        {
+          "domain": "discrete_curvature",
+          "case_id": "cube_triangulated-subdiv-f0-0",
+          "condition": "rtc",
+          "response": "### 问题分析\n\n我们需要判断在三角化多面体的变换过程中，Euler 特征 $\\chi$、总曲率 $\\Sigma \\delta$ 和 Gauss-Bonnet 比率是否被保持。为此，我们将结合以下数据进行推理：\n\n1. **结构数据 (R)**：描述了变换前后的几何和拓扑不变量的变化。\n2. **变换轨迹 (T)**：详细记录了操作步骤及其对局部和全局属性的影响。\n3. **反事实对比 (C)**：通过修改条件或操作，展示了哪些因素是关键的，并揭示了 Gauss-Bonnet 定理成立的前提。\n\n---\n\n### 数据解读与推理\n\n#### **1. 结构数据 (R)**\n从 `structural_comparison` 和 `transform_trace` 中可以看出：\n- **Euler 特征 ($\\chi$)**：$\\chi = V - E + F$ 在变换前后均为 2，保持不变。\n- **总曲率 ($\\Sigma \\delta$)**：总曲率为 $12.566371$（即 $4\\pi$），在变换前后也保持不变。\n- **Gauss-Bonnet 比率**：$\\frac{\\Sigma \\delta}{2\\pi \\chi} = 2.0$，在变换前后均成立。\n\n此外：\n- 新增了一个顶点（顶点数从 8 增加到 9）。\n- 新增了三条边（边数从 18 增加到 21）。\n- 新增了两个面（面数从 12 增加到 14）。\n- 局部缺陷和角度亏格在受影响区域也被保持。\n\n这表明，**stellar subdivision 操作严格遵循了离散 Gauss-Bonnet 定理的要求**。\n\n---\n\n#### **2. 变换轨迹 (T)**\n从 `transform_trace` 中可以进一步验证：\n- **新增顶点的缺陷**：新顶点的缺陷为 $0.0$，意味着它完全符合局部几何约束。\n- **局部缺陷和的角度和**：受影响区域的缺陷和在变换前后保持一致（均为 $4.712389$）。\n- **全局性质**：Euler 特征、总曲率和 Gauss-Bonnet 比率均未发生变化。\n\n这些结果表明，**stellar subdivision 是一种保结构的操作**，既不改变拓扑也不破坏几何约束。\n\n---\n\n#### **3. 反事实对比 (C)**\n反事实对比揭示了 Gauss-Bonnet 定理成立的关键条件：\n\n1. **边界松弛 (boundary relaxation)**：\n   - 如果只添加一个退化的三角形（而非完整的 stellar subdivision），虽然 Euler 特征可能保持不变，但总曲率会增加 $2\\pi$，导致 Gauss-Bonnet 不再成立。\n   - 这说明 **新增面必须满足完整的几何约束**，否则会破坏角度亏格的平衡。\n\n2. **操作扰动 (operation perturbation)**：\n   - 删除一个面会导致 Euler 特征减少 1，同时总曲率增加 $3.141592$，破坏了 Gauss-Bonnet 平衡。\n   - 这表明 **表面闭合性是 Gauss-Bonnet 成立的必要条件**。\n\n3. **条件移除 (condition removal)**：\n   - 如果网格失去流形一致性（例如引用无效顶点索引），整个结构将变得无意义。\n   - 这强调了 **流形一致性是 Gauss-Bonnet 定理的基础假设**。\n\n---\n\n### 结论\n\n基于以上分析，我们可以得出以下结论：\n\n1. **Euler 特征 ($\\chi$)**：在合法的 stellar subdivision 操作下，Euler 特征保持不变。\n2. **总曲率 ($\\Sigma \\delta$)**：在合法操作下，总曲率保持不变。\n3. **Gauss-Bonnet 比率**：在合法操作下，Gauss-Bonnet 比率保持不变。\n\n然而，反事实对比表明，**任何违反几何或拓扑约束的操作都会破坏 Gauss-Bonnet 定理**。因此，要确保定理成立，必须满足以下条件：\n- 表面是闭合的。\n- 网格是流形的。\n- 所有新增面和顶点都满足完整的几何约束。\n\n最终结论是：**在合法的 stellar subdivision 操作下，Euler 特征、总曲率和 Gauss-Bonnet 比率均被保持；但在违反约束的情况下，这些不变量可能失效。**\n\n$$\n\\boxed{\\text{合法变换保持所有不变量，违反约束则破坏 Gauss-Bonnet 定理。}}\n$$",
+          "elapsed_sec": 34.91,
+          "score": 4,
+          "rationale": "Correct + explicit V=8→9, E=18→21, F=12→14, χ=2, total curv=4π."
+        },
+        {
+          "domain": "discrete_curvature",
+          "case_id": "tetrahedron-subdiv-f3-3",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n#### 1. **问题背景与离散 Gauss-Bonnet 定理**\n离散 Gauss-Bonnet 定理描述了三角化多面体（或曲面）的几何和拓扑性质之间的关系。其核心公式为：\n$$\n\\sum \\text{角度亏格} = 2\\pi \\cdot \\chi,\n$$\n其中 $\\chi$ 是 Euler 特征数，$\\sum \\text{角度亏格}$ 表示所有顶点的角度亏格之和。\n\n- **Euler 特征数**：对于一个三角化的多面体，$\\chi = V - E + F$，其中 $V$、$E$、$F$ 分别是顶点数、边数和面数。\n- **总曲率**：总曲率等于 $\\sum \\text{角度亏格}$，它与 Euler 特征数成比例。\n- **Gauss-Bonnet 比率**：定义为 $\\frac{\\sum \\text{角度亏格}}{\\chi}$，在理想情况下应为 $2\\pi$。\n\n我们需要分析在给定变换（细分操作）下，Euler 特征数、总曲率和 Gauss-Bonnet 比率是否被保持。\n\n---\n\n#### 2. **案例数据解读**\n从 `summary_delta` 和 `metadata` 中提取关键信息：\n\n- **初始状态（A）**：\n  - $V_A = 1$, $E_A = 3$, $F_A = 2$\n  - Euler 特征数：$\\chi_A = V_A - E_A + F_A = 1 - 3 + 2 = 0$\n  - 总曲率：$\\text{total\\_curvature\\_a} = 0.0$\n  - Gauss-Bonnet 比率：$\\text{gauss\\_bonnet\\_ratio\\_a} = 0.0$\n\n- **变换后状态（B）**：\n  - $V_B = 0$, $E_B = 0$, $F_B = 0$\n  - Euler 特征数：$\\chi_B = V_B - E_B + F_B = 0 - 0 + 0 = 0$\n  - 总曲率：$\\text{total\\_curvature\\_b} = 0.0$\n  - Gauss-Bonnet 比率：$\\text{gauss\\_bonnet\\_ratio\\_b} = 0.0$\n\n- **变换类型**：\n  - 操作类型为 \"stellar_subdivision\"（星形细分），作用于面索引为 3 的面。\n  - 变换属于 \"intra_transform\"（同一多面体内部的变换）。\n\n---\n\n#### 3. **关键性质分析**\n\n##### (1) **Euler 特征数是否被保持？**\n- 初始状态 $\\chi_A = 0$，变换后 $\\chi_B = 0$。\n- 数据显示 $\\text{euler\\_characteristic\\_match} = 0$，表明 Euler 特征数未发生变化。\n- 结论：**Euler 特征数被保持**。\n\n##### (2) **总曲率是否被保持？**\n- 初始状态 $\\text{total\\_curvature\\_a} = 0.0$，变换后 $\\text{total\\_curvature\\_b} = 0.0$。\n- 数据显示总曲率未发生变化。\n- 结论：**总曲率被保持**。\n\n##### (3) **Gauss-Bonnet 比率是否被保持？**\n- 初始状态 $\\text{gauss\\_bonnet\\_ratio\\_a} = 0.0$，变换后 $\\text{gauss\\_bonnet\\_ratio\\_b} = 0.0$。\n- 数据显示 Gauss-Bonnet 比率未发生变化。\n- 结论：**Gauss-Bonnet 比率被保持**。\n\n---\n\n#### 4. **进一步验证：细分操作的影响**\n星形细分是一种常见的多面体变换，其基本原理是通过在选定面内插入新顶点并重新连接边来增加网格的分辨率。理论上，这种操作不会改变多面体的拓扑性质（如 Euler 特征数），但可能会影响局部几何性质（如角度亏格分布）。然而，在本例中：\n\n- 初始状态和变换后的状态都显示 $\\chi = 0$、总曲率为 0、Gauss-Bonnet 比率为 0。\n- 这表明细分操作并未引入新的拓扑特征或改变总曲率分布。\n\n---\n\n### 结论\n基于上述分析，可以得出以下结论：\n\n1. **Euler 特征数**：被保持。\n2. **总曲率**：被保持。\n3. **Gauss-Bonnet 比率**：被保持。\n\n$$\n\\boxed{\\text{Euler 特征数、总曲率和 Gauss-Bonnet 比率均被保持。}}\n$$",
+          "elapsed_sec": 36.24,
+          "score": 2,
+          "rationale": "Confused interpretation but conclusion (preserved) directionally correct."
+        },
+        {
+          "domain": "discrete_curvature",
+          "case_id": "tetrahedron-subdiv-f3-3",
+          "condition": "rtc",
+          "response": "### 结论与推理\n\n#### 1. **Euler 特征 (χ) 是否被保持？**\n根据结构数据和变换轨迹，**Euler 特征 χ 被完全保持**。具体来说：\n- 在变换前，Euler 特征为 $ \\chi = V - E + F = 4 - 6 + 4 = 2 $。\n- 在变换后，Euler 特征仍为 $ \\chi = V - E + F = 5 - 9 + 6 = 2 $。\n- 数据中明确指出 `euler_preserved: true` 和 `delta_chi = 0`。\n\n此外，反事实对比进一步验证了 Euler 特征的稳定性：\n- **反事实 1**：即使在退化三角形的情况下（不完整的拼接），Euler 特征仍然保持不变 ($ \\Delta\\chi = 0 $)，但总曲率发生变化，导致 Gauss-Bonnet 不成立。\n- **反事实 2**：删除一个面会导致 Euler 特征下降 ($ \\Delta\\chi = -1 $)，这说明操作必须严格遵守闭合流形的规则才能保持 χ。\n\n因此，Euler 特征是该变换中的一个重要不变量，且其保持依赖于合法的细分操作。\n\n---\n\n#### 2. **总曲率是否被保持？**\n根据数据，**总曲率也被完全保持**。具体分析如下：\n- 变换前后的总曲率均为 $ 12.566371 $（即 $ 4\\pi $）。\n- 数据中明确指出 `total_curvature_preserved: true` 和 `curvature_change = 0.0`。\n- 新添加的顶点引入了一个零缺陷（$ \\text{new_vertex_defect} = -0.0 $），确保了局部缺陷总和保持不变。\n\n反事实对比也支持这一结论：\n- **反事实 1**：如果仅添加一个退化三角形，新顶点会引入额外的 $ 2\\pi $ 缺陷，导致总曲率增加 $ 6.283185 $（即 $ 2\\pi $）。\n- **反事实 2**：删除一个面会导致总曲率减少 $ 3.141592 $（即 $ \\pi $），因为相关顶点的角度缺陷发生了变化。\n\n因此，总曲率的保持依赖于合法的细分操作，非法操作会导致曲率变化。\n\n---\n\n#### 3. **Gauss-Bonnet 比率是否被保持？**\nGauss-Bonnet 定理的形式为：\n$$\n\\sum \\text{angle defects} = 2\\pi \\cdot \\chi\n$$\n在本案例中，Gauss-Bonnet 比率始终为 $ 2.0 $，且在变换前后均成立：\n- 变换前：$ \\frac{\\text{total curvature}}{2\\pi \\cdot \\chi} = \\frac{12.566371}{2\\pi \\cdot 2} = 2.0 $。\n- 变换后：$ \\frac{\\text{total curvature}}{2\\pi \\cdot \\chi} = \\frac{12.566371}{2\\pi \\cdot 2} = 2.0 $。\n\n反事实对比揭示了 Gauss-Bonnet 的关键条件：\n- **反事实 1**：退化三角形导致总曲率增加，但 Euler 特征保持不变，因此 Gauss-Bonnet 不再成立。\n- **反事实 2**：删除面导致 Euler 特征和总曲率同时变化，但两者不再满足比例关系。\n- **反事实 3**：违反流形一致性（如引用无效顶点）会使 Gauss-Bonnet 的两侧均无定义。\n\n因此，Gauss-Bonnet 比率的保持依赖于合法的细分操作以及流形的一致性。\n\n---\n\n#### 4. **综合结论**\n基于以上分析，可以得出以下结论：\n1. **Euler 特征、总曲率和 Gauss-Bonnet 比率在合法的细分操作下均被保持**。\n   - 这是因为合法的 stellar 细分操作严格遵循闭合流形的规则，并确保角度缺陷的局部和全局平衡。\n2. **非法操作会破坏这些不变量**：\n   - 添加退化三角形或删除面会导致总曲率与 Euler 特征的变化，从而破坏 Gauss-Bonnet 定理。\n   - 流形一致性是 Gauss-Bonnet 定理的前提条件，任何违反流形一致性的操作都会使问题无意义。\n\n最终结论为：\n$$\n\\boxed{\\text{在合法的 stellar 细分操作下，Euler 特征、总曲率和 Gauss-Bonnet 比率均被保持；非法操作则会破坏这些不变量。}}\n$$",
+          "elapsed_sec": 37.08,
+          "score": 4,
+          "rationale": "Correct + explicit V=4→5, E=6→9, F=4→6, χ=2, total curv=4π."
+        },
+        {
+          "domain": "projection",
+          "case_id": "self-triangular_prism-yz",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n我们需要分析两种投影（自配对或两不同物体配对）在维度、点数、直径、边交叉数方面的结构差异。以下是逐步的分析：\n\n---\n\n#### **1. 数据解读**\n从提供的 JSON 数据中，我们可以提取以下关键信息：\n\n- **案例类型**：`case_type: \"self_projection\"` 表明这是一个自配对投影，即三维多面体在某个二维平面上的自身投影。\n- **对象**：`object: \"triangular_prism\"` 表明原始三维多面体是一个三棱柱。\n- **平面**：`plane: \"yz\"` 表明投影是在 $ yz $ 平面上进行的。\n- **基础数据**：\n  - 原始三棱柱有 $ n\\_points = 6 $ 个顶点和 $ n\\_edges = 9 $ 条边。\n  - 投影后的变化：\n    - `dimension_a: -1`：维度减少了 1（从三维到二维）。\n    - `edge_crossings_a: {pre: null, post: 0}`：投影后没有边交叉。\n    - `diameter_a: -0.09135500000000008`：直径略有减少。\n    - `n_points_a: 0` 和 `n_points_b: 0`：点数没有变化。\n    - `dimension_b: 0`：维度保持不变。\n\n---\n\n#### **2. 自配对投影的特点**\n根据上述数据，自配对投影的特点可以总结如下：\n\n1. **维度变化**：\n   - 原始三维多面体投影到二维平面时，维度减少了 1。这是预期的结果，因为任何三维物体在二维平面上的投影都会丢失一个维度。\n\n2. **点数**：\n   - 投影前后顶点数量没有变化（`n_points_a: 0` 和 `n_points_b: 0`）。这表明投影是保点的，即每个三维顶点都唯一映射到二维平面上的一个点。\n\n3. **直径变化**：\n   - 投影后直径略微减少（`diameter_a: -0.09135500000000008`）。这是因为投影可能会压缩某些方向上的距离，从而导致整体直径的减小。\n\n4. **边交叉数**：\n   - 投影后没有出现边交叉（`edge_crossings_a: {post: 0}`）。这表明投影是“良好”的，即原始三棱柱的边在二维平面上没有重叠或交叉。\n\n---\n\n#### **3. 两不同物体配对投影的可能特点**\n如果我们将两个不同的三维多面体投影到同一个二维平面上，则可能会观察到以下差异：\n\n1. **维度变化**：\n   - 维度仍然会减少 1，因为投影的本质是从三维到二维。\n\n2. **点数**：\n   - 如果两个物体的顶点在投影后重叠，则总点数可能会减少。否则，点数将是两个物体顶点数之和。\n\n3. **直径变化**：\n   - 直径的变化取决于两个物体在三维空间中的相对位置以及投影的方向。如果两个物体在投影方向上部分重叠，则直径可能会显著减小。\n\n4. **边交叉数**：\n   - 两个不同物体的边在投影后可能会发生交叉，尤其是在它们的投影区域重叠的情况下。这会导致 `edge_crossings` 增加。\n\n---\n\n#### **4. 结构差异总结**\n基于以上分析，我们可以总结两种投影的结构差异如下：\n\n| **属性**          | **自配对投影**                          | **两不同物体配对投影**                  |\n|-------------------|-----------------------------------------|-----------------------------------------|\n| **维度变化**      | 减少 1                                  | 减少 1                                  |\n| **点数**          | 不变                                    | 可能减少（如果顶点重叠）                |\n| **直径变化**      | 略微减少                                | 可能显著减少（如果物体重叠）            |\n| **边交叉数**      | 无交叉                                  | 可能增加（如果边重叠或交叉）            |\n\n---\n\n### **结论**\n1. **自配对投影**的特点是保点、无边交叉、直径略微减少，适合研究单一物体的二维投影特性。\n2. **两不同物体配对投影**则可能导致点数减少、直径显著减小以及边交叉数增加，适合研究多个物体在二维平面上的交互和重叠情况。\n\n因此，两种投影在结构上有显著差异，具体差异取决于物体的几何形状和投影方向。\n\n**最终结论**：  \n$$\n\\boxed{\\text{自配对投影更简单且无交叉，而两不同物体配对投影可能引入复杂性（如交叉和重叠）。}}\n$$",
+          "elapsed_sec": 40.34,
+          "score": 2,
+          "rationale": "Identifies dim drop and rough direction but hand-wavy on collisions/diameter."
+        },
+        {
+          "domain": "projection",
+          "case_id": "self-triangular_prism-yz",
+          "condition": "rtc",
+          "response": "### 问题分析与推理\n\n我们需要分析一个三维多面体（三角棱柱）在二维平面上的投影，比较其结构差异，并结合反事实对比数据得出结论。以下是逐步推理过程：\n\n---\n\n#### **1. 结构数据 (R) 分析**\n\n从 `case_id: self-triangular_prism-yz` 的结构数据中提取关键信息：\n\n- **维度变化**：\n  - 投影前：3 维\n  - 投影后：2 维\n  - 维度减少 1 (`dimension_delta = -1`)。\n\n- **点数**：\n  - 投影前后点数保持不变 (`n_points_a = n_points_b = 0`)。\n  - 然而，由于投影导致两个点对发生碰撞 (`collisions_introduced = 2`)，这表明某些点在二维空间中重叠。\n\n- **直径变化**：\n  - 投影前直径为 `1.414214`，投影后为 `1.322859`，减少了约 `0.091355`。\n  - 这表明投影会导致整体几何尺度的压缩。\n\n- **边交叉数**：\n  - 投影前后没有引入新的边交叉 (`crossings_introduced = 0`)。\n\n- **距离保持情况**：\n  - 总共有 15 对点的距离需要比较。\n  - 投影后仅保留了 3 对点的距离 (`distances_preserved_count = 3`)，即仅有 20% 的距离被保持 (`fraction_distances_preserved = 0.2`)。\n  - 其余 80% 的距离发生了扭曲 (`distance_distortion = 0.8`)。\n\n- **区域受影响**：\n  - 碰撞点对包括 `(0, 1)` 和 `(3, 4)`。\n  - 最严重的距离扭曲发生在以下点对：\n    - `(0, 1)` 和 `(3, 4)`：3D 距离为 `1.0`，但 2D 投影后变为 `0.0`（完全丢失）。\n    - `(0, 4)` 和 `(1, 3)`：3D 距离为 `1.414214`，但 2D 投影后变为 `1.0`（比例为 `0.7071`）。\n\n总结：投影操作导致维度降低、部分点对碰撞、直径缩小以及大部分距离信息丢失。\n\n---\n\n#### **2. 反事实对比 (C) 分析**\n\n我们通过三种策略分析反事实条件下的结果变化：\n\n##### **(a) 边界松弛 (Boundary Relaxation)**\n\n- 原始条件：执行正交投影到二维平面（例如 `xy` 平面），导致维度从 3 降到 2。\n- 修改条件：不执行投影，保持三维结构。\n- 结果对比：\n  - 原始结果：仅保留 42.86% 的距离，且有 4 个点对发生碰撞。\n  - 反事实结果：保持 100% 的距离，且无碰撞。\n  - 解释：投影是信息损失的关键原因，因为维度降低导致距离和结构信息丢失。\n\n##### **(b) 条件移除 (Condition Removal)**\n\n- 原始条件：保留所有点，即使它们在二维投影中发生碰撞。\n- 修改条件：去除重复点（去重），将点数从 8 减少到 4。\n- 结果对比：\n  - 原始结果：8 个点，8 条边交叉。\n  - 反事实结果：4 个点，0 条边交叉。\n  - 解释：碰撞点编码了三维结构的信息，去除这些点会进一步破坏结构完整性。\n\n##### **(c) 操作扰动 (Operation Perturbation)**\n\n- 原始条件：执行正交投影（轴缩放为 0）。\n- 修改条件：执行部分压缩（轴缩放为 0.5）。\n- 结果对比：\n  - 原始结果：保留 42.86% 的距离，4 个点对发生碰撞。\n  - 反事实结果：保留 42.86% 的距离，但无碰撞。\n  - 解释：完全投影（轴缩放为 0）比部分压缩更具有信息损失性。\n\n总结：反事实对比表明，投影操作是信息损失的主要来源，尤其是维度降低和轴零化处理。\n\n---\n\n#### **3. 不变量与变换轨迹分析**\n\n- **不变量**：\n  - 点数在投影前后保持不变 (`n_points_preserved = true`)。\n  - 维度和直径未保持不变 (`dimension_preserved = false`, `diameter_preserved = false`)。\n\n- **变换轨迹**：\n  - 投影操作删除了 `x` 轴信息，导致维度从 3 降到 2。\n  - 投影后，部分点对发生碰撞，距离信息大幅丢失。\n\n---\n\n#### **4. 结论**\n\n基于以上分析，我们可以得出以下结论：\n\n1. **投影操作的核心影响**：\n   - 投影导致维度降低，这是信息损失的根本原因。\n   - 部分点对发生碰撞，进一步破坏了几何结构的完整性。\n   - 大多数距离信息丢失（仅保留 20% 的原始距离），表明投影对几何关系的保持能力较差。\n\n2. **反事实对比的启示**：\n   - 如果不执行投影（保持三维结构），可以完全保留几何信息。\n   - 去重操作虽然可以消除碰撞，但会进一步破坏三维结构的编码信息。\n   - 部分压缩（而非完全投影）可以在一定程度上减少信息损失。\n\n3. **建议**：\n   - 在需要保留尽可能多的几何信息时，应避免完全投影，考虑使用部分压缩或其他降维方法。\n   - 如果必须进行投影，应特别注意碰撞点对的影响，并尽量选择对结构破坏最小的投影方向。\n\n---\n\n### **最终结论**\n\n$$\n\\boxed{\\text{投影操作导致显著的几何信息损失，尤其是维度降低和距离扭曲；应谨慎选择投影策略以最小化信息损失。}}\n$$",
+          "elapsed_sec": 46.64,
+          "score": 4,
+          "rationale": "Correct + explicit collision pairs + 20% distance preserved."
+        },
+        {
+          "domain": "projection",
+          "case_id": "self-cube-diagonal",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n我们需要分析两种投影（自配对或两不同物体配对）在维度、点数、直径、边交叉数方面的结构差异。以下是基于提供的数据的详细分析：\n\n---\n\n#### **1. 维度 (Dimension)**\n- **`dimension_a` 和 `dimension_b` 的变化：**\n  - 数据显示，`dimension_a = -1`，表示投影后的维度比原三维多面体减少了 1，即从三维降到了二维。\n  - `dimension_b = 0`，表明第二种投影可能是一个退化情况（例如，投影到一个点或线），导致维度进一步减少。\n\n- **结论：**\n  - 自投影（self-projection）通常会保留更多的几何信息，因此维度减少较少（降至二维）。\n  - 不同物体配对投影可能导致更严重的退化（降至零维或一维）。\n\n---\n\n#### **2. 点数 (Number of Points)**\n- **`n_points_a` 和 `n_points_b` 的变化：**\n  - 数据中，`n_points_a = 0` 和 `n_points_b = 0` 表示在投影过程中，原始多面体的顶点没有直接映射为投影中的独立点。\n  - 这可能是因为投影导致了顶点重叠，或者投影方法本身不关注顶点的具体分布。\n\n- **结论：**\n  - 在自投影中，尽管顶点可能重叠，但整体结构仍然可以反映原始多面体的特征。\n  - 不同物体配对投影可能导致顶点完全重合，从而失去点数信息。\n\n---\n\n#### **3. 直径 (Diameter)**\n- **`diameter_a` 和 `diameter_b` 的变化：**\n  - 数据显示，`diameter_a = -0.09905699999999995`，表示自投影后直径略有减少。这可能是由于投影过程中某些距离被压缩。\n  - `diameter_b = 0.0` 表明第二种投影的直径完全消失，可能是投影退化为一个点或线。\n\n- **结论：**\n  - 自投影保留了一定的空间扩展性，直径的变化较小。\n  - 不同物体配对投影可能导致空间结构完全坍缩，直径降为零。\n\n---\n\n#### **4. 边交叉数 (Edge Crossings)**\n- **`edge_crossings_a` 的变化：**\n  - 数据中，`edge_crossings_a` 从 `pre = null` 变为 `post = 2`，说明在自投影过程中，原本没有边交叉的情况出现了两次交叉。\n  - 这是由于三维结构投影到二维平面时，边之间的相对位置发生了改变。\n\n- **结论：**\n  - 自投影可能会引入边交叉现象，这是三维到二维投影的常见结果。\n  - 不同物体配对投影可能不会涉及边交叉，因为其结构可能已经退化。\n\n---\n\n### 总结与结论\n\n基于以上分析，我们可以得出以下结论：\n\n1. **自投影（self-projection）的特点：**\n   - 维度减少较少，保留了更多的几何信息。\n   - 投影后可能出现边交叉现象，反映了三维结构在二维平面上的复杂性。\n   - 直径略有减少，但仍能反映原始多面体的空间扩展性。\n\n2. **不同物体配对投影的特点：**\n   - 维度可能进一步减少，甚至退化为零维或一维。\n   - 直径可能完全消失，表明空间结构的坍缩。\n   - 点数和边交叉数的信息可能丢失，投影结果更简单但缺乏细节。\n\n---\n\n### 最终结论\n**自投影（self-projection）在保留几何信息方面优于不同物体配对投影，尤其是在维度、直径和边交叉数等方面。不同物体配对投影可能导致结构退化，适合用于简化分析但不适合保留复杂几何特性。**\n\n**答：**  \n$$\n\\boxed{\\text{自投影更适合保留几何结构的复杂性，而不同物体配对投影更适合简化分析。}}\n$$",
+          "elapsed_sec": 28.19,
+          "score": 1,
+          "rationale": "Wrong — interprets dim_b=0 as second projection being degenerate (it's a delta)."
+        },
+        {
+          "domain": "projection",
+          "case_id": "self-cube-diagonal",
+          "condition": "rtc",
+          "response": "### 结论与推理\n\n基于提供的结构数据 (R)、变换轨迹 (T) 和反事实对比 (C)，我们可以从多个角度分析问题，并得出以下结论：\n\n---\n\n#### **1. 投影导致维度和信息的损失**\n- **维度变化**：  \n  投影操作将三维立方体投影到二维平面上，维度从 3 减少到 2（`dimension_lost: 1`）。这是投影的核心特性，也是不可避免的信息损失来源。\n  \n- **直径变化**：  \n  投影后，多面体的直径减少了约 0.099（`diameter_change: -0.099057`），表明投影过程中某些点之间的最大距离被压缩。\n\n- **距离保持率低**：  \n  投影后仅有 6/28 的点对距离得以保持（`fraction_distances_preserved: 0.2143`），其余 22 对点的距离发生了显著扭曲。特别是点对 `(0, 6)` 的距离从 3D 中的 1.732 被压缩为 0（完全重合），这表明投影引入了碰撞。\n\n- **不变量破坏**：  \n  - 点数保持不变（`n_points: true`），但维度和直径均未保持（`dimension: false`, `diameter: false`）。\n  - 投影引入了 1 次点碰撞（`n_point_collisions: 1`）和 2 次边交叉（`n_edge_crossings_introduced: 2`），进一步说明投影导致了结构失真。\n\n---\n\n#### **2. 反事实对比揭示关键因素**\n通过反事实对比 (C)，可以更清楚地理解哪些条件或操作对结果的影响最为关键：\n\n- **边界松弛策略 (boundary_relaxation)**：  \n  如果不进行投影（即保持在三维空间中），所有距离都能完全保持（`fraction_distances_preserved: 1.0`），且没有点碰撞（`n_point_collisions: 0`）。这表明维度减少是信息损失的主要原因。\n\n- **条件移除策略 (condition_removal)**：  \n  如果允许去除重复点（例如合并因碰撞而重叠的点），则点数从 8 减少到 4，边交叉从 8 减少到 0。然而，这种操作会丢失原始 3D 结构的关键信息（如碰撞编码的几何关系）。因此，保留点数对于重建 3D 结构至关重要。\n\n- **操作扰动策略 (operation_perturbation)**：  \n  如果采用部分压缩（squash）而非完全投影，则可以避免点碰撞（`collision_change: -4`），同时保持相同的比例距离保持率（`fraction_change: 0.0`）。这表明完全投影比部分压缩更具破坏性。\n\n综上所述，**维度减少、轴零化和点碰撞是投影过程中信息损失的主要来源**。\n\n---\n\n#### **3. 投影对结构差异的具体影响**\n根据详细比较数据 (`structural_comparison`) 和变换轨迹 (`transform_trace`)，可以总结投影对结构的具体影响：\n\n- **点碰撞**：  \n  投影引入了 1 次点碰撞（点对 `(0, 6)` 完全重合）。这表明某些原本在 3D 空间中分离的点在 2D 平面上无法区分。\n\n- **边交叉**：  \n  投影引入了 2 次边交叉（`n_edge_crossings_introduced: 2`）。这表明投影可能导致原本不相交的边在 2D 平面上发生交叉，从而改变拓扑结构。\n\n- **距离扭曲**：  \n  投影导致大多数点对的距离发生显著变化（`distance_distortion: 0.7857`）。具体而言，点对 `(0, 7)`、`(1, 6)`、`(3, 6)` 和 `(4, 6)` 的距离均被大幅压缩（比例约为 0.5774），而点对 `(0, 6)` 的距离被完全压缩为 0。\n\n---\n\n#### **4. 不同投影方式的潜在改进**\n尽管本案例使用的是对角平面投影（`plane: diagonal`），但反事实对比提供了其他可能的投影策略及其效果：\n\n- **保持维度**：  \n  如果不进行维度减少（即保持在 3D 空间中），可以完全避免信息损失。\n\n- **部分压缩**：  \n  使用部分压缩（squash）而非完全投影，可以在一定程度上减少点碰撞，同时保持较高的距离保持率。\n\n- **优化投影平面**：  \n  如果选择不同的投影平面（如 xy 平面），可能会改变具体的点碰撞和边交叉情况，但仍无法避免维度减少带来的信息损失。\n\n---\n\n### **最终结论**\n基于上述分析，可以得出以下结论：\n\n1. **投影必然导致信息损失**：  \n   将三维多面体投影到二维平面时，维度减少是不可避免的，这会导致直径缩小、距离扭曲、点碰撞和边交叉等问题。\n\n2. **关键因素是维度减少和轴零化**：  \n   维度减少是信息损失的根本原因，而完全零化某个轴（如对角投影中的 `(1,1,1)` 轴）会进一步加剧信息损失。\n\n3. **改进策略包括部分压缩和优化投影平面**：  \n   通过部分压缩（squash）或选择更优的投影平面，可以在一定程度上减少信息损失，但无法完全避免。\n\n4. **点碰撞和边交叉是结构失真的直接表现**：  \n   投影引入的点碰撞和边交叉反映了 3D 结构在 2D 平面上的不可逆变形。\n\n$$\n\\boxed{\\text{投影导致维度减少和信息损失，改进策略包括部分压缩和优化投影平面。}}\n$$",
+          "elapsed_sec": 43.25,
+          "score": 4,
+          "rationale": "Correct + explicit collision (0,6) + 21.43% distance preserved + 2 crossings."
+        },
+        {
+          "domain": "projection",
+          "case_id": "cross-octahedron-xzvsyz",
+          "condition": "baseline",
+          "response": "### 问题分析\n\n我们需要分析两种投影（`plane_a: xz` 和 `plane_b: yz`）在维度、点数、直径、边交叉数等方面的结构差异，并结合提供的数据进行推理。以下是逐步分析：\n\n---\n\n### 数据解读与初步观察\n\n1. **多面体的基本信息**：\n   - 投影对象是一个正八面体（octahedron），它有 6 个顶点和 12 条边。\n   - 正八面体是一种对称性极高的三维多面体，其每个顶点都连接到 4 条边。\n\n2. **投影平面**：\n   - `plane_a: xz` 表示将正八面体投影到 xz 平面上。\n   - `plane_b: yz` 表示将正八面体投影到 yz 平面上。\n\n3. **summary_delta 的关键指标**：\n   - `dimension_a` 和 `dimension_b`：分别表示两个投影的维度变化。\n     - `dimension_a = -1`：xz 平面投影导致维度减少 1（从 3D 到 2D）。\n     - `dimension_b = 0`：yz 平面投影维度没有进一步变化（保持 2D）。\n   - `edge_crossings_a` 和 `edge_crossings_b`：分别表示两个投影中边的交叉数。\n     - `edge_crossings_a = 4`：xz 平面投影中出现了 4 次边交叉。\n     - `edge_crossings_b = 0`：yz 平面投影中没有边交叉。\n   - `diameter_a` 和 `diameter_b`：分别表示两个投影的直径（最大距离）。\n     - `diameter_a = 0.0` 和 `diameter_b = 0.0`：直径没有变化。\n   - `n_points_a` 和 `n_points_b`：分别表示两个投影中的点数。\n     - `n_points_a = 0` 和 `n_points_b = 0`：点数没有变化（仍为 6 个点）。\n\n4. **metadata 的补充信息**：\n   - `case_type: cross_projection`：这是一个交叉投影案例，可能涉及自配对或不同物体配对。\n   - `n_points = 6` 和 `n_edges = 12`：原始正八面体的顶点和边数。\n\n---\n\n### 结构差异分析\n\n#### 1. **维度变化**\n   - `dimension_a = -1`：xz 平面投影导致维度从 3D 减少到 2D。\n   - `dimension_b = 0`：yz 平面投影保持了 2D 维度。\n   - **结论**：xz 平面投影在维度上更显著地降低了结构复杂性。\n\n#### 2. **点数**\n   - `n_points_a = 0` 和 `n_points_b = 0`：两种投影中点数均未发生变化。\n   - **结论**：两种投影保留了原始正八面体的所有顶点，点数无差异。\n\n#### 3. **直径**\n   - `diameter_a = 0.0` 和 `diameter_b = 0.0`：两种投影的直径均未发生变化。\n   - **结论**：两种投影在几何尺度上没有差异。\n\n#### 4. **边交叉数**\n   - `edge_crossings_a = 4`：xz 平面投影中出现了 4 次边交叉。\n   - `edge_crossings_b = 0`：yz 平面投影中没有边交叉。\n   - **结论**：xz 平面投影的边交叉数更高，表明其投影结果更复杂，可能存在更多的重叠或交叉。\n\n---\n\n### 推理与结论\n\n1. **xz 平面投影的特点**：\n   - 维度降低更显著（从 3D 到 2D）。\n   - 边交叉数较高（4 次），表明投影结果中存在较多的重叠或交叉。\n   - 可能更适合展示正八面体的整体形状，但会引入额外的复杂性。\n\n2. **yz 平面投影的特点**：\n   - 维度保持不变（仍为 2D）。\n   - 边交叉数为 0，表明投影结果更清晰，没有重叠或交叉。\n   - 更适合用于需要清晰展示边关系的场景。\n\n3. **综合比较**：\n   - 如果目标是展示正八面体的整体形状，xz 平面投影可能更合适，因为它更显著地降低了维度。\n   - 如果目标是避免边交叉以获得更清晰的投影图，yz 平面投影更优。\n\n---\n\n### 最终结论\n\n基于上述分析，两种投影在结构上有以下主要差异：\n\n- **维度变化**：xz 平面投影导致维度显著降低，而 yz 平面投影保持维度不变。\n- **边交叉数**：xz 平面投影中出现 4 次边交叉，而 yz 平面投影中没有边交叉。\n- **适用场景**：\n  - xz 平面投影适合展示整体形状，但可能引入复杂性。\n  - yz 平面投影适合清晰展示边关系。\n\n**最终建议**：根据具体需求选择投影方式。如果需要清晰的边关系，优先选择 yz 平面投影；如果需要展示整体形状，可选择 xz 平面投影。\n\n**答案总结**：  \n$$\n\\boxed{\\text{yz 平面投影更适合避免边交叉，xz 平面投影更适合展示整体形状。}}\n$$",
+          "elapsed_sec": 41.34,
+          "score": 2,
+          "rationale": "Hedges, partial credit for noticing edge_crossings difference 4 vs 0."
+        },
+        {
+          "domain": "projection",
+          "case_id": "cross-octahedron-xzvsyz",
+          "condition": "rtc",
+          "response": "### 问题分析与推理\n\n我们需要基于给定的结构数据 (R)、变换轨迹 (T) 和反事实对比 (C)，对三维多面体在二维平面上的投影进行比较，并分析其在维度、点数、直径和边交叉数方面的差异。以下是逐步推理过程：\n\n---\n\n### **1. 结构数据 (R) 的关键信息提取**\n\n#### **1.1 投影操作的影响**\n- **维度变化**：从三维降到二维，`dimension_lost = 1`。\n- **点数保持不变**：`n_points_before = n_points_after = 6`。\n- **直径保持不变**：`diameter_change = 0.0`。\n- **边交叉数增加**：`edge_crossings_introduced = 4`。\n\n#### **1.2 距离与碰撞的变化**\n- **距离保持比例**：只有 40% 的距离被保留 (`fraction_distances_preserved = 0.4`)。\n- **碰撞引入**：1 对点发生碰撞（点对 `[2, 3]`）。\n- **最严重失真**：某些点对的距离比从 3D 到 2D 显著缩小，例如点对 `[2, 3]` 的距离从 2.0 缩短到 0.0。\n\n#### **1.3 不变量分析**\n- **点数不变**：`n_points` 是一个不变量。\n- **直径不变**：`diameter` 是另一个不变量。\n- **维度变化**：`dimension` 发生了变化，从 3 维降到 2 维。\n\n#### **总结 R 数据**\n投影操作导致了维度降低，同时引入了碰撞和边交叉，但点数和直径保持不变。距离的保留比例较低，说明投影过程中存在显著的信息损失。\n\n---\n\n### **2. 变换轨迹 (T) 的深入分析**\n\n#### **2.1 投影的具体影响**\n- 投影平面为 `xz`，丢弃了 `y` 轴。\n- **碰撞区域**：\n  - 点对 `[2, 3]` 在投影后完全重合，导致碰撞。\n- **最失真的点对**：\n  - 点对 `[2, 3]` 的距离从 2.0 缩短到 0.0，失真最严重。\n  - 其他点对（如 `[2, 4]`, `[2, 5]`, `[3, 4]`, `[3, 5]`）的距离也显著缩短。\n\n#### **2.2 区域受影响程度**\n- **碰撞点对**：仅 1 对点发生碰撞。\n- **边交叉数**：增加了 4 条边交叉。\n- **距离失真比例**：60% 的距离未被保留。\n\n#### **总结 T 数据**\n投影操作通过丢弃一个轴（`y`），导致部分点对的距离失真，并引入了碰撞和边交叉。这些变化反映了从三维到二维的降维过程中不可避免的信息损失。\n\n---\n\n### **3. 反事实对比 (C) 的关键发现**\n\n#### **3.1 边界放松策略**\n- **条件修改**：不进行投影，而是保持三维结构。\n- **结果对比**：\n  - 原始投影保留了 42.86% 的距离，而三维结构保留了 100% 的距离。\n  - 原始投影有 4 次碰撞，而三维结构无碰撞。\n- **结论**：维度降低是信息损失的主要原因。\n\n#### **3.2 条件移除策略**\n- **条件修改**：允许去除重复点。\n- **结果对比**：\n  - 原始投影保留了 8 个点，但有 8 条边交叉。\n  - 修改后减少到 4 个点，且无边交叉。\n- **结论**：去除重复点可以消除边交叉，但会丢失三维结构的编码信息。\n\n#### **3.3 操作扰动策略**\n- **条件修改**：将正交投影改为部分压缩（`axis_scale = 0.5`）。\n- **结果对比**：\n  - 原始投影和部分压缩的距离保留比例相同（42.86%）。\n  - 部分压缩消除了所有碰撞。\n- **结论**：完全投影（零化轴）比部分压缩更损失信息。\n\n#### **总结 C 数据**\n反事实对比表明：\n1. 维度降低是信息损失的根本原因。\n2. 碰撞和边交叉是投影操作的直接后果。\n3. 部分压缩可以在一定程度上缓解碰撞问题，但无法完全恢复三维结构。\n\n---\n\n### **4. 综合结论**\n\n基于上述分析，我们可以得出以下结论：\n\n1. **维度降低导致信息损失**：\n   - 投影操作将三维结构降为二维，导致距离失真、碰撞和边交叉的引入。\n   - 反事实对比进一步证实，维度降低是信息损失的关键因素。\n\n2. **不变量的作用**：\n   - 点数和直径在投影过程中保持不变，是可靠的不变量。\n   - 维度和距离保留比例发生了显著变化，反映了投影的非线性特性。\n\n3. **投影优化的可能性**：\n   - 部分压缩（`axis_scale = 0.5`）可以减少碰撞，但仍无法完全避免信息损失。\n   - 如果需要更高的保真度，应尽量避免维度降低或采用其他降维方法（如等距映射）。\n\n---\n\n### **最终答案**\n\n$$\n\\boxed{\\text{投影操作导致维度降低、距离失真、碰撞和边交叉的引入，信息损失主要由维度降低引起。}}\n$$",
+          "elapsed_sec": 47.01,
+          "score": 4,
+          "rationale": "Correct + 1 collision (pair 2-3) + 4 crossings + 40% distance preserved."
+        },
+        {
+          "domain": "surface_topology",
+          "case_id": "a331-b69",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n#### 1. **问题背景的几何拓扑框架**\n给定一个亏格 $ g = 2 $ 的紧致定向曲面 $ S $，其基本群可以用标准生成元 $ a_1, b_1, a_2, b_2 $ 表示。两条简单闭曲线 $ \\alpha $ 和 $ \\beta $ 是通过 Dehn 扭转字（words）在这些生成元上的表示来定义的。\n\n- **几何相交数 $ i(\\alpha, \\beta) $**：这是指 $ \\alpha $ 和 $ \\beta $ 在同伦类中最小化后的相交点数目。\n- **权重变化**：权重的变化通常与 Dehn 扭转操作有关，反映了曲线在曲面上的变形过程。\n\n#### 2. **案例数据解读**\n从提供的 JSON 数据中提取关键信息：\n- **`summary_delta`**:\n  - `weight_a`: -12\n  - `weight_b`: 0\n  - `intersection_number`: 0\n- **`metadata`**:\n  - `surface`: [1, 2] 表示曲面是亏格为 2 的紧致定向曲面。\n  - `alpha_index`: 331, `beta_index`: 69 表示两条曲线的具体索引编号。\n  - `alpha_level`: 4, `beta_level`: 1 表示曲线的复杂度或层级。\n  - `i_alpha_beta`: 1 表示 $ \\alpha $ 和 $ \\beta $ 的几何相交数为 1。\n\n#### 3. **矛盾点分析**\n从数据中可以观察到以下矛盾：\n- `summary_delta.intersection_number` 被标记为 0，而 `metadata.i_alpha_beta` 被标记为 1。\n- 这意味着，`summary_delta` 中的相交数可能是一个中间计算结果，或者存在某种误解。\n\n#### 4. **几何相交数的确定**\n根据拓扑学中的定义，几何相交数 $ i(\\alpha, \\beta) $ 是一个同伦不变量，且总是非负整数。结合 `metadata.i_alpha_beta` 的值为 1，我们可以得出结论：\n$$\ni(\\alpha, \\beta) = 1\n$$\n这表明 $ \\alpha $ 和 $ \\beta $ 在同伦类中无法完全分离，至少有一个相交点。\n\n#### 5. **权重变化的意义**\n- `weight_a = -12` 表明在 $ \\alpha $ 的 Dehn 扭转过程中，权重发生了显著变化，可能是由于 $ \\alpha $ 在曲面上的变形导致的。\n- `weight_b = 0` 表明 $ \\beta $ 的权重没有变化，可能是因为 $ \\beta $ 的结构较为简单（`beta_level = 1`），未受到显著影响。\n\n#### 6. **结论**\n综合以上分析，我们得出以下结论：\n1. **几何相交数**：$ i(\\alpha, \\beta) = 1 $。\n2. **权重变化**：$ \\alpha $ 的权重显著减少（`weight_a = -12`），而 $ \\beta $ 的权重保持不变（`weight_b = 0`）。\n3. **数据一致性**：`summary_delta.intersection_number` 应修正为 1，以与 `metadata.i_alpha_beta` 一致。\n\n### 最终答案\n$$\n\\boxed{i(\\alpha, \\beta) = 1}\n$$",
+          "elapsed_sec": 28.97,
+          "score": 3,
+          "rationale": "Correct (i=1 from metadata) + flags intersection_number=0 as different metric."
+        },
+        {
+          "domain": "surface_topology",
+          "case_id": "a331-b69",
+          "condition": "rtc",
+          "response": "### 分析与推理\n\n我们需要基于提供的 **结构数据 (R)**、**变换轨迹 (T)** 和 **反事实对比 (C)** 来回答以下问题：\n\n1. **几何相交数 $ i(\\alpha, \\beta) $ 的计算与验证。**\n2. **权重变化的讨论及其对问题的影响。**\n\n---\n\n### 1. 几何相交数 $ i(\\alpha, \\beta) $\n\n#### 数据分析\n- **元数据 (`metadata`)** 中明确指出：\n  ```json\n  \"i_alpha_beta\": 1\n  ```\n  这表明，引擎已经计算出 $ i(\\alpha, \\beta) = 1 $。\n\n- **交叉点统计 (`detailed_comparison`)** 显示：\n  - `crossings_pre_count` 和 `crossings_post_count` 均为 16。\n  - `crossings_in_transform_region_pre` 和 `crossings_in_transform_region_post` 也均为 16。\n  - 没有外部区域的交叉点（`crossings_outside_region_pre` 和 `crossings_outside_region_post` 均为 0）。\n  \n  这些数据表明，在变换前后，交叉点的数量和分布没有发生变化，且所有交叉点都集中在变换区域内。\n\n- **双角形分类 (`structural_comparison`)**：\n  - 变换前后的双角形数量均为 8。\n  - 所有双角形都包含穿孔（`all_bigons_contain_puncture_pre` 和 `all_bigons_contain_puncture_post` 均为 `true`）。\n  - 这意味着这些双角形不会影响几何相交数的计算，因为它们不贡献实际的最小交叉点。\n\n- **反事实对比 (C)**：\n  - 第一条反事实策略 (`boundary_relaxation`) 将 $ i(\\alpha, \\beta) $ 的上界从 1 放宽到 2，并观察到净变化从 0 变为 -2。\n    ```json\n    \"original_condition\": {\n      \"intersection_bound\": 1,\n      \"i(alpha, beta)\": 1\n    },\n    \"modified_condition\": {\n      \"intersection_bound\": 2,\n      \"i(alpha, beta)\": 2\n    }\n    ```\n    这表明，当放宽约束时，$ i(\\alpha, \\beta) $ 可能增加，但当前条件下 $ i(\\alpha, \\beta) = 1 $ 是最优解。\n\n#### 结论\n结合以上分析，我们可以确认：\n$$\n\\boxed{i(\\alpha, \\beta) = 1}\n$$\n这与引擎的直接计算结果一致。\n\n---\n\n### 2. 权重变化的讨论\n\n#### 数据分析\n- **权重变化 (`summary_delta`)**：\n  ```json\n  \"weight_a\": -12,\n  \"weight_b\": 0\n  ```\n  这表明，经过变换后，曲线 $\\alpha$ 的权重减少了 12，而曲线 $\\beta$ 的权重保持不变。\n\n- **变换轨迹 (`transform_trace`)**：\n  - 变换操作是 Hatcher 手术 (`hatcher_surgery`)。\n  - 变换参数中指定了手术曲线 $\\gamma_0 = a_0$。\n  - 变换前后的权重变化为：\n    ```json\n    \"delta\": {\n      \"level_shift\": -2,\n      \"weight_shift\": -12\n    }\n    ```\n    这表明，$\\alpha$ 的层级降低了 2，权重减少了 12。\n\n- **受影响区域 (`region_affected`)**：\n  - 变换影响了三角形 0、1、2 和 3。\n  - 所有受影响的弧线均为短弧（`short_arc_triangles`），没有长弧（`long_arc_triangles`）。\n  - 区域内包含 2 个穿孔。\n\n- **反事实对比 (C)**：\n  - 第二条反事实策略 (`condition_removal`) 移除了“$\\beta$ 在下降链中”的约束，但净变化仍为 0。\n    ```json\n    \"delta\": {\n      \"net_change\": 0\n    }\n    ```\n    这表明，权重变化主要由 $\\alpha$ 的变换引起，与 $\\beta$ 的具体条件无关。\n\n#### 结论\n权重的变化反映了 Hatcher 手术对 $\\alpha$ 的简化效果：\n- 层级降低 2 表明 $\\alpha$ 的复杂度减少。\n- 权重减少 12 表明 $\\alpha$ 的某些部分被移除或重新分配。\n- $\\beta$ 的权重未受影响，说明其几何性质在变换中保持稳定。\n\n最终结论为：\n$$\n\\boxed{\\text{权重变化反映了 Hatcher 手术对 } \\alpha \\text{ 的简化效果，同时保持 } i(\\alpha, \\beta) = 1 \\text{ 不变。}}\n$$\n\n---\n\n### 综合结论\n\n1. 几何相交数为：\n   $$\n   \\boxed{i(\\alpha, \\beta) = 1}\n   $$\n\n2. 权重变化表明 Hatcher 手术成功简化了 $\\alpha$，同时保持了几何相交数的稳定性。",
+          "elapsed_sec": 38.52,
+          "score": 4,
+          "rationale": "Correct + Hatcher surgery + bigons-with-puncture explanation + counterfactual."
+        },
+        {
+          "domain": "surface_topology",
+          "case_id": "a62-b12",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n#### 1. 背景知识\n- **亏格 $ g = 2 $ 的紧致定向曲面**：这是一个双环面，其基本群可以用标准生成元 $ a_1, b_1, a_2, b_2 $ 表示。这些生成元满足关系：\n  $$\n  [a_1, b_1][a_2, b_2] = 1,\n  $$\n  其中 $[x, y] = xyx^{-1}y^{-1}$ 是交换子。\n\n- **简单闭曲线的几何相交数 $ i(\\alpha, \\beta) $**：这是两条简单闭曲线 $\\alpha$ 和 $\\beta$ 在曲面上的最小几何相交点数（在同伦意义下）。它可以通过代数方法或组合方法计算。\n\n- **Dehn 扭转字表示**：简单闭曲线可以用 Dehn 扭转的字（word）表示，这通常对应于基本群中的元素。\n\n- **权重变化**：权重的变化可能与曲线的表示方式、它们的拓扑性质以及它们之间的相对位置有关。\n\n---\n\n#### 2. 数据解读\n从提供的数据中提取关键信息：\n\n- **`summary_delta`**:\n  - `weight_a`: -16\n  - `weight_b`: 0\n  - `intersection_number`: 0\n\n  这里的 `intersection_number` 为 0，可能是指某种代数意义上的相交数（例如代数相交数），而不是几何相交数。\n\n- **`metadata`**:\n  - `surface`: [1, 2]，表示这是一个亏格 $ g = 2 $ 的曲面。\n  - `alpha_index`: 62，`beta_index`: 12，表示两条曲线的索引编号。\n  - `alpha_level`: 4，`beta_level`: 3，可能表示它们在某种分层结构中的层级。\n  - `i_alpha_beta`: 1，明确指出几何相交数为 1。\n\n---\n\n#### 3. 几何相交数的结论\n根据 `metadata` 中的 `i_alpha_beta` 值，几何相交数 $ i(\\alpha, \\beta) $ 明确为 **1**。这意味着无论两条曲线的具体表示如何，它们在曲面上至少有一个且只有一个几何相交点。\n\n---\n\n#### 4. 权重变化的讨论\n权重的变化可以从以下角度分析：\n\n- **`weight_a` 和 `weight_b`**：\n  - `weight_a = -16`，表明曲线 $\\alpha$ 或 $\\beta$ 在某些方向上的贡献较大，可能是由于它们的 Dehn 扭转表示中包含较多的 $a_1$ 或 $a_2$ 项。\n  - `weight_b = 0`，表明在 $b_1$ 和 $b_2$ 方向上没有显著的权重变化。\n\n- **几何与代数相交数的关系**：\n  - 几何相交数 $ i(\\alpha, \\beta) = 1 $，而代数相交数（`summary_delta.intersection_number`）为 0。这说明两条曲线虽然在几何上相交一次，但在代数意义上（考虑方向性）它们的相交是“抵消”的。\n\n- **层级与权重的关系**：\n  - 曲线 $\\alpha$ 的层级为 4，$\\beta$ 的层级为 3。层级较高的曲线可能具有更复杂的表示形式，从而导致较大的权重变化。\n\n---\n\n### 结论\n基于以上分析，可以得出以下结论：\n\n1. **几何相交数**：\n   $$\n   \\boxed{i(\\alpha, \\beta) = 1}\n   $$\n\n2. **权重变化**：\n   - 权重变化主要体现在 $a_1$ 和 $a_2$ 方向（`weight_a = -16`），而在 $b_1$ 和 $b_2$ 方向无显著变化（`weight_b = 0`）。\n   - 几何相交数与代数相交数的差异反映了曲线在方向性上的特殊性质。\n\n3. **进一步研究建议**：\n   - 如果需要更深入地理解权重变化的原因，可以分析曲线 $\\alpha$ 和 $\\beta$ 的具体 Dehn 扭转表示。\n   - 研究层级（level）与权重之间的定量关系可能会揭示更多关于曲线复杂性的信息。",
+          "elapsed_sec": 31.65,
+          "score": 3,
+          "rationale": "Correct (i=1) + weight Δ=−16 noted."
+        },
+        {
+          "domain": "surface_topology",
+          "case_id": "a62-b12",
+          "condition": "rtc",
+          "response": "### 问题分析与推理\n\n我们需要基于给定的结构数据 (R)、变换轨迹 (T) 和反事实对比 (C)，判断两条简单闭曲线 $\\alpha$ 和 $\\beta$ 的几何相交数 $i(\\alpha, \\beta)$，并讨论权重的变化。\n\n---\n\n### **1. 几何相交数 $i(\\alpha, \\beta)$ 的计算**\n\n#### **(a) 数据中的直接信息**\n- 在 `metadata` 中，明确给出了 $i(\\alpha, \\beta) = 1$：\n  ```json\n  \"metadata\": {\n    \"i_alpha_beta\": 1\n  }\n  ```\n  这表明在初始状态下，$\\alpha$ 和 $\\beta$ 的几何相交数为 1。\n\n#### **(b) 变换轨迹的影响**\n- 在 `transform_trace` 中，描述了通过 Hatcher 手术对 $\\alpha$ 进行变换的过程。关键点包括：\n  - **交叉点数量变化**：从 `detailed_comparison` 中可以看出，交叉点的数量从 14 减少到 10。\n  - **二边形（bigon）数量变化**：`structural_comparison` 表明二边形的数量从 10 减少到 6。\n  - **是否达到最小位置**：`minimal_position_pre` 和 `minimal_position_post` 均为 `false`，说明无论是变换前还是变换后，$\\alpha$ 和 $\\beta$ 都未达到几何上的最小位置。\n\n  尽管交叉点和二边形的数量有所减少，但这些变化并未影响几何相交数 $i(\\alpha, \\beta)$，因为 Hatcher 手术不会改变几何相交数的值。\n\n#### **(c) 反事实对比验证**\n- 在反事实对比 (C) 中，策略 `boundary_relaxation` 放松了几何相交数的约束条件，将 $i(\\alpha, \\beta)$ 从 1 提高到 2：\n  ```json\n  \"modified_condition\": {\n    \"intersection_bound\": 2,\n    \"beta_id\": \"a_0\",\n    \"i(alpha, beta)\": 2\n  }\n  ```\n  然而，这种放松导致净变化（`net_change`）从 0 下降到 -2，表明原始条件 $i(\\alpha, \\beta) = 1$ 是关键的约束条件，不能随意更改。\n\n综上所述，几何相交数 $i(\\alpha, \\beta)$ 的最终结论是：\n$$\n\\boxed{i(\\alpha, \\beta) = 1}\n$$\n\n---\n\n### **2. 权重变化的分析**\n\n#### **(a) 初始权重**\n- 在 `transform_trace.before_state` 中，$\\alpha$ 的权重分布为：\n  ```json\n  \"alpha_weights\": [5, 3, 4, 2, 5, 7]\n  ```\n  总权重为 $5 + 3 + 4 + 2 + 5 + 7 = 26$。\n\n#### **(b) 变换后的权重**\n- 在 `transform_trace.after_state` 中，$\\sigma$ 的权重分布为：\n  ```json\n  \"sigma_weights\": [1, 1, 2, 1, 2, 3]\n  ```\n  总权重为 $1 + 1 + 2 + 1 + 2 + 3 = 10$。\n\n- 根据 `delta.weight_shift`，权重减少了 16：\n  ```json\n  \"delta\": {\n    \"weight_shift\": -16\n  }\n  ```\n\n#### **(c) 权重变化的意义**\n- 权重的变化反映了 Hatcher 手术对曲线 $\\alpha$ 的简化效果。权重减少意味着曲线变得更加“紧凑”，可能减少了不必要的绕行或重复路径。\n- 此外，权重的变化并未影响几何相交数 $i(\\alpha, \\beta)$，这进一步验证了几何相交数的稳定性。\n\n---\n\n### **3. 结论与推理总结**\n\n#### **(a) 几何相交数**\n- 通过直接数据、变换轨迹和反事实对比的综合分析，我们确认几何相交数 $i(\\alpha, \\beta)$ 为：\n  $$\n  \\boxed{i(\\alpha, \\beta) = 1}\n  $$\n\n#### **(b) 权重变化**\n- Hatcher 手术显著减少了曲线 $\\alpha$ 的权重，从 26 减少到 10，总变化量为 -16。这种变化表明手术有效简化了曲线的结构，同时保持了几何相交数不变。\n\n#### **(c) 关键观察**\n- 几何相交数 $i(\\alpha, \\beta)$ 是一个拓扑不变量，在 Hatcher 手术中保持稳定。\n- 权重的变化反映了曲线复杂度的降低，但不影响几何相交数的值。\n- 反事实对比验证了几何相交数约束的重要性，表明其是一个关键的负载条件。\n\n---\n\n### **最终结论**\n通过对结构数据、变换轨迹和反事实对比的全面分析，我们得出以下结论：\n1. 几何相交数为：\n   $$\n   \\boxed{i(\\alpha, \\beta) = 1}\n   $$\n2. Hatcher 手术显著降低了曲线 $\\alpha$ 的权重，从 26 减少到 10，总变化量为 -16。\n3. 几何相交数的约束条件是关键的拓扑不变量，不可随意放松。",
+          "elapsed_sec": 41.97,
+          "score": 4,
+          "rationale": "Correct + explicit weight sum 26→10 verification + Hatcher analysis."
+        },
+        {
+          "domain": "surface_topology",
+          "case_id": "a12-b1",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n我们需要基于给定的数据和问题背景，分析两条简单闭曲线 $\\alpha$ 和 $\\beta$ 的几何相交数 $i(\\alpha, \\beta)$ 以及权重的变化。\n\n---\n\n#### **1. 数据解读**\n从 JSON 数据中提取关键信息：\n\n- **曲面信息**：\n  - 曲面 $S$ 是亏格 $g = 2$ 的紧致定向曲面。\n  - 标准生成元为 $a_1, b_1, a_2, b_2$，它们是曲面上的基本闭曲线。\n\n- **曲线信息**：\n  - $\\alpha$ 的索引为 12，$\\beta$ 的索引为 1。\n  - $\\alpha$ 的层级为 3，$\\beta$ 的层级为 1。\n  - 几何相交数 $i(\\alpha, \\beta) = 1$（来自 `metadata` 中的 `i_alpha_beta`）。\n\n- **权重变化**：\n  - 权重 $w_a = -8$，权重 $w_b = 0$。\n  - 几何相交数 $i(\\alpha, \\beta) = 0$（来自 `summary_delta` 中的 `intersection_number`）。\n\n---\n\n#### **2. 关键概念回顾**\n\n- **几何相交数 $i(\\alpha, \\beta)$**：\n  - 定义为两条简单闭曲线在同伦类下最小化的相交点数。\n  - 在曲面上，可以通过调整曲线的同伦类来减少相交点数。\n\n- **Dehn 扭转**：\n  - Dehn 扭转是一种沿简单闭曲线的操作，会改变其他曲线的同伦类。\n  - 如果对某条曲线应用 Dehn 扭转，可能会改变其与其他曲线的相交数。\n\n- **权重变化**：\n  - 权重 $w_a$ 和 $w_b$ 表示某种与曲线相关的量（例如曲线的“复杂度”或“长度”）。\n  - 权重的变化可能与 Dehn 扭转或其他操作相关。\n\n---\n\n#### **3. 数据矛盾与解释**\n\n从数据中观察到以下矛盾：\n1. 在 `metadata` 中，几何相交数 $i(\\alpha, \\beta) = 1$。\n2. 在 `summary_delta` 中，几何相交数 $i(\\alpha, \\beta) = 0$。\n\n这表明可能存在以下情况之一：\n- 数据来源不同步：`metadata` 和 `summary_delta` 可能反映了不同的状态（例如，在某些操作之前或之后的状态）。\n- 操作影响：可能是某种操作（如 Dehn 扭转）改变了曲线的同伦类，从而改变了几何相交数。\n\n结合权重变化（$w_a = -8, w_b = 0$），可以推测：\n- 对 $\\alpha$ 或 $\\beta$ 应用了某种操作（例如 Dehn 扭转），导致几何相交数从 1 变为 0。\n- 权重 $w_a$ 的显著变化（$-8$）可能与这种操作有关。\n\n---\n\n#### **4. 结论**\n\n基于以上分析，我们可以得出以下结论：\n\n1. **几何相交数的变化**：\n   - 初始状态下，$\\alpha$ 和 $\\beta$ 的几何相交数为 $i(\\alpha, \\beta) = 1$。\n   - 经过某种操作（例如 Dehn 扭转），几何相交数变为 $i(\\alpha, \\beta) = 0$。\n\n2. **权重变化的意义**：\n   - 权重 $w_a = -8$ 表明操作主要影响了与 $a$ 相关的部分（例如，$\\alpha$ 或 $\\beta$ 中涉及 $a_1, a_2$ 的部分）。\n   - 权重 $w_b = 0$ 表明与 $b$ 相关的部分未受影响。\n\n3. **最终状态**：\n   - 在最终状态下，$\\alpha$ 和 $\\beta$ 不再相交（即 $i(\\alpha, \\beta) = 0$）。\n\n---\n\n#### **5. 总结**\n\n$$\n\\boxed{i(\\alpha, \\beta) = 0}\n$$\n\n通过某种操作（可能为 Dehn 扭转），两条简单闭曲线 $\\alpha$ 和 $\\beta$ 的几何相交数从 1 减少为 0。权重的变化进一步验证了这一过程，表明操作主要影响了与 $a$ 相关的部分。",
+          "elapsed_sec": 38.04,
+          "score": 1,
+          "rationale": "Wrong — boxes i(α,β)=0, ignoring metadata i_alpha_beta=1."
+        },
+        {
+          "domain": "surface_topology",
+          "case_id": "a12-b1",
+          "condition": "rtc",
+          "response": "### 结论与推理\n\n#### 1. **几何相交数 $ i(\\alpha, \\beta) $ 的计算**\n根据提供的数据，几何相交数 $ i(\\alpha, \\beta) $ 是一个关键的拓扑不变量。从 `metadata` 中可以提取以下信息：\n- `i_alpha_beta: 1` 表明在原始配置下，$\\alpha$ 和 $\\beta$ 的几何相交数为 1。\n- 在反事实对比 (C) 中，策略 `boundary_relaxation` 放松了交叉数约束，将 $ i(\\alpha, \\beta) $ 从 1 提高到 2，导致净变化 (`net_change`) 减少 2。这表明原始条件下的交叉数约束是严格的且“承载负载”的（`condition_is_critical: true`）。\n\n因此，结合原始数据和反事实分析，我们可以得出结论：\n$$\n\\boxed{i(\\alpha, \\beta) = 1}\n$$\n\n#### 2. **权重变化的分析**\n权重变化主要体现在 `summary_delta` 和 `transform_trace` 中：\n- `weight_a: -8` 表示在变换过程中，$\\alpha$ 的权重减少了 8。\n- `level_shift: -2` 表明 $\\alpha$ 的层级降低了 2。\n- 反事实对比中，策略 `operation_perturbation` 和 `condition_removal` 对权重没有产生额外影响（`delta.net_change = 0`），说明这些操作对权重的影响是稳定的。\n\n权重的变化可以通过以下机制解释：\n- 在 `transform_trace` 中，Hatcher 手术通过调整 $\\alpha$ 和 $\\gamma_0$ 的相对位置，减少了 $\\alpha$ 的权重。具体来说，手术前后的三角形交叉点数量从 3 减少到 2（`crossings_pre_count: 3`, `crossings_post_count: 2`），这直接导致了权重的减少。\n- 权重的变化还受到层级降低的影响：层级降低意味着曲线在组合结构中的复杂性减少，从而导致权重下降。\n\n因此，权重变化的主要原因是 Hatcher 手术对 $\\alpha$ 的重新定位，以及层级的降低。\n\n#### 3. **Bigon 分析与最小位置**\n`structural_comparison` 提供了关于 bigon 的详细信息：\n- `bigons_pre: 1` 和 `bigons_post: 1` 表明在变换前后，存在一个 bigon（二边形区域）。\n- `all_bigons_contain_puncture_pre: true` 和 `all_bigons_contain_puncture_post: true` 表明所有 bigon 都包含 puncture（穿孔）。\n- `minimal_position_pre: false` 和 `minimal_position_post: false` 表明 $\\alpha$ 和 $\\beta$ 在变换前后均未达到最小位置。\n\n这些结果表明：\n- 存在一个包含穿孔的 bigon，但该 bigon 并未被消除，因此 $\\alpha$ 和 $\\beta$ 的几何相交数保持不变。\n- 最小位置未达成，可能是因为 bigon 的存在阻碍了进一步简化。\n\n#### 4. **反事实对比的验证**\n反事实对比提供了对关键条件的敏感性分析：\n- **边界松弛 (`boundary_relaxation`)**：放松交叉数约束后，$ i(\\alpha, \\beta) $ 增加到 2，导致净变化减少 2。这验证了原始交叉数约束的重要性。\n- **条件移除 (`condition_removal`)**：移除“$\\beta$ 在下降链中”的约束并未改变结果，表明该条件并非关键。\n- **操作扰动 (`operation_perturbation`)**：更换手术曲线 $\\gamma_0$ 后，结果未发生变化，表明手术曲线的选择对最终结果不敏感。\n\n这些反事实分析支持了原始计算的稳健性，并验证了关键假设的有效性。\n\n---\n\n### 总结\n基于以上分析，我们得出以下结论：\n1. $\\alpha$ 和 $\\beta$ 的几何相交数为：\n   $$\n   \\boxed{i(\\alpha, \\beta) = 1}\n   $$\n2. 权重的变化主要是由于 Hatcher 手术导致的层级降低和交叉点减少，权重减少了 8。\n3. Bigon 的存在阻碍了最小位置的达成，但不影响几何相交数的计算。\n4. 反事实对比验证了原始计算的稳健性，并确认了交叉数约束的关键性。",
+          "elapsed_sec": 34.12,
+          "score": 4,
+          "rationale": "Correct + bigon analysis + counterfactual key-condition."
+        },
+        {
+          "domain": "surface_topology_s21",
+          "case_id": "a151-b6",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n#### 1. 理解问题背景\n- **曲面 $ S_{2,1} $**：这是一个亏格为 $ g=2 $ 的闭合曲面，带有一个边界（穿孔）。这种曲面在拓扑学中可以看作是一个双环面（torus with two holes）去掉一个圆盘。\n- **简单闭曲线 $ \\alpha $ 和 $ \\beta $**：它们是嵌入在曲面上的两条不自交的闭合曲线。我们需要计算它们的几何相交数 $ i(\\alpha, \\beta) $。\n- **几何相交数 $ i(\\alpha, \\beta) $**：这是指两条曲线在一般位置下相交点的最小数目，且每个交点都计为正数（不考虑方向性）。\n\n#### 2. 数据解析\n从提供的 JSON 数据中提取关键信息：\n- **`metadata.surface`**: 表明曲面是 $ S_{2,1} $，即亏格为 2、带 1 个边界的曲面。\n- **`metadata.i_alpha_beta`**: 明确指出 $ i(\\alpha, \\beta) = 1 $。\n- **`summary_delta.intersection_number`**: 这里的值为 -1，可能表示某种变化或调整后的交点数，但其具体含义需要结合上下文理解。\n- **权重变化**:\n  - `weight_a`: 减少了 9。\n  - `weight_b`: 没有变化（保持为 0）。\n\n#### 3. 几何相交数的验证\n根据拓扑学理论：\n- 在 $ S_{2,1} $ 上，两条简单闭曲线的几何相交数 $ i(\\alpha, \\beta) $ 是一个非负整数。\n- 如果 $ i(\\alpha, \\beta) = 1 $，这意味着 $ \\alpha $ 和 $ \\beta $ 在一般位置下恰好相交一次。\n\n从数据来看，`metadata.i_alpha_beta` 已经明确给出 $ i(\\alpha, \\beta) = 1 $。因此，几何相交数可以直接确认为 1。\n\n#### 4. 权重变化的讨论\n权重的变化（`weight_a` 和 `weight_b`）可能是由于某种操作或变换导致的。例如：\n- **权重减少 $ \\Delta \\text{weight}_a = -9 $**：这可能是因为对 $ \\alpha $ 曲线进行了某种简化或压缩操作，减少了其复杂度。\n- **权重不变 $ \\Delta \\text{weight}_b = 0 $**：说明 $ \\beta $ 曲线没有受到影响。\n\n需要注意的是，权重的具体定义和计算方式并未明确给出，因此我们只能基于数据进行推测。\n\n#### 5. 结论\n综合以上分析：\n- **几何相交数**：$ i(\\alpha, \\beta) = 1 $。\n- **权重变化**：$ \\alpha $ 的权重减少了 9，而 $ \\beta $ 的权重保持不变。\n\n---\n\n### 最终结论\n$$\n\\boxed{i(\\alpha, \\beta) = 1}\n$$\n权重的变化表明 $ \\alpha $ 的复杂度降低，而 $ \\beta $ 未受影响。",
+          "elapsed_sec": 23.36,
+          "score": 3,
+          "rationale": "Correct (i=1, weight Δ=−9)."
+        },
+        {
+          "domain": "surface_topology_s21",
+          "case_id": "a151-b6",
+          "condition": "rtc",
+          "response": "### 问题分析\n\n我们需要判断曲面 $ S_{2,1} $ 上两条简单闭曲线 $\\alpha$ 和 $\\beta$ 的几何相交数 $ i(\\alpha, \\beta) $，并讨论权重变化的意义。以下是基于结构数据 (R)、变换轨迹 (T) 和反事实对比 (C) 的详细推理。\n\n---\n\n### **1. 几何相交数 $ i(\\alpha, \\beta) $ 的计算**\n\n#### **(a) 结构数据中的信息**\n- 在 `metadata` 中，明确给出了初始的几何相交数：\n  $$\n  i(\\alpha, \\beta) = 1\n  $$\n  这表明在初始状态下，$\\alpha$ 和 $\\beta$ 在曲面上有且仅有一个交叉点。\n\n- 在 `detailed_comparison` 中，`crossings_pre_count` 和 `crossings_post_count` 分别为 2 和 0。这说明：\n  - 初始状态中存在 2 个候选交叉点。\n  - 经过变换后，所有交叉点被消除（即 $ i(\\alpha, \\beta) $ 变为 0）。\n\n#### **(b) 反事实对比中的验证**\n- 在第一个反事实案例中，通过放松约束条件，将 $ i(\\alpha, \\beta) $ 从 1 提高到 2，观察到净变化（`net_change`）从 -1 变为 -2。这表明：\n  - 原始条件下 $ i(\\alpha, \\beta) = 1 $ 是合理的，且该值是紧致的（tight）。\n  - 如果允许更多的交叉点，则净变化会进一步恶化。\n\n#### **结论 1**:\n初始状态下，几何相交数为：\n$$\ni(\\alpha, \\beta) = 1\n$$\n经过变换后，几何相交数变为：\n$$\ni(\\alpha, \\beta) = 0\n$$\n\n---\n\n### **2. 权重变化的意义**\n\n#### **(a) 权重变化的直接数据**\n- 在 `summary_delta` 中，权重变化如下：\n  $$\n  \\text{weight}_\\alpha = -9, \\quad \\text{intersection_number} = -1, \\quad \\text{weight}_\\beta = 0\n  $$\n  这表明：\n  - $\\alpha$ 的权重减少了 9。\n  - 几何相交数减少了 1。\n  - $\\beta$ 的权重保持不变。\n\n- 在 `transform_trace` 中，`delta` 部分进一步细化了权重和层级的变化：\n  $$\n  \\text{level_shift} = -2, \\quad \\text{weight_shift} = -9\n  $$\n  这表明：\n  - $\\alpha$ 的层级降低了 2。\n  - 权重减少与层级降低密切相关。\n\n#### **(b) 权重变化的几何解释**\n- 在 `structural_comparison` 中，我们观察到以下现象：\n  - 变换前存在一个带有穿孔的二边形（bigon with puncture），而变换后所有二边形消失。\n  - 变换前 $\\alpha$ 不处于极小位置（minimal position），而变换后达到极小位置。\n\n- 在 `transform_trace` 中，`region_affected` 部分显示受影响区域包含三角形 2、3 和 5，并涉及穿孔。权重减少可能是因为：\n  - $\\alpha$ 的某些弧段被重新分配或移除。\n  - 穿孔的存在导致权重重新分布。\n\n#### **(c) 反事实对比中的验证**\n- 第二个反事实案例中，移除了“$\\beta$ 必须位于下降链”这一约束条件。结果显示：\n  - 原始净变化为 -1。\n  - 移除约束后净变化为 0。\n  这表明权重变化与层级关系紧密相关。\n\n#### **结论 2**:\n权重变化反映了 $\\alpha$ 的层级降低和几何结构的简化。具体来说：\n- $\\alpha$ 的权重减少了 9，对应于其层级降低 2。\n- 权重减少的主要原因是消除了与 $\\beta$ 的交叉点，并重新分配了穿孔附近的权重。\n\n---\n\n### **3. 变换轨迹的几何意义**\n\n#### **(a) Hatcher 手术的作用**\n- 根据 `transform_trace`，变换操作为 Hatcher 手术，参数为：\n  $$\n  \\text{gamma0_id} = a_0, \\quad \\text{alpha_id} = c151, \\quad \\text{sigma_id} = \\sigma_c1\n  $$\n  这表明：\n  - 曲线 $\\alpha$ 被重新构造为一条新曲线 $\\sigma$。\n  - $\\sigma$ 的权重显著减少（从非零变为全零），表明其复杂度大幅降低。\n\n#### **(b) 受影响区域的细节**\n- 受影响区域包含三角形 2、3 和 5，并涉及穿孔。这些区域的变化导致：\n  - 消除了所有候选交叉点。\n  - 达到了极小位置。\n\n#### **(c) 反事实对比中的验证**\n- 第三个反事实案例中，更换手术曲线（从 $a_0$ 到 $c0$）并未改变净变化。这表明：\n  - 手术曲线的选择对结果影响较小。\n  - 关键在于手术本身对几何结构的优化。\n\n#### **结论 3**:\nHatcher 手术成功地简化了 $\\alpha$ 的几何结构，消除了交叉点并达到了极小位置。\n\n---\n\n### **最终结论**\n\n结合以上分析，我们可以得出以下结论：\n\n1. **几何相交数的变化**：\n   - 初始状态下，几何相交数为 $ i(\\alpha, \\beta) = 1 $。\n   - 经过 Hatcher 手术后，几何相交数降为 $ i(\\alpha, \\beta) = 0 $。\n\n2. **权重变化的意义**：\n   - $\\alpha$ 的权重减少了 9，对应于其层级降低 2。\n   - 权重减少的主要原因是消除了与 $\\beta$ 的交叉点，并重新分配了穿孔附近的权重。\n\n3. **变换轨迹的几何意义**：\n   - Hatcher 手术有效地简化了 $\\alpha$ 的几何结构，使其达到极小位置。\n   - 变换过程中，受影响区域集中在穿孔附近的三角形。\n\n$$\n\\boxed{i(\\alpha, \\beta) = 0 \\quad \\text{and weight reduction reflects structural simplification.}}\n$$",
+          "elapsed_sec": 51.55,
+          "score": 1,
+          "rationale": "Wrong — boxes 'i(α,β)=0 after surgery'. Surgery doesn't change i(α,β)."
+        },
+        {
+          "domain": "surface_topology_s21",
+          "case_id": "a122-b28",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n#### 1. **问题背景的理解**\n我们研究的是一个亏格 $ g = 2 $、带 1 个穿孔（边界）的曲面 $ S_{2,1} $ 上的两条简单闭曲线 $ \\alpha $ 和 $ \\beta $。目标是判断它们的**几何相交数** $ i(\\alpha, \\beta) $，并讨论权重（weight）的变化。\n\n- 几何相交数 $ i(\\alpha, \\beta) $ 是指在同伦类中，$ \\alpha $ 和 $ \\beta $ 的最小相交点数目。\n- 权重（weight）可能与曲线的某些属性相关，例如它们的复杂性或嵌入方式。\n\n#### 2. **案例数据解读**\n从提供的 JSON 数据中提取关键信息：\n\n- **`summary_delta`**:\n  - `weight_a`: -14\n  - `intersection_number`: 0\n  - `weight_b`: 0\n\n- **`metadata`**:\n  - 曲面 $ S_{2,1} $: 亏格 $ g = 2 $，1 个边界。\n  - $ \\alpha $ 和 $ \\beta $ 的索引分别为 122 和 28。\n  - $ \\alpha $ 和 $ \\beta $ 的层级分别为 2 和 1。\n  - $ i_\\alpha_\\beta $: 1 （这是元数据中给出的几何相交数）。\n\n#### 3. **几何相交数的分析**\n根据元数据中的 $ i_\\alpha_\\beta = 1 $，可以推断 $ \\alpha $ 和 $ \\beta $ 在 $ S_{2,1} $ 上至少有一个相交点。然而，`summary_delta` 中的 `intersection_number` 为 0，这表明在某种特定的变换或操作下，这两条曲线被调整到了不相交的状态。\n\n这种矛盾可以通过以下解释解决：\n- 几何相交数 $ i(\\alpha, \\beta) $ 是在同伦类中定义的最小值，而 `summary_delta` 中的 `intersection_number` 可能是在某种特定变形后的结果。\n- 因此，原始的几何相交数应为 $ i(\\alpha, \\beta) = 1 $。\n\n#### 4. **权重变化的讨论**\n权重的变化可以从以下角度分析：\n- `weight_a` 从某个初始值减少到 -14，表明 $ \\alpha $ 的复杂性或嵌入方式发生了显著变化。\n- `weight_b` 保持为 0，说明 $ \\beta $ 的属性没有发生明显变化。\n- 这种权重变化可能与 $ \\alpha $ 和 $ \\beta $ 的相对位置调整有关，尤其是在将它们调整为不相交的过程中。\n\n#### 5. **结论**\n基于以上分析，我们可以得出以下结论：\n\n1. **几何相交数**：原始的几何相交数为\n   $$\n   i(\\alpha, \\beta) = 1\n   $$\n   即 $ \\alpha $ 和 $ \\beta $ 在 $ S_{2,1} $ 上至少有一个相交点。\n\n2. **权重变化**：\n   - $ \\alpha $ 的权重减少了 14，表明其复杂性或嵌入方式发生了显著变化。\n   - $ \\beta $ 的权重保持不变，表明其属性未受影响。\n\n---\n\n### 最终答案\n$$\n\\boxed{i(\\alpha, \\beta) = 1}\n$$",
+          "elapsed_sec": 23.1,
+          "score": 3,
+          "rationale": "Correct (i=1, weight Δ=−14)."
+        },
+        {
+          "domain": "surface_topology_s21",
+          "case_id": "a122-b28",
+          "condition": "rtc",
+          "response": "### 问题分析与推理\n\n我们需要基于给定的结构数据 (R)、变换轨迹 (T) 和反事实对比 (C)，回答以下两个问题：\n1. 判断几何相交数 $ i(\\alpha, \\beta) $。\n2. 讨论权重变化的意义。\n\n---\n\n### **第一部分：判断几何相交数 $ i(\\alpha, \\beta) $**\n\n#### 数据提取与关键点分析\n从 `metadata` 中，我们直接看到：\n```json\n\"i_alpha_beta\": 1\n```\n这表明引擎计算出的几何相交数为 $ i(\\alpha, \\beta) = 1 $。为了验证这一结果是否合理，我们需要进一步检查以下内容：\n\n1. **交叉点数量的变化**：\n   - 在 `detailed_comparison` 中：\n     ```json\n     \"crossings_pre_count\": 10,\n     \"crossings_post_count\": 4\n     ```\n     这表明在变换之前，$\\alpha$ 和 $\\beta$ 的交叉点总数为 10，而在变换之后减少到 4。这种减少可能是因为通过某种操作（如 Hatcher 手术）消除了冗余交叉点。\n\n   - 在 `structural_comparison` 中：\n     ```json\n     \"bigons_pre\": 4,\n     \"bigons_post\": 2\n     ```\n     变换前存在 4 个二角形区域（bigons），而变换后仅剩 2 个。这些二角形区域通常对应于可以消除的冗余交叉点，因此它们的数量减少是合理的。\n\n2. **极小位置的性质**：\n   - 在 `structural_comparison` 中：\n     ```json\n     \"minimal_position_pre\": false,\n     \"minimal_position_post\": false\n     ```\n     这表明 $\\alpha$ 和 $\\beta$ 在变换前后都没有达到极小位置（即它们的交叉点数尚未最小化）。然而，尽管未达到极小位置，引擎仍计算得出 $ i(\\alpha, \\beta) = 1 $。这是因为几何相交数 $ i(\\alpha, \\beta) $ 是一个拓扑不变量，与具体的交叉点实现方式无关。\n\n3. **反事实对比中的信息**：\n   - 在反事实对比 (C) 中，第一条策略 (`boundary_relaxation`) 提到：\n     ```json\n     \"original_condition\": {\n       \"intersection_bound\": 1,\n       \"i(alpha, beta)\": 1\n     }\n     ```\n     这一条件明确指出原始情况下 $ i(\\alpha, \\beta) = 1 $。此外，修改后的条件将 $ i(\\alpha, \\beta) $ 放宽到 2，但并未改变其拓扑本质。\n\n#### 结论\n综合以上分析，我们可以确定几何相交数为：\n$$\n\\boxed{i(\\alpha, \\beta) = 1}\n$$\n\n---\n\n### **第二部分：讨论权重变化的意义**\n\n#### 权重变化的来源\n从 `summary_delta` 中可以看到：\n```json\n\"weight_a\": -14,\n\"weight_b\": 0\n```\n这表明曲线 $\\alpha$ 的权重减少了 14，而 $\\beta$ 的权重保持不变。结合变换轨迹 (T) 中的信息，我们可以进一步分析这一变化的原因：\n\n1. **Hatcher 手术的影响**：\n   - 在 `transform_trace` 中，操作名称为 `\"hatcher_surgery\"`，参数包括：\n     ```json\n     \"gamma0_id\": \"a_0\",\n     \"alpha_id\": \"c122\",\n     \"sigma_id\": \"sigma_c1\"\n     ```\n     这表明通过选择一条辅助曲线 $\\gamma_0$（编号为 `a_0`），对 $\\alpha$ 进行了 Hatcher 手术。这种手术通常会减少 $\\alpha$ 的复杂度（表现为权重的减少）。\n\n   - 在 `delta` 中：\n     ```json\n     \"level_shift\": -2,\n     \"weight_shift\": -14\n     ```\n     这表明 $\\alpha$ 的层级（level）降低了 2，同时权重减少了 14。这种变化反映了 $\\alpha$ 的简化过程。\n\n2. **权重分布的具体变化**：\n   - 在 `before_state` 和 `after_state` 中：\n     ```json\n     \"alpha_weights\": [4, 3, 1, 1, 2, 2, 2, 2, 0],\n     \"sigma_weights\": [0, 0, 0, 0, 0, 1, 1, 1, 0]\n     ```\n     可以看到，$\\alpha$ 的权重分布发生了显著变化，特别是在某些三角形区域中权重被完全消除（例如索引 2 和 3 的权重从非零变为零）。\n\n3. **反事实对比中的权重变化**：\n   - 在反事实对比 (C) 中，第二条策略 (`condition_removal`) 提到：\n     ```json\n     \"original_result\": {\n       \"net_change\": -1\n     },\n     \"counterfactual_result\": {\n       \"net_change\": 0\n     }\n     ```\n     这表明如果移除某些约束条件（如要求 $\\beta$ 必须在下降链中），权重变化可能会消失。这说明权重变化与特定的操作条件密切相关。\n\n#### 权重变化的意义\n权重的变化反映了 $\\alpha$ 的简化过程，具体来说：\n- 减少的权重（-14）表明通过 Hatcher 手术，$\\alpha$ 的复杂度得到了有效降低。\n- 权重分布的变化（例如某些区域权重归零）表明 $\\alpha$ 的局部结构被重新组织，使其更接近某种标准形式。\n\n这种变化不仅有助于理解 $\\alpha$ 的几何性质，还为进一步研究 $\\alpha$ 和 $\\beta$ 的关系提供了线索。\n\n---\n\n### **最终结论**\n1. 几何相交数为：\n   $$\n   \\boxed{i(\\alpha, \\beta) = 1}\n   $$\n\n2. 权重变化的意义在于通过 Hatcher 手术简化了 $\\alpha$ 的结构，减少了其复杂度（权重减少 14），并重新组织了其局部分布。这种变化反映了 $\\alpha$ 向某种标准形式的逼近过程。",
+          "elapsed_sec": 48.48,
+          "score": 4,
+          "rationale": "Correct + comprehensive Hatcher analysis + weight redistribution."
+        },
+        {
+          "domain": "surface_topology_s21",
+          "case_id": "a215-b1",
+          "condition": "baseline",
+          "response": "### 分析与推理\n\n#### 1. **问题背景的理解**\n我们研究的是一个亏格 $ g = 2 $、带 1 个穿孔（边界）的曲面 $ S_{2,1} $。该曲面上有两条简单闭曲线 $ \\alpha $ 和 $ \\beta $，需要计算它们的几何相交数 $ i(\\alpha, \\beta) $ 并讨论权重的变化。\n\n- **几何相交数**：定义为两条曲线在同伦类中最小化的交叉点数目（忽略方向）。这是拓扑学中的一个重要概念。\n- **权重变化**：这里的权重可能指代某种分配给曲线或其交叉点的数值属性，具体意义需要结合上下文分析。\n\n#### 2. **数据解读**\n从提供的 JSON 数据中提取关键信息：\n\n- 曲面类型：$ S_{2,1} $，即亏格为 2 的曲面，带 1 个边界。\n- 几何相交数：`metadata.i_alpha_beta = 1` 表示 $ \\alpha $ 和 $ \\beta $ 在同伦类中最小化后的交叉点数为 1。\n- 权重变化：\n  - `weight_a = -22`：表示 $ \\alpha $ 的权重变化为 -22。\n  - `weight_b = 0`：表示 $ \\beta $ 的权重没有变化。\n  - `intersection_number = -1`：这个值可能是某种特定的标记，但并不直接对应几何相交数（因为几何相交数总是非负整数）。\n\n#### 3. **几何相交数的确认**\n根据 `metadata.i_alpha_beta = 1`，可以得出结论：\n$$\ni(\\alpha, \\beta) = 1\n$$\n这表明 $ \\alpha $ 和 $ \\beta $ 在同伦类中最小化后恰好有一个交叉点。\n\n#### 4. **权重变化的讨论**\n权重变化的具体含义需要进一步明确，但从数据中可以推测以下几点：\n\n- **权重的定义**：权重可能与曲线的某些属性（如长度、复杂度或其他数值特征）相关联。\n- **权重变化的意义**：\n  - 对于 $ \\alpha $，权重减少了 22（`weight_a = -22`），这可能是因为曲线在某种操作（如简化或重新参数化）中发生了显著变化。\n  - 对于 $ \\beta $，权重保持不变（`weight_b = 0`），说明 $ \\beta $ 的属性未受操作影响。\n- **交叉点对权重的影响**：由于 $ \\alpha $ 和 $ \\beta $ 的几何相交数为 1，交叉点的存在可能对 $ \\alpha $ 的权重产生了负面影响（例如增加了复杂性或引入了额外约束）。\n\n#### 5. **综合结论**\n基于以上分析，我们可以得出以下结论：\n\n1. **几何相交数**：\n   $$\n   \\boxed{i(\\alpha, \\beta) = 1}\n   $$\n\n2. **权重变化**：\n   - $ \\alpha $ 的权重减少了 22，可能与其复杂的几何结构或与 $ \\beta $ 的交叉有关。\n   - $ \\beta $ 的权重未发生变化，说明其属性相对稳定。\n\n#### 6. **进一步讨论**\n如果需要更深入地理解权重变化的具体机制，可能需要补充以下信息：\n- 权重的具体定义和计算方法。\n- 曲线 $ \\alpha $ 和 $ \\beta $ 的具体参数化形式。\n- 操作或变换过程中是否引入了其他约束条件。\n\n希望以上分析能够解答您的问题！如果有更多细节需要探讨，请随时补充说明。",
+          "elapsed_sec": 26.65,
+          "score": 3,
+          "rationale": "Correct (i=1, weight Δ=−22)."
+        },
+        {
+          "domain": "surface_topology_s21",
+          "case_id": "a215-b1",
+          "condition": "rtc",
+          "response": "### 问题分析\n\n我们需要基于提供的数据（R、T、C）来判断几何相交数 $ i(\\alpha, \\beta) $ 的值，并讨论权重变化的影响。以下是逐步推理过程：\n\n---\n\n### **1. 几何相交数 $ i(\\alpha, \\beta) $ 的确定**\n\n#### 数据来源：\n- **元数据** (`metadata`) 中明确给出了 $ i(\\alpha, \\beta) = 1 $。\n- **结构对比** (`structural_comparison`) 显示：\n  - 变换前存在 2 个带穿孔的二边形（bigons with puncture），变换后这些二边形消失。\n  - 变换前未达到最小位置（`minimal_position_pre: false`），而变换后达到了最小位置（`minimal_position_post: true`）。\n\n#### 推理：\n- 在曲面 $ S_{2,1} $ 上，两条简单闭曲线 $ \\alpha $ 和 $ \\beta $ 的几何相交数 $ i(\\alpha, \\beta) $ 是在同伦类中无法通过连续变形进一步减少的交点数。\n- 初始状态下的交点数为 4（`crossings_pre_count: 4`），但其中包含 2 个带穿孔的二边形（`bigons_with_puncture_pre: 2`）。这些二边形可以通过 Hatcher 手术（`hatcher_surgery`）消除，最终交点数减少到 0（`crossings_post_count: 0`）。\n- 最小位置达成时，几何相交数为 1（`i_alpha_beta: 1`）。\n\n#### 结论：\n$$\n\\boxed{i(\\alpha, \\beta) = 1}\n$$\n\n---\n\n### **2. 权重变化的分析**\n\n#### 数据来源：\n- **总结增量** (`summary_delta`) 显示：\n  - $ \\text{weight}_a $ 减少了 22。\n  - $ \\text{intersection_number} $ 减少了 1。\n  - $ \\text{weight}_b $ 保持不变。\n- **变换轨迹** (`transform_trace`) 显示：\n  - $ \\alpha $ 的权重从 `[4, 6, 2, 2, 4, 3, 3, 2, 1]` 转变为 $ \\sigma $ 的权重 `[0, 1, 1, 1, 2, 0, 0, 0, 0]`。\n  - 层级（level）从 4 降至 2（`level_shift: -2`）。\n\n#### 推理：\n- 权重的变化反映了 Hatcher 手术对曲线复杂度的影响。具体来说：\n  - Hatcher 手术通过移除带穿孔的二边形，降低了曲线的层级和权重。\n  - 权重的显著减少（$ \\Delta \\text{weight}_a = -22 $）表明初始曲线 $ \\alpha $ 的复杂性较高。\n  - 由于 $ \\beta $ 的层级较低（`beta_level: 0`），其权重未受影响（$ \\Delta \\text{weight}_b = 0 $）。\n\n#### 结论：\nHatcher 手术显著减少了 $ \\alpha $ 的权重，同时保留了 $ \\beta $ 的权重不变。\n\n---\n\n### **3. 反事实对比 (C) 的验证**\n\n#### 数据来源：\n反事实对比提供了三种策略的结果：\n1. **边界松弛** (`boundary_relaxation`)：\n   - 放宽 $ i(\\alpha, \\beta) \\leq 1 $ 至 $ i(\\alpha, \\beta) = 2 $。\n   - 原始净变化为 -1，反事实净变化为 -2。\n   - 解释：边界条件可能不是紧约束。\n\n2. **条件移除** (`condition_removal`)：\n   - 移除了 $ \\beta $ 必须在下降链中的要求。\n   - 原始净变化为 -1，反事实净变化为 0。\n   - 解释：该条件对结果影响较小。\n\n3. **操作扰动** (`operation_perturbation`)：\n   - 将手术曲线从 $ a_0 $ 替换为 $ c0 $。\n   - 原始与反事实净变化均为 -1。\n   - 解释：手术曲线的选择对结果无显著影响。\n\n#### 推理：\n- 边界松弛和条件移除的结果表明，原始条件（如 $ i(\\alpha, \\beta) \\leq 1 $ 和 $ \\beta $ 在下降链中）并非严格必要。\n- 操作扰动的结果表明，Hatcher 手术的具体实现细节（如手术曲线的选择）对最终结果影响较小。\n\n#### 结论：\n反事实对比验证了原始条件和操作选择的稳健性。\n\n---\n\n### **4. 综合结论**\n\n基于以上分析，我们得出以下结论：\n\n1. **几何相交数**：\n   $$\n   \\boxed{i(\\alpha, \\beta) = 1}\n   $$\n\n2. **权重变化**：\n   - Hatcher 手术显著减少了 $ \\alpha $ 的权重（$ \\Delta \\text{weight}_a = -22 $），并降低了其层级（从 4 至 2）。\n   - $ \\beta $ 的权重保持不变。\n\n3. **反事实验证**：\n   - 原始条件和操作选择具有一定的灵活性，但不会显著改变最终结果。\n\n---\n\n### **5. 进一步讨论**\n\n- 如果需要更精确地控制权重变化，可以考虑优化 Hatcher 手术的具体实现（如选择不同的手术曲线或调整参数）。\n- 对于更高亏格或更多穿孔的曲面，类似方法仍可适用，但需注意计算复杂度的增加。",
+          "elapsed_sec": 40.24,
+          "score": 4,
+          "rationale": "Correct + explicit weight sum 27→5 verification + minimal-position attainment."
+        }
+      ],
+      "summary_8domain_full": {
+        "baseline_mean": 2.409,
+        "rtc_mean": 3.714,
+        "rtc_lift": 1.305,
+        "baseline_scores": [
+          3,
+          4,
+          4,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          3,
+          3,
+          1,
+          3,
+          3,
+          3
+        ],
+        "rtc_scores": [
+          1,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          1,
+          4,
+          4
+        ],
+        "n_per_condition": {
+          "baseline": 22,
+          "rtc": 21
+        },
+        "per_domain": {
+          "symmetry": {
+            "baseline": [
+              3,
+              4,
+              4
+            ],
+            "rtc": [
+              1,
+              4,
+              4
+            ],
+            "baseline_mean": 3.667,
+            "rtc_mean": 3.0
+          },
+          "knot_theory": {
+            "baseline": [
+              3,
+              3
+            ],
+            "rtc": [
+              4
+            ],
+            "baseline_mean": 3.0,
+            "rtc_mean": 4.0
+          },
+          "graph_connectivity": {
+            "baseline": [
+              2,
+              2
+            ],
+            "rtc": [
+              4,
+              4
+            ],
+            "baseline_mean": 2.0,
+            "rtc_mean": 4.0
+          },
+          "boundary_interior": {
+            "baseline": [
+              2,
+              2,
+              1
+            ],
+            "rtc": [
+              4,
+              4,
+              4
+            ],
+            "baseline_mean": 1.667,
+            "rtc_mean": 4.0
+          },
+          "discrete_curvature": {
+            "baseline": [
+              2,
+              2,
+              2
+            ],
+            "rtc": [
+              4,
+              4,
+              4
+            ],
+            "baseline_mean": 2.0,
+            "rtc_mean": 4.0
+          },
+          "projection": {
+            "baseline": [
+              2,
+              1,
+              2
+            ],
+            "rtc": [
+              4,
+              4,
+              4
+            ],
+            "baseline_mean": 1.667,
+            "rtc_mean": 4.0
+          },
+          "surface_topology": {
+            "baseline": [
+              3,
+              3,
+              1
+            ],
+            "rtc": [
+              4,
+              4,
+              4
+            ],
+            "baseline_mean": 2.333,
+            "rtc_mean": 4.0
+          },
+          "surface_topology_s21": {
+            "baseline": [
+              3,
+              3,
+              3
+            ],
+            "rtc": [
+              1,
+              4,
+              4
+            ],
+            "baseline_mean": 3.0,
+            "rtc_mean": 3.0
+          }
+        }
+      },
+      "summary_3domain_matched": {
+        "baseline_mean": 3.0,
+        "rtc_mean": 3.5,
+        "rtc_lift": 0.5,
+        "baseline_scores": [
+          3,
+          4,
+          4,
+          3,
+          3,
+          2,
+          2
+        ],
+        "rtc_scores": [
+          1,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "n_per_condition": {
+          "baseline": 7,
+          "rtc": 6
+        },
+        "per_domain": {
+          "symmetry": {
+            "baseline": [
+              3,
+              4,
+              4
+            ],
+            "rtc": [
+              1,
+              4,
+              4
+            ],
+            "baseline_mean": 3.667,
+            "rtc_mean": 3.0
+          },
+          "knot_theory": {
+            "baseline": [
+              3,
+              3
+            ],
+            "rtc": [
+              4
+            ],
+            "baseline_mean": 3.0,
+            "rtc_mean": 4.0
+          },
+          "graph_connectivity": {
+            "baseline": [
+              2,
+              2
+            ],
+            "rtc": [
+              4,
+              4
+            ],
+            "baseline_mean": 2.0,
+            "rtc_mean": 4.0
+          }
+        }
+      }
+    }
+  },
+  "summary_8domain_full": {
+    "deepseek": {
+      "baseline_mean": 2.583,
+      "rtc_mean": 3.833,
+      "rtc_lift": 1.25,
+      "baseline_scores": [
+        2,
+        3,
+        4,
+        3,
+        3,
+        3,
+        1,
+        1,
+        3,
+        1,
+        2,
+        4,
+        3,
+        2,
+        3,
+        3,
+        2,
+        1,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "rtc_scores": [
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        2,
+        4,
+        4
+      ],
+      "n_per_condition": {
+        "baseline": 24,
+        "rtc": 24
+      },
+      "per_domain": {
+        "symmetry": {
+          "baseline": [
+            2,
+            3,
+            4
+          ],
+          "rtc": [
+            3,
+            3,
+            4
+          ],
+          "baseline_mean": 3.0,
+          "rtc_mean": 3.333
+        },
+        "knot_theory": {
+          "baseline": [
+            3,
+            3,
+            3
+          ],
+          "rtc": [
+            4,
+            4,
+            4
+          ],
+          "baseline_mean": 3.0,
+          "rtc_mean": 4.0
+        },
+        "graph_connectivity": {
+          "baseline": [
+            1,
+            1,
+            3
+          ],
+          "rtc": [
+            4,
+            4,
+            4
+          ],
+          "baseline_mean": 1.667,
+          "rtc_mean": 4.0
+        },
+        "boundary_interior": {
+          "baseline": [
+            1,
+            2,
+            4
+          ],
+          "rtc": [
+            4,
+            4,
+            4
+          ],
+          "baseline_mean": 2.333,
+          "rtc_mean": 4.0
+        },
+        "discrete_curvature": {
+          "baseline": [
+            3,
+            2,
+            3
+          ],
+          "rtc": [
+            4,
+            4,
+            4
+          ],
+          "baseline_mean": 2.667,
+          "rtc_mean": 4.0
+        },
+        "projection": {
+          "baseline": [
+            3,
+            2,
+            1
+          ],
+          "rtc": [
+            4,
+            4,
+            4
+          ],
+          "baseline_mean": 2.0,
+          "rtc_mean": 4.0
+        },
+        "surface_topology": {
+          "baseline": [
+            3,
+            3,
+            3
+          ],
+          "rtc": [
+            4,
+            4,
+            4
+          ],
+          "baseline_mean": 3.0,
+          "rtc_mean": 4.0
+        },
+        "surface_topology_s21": {
+          "baseline": [
+            3,
+            3,
+            3
+          ],
+          "rtc": [
+            2,
+            4,
+            4
+          ],
+          "baseline_mean": 3.0,
+          "rtc_mean": 3.333
+        }
+      }
+    },
+    "qwen": {
+      "baseline_mean": 2.409,
+      "rtc_mean": 3.714,
+      "rtc_lift": 1.305,
+      "baseline_scores": [
+        3,
+        4,
+        4,
+        3,
+        3,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        3,
+        3,
+        1,
+        3,
+        3,
+        3
+      ],
+      "rtc_scores": [
+        1,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        1,
+        4,
+        4
+      ],
+      "n_per_condition": {
+        "baseline": 22,
+        "rtc": 21
+      },
+      "per_domain": {
+        "symmetry": {
+          "baseline": [
+            3,
+            4,
+            4
+          ],
+          "rtc": [
+            1,
+            4,
+            4
+          ],
+          "baseline_mean": 3.667,
+          "rtc_mean": 3.0
+        },
+        "knot_theory": {
+          "baseline": [
+            3,
+            3
+          ],
+          "rtc": [
+            4
+          ],
+          "baseline_mean": 3.0,
+          "rtc_mean": 4.0
+        },
+        "graph_connectivity": {
+          "baseline": [
+            2,
+            2
+          ],
+          "rtc": [
+            4,
+            4
+          ],
+          "baseline_mean": 2.0,
+          "rtc_mean": 4.0
+        },
+        "boundary_interior": {
+          "baseline": [
+            2,
+            2,
+            1
+          ],
+          "rtc": [
+            4,
+            4,
+            4
+          ],
+          "baseline_mean": 1.667,
+          "rtc_mean": 4.0
+        },
+        "discrete_curvature": {
+          "baseline": [
+            2,
+            2,
+            2
+          ],
+          "rtc": [
+            4,
+            4,
+            4
+          ],
+          "baseline_mean": 2.0,
+          "rtc_mean": 4.0
+        },
+        "projection": {
+          "baseline": [
+            2,
+            1,
+            2
+          ],
+          "rtc": [
+            4,
+            4,
+            4
+          ],
+          "baseline_mean": 1.667,
+          "rtc_mean": 4.0
+        },
+        "surface_topology": {
+          "baseline": [
+            3,
+            3,
+            1
+          ],
+          "rtc": [
+            4,
+            4,
+            4
+          ],
+          "baseline_mean": 2.333,
+          "rtc_mean": 4.0
+        },
+        "surface_topology_s21": {
+          "baseline": [
+            3,
+            3,
+            3
+          ],
+          "rtc": [
+            1,
+            4,
+            4
+          ],
+          "baseline_mean": 3.0,
+          "rtc_mean": 3.0
+        }
+      }
+    }
+  },
+  "summary_3domain_matched": {
+    "deepseek": {
+      "baseline_mean": 2.556,
+      "rtc_mean": 3.778,
+      "rtc_lift": 1.222,
+      "baseline_scores": [
+        2,
+        3,
+        4,
+        3,
+        3,
+        3,
+        1,
+        1,
+        3
+      ],
+      "rtc_scores": [
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "n_per_condition": {
+        "baseline": 9,
+        "rtc": 9
+      },
+      "per_domain": {
+        "symmetry": {
+          "baseline": [
+            2,
+            3,
+            4
+          ],
+          "rtc": [
+            3,
+            3,
+            4
+          ],
+          "baseline_mean": 3.0,
+          "rtc_mean": 3.333
+        },
+        "knot_theory": {
+          "baseline": [
+            3,
+            3,
+            3
+          ],
+          "rtc": [
+            4,
+            4,
+            4
+          ],
+          "baseline_mean": 3.0,
+          "rtc_mean": 4.0
+        },
+        "graph_connectivity": {
+          "baseline": [
+            1,
+            1,
+            3
+          ],
+          "rtc": [
+            4,
+            4,
+            4
+          ],
+          "baseline_mean": 1.667,
+          "rtc_mean": 4.0
+        }
+      }
+    },
+    "qwen": {
+      "baseline_mean": 3.0,
+      "rtc_mean": 3.5,
+      "rtc_lift": 0.5,
+      "baseline_scores": [
+        3,
+        4,
+        4,
+        3,
+        3,
+        2,
+        2
+      ],
+      "rtc_scores": [
+        1,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "n_per_condition": {
+        "baseline": 7,
+        "rtc": 6
+      },
+      "per_domain": {
+        "symmetry": {
+          "baseline": [
+            3,
+            4,
+            4
+          ],
+          "rtc": [
+            1,
+            4,
+            4
+          ],
+          "baseline_mean": 3.667,
+          "rtc_mean": 3.0
+        },
+        "knot_theory": {
+          "baseline": [
+            3,
+            3
+          ],
+          "rtc": [
+            4
+          ],
+          "baseline_mean": 3.0,
+          "rtc_mean": 4.0
+        },
+        "graph_connectivity": {
+          "baseline": [
+            2,
+            2
+          ],
+          "rtc": [
+            4,
+            4
+          ],
+          "baseline_mean": 2.0,
+          "rtc_mean": 4.0
+        }
+      }
+    }
+  },
+  "prior_results_3domain_matched": {
+    "Haiku 4.5": {
+      "baseline_mean": 3.0,
+      "rtc_mean": 3.667,
+      "rtc_lift": 0.667
+    },
+    "Sonnet 4.6": {
+      "baseline_mean": 3.111,
+      "rtc_mean": 3.889,
+      "rtc_lift": 0.778
+    },
+    "Opus 4.7": {
+      "baseline_mean": 3.333,
+      "rtc_mean": 4.0,
+      "rtc_lift": 0.667
+    }
+  },
+  "comparison_table_md": "### Full 8-domain (new models)\n\n| Model      | Baseline | +RTC  | RTC lift | n_base / n_rtc |\n|------------|----------|-------|----------|----------------|\n| DeepSeek   | 2.583    | 3.833 | +1.250   | 24 / 24            |\n| Qwen-Max   | 2.409    | 3.714 | +1.305   | 22 / 21            |\n\n### 3-domain matched subset (symmetry + knot_theory + graph_connectivity)\n\n| Model      | Baseline | +RTC  | RTC lift |\n|------------|----------|-------|----------|\n| DeepSeek   | 2.556    | 3.778 | +1.222   |\n| Qwen-Max   | 3.000    | 3.500 | +0.500   |\n| Haiku 4.5  | 3.000    | 3.667 | +0.667   |\n| Sonnet 4.6 | 3.111    | 3.889 | +0.778   |\n| Opus 4.7   | 3.333    | 4.000 | +0.667   |"
+}

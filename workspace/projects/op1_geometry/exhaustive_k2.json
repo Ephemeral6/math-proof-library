@@ -1,0 +1,60 @@
+{
+  "k2_total": 64,
+  "all_betti_trivial": true,
+  "no_universal_in_sample": 6,
+  "no_universal_alphas": [
+    [
+      25,
+      8
+    ],
+    [
+      72,
+      8
+    ],
+    [
+      149,
+      8
+    ],
+    [
+      208,
+      8
+    ],
+    [
+      217,
+      8
+    ],
+    [
+      218,
+      8
+    ]
+  ],
+  "fixed_by_extended_search": 0,
+  "still_no_universal": 6,
+  "still_no_universal_alphas": [
+    [
+      25,
+      8
+    ],
+    [
+      72,
+      8
+    ],
+    [
+      149,
+      8
+    ],
+    [
+      208,
+      8
+    ],
+    [
+      217,
+      8
+    ],
+    [
+      218,
+      8
+    ]
+  ],
+  "extra_candidates_generated": 856
+}

@@ -1,0 +1,75 @@
+{"event": "init", "domain": "symmetry", "case_id": "same-006", "ts": 1777716139.2775722}
+{"event": "init", "domain": "knot_theory", "case_id": "3_1-r2-3", "ts": 1777716151.8815053}
+{"event": "init", "domain": "graph_connectivity", "case_id": "R00_n8-t3", "ts": 1777716162.5544956}
+{"event": "init", "domain": "knot_theory", "case_id": "4_1-r2-4", "ts": 1777716166.391362}
+{"event": "init", "domain": "boundary_interior", "case_id": "crosspair-4-L_shape-vs-staircase", "ts": 1777716172.9379394}
+{"event": "init", "domain": "knot_theory", "case_id": "5_2-r2-5", "ts": 1777716180.8040562}
+{"event": "init", "domain": "symmetry", "case_id": "diff-163", "ts": 1777716185.391014}
+{"event": "query", "domain": "graph_connectivity", "case_id": "R00_n8-t3", "primitive": "R", "ts": 1777716186.3490539}
+{"event": "init", "domain": "discrete_curvature", "case_id": "cross-icosahedron-vs-cube_triangulated-f4-4", "ts": 1777716187.0881517}
+{"event": "init", "domain": "projection", "case_id": "cross-octahedron-xzvsyz", "ts": 1777716193.7062788}
+{"event": "query", "domain": "boundary_interior", "case_id": "crosspair-4-L_shape-vs-staircase", "primitive": "R", "ts": 1777716198.0350628}
+{"event": "init", "domain": "discrete_curvature", "case_id": "cross-octahedron-vs-icosahedron-f1-1", "ts": 1777716200.5495777}
+{"event": "init", "domain": "surface_topology", "case_id": "a12-b1", "ts": 1777716201.529046}
+{"event": "init", "domain": "projection", "case_id": "cross-tetrahedron-xyvsdiagonal", "ts": 1777716206.355546}
+{"event": "init", "domain": "graph_connectivity", "case_id": "R02_n12-t4", "ts": 1777716207.9567938}
+{"event": "init", "domain": "surface_topology_s21", "case_id": "a122-b28", "ts": 1777716210.80962}
+{"event": "init", "domain": "discrete_curvature", "case_id": "cube_triangulated-subdiv-f4-4", "ts": 1777716212.6066208}
+{"event": "init", "domain": "surface_topology", "case_id": "a131-b389", "ts": 1777716213.7393699}
+{"event": "init", "domain": "symmetry", "case_id": "same-028", "ts": 1777716216.0361395}
+{"event": "init", "domain": "projection", "case_id": "cross-tetrahedron-yzvsdiagonal", "ts": 1777716219.082149}
+{"event": "init", "domain": "boundary_interior", "case_id": "L_shape-scale-0", "ts": 1777716223.4930124}
+{"event": "init", "domain": "surface_topology_s21", "case_id": "a151-b103", "ts": 1777716224.3045425}
+{"event": "init", "domain": "surface_topology", "case_id": "a331-b69", "ts": 1777716227.397908}
+{"event": "query", "domain": "graph_connectivity", "case_id": "R02_n12-t4", "primitive": "R", "ts": 1777716227.9702652}
+{"event": "query", "domain": "discrete_curvature", "case_id": "cross-icosahedron-vs-cube_triangulated-f4-4", "primitive": "R", "ts": 1777716235.6739035}
+{"event": "init", "domain": "surface_topology_s21", "case_id": "a151-b181", "ts": 1777716238.6722302}
+{"event": "query", "domain": "projection", "case_id": "cross-octahedron-xzvsyz", "primitive": "R", "ts": 1777716239.7723763}
+{"event": "query", "domain": "boundary_interior", "case_id": "L_shape-scale-0", "primitive": "R", "ts": 1777716244.533844}
+{"event": "query", "domain": "surface_topology", "case_id": "a12-b1", "primitive": "R", "ts": 1777716246.684757}
+{"event": "init", "domain": "graph_connectivity", "case_id": "R07_n8-t0", "ts": 1777716248.8638935}
+{"event": "query", "domain": "discrete_curvature", "case_id": "cross-octahedron-vs-icosahedron-f1-1", "primitive": "R", "ts": 1777716249.4630685}
+{"event": "query", "domain": "projection", "case_id": "cross-tetrahedron-xyvsdiagonal", "primitive": "R", "ts": 1777716253.3250804}
+{"event": "query", "domain": "surface_topology", "case_id": "a131-b389", "primitive": "R", "ts": 1777716259.1248064}
+{"event": "query", "domain": "surface_topology_s21", "case_id": "a122-b28", "primitive": "R", "ts": 1777716260.0635877}
+{"event": "query", "domain": "discrete_curvature", "case_id": "cube_triangulated-subdiv-f4-4", "primitive": "R", "ts": 1777716261.9145968}
+{"event": "query", "domain": "graph_connectivity", "case_id": "R07_n8-t0", "primitive": "R", "ts": 1777716265.0017302}
+{"event": "query", "domain": "projection", "case_id": "cross-tetrahedron-yzvsdiagonal", "primitive": "R", "ts": 1777716266.043028}
+{"event": "init", "domain": "boundary_interior", "case_id": "L_shape-trans-1", "ts": 1777716266.9325309}
+{"event": "query", "domain": "surface_topology", "case_id": "a331-b69", "primitive": "R", "ts": 1777716272.1038144}
+{"event": "query", "domain": "surface_topology_s21", "case_id": "a122-b28", "primitive": "T", "ts": 1777716283.1497645}
+{"event": "query", "domain": "projection", "case_id": "cross-octahedron-xzvsyz", "primitive": "T", "ts": 1777716284.2531815}
+{"event": "query", "domain": "projection", "case_id": "cross-tetrahedron-xyvsdiagonal", "primitive": "T", "ts": 1777716296.8428142}
+{"event": "query", "domain": "surface_topology_s21", "case_id": "a151-b103", "primitive": "R", "ts": 1777716312.9295666}
+{"event": "query", "domain": "surface_topology_s21", "case_id": "a151-b181", "primitive": "R", "ts": 1777716333.9496644}
+{"event": "init", "domain": "knot_theory", "case_id": "3_1-r2-3", "ts": 1777793456.9653432}
+{"event": "init", "domain": "knot_theory", "case_id": "3_1-r2-3", "ts": 1777793539.4032013}
+{"event": "init", "domain": "knot_theory", "case_id": "4_1-r2-4", "ts": 1777793544.1665525}
+{"event": "query", "domain": "knot_theory", "case_id": "3_1-r2-3", "primitive": "R", "ts": 1777793550.5578444}
+{"event": "init", "domain": "knot_theory", "case_id": "5_2-r2-5", "ts": 1777793553.7885313}
+{"event": "query", "domain": "knot_theory", "case_id": "4_1-r2-4", "primitive": "R", "ts": 1777793554.69958}
+{"event": "query", "domain": "knot_theory", "case_id": "3_1-r2-3", "primitive": "T", "ts": 1777793559.6853168}
+{"event": "init", "domain": "knot_theory", "case_id": "3_1-r2-3", "ts": 1777793562.7016337}
+{"event": "query", "domain": "knot_theory", "case_id": "4_1-r2-4", "primitive": "T", "ts": 1777793564.906167}
+{"event": "query", "domain": "knot_theory", "case_id": "5_2-r2-5", "primitive": "R", "ts": 1777793566.7951436}
+{"event": "init", "domain": "knot_theory", "case_id": "4_1-r2-4", "ts": 1777793569.914395}
+{"event": "query", "domain": "knot_theory", "case_id": "3_1-r2-3", "primitive": "C", "ts": 1777793572.7981663}
+{"event": "query", "domain": "knot_theory", "case_id": "3_1-r2-3", "primitive": "R", "ts": 1777793575.1527176}
+{"event": "query", "domain": "knot_theory", "case_id": "5_2-r2-5", "primitive": "T", "ts": 1777793577.7654524}
+{"event": "init", "domain": "knot_theory", "case_id": "5_2-r2-5", "ts": 1777793577.7659194}
+{"event": "query", "domain": "knot_theory", "case_id": "4_1-r2-4", "primitive": "R", "ts": 1777793579.5559876}
+{"event": "query", "domain": "knot_theory", "case_id": "3_1-r2-3", "primitive": "T", "ts": 1777793579.6207879}
+{"event": "query", "domain": "knot_theory", "case_id": "3_1-r2-3", "primitive": "C", "ts": 1777793585.4476209}
+{"event": "query", "domain": "knot_theory", "case_id": "4_1-r2-4", "primitive": "T", "ts": 1777793588.1451027}
+{"event": "init", "domain": "knot_theory", "case_id": "3_1-r2-3", "ts": 1777793589.9177594}
+{"event": "query", "domain": "knot_theory", "case_id": "5_2-r2-5", "primitive": "R", "ts": 1777793592.5960257}
+{"event": "query", "domain": "knot_theory", "case_id": "4_1-r2-4", "primitive": "C", "ts": 1777793596.887806}
+{"event": "init", "domain": "knot_theory", "case_id": "4_1-r2-4", "ts": 1777793597.9623725}
+{"event": "query", "domain": "knot_theory", "case_id": "5_2-r2-5", "primitive": "C", "ts": 1777793600.1209013}
+{"event": "query", "domain": "knot_theory", "case_id": "3_1-r2-3", "primitive": "R", "ts": 1777793600.5017138}
+{"event": "query", "domain": "knot_theory", "case_id": "3_1-r2-3", "primitive": "C", "ts": 1777793607.5711906}
+{"event": "query", "domain": "knot_theory", "case_id": "4_1-r2-4", "primitive": "R", "ts": 1777793609.1387305}
+{"event": "init", "domain": "knot_theory", "case_id": "5_2-r2-5", "ts": 1777793610.239901}
+{"event": "query", "domain": "knot_theory", "case_id": "4_1-r2-4", "primitive": "C", "ts": 1777793620.6512058}
+{"event": "query", "domain": "knot_theory", "case_id": "5_2-r2-5", "primitive": "R", "ts": 1777793624.1120756}
+{"event": "query", "domain": "knot_theory", "case_id": "5_2-r2-5", "primitive": "C", "ts": 1777793632.5579822}

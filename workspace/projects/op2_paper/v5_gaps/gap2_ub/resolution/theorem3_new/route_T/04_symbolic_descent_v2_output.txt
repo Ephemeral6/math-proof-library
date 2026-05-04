@@ -1,0 +1,76 @@
+======================================================================
+V_{t+1} - V_t after applying (IV) and (S)
+======================================================================
+FE*(-beta**2/eta + 3*beta/eta + delta_w - eta*gamma - 2/eta) + G**2*(L*delta_w*eta**2/2 + L*eta**2*w_t/2 + beta**2/2 - 2*beta - delta_w*eta + eta**2*gamma/2 - eta*w_t + 2 - beta**2/(2*L*eta) + 3*beta/(2*L*eta) - eta*gamma/(2*L) - 1/(L*eta)) + G*W*(-L*beta*delta_w*eta - L*beta*eta*w_t - beta**3/eta + 4*beta**2/eta + beta*delta_w - beta*eta*gamma + beta*w_t - 4*beta/eta) + W**2*(L*beta**2*delta_w/2 + L*beta**2*w_t/2 + beta**4/(2*eta**2) - 2*beta**3/eta**2 + beta**2*gamma/2 + 2*beta**2/eta**2 - 1/(2*eta**2)) + W*X*(beta**3/eta**2 - 3*beta**2/eta**2 + beta*gamma + 3*beta/eta**2 - 1/eta**2) + s_IV*(-beta**2/eta + 3*beta/eta - eta*gamma - 2/eta) + s_S*(-delta_w - w_t)
+
+--- Coefficients at TOP-LEVEL (in FE, G, W, X, slacks) ---
+
+Poly structure (degrees): (1, 2, 2, 1, 1, 1, 1) vars: [FE, G, W, X, s_S, s_IV, delta_w]
+
+Coefficient table (after IV substitution):
+   coeff[FE                ] = (-beta**2 + 3*beta - eta**2*gamma - 2)/eta
+   coeff[FE * delta_w      ] = 1
+   coeff[G^2               ] = (L*eta*(L*eta**2*w_t + beta**2 - 4*beta + eta**2*gamma - 2*eta*w_t + 4) - beta**2 + 3*beta - eta**2*gamma - 2)/(2*L*eta)
+   coeff[G^2 * delta_w     ] = eta*(L*eta - 2)/2
+   coeff[G * W             ] = beta*(-L*eta**2*w_t - beta**2 + 4*beta - eta**2*gamma + eta*w_t - 4)/eta
+   coeff[G * W * delta_w   ] = beta*(-L*eta + 1)
+   coeff[G * X             ] = 0
+   coeff[G * X * delta_w   ] = 0
+   coeff[W^2               ] = (L*beta**2*eta**2*w_t + beta**4 - 4*beta**3 + beta**2*eta**2*gamma + 4*beta**2 - 1)/(2*eta**2)
+   coeff[W * X             ] = (beta**3 - 3*beta**2 + beta*eta**2*gamma + 3*beta - 1)/eta**2
+   coeff[X^2               ] = 0
+   coeff[s_S               ] = -w_t
+   coeff[s_S * delta_w     ] = -1
+   coeff[s_IV              ] = (-beta**2 + 3*beta - eta**2*gamma - 2)/eta
+   coeff[delta_w           ] = 0
+   coeff[1                 ] = 0
+
+======================================================================
+Sanity check: SET delta_w = 0 (constant w_t = 1 say); should reduce to the constant-w Lyapunov.
+======================================================================
+   const-w coeff[FE    ] = (-beta**2 + 3*beta - eta**2*gamma - 2)/eta
+   const-w coeff[G^2   ] = L*eta**2*w_t/2 + beta**2/2 - 2*beta + eta**2*gamma/2 - eta*w_t + 2 - beta**2/(2*L*eta) + 3*beta/(2*L*eta) - eta*gamma/(2*L) - 1/(L*eta)
+   const-w coeff[G*W   ] = beta*(-L*eta**2*w_t - beta**2 + 4*beta - eta**2*gamma + eta*w_t - 4)/eta
+   const-w coeff[G*X   ] = 0
+   const-w coeff[W^2   ] = (L*beta**2*eta**2*w_t + beta**4 - 4*beta**3 + beta**2*eta**2*gamma + 4*beta**2 - 1)/(2*eta**2)
+   const-w coeff[W*X   ] = (beta**3 - 3*beta**2 + beta*eta**2*gamma + 3*beta - 1)/eta**2
+   const-w coeff[X^2   ] = 0
+   const-w coeff[s_S   ] = -w_t
+   const-w coeff[s_IV  ] = (-beta**2 + 3*beta - eta**2*gamma - 2)/eta
+   const-w coeff[1     ] = 0
+
+--- Specialize: beta = 0, gamma = 0 (plain GD), constant w_t = 1, eta = 1/L ---
+   coeff[FE    ] = -2*L
+   coeff[G^2   ] = (L - 1/2)/L
+   coeff[G*W   ] = 0
+   coeff[G*X   ] = 0
+   coeff[W^2   ] = -L**2/2
+   coeff[W*X   ] = -L**2
+   coeff[X^2   ] = 0
+   coeff[s_S   ] = -1
+   coeff[s_IV  ] = -2*L
+   coeff[1     ] = 0
+
+--- Specialize: beta = 0.3, gamma = 0, w_t = 1, eta = 1/L ---
+   coeff[FE    ] = -119*L/100
+   coeff[G^2   ] = (17*L - 10)/(20*L)
+   coeff[G*W   ] = -867*L/1000
+   coeff[G*X   ] = 0
+   coeff[W^2   ] = L*(900 - 7399*L)/20000
+   coeff[W*X   ] = -343*L**2/1000
+   coeff[X^2   ] = 0
+   coeff[s_S   ] = -1
+   coeff[s_IV  ] = -119*L/100
+   coeff[1     ] = 0
+
+--- Specialize: beta = 0.5, gamma = 0, w_t = 1, eta = 1/L ---
+   coeff[FE    ] = -3*L/4
+   coeff[G^2   ] = (3*L - 2)/(4*L)
+   coeff[G*W   ] = -9*L/8
+   coeff[G*X   ] = 0
+   coeff[W^2   ] = L*(4 - 7*L)/32
+   coeff[W*X   ] = -L**2/8
+   coeff[X^2   ] = 0
+   coeff[s_S   ] = -1
+   coeff[s_IV  ] = -3*L/4
+   coeff[1     ] = 0

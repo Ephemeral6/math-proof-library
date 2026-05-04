@@ -1,0 +1,326 @@
+{
+ "domain": "surface_topology_s21",
+ "condition": "R0C",
+ "primitives": {
+  "relation": true,
+  "transform": false,
+  "contrastive": true
+ },
+ "case_id": "a151-b103",
+ "case_data": {
+  "case_id": "a151-b103",
+  "summary_delta": {
+   "weight_a": -9,
+   "intersection_number": 0,
+   "weight_b": 0
+  },
+  "metadata": {
+   "surface": [
+    2,
+    1
+   ],
+   "alpha_index": 151,
+   "beta_index": 103,
+   "alpha_level": 2,
+   "beta_level": 0,
+   "i_alpha_beta": 1
+  },
+  "detailed_comparison": {
+   "crossings_pre_count": 16,
+   "crossings_post_count": 4,
+   "crossings_pre_candidate_total": 19,
+   "crossings_post_candidate_total": 4,
+   "crossings_in_transform_region_pre": 12,
+   "crossings_in_transform_region_post": 0,
+   "crossings_outside_region_pre": 4,
+   "crossings_outside_region_post": 4,
+   "crossings_pre_locations": [
+    {
+     "triangle": 0,
+     "shared_edge": 6
+    },
+    {
+     "triangle": 1,
+     "shared_edge": 5
+    },
+    {
+     "triangle": 2,
+     "shared_edge": 2
+    },
+    {
+     "triangle": 2,
+     "shared_edge": 3
+    },
+    {
+     "triangle": 2,
+     "shared_edge": 4
+    },
+    {
+     "triangle": 2,
+     "shared_edge": 3
+    },
+    {
+     "triangle": 3,
+     "shared_edge": 3
+    },
+    {
+     "triangle": 3,
+     "shared_edge": 1
+    },
+    {
+     "triangle": 3,
+     "shared_edge": 3
+    },
+    {
+     "triangle": 3,
+     "shared_edge": 4
+    },
+    {
+     "triangle": 4,
+     "shared_edge": 0
+    },
+    {
+     "triangle": 4,
+     "shared_edge": 0
+    },
+    {
+     "triangle": 5,
+     "shared_edge": 1
+    },
+    {
+     "triangle": 5,
+     "shared_edge": 0
+    },
+    {
+     "triangle": 5,
+     "shared_edge": 0
+    },
+    {
+     "triangle": 5,
+     "shared_edge": 2
+    }
+   ],
+   "crossings_post_locations": [
+    {
+     "triangle": 0,
+     "shared_edge": 6
+    },
+    {
+     "triangle": 1,
+     "shared_edge": 5
+    },
+    {
+     "triangle": 4,
+     "shared_edge": 5
+    },
+    {
+     "triangle": 4,
+     "shared_edge": 6
+    }
+   ]
+  },
+  "structural_comparison": {
+   "bigons_pre": 11,
+   "bigons_post": 2,
+   "bigons_with_puncture_pre": 11,
+   "bigons_with_puncture_post": 2,
+   "bigons_without_puncture_pre": 0,
+   "bigons_without_puncture_post": 0,
+   "all_bigons_contain_puncture_pre": true,
+   "all_bigons_contain_puncture_post": true,
+   "minimal_position_pre": false,
+   "minimal_position_post": false,
+   "bigon_puncture_classification_pre": [
+    {
+     "triangle_a": 2,
+     "triangle_b": 5,
+     "shared_edge": 2,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 2,
+     "triangle_b": 3,
+     "shared_edge": 3,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 2,
+     "triangle_b": 3,
+     "shared_edge": 3,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 2,
+     "triangle_b": 3,
+     "shared_edge": 4,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 2,
+     "triangle_b": 3,
+     "shared_edge": 3,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 2,
+     "triangle_b": 3,
+     "shared_edge": 3,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 3,
+     "triangle_b": 5,
+     "shared_edge": 1,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 4,
+     "triangle_b": 5,
+     "shared_edge": 0,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 4,
+     "triangle_b": 5,
+     "shared_edge": 0,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 4,
+     "triangle_b": 5,
+     "shared_edge": 0,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 4,
+     "triangle_b": 5,
+     "shared_edge": 0,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    }
+   ],
+   "bigon_puncture_classification_post": [
+    {
+     "triangle_a": 0,
+     "triangle_b": 4,
+     "shared_edge": 6,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 1,
+     "triangle_b": 4,
+     "shared_edge": 5,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    }
+   ]
+  }
+ },
+ "counterfactual": [
+  {
+   "strategy": "boundary_relaxation",
+   "original_condition": {
+    "intersection_bound": 1,
+    "beta_id": "c2",
+    "i(alpha, beta)": 1
+   },
+   "modified_condition": {
+    "intersection_bound": 2,
+    "beta_id": "a_0",
+    "i(alpha, beta)": 2
+   },
+   "original_result": {
+    "net_change": -1
+   },
+   "counterfactual_result": {
+    "net_change": -2
+   },
+   "delta": {
+    "net_change": -1
+   },
+   "condition_is_critical": false,
+   "explanation": "Relaxed i(α, β) ≤ 1 to i(α, β) = 2. Original net_change=-1, counterfactual net_change=-2. Bound may not be tight here."
+  },
+  {
+   "strategy": "condition_removal",
+   "original_condition": {
+    "descending_link_required": true,
+    "level_beta_lt_level_alpha": true,
+    "beta_id": "c2"
+   },
+   "modified_condition": {
+    "descending_link_required": false,
+    "level_beta_lt_level_alpha": false,
+    "beta_id": "c209"
+   },
+   "original_result": {
+    "net_change": -1
+   },
+   "counterfactual_result": {
+    "net_change": 0
+   },
+   "delta": {
+    "net_change": 1
+   },
+   "condition_is_critical": false,
+   "explanation": "Dropped 'β in descending link' constraint. Original net_change=-1, counterfactual=0."
+  },
+  {
+   "strategy": "operation_perturbation",
+   "original_condition": {
+    "surgery_curve": "a_0"
+   },
+   "modified_condition": {
+    "surgery_curve": "c0"
+   },
+   "original_result": {
+    "net_change": -1
+   },
+   "counterfactual_result": {
+    "net_change": -1
+   },
+   "delta": {
+    "net_change": 0
+   },
+   "condition_is_critical": false,
+   "explanation": "Replaced γ_0 with c0. Original net_change=-1, counterfactual=-1."
+  }
+ ]
+}

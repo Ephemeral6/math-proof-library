@@ -1,0 +1,5 @@
+{
+  "scope_judge::workaround": "{\"exists\": true, \"description\": \"Lemma 7.1 provides iterative reduction for non-chordal-non-cone DLs\", \"cost\": \"low\"}",
+  "scope_judge::tiebreak": "{\"verdict\": \"scope_limitation\", \"confidence\": 0.72, \"rationale\": \"failing instance has g=2 outside the passing range; pattern is structurally novel and the failure rate is moderate\"}",
+  "scope_judge::any": "{\"exists\": false, \"description\": \"\", \"cost\": \"medium\"}"
+}

@@ -1,0 +1,49 @@
+
+==============================================================================
+Re-Audit Task 1.4 — Grid scan at dps=100, T=10000
+==============================================================================
+Total grid points: 100
+     cycling:    8/100  (8%)
+       decay:   73/100  (73%)
+     period2:    0/100  (0%)
+       other:   19/100  (19%)
+     diverge:    0/100  (0%)
+
+Cycling grid points:
+  beta=0.700, etaL=3.367, kappa=0.3364
+  beta=0.800, etaL=3.090, kappa=0.3984
+  beta=0.800, etaL=3.168, kappa=0.3932
+  beta=0.800, etaL=3.247, kappa=0.3866
+  beta=0.800, etaL=3.325, kappa=0.3795
+  beta=0.800, etaL=3.404, kappa=0.3722
+  beta=0.800, etaL=3.482, kappa=0.3649
+  beta=0.800, etaL=3.561, kappa=0.3577
+
+Period-2 grid points:
+
+Other grid points (bounded non-cycle):
+  beta=0.900, etaL=3.038, kappa=0.4489, final=1.0463
+  beta=0.900, etaL=3.128, kappa=0.4406, final=0.9791
+  beta=0.900, etaL=3.217, kappa=0.4302, final=0.9855
+  beta=0.900, etaL=3.307, kappa=0.4196, final=0.9890
+  beta=0.900, etaL=3.397, kappa=0.4092, final=0.9913
+  beta=0.900, etaL=3.486, kappa=0.3991, final=0.9929
+  beta=0.900, etaL=3.576, kappa=0.3894, final=0.9941
+  beta=0.900, etaL=3.666, kappa=0.3802, final=0.9950
+  beta=0.900, etaL=3.755, kappa=0.3713, final=0.9957
+  beta=0.950, etaL=2.998, kappa=0.4750, final=0.3901
+  beta=0.950, etaL=3.093, kappa=0.4659, final=1.1999
+  beta=0.950, etaL=3.188, kappa=0.4532, final=1.2058
+  beta=0.950, etaL=3.283, kappa=0.4405, final=1.2083
+  beta=0.950, etaL=3.378, kappa=0.4284, final=1.2098
+  beta=0.950, etaL=3.473, kappa=0.4168, final=1.2107
+  beta=0.950, etaL=3.568, kappa=0.4058, final=1.2113
+  beta=0.950, etaL=3.663, kappa=0.3954, final=1.2118
+  beta=0.950, etaL=3.758, kappa=0.3855, final=1.2121
+  beta=0.950, etaL=3.853, kappa=0.3760, final=1.2124
+
+Claim summary:
+  cycling   : claim 8/100, observed 8/100
+  period-2  : claim 19/100, observed 0/100
+  decay     : claim 73/100, observed 73/100
+  other     : observed 19/100

@@ -1,0 +1,386 @@
+[
+  {
+    "domain": "symmetry",
+    "case_id": "same-000",
+    "condition": "baseline",
+    "response": "Using only metadata: a=[0,2,1,2,0,0] and b=[2,0,0,0,2,1]. Applying g_3=[3,4,5,0,1,2] to a gives [2,0,0,0,2,1], which is exactly b. Since a group element maps a to b, they are in the same orbit.",
+    "score": 4,
+    "rationale": "Metadata provides enough for a theorem-based proof."
+  },
+  {
+    "domain": "symmetry",
+    "case_id": "same-001",
+    "condition": "baseline",
+    "response": "Using only metadata: a=[1,2,1,1,2,2] and b=[1,1,2,2,1,2]. Applying g_1=[1,2,3,4,5,0] to a gives [2,1,1,2,2,1], which is not b. However, both have the same color multiset (three 1s, three 2s). Shifting a by two positions gives [1,1,2,2,1,2]=b, so they are in the same orbit.",
+    "score": 4,
+    "rationale": "Metadata provides enough for a theorem-based proof."
+  },
+  {
+    "domain": "symmetry",
+    "case_id": "same-002",
+    "condition": "baseline",
+    "response": "Using only metadata: a=[2,2,2,2,1,0] and b=[1,0,2,2,2,2]. Applying g_4=[4,5,0,1,2,3] to a yields [1,0,2,2,2,2], which matches b. Thus, a and b belong to the same orbit under the rotation group.",
+    "score": 4,
+    "rationale": "Metadata provides enough for a theorem-based proof."
+  },
+  {
+    "domain": "symmetry",
+    "case_id": "same-000",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows g_3 takes a to b exactly. R confirms same_orbit=true with connecting elements. C confirms all 6 vertices are moved. This provides a complete and verified witness for the orbit relation.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "symmetry",
+    "case_id": "same-001",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows g_1 moves a to [2,1,1,2,2,1], not b. However, R explicitly reports same_orbit=true. Combining this with the metadata, we find the orbit witness is a rotation by two units. C identifies the vertices changed by g_1.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "symmetry",
+    "case_id": "same-002",
+    "condition": "rtc",
+    "response": "Using R+T+C: T confirms g_4 maps a to b. R reports same_orbit=true and orbit-stabilizer consistency. C shows the 4 moved vertices match b's colors at those positions. The orbit equivalence is fully verified.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "knot_theory",
+    "case_id": "3_1-r2-0",
+    "condition": "baseline",
+    "response": "Using only metadata: an R2 move on knot 3_1 increases the crossing count from 3 to 5 while preserving writhe at -3. This is the expected footprint of an R2 insertion, which preserves the knot type. However, without signs or polynomials, I cannot verify the specific instance.",
+    "score": 3,
+    "rationale": "Metadata is insufficient for case-level verification."
+  },
+  {
+    "domain": "knot_theory",
+    "case_id": "3_1-r2-1",
+    "condition": "baseline",
+    "response": "Using only metadata: an R2 move on knot 3_1 increases the crossing count from 3 to 5 while preserving writhe at -3. This is the expected footprint of an R2 insertion, which preserves the knot type. However, without signs or polynomials, I cannot verify the specific instance.",
+    "score": 3,
+    "rationale": "Metadata is insufficient for case-level verification."
+  },
+  {
+    "domain": "knot_theory",
+    "case_id": "3_1-r2-2",
+    "condition": "baseline",
+    "response": "Using only metadata: an R2 move on knot 3_1 increases the crossing count from 3 to 5 while preserving writhe at -3. This is the expected footprint of an R2 insertion, which preserves the knot type. However, without signs or polynomials, I cannot verify the specific instance.",
+    "score": 3,
+    "rationale": "Metadata is insufficient for case-level verification."
+  },
+  {
+    "domain": "knot_theory",
+    "case_id": "3_1-r2-0",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows an R2 move adding signs [-1,1], preserving writhe. R confirms that the Alexander polynomial [1,-1,1], signature -2, and determinant 3 are all preserved. C localizes the two new crossings. The preservation of knot 3_1 is fully verified.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "knot_theory",
+    "case_id": "3_1-r2-1",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows an R2 move adding signs [-1,1], preserving writhe. R confirms that the Alexander polynomial [1,-1,1], signature -2, and determinant 3 are all preserved. C localizes the two new crossings. The preservation of knot 3_1 is fully verified.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "knot_theory",
+    "case_id": "3_1-r2-2",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows an R2 move adding signs [-1,1], preserving writhe. R confirms that the Alexander polynomial [1,-1,1], signature -2, and determinant 3 are all preserved. C localizes the two new crossings. The preservation of knot 3_1 is fully verified.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "graph_connectivity",
+    "case_id": "R00_n8-t0",
+    "condition": "baseline",
+    "response": "Using only metadata: deleting an edge from a connected 8-vertex, 9-edge graph. The graph stays connected if and only if the edge is not a bridge. Since I lack the adjacency list or path data, I cannot determine if this specific edge is a bridge.",
+    "score": 2,
+    "rationale": "Metadata is insufficient for case-level verification."
+  },
+  {
+    "domain": "graph_connectivity",
+    "case_id": "R00_n8-t1",
+    "condition": "baseline",
+    "response": "Using only metadata: deleting an edge from a connected 8-vertex, 9-edge graph. The graph stays connected if and only if the edge is not a bridge. Since I lack the adjacency list or path data, I cannot determine if this specific edge is a bridge.",
+    "score": 2,
+    "rationale": "Metadata is insufficient for case-level verification."
+  },
+  {
+    "domain": "graph_connectivity",
+    "case_id": "R00_n8-t2",
+    "condition": "baseline",
+    "response": "Using only metadata: deleting an edge from a connected 8-vertex, 9-edge graph. The graph stays connected if and only if the edge is not a bridge. Since I lack the adjacency list or path data, I cannot determine if this specific edge is a bridge.",
+    "score": 2,
+    "rationale": "Metadata is insufficient for case-level verification."
+  },
+  {
+    "domain": "graph_connectivity",
+    "case_id": "R00_n8-t0",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows that deleting the edge preserves connectivity (is_bridge=false). R confirms the number of components remains 1 and the diameter is largely stable. C shows the endpoints retain sufficient degree. Thus, connectivity is preserved.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "graph_connectivity",
+    "case_id": "R00_n8-t1",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows that deleting the edge preserves connectivity (is_bridge=false). R confirms the number of components remains 1 and the diameter is largely stable. C shows the endpoints retain sufficient degree. Thus, connectivity is preserved.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "graph_connectivity",
+    "case_id": "R00_n8-t2",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows that deleting the edge preserves connectivity (is_bridge=false). R confirms the number of components remains 1 and the diameter is largely stable. C shows the endpoints retain sufficient degree. Thus, connectivity is preserved.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "boundary_interior",
+    "case_id": "unit_square-trans-0",
+    "condition": "baseline",
+    "response": "Using only metadata: a unit square undergoes integer translation. Translation preserves area (1.0), boundary lattice points (B=4), and interior lattice points (I=0). Since the original square satisfies Pick's theorem (1 = 0 + 4/2 - 1), the translated one does too.",
+    "score": 4,
+    "rationale": "Metadata provides enough for a theorem-based proof."
+  },
+  {
+    "domain": "boundary_interior",
+    "case_id": "unit_square-trans-1",
+    "condition": "baseline",
+    "response": "Using only metadata: a unit square undergoes integer translation. Translation preserves area (1.0), boundary lattice points (B=4), and interior lattice points (I=0). Since the original square satisfies Pick's theorem (1 = 0 + 4/2 - 1), the translated one does too.",
+    "score": 4,
+    "rationale": "Metadata provides enough for a theorem-based proof."
+  },
+  {
+    "domain": "boundary_interior",
+    "case_id": "unit_square-trans-2",
+    "condition": "baseline",
+    "response": "Using only metadata: a unit square undergoes integer translation. Translation preserves area (1.0), boundary lattice points (B=4), and interior lattice points (I=0). Since the original square satisfies Pick's theorem (1 = 0 + 4/2 - 1), the translated one does too.",
+    "score": 4,
+    "rationale": "Metadata provides enough for a theorem-based proof."
+  },
+  {
+    "domain": "boundary_interior",
+    "case_id": "unit_square-trans-0",
+    "condition": "rtc",
+    "response": "Using R+T+C: T confirms the translation preserves A, B, and I. R verifies that both Pick and Shoelace areas are 1.0 post-operation. C confirms the vertex count remains 4. Pick's theorem is explicitly verified to hold.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "boundary_interior",
+    "case_id": "unit_square-trans-1",
+    "condition": "rtc",
+    "response": "Using R+T+C: T confirms the translation preserves A, B, and I. R verifies that both Pick and Shoelace areas are 1.0 post-operation. C confirms the vertex count remains 4. Pick's theorem is explicitly verified to hold.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "boundary_interior",
+    "case_id": "unit_square-trans-2",
+    "condition": "rtc",
+    "response": "Using R+T+C: T confirms the translation preserves A, B, and I. R verifies that both Pick and Shoelace areas are 1.0 post-operation. C confirms the vertex count remains 4. Pick's theorem is explicitly verified to hold.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "discrete_curvature",
+    "case_id": "tetrahedron-subdiv-f0-0",
+    "condition": "baseline",
+    "response": "Using only metadata: a stellar subdivision of a tetrahedron face adds one vertex, three edges, and two faces, preserving Euler characteristic (V-E+F=2). For a sphere, total curvature is always 4*pi. The new vertex is flat, so Gauss-Bonnet is preserved.",
+    "score": 4,
+    "rationale": "Metadata provides enough for a theorem-based proof."
+  },
+  {
+    "domain": "discrete_curvature",
+    "case_id": "tetrahedron-subdiv-f1-1",
+    "condition": "baseline",
+    "response": "Using only metadata: a stellar subdivision of a tetrahedron face adds one vertex, three edges, and two faces, preserving Euler characteristic (V-E+F=2). For a sphere, total curvature is always 4*pi. The new vertex is flat, so Gauss-Bonnet is preserved.",
+    "score": 4,
+    "rationale": "Metadata provides enough for a theorem-based proof."
+  },
+  {
+    "domain": "discrete_curvature",
+    "case_id": "tetrahedron-subdiv-f2-2",
+    "condition": "baseline",
+    "response": "Using only metadata: a stellar subdivision of a tetrahedron face adds one vertex, three edges, and two faces, preserving Euler characteristic (V-E+F=2). For a sphere, total curvature is always 4*pi. The new vertex is flat, so Gauss-Bonnet is preserved.",
+    "score": 4,
+    "rationale": "Metadata provides enough for a theorem-based proof."
+  },
+  {
+    "domain": "discrete_curvature",
+    "case_id": "tetrahedron-subdiv-f0-0",
+    "condition": "rtc",
+    "response": "Using R+T+C: T records the subdivision with euler_change=0 and curvature_change=0. R verifies genus 0, Euler 2, and total curvature ~12.57 are preserved. C shows the new vertex has zero defect. The Gauss-Bonnet theorem is fully checked.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "discrete_curvature",
+    "case_id": "tetrahedron-subdiv-f1-1",
+    "condition": "rtc",
+    "response": "Using R+T+C: T records the subdivision with euler_change=0 and curvature_change=0. R verifies genus 0, Euler 2, and total curvature ~12.57 are preserved. C shows the new vertex has zero defect. The Gauss-Bonnet theorem is fully checked.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "discrete_curvature",
+    "case_id": "tetrahedron-subdiv-f2-2",
+    "condition": "rtc",
+    "response": "Using R+T+C: T records the subdivision with euler_change=0 and curvature_change=0. R verifies genus 0, Euler 2, and total curvature ~12.57 are preserved. C shows the new vertex has zero defect. The Gauss-Bonnet theorem is fully checked.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "projection",
+    "case_id": "self-cube-xy",
+    "condition": "baseline",
+    "response": "Using only metadata: projecting a cube to a 2D plane (e.g., xy) discards one coordinate. This leads to point collisions and distance distortion, making the 3D structure unrecoverable. I can describe the loss but cannot count specific crossings or collisions.",
+    "score": 3,
+    "rationale": "Metadata is insufficient for case-level verification."
+  },
+  {
+    "domain": "projection",
+    "case_id": "self-cube-xz",
+    "condition": "baseline",
+    "response": "Using only metadata: projecting a cube to a 2D plane (e.g., xy) discards one coordinate. This leads to point collisions and distance distortion, making the 3D structure unrecoverable. I can describe the loss but cannot count specific crossings or collisions.",
+    "score": 3,
+    "rationale": "Metadata is insufficient for case-level verification."
+  },
+  {
+    "domain": "projection",
+    "case_id": "self-cube-yz",
+    "condition": "baseline",
+    "response": "Using only metadata: projecting a cube to a 2D plane (e.g., xy) discards one coordinate. This leads to point collisions and distance distortion, making the 3D structure unrecoverable. I can describe the loss but cannot count specific crossings or collisions.",
+    "score": 3,
+    "rationale": "Metadata is insufficient for case-level verification."
+  },
+  {
+    "domain": "projection",
+    "case_id": "self-cube-xy",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows the dimension drop and quantifies point collisions (4) and edge crossings. R reports distance distortion (0.5714) and only partial distance preservation. C identifies the specific vertex pairs that collide. The information loss is fully quantified.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "projection",
+    "case_id": "self-cube-xz",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows the dimension drop and quantifies point collisions (4) and edge crossings. R reports distance distortion (0.5714) and only partial distance preservation. C identifies the specific vertex pairs that collide. The information loss is fully quantified.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "projection",
+    "case_id": "self-cube-yz",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows the dimension drop and quantifies point collisions (4) and edge crossings. R reports distance distortion (0.5714) and only partial distance preservation. C identifies the specific vertex pairs that collide. The information loss is fully quantified.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "surface_topology",
+    "case_id": "a3-b1",
+    "condition": "baseline",
+    "response": "Using only metadata: Hatcher surgery on alpha level 2 with beta level 1 and i(alpha,beta)=1. Under the descending link hypothesis, surgery should preserve the essential intersection number. However, I lack the local intersection data to confirm this.",
+    "score": 3,
+    "rationale": "Metadata is insufficient for case-level verification."
+  },
+  {
+    "domain": "surface_topology",
+    "case_id": "a3-b4",
+    "condition": "baseline",
+    "response": "Using only metadata: Hatcher surgery on alpha level 2 with beta level 1 and i(alpha,beta)=1. Under the descending link hypothesis, surgery should preserve the essential intersection number. However, I lack the local intersection data to confirm this.",
+    "score": 3,
+    "rationale": "Metadata is insufficient for case-level verification."
+  },
+  {
+    "domain": "surface_topology",
+    "case_id": "a3-b6",
+    "condition": "baseline",
+    "response": "Using only metadata: Hatcher surgery on alpha level 2 with beta level 1 and i(alpha,beta)=1. Under the descending link hypothesis, surgery should preserve the essential intersection number. However, I lack the local intersection data to confirm this.",
+    "score": 3,
+    "rationale": "Metadata is insufficient for case-level verification."
+  },
+  {
+    "domain": "surface_topology",
+    "case_id": "a3-b1",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows the level shift -2. R reports that while raw crossings change, the summary intersection number is preserved and no unpunctured bigons are created. C confirms beta lies in the surgery region. Intersection preservation is verified.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "surface_topology",
+    "case_id": "a3-b4",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows the level shift -2. R reports that while raw crossings change, the summary intersection number is preserved and no unpunctured bigons are created. C confirms beta lies in the surgery region. Intersection preservation is verified.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "surface_topology",
+    "case_id": "a3-b6",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows the level shift -2. R reports that while raw crossings change, the summary intersection number is preserved and no unpunctured bigons are created. C confirms beta lies in the surgery region. Intersection preservation is verified.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "surface_topology_s21",
+    "case_id": "a122-b2",
+    "condition": "baseline",
+    "response": "Using only metadata: Hatcher surgery on S_{2,1} with i(alpha,beta)=1. While the descending link pattern suggests preservation, S_{2,1} can exhibit more complex behavior. Without crossing or region data, I cannot determine the surgery's effect.",
+    "score": 3,
+    "rationale": "Metadata is insufficient for case-level verification."
+  },
+  {
+    "domain": "surface_topology_s21",
+    "case_id": "a122-b6",
+    "condition": "baseline",
+    "response": "Using only metadata: Hatcher surgery on S_{2,1} with i(alpha,beta)=1. While the descending link pattern suggests preservation, S_{2,1} can exhibit more complex behavior. Without crossing or region data, I cannot determine the surgery's effect.",
+    "score": 3,
+    "rationale": "Metadata is insufficient for case-level verification."
+  },
+  {
+    "domain": "surface_topology_s21",
+    "case_id": "a122-b9",
+    "condition": "baseline",
+    "response": "Using only metadata: Hatcher surgery on S_{2,1} with i(alpha,beta)=1. While the descending link pattern suggests preservation, S_{2,1} can exhibit more complex behavior. Without crossing or region data, I cannot determine the surgery's effect.",
+    "score": 3,
+    "rationale": "Metadata is insufficient for case-level verification."
+  },
+  {
+    "domain": "surface_topology_s21",
+    "case_id": "a122-b2",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows the surgery shift. R reports raw crossings drop to 0 or near-0 and the intersection number changes by -1, meaning the only essential intersection was lost. C shows beta was entirely within the surgery region. This identifies a counterexample to preservation.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "surface_topology_s21",
+    "case_id": "a122-b6",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows the surgery shift. R reports raw crossings drop to 0 or near-0 and the intersection number changes by -1, meaning the only essential intersection was lost. C shows beta was entirely within the surgery region. This identifies a counterexample to preservation.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  },
+  {
+    "domain": "surface_topology_s21",
+    "case_id": "a122-b9",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows the surgery shift. R reports raw crossings drop to 0 or near-0 and the intersection number changes by -1, meaning the only essential intersection was lost. C shows beta was entirely within the surgery region. This identifies a counterexample to preservation.",
+    "score": 4,
+    "rationale": "Full RTC data allows complete verification."
+  }
+]

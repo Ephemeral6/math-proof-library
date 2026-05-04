@@ -1,0 +1,19 @@
+{
+  "lemma_name": "sub_normsquare_gradient_helper_depth1_idx1",
+  "nl_statement": "If f has gradient f'(x) at every x ∈ s, then for every m : ℝ the function g(x) = f(x) - (m/2)·‖x‖² has gradient (f'(x) - m·x) at every x ∈ s.",
+  "lean_signature": "theorem sub_normsquare_gradient_helper_depth1_idx1 {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E] {s : Set E} {f : E → ℝ} {f' : E → E} (hf : ∀ x ∈ s, HasGradientAt f (f' x) x) (m : ℝ) : ∀ x ∈ s, HasGradientAt (fun x => f x - m / 2 * ‖x‖ ^ 2) (f' x - m • x) x",
+  "lean_file": "LeanAgent/Generated/sub_normsquare_gradient_helper_depth1_idx1.lean",
+  "imports": ["Mathlib"],
+  "depends_on": [],
+  "assumptions": ["E real inner product space (complete)", "f has gradient f' on s"],
+  "verdict": "CERTIFIED",
+  "n_stuck": 0,
+  "pr_ready": true,
+  "abstraction_level": "InnerProductSpace ℝ E + CompleteSpace E (generic)",
+  "reuse_potential": "high",
+  "reuse_reason": "needed for any reduction StrongConvex → Convex on f - (m/2)‖·‖²",
+  "synthesized": true,
+  "parent_lemma": "strong_convex_gradient_lower_bound",
+  "depth": 1,
+  "ts": "2026-04-28T20:38:00+08:00"
+}

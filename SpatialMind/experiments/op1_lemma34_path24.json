@@ -1,0 +1,402 @@
+{
+  "alphas": [
+    {
+      "alpha": 13,
+      "DL_size": 12,
+      "cone": 1,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 40,
+      "DL_size": 11,
+      "cone": 1,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 42,
+      "DL_size": 9,
+      "cone": 6,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 68,
+      "DL_size": 7,
+      "cone": 1,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        1,
+        1,
+        3,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 74,
+      "DL_size": 7,
+      "cone": 6,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        1,
+        1,
+        3,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 113,
+      "DL_size": 11,
+      "cone": 8,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 121,
+      "DL_size": 10,
+      "cone": 5,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 122,
+      "DL_size": 8,
+      "cone": 6,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 126,
+      "DL_size": 9,
+      "cone": 18,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 127,
+      "DL_size": 7,
+      "cone": 15,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 145,
+      "DL_size": 9,
+      "cone": 4,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 156,
+      "DL_size": 9,
+      "cone": 8,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 170,
+      "DL_size": 5,
+      "cone": 8,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 201,
+      "DL_size": 7,
+      "cone": 1,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        1,
+        1,
+        3,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 210,
+      "DL_size": 7,
+      "cone": 6,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        1,
+        1,
+        3,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 212,
+      "DL_size": 7,
+      "cone": 4,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        1,
+        1,
+        3,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 216,
+      "DL_size": 6,
+      "cone": 14,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 222,
+      "DL_size": 7,
+      "cone": 19,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        1,
+        1,
+        3,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 322,
+      "DL_size": 8,
+      "cone": 22,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 359,
+      "DL_size": 7,
+      "cone": 15,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 371,
+      "DL_size": 9,
+      "cone": 16,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 373,
+      "DL_size": 7,
+      "cone": 17,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 374,
+      "DL_size": 7,
+      "cone": 18,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 376,
+      "DL_size": 6,
+      "cone": 19,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 386,
+      "DL_size": 6,
+      "cone": 54,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 387,
+      "DL_size": 5,
+      "cone": 18,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "alpha": 389,
+      "DL_size": 6,
+      "cone": 45,
+      "all_dominated_by_cone": true,
+      "dominator_counts": [
+        1,
+        2,
+        2,
+        3,
+        3
+      ]
+    }
+  ]
+}

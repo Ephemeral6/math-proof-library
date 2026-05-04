@@ -1,0 +1,3297 @@
+{
+  "benchmark": "coe_reasoning",
+  "dimension": 6,
+  "dimension_name": "boundary_interior",
+  "n_questions": 16,
+  "conditions": [
+    "baseline",
+    "cot",
+    "coe_r",
+    "coe_ctr"
+  ],
+  "scoring": "0-4 per question via grade_coe_reasoning.py",
+  "questions": [
+    {
+      "question_id": "dim6_q01",
+      "type": "pick_basics",
+      "stem": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）",
+          "answer_type": "integer",
+          "answer": 12
+        },
+        {
+          "label": "(b)",
+          "text": "边界格点数 B 是多少？",
+          "answer_type": "integer",
+          "answer": 14
+        },
+        {
+          "label": "(c)",
+          "text": "内部格点数 I 是多少？",
+          "answer_type": "integer",
+          "answer": 6
+        }
+      ],
+      "ground_truth": {
+        "vertices": [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "area": 12.0,
+        "B": 14,
+        "I": 6
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 4,
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "edges": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                4,
+                0
+              ],
+              "direction": [
+                4,
+                0
+              ],
+              "length": 4.0,
+              "gcd": 4
+            },
+            {
+              "from": [
+                4,
+                0
+              ],
+              "to": [
+                4,
+                3
+              ],
+              "direction": [
+                0,
+                3
+              ],
+              "length": 3.0,
+              "gcd": 3
+            },
+            {
+              "from": [
+                4,
+                3
+              ],
+              "to": [
+                0,
+                3
+              ],
+              "direction": [
+                -4,
+                0
+              ],
+              "length": 4.0,
+              "gcd": 4
+            },
+            {
+              "from": [
+                0,
+                3
+              ],
+              "to": [
+                0,
+                0
+              ],
+              "direction": [
+                0,
+                -3
+              ],
+              "length": 3.0,
+              "gcd": 3
+            }
+          ],
+          "is_convex": true,
+          "is_simple": true,
+          "is_lattice": true,
+          "note": "Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A."
+        },
+        "T": {
+          "operation": "translate",
+          "operation_params": {
+            "type": "translate",
+            "delta": [
+              10,
+              5
+            ]
+          },
+          "before": {
+            "area": 12.0,
+            "B": 14,
+            "I": 6,
+            "n_vertices": 4
+          },
+          "after": {
+            "area": 12.0,
+            "B": 14,
+            "I": 6,
+            "n_vertices": 4
+          },
+          "delta": {
+            "area_change": 0.0,
+            "B_change": 0,
+            "I_change": 0,
+            "pick_preserved": true
+          },
+          "note": "Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields."
+        },
+        "C": {
+          "non_lattice_perturbation": {
+            "description": "If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.",
+            "result": "Pick's theorem fails (B undefined)."
+          },
+          "scale_non_uniform": {
+            "description": "Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds."
+          },
+          "note": "Use the contrast to identify Pick's domain: integer vertices + simple polygon."
+        }
+      },
+      "prompts": {
+        "baseline": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n请回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      4,\n      0\n    ],\n    [\n      4,\n      3\n    ],\n    [\n      0,\n      3\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        4,\n        0\n      ],\n      \"direction\": [\n        4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        4,\n        0\n      ],\n      \"to\": [\n        4,\n        3\n      ],\n      \"direction\": [\n        0,\n        3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        4,\n        3\n      ],\n      \"to\": [\n        0,\n        3\n      ],\n      \"direction\": [\n        -4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        0,\n        3\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      4,\n      0\n    ],\n    [\n      4,\n      3\n    ],\n    [\n      0,\n      3\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        4,\n        0\n      ],\n      \"direction\": [\n        4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        4,\n        0\n      ],\n      \"to\": [\n        4,\n        3\n      ],\n      \"direction\": [\n        0,\n        3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        4,\n        3\n      ],\n      \"to\": [\n        0,\n        3\n      ],\n      \"direction\": [\n        -4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        0,\n        3\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"translate\",\n  \"operation_params\": {\n    \"type\": \"translate\",\n    \"delta\": [\n      10,\n      5\n    ]\n  },\n  \"before\": {\n    \"area\": 12.0,\n    \"B\": 14,\n    \"I\": 6,\n    \"n_vertices\": 4\n  },\n  \"after\": {\n    \"area\": 12.0,\n    \"B\": 14,\n    \"I\": 6,\n    \"n_vertices\": 4\n  },\n  \"delta\": {\n    \"area_change\": 0.0,\n    \"B_change\": 0,\n    \"I_change\": 0,\n    \"pick_preserved\": true\n  },\n  \"note\": \"Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"non_lattice_perturbation\": {\n    \"description\": \"If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.\",\n    \"result\": \"Pick's theorem fails (B undefined).\"\n  },\n  \"scale_non_uniform\": {\n    \"description\": \"Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds.\"\n  },\n  \"note\": \"Use the contrast to identify Pick's domain: integer vertices + simple polygon.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim6_q02",
+      "type": "pick_basics",
+      "stem": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [6, 0], [0, 4]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）",
+          "answer_type": "integer",
+          "answer": 12
+        },
+        {
+          "label": "(b)",
+          "text": "边界格点数 B 是多少？",
+          "answer_type": "integer",
+          "answer": 12
+        },
+        {
+          "label": "(c)",
+          "text": "内部格点数 I 是多少？",
+          "answer_type": "integer",
+          "answer": 7
+        }
+      ],
+      "ground_truth": {
+        "vertices": [
+          [
+            0,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "area": 12.0,
+        "B": 12,
+        "I": 7
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 3,
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "edges": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                6,
+                0
+              ],
+              "direction": [
+                6,
+                0
+              ],
+              "length": 6.0,
+              "gcd": 6
+            },
+            {
+              "from": [
+                6,
+                0
+              ],
+              "to": [
+                0,
+                4
+              ],
+              "direction": [
+                -6,
+                4
+              ],
+              "length": 7.211103,
+              "gcd": 2
+            },
+            {
+              "from": [
+                0,
+                4
+              ],
+              "to": [
+                0,
+                0
+              ],
+              "direction": [
+                0,
+                -4
+              ],
+              "length": 4.0,
+              "gcd": 4
+            }
+          ],
+          "is_convex": true,
+          "is_simple": true,
+          "is_lattice": true,
+          "note": "Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A."
+        },
+        "T": {
+          "operation": "translate",
+          "operation_params": {
+            "type": "translate",
+            "delta": [
+              3,
+              7
+            ]
+          },
+          "before": {
+            "area": 12.0,
+            "B": 12,
+            "I": 7,
+            "n_vertices": 3
+          },
+          "after": {
+            "area": 12.0,
+            "B": 12,
+            "I": 7,
+            "n_vertices": 3
+          },
+          "delta": {
+            "area_change": 0.0,
+            "B_change": 0,
+            "I_change": 0,
+            "pick_preserved": true
+          },
+          "note": "Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields."
+        },
+        "C": {
+          "non_lattice_perturbation": {
+            "description": "If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.",
+            "result": "Pick's theorem fails (B undefined)."
+          },
+          "scale_non_uniform": {
+            "description": "Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds."
+          },
+          "note": "Use the contrast to identify Pick's domain: integer vertices + simple polygon."
+        }
+      },
+      "prompts": {
+        "baseline": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [6, 0], [0, 4]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n请回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [6, 0], [0, 4]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [6, 0], [0, 4]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 3,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      6,\n      0\n    ],\n    [\n      0,\n      4\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        6,\n        0\n      ],\n      \"direction\": [\n        6,\n        0\n      ],\n      \"length\": 6.0,\n      \"gcd\": 6\n    },\n    {\n      \"from\": [\n        6,\n        0\n      ],\n      \"to\": [\n        0,\n        4\n      ],\n      \"direction\": [\n        -6,\n        4\n      ],\n      \"length\": 7.211103,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        0,\n        4\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -4\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [6, 0], [0, 4]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 3,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      6,\n      0\n    ],\n    [\n      0,\n      4\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        6,\n        0\n      ],\n      \"direction\": [\n        6,\n        0\n      ],\n      \"length\": 6.0,\n      \"gcd\": 6\n    },\n    {\n      \"from\": [\n        6,\n        0\n      ],\n      \"to\": [\n        0,\n        4\n      ],\n      \"direction\": [\n        -6,\n        4\n      ],\n      \"length\": 7.211103,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        0,\n        4\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -4\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"translate\",\n  \"operation_params\": {\n    \"type\": \"translate\",\n    \"delta\": [\n      3,\n      7\n    ]\n  },\n  \"before\": {\n    \"area\": 12.0,\n    \"B\": 12,\n    \"I\": 7,\n    \"n_vertices\": 3\n  },\n  \"after\": {\n    \"area\": 12.0,\n    \"B\": 12,\n    \"I\": 7,\n    \"n_vertices\": 3\n  },\n  \"delta\": {\n    \"area_change\": 0.0,\n    \"B_change\": 0,\n    \"I_change\": 0,\n    \"pick_preserved\": true\n  },\n  \"note\": \"Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"non_lattice_perturbation\": {\n    \"description\": \"If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.\",\n    \"result\": \"Pick's theorem fails (B undefined).\"\n  },\n  \"scale_non_uniform\": {\n    \"description\": \"Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds.\"\n  },\n  \"note\": \"Use the contrast to identify Pick's domain: integer vertices + simple polygon.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim6_q03",
+      "type": "pick_basics",
+      "stem": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [4, 0], [4, 2], [2, 2], [2, 4], [0, 4]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）",
+          "answer_type": "integer",
+          "answer": 12
+        },
+        {
+          "label": "(b)",
+          "text": "边界格点数 B 是多少？",
+          "answer_type": "integer",
+          "answer": 16
+        },
+        {
+          "label": "(c)",
+          "text": "内部格点数 I 是多少？",
+          "answer_type": "integer",
+          "answer": 5
+        }
+      ],
+      "ground_truth": {
+        "vertices": [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "area": 12.0,
+        "B": 16,
+        "I": 5
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 6,
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "edges": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                4,
+                0
+              ],
+              "direction": [
+                4,
+                0
+              ],
+              "length": 4.0,
+              "gcd": 4
+            },
+            {
+              "from": [
+                4,
+                0
+              ],
+              "to": [
+                4,
+                2
+              ],
+              "direction": [
+                0,
+                2
+              ],
+              "length": 2.0,
+              "gcd": 2
+            },
+            {
+              "from": [
+                4,
+                2
+              ],
+              "to": [
+                2,
+                2
+              ],
+              "direction": [
+                -2,
+                0
+              ],
+              "length": 2.0,
+              "gcd": 2
+            },
+            {
+              "from": [
+                2,
+                2
+              ],
+              "to": [
+                2,
+                4
+              ],
+              "direction": [
+                0,
+                2
+              ],
+              "length": 2.0,
+              "gcd": 2
+            },
+            {
+              "from": [
+                2,
+                4
+              ],
+              "to": [
+                0,
+                4
+              ],
+              "direction": [
+                -2,
+                0
+              ],
+              "length": 2.0,
+              "gcd": 2
+            },
+            {
+              "from": [
+                0,
+                4
+              ],
+              "to": [
+                0,
+                0
+              ],
+              "direction": [
+                0,
+                -4
+              ],
+              "length": 4.0,
+              "gcd": 4
+            }
+          ],
+          "is_convex": false,
+          "is_simple": true,
+          "is_lattice": true,
+          "note": "Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A."
+        },
+        "T": {
+          "operation": "translate",
+          "operation_params": {
+            "type": "translate",
+            "delta": [
+              -2,
+              1
+            ]
+          },
+          "before": {
+            "area": 12.0,
+            "B": 16,
+            "I": 5,
+            "n_vertices": 6
+          },
+          "after": {
+            "area": 12.0,
+            "B": 16,
+            "I": 5,
+            "n_vertices": 6
+          },
+          "delta": {
+            "area_change": 0.0,
+            "B_change": 0,
+            "I_change": 0,
+            "pick_preserved": true
+          },
+          "note": "Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields."
+        },
+        "C": {
+          "non_lattice_perturbation": {
+            "description": "If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.",
+            "result": "Pick's theorem fails (B undefined)."
+          },
+          "scale_non_uniform": {
+            "description": "Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds."
+          },
+          "note": "Use the contrast to identify Pick's domain: integer vertices + simple polygon."
+        }
+      },
+      "prompts": {
+        "baseline": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [4, 0], [4, 2], [2, 2], [2, 4], [0, 4]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n请回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [4, 0], [4, 2], [2, 2], [2, 4], [0, 4]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [4, 0], [4, 2], [2, 2], [2, 4], [0, 4]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 6,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      4,\n      0\n    ],\n    [\n      4,\n      2\n    ],\n    [\n      2,\n      2\n    ],\n    [\n      2,\n      4\n    ],\n    [\n      0,\n      4\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        4,\n        0\n      ],\n      \"direction\": [\n        4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        4,\n        0\n      ],\n      \"to\": [\n        4,\n        2\n      ],\n      \"direction\": [\n        0,\n        2\n      ],\n      \"length\": 2.0,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        4,\n        2\n      ],\n      \"to\": [\n        2,\n        2\n      ],\n      \"direction\": [\n        -2,\n        0\n      ],\n      \"length\": 2.0,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        2,\n        2\n      ],\n      \"to\": [\n        2,\n        4\n      ],\n      \"direction\": [\n        0,\n        2\n      ],\n      \"length\": 2.0,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        2,\n        4\n      ],\n      \"to\": [\n        0,\n        4\n      ],\n      \"direction\": [\n        -2,\n        0\n      ],\n      \"length\": 2.0,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        0,\n        4\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -4\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    }\n  ],\n  \"is_convex\": false,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [4, 0], [4, 2], [2, 2], [2, 4], [0, 4]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 6,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      4,\n      0\n    ],\n    [\n      4,\n      2\n    ],\n    [\n      2,\n      2\n    ],\n    [\n      2,\n      4\n    ],\n    [\n      0,\n      4\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        4,\n        0\n      ],\n      \"direction\": [\n        4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        4,\n        0\n      ],\n      \"to\": [\n        4,\n        2\n      ],\n      \"direction\": [\n        0,\n        2\n      ],\n      \"length\": 2.0,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        4,\n        2\n      ],\n      \"to\": [\n        2,\n        2\n      ],\n      \"direction\": [\n        -2,\n        0\n      ],\n      \"length\": 2.0,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        2,\n        2\n      ],\n      \"to\": [\n        2,\n        4\n      ],\n      \"direction\": [\n        0,\n        2\n      ],\n      \"length\": 2.0,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        2,\n        4\n      ],\n      \"to\": [\n        0,\n        4\n      ],\n      \"direction\": [\n        -2,\n        0\n      ],\n      \"length\": 2.0,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        0,\n        4\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -4\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    }\n  ],\n  \"is_convex\": false,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"translate\",\n  \"operation_params\": {\n    \"type\": \"translate\",\n    \"delta\": [\n      -2,\n      1\n    ]\n  },\n  \"before\": {\n    \"area\": 12.0,\n    \"B\": 16,\n    \"I\": 5,\n    \"n_vertices\": 6\n  },\n  \"after\": {\n    \"area\": 12.0,\n    \"B\": 16,\n    \"I\": 5,\n    \"n_vertices\": 6\n  },\n  \"delta\": {\n    \"area_change\": 0.0,\n    \"B_change\": 0,\n    \"I_change\": 0,\n    \"pick_preserved\": true\n  },\n  \"note\": \"Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"non_lattice_perturbation\": {\n    \"description\": \"If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.\",\n    \"result\": \"Pick's theorem fails (B undefined).\"\n  },\n  \"scale_non_uniform\": {\n    \"description\": \"Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds.\"\n  },\n  \"note\": \"Use the contrast to identify Pick's domain: integer vertices + simple polygon.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim6_q04",
+      "type": "pick_basics",
+      "stem": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[3, 0], [6, 3], [3, 6], [0, 3]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）",
+          "answer_type": "integer",
+          "answer": 18
+        },
+        {
+          "label": "(b)",
+          "text": "边界格点数 B 是多少？",
+          "answer_type": "integer",
+          "answer": 12
+        },
+        {
+          "label": "(c)",
+          "text": "内部格点数 I 是多少？",
+          "answer_type": "integer",
+          "answer": 13
+        }
+      ],
+      "ground_truth": {
+        "vertices": [
+          [
+            3,
+            0
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "area": 18.0,
+        "B": 12,
+        "I": 13
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 4,
+          "vertices": [
+            [
+              3,
+              0
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "edges": [
+            {
+              "from": [
+                3,
+                0
+              ],
+              "to": [
+                6,
+                3
+              ],
+              "direction": [
+                3,
+                3
+              ],
+              "length": 4.242641,
+              "gcd": 3
+            },
+            {
+              "from": [
+                6,
+                3
+              ],
+              "to": [
+                3,
+                6
+              ],
+              "direction": [
+                -3,
+                3
+              ],
+              "length": 4.242641,
+              "gcd": 3
+            },
+            {
+              "from": [
+                3,
+                6
+              ],
+              "to": [
+                0,
+                3
+              ],
+              "direction": [
+                -3,
+                -3
+              ],
+              "length": 4.242641,
+              "gcd": 3
+            },
+            {
+              "from": [
+                0,
+                3
+              ],
+              "to": [
+                3,
+                0
+              ],
+              "direction": [
+                3,
+                -3
+              ],
+              "length": 4.242641,
+              "gcd": 3
+            }
+          ],
+          "is_convex": true,
+          "is_simple": true,
+          "is_lattice": true,
+          "note": "Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A."
+        },
+        "T": {
+          "operation": "translate",
+          "operation_params": {
+            "type": "translate",
+            "delta": [
+              5,
+              5
+            ]
+          },
+          "before": {
+            "area": 18.0,
+            "B": 12,
+            "I": 13,
+            "n_vertices": 4
+          },
+          "after": {
+            "area": 18.0,
+            "B": 12,
+            "I": 13,
+            "n_vertices": 4
+          },
+          "delta": {
+            "area_change": 0.0,
+            "B_change": 0,
+            "I_change": 0,
+            "pick_preserved": true
+          },
+          "note": "Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields."
+        },
+        "C": {
+          "non_lattice_perturbation": {
+            "description": "If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.",
+            "result": "Pick's theorem fails (B undefined)."
+          },
+          "scale_non_uniform": {
+            "description": "Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds."
+          },
+          "note": "Use the contrast to identify Pick's domain: integer vertices + simple polygon."
+        }
+      },
+      "prompts": {
+        "baseline": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[3, 0], [6, 3], [3, 6], [0, 3]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n请回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[3, 0], [6, 3], [3, 6], [0, 3]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[3, 0], [6, 3], [3, 6], [0, 3]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      3,\n      0\n    ],\n    [\n      6,\n      3\n    ],\n    [\n      3,\n      6\n    ],\n    [\n      0,\n      3\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        3,\n        0\n      ],\n      \"to\": [\n        6,\n        3\n      ],\n      \"direction\": [\n        3,\n        3\n      ],\n      \"length\": 4.242641,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        6,\n        3\n      ],\n      \"to\": [\n        3,\n        6\n      ],\n      \"direction\": [\n        -3,\n        3\n      ],\n      \"length\": 4.242641,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        3,\n        6\n      ],\n      \"to\": [\n        0,\n        3\n      ],\n      \"direction\": [\n        -3,\n        -3\n      ],\n      \"length\": 4.242641,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        0,\n        3\n      ],\n      \"to\": [\n        3,\n        0\n      ],\n      \"direction\": [\n        3,\n        -3\n      ],\n      \"length\": 4.242641,\n      \"gcd\": 3\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[3, 0], [6, 3], [3, 6], [0, 3]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      3,\n      0\n    ],\n    [\n      6,\n      3\n    ],\n    [\n      3,\n      6\n    ],\n    [\n      0,\n      3\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        3,\n        0\n      ],\n      \"to\": [\n        6,\n        3\n      ],\n      \"direction\": [\n        3,\n        3\n      ],\n      \"length\": 4.242641,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        6,\n        3\n      ],\n      \"to\": [\n        3,\n        6\n      ],\n      \"direction\": [\n        -3,\n        3\n      ],\n      \"length\": 4.242641,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        3,\n        6\n      ],\n      \"to\": [\n        0,\n        3\n      ],\n      \"direction\": [\n        -3,\n        -3\n      ],\n      \"length\": 4.242641,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        0,\n        3\n      ],\n      \"to\": [\n        3,\n        0\n      ],\n      \"direction\": [\n        3,\n        -3\n      ],\n      \"length\": 4.242641,\n      \"gcd\": 3\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"translate\",\n  \"operation_params\": {\n    \"type\": \"translate\",\n    \"delta\": [\n      5,\n      5\n    ]\n  },\n  \"before\": {\n    \"area\": 18.0,\n    \"B\": 12,\n    \"I\": 13,\n    \"n_vertices\": 4\n  },\n  \"after\": {\n    \"area\": 18.0,\n    \"B\": 12,\n    \"I\": 13,\n    \"n_vertices\": 4\n  },\n  \"delta\": {\n    \"area_change\": 0.0,\n    \"B_change\": 0,\n    \"I_change\": 0,\n    \"pick_preserved\": true\n  },\n  \"note\": \"Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"non_lattice_perturbation\": {\n    \"description\": \"If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.\",\n    \"result\": \"Pick's theorem fails (B undefined).\"\n  },\n  \"scale_non_uniform\": {\n    \"description\": \"Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds.\"\n  },\n  \"note\": \"Use the contrast to identify Pick's domain: integer vertices + simple polygon.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim6_q05",
+      "type": "pick_basics",
+      "stem": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [1, 0], [1, 1], [2, 1], [2, 2], [3, 2], [3, 3], [0, 3]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）",
+          "answer_type": "integer",
+          "answer": 6
+        },
+        {
+          "label": "(b)",
+          "text": "边界格点数 B 是多少？",
+          "answer_type": "integer",
+          "answer": 12
+        },
+        {
+          "label": "(c)",
+          "text": "内部格点数 I 是多少？",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "vertices": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "area": 6.0,
+        "B": 12,
+        "I": 1
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 8,
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "edges": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                1,
+                0
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "length": 1.0,
+              "gcd": 1
+            },
+            {
+              "from": [
+                1,
+                0
+              ],
+              "to": [
+                1,
+                1
+              ],
+              "direction": [
+                0,
+                1
+              ],
+              "length": 1.0,
+              "gcd": 1
+            },
+            {
+              "from": [
+                1,
+                1
+              ],
+              "to": [
+                2,
+                1
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "length": 1.0,
+              "gcd": 1
+            },
+            {
+              "from": [
+                2,
+                1
+              ],
+              "to": [
+                2,
+                2
+              ],
+              "direction": [
+                0,
+                1
+              ],
+              "length": 1.0,
+              "gcd": 1
+            },
+            {
+              "from": [
+                2,
+                2
+              ],
+              "to": [
+                3,
+                2
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "length": 1.0,
+              "gcd": 1
+            },
+            {
+              "from": [
+                3,
+                2
+              ],
+              "to": [
+                3,
+                3
+              ],
+              "direction": [
+                0,
+                1
+              ],
+              "length": 1.0,
+              "gcd": 1
+            },
+            {
+              "from": [
+                3,
+                3
+              ],
+              "to": [
+                0,
+                3
+              ],
+              "direction": [
+                -3,
+                0
+              ],
+              "length": 3.0,
+              "gcd": 3
+            },
+            {
+              "from": [
+                0,
+                3
+              ],
+              "to": [
+                0,
+                0
+              ],
+              "direction": [
+                0,
+                -3
+              ],
+              "length": 3.0,
+              "gcd": 3
+            }
+          ],
+          "is_convex": false,
+          "is_simple": true,
+          "is_lattice": true,
+          "note": "Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A."
+        },
+        "T": {
+          "operation": "translate",
+          "operation_params": {
+            "type": "translate",
+            "delta": [
+              1,
+              1
+            ]
+          },
+          "before": {
+            "area": 6.0,
+            "B": 12,
+            "I": 1,
+            "n_vertices": 8
+          },
+          "after": {
+            "area": 6.0,
+            "B": 12,
+            "I": 1,
+            "n_vertices": 8
+          },
+          "delta": {
+            "area_change": 0.0,
+            "B_change": 0,
+            "I_change": 0,
+            "pick_preserved": true
+          },
+          "note": "Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields."
+        },
+        "C": {
+          "non_lattice_perturbation": {
+            "description": "If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.",
+            "result": "Pick's theorem fails (B undefined)."
+          },
+          "scale_non_uniform": {
+            "description": "Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds."
+          },
+          "note": "Use the contrast to identify Pick's domain: integer vertices + simple polygon."
+        }
+      },
+      "prompts": {
+        "baseline": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [1, 0], [1, 1], [2, 1], [2, 2], [3, 2], [3, 3], [0, 3]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n请回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [1, 0], [1, 1], [2, 1], [2, 2], [3, 2], [3, 3], [0, 3]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [1, 0], [1, 1], [2, 1], [2, 2], [3, 2], [3, 3], [0, 3]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 8,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      1,\n      0\n    ],\n    [\n      1,\n      1\n    ],\n    [\n      2,\n      1\n    ],\n    [\n      2,\n      2\n    ],\n    [\n      3,\n      2\n    ],\n    [\n      3,\n      3\n    ],\n    [\n      0,\n      3\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        1,\n        0\n      ],\n      \"direction\": [\n        1,\n        0\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        1,\n        0\n      ],\n      \"to\": [\n        1,\n        1\n      ],\n      \"direction\": [\n        0,\n        1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        1,\n        1\n      ],\n      \"to\": [\n        2,\n        1\n      ],\n      \"direction\": [\n        1,\n        0\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        2,\n        1\n      ],\n      \"to\": [\n        2,\n        2\n      ],\n      \"direction\": [\n        0,\n        1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        2,\n        2\n      ],\n      \"to\": [\n        3,\n        2\n      ],\n      \"direction\": [\n        1,\n        0\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        3,\n        2\n      ],\n      \"to\": [\n        3,\n        3\n      ],\n      \"direction\": [\n        0,\n        1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        3,\n        3\n      ],\n      \"to\": [\n        0,\n        3\n      ],\n      \"direction\": [\n        -3,\n        0\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        0,\n        3\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    }\n  ],\n  \"is_convex\": false,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [1, 0], [1, 1], [2, 1], [2, 2], [3, 2], [3, 3], [0, 3]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 8,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      1,\n      0\n    ],\n    [\n      1,\n      1\n    ],\n    [\n      2,\n      1\n    ],\n    [\n      2,\n      2\n    ],\n    [\n      3,\n      2\n    ],\n    [\n      3,\n      3\n    ],\n    [\n      0,\n      3\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        1,\n        0\n      ],\n      \"direction\": [\n        1,\n        0\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        1,\n        0\n      ],\n      \"to\": [\n        1,\n        1\n      ],\n      \"direction\": [\n        0,\n        1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        1,\n        1\n      ],\n      \"to\": [\n        2,\n        1\n      ],\n      \"direction\": [\n        1,\n        0\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        2,\n        1\n      ],\n      \"to\": [\n        2,\n        2\n      ],\n      \"direction\": [\n        0,\n        1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        2,\n        2\n      ],\n      \"to\": [\n        3,\n        2\n      ],\n      \"direction\": [\n        1,\n        0\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        3,\n        2\n      ],\n      \"to\": [\n        3,\n        3\n      ],\n      \"direction\": [\n        0,\n        1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        3,\n        3\n      ],\n      \"to\": [\n        0,\n        3\n      ],\n      \"direction\": [\n        -3,\n        0\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        0,\n        3\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    }\n  ],\n  \"is_convex\": false,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"translate\",\n  \"operation_params\": {\n    \"type\": \"translate\",\n    \"delta\": [\n      1,\n      1\n    ]\n  },\n  \"before\": {\n    \"area\": 6.0,\n    \"B\": 12,\n    \"I\": 1,\n    \"n_vertices\": 8\n  },\n  \"after\": {\n    \"area\": 6.0,\n    \"B\": 12,\n    \"I\": 1,\n    \"n_vertices\": 8\n  },\n  \"delta\": {\n    \"area_change\": 0.0,\n    \"B_change\": 0,\n    \"I_change\": 0,\n    \"pick_preserved\": true\n  },\n  \"note\": \"Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"non_lattice_perturbation\": {\n    \"description\": \"If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.\",\n    \"result\": \"Pick's theorem fails (B undefined).\"\n  },\n  \"scale_non_uniform\": {\n    \"description\": \"Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds.\"\n  },\n  \"note\": \"Use the contrast to identify Pick's domain: integer vertices + simple polygon.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim6_q06",
+      "type": "pick_basics",
+      "stem": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [10, 0], [0, 1]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）",
+          "answer_type": "integer",
+          "answer": 5
+        },
+        {
+          "label": "(b)",
+          "text": "边界格点数 B 是多少？",
+          "answer_type": "integer",
+          "answer": 12
+        },
+        {
+          "label": "(c)",
+          "text": "内部格点数 I 是多少？",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "vertices": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "area": 5.0,
+        "B": 12,
+        "I": 0
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 3,
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "edges": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                10,
+                0
+              ],
+              "direction": [
+                10,
+                0
+              ],
+              "length": 10.0,
+              "gcd": 10
+            },
+            {
+              "from": [
+                10,
+                0
+              ],
+              "to": [
+                0,
+                1
+              ],
+              "direction": [
+                -10,
+                1
+              ],
+              "length": 10.049876,
+              "gcd": 1
+            },
+            {
+              "from": [
+                0,
+                1
+              ],
+              "to": [
+                0,
+                0
+              ],
+              "direction": [
+                0,
+                -1
+              ],
+              "length": 1.0,
+              "gcd": 1
+            }
+          ],
+          "is_convex": true,
+          "is_simple": true,
+          "is_lattice": true,
+          "note": "Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A."
+        },
+        "T": {
+          "operation": "translate",
+          "operation_params": {
+            "type": "translate",
+            "delta": [
+              0,
+              5
+            ]
+          },
+          "before": {
+            "area": 5.0,
+            "B": 12,
+            "I": 0,
+            "n_vertices": 3
+          },
+          "after": {
+            "area": 5.0,
+            "B": 12,
+            "I": 0,
+            "n_vertices": 3
+          },
+          "delta": {
+            "area_change": 0.0,
+            "B_change": 0,
+            "I_change": 0,
+            "pick_preserved": true
+          },
+          "note": "Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields."
+        },
+        "C": {
+          "non_lattice_perturbation": {
+            "description": "If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.",
+            "result": "Pick's theorem fails (B undefined)."
+          },
+          "scale_non_uniform": {
+            "description": "Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds."
+          },
+          "note": "Use the contrast to identify Pick's domain: integer vertices + simple polygon."
+        }
+      },
+      "prompts": {
+        "baseline": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [10, 0], [0, 1]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n请回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [10, 0], [0, 1]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [10, 0], [0, 1]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 3,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      10,\n      0\n    ],\n    [\n      0,\n      1\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        10,\n        0\n      ],\n      \"direction\": [\n        10,\n        0\n      ],\n      \"length\": 10.0,\n      \"gcd\": 10\n    },\n    {\n      \"from\": [\n        10,\n        0\n      ],\n      \"to\": [\n        0,\n        1\n      ],\n      \"direction\": [\n        -10,\n        1\n      ],\n      \"length\": 10.049876,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        0,\n        1\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [10, 0], [0, 1]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 3,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      10,\n      0\n    ],\n    [\n      0,\n      1\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        10,\n        0\n      ],\n      \"direction\": [\n        10,\n        0\n      ],\n      \"length\": 10.0,\n      \"gcd\": 10\n    },\n    {\n      \"from\": [\n        10,\n        0\n      ],\n      \"to\": [\n        0,\n        1\n      ],\n      \"direction\": [\n        -10,\n        1\n      ],\n      \"length\": 10.049876,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        0,\n        1\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"translate\",\n  \"operation_params\": {\n    \"type\": \"translate\",\n    \"delta\": [\n      0,\n      5\n    ]\n  },\n  \"before\": {\n    \"area\": 5.0,\n    \"B\": 12,\n    \"I\": 0,\n    \"n_vertices\": 3\n  },\n  \"after\": {\n    \"area\": 5.0,\n    \"B\": 12,\n    \"I\": 0,\n    \"n_vertices\": 3\n  },\n  \"delta\": {\n    \"area_change\": 0.0,\n    \"B_change\": 0,\n    \"I_change\": 0,\n    \"pick_preserved\": true\n  },\n  \"note\": \"Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"non_lattice_perturbation\": {\n    \"description\": \"If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.\",\n    \"result\": \"Pick's theorem fails (B undefined).\"\n  },\n  \"scale_non_uniform\": {\n    \"description\": \"Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds.\"\n  },\n  \"note\": \"Use the contrast to identify Pick's domain: integer vertices + simple polygon.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim6_q07",
+      "type": "pick_basics",
+      "stem": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [5, 0], [5, 5], [0, 5]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）",
+          "answer_type": "integer",
+          "answer": 25
+        },
+        {
+          "label": "(b)",
+          "text": "边界格点数 B 是多少？",
+          "answer_type": "integer",
+          "answer": 20
+        },
+        {
+          "label": "(c)",
+          "text": "内部格点数 I 是多少？",
+          "answer_type": "integer",
+          "answer": 16
+        }
+      ],
+      "ground_truth": {
+        "vertices": [
+          [
+            0,
+            0
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "area": 25.0,
+        "B": 20,
+        "I": 16
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 4,
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "edges": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                5,
+                0
+              ],
+              "direction": [
+                5,
+                0
+              ],
+              "length": 5.0,
+              "gcd": 5
+            },
+            {
+              "from": [
+                5,
+                0
+              ],
+              "to": [
+                5,
+                5
+              ],
+              "direction": [
+                0,
+                5
+              ],
+              "length": 5.0,
+              "gcd": 5
+            },
+            {
+              "from": [
+                5,
+                5
+              ],
+              "to": [
+                0,
+                5
+              ],
+              "direction": [
+                -5,
+                0
+              ],
+              "length": 5.0,
+              "gcd": 5
+            },
+            {
+              "from": [
+                0,
+                5
+              ],
+              "to": [
+                0,
+                0
+              ],
+              "direction": [
+                0,
+                -5
+              ],
+              "length": 5.0,
+              "gcd": 5
+            }
+          ],
+          "is_convex": true,
+          "is_simple": true,
+          "is_lattice": true,
+          "note": "Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A."
+        },
+        "T": {
+          "operation": "translate",
+          "operation_params": {
+            "type": "translate",
+            "delta": [
+              -3,
+              0
+            ]
+          },
+          "before": {
+            "area": 25.0,
+            "B": 20,
+            "I": 16,
+            "n_vertices": 4
+          },
+          "after": {
+            "area": 25.0,
+            "B": 20,
+            "I": 16,
+            "n_vertices": 4
+          },
+          "delta": {
+            "area_change": 0.0,
+            "B_change": 0,
+            "I_change": 0,
+            "pick_preserved": true
+          },
+          "note": "Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields."
+        },
+        "C": {
+          "non_lattice_perturbation": {
+            "description": "If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.",
+            "result": "Pick's theorem fails (B undefined)."
+          },
+          "scale_non_uniform": {
+            "description": "Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds."
+          },
+          "note": "Use the contrast to identify Pick's domain: integer vertices + simple polygon."
+        }
+      },
+      "prompts": {
+        "baseline": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [5, 0], [5, 5], [0, 5]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n请回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [5, 0], [5, 5], [0, 5]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [5, 0], [5, 5], [0, 5]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      5,\n      0\n    ],\n    [\n      5,\n      5\n    ],\n    [\n      0,\n      5\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        5,\n        0\n      ],\n      \"direction\": [\n        5,\n        0\n      ],\n      \"length\": 5.0,\n      \"gcd\": 5\n    },\n    {\n      \"from\": [\n        5,\n        0\n      ],\n      \"to\": [\n        5,\n        5\n      ],\n      \"direction\": [\n        0,\n        5\n      ],\n      \"length\": 5.0,\n      \"gcd\": 5\n    },\n    {\n      \"from\": [\n        5,\n        5\n      ],\n      \"to\": [\n        0,\n        5\n      ],\n      \"direction\": [\n        -5,\n        0\n      ],\n      \"length\": 5.0,\n      \"gcd\": 5\n    },\n    {\n      \"from\": [\n        0,\n        5\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -5\n      ],\n      \"length\": 5.0,\n      \"gcd\": 5\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [5, 0], [5, 5], [0, 5]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      5,\n      0\n    ],\n    [\n      5,\n      5\n    ],\n    [\n      0,\n      5\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        5,\n        0\n      ],\n      \"direction\": [\n        5,\n        0\n      ],\n      \"length\": 5.0,\n      \"gcd\": 5\n    },\n    {\n      \"from\": [\n        5,\n        0\n      ],\n      \"to\": [\n        5,\n        5\n      ],\n      \"direction\": [\n        0,\n        5\n      ],\n      \"length\": 5.0,\n      \"gcd\": 5\n    },\n    {\n      \"from\": [\n        5,\n        5\n      ],\n      \"to\": [\n        0,\n        5\n      ],\n      \"direction\": [\n        -5,\n        0\n      ],\n      \"length\": 5.0,\n      \"gcd\": 5\n    },\n    {\n      \"from\": [\n        0,\n        5\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -5\n      ],\n      \"length\": 5.0,\n      \"gcd\": 5\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"translate\",\n  \"operation_params\": {\n    \"type\": \"translate\",\n    \"delta\": [\n      -3,\n      0\n    ]\n  },\n  \"before\": {\n    \"area\": 25.0,\n    \"B\": 20,\n    \"I\": 16,\n    \"n_vertices\": 4\n  },\n  \"after\": {\n    \"area\": 25.0,\n    \"B\": 20,\n    \"I\": 16,\n    \"n_vertices\": 4\n  },\n  \"delta\": {\n    \"area_change\": 0.0,\n    \"B_change\": 0,\n    \"I_change\": 0,\n    \"pick_preserved\": true\n  },\n  \"note\": \"Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"non_lattice_perturbation\": {\n    \"description\": \"If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.\",\n    \"result\": \"Pick's theorem fails (B undefined).\"\n  },\n  \"scale_non_uniform\": {\n    \"description\": \"Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds.\"\n  },\n  \"note\": \"Use the contrast to identify Pick's domain: integer vertices + simple polygon.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim6_q08",
+      "type": "pick_basics",
+      "stem": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [1, 0], [1, 1], [0, 1]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "边界格点数 B 是多少？",
+          "answer_type": "integer",
+          "answer": 4
+        },
+        {
+          "label": "(c)",
+          "text": "内部格点数 I 是多少？",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "vertices": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "area": 1.0,
+        "B": 4,
+        "I": 0
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 4,
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "edges": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                1,
+                0
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "length": 1.0,
+              "gcd": 1
+            },
+            {
+              "from": [
+                1,
+                0
+              ],
+              "to": [
+                1,
+                1
+              ],
+              "direction": [
+                0,
+                1
+              ],
+              "length": 1.0,
+              "gcd": 1
+            },
+            {
+              "from": [
+                1,
+                1
+              ],
+              "to": [
+                0,
+                1
+              ],
+              "direction": [
+                -1,
+                0
+              ],
+              "length": 1.0,
+              "gcd": 1
+            },
+            {
+              "from": [
+                0,
+                1
+              ],
+              "to": [
+                0,
+                0
+              ],
+              "direction": [
+                0,
+                -1
+              ],
+              "length": 1.0,
+              "gcd": 1
+            }
+          ],
+          "is_convex": true,
+          "is_simple": true,
+          "is_lattice": true,
+          "note": "Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A."
+        },
+        "T": {
+          "operation": "translate",
+          "operation_params": {
+            "type": "translate",
+            "delta": [
+              4,
+              4
+            ]
+          },
+          "before": {
+            "area": 1.0,
+            "B": 4,
+            "I": 0,
+            "n_vertices": 4
+          },
+          "after": {
+            "area": 1.0,
+            "B": 4,
+            "I": 0,
+            "n_vertices": 4
+          },
+          "delta": {
+            "area_change": 0.0,
+            "B_change": 0,
+            "I_change": 0,
+            "pick_preserved": true
+          },
+          "note": "Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields."
+        },
+        "C": {
+          "non_lattice_perturbation": {
+            "description": "If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.",
+            "result": "Pick's theorem fails (B undefined)."
+          },
+          "scale_non_uniform": {
+            "description": "Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds."
+          },
+          "note": "Use the contrast to identify Pick's domain: integer vertices + simple polygon."
+        }
+      },
+      "prompts": {
+        "baseline": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [1, 0], [1, 1], [0, 1]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n请回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [1, 0], [1, 1], [0, 1]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [1, 0], [1, 1], [0, 1]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      1,\n      0\n    ],\n    [\n      1,\n      1\n    ],\n    [\n      0,\n      1\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        1,\n        0\n      ],\n      \"direction\": [\n        1,\n        0\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        1,\n        0\n      ],\n      \"to\": [\n        1,\n        1\n      ],\n      \"direction\": [\n        0,\n        1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        1,\n        1\n      ],\n      \"to\": [\n        0,\n        1\n      ],\n      \"direction\": [\n        -1,\n        0\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        0,\n        1\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定整点多边形 P（所有顶点都在整数格点上），按顺序给出顶点：\n  V = [[0, 0], [1, 0], [1, 1], [0, 1]]\nPick 定理：A = I + B/2 − 1，其中 A 是面积，B 是边界格点数，I 是内部格点数。\n边界格点公式：B = Σ_{edge} gcd(|dx|, |dy|)。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      1,\n      0\n    ],\n    [\n      1,\n      1\n    ],\n    [\n      0,\n      1\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        1,\n        0\n      ],\n      \"direction\": [\n        1,\n        0\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        1,\n        0\n      ],\n      \"to\": [\n        1,\n        1\n      ],\n      \"direction\": [\n        0,\n        1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        1,\n        1\n      ],\n      \"to\": [\n        0,\n        1\n      ],\n      \"direction\": [\n        -1,\n        0\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        0,\n        1\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"translate\",\n  \"operation_params\": {\n    \"type\": \"translate\",\n    \"delta\": [\n      4,\n      4\n    ]\n  },\n  \"before\": {\n    \"area\": 1.0,\n    \"B\": 4,\n    \"I\": 0,\n    \"n_vertices\": 4\n  },\n  \"after\": {\n    \"area\": 1.0,\n    \"B\": 4,\n    \"I\": 0,\n    \"n_vertices\": 4\n  },\n  \"delta\": {\n    \"area_change\": 0.0,\n    \"B_change\": 0,\n    \"I_change\": 0,\n    \"pick_preserved\": true\n  },\n  \"note\": \"Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"non_lattice_perturbation\": {\n    \"description\": \"If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.\",\n    \"result\": \"Pick's theorem fails (B undefined).\"\n  },\n  \"scale_non_uniform\": {\n    \"description\": \"Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds.\"\n  },\n  \"note\": \"Use the contrast to identify Pick's domain: integer vertices + simple polygon.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 多边形面积 A 是多少？（整数或简单分数；Pick 公式给出整数或半整数）\n  (b) 边界格点数 B 是多少？\n  (c) 内部格点数 I 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim6_q09",
+      "type": "perturbation",
+      "stem": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'add_vertex', 'position': [2, 0], 'after_index': 0}。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "vertices": [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "operation": {
+          "type": "add_vertex",
+          "position": [
+            2,
+            0
+          ],
+          "after_index": 0
+        },
+        "delta_A": 0.0,
+        "delta_B": 0,
+        "delta_I": 0,
+        "pick_preserved": true
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 4,
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "edges": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                4,
+                0
+              ],
+              "direction": [
+                4,
+                0
+              ],
+              "length": 4.0,
+              "gcd": 4
+            },
+            {
+              "from": [
+                4,
+                0
+              ],
+              "to": [
+                4,
+                3
+              ],
+              "direction": [
+                0,
+                3
+              ],
+              "length": 3.0,
+              "gcd": 3
+            },
+            {
+              "from": [
+                4,
+                3
+              ],
+              "to": [
+                0,
+                3
+              ],
+              "direction": [
+                -4,
+                0
+              ],
+              "length": 4.0,
+              "gcd": 4
+            },
+            {
+              "from": [
+                0,
+                3
+              ],
+              "to": [
+                0,
+                0
+              ],
+              "direction": [
+                0,
+                -3
+              ],
+              "length": 3.0,
+              "gcd": 3
+            }
+          ],
+          "is_convex": true,
+          "is_simple": true,
+          "is_lattice": true,
+          "note": "Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A."
+        },
+        "T": {
+          "operation": "add_vertex",
+          "operation_params": {
+            "type": "add_vertex",
+            "position": [
+              2,
+              0
+            ],
+            "after_index": 0
+          },
+          "before": {
+            "area": 12.0,
+            "B": 14,
+            "I": 6,
+            "n_vertices": 4
+          },
+          "after": {
+            "area": 12.0,
+            "B": 14,
+            "I": 6,
+            "n_vertices": 5
+          },
+          "delta": {
+            "area_change": 0.0,
+            "B_change": 0,
+            "I_change": 0,
+            "pick_preserved": true
+          },
+          "note": "Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields."
+        },
+        "C": {
+          "non_lattice_perturbation": {
+            "description": "If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.",
+            "result": "Pick's theorem fails (B undefined)."
+          },
+          "scale_non_uniform": {
+            "description": "Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds."
+          },
+          "note": "Use the contrast to identify Pick's domain: integer vertices + simple polygon."
+        }
+      },
+      "prompts": {
+        "baseline": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'add_vertex', 'position': [2, 0], 'after_index': 0}。\n\n请回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'add_vertex', 'position': [2, 0], 'after_index': 0}。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'add_vertex', 'position': [2, 0], 'after_index': 0}。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      4,\n      0\n    ],\n    [\n      4,\n      3\n    ],\n    [\n      0,\n      3\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        4,\n        0\n      ],\n      \"direction\": [\n        4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        4,\n        0\n      ],\n      \"to\": [\n        4,\n        3\n      ],\n      \"direction\": [\n        0,\n        3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        4,\n        3\n      ],\n      \"to\": [\n        0,\n        3\n      ],\n      \"direction\": [\n        -4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        0,\n        3\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'add_vertex', 'position': [2, 0], 'after_index': 0}。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      4,\n      0\n    ],\n    [\n      4,\n      3\n    ],\n    [\n      0,\n      3\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        4,\n        0\n      ],\n      \"direction\": [\n        4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        4,\n        0\n      ],\n      \"to\": [\n        4,\n        3\n      ],\n      \"direction\": [\n        0,\n        3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        4,\n        3\n      ],\n      \"to\": [\n        0,\n        3\n      ],\n      \"direction\": [\n        -4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        0,\n        3\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"add_vertex\",\n  \"operation_params\": {\n    \"type\": \"add_vertex\",\n    \"position\": [\n      2,\n      0\n    ],\n    \"after_index\": 0\n  },\n  \"before\": {\n    \"area\": 12.0,\n    \"B\": 14,\n    \"I\": 6,\n    \"n_vertices\": 4\n  },\n  \"after\": {\n    \"area\": 12.0,\n    \"B\": 14,\n    \"I\": 6,\n    \"n_vertices\": 5\n  },\n  \"delta\": {\n    \"area_change\": 0.0,\n    \"B_change\": 0,\n    \"I_change\": 0,\n    \"pick_preserved\": true\n  },\n  \"note\": \"Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"non_lattice_perturbation\": {\n    \"description\": \"If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.\",\n    \"result\": \"Pick's theorem fails (B undefined).\"\n  },\n  \"scale_non_uniform\": {\n    \"description\": \"Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds.\"\n  },\n  \"note\": \"Use the contrast to identify Pick's domain: integer vertices + simple polygon.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim6_q10",
+      "type": "perturbation",
+      "stem": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'translate', 'delta': [10, 5]}。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "vertices": [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "operation": {
+          "type": "translate",
+          "delta": [
+            10,
+            5
+          ]
+        },
+        "delta_A": 0.0,
+        "delta_B": 0,
+        "delta_I": 0,
+        "pick_preserved": true
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 4,
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "edges": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                4,
+                0
+              ],
+              "direction": [
+                4,
+                0
+              ],
+              "length": 4.0,
+              "gcd": 4
+            },
+            {
+              "from": [
+                4,
+                0
+              ],
+              "to": [
+                4,
+                3
+              ],
+              "direction": [
+                0,
+                3
+              ],
+              "length": 3.0,
+              "gcd": 3
+            },
+            {
+              "from": [
+                4,
+                3
+              ],
+              "to": [
+                0,
+                3
+              ],
+              "direction": [
+                -4,
+                0
+              ],
+              "length": 4.0,
+              "gcd": 4
+            },
+            {
+              "from": [
+                0,
+                3
+              ],
+              "to": [
+                0,
+                0
+              ],
+              "direction": [
+                0,
+                -3
+              ],
+              "length": 3.0,
+              "gcd": 3
+            }
+          ],
+          "is_convex": true,
+          "is_simple": true,
+          "is_lattice": true,
+          "note": "Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A."
+        },
+        "T": {
+          "operation": "translate",
+          "operation_params": {
+            "type": "translate",
+            "delta": [
+              10,
+              5
+            ]
+          },
+          "before": {
+            "area": 12.0,
+            "B": 14,
+            "I": 6,
+            "n_vertices": 4
+          },
+          "after": {
+            "area": 12.0,
+            "B": 14,
+            "I": 6,
+            "n_vertices": 4
+          },
+          "delta": {
+            "area_change": 0.0,
+            "B_change": 0,
+            "I_change": 0,
+            "pick_preserved": true
+          },
+          "note": "Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields."
+        },
+        "C": {
+          "non_lattice_perturbation": {
+            "description": "If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.",
+            "result": "Pick's theorem fails (B undefined)."
+          },
+          "scale_non_uniform": {
+            "description": "Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds."
+          },
+          "note": "Use the contrast to identify Pick's domain: integer vertices + simple polygon."
+        }
+      },
+      "prompts": {
+        "baseline": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'translate', 'delta': [10, 5]}。\n\n请回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'translate', 'delta': [10, 5]}。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'translate', 'delta': [10, 5]}。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      4,\n      0\n    ],\n    [\n      4,\n      3\n    ],\n    [\n      0,\n      3\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        4,\n        0\n      ],\n      \"direction\": [\n        4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        4,\n        0\n      ],\n      \"to\": [\n        4,\n        3\n      ],\n      \"direction\": [\n        0,\n        3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        4,\n        3\n      ],\n      \"to\": [\n        0,\n        3\n      ],\n      \"direction\": [\n        -4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        0,\n        3\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'translate', 'delta': [10, 5]}。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      4,\n      0\n    ],\n    [\n      4,\n      3\n    ],\n    [\n      0,\n      3\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        4,\n        0\n      ],\n      \"direction\": [\n        4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        4,\n        0\n      ],\n      \"to\": [\n        4,\n        3\n      ],\n      \"direction\": [\n        0,\n        3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        4,\n        3\n      ],\n      \"to\": [\n        0,\n        3\n      ],\n      \"direction\": [\n        -4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        0,\n        3\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"translate\",\n  \"operation_params\": {\n    \"type\": \"translate\",\n    \"delta\": [\n      10,\n      5\n    ]\n  },\n  \"before\": {\n    \"area\": 12.0,\n    \"B\": 14,\n    \"I\": 6,\n    \"n_vertices\": 4\n  },\n  \"after\": {\n    \"area\": 12.0,\n    \"B\": 14,\n    \"I\": 6,\n    \"n_vertices\": 4\n  },\n  \"delta\": {\n    \"area_change\": 0.0,\n    \"B_change\": 0,\n    \"I_change\": 0,\n    \"pick_preserved\": true\n  },\n  \"note\": \"Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"non_lattice_perturbation\": {\n    \"description\": \"If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.\",\n    \"result\": \"Pick's theorem fails (B undefined).\"\n  },\n  \"scale_non_uniform\": {\n    \"description\": \"Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds.\"\n  },\n  \"note\": \"Use the contrast to identify Pick's domain: integer vertices + simple polygon.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim6_q11",
+      "type": "perturbation",
+      "stem": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'shear', 'matrix': [[1, 1], [0, 1]]}。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "vertices": [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "operation": {
+          "type": "shear",
+          "matrix": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        "delta_A": 0.0,
+        "delta_B": 0,
+        "delta_I": 0,
+        "pick_preserved": true
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 4,
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "edges": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                4,
+                0
+              ],
+              "direction": [
+                4,
+                0
+              ],
+              "length": 4.0,
+              "gcd": 4
+            },
+            {
+              "from": [
+                4,
+                0
+              ],
+              "to": [
+                4,
+                3
+              ],
+              "direction": [
+                0,
+                3
+              ],
+              "length": 3.0,
+              "gcd": 3
+            },
+            {
+              "from": [
+                4,
+                3
+              ],
+              "to": [
+                0,
+                3
+              ],
+              "direction": [
+                -4,
+                0
+              ],
+              "length": 4.0,
+              "gcd": 4
+            },
+            {
+              "from": [
+                0,
+                3
+              ],
+              "to": [
+                0,
+                0
+              ],
+              "direction": [
+                0,
+                -3
+              ],
+              "length": 3.0,
+              "gcd": 3
+            }
+          ],
+          "is_convex": true,
+          "is_simple": true,
+          "is_lattice": true,
+          "note": "Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A."
+        },
+        "T": {
+          "operation": "shear",
+          "operation_params": {
+            "type": "shear",
+            "matrix": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          "before": {
+            "area": 12.0,
+            "B": 14,
+            "I": 6,
+            "n_vertices": 4
+          },
+          "after": {
+            "area": 12.0,
+            "B": 14,
+            "I": 6,
+            "n_vertices": 4
+          },
+          "delta": {
+            "area_change": 0.0,
+            "B_change": 0,
+            "I_change": 0,
+            "pick_preserved": true
+          },
+          "note": "Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields."
+        },
+        "C": {
+          "non_lattice_perturbation": {
+            "description": "If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.",
+            "result": "Pick's theorem fails (B undefined)."
+          },
+          "scale_non_uniform": {
+            "description": "Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds."
+          },
+          "note": "Use the contrast to identify Pick's domain: integer vertices + simple polygon."
+        }
+      },
+      "prompts": {
+        "baseline": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'shear', 'matrix': [[1, 1], [0, 1]]}。\n\n请回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'shear', 'matrix': [[1, 1], [0, 1]]}。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'shear', 'matrix': [[1, 1], [0, 1]]}。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      4,\n      0\n    ],\n    [\n      4,\n      3\n    ],\n    [\n      0,\n      3\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        4,\n        0\n      ],\n      \"direction\": [\n        4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        4,\n        0\n      ],\n      \"to\": [\n        4,\n        3\n      ],\n      \"direction\": [\n        0,\n        3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        4,\n        3\n      ],\n      \"to\": [\n        0,\n        3\n      ],\n      \"direction\": [\n        -4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        0,\n        3\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'shear', 'matrix': [[1, 1], [0, 1]]}。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      4,\n      0\n    ],\n    [\n      4,\n      3\n    ],\n    [\n      0,\n      3\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        4,\n        0\n      ],\n      \"direction\": [\n        4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        4,\n        0\n      ],\n      \"to\": [\n        4,\n        3\n      ],\n      \"direction\": [\n        0,\n        3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        4,\n        3\n      ],\n      \"to\": [\n        0,\n        3\n      ],\n      \"direction\": [\n        -4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        0,\n        3\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"shear\",\n  \"operation_params\": {\n    \"type\": \"shear\",\n    \"matrix\": [\n      [\n        1,\n        1\n      ],\n      [\n        0,\n        1\n      ]\n    ]\n  },\n  \"before\": {\n    \"area\": 12.0,\n    \"B\": 14,\n    \"I\": 6,\n    \"n_vertices\": 4\n  },\n  \"after\": {\n    \"area\": 12.0,\n    \"B\": 14,\n    \"I\": 6,\n    \"n_vertices\": 4\n  },\n  \"delta\": {\n    \"area_change\": 0.0,\n    \"B_change\": 0,\n    \"I_change\": 0,\n    \"pick_preserved\": true\n  },\n  \"note\": \"Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"non_lattice_perturbation\": {\n    \"description\": \"If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.\",\n    \"result\": \"Pick's theorem fails (B undefined).\"\n  },\n  \"scale_non_uniform\": {\n    \"description\": \"Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds.\"\n  },\n  \"note\": \"Use the contrast to identify Pick's domain: integer vertices + simple polygon.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim6_q12",
+      "type": "perturbation",
+      "stem": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'scale_non_uniform', 'scale': [2, 1]}。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）",
+          "answer_type": "integer",
+          "answer": 12
+        },
+        {
+          "label": "(b)",
+          "text": "操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）",
+          "answer_type": "integer",
+          "answer": 8
+        },
+        {
+          "label": "(c)",
+          "text": "操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "vertices": [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "operation": {
+          "type": "scale_non_uniform",
+          "scale": [
+            2,
+            1
+          ]
+        },
+        "delta_A": 12.0,
+        "delta_B": 8,
+        "delta_I": 8,
+        "pick_preserved": true
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 4,
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "edges": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                4,
+                0
+              ],
+              "direction": [
+                4,
+                0
+              ],
+              "length": 4.0,
+              "gcd": 4
+            },
+            {
+              "from": [
+                4,
+                0
+              ],
+              "to": [
+                4,
+                3
+              ],
+              "direction": [
+                0,
+                3
+              ],
+              "length": 3.0,
+              "gcd": 3
+            },
+            {
+              "from": [
+                4,
+                3
+              ],
+              "to": [
+                0,
+                3
+              ],
+              "direction": [
+                -4,
+                0
+              ],
+              "length": 4.0,
+              "gcd": 4
+            },
+            {
+              "from": [
+                0,
+                3
+              ],
+              "to": [
+                0,
+                0
+              ],
+              "direction": [
+                0,
+                -3
+              ],
+              "length": 3.0,
+              "gcd": 3
+            }
+          ],
+          "is_convex": true,
+          "is_simple": true,
+          "is_lattice": true,
+          "note": "Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A."
+        },
+        "T": {
+          "operation": "scale_non_uniform",
+          "operation_params": {
+            "type": "scale_non_uniform",
+            "scale": [
+              2,
+              1
+            ]
+          },
+          "before": {
+            "area": 12.0,
+            "B": 14,
+            "I": 6,
+            "n_vertices": 4
+          },
+          "after": {
+            "area": 24.0,
+            "B": 22,
+            "I": 14,
+            "n_vertices": 4
+          },
+          "delta": {
+            "area_change": 12.0,
+            "B_change": 8,
+            "I_change": 8,
+            "pick_preserved": true
+          },
+          "note": "Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields."
+        },
+        "C": {
+          "non_lattice_perturbation": {
+            "description": "If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.",
+            "result": "Pick's theorem fails (B undefined)."
+          },
+          "scale_non_uniform": {
+            "description": "Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds."
+          },
+          "note": "Use the contrast to identify Pick's domain: integer vertices + simple polygon."
+        }
+      },
+      "prompts": {
+        "baseline": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'scale_non_uniform', 'scale': [2, 1]}。\n\n请回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'scale_non_uniform', 'scale': [2, 1]}。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'scale_non_uniform', 'scale': [2, 1]}。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      4,\n      0\n    ],\n    [\n      4,\n      3\n    ],\n    [\n      0,\n      3\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        4,\n        0\n      ],\n      \"direction\": [\n        4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        4,\n        0\n      ],\n      \"to\": [\n        4,\n        3\n      ],\n      \"direction\": [\n        0,\n        3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        4,\n        3\n      ],\n      \"to\": [\n        0,\n        3\n      ],\n      \"direction\": [\n        -4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        0,\n        3\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'scale_non_uniform', 'scale': [2, 1]}。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      4,\n      0\n    ],\n    [\n      4,\n      3\n    ],\n    [\n      0,\n      3\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        4,\n        0\n      ],\n      \"direction\": [\n        4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        4,\n        0\n      ],\n      \"to\": [\n        4,\n        3\n      ],\n      \"direction\": [\n        0,\n        3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        4,\n        3\n      ],\n      \"to\": [\n        0,\n        3\n      ],\n      \"direction\": [\n        -4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        0,\n        3\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"scale_non_uniform\",\n  \"operation_params\": {\n    \"type\": \"scale_non_uniform\",\n    \"scale\": [\n      2,\n      1\n    ]\n  },\n  \"before\": {\n    \"area\": 12.0,\n    \"B\": 14,\n    \"I\": 6,\n    \"n_vertices\": 4\n  },\n  \"after\": {\n    \"area\": 24.0,\n    \"B\": 22,\n    \"I\": 14,\n    \"n_vertices\": 4\n  },\n  \"delta\": {\n    \"area_change\": 12.0,\n    \"B_change\": 8,\n    \"I_change\": 8,\n    \"pick_preserved\": true\n  },\n  \"note\": \"Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"non_lattice_perturbation\": {\n    \"description\": \"If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.\",\n    \"result\": \"Pick's theorem fails (B undefined).\"\n  },\n  \"scale_non_uniform\": {\n    \"description\": \"Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds.\"\n  },\n  \"note\": \"Use the contrast to identify Pick's domain: integer vertices + simple polygon.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim6_q13",
+      "type": "perturbation",
+      "stem": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 2], [2, 2], [2, 4], [0, 4]]\n现在对 P 施加操作 op = {'type': 'scale_non_uniform', 'scale': [2, 2]}。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）",
+          "answer_type": "integer",
+          "answer": 36
+        },
+        {
+          "label": "(b)",
+          "text": "操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）",
+          "answer_type": "integer",
+          "answer": 28
+        },
+        {
+          "label": "(c)",
+          "text": "操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "vertices": [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "operation": {
+          "type": "scale_non_uniform",
+          "scale": [
+            2,
+            2
+          ]
+        },
+        "delta_A": 36.0,
+        "delta_B": 16,
+        "delta_I": 28,
+        "pick_preserved": true
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 6,
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "edges": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                4,
+                0
+              ],
+              "direction": [
+                4,
+                0
+              ],
+              "length": 4.0,
+              "gcd": 4
+            },
+            {
+              "from": [
+                4,
+                0
+              ],
+              "to": [
+                4,
+                2
+              ],
+              "direction": [
+                0,
+                2
+              ],
+              "length": 2.0,
+              "gcd": 2
+            },
+            {
+              "from": [
+                4,
+                2
+              ],
+              "to": [
+                2,
+                2
+              ],
+              "direction": [
+                -2,
+                0
+              ],
+              "length": 2.0,
+              "gcd": 2
+            },
+            {
+              "from": [
+                2,
+                2
+              ],
+              "to": [
+                2,
+                4
+              ],
+              "direction": [
+                0,
+                2
+              ],
+              "length": 2.0,
+              "gcd": 2
+            },
+            {
+              "from": [
+                2,
+                4
+              ],
+              "to": [
+                0,
+                4
+              ],
+              "direction": [
+                -2,
+                0
+              ],
+              "length": 2.0,
+              "gcd": 2
+            },
+            {
+              "from": [
+                0,
+                4
+              ],
+              "to": [
+                0,
+                0
+              ],
+              "direction": [
+                0,
+                -4
+              ],
+              "length": 4.0,
+              "gcd": 4
+            }
+          ],
+          "is_convex": false,
+          "is_simple": true,
+          "is_lattice": true,
+          "note": "Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A."
+        },
+        "T": {
+          "operation": "scale_non_uniform",
+          "operation_params": {
+            "type": "scale_non_uniform",
+            "scale": [
+              2,
+              2
+            ]
+          },
+          "before": {
+            "area": 12.0,
+            "B": 16,
+            "I": 5,
+            "n_vertices": 6
+          },
+          "after": {
+            "area": 48.0,
+            "B": 32,
+            "I": 33,
+            "n_vertices": 6
+          },
+          "delta": {
+            "area_change": 36.0,
+            "B_change": 16,
+            "I_change": 28,
+            "pick_preserved": true
+          },
+          "note": "Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields."
+        },
+        "C": {
+          "non_lattice_perturbation": {
+            "description": "If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.",
+            "result": "Pick's theorem fails (B undefined)."
+          },
+          "scale_non_uniform": {
+            "description": "Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds."
+          },
+          "note": "Use the contrast to identify Pick's domain: integer vertices + simple polygon."
+        }
+      },
+      "prompts": {
+        "baseline": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 2], [2, 2], [2, 4], [0, 4]]\n现在对 P 施加操作 op = {'type': 'scale_non_uniform', 'scale': [2, 2]}。\n\n请回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 2], [2, 2], [2, 4], [0, 4]]\n现在对 P 施加操作 op = {'type': 'scale_non_uniform', 'scale': [2, 2]}。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 2], [2, 2], [2, 4], [0, 4]]\n现在对 P 施加操作 op = {'type': 'scale_non_uniform', 'scale': [2, 2]}。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 6,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      4,\n      0\n    ],\n    [\n      4,\n      2\n    ],\n    [\n      2,\n      2\n    ],\n    [\n      2,\n      4\n    ],\n    [\n      0,\n      4\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        4,\n        0\n      ],\n      \"direction\": [\n        4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        4,\n        0\n      ],\n      \"to\": [\n        4,\n        2\n      ],\n      \"direction\": [\n        0,\n        2\n      ],\n      \"length\": 2.0,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        4,\n        2\n      ],\n      \"to\": [\n        2,\n        2\n      ],\n      \"direction\": [\n        -2,\n        0\n      ],\n      \"length\": 2.0,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        2,\n        2\n      ],\n      \"to\": [\n        2,\n        4\n      ],\n      \"direction\": [\n        0,\n        2\n      ],\n      \"length\": 2.0,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        2,\n        4\n      ],\n      \"to\": [\n        0,\n        4\n      ],\n      \"direction\": [\n        -2,\n        0\n      ],\n      \"length\": 2.0,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        0,\n        4\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -4\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    }\n  ],\n  \"is_convex\": false,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [4, 0], [4, 2], [2, 2], [2, 4], [0, 4]]\n现在对 P 施加操作 op = {'type': 'scale_non_uniform', 'scale': [2, 2]}。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 6,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      4,\n      0\n    ],\n    [\n      4,\n      2\n    ],\n    [\n      2,\n      2\n    ],\n    [\n      2,\n      4\n    ],\n    [\n      0,\n      4\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        4,\n        0\n      ],\n      \"direction\": [\n        4,\n        0\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    },\n    {\n      \"from\": [\n        4,\n        0\n      ],\n      \"to\": [\n        4,\n        2\n      ],\n      \"direction\": [\n        0,\n        2\n      ],\n      \"length\": 2.0,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        4,\n        2\n      ],\n      \"to\": [\n        2,\n        2\n      ],\n      \"direction\": [\n        -2,\n        0\n      ],\n      \"length\": 2.0,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        2,\n        2\n      ],\n      \"to\": [\n        2,\n        4\n      ],\n      \"direction\": [\n        0,\n        2\n      ],\n      \"length\": 2.0,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        2,\n        4\n      ],\n      \"to\": [\n        0,\n        4\n      ],\n      \"direction\": [\n        -2,\n        0\n      ],\n      \"length\": 2.0,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        0,\n        4\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -4\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    }\n  ],\n  \"is_convex\": false,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"scale_non_uniform\",\n  \"operation_params\": {\n    \"type\": \"scale_non_uniform\",\n    \"scale\": [\n      2,\n      2\n    ]\n  },\n  \"before\": {\n    \"area\": 12.0,\n    \"B\": 16,\n    \"I\": 5,\n    \"n_vertices\": 6\n  },\n  \"after\": {\n    \"area\": 48.0,\n    \"B\": 32,\n    \"I\": 33,\n    \"n_vertices\": 6\n  },\n  \"delta\": {\n    \"area_change\": 36.0,\n    \"B_change\": 16,\n    \"I_change\": 28,\n    \"pick_preserved\": true\n  },\n  \"note\": \"Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"non_lattice_perturbation\": {\n    \"description\": \"If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.\",\n    \"result\": \"Pick's theorem fails (B undefined).\"\n  },\n  \"scale_non_uniform\": {\n    \"description\": \"Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds.\"\n  },\n  \"note\": \"Use the contrast to identify Pick's domain: integer vertices + simple polygon.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim6_q14",
+      "type": "perturbation",
+      "stem": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [6, 0], [0, 4]]\n现在对 P 施加操作 op = {'type': 'translate', 'delta': [0, 0]}。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "vertices": [
+          [
+            0,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "operation": {
+          "type": "translate",
+          "delta": [
+            0,
+            0
+          ]
+        },
+        "delta_A": 0.0,
+        "delta_B": 0,
+        "delta_I": 0,
+        "pick_preserved": true
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 3,
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "edges": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                6,
+                0
+              ],
+              "direction": [
+                6,
+                0
+              ],
+              "length": 6.0,
+              "gcd": 6
+            },
+            {
+              "from": [
+                6,
+                0
+              ],
+              "to": [
+                0,
+                4
+              ],
+              "direction": [
+                -6,
+                4
+              ],
+              "length": 7.211103,
+              "gcd": 2
+            },
+            {
+              "from": [
+                0,
+                4
+              ],
+              "to": [
+                0,
+                0
+              ],
+              "direction": [
+                0,
+                -4
+              ],
+              "length": 4.0,
+              "gcd": 4
+            }
+          ],
+          "is_convex": true,
+          "is_simple": true,
+          "is_lattice": true,
+          "note": "Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A."
+        },
+        "T": {
+          "operation": "translate",
+          "operation_params": {
+            "type": "translate",
+            "delta": [
+              0,
+              0
+            ]
+          },
+          "before": {
+            "area": 12.0,
+            "B": 12,
+            "I": 7,
+            "n_vertices": 3
+          },
+          "after": {
+            "area": 12.0,
+            "B": 12,
+            "I": 7,
+            "n_vertices": 3
+          },
+          "delta": {
+            "area_change": 0.0,
+            "B_change": 0,
+            "I_change": 0,
+            "pick_preserved": true
+          },
+          "note": "Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields."
+        },
+        "C": {
+          "non_lattice_perturbation": {
+            "description": "If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.",
+            "result": "Pick's theorem fails (B undefined)."
+          },
+          "scale_non_uniform": {
+            "description": "Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds."
+          },
+          "note": "Use the contrast to identify Pick's domain: integer vertices + simple polygon."
+        }
+      },
+      "prompts": {
+        "baseline": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [6, 0], [0, 4]]\n现在对 P 施加操作 op = {'type': 'translate', 'delta': [0, 0]}。\n\n请回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [6, 0], [0, 4]]\n现在对 P 施加操作 op = {'type': 'translate', 'delta': [0, 0]}。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [6, 0], [0, 4]]\n现在对 P 施加操作 op = {'type': 'translate', 'delta': [0, 0]}。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 3,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      6,\n      0\n    ],\n    [\n      0,\n      4\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        6,\n        0\n      ],\n      \"direction\": [\n        6,\n        0\n      ],\n      \"length\": 6.0,\n      \"gcd\": 6\n    },\n    {\n      \"from\": [\n        6,\n        0\n      ],\n      \"to\": [\n        0,\n        4\n      ],\n      \"direction\": [\n        -6,\n        4\n      ],\n      \"length\": 7.211103,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        0,\n        4\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -4\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [6, 0], [0, 4]]\n现在对 P 施加操作 op = {'type': 'translate', 'delta': [0, 0]}。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 3,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      6,\n      0\n    ],\n    [\n      0,\n      4\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        6,\n        0\n      ],\n      \"direction\": [\n        6,\n        0\n      ],\n      \"length\": 6.0,\n      \"gcd\": 6\n    },\n    {\n      \"from\": [\n        6,\n        0\n      ],\n      \"to\": [\n        0,\n        4\n      ],\n      \"direction\": [\n        -6,\n        4\n      ],\n      \"length\": 7.211103,\n      \"gcd\": 2\n    },\n    {\n      \"from\": [\n        0,\n        4\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -4\n      ],\n      \"length\": 4.0,\n      \"gcd\": 4\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"translate\",\n  \"operation_params\": {\n    \"type\": \"translate\",\n    \"delta\": [\n      0,\n      0\n    ]\n  },\n  \"before\": {\n    \"area\": 12.0,\n    \"B\": 12,\n    \"I\": 7,\n    \"n_vertices\": 3\n  },\n  \"after\": {\n    \"area\": 12.0,\n    \"B\": 12,\n    \"I\": 7,\n    \"n_vertices\": 3\n  },\n  \"delta\": {\n    \"area_change\": 0.0,\n    \"B_change\": 0,\n    \"I_change\": 0,\n    \"pick_preserved\": true\n  },\n  \"note\": \"Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"non_lattice_perturbation\": {\n    \"description\": \"If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.\",\n    \"result\": \"Pick's theorem fails (B undefined).\"\n  },\n  \"scale_non_uniform\": {\n    \"description\": \"Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds.\"\n  },\n  \"note\": \"Use the contrast to identify Pick's domain: integer vertices + simple polygon.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim6_q15",
+      "type": "perturbation",
+      "stem": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [5, 0], [5, 5], [0, 5]]\n现在对 P 施加操作 op = {'type': 'shear', 'matrix': [[1, 2], [0, 1]]}。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "vertices": [
+          [
+            0,
+            0
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "operation": {
+          "type": "shear",
+          "matrix": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        "delta_A": 0.0,
+        "delta_B": 0,
+        "delta_I": 0,
+        "pick_preserved": true
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 4,
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "edges": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                5,
+                0
+              ],
+              "direction": [
+                5,
+                0
+              ],
+              "length": 5.0,
+              "gcd": 5
+            },
+            {
+              "from": [
+                5,
+                0
+              ],
+              "to": [
+                5,
+                5
+              ],
+              "direction": [
+                0,
+                5
+              ],
+              "length": 5.0,
+              "gcd": 5
+            },
+            {
+              "from": [
+                5,
+                5
+              ],
+              "to": [
+                0,
+                5
+              ],
+              "direction": [
+                -5,
+                0
+              ],
+              "length": 5.0,
+              "gcd": 5
+            },
+            {
+              "from": [
+                0,
+                5
+              ],
+              "to": [
+                0,
+                0
+              ],
+              "direction": [
+                0,
+                -5
+              ],
+              "length": 5.0,
+              "gcd": 5
+            }
+          ],
+          "is_convex": true,
+          "is_simple": true,
+          "is_lattice": true,
+          "note": "Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A."
+        },
+        "T": {
+          "operation": "shear",
+          "operation_params": {
+            "type": "shear",
+            "matrix": [
+              [
+                1,
+                2
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          "before": {
+            "area": 25.0,
+            "B": 20,
+            "I": 16,
+            "n_vertices": 4
+          },
+          "after": {
+            "area": 25.0,
+            "B": 20,
+            "I": 16,
+            "n_vertices": 4
+          },
+          "delta": {
+            "area_change": 0.0,
+            "B_change": 0,
+            "I_change": 0,
+            "pick_preserved": true
+          },
+          "note": "Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields."
+        },
+        "C": {
+          "non_lattice_perturbation": {
+            "description": "If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.",
+            "result": "Pick's theorem fails (B undefined)."
+          },
+          "scale_non_uniform": {
+            "description": "Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds."
+          },
+          "note": "Use the contrast to identify Pick's domain: integer vertices + simple polygon."
+        }
+      },
+      "prompts": {
+        "baseline": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [5, 0], [5, 5], [0, 5]]\n现在对 P 施加操作 op = {'type': 'shear', 'matrix': [[1, 2], [0, 1]]}。\n\n请回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [5, 0], [5, 5], [0, 5]]\n现在对 P 施加操作 op = {'type': 'shear', 'matrix': [[1, 2], [0, 1]]}。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [5, 0], [5, 5], [0, 5]]\n现在对 P 施加操作 op = {'type': 'shear', 'matrix': [[1, 2], [0, 1]]}。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      5,\n      0\n    ],\n    [\n      5,\n      5\n    ],\n    [\n      0,\n      5\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        5,\n        0\n      ],\n      \"direction\": [\n        5,\n        0\n      ],\n      \"length\": 5.0,\n      \"gcd\": 5\n    },\n    {\n      \"from\": [\n        5,\n        0\n      ],\n      \"to\": [\n        5,\n        5\n      ],\n      \"direction\": [\n        0,\n        5\n      ],\n      \"length\": 5.0,\n      \"gcd\": 5\n    },\n    {\n      \"from\": [\n        5,\n        5\n      ],\n      \"to\": [\n        0,\n        5\n      ],\n      \"direction\": [\n        -5,\n        0\n      ],\n      \"length\": 5.0,\n      \"gcd\": 5\n    },\n    {\n      \"from\": [\n        0,\n        5\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -5\n      ],\n      \"length\": 5.0,\n      \"gcd\": 5\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [5, 0], [5, 5], [0, 5]]\n现在对 P 施加操作 op = {'type': 'shear', 'matrix': [[1, 2], [0, 1]]}。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 4,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      5,\n      0\n    ],\n    [\n      5,\n      5\n    ],\n    [\n      0,\n      5\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        5,\n        0\n      ],\n      \"direction\": [\n        5,\n        0\n      ],\n      \"length\": 5.0,\n      \"gcd\": 5\n    },\n    {\n      \"from\": [\n        5,\n        0\n      ],\n      \"to\": [\n        5,\n        5\n      ],\n      \"direction\": [\n        0,\n        5\n      ],\n      \"length\": 5.0,\n      \"gcd\": 5\n    },\n    {\n      \"from\": [\n        5,\n        5\n      ],\n      \"to\": [\n        0,\n        5\n      ],\n      \"direction\": [\n        -5,\n        0\n      ],\n      \"length\": 5.0,\n      \"gcd\": 5\n    },\n    {\n      \"from\": [\n        0,\n        5\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -5\n      ],\n      \"length\": 5.0,\n      \"gcd\": 5\n    }\n  ],\n  \"is_convex\": true,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"shear\",\n  \"operation_params\": {\n    \"type\": \"shear\",\n    \"matrix\": [\n      [\n        1,\n        2\n      ],\n      [\n        0,\n        1\n      ]\n    ]\n  },\n  \"before\": {\n    \"area\": 25.0,\n    \"B\": 20,\n    \"I\": 16,\n    \"n_vertices\": 4\n  },\n  \"after\": {\n    \"area\": 25.0,\n    \"B\": 20,\n    \"I\": 16,\n    \"n_vertices\": 4\n  },\n  \"delta\": {\n    \"area_change\": 0.0,\n    \"B_change\": 0,\n    \"I_change\": 0,\n    \"pick_preserved\": true\n  },\n  \"note\": \"Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"non_lattice_perturbation\": {\n    \"description\": \"If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.\",\n    \"result\": \"Pick's theorem fails (B undefined).\"\n  },\n  \"scale_non_uniform\": {\n    \"description\": \"Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds.\"\n  },\n  \"note\": \"Use the contrast to identify Pick's domain: integer vertices + simple polygon.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim6_q16",
+      "type": "perturbation",
+      "stem": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [1, 0], [1, 1], [2, 1], [2, 2], [3, 2], [3, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'scale_non_uniform', 'scale': [3, 1]}。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）",
+          "answer_type": "integer",
+          "answer": 12
+        },
+        {
+          "label": "(b)",
+          "text": "操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）",
+          "answer_type": "integer",
+          "answer": 6
+        },
+        {
+          "label": "(c)",
+          "text": "操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "vertices": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "operation": {
+          "type": "scale_non_uniform",
+          "scale": [
+            3,
+            1
+          ]
+        },
+        "delta_A": 12.0,
+        "delta_B": 12,
+        "delta_I": 6,
+        "pick_preserved": true
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 8,
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "edges": [
+            {
+              "from": [
+                0,
+                0
+              ],
+              "to": [
+                1,
+                0
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "length": 1.0,
+              "gcd": 1
+            },
+            {
+              "from": [
+                1,
+                0
+              ],
+              "to": [
+                1,
+                1
+              ],
+              "direction": [
+                0,
+                1
+              ],
+              "length": 1.0,
+              "gcd": 1
+            },
+            {
+              "from": [
+                1,
+                1
+              ],
+              "to": [
+                2,
+                1
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "length": 1.0,
+              "gcd": 1
+            },
+            {
+              "from": [
+                2,
+                1
+              ],
+              "to": [
+                2,
+                2
+              ],
+              "direction": [
+                0,
+                1
+              ],
+              "length": 1.0,
+              "gcd": 1
+            },
+            {
+              "from": [
+                2,
+                2
+              ],
+              "to": [
+                3,
+                2
+              ],
+              "direction": [
+                1,
+                0
+              ],
+              "length": 1.0,
+              "gcd": 1
+            },
+            {
+              "from": [
+                3,
+                2
+              ],
+              "to": [
+                3,
+                3
+              ],
+              "direction": [
+                0,
+                1
+              ],
+              "length": 1.0,
+              "gcd": 1
+            },
+            {
+              "from": [
+                3,
+                3
+              ],
+              "to": [
+                0,
+                3
+              ],
+              "direction": [
+                -3,
+                0
+              ],
+              "length": 3.0,
+              "gcd": 3
+            },
+            {
+              "from": [
+                0,
+                3
+              ],
+              "to": [
+                0,
+                0
+              ],
+              "direction": [
+                0,
+                -3
+              ],
+              "length": 3.0,
+              "gcd": 3
+            }
+          ],
+          "is_convex": false,
+          "is_simple": true,
+          "is_lattice": true,
+          "note": "Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A."
+        },
+        "T": {
+          "operation": "scale_non_uniform",
+          "operation_params": {
+            "type": "scale_non_uniform",
+            "scale": [
+              3,
+              1
+            ]
+          },
+          "before": {
+            "area": 6.0,
+            "B": 12,
+            "I": 1,
+            "n_vertices": 8
+          },
+          "after": {
+            "area": 18.0,
+            "B": 24,
+            "I": 7,
+            "n_vertices": 8
+          },
+          "delta": {
+            "area_change": 12.0,
+            "B_change": 12,
+            "I_change": 6,
+            "pick_preserved": true
+          },
+          "note": "Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields."
+        },
+        "C": {
+          "non_lattice_perturbation": {
+            "description": "If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.",
+            "result": "Pick's theorem fails (B undefined)."
+          },
+          "scale_non_uniform": {
+            "description": "Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds."
+          },
+          "note": "Use the contrast to identify Pick's domain: integer vertices + simple polygon."
+        }
+      },
+      "prompts": {
+        "baseline": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [1, 0], [1, 1], [2, 1], [2, 2], [3, 2], [3, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'scale_non_uniform', 'scale': [3, 1]}。\n\n请回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [1, 0], [1, 1], [2, 1], [2, 2], [3, 2], [3, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'scale_non_uniform', 'scale': [3, 1]}。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [1, 0], [1, 1], [2, 1], [2, 2], [3, 2], [3, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'scale_non_uniform', 'scale': [3, 1]}。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 8,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      1,\n      0\n    ],\n    [\n      1,\n      1\n    ],\n    [\n      2,\n      1\n    ],\n    [\n      2,\n      2\n    ],\n    [\n      3,\n      2\n    ],\n    [\n      3,\n      3\n    ],\n    [\n      0,\n      3\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        1,\n        0\n      ],\n      \"direction\": [\n        1,\n        0\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        1,\n        0\n      ],\n      \"to\": [\n        1,\n        1\n      ],\n      \"direction\": [\n        0,\n        1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        1,\n        1\n      ],\n      \"to\": [\n        2,\n        1\n      ],\n      \"direction\": [\n        1,\n        0\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        2,\n        1\n      ],\n      \"to\": [\n        2,\n        2\n      ],\n      \"direction\": [\n        0,\n        1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        2,\n        2\n      ],\n      \"to\": [\n        3,\n        2\n      ],\n      \"direction\": [\n        1,\n        0\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        3,\n        2\n      ],\n      \"to\": [\n        3,\n        3\n      ],\n      \"direction\": [\n        0,\n        1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        3,\n        3\n      ],\n      \"to\": [\n        0,\n        3\n      ],\n      \"direction\": [\n        -3,\n        0\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        0,\n        3\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    }\n  ],\n  \"is_convex\": false,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定整点多边形 P，顶点序列：\n  V = [[0, 0], [1, 0], [1, 1], [2, 1], [2, 2], [3, 2], [3, 3], [0, 3]]\n现在对 P 施加操作 op = {'type': 'scale_non_uniform', 'scale': [3, 1]}。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 8,\n  \"vertices\": [\n    [\n      0,\n      0\n    ],\n    [\n      1,\n      0\n    ],\n    [\n      1,\n      1\n    ],\n    [\n      2,\n      1\n    ],\n    [\n      2,\n      2\n    ],\n    [\n      3,\n      2\n    ],\n    [\n      3,\n      3\n    ],\n    [\n      0,\n      3\n    ]\n  ],\n  \"edges\": [\n    {\n      \"from\": [\n        0,\n        0\n      ],\n      \"to\": [\n        1,\n        0\n      ],\n      \"direction\": [\n        1,\n        0\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        1,\n        0\n      ],\n      \"to\": [\n        1,\n        1\n      ],\n      \"direction\": [\n        0,\n        1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        1,\n        1\n      ],\n      \"to\": [\n        2,\n        1\n      ],\n      \"direction\": [\n        1,\n        0\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        2,\n        1\n      ],\n      \"to\": [\n        2,\n        2\n      ],\n      \"direction\": [\n        0,\n        1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        2,\n        2\n      ],\n      \"to\": [\n        3,\n        2\n      ],\n      \"direction\": [\n        1,\n        0\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        3,\n        2\n      ],\n      \"to\": [\n        3,\n        3\n      ],\n      \"direction\": [\n        0,\n        1\n      ],\n      \"length\": 1.0,\n      \"gcd\": 1\n    },\n    {\n      \"from\": [\n        3,\n        3\n      ],\n      \"to\": [\n        0,\n        3\n      ],\n      \"direction\": [\n        -3,\n        0\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    },\n    {\n      \"from\": [\n        0,\n        3\n      ],\n      \"to\": [\n        0,\n        0\n      ],\n      \"direction\": [\n        0,\n        -3\n      ],\n      \"length\": 3.0,\n      \"gcd\": 3\n    }\n  ],\n  \"is_convex\": false,\n  \"is_simple\": true,\n  \"is_lattice\": true,\n  \"note\": \"Each edge has direction (dx, dy) and gcd(|dx|, |dy|). Pick: A = I + B/2 − 1. Σ gcd over edges = B. Use shoelace for A.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"scale_non_uniform\",\n  \"operation_params\": {\n    \"type\": \"scale_non_uniform\",\n    \"scale\": [\n      3,\n      1\n    ]\n  },\n  \"before\": {\n    \"area\": 6.0,\n    \"B\": 12,\n    \"I\": 1,\n    \"n_vertices\": 8\n  },\n  \"after\": {\n    \"area\": 18.0,\n    \"B\": 24,\n    \"I\": 7,\n    \"n_vertices\": 8\n  },\n  \"delta\": {\n    \"area_change\": 12.0,\n    \"B_change\": 12,\n    \"I_change\": 6,\n    \"pick_preserved\": true\n  },\n  \"note\": \"Trace shows the after-state directly. To answer about the ORIGINAL polygon you must read the 'before' fields.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"non_lattice_perturbation\": {\n    \"description\": \"If a vertex is moved off the integer lattice (e.g. (3, 0) → (3.5, 0)), Pick's formula no longer applies — there is no notion of 'lattice points on the boundary' for a non-integer vertex.\",\n    \"result\": \"Pick's theorem fails (B undefined).\"\n  },\n  \"scale_non_uniform\": {\n    \"description\": \"Non-uniform scaling like (sx, sy) = (2, 1) keeps the lattice structure (if sx, sy are integers) but doubles A and changes B / I. Pick still holds.\"\n  },\n  \"note\": \"Use the contrast to identify Pick's domain: integer vertices + simple polygon.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 操作后面积的变化 ΔA 是多少？（请给整数；负数表示减少）\n  (b) 操作后内部格点数的变化 ΔI 是多少？（若操作让多边形不再是整点多边形则回答 -999）\n  (c) 操作后 Pick 定理是否仍然成立？请回答 1（成立）或 0（不成立）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    }
+  ]
+}

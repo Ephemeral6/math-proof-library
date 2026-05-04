@@ -1,0 +1,413 @@
+{
+  "experiment": "cross_family_scoring_analysis",
+  "source": "cross_family_scoring_responses.json",
+  "n_aligned": 48,
+  "n_dropped": 0,
+  "dropped_trials": [],
+  "pairs": {
+    "opus_vs_deepseek": {
+      "overall": {
+        "n": 48,
+        "kappa_unweighted": 0.152317880794702,
+        "kappa_quadratic": 0.07115212860970521,
+        "spearman_rho": 0.31086965557762325,
+        "mean_a": 2.8541666666666665,
+        "mean_b": 3.8541666666666665,
+        "mean_diff_a_minus_b": -1.0
+      },
+      "by_condition": {
+        "zero_cot": {
+          "n": 24,
+          "kappa_unweighted": 0.10559006211180133,
+          "kappa_quadratic": -0.021276595744680993,
+          "spearman_rho": -0.08233578967338413,
+          "mean_a": 1.9583333333333333,
+          "mean_b": 3.7083333333333335,
+          "mean_diff_a_minus_b": -1.7500000000000002
+        },
+        "coe_rtc": {
+          "n": 24,
+          "kappa_unweighted": 0.0,
+          "kappa_quadratic": 0.0,
+          "spearman_rho": null,
+          "mean_a": 3.75,
+          "mean_b": 4.0,
+          "mean_diff_a_minus_b": -0.25
+        }
+      }
+    },
+    "opus_vs_qwen": {
+      "overall": {
+        "n": 48,
+        "kappa_unweighted": 0.45708582834331335,
+        "kappa_quadratic": 0.3796716730702061,
+        "spearman_rho": 0.8005238155614988,
+        "mean_a": 2.8541666666666665,
+        "mean_b": 3.5208333333333335,
+        "mean_diff_a_minus_b": -0.666666666666667
+      },
+      "by_condition": {
+        "zero_cot": {
+          "n": 24,
+          "kappa_unweighted": 0.09933774834437081,
+          "kappa_quadratic": 0.1830726770929163,
+          "spearman_rho": 0.5694892119075736,
+          "mean_a": 1.9583333333333333,
+          "mean_b": 3.2916666666666665,
+          "mean_diff_a_minus_b": -1.3333333333333333
+        },
+        "coe_rtc": {
+          "n": 24,
+          "kappa_unweighted": 1.0,
+          "kappa_quadratic": 1.0,
+          "spearman_rho": 1.0,
+          "mean_a": 3.75,
+          "mean_b": 3.75,
+          "mean_diff_a_minus_b": 0.0
+        }
+      }
+    },
+    "deepseek_vs_qwen": {
+      "overall": {
+        "n": 48,
+        "kappa_unweighted": 0.3130590339892665,
+        "kappa_quadratic": 0.3130590339892665,
+        "spearman_rho": 0.4307875842407126,
+        "mean_a": 3.8541666666666665,
+        "mean_b": 3.5208333333333335,
+        "mean_diff_a_minus_b": 0.33333333333333304
+      },
+      "by_condition": {
+        "zero_cot": {
+          "n": 24,
+          "kappa_unweighted": 0.2899408284023669,
+          "kappa_quadratic": 0.2899408284023669,
+          "spearman_rho": 0.4117647058823529,
+          "mean_a": 3.7083333333333335,
+          "mean_b": 3.2916666666666665,
+          "mean_diff_a_minus_b": 0.41666666666666696
+        },
+        "coe_rtc": {
+          "n": 24,
+          "kappa_unweighted": 0.0,
+          "kappa_quadratic": 0.0,
+          "spearman_rho": null,
+          "mean_a": 4.0,
+          "mean_b": 3.75,
+          "mean_diff_a_minus_b": 0.25
+        }
+      }
+    }
+  },
+  "bias": {
+    "deepseek": {
+      "delta_baseline": {
+        "n": 24,
+        "mean": -1.75,
+        "stdev": 1.4817733206914758,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          -1,
+          -1,
+          -2,
+          -3,
+          -2,
+          -2,
+          -2,
+          -2,
+          -1,
+          -1,
+          -1,
+          -4,
+          -3,
+          -4,
+          -4,
+          -4,
+          -4
+        ]
+      },
+      "delta_rtc": {
+        "n": 24,
+        "mean": -0.25,
+        "stdev": 0.4423258684646914,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "delta_diff_rtc_minus_baseline": 1.5,
+      "welch_t": 4.752033057736255,
+      "welch_p_two_sided": 2.013814370371847e-06,
+      "interpretation": "Delta_RTC - Delta_baseline > 0 with small p suggests Opus inflates RTC scores relative to outsiders (self-rating bias on RTC). If both Deltas are similar, no preferential bias on RTC is evident."
+    },
+    "qwen": {
+      "delta_baseline": {
+        "n": 24,
+        "mean": -1.3333333333333333,
+        "stdev": 1.1671841502435296,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          -1,
+          -2,
+          -2,
+          -2,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -3,
+          -3,
+          -3,
+          -3,
+          -3,
+          -3
+        ]
+      },
+      "delta_rtc": {
+        "n": 24,
+        "mean": 0.0,
+        "stdev": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "delta_diff_rtc_minus_baseline": 1.3333333333333333,
+      "welch_t": 5.5963513949867565,
+      "welch_p_two_sided": 2.189097880744839e-08,
+      "interpretation": "Delta_RTC - Delta_baseline > 0 with small p suggests Opus inflates RTC scores relative to outsiders (self-rating bias on RTC). If both Deltas are similar, no preferential bias on RTC is evident."
+    }
+  },
+  "per_domain": {
+    "deepseek": {
+      "symmetry": {
+        "zero_cot": {
+          "n": 3,
+          "mean_delta": 0.0
+        },
+        "coe_rtc": {
+          "n": 3,
+          "mean_delta": 0.0
+        }
+      },
+      "knot_theory": {
+        "zero_cot": {
+          "n": 3,
+          "mean_delta": 0.0
+        },
+        "coe_rtc": {
+          "n": 3,
+          "mean_delta": 0.0
+        }
+      },
+      "graph_connectivity": {
+        "zero_cot": {
+          "n": 3,
+          "mean_delta": -1.0
+        },
+        "coe_rtc": {
+          "n": 3,
+          "mean_delta": 0.0
+        }
+      },
+      "boundary_interior": {
+        "zero_cot": {
+          "n": 3,
+          "mean_delta": -2.3333333333333335
+        },
+        "coe_rtc": {
+          "n": 3,
+          "mean_delta": 0.0
+        }
+      },
+      "discrete_curvature": {
+        "zero_cot": {
+          "n": 3,
+          "mean_delta": -2.0
+        },
+        "coe_rtc": {
+          "n": 3,
+          "mean_delta": 0.0
+        }
+      },
+      "projection": {
+        "zero_cot": {
+          "n": 3,
+          "mean_delta": -1.0
+        },
+        "coe_rtc": {
+          "n": 3,
+          "mean_delta": 0.0
+        }
+      },
+      "surface_topology": {
+        "zero_cot": {
+          "n": 3,
+          "mean_delta": -3.6666666666666665
+        },
+        "coe_rtc": {
+          "n": 3,
+          "mean_delta": -1.0
+        }
+      },
+      "surface_topology_s21": {
+        "zero_cot": {
+          "n": 3,
+          "mean_delta": -4.0
+        },
+        "coe_rtc": {
+          "n": 3,
+          "mean_delta": -1.0
+        }
+      }
+    },
+    "qwen": {
+      "symmetry": {
+        "zero_cot": {
+          "n": 3,
+          "mean_delta": 0.0
+        },
+        "coe_rtc": {
+          "n": 3,
+          "mean_delta": 0.0
+        }
+      },
+      "knot_theory": {
+        "zero_cot": {
+          "n": 3,
+          "mean_delta": 0.0
+        },
+        "coe_rtc": {
+          "n": 3,
+          "mean_delta": 0.0
+        }
+      },
+      "graph_connectivity": {
+        "zero_cot": {
+          "n": 3,
+          "mean_delta": -0.6666666666666666
+        },
+        "coe_rtc": {
+          "n": 3,
+          "mean_delta": 0.0
+        }
+      },
+      "boundary_interior": {
+        "zero_cot": {
+          "n": 3,
+          "mean_delta": -2.0
+        },
+        "coe_rtc": {
+          "n": 3,
+          "mean_delta": 0.0
+        }
+      },
+      "discrete_curvature": {
+        "zero_cot": {
+          "n": 3,
+          "mean_delta": -1.0
+        },
+        "coe_rtc": {
+          "n": 3,
+          "mean_delta": 0.0
+        }
+      },
+      "projection": {
+        "zero_cot": {
+          "n": 3,
+          "mean_delta": -1.0
+        },
+        "coe_rtc": {
+          "n": 3,
+          "mean_delta": 0.0
+        }
+      },
+      "surface_topology": {
+        "zero_cot": {
+          "n": 3,
+          "mean_delta": -3.0
+        },
+        "coe_rtc": {
+          "n": 3,
+          "mean_delta": 0.0
+        }
+      },
+      "surface_topology_s21": {
+        "zero_cot": {
+          "n": 3,
+          "mean_delta": -3.0
+        },
+        "coe_rtc": {
+          "n": 3,
+          "mean_delta": 0.0
+        }
+      }
+    }
+  },
+  "method_notes": {
+    "kappa_unweighted": "Standard Cohen's kappa with 0/1 disagreement weights.",
+    "kappa_quadratic": "Quadratic-weighted Cohen's kappa (recommended for ordinal scales).",
+    "spearman_rho": "Spearman correlation with mid-ranks for ties.",
+    "delta": "Per-trial Opus - external; condition means reported.",
+    "welch_p": "Two-sided p from Welch's t-test on Δ_RTC vs Δ_baseline using a normal approximation. With n=24 per side this is rough; treat magnitudes as primary and p as a sanity check."
+  }
+}

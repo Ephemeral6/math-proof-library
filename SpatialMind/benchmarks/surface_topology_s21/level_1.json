@@ -1,0 +1,2823 @@
+{
+  "level": 1,
+  "domain": "surface_topology",
+  "n_cases": 128,
+  "cases": [
+    {
+      "case_id": "a122-b2",
+      "object_a_id": "c122",
+      "object_b_id": "c2",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 2,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b6",
+      "object_a_id": "c122",
+      "object_b_id": "c6",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 6,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b9",
+      "object_a_id": "c122",
+      "object_b_id": "c9",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 9,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b13",
+      "object_a_id": "c122",
+      "object_b_id": "c13",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 13,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b17",
+      "object_a_id": "c122",
+      "object_b_id": "c17",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 17,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b24",
+      "object_a_id": "c122",
+      "object_b_id": "c24",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 24,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b28",
+      "object_a_id": "c122",
+      "object_b_id": "c28",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 28,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b44",
+      "object_a_id": "c122",
+      "object_b_id": "c44",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 44,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b45",
+      "object_a_id": "c122",
+      "object_b_id": "c45",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 45,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b50",
+      "object_a_id": "c122",
+      "object_b_id": "c50",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 50,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b57",
+      "object_a_id": "c122",
+      "object_b_id": "c57",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 57,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b63",
+      "object_a_id": "c122",
+      "object_b_id": "c63",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 63,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b65",
+      "object_a_id": "c122",
+      "object_b_id": "c65",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 65,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b70",
+      "object_a_id": "c122",
+      "object_b_id": "c70",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 70,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b76",
+      "object_a_id": "c122",
+      "object_b_id": "c76",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 76,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b78",
+      "object_a_id": "c122",
+      "object_b_id": "c78",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 78,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b110",
+      "object_a_id": "c122",
+      "object_b_id": "c110",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 110,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b119",
+      "object_a_id": "c122",
+      "object_b_id": "c119",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 119,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b121",
+      "object_a_id": "c122",
+      "object_b_id": "c121",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 121,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b124",
+      "object_a_id": "c122",
+      "object_b_id": "c124",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 124,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b137",
+      "object_a_id": "c122",
+      "object_b_id": "c137",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 137,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b177",
+      "object_a_id": "c122",
+      "object_b_id": "c177",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 177,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b185",
+      "object_a_id": "c122",
+      "object_b_id": "c185",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 185,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b191",
+      "object_a_id": "c122",
+      "object_b_id": "c191",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 191,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b194",
+      "object_a_id": "c122",
+      "object_b_id": "c194",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 194,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b207",
+      "object_a_id": "c122",
+      "object_b_id": "c207",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 207,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a122-b213",
+      "object_a_id": "c122",
+      "object_b_id": "c213",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -14,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 122,
+        "beta_index": 213,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b3",
+      "object_a_id": "c151",
+      "object_b_id": "c3",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 3,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b6",
+      "object_a_id": "c151",
+      "object_b_id": "c6",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 6,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b7",
+      "object_a_id": "c151",
+      "object_b_id": "c7",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 7,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b10",
+      "object_a_id": "c151",
+      "object_b_id": "c10",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 10,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b12",
+      "object_a_id": "c151",
+      "object_b_id": "c12",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 12,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b13",
+      "object_a_id": "c151",
+      "object_b_id": "c13",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 13,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b14",
+      "object_a_id": "c151",
+      "object_b_id": "c14",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 14,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b15",
+      "object_a_id": "c151",
+      "object_b_id": "c15",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 15,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b20",
+      "object_a_id": "c151",
+      "object_b_id": "c20",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 20,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b25",
+      "object_a_id": "c151",
+      "object_b_id": "c25",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 25,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b27",
+      "object_a_id": "c151",
+      "object_b_id": "c27",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 27,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b31",
+      "object_a_id": "c151",
+      "object_b_id": "c31",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 31,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b35",
+      "object_a_id": "c151",
+      "object_b_id": "c35",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 35,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b37",
+      "object_a_id": "c151",
+      "object_b_id": "c37",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 37,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b38",
+      "object_a_id": "c151",
+      "object_b_id": "c38",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 38,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b53",
+      "object_a_id": "c151",
+      "object_b_id": "c53",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 53,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b55",
+      "object_a_id": "c151",
+      "object_b_id": "c55",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 55,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b57",
+      "object_a_id": "c151",
+      "object_b_id": "c57",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 57,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b63",
+      "object_a_id": "c151",
+      "object_b_id": "c63",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 63,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b66",
+      "object_a_id": "c151",
+      "object_b_id": "c66",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 66,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b67",
+      "object_a_id": "c151",
+      "object_b_id": "c67",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 67,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b69",
+      "object_a_id": "c151",
+      "object_b_id": "c69",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 69,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b71",
+      "object_a_id": "c151",
+      "object_b_id": "c71",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 71,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b74",
+      "object_a_id": "c151",
+      "object_b_id": "c74",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 74,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b75",
+      "object_a_id": "c151",
+      "object_b_id": "c75",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 75,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b83",
+      "object_a_id": "c151",
+      "object_b_id": "c83",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 83,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b85",
+      "object_a_id": "c151",
+      "object_b_id": "c85",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 85,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b86",
+      "object_a_id": "c151",
+      "object_b_id": "c86",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 86,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b97",
+      "object_a_id": "c151",
+      "object_b_id": "c97",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 97,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b98",
+      "object_a_id": "c151",
+      "object_b_id": "c98",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 98,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b103",
+      "object_a_id": "c151",
+      "object_b_id": "c103",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 103,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b104",
+      "object_a_id": "c151",
+      "object_b_id": "c104",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 104,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b145",
+      "object_a_id": "c151",
+      "object_b_id": "c145",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 145,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b150",
+      "object_a_id": "c151",
+      "object_b_id": "c150",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 150,
+        "alpha_level": 2,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b178",
+      "object_a_id": "c151",
+      "object_b_id": "c178",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 178,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b181",
+      "object_a_id": "c151",
+      "object_b_id": "c181",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 181,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b184",
+      "object_a_id": "c151",
+      "object_b_id": "c184",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 184,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b190",
+      "object_a_id": "c151",
+      "object_b_id": "c190",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 190,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b196",
+      "object_a_id": "c151",
+      "object_b_id": "c196",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 196,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b206",
+      "object_a_id": "c151",
+      "object_b_id": "c206",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 206,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b227",
+      "object_a_id": "c151",
+      "object_b_id": "c227",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 227,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b231",
+      "object_a_id": "c151",
+      "object_b_id": "c231",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 231,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a151-b235",
+      "object_a_id": "c151",
+      "object_b_id": "c235",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -9,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 151,
+        "beta_index": 235,
+        "alpha_level": 2,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a215-b1",
+      "object_a_id": "c215",
+      "object_b_id": "c1",
+      "transformed_a_id": "sigma_c16",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 215,
+        "beta_index": 1,
+        "alpha_level": 4,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a215-b5",
+      "object_a_id": "c215",
+      "object_b_id": "c5",
+      "transformed_a_id": "sigma_c16",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 215,
+        "beta_index": 5,
+        "alpha_level": 4,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a215-b10",
+      "object_a_id": "c215",
+      "object_b_id": "c10",
+      "transformed_a_id": "sigma_c16",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 215,
+        "beta_index": 10,
+        "alpha_level": 4,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a215-b12",
+      "object_a_id": "c215",
+      "object_b_id": "c12",
+      "transformed_a_id": "sigma_c16",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 215,
+        "beta_index": 12,
+        "alpha_level": 4,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a215-b13",
+      "object_a_id": "c215",
+      "object_b_id": "c13",
+      "transformed_a_id": "sigma_c16",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 215,
+        "beta_index": 13,
+        "alpha_level": 4,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a215-b17",
+      "object_a_id": "c215",
+      "object_b_id": "c17",
+      "transformed_a_id": "sigma_c16",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 215,
+        "beta_index": 17,
+        "alpha_level": 4,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a215-b33",
+      "object_a_id": "c215",
+      "object_b_id": "c33",
+      "transformed_a_id": "sigma_c16",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 215,
+        "beta_index": 33,
+        "alpha_level": 4,
+        "beta_level": 2,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a215-b34",
+      "object_a_id": "c215",
+      "object_b_id": "c34",
+      "transformed_a_id": "sigma_c16",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 215,
+        "beta_index": 34,
+        "alpha_level": 4,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a215-b44",
+      "object_a_id": "c215",
+      "object_b_id": "c44",
+      "transformed_a_id": "sigma_c16",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 215,
+        "beta_index": 44,
+        "alpha_level": 4,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a215-b76",
+      "object_a_id": "c215",
+      "object_b_id": "c76",
+      "transformed_a_id": "sigma_c16",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 215,
+        "beta_index": 76,
+        "alpha_level": 4,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a215-b77",
+      "object_a_id": "c215",
+      "object_b_id": "c77",
+      "transformed_a_id": "sigma_c16",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 215,
+        "beta_index": 77,
+        "alpha_level": 4,
+        "beta_level": 2,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a215-b154",
+      "object_a_id": "c215",
+      "object_b_id": "c154",
+      "transformed_a_id": "sigma_c16",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 215,
+        "beta_index": 154,
+        "alpha_level": 4,
+        "beta_level": 3,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a215-b209",
+      "object_a_id": "c215",
+      "object_b_id": "c209",
+      "transformed_a_id": "sigma_c16",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 215,
+        "beta_index": 209,
+        "alpha_level": 4,
+        "beta_level": 3,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b1",
+      "object_a_id": "c221",
+      "object_b_id": "c1",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 1,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b5",
+      "object_a_id": "c221",
+      "object_b_id": "c5",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 5,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b13",
+      "object_a_id": "c221",
+      "object_b_id": "c13",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 13,
+        "alpha_level": 3,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b14",
+      "object_a_id": "c221",
+      "object_b_id": "c14",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 14,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b44",
+      "object_a_id": "c221",
+      "object_b_id": "c44",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 44,
+        "alpha_level": 3,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b63",
+      "object_a_id": "c221",
+      "object_b_id": "c63",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 63,
+        "alpha_level": 3,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b70",
+      "object_a_id": "c221",
+      "object_b_id": "c70",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 70,
+        "alpha_level": 3,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b76",
+      "object_a_id": "c221",
+      "object_b_id": "c76",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 76,
+        "alpha_level": 3,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b77",
+      "object_a_id": "c221",
+      "object_b_id": "c77",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 77,
+        "alpha_level": 3,
+        "beta_level": 2,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b78",
+      "object_a_id": "c221",
+      "object_b_id": "c78",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 78,
+        "alpha_level": 3,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b79",
+      "object_a_id": "c221",
+      "object_b_id": "c79",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 79,
+        "alpha_level": 3,
+        "beta_level": 2,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b97",
+      "object_a_id": "c221",
+      "object_b_id": "c97",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 97,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b98",
+      "object_a_id": "c221",
+      "object_b_id": "c98",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 98,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b103",
+      "object_a_id": "c221",
+      "object_b_id": "c103",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 103,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b122",
+      "object_a_id": "c221",
+      "object_b_id": "c122",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 122,
+        "alpha_level": 3,
+        "beta_level": 2,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b155",
+      "object_a_id": "c221",
+      "object_b_id": "c155",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 155,
+        "alpha_level": 3,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b159",
+      "object_a_id": "c221",
+      "object_b_id": "c159",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 159,
+        "alpha_level": 3,
+        "beta_level": 2,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b196",
+      "object_a_id": "c221",
+      "object_b_id": "c196",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 196,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a221-b227",
+      "object_a_id": "c221",
+      "object_b_id": "c227",
+      "transformed_a_id": "sigma_c6",
+      "summary_delta": {
+        "weight_a": -28,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 221,
+        "beta_index": 227,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b8",
+      "object_a_id": "c249",
+      "object_b_id": "c8",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 8,
+        "alpha_level": 3,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b9",
+      "object_a_id": "c249",
+      "object_b_id": "c9",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 9,
+        "alpha_level": 3,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b11",
+      "object_a_id": "c249",
+      "object_b_id": "c11",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 11,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b19",
+      "object_a_id": "c249",
+      "object_b_id": "c19",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 19,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b26",
+      "object_a_id": "c249",
+      "object_b_id": "c26",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 26,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b30",
+      "object_a_id": "c249",
+      "object_b_id": "c30",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 30,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b40",
+      "object_a_id": "c249",
+      "object_b_id": "c40",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 40,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b41",
+      "object_a_id": "c249",
+      "object_b_id": "c41",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 41,
+        "alpha_level": 3,
+        "beta_level": 2,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b43",
+      "object_a_id": "c249",
+      "object_b_id": "c43",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 43,
+        "alpha_level": 3,
+        "beta_level": 2,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b45",
+      "object_a_id": "c249",
+      "object_b_id": "c45",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 45,
+        "alpha_level": 3,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b52",
+      "object_a_id": "c249",
+      "object_b_id": "c52",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 52,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b68",
+      "object_a_id": "c249",
+      "object_b_id": "c68",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 68,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b73",
+      "object_a_id": "c249",
+      "object_b_id": "c73",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 73,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b84",
+      "object_a_id": "c249",
+      "object_b_id": "c84",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 84,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b92",
+      "object_a_id": "c249",
+      "object_b_id": "c92",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": -1,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 92,
+        "alpha_level": 3,
+        "beta_level": 2,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b95",
+      "object_a_id": "c249",
+      "object_b_id": "c95",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 95,
+        "alpha_level": 3,
+        "beta_level": 1,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b105",
+      "object_a_id": "c249",
+      "object_b_id": "c105",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 105,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b143",
+      "object_a_id": "c249",
+      "object_b_id": "c143",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 143,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b180",
+      "object_a_id": "c249",
+      "object_b_id": "c180",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 180,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b183",
+      "object_a_id": "c249",
+      "object_b_id": "c183",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 183,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b188",
+      "object_a_id": "c249",
+      "object_b_id": "c188",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 188,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b202",
+      "object_a_id": "c249",
+      "object_b_id": "c202",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 202,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b204",
+      "object_a_id": "c249",
+      "object_b_id": "c204",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 204,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b208",
+      "object_a_id": "c249",
+      "object_b_id": "c208",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 208,
+        "alpha_level": 3,
+        "beta_level": 2,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b230",
+      "object_a_id": "c249",
+      "object_b_id": "c230",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 230,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    },
+    {
+      "case_id": "a249-b233",
+      "object_a_id": "c249",
+      "object_b_id": "c233",
+      "transformed_a_id": "sigma_c1",
+      "summary_delta": {
+        "weight_a": -22,
+        "intersection_number": 0,
+        "weight_b": 0
+      },
+      "metadata": {
+        "surface": [
+          2,
+          1
+        ],
+        "alpha_index": 249,
+        "beta_index": 233,
+        "alpha_level": 3,
+        "beta_level": 0,
+        "i_alpha_beta": 1
+      }
+    }
+  ]
+}

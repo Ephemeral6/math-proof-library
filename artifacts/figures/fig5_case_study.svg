@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  NeurIPS Figure 5 — Case study: R2-invariance on knot 3_1
+  Size: 180mm x 85mm  (viewBox in mm; all font sizes in pt)
+
+  Block boundaries (mm):
+    - Margins:                   5
+    - Vertical divider:          x = 72  (y = 5 .. 80)
+    - Left column (Baseline):    x = 5  .. 72   (~37%)
+    - Right column (CoE-RTC):    x = 72 .. 175  (~57%)
+
+    Top band (titles):           y = 5  .. 14
+    Knot band:                   y = 14 .. 50
+       left knot center:   (37, 30)   bbox  ~ x=23..51, y=17..43
+       right knot center:  (100, 30)  bbox  ~ x=86..114, y=17..43
+       mini ("counterfactual") knot:  center (135, 46), bbox x=132..138, y=43..49
+    Bottom unified panel:        y = 55 .. 82  (#F5F5F5 background, padding 3mm)
+       left text column:   x = 8  .. 70
+       right text column:  x = 75 .. 172
+
+  Type scale (pt, all explicit):
+    Column titles                     : 8pt bold
+    Column subtitles                  : 6pt
+    Quote text in panels              : 7pt italic
+    Score lines                       : 6pt
+    Annotation labels (R/T/C)         : 6pt
+    Knot caption ("knot 3_1")         : 6pt
+    Minimum size used: 6pt
+
+  Palette (only these colours):
+    #000000 black ink / body text
+    #C0392B accent red (failure / counterfactual)
+    #1E8449 accent green (success / engine-grounded)
+    #888888 muted gray (subtitles, leader lines)
+    #CCCCCC light gray (vertical divider)
+    #E8E8E8 / #F5F5F5 panel infill grays
+    #FFF4D6 pale yellow (T-overlay only — single accent fill)
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="180mm" height="85mm" viewBox="0 0 180 85"
+     font-family="Helvetica, Arial, 'Liberation Sans', sans-serif"
+     fill="#000000">
+
+  <!-- ============================================================ -->
+  <!-- Vertical divider between the two columns                     -->
+  <!-- ============================================================ -->
+  <line x1="72" y1="5" x2="72" y2="80" stroke="#CCCCCC" stroke-width="0.353"/>
+
+  <!-- ============================================================ -->
+  <!-- Top band: column titles                                      -->
+  <!-- ============================================================ -->
+  <text x="37"  y="9"    text-anchor="middle" font-size="8pt" font-weight="bold">Baseline</text>
+  <text x="37"  y="12.5" text-anchor="middle" font-size="6pt" fill="#888888">PD code only</text>
+  <text x="100" y="9"    text-anchor="middle" font-size="8pt" font-weight="bold">CoE (RTC)</text>
+  <text x="100" y="12.5" text-anchor="middle" font-size="6pt" fill="#888888">engine supplies R, T, C</text>
+
+  <!-- ============================================================ -->
+  <!-- LEFT KNOT (clean, no overlay)                                -->
+  <!-- ============================================================ -->
+  <g stroke="#000000" stroke-width="1.2" fill="none"
+     stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 30.71,31.48 L 31.89,31.89 L 37.00,32.65 L 42.11,31.89 L 46.47,29.77 L 49.45,26.70 L 50.66,23.26 L 49.99,20.15 L 47.63,18.01 L 44.05,17.35 L 39.89,18.39 L 37.16,20.03"/>
+    <path d="M 36.83,20.28 L 35.88,21.10 L 32.67,25.15 L 30.77,29.95 L 30.43,34.79 L 31.60,38.91 L 33.97,41.68 L 37.00,42.65 L 40.03,41.68 L 42.40,38.91 L 43.57,34.79 L 43.52,31.60"/>
+    <path d="M 43.46,31.19 L 43.23,29.95 L 41.33,25.15 L 38.12,21.10 L 34.11,18.39 L 29.95,17.35 L 26.37,18.01 L 24.01,20.15 L 23.34,23.26 L 24.55,26.70 L 27.53,29.77 L 30.32,31.32"/>
+  </g>
+  <text x="37" y="48" text-anchor="middle" font-size="6pt" fill="#888888">knot 3_1</text>
+
+  <!-- ============================================================ -->
+  <!-- RIGHT KNOT (with R / T / C overlays)                         -->
+  <!-- ============================================================ -->
+
+  <!-- T overlay (pale yellow, behind the knot strands) -->
+  <ellipse cx="111" cy="21.5" rx="3.4" ry="2.2" fill="#FFE9A8" stroke="none" opacity="0.85"/>
+
+  <!-- knot strands -->
+  <g stroke="#000000" stroke-width="1.2" fill="none"
+     stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 93.71,31.48 L 94.89,31.89 L 100.00,32.65 L 105.11,31.89 L 109.47,29.77 L 112.45,26.70 L 113.66,23.26 L 112.99,20.15 L 110.63,18.01 L 107.05,17.35 L 102.89,18.39 L 100.16,20.03"/>
+    <path d="M 99.83,20.28 L 98.88,21.10 L 95.67,25.15 L 93.77,29.95 L 93.43,34.79 L 94.60,38.91 L 96.97,41.68 L 100.00,42.65 L 103.03,41.68 L 105.40,38.91 L 106.57,34.79 L 106.52,31.60"/>
+    <path d="M 106.46,31.19 L 106.23,29.95 L 104.33,25.15 L 101.12,21.10 L 97.11,18.39 L 92.95,17.35 L 89.37,18.01 L 87.01,20.15 L 86.34,23.26 L 87.55,26.70 L 90.53,29.77 L 93.32,31.32"/>
+  </g>
+
+  <!-- R overlay: small red outline circles around the two negative crossings -->
+  <circle cx="100"   cy="20.15" r="2.2" stroke="#C0392B" stroke-width="0.5" fill="none"/>
+  <circle cx="93.51" cy="31.40" r="2.2" stroke="#C0392B" stroke-width="0.5" fill="none"/>
+
+  <!-- Leader lines (light gray, 0.4mm) and 1mm anchor dots (0.5mm radius) -->
+  <!-- (1) R: anchor on the right side of the upper red circle -->
+  <line x1="102.2" y1="20.15" x2="119" y2="20" stroke="#888888" stroke-width="0.4" fill="none"/>
+  <circle cx="102.2" cy="20.15" r="0.5" fill="#000000"/>
+  <!-- (2) T: anchor on the right side of the yellow ellipse -->
+  <line x1="114.2" y1="21.5" x2="119" y2="27" stroke="#888888" stroke-width="0.4" fill="none"/>
+  <circle cx="114.2" cy="21.5" r="0.5" fill="#000000"/>
+  <!-- (3) C: anchor at top of mini-knot, leader rises to label baseline -->
+  <line x1="135" y1="43.6" x2="135" y2="40" stroke="#888888" stroke-width="0.4" fill="none"/>
+  <circle cx="135" cy="43.6" r="0.5" fill="#000000"/>
+
+  <!-- Annotation labels (6pt) -->
+  <text x="120" y="20.5" font-size="6pt">&#9312; R: &#x3C3; = &#x2212;2, det = 3</text>
+  <text x="120" y="28.5" font-size="6pt">&#9313; T: R2 adds 2 cancelling crossings</text>
+  <text x="120" y="36.5" font-size="6pt">&#9314; C: same-sign &#x21D2; det 3 &#x2192; 7 (counterfactual)</text>
+
+  <!-- Mini-knot (counterfactual): same trefoil paths, scaled to 0.9 -->
+  <g stroke="#000000" stroke-width="0.7" fill="none"
+     stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 133.87,46.27 L 134.08,46.34 L 135.00,46.48 L 135.92,46.34 L 136.70,45.96 L 137.24,45.41 L 137.46,44.79 L 137.34,44.23 L 136.91,43.84 L 136.27,43.72 L 135.52,43.91 L 135.03,44.21"/>
+    <path d="M 134.97,44.25 L 134.80,44.40 L 134.22,45.13 L 133.88,45.99 L 133.82,46.86 L 134.03,47.60 L 134.45,48.10 L 135.00,48.28 L 135.55,48.10 L 135.97,47.60 L 136.18,46.86 L 136.17,46.29"/>
+    <path d="M 136.16,46.21 L 136.12,45.99 L 135.78,45.13 L 135.20,44.40 L 134.48,43.91 L 133.73,43.72 L 133.09,43.84 L 132.66,44.23 L 132.54,44.79 L 132.76,45.41 L 133.30,45.96 L 133.80,46.24"/>
+  </g>
+  <!-- Red X overlay marking the counterfactual as invalid (3pt = 1.06mm) -->
+  <line x1="131.5" y1="42.5" x2="138.5" y2="49.5" stroke="#C0392B" stroke-width="1.06" stroke-linecap="round"/>
+  <line x1="138.5" y1="42.5" x2="131.5" y2="49.5" stroke="#C0392B" stroke-width="1.06" stroke-linecap="round"/>
+
+  <!-- ============================================================ -->
+  <!-- Bottom unified panel (LLM responses)                         -->
+  <!-- ============================================================ -->
+  <rect x="5" y="55" width="170" height="27" fill="#F5F5F5" stroke="none"/>
+
+  <!-- LEFT panel content (Baseline LLM response) -->
+  <text x="8" y="61"   font-size="7pt" font-style="italic">&#x201C;R2 moves add crossings, but I</text>
+  <text x="8" y="64.8" font-size="7pt" font-style="italic">cannot determine which invariants change.&#x201D;</text>
+
+  <!-- Red wavy underline beneath line 2  (1.6mm period, 0.35mm amplitude) -->
+  <path d="M 8.00,66.4 q 0.80,-0.35 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0 t 1.60,0"
+        stroke="#C0392B" stroke-width="0.35" fill="none"/>
+
+  <text x="8" y="73"   font-size="6pt">Score: 1 (Wrong) &#x2014; contradicts textbook fact</text>
+  <text x="8" y="76"   font-size="6pt">that R2 is invariant-preserving.</text>
+
+  <!-- RIGHT panel content (CoE-RTC response) -->
+  <text x="75" y="61"   font-size="7pt" font-style="italic">&#x201C;The cancelling sign pair (+1, &#x2212;1) preserves writhe; the Seifert matrix</text>
+  <text x="75" y="64.8" font-size="7pt" font-style="italic">gains a rank-2 block of determinant 1, preserving det.</text>
+  <text x="75" y="68.6" font-size="7pt" font-style="italic">The same-sign counterfactual breaks this cancellation.&#x201D;</text>
+
+  <!-- Green solid underlines beneath the two key success phrases -->
+  <line x1="84.5"  y1="65.7" x2="115.0" y2="65.7" stroke="#1E8449" stroke-width="0.4"/>
+  <line x1="79.5"  y1="69.5" x2="112.5" y2="69.5" stroke="#1E8449" stroke-width="0.4"/>
+
+  <text x="75" y="76"   font-size="6pt">Score: 3 (Argument) &#x2014; grounded in engine-supplied R/T/C.</text>
+
+</svg>

@@ -1,0 +1,52 @@
+{
+ "domain": "symmetry_combinatorics",
+ "condition": "000",
+ "primitives": {
+  "relation": false,
+  "transform": false,
+  "contrastive": false
+ },
+ "case_id": "diff-163",
+ "case_data": {
+  "case_id": "diff-163",
+  "summary_delta": {
+   "orbit_size_b": 0,
+   "hamming_distance": 0,
+   "same_orbit": 0,
+   "orbit_size_a": 0
+  },
+  "metadata": {
+   "label": "diff",
+   "same_orbit": false,
+   "g_idx": 4,
+   "g_perm": [
+    4,
+    5,
+    0,
+    1,
+    2,
+    3
+   ],
+   "a_coloring": [
+    0,
+    1,
+    0,
+    2,
+    2,
+    1
+   ],
+   "b_coloring": [
+    1,
+    2,
+    0,
+    2,
+    0,
+    0
+   ],
+   "orbit_size_a": 6,
+   "orbit_size_b": 6,
+   "n_distinct_a": 3,
+   "n_distinct_b": 3
+  }
+ }
+}

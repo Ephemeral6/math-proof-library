@@ -1,0 +1,73 @@
+{
+ "domain": "knot_theory",
+ "condition": "R00",
+ "primitives": {
+  "relation": true,
+  "transform": false,
+  "contrastive": false
+ },
+ "case_id": "4_1-r2-4",
+ "case_data": {
+  "case_id": "4_1-r2-4",
+  "summary_delta": {
+   "writhe_delta": 0,
+   "linking_number": 0.0,
+   "crossing_count_b": 0,
+   "writhe_b": 0,
+   "crossing_count_a": 2,
+   "writhe_a": 0
+  },
+  "metadata": {
+   "knot": "4_1",
+   "move": "R2",
+   "trial": 4,
+   "writhe_pre": 0,
+   "writhe_post": 0,
+   "n_crossings_pre": 4,
+   "n_crossings_post": 6
+  },
+  "detailed_comparison": {
+   "crossings_a_before": 4,
+   "crossings_a_after": 6,
+   "added_crossing_count": 2,
+   "added_crossing_signs": [
+    1,
+    -1
+   ],
+   "added_crossing_signs_pair": [
+    -1,
+    1
+   ],
+   "writhe_change_a": 0,
+   "signs_count_pos_pre": 2,
+   "signs_count_neg_pre": 2,
+   "signs_count_pos_post": 3,
+   "signs_count_neg_post": 3
+  },
+  "structural_comparison": {
+   "signature_pre": 0,
+   "signature_post": 0,
+   "signature_preserved": true,
+   "determinant_pre": 5,
+   "determinant_post": 5,
+   "determinant_preserved": true,
+   "alexander_pre_raw": "-t**2 + 3*t - 1",
+   "alexander_post_raw": "-t**5 + 3*t**4 - t**3",
+   "alexander_pre_normalized": [
+    1,
+    -3,
+    1
+   ],
+   "alexander_post_normalized": [
+    1,
+    -3,
+    1
+   ],
+   "alexander_preserved": true,
+   "writhe_pre": 0,
+   "writhe_post": 0,
+   "writhe_preserved": true,
+   "all_topological_invariants_preserved": true
+  }
+ }
+}

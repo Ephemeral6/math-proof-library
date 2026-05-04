@@ -1,0 +1,100 @@
+{
+ "domain": "graph_connectivity",
+ "condition": "00C",
+ "primitives": {
+  "relation": false,
+  "transform": false,
+  "contrastive": true
+ },
+ "case_id": "R02_n12-t4",
+ "case_data": {
+  "case_id": "R02_n12-t4",
+  "summary_delta": {
+   "n_vertices_b": 0,
+   "n_components_b": 0,
+   "is_connected_a": 0,
+   "n_vertices_a": 0,
+   "n_edges_b": 0,
+   "is_connected_b": 0,
+   "n_edges_a": -1,
+   "n_components_a": 0
+  },
+  "metadata": {
+   "graph_idx": 2,
+   "n_vertices": 12,
+   "n_edges_before": 14,
+   "deleted_edge": [
+    6,
+    7
+   ],
+   "trial": 4
+  }
+ },
+ "counterfactual": [
+  {
+   "strategy": "boundary_relaxation",
+   "original_condition": {
+    "deleted_edge_is_bridge": false,
+    "deleted_edge": [
+     1,
+     2
+    ]
+   },
+   "modified_condition": {
+    "deleted_edge_is_bridge": true,
+    "deleted_edge": [
+     4,
+     5
+    ]
+   },
+   "original_result": {
+    "is_connected_after": true,
+    "n_components_after": 1
+   },
+   "counterfactual_result": {
+    "is_connected_after": false,
+    "n_components_after": 2
+   },
+   "delta": {
+    "n_components_delta_positive": 0,
+    "n_components_delta_counterfactual": 1,
+    "connectivity_lost_positive": false,
+    "connectivity_lost_counterfactual": true
+   },
+   "condition_is_critical": true,
+   "explanation": "Deleting a non-bridge edge keeps the graph connected; deleting a bridge edge disconnects it. The bridge property (no alternative path between endpoints) is what determines whether connectivity is preserved under edge deletion."
+  },
+  {
+   "strategy": "operation_perturbation",
+   "original_condition": {
+    "operation": "delete_edge",
+    "edge": [
+     0,
+     1
+    ]
+   },
+   "modified_condition": {
+    "operation": "add_edge",
+    "edge": [
+     0,
+     5
+    ]
+   },
+   "original_result": {
+    "n_components_after": 2,
+    "components_change": 1
+   },
+   "counterfactual_result": {
+    "n_components_after": 1,
+    "components_change": 0
+   },
+   "delta": {
+    "components_change_positive": 1,
+    "components_change_counterfactual": 0,
+    "directional_asymmetry": true
+   },
+   "condition_is_critical": true,
+   "explanation": "Edge deletion can only increase or preserve component count; edge addition can only decrease or preserve it. The two operations are not symmetric, and a bridge under deletion has no analogue under addition (every cut vertex is created by deletion, not addition)."
+  }
+ ]
+}

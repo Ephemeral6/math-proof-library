@@ -1,0 +1,31 @@
+{
+  "theorem_name": "proximal_shift",
+  "layer": 2,
+  "substitution_note": "Substitute for 'Fenchel conjugate involution' since optlib has no Fenchel conjugate machinery; chose Moreau-style proximal shift identity (the closest 'involution-flavored' identity available).",
+  "natural_language_statement": "Let f : E → ℝ, a ∈ E and t ∈ ℝ with t ≠ 0. Then z is a proximal point of x for the function g(x) = f(t·x + a) if and only if (t·z + a) is a proximal point of (t·x + a) for the function (t^2)·f.",
+  "assumptions": [
+    "E is a real inner product space",
+    "f : E → ℝ",
+    "a : E",
+    "t : ℝ, tnz : t ≠ 0",
+    "x : E"
+  ],
+  "conclusion": "∀ z : E, prox_prop (fun x ↦ f (t • x + a)) x z ↔ prox_prop (t ^ 2 • f) (t • x + a) (t • z + a)",
+  "proof_sketch": [
+    "Unfold prox_prop on both sides as IsMinOn over univ.",
+    "Forward: assume z minimizes f(t·· + a) + ‖· - x‖^2/2. For arbitrary y, plug in t⁻¹ • (y - a) on the original side, rescale by t^2, and obtain (t^2)·f(t·z + a) + ‖t·z + a - (t·x+a)‖^2/2 ≤ (t^2)·f(y) + ‖y - (t·x+a)‖^2/2 via norm-smul.",
+    "Backward: symmetric argument with (t·y + a) substitution.",
+    "Use mul_le_mul_left (with t^2 > 0 since t ≠ 0), norm_smul, and field_simp throughout."
+  ],
+  "key_mathlib_lemmas": [
+    "norm_smul",
+    "mul_pow",
+    "smul_assoc",
+    "mul_inv_cancel₀",
+    "sq_pos_iff",
+    "isMinOn_univ_iff"
+  ],
+  "registry_dependencies": [
+    "prox_prop"
+  ]
+}

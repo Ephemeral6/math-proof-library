@@ -1,0 +1,48 @@
+========================================================================
+Caveat 1 v2: dense grid + Lipschitz extension argument
+mpmath dps = 50
+========================================================================
+
+--- (D1) Dense grid verification: 4^3 = 64 points ---
+  Box: β∈[0.78,0.82], ηL∈[3.2,3.32], κ∈[0.375,0.4]
+  T = 3000, threshold for cycling = 1e-30
+
+    [8/64] 8 cycle so far, t=20.8s
+    [16/64] 16 cycle so far, t=41.5s
+    [24/64] 24 cycle so far, t=61.0s
+    [32/64] 32 cycle so far, t=82.5s
+    [40/64] 40 cycle so far, t=102.7s
+    [48/64] 48 cycle so far, t=123.0s
+    [56/64] 56 cycle so far, t=144.5s
+    [64/64] 64 cycle so far, t=170.7s
+
+  RESULT: 64/64 cycle (mpmath dps=50, T=3000)
+  Max rel_diff among cycling: 1.13e-50
+  Max p3_err_rel among cycling: 2.14e-50
+  Failures: 0
+  Wall time: 170.7s
+
+--- (D2) Lipschitz constant of x_T(p) at box center, T = 10 ---
+  Center: (β,ηL,κ) = (0.8000, 3.2600, 0.3875)
+  x_T at center: (0.419111, -0.466329); ||x_T||=0.626991, λ=0.707107
+  ||∂x_T/∂β||  = 12.9315
+  ||∂x_T/∂ηL|| = 1.6220
+  ||∂x_T/∂κ||  = 8.7011
+  ||J||_F    = 15.6705
+  Box diagonal = 0.1289
+  Maximum orbit deviation across box = ||J||_F × diag = 2.0205
+  λ = 0.7071
+  Deviation as fraction of λ: 2.8574
+
+  Empirical max ||x_T(corner) - x_T(center)|| over 8 corners = 0.5916
+    (linear extrapolation from Jacobian predicts 1.0103 at half-diagonal)
+
+========================================================================
+SUMMARY
+========================================================================
+  D1: dense 64-point grid: 64/64 cycle (100.0%)
+  D2: orbit-map Lipschitz at T=10: ||J||_F = 15.67
+      predicted box-uniform deviation = 2.0205 (2.86λ)
+
+  Wall time total: 170.8s
+  Saved: C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap1_init\caveat_fix\caveat1_v2_results.json

@@ -1,0 +1,79 @@
+========================================================================
+Caveat 1: quantitative Leb(F^cycle_{K=3}) lower bound
+mpmath dps = 50
+========================================================================
+
+Anchor (0.8, 3.247, 0.387) diagnostic:
+  is_cycle = True, rel_diff = 5.67e-51, p3 = 5.98e-51
+  L2.1 ratio = 2.340, Floquet mod = 0.7155
+
+  -- Starting box 'tight_around_anchor' at t=2.4s --
+--- Verifying box tight_around_anchor: β∈[0.795,0.805], ηL∈[3.2,3.29], κ∈[0.385,0.39] ---
+  corner (0.795,3.2000,0.3850): CYCLE  rel=3.78e-51  p3=7.79e-51  L21=Y (2.28)
+  corner (0.795,3.2000,0.3900): CYCLE  rel=1.89e-51  p3=5.67e-51  L21=Y (2.28)
+  corner (0.795,3.2900,0.3850): CYCLE  rel=1.89e-51  p3=7.79e-51  L21=Y (2.40)
+  corner (0.795,3.2900,0.3900): CYCLE  rel=5.67e-51  p3=3.78e-51  L21=Y (2.40)
+  corner (0.805,3.2000,0.3850): CYCLE  rel=1.89e-51  p3=5.67e-51  L21=Y (2.27)
+  corner (0.805,3.2000,0.3900): CYCLE  rel=0.00e+00  p3=0.00e+00  L21=Y (2.28)
+  corner (0.805,3.2900,0.3850): CYCLE  rel=1.89e-51  p3=5.98e-51  L21=Y (2.39)
+  corner (0.805,3.2900,0.3900): CYCLE  rel=3.78e-51  p3=5.98e-51  L21=Y (2.40)
+  center (0.800,3.2450,0.3875): CYCLE  rel=3.78e-51  p3=4.23e-51  L21=Y (2.34)
+  ALL CYCLE: True
+
+  >>> SUCCESS: box 'tight_around_anchor' has volume = 4.500000e-06
+
+  -- Starting box 'wider_around_anchor' at t=23.7s --
+--- Verifying box wider_around_anchor: β∈[0.79,0.81], ηL∈[3.2,3.3], κ∈[0.38,0.395] ---
+  corner (0.790,3.2000,0.3800): CYCLE  rel=3.78e-51  p3=1.61e-50  L21=Y (2.27)
+  corner (0.790,3.2000,0.3950): CYCLE  rel=1.89e-51  p3=7.79e-51  L21=Y (2.29)
+  corner (0.790,3.3000,0.3800): CYCLE  rel=1.89e-51  p3=5.67e-51  L21=Y (2.40)
+  corner (0.790,3.3000,0.3950): CYCLE  rel=1.89e-51  p3=1.89e-51  L21=Y (2.43)
+  corner (0.810,3.2000,0.3800): CYCLE  rel=0.00e+00  p3=7.56e-51  L21=Y (2.27)
+  corner (0.810,3.2000,0.3950): CYCLE  rel=3.78e-51  p3=5.98e-51  L21=Y (2.28)
+  corner (0.810,3.3000,0.3800): CYCLE  rel=1.89e-51  p3=2.67e-51  L21=Y (2.40)
+  corner (0.810,3.3000,0.3950): CYCLE  rel=3.78e-51  p3=7.56e-51  L21=Y (2.42)
+  center (0.800,3.2500,0.3875): CYCLE  rel=1.89e-51  p3=5.35e-51  L21=Y (2.34)
+  ALL CYCLE: True
+
+  >>> SUCCESS: box 'wider_around_anchor' has volume = 3.000000e-05
+
+  -- Starting box 'even_wider' at t=45.3s --
+--- Verifying box even_wider: β∈[0.78,0.82], ηL∈[3.2,3.32], κ∈[0.375,0.4] ---
+  corner (0.780,3.2000,0.3750): CYCLE  rel=0.00e+00  p3=5.35e-51  L21=Y (2.27)
+  corner (0.780,3.2000,0.4000): CYCLE  rel=3.78e-51  p3=7.79e-51  L21=Y (2.30)
+  corner (0.780,3.3200,0.3750): CYCLE  rel=3.78e-51  p3=5.67e-51  L21=Y (2.43)
+  corner (0.780,3.3200,0.4000): CYCLE  rel=1.89e-51  p3=1.52e-50  L21=Y (2.47)
+  corner (0.820,3.2000,0.3750): CYCLE  rel=3.78e-51  p3=6.81e-51  L21=Y (2.26)
+  corner (0.820,3.2000,0.4000): CYCLE  rel=3.78e-51  p3=3.78e-51  L21=Y (2.29)
+  corner (0.820,3.3200,0.3750): CYCLE  rel=1.89e-51  p3=8.45e-51  L21=Y (2.41)
+  corner (0.820,3.3200,0.4000): CYCLE  rel=7.56e-51  p3=1.52e-50  L21=Y (2.45)
+  center (0.800,3.2600,0.3875): CYCLE  rel=1.89e-51  p3=3.78e-51  L21=Y (2.36)
+  ALL CYCLE: True
+
+  >>> SUCCESS: box 'even_wider' has volume = 1.200000e-04
+
+  -- Starting box 'widest_attempt' at t=66.9s --
+--- Verifying box widest_attempt: β∈[0.78,0.83], ηL∈[3.18,3.4], κ∈[0.37,0.41] ---
+  corner (0.780,3.1800,0.3700): CYCLE  rel=1.89e-51  p3=3.78e-51  L21=Y (2.24)
+  corner (0.780,3.1800,0.4100): CYCLE  rel=3.78e-51  p3=1.02e-50  L21=Y (2.29)
+  corner (0.780,3.4000,0.3700): CYCLE  rel=3.78e-51  p3=8.45e-51  L21=Y (2.53)
+  corner (0.780,3.4000,0.4100): CYCLE  rel=3.78e-51  p3=4.23e-51  L21=Y (2.61)
+  corner (0.830,3.1800,0.3700): CYCLE  rel=5.67e-51  p3=5.35e-51  L21=Y (2.23)
+  corner (0.830,3.1800,0.4100): CYCLE  rel=0.00e+00  p3=1.90e-50  L21=Y (2.27)
+  corner (0.830,3.4000,0.3700): FAIL  rel=1.00e+00  p3=1.20e-121  L21=Y (2.51)
+  corner (0.830,3.4000,0.4100): CYCLE  rel=3.78e-51  p3=1.10e-50  L21=Y (2.58)
+  center (0.805,3.2900,0.3900): CYCLE  rel=1.89e-51  p3=0.00e+00  L21=Y (2.40)
+  ALL CYCLE: False
+
+  >>> FAILED at box 'widest_attempt'
+
+========================================================================
+Estimating Leb_3(F_{K=3}) via Monte Carlo (bounding box [0,1]×[0,4]×[0,1])
+========================================================================
+  feasible / total = 3208 / 50000 = 0.0642
+  Leb_3(F_{K=3}) estimate = 0.2566
+  (95% CI half-width ≈ 0.00859)
+  >>> Best box volume / Leb(F_{K=3}) ≈ 4.6758e-04
+
+Wall time: 87.3s
+Saved to C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap1_init\caveat_fix\caveat1_results.json

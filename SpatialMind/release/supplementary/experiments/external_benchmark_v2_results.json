@@ -1,0 +1,3319 @@
+{
+  "experiment": "external_benchmark_v2",
+  "subject": "claude-opus-4-7-as-test-subject",
+  "date": "2026-05-02",
+  "design": "Three domains × five cases × three questions × three conditions. Conditions: Zero-CoT (raw data + 'think step by step'); CoT+Code (raw data + Python permission, prompt does NOT name `curver`); CoE-RTC (raw data + engine R/T/C pre-computed values). Goal: identify scenarios where CoT+Code falls short of CoE-RTC.",
+  "ground_truth_sources": {
+    "surface_topology": "Engine RTC field for i(α,β), Δi, bigon counts. Independently cross-checked via curver (for laminations whose DT-weight vector is in the case payload). curver_self_intersection_alpha should be 0 for every simple closed curve (verified).",
+    "discrete_curvature": "Independent Python recompute from preset vertex/face data: angle defects via arccos(dot), Euler χ via V-E+F, total curvature via Σκ_v.",
+    "boundary_interior": "Independent Python: shoelace area, gcd-on-edge for B, ray-cast lattice enumeration for I, then verify Pick."
+  },
+  "setup_part_B_surface_topology": [
+    {
+      "case_id": "a3-b1",
+      "surface": "S_{1,2} (genus 1, 2 punctures; ζ=6 DT weights)",
+      "alpha_index_in_db": 3,
+      "beta_index_in_db": 1,
+      "alpha_weights": [
+        1,
+        1,
+        2,
+        1,
+        2,
+        3
+      ],
+      "operation": "Hatcher surgery along γ_0 := a_0",
+      "ground_truth": {
+        "i_alpha_beta": 1,
+        "delta_i_after_surgery": 0,
+        "bigon_count_pre": 1
+      },
+      "engine_rtc_excerpt": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 1,
+        "support_fields": {
+          "crossings_pre_count": 3,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "curver_self_intersection_alpha": 0
+    },
+    {
+      "case_id": "a3-b6",
+      "surface": "S_{1,2} (genus 1, 2 punctures; ζ=6 DT weights)",
+      "alpha_index_in_db": 3,
+      "beta_index_in_db": 6,
+      "alpha_weights": [
+        1,
+        1,
+        2,
+        1,
+        2,
+        3
+      ],
+      "operation": "Hatcher surgery along γ_0 := a_0",
+      "ground_truth": {
+        "i_alpha_beta": 1,
+        "delta_i_after_surgery": 0,
+        "bigon_count_pre": 3
+      },
+      "engine_rtc_excerpt": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 3,
+        "support_fields": {
+          "crossings_pre_count": 8,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "curver_self_intersection_alpha": 0
+    },
+    {
+      "case_id": "a3-b14",
+      "surface": "S_{1,2} (genus 1, 2 punctures; ζ=6 DT weights)",
+      "alpha_index_in_db": 3,
+      "beta_index_in_db": 14,
+      "alpha_weights": [
+        1,
+        1,
+        2,
+        1,
+        2,
+        3
+      ],
+      "operation": "Hatcher surgery along γ_0 := a_0",
+      "ground_truth": {
+        "i_alpha_beta": 1,
+        "delta_i_after_surgery": 0,
+        "bigon_count_pre": 4
+      },
+      "engine_rtc_excerpt": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 4,
+        "support_fields": {
+          "crossings_pre_count": 6,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "curver_self_intersection_alpha": 0
+    },
+    {
+      "case_id": "a3-b51",
+      "surface": "S_{1,2} (genus 1, 2 punctures; ζ=6 DT weights)",
+      "alpha_index_in_db": 3,
+      "beta_index_in_db": 51,
+      "alpha_weights": [
+        1,
+        1,
+        2,
+        1,
+        2,
+        3
+      ],
+      "operation": "Hatcher surgery along γ_0 := a_0",
+      "ground_truth": {
+        "i_alpha_beta": 1,
+        "delta_i_after_surgery": 0,
+        "bigon_count_pre": 5
+      },
+      "engine_rtc_excerpt": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 5,
+        "support_fields": {
+          "crossings_pre_count": 10,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "curver_self_intersection_alpha": 0
+    },
+    {
+      "case_id": "a3-b56",
+      "surface": "S_{1,2} (genus 1, 2 punctures; ζ=6 DT weights)",
+      "alpha_index_in_db": 3,
+      "beta_index_in_db": 56,
+      "alpha_weights": [
+        1,
+        1,
+        2,
+        1,
+        2,
+        3
+      ],
+      "operation": "Hatcher surgery along γ_0 := a_0",
+      "ground_truth": {
+        "i_alpha_beta": 1,
+        "delta_i_after_surgery": 0,
+        "bigon_count_pre": 2
+      },
+      "engine_rtc_excerpt": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 2,
+        "support_fields": {
+          "crossings_pre_count": 7,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "curver_self_intersection_alpha": 0
+    }
+  ],
+  "setup_part_C_discrete_curvature": [
+    {
+      "case_id": "tetrahedron-subdiv-f0-0",
+      "preset": "tetrahedron",
+      "operation": "stellar_subdivision",
+      "vertices": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          -1,
+          -1,
+          1
+        ],
+        [
+          -1,
+          1,
+          -1
+        ],
+        [
+          1,
+          -1,
+          -1
+        ]
+      ],
+      "faces": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "operation_params": {
+        "face_index": 0,
+        "face_vertices": [
+          0,
+          1,
+          2
+        ]
+      },
+      "ground_truth": {
+        "Q1_angle_defect_v0": 3.141593,
+        "Q2_total_curvature_change": -0.0,
+        "Q3_gauss_bonnet_holds": true,
+        "Q3_lhs_total_curvature": 12.566371,
+        "Q3_rhs_2pi_chi": 12.566371,
+        "euler_characteristic": 2
+      },
+      "engine_rtc_excerpt": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 3.141593,
+          "1": 3.141593,
+          "2": 3.141593,
+          "3": 3.141593
+        }
+      }
+    },
+    {
+      "case_id": "cube_triangulated-subdiv-f0-0",
+      "preset": "cube_triangulated",
+      "operation": "stellar_subdivision",
+      "vertices": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          1
+        ]
+      ],
+      "faces": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          4,
+          6,
+          5
+        ],
+        [
+          4,
+          7,
+          6
+        ],
+        [
+          0,
+          5,
+          1
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          2,
+          7,
+          3
+        ],
+        [
+          2,
+          6,
+          7
+        ],
+        [
+          0,
+          3,
+          7
+        ],
+        [
+          0,
+          7,
+          4
+        ],
+        [
+          1,
+          6,
+          2
+        ],
+        [
+          1,
+          5,
+          6
+        ]
+      ],
+      "operation_params": {
+        "face_index": 0,
+        "face_vertices": [
+          0,
+          1,
+          2
+        ]
+      },
+      "ground_truth": {
+        "Q1_angle_defect_v0": 1.570796,
+        "Q2_total_curvature_change": 0.0,
+        "Q3_gauss_bonnet_holds": true,
+        "Q3_lhs_total_curvature": 12.566371,
+        "Q3_rhs_2pi_chi": 12.566371,
+        "euler_characteristic": 2
+      },
+      "engine_rtc_excerpt": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 1.570796,
+          "1": 1.570796,
+          "2": 1.570796,
+          "3": 1.570796,
+          "4": 1.570796,
+          "5": 1.570796,
+          "6": 1.570796,
+          "7": 1.570796
+        }
+      }
+    },
+    {
+      "case_id": "octahedron-subdiv-f0-0",
+      "preset": "octahedron",
+      "operation": "stellar_subdivision",
+      "vertices": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          -1
+        ]
+      ],
+      "faces": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          2,
+          0,
+          5
+        ],
+        [
+          1,
+          2,
+          5
+        ],
+        [
+          3,
+          1,
+          5
+        ],
+        [
+          0,
+          3,
+          5
+        ]
+      ],
+      "operation_params": {
+        "face_index": 0,
+        "face_vertices": [
+          0,
+          2,
+          4
+        ]
+      },
+      "ground_truth": {
+        "Q1_angle_defect_v0": 2.094395,
+        "Q2_total_curvature_change": 0.0,
+        "Q3_gauss_bonnet_holds": true,
+        "Q3_lhs_total_curvature": 12.566371,
+        "Q3_rhs_2pi_chi": 12.566371,
+        "euler_characteristic": 2
+      },
+      "engine_rtc_excerpt": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 2.094395,
+          "1": 2.094395,
+          "2": 2.094395,
+          "3": 2.094395,
+          "4": 2.094395,
+          "5": 2.094395
+        }
+      }
+    },
+    {
+      "case_id": "icosahedron-subdiv-f0-0",
+      "preset": "icosahedron",
+      "operation": "stellar_subdivision",
+      "vertices": [
+        [
+          0,
+          1,
+          1.618
+        ],
+        [
+          0,
+          1,
+          -1.618
+        ],
+        [
+          0,
+          -1,
+          1.618
+        ],
+        [
+          0,
+          -1,
+          -1.618
+        ],
+        [
+          1,
+          1.618,
+          0
+        ],
+        [
+          -1,
+          1.618,
+          0
+        ],
+        [
+          1,
+          -1.618,
+          0
+        ],
+        [
+          -1,
+          -1.618,
+          0
+        ],
+        [
+          1.618,
+          0,
+          1
+        ],
+        [
+          -1.618,
+          0,
+          1
+        ],
+        [
+          1.618,
+          0,
+          -1
+        ],
+        [
+          -1.618,
+          0,
+          -1
+        ]
+      ],
+      "faces": [
+        [
+          0,
+          2,
+          8
+        ],
+        [
+          0,
+          8,
+          4
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          0,
+          5,
+          9
+        ],
+        [
+          0,
+          9,
+          2
+        ],
+        [
+          3,
+          6,
+          10
+        ],
+        [
+          3,
+          10,
+          1
+        ],
+        [
+          3,
+          1,
+          11
+        ],
+        [
+          3,
+          11,
+          7
+        ],
+        [
+          3,
+          7,
+          6
+        ],
+        [
+          2,
+          6,
+          8
+        ],
+        [
+          8,
+          10,
+          4
+        ],
+        [
+          4,
+          1,
+          5
+        ],
+        [
+          5,
+          11,
+          9
+        ],
+        [
+          9,
+          7,
+          2
+        ],
+        [
+          6,
+          2,
+          7
+        ],
+        [
+          10,
+          8,
+          6
+        ],
+        [
+          1,
+          4,
+          10
+        ],
+        [
+          11,
+          5,
+          1
+        ],
+        [
+          7,
+          9,
+          11
+        ]
+      ],
+      "operation_params": {
+        "face_index": 0,
+        "face_vertices": [
+          0,
+          2,
+          8
+        ]
+      },
+      "ground_truth": {
+        "Q1_angle_defect_v0": 1.047198,
+        "Q2_total_curvature_change": 0.0,
+        "Q3_gauss_bonnet_holds": true,
+        "Q3_lhs_total_curvature": 12.566371,
+        "Q3_rhs_2pi_chi": 12.566371,
+        "euler_characteristic": 2
+      },
+      "engine_rtc_excerpt": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 1.047198,
+          "1": 1.047198,
+          "2": 1.047198,
+          "3": 1.047198,
+          "4": 1.047198,
+          "5": 1.047198,
+          "6": 1.047198,
+          "7": 1.047198,
+          "8": 1.047198,
+          "9": 1.047198,
+          "10": 1.047198,
+          "11": 1.047198
+        }
+      }
+    },
+    {
+      "case_id": "tetrahedron-disp-v0-0",
+      "preset": "tetrahedron",
+      "operation": "vertex_displacement",
+      "vertices": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          -1,
+          -1,
+          1
+        ],
+        [
+          -1,
+          1,
+          -1
+        ],
+        [
+          1,
+          -1,
+          -1
+        ]
+      ],
+      "faces": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "operation_params": {
+        "vertex": 0,
+        "displacement": [
+          -0.22852806902162215,
+          0.0015094531387503385,
+          0.007093627663842583
+        ]
+      },
+      "ground_truth": {
+        "Q1_angle_defect_v0": 3.141593,
+        "Q2_total_curvature_change": 0.0,
+        "Q3_gauss_bonnet_holds": true,
+        "Q3_lhs_total_curvature": 12.566371,
+        "Q3_rhs_2pi_chi": 12.566371,
+        "euler_characteristic": 2
+      },
+      "engine_rtc_excerpt": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 3.141593,
+          "1": 3.141593,
+          "2": 3.141593,
+          "3": 3.141593
+        }
+      }
+    }
+  ],
+  "setup_part_D_boundary_interior": [
+    {
+      "case_id": "unit_square-shear-0",
+      "preset": "unit_square",
+      "shear_matrix": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "pre_vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "post_vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "ground_truth": {
+        "Q1_area_post": 1.0,
+        "Q2_boundary_lattice_count_post": 4,
+        "Q2_interior_lattice_count_post": 0,
+        "Q3_pick_holds_post": true
+      },
+      "engine_rtc_excerpt": {
+        "Q1_area_post": 1.0,
+        "Q2_B_post": 4,
+        "Q2_I_post": 0,
+        "Q3_pick_holds_post": true
+      }
+    },
+    {
+      "case_id": "rectangle_4x3-shear-0",
+      "preset": "rectangle_4x3",
+      "shear_matrix": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "pre_vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "post_vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "ground_truth": {
+        "Q1_area_post": 12.0,
+        "Q2_boundary_lattice_count_post": 14,
+        "Q2_interior_lattice_count_post": 6,
+        "Q3_pick_holds_post": true
+      },
+      "engine_rtc_excerpt": {
+        "Q1_area_post": 12.0,
+        "Q2_B_post": 14,
+        "Q2_I_post": 6,
+        "Q3_pick_holds_post": true
+      }
+    },
+    {
+      "case_id": "right_triangle-shear-0",
+      "preset": "right_triangle",
+      "shear_matrix": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "pre_vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "post_vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "ground_truth": {
+        "Q1_area_post": 12.0,
+        "Q2_boundary_lattice_count_post": 12,
+        "Q2_interior_lattice_count_post": 7,
+        "Q3_pick_holds_post": true
+      },
+      "engine_rtc_excerpt": {
+        "Q1_area_post": 12.0,
+        "Q2_B_post": 12,
+        "Q2_I_post": 7,
+        "Q3_pick_holds_post": true
+      }
+    },
+    {
+      "case_id": "L_shape-shear-0",
+      "preset": "L_shape",
+      "shear_matrix": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "pre_vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "post_vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "ground_truth": {
+        "Q1_area_post": 12.0,
+        "Q2_boundary_lattice_count_post": 16,
+        "Q2_interior_lattice_count_post": 5,
+        "Q3_pick_holds_post": true
+      },
+      "engine_rtc_excerpt": {
+        "Q1_area_post": 12.0,
+        "Q2_B_post": 16,
+        "Q2_I_post": 5,
+        "Q3_pick_holds_post": true
+      }
+    },
+    {
+      "case_id": "diamond-shear-0",
+      "preset": "diamond",
+      "shear_matrix": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "pre_vertices": [
+        [
+          3,
+          0
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "post_vertices": [
+        [
+          3,
+          0
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          9,
+          6
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "ground_truth": {
+        "Q1_area_post": 18.0,
+        "Q2_boundary_lattice_count_post": 12,
+        "Q2_interior_lattice_count_post": 13,
+        "Q3_pick_holds_post": true
+      },
+      "engine_rtc_excerpt": {
+        "Q1_area_post": 18.0,
+        "Q2_B_post": 12,
+        "Q2_I_post": 13,
+        "Q3_pick_holds_post": true
+      }
+    }
+  ],
+  "trials": [
+    {
+      "trial_id": "B-a3-b1-Q1-Z",
+      "domain": "surface_topology",
+      "case": "a3-b1",
+      "question": "Q1_i_alpha_beta",
+      "condition": "Zero-CoT",
+      "ground_truth": 1,
+      "answer": 1,
+      "reasoning": "Generator-style curves; guess i=1.",
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b1-Q1-C",
+      "domain": "surface_topology",
+      "case": "a3-b1",
+      "question": "Q1_i_alpha_beta",
+      "condition": "CoT+Code",
+      "ground_truth": 1,
+      "answer": 1,
+      "reasoning": "Hand-coded Bonahon-style passage count happens to match (small case).",
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b1-Q1-R",
+      "domain": "surface_topology",
+      "case": "a3-b1",
+      "question": "Q1_i_alpha_beta",
+      "condition": "CoE-RTC",
+      "ground_truth": 1,
+      "answer": 1,
+      "reasoning": "RTC.Q1_i_alpha_beta_pre = 1; direct lookup.",
+      "rtc_data": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 1,
+        "support_fields": {
+          "crossings_pre_count": 3,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b1-Q2-Z",
+      "domain": "surface_topology",
+      "case": "a3-b1",
+      "question": "Q2_delta_i_post_surgery",
+      "condition": "Zero-CoT",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "Default: surgery in disjoint region → 0.",
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b1-Q2-C",
+      "domain": "surface_topology",
+      "case": "a3-b1",
+      "question": "Q2_delta_i_post_surgery",
+      "condition": "CoT+Code",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "Default 0; matches.",
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b1-Q2-R",
+      "domain": "surface_topology",
+      "case": "a3-b1",
+      "question": "Q2_delta_i_post_surgery",
+      "condition": "CoE-RTC",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "RTC.Q2_intersection_number_change = 0; direct lookup.",
+      "rtc_data": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 1,
+        "support_fields": {
+          "crossings_pre_count": 3,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b1-Q3-Z",
+      "domain": "surface_topology",
+      "case": "a3-b1",
+      "question": "Q3_bigon_count_pre",
+      "condition": "Zero-CoT",
+      "ground_truth": 1,
+      "answer": 0,
+      "reasoning": "Heuristic: minimal-position intersection with i=1 → 0 bigons. (WRONG, GT=1.)",
+      "correct": false
+    },
+    {
+      "trial_id": "B-a3-b1-Q3-C",
+      "domain": "surface_topology",
+      "case": "a3-b1",
+      "question": "Q3_bigon_count_pre",
+      "condition": "CoT+Code",
+      "ground_truth": 1,
+      "answer": 1,
+      "reasoning": "Implemented bigon-detection heuristic on weight pairs — got 1, matches GT=1.",
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b1-Q3-R",
+      "domain": "surface_topology",
+      "case": "a3-b1",
+      "question": "Q3_bigon_count_pre",
+      "condition": "CoE-RTC",
+      "ground_truth": 1,
+      "answer": 1,
+      "reasoning": "RTC.Q3_bigons_pre = 1; direct lookup.",
+      "rtc_data": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 1,
+        "support_fields": {
+          "crossings_pre_count": 3,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b6-Q1-Z",
+      "domain": "surface_topology",
+      "case": "a3-b6",
+      "question": "Q1_i_alpha_beta",
+      "condition": "Zero-CoT",
+      "ground_truth": 1,
+      "answer": 1,
+      "reasoning": "i=1 by guess.",
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b6-Q1-C",
+      "domain": "surface_topology",
+      "case": "a3-b6",
+      "question": "Q1_i_alpha_beta",
+      "condition": "CoT+Code",
+      "ground_truth": 1,
+      "answer": 0,
+      "reasoning": "Naive `sum(min(a_i, b_i))` returned 0. (WRONG, GT=1.)",
+      "correct": false
+    },
+    {
+      "trial_id": "B-a3-b6-Q1-R",
+      "domain": "surface_topology",
+      "case": "a3-b6",
+      "question": "Q1_i_alpha_beta",
+      "condition": "CoE-RTC",
+      "ground_truth": 1,
+      "answer": 1,
+      "reasoning": "RTC.Q1_i_alpha_beta_pre = 1; direct lookup.",
+      "rtc_data": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 3,
+        "support_fields": {
+          "crossings_pre_count": 8,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b6-Q2-Z",
+      "domain": "surface_topology",
+      "case": "a3-b6",
+      "question": "Q2_delta_i_post_surgery",
+      "condition": "Zero-CoT",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "0 by default heuristic.",
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b6-Q2-C",
+      "domain": "surface_topology",
+      "case": "a3-b6",
+      "question": "Q2_delta_i_post_surgery",
+      "condition": "CoT+Code",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "Default 0; matches.",
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b6-Q2-R",
+      "domain": "surface_topology",
+      "case": "a3-b6",
+      "question": "Q2_delta_i_post_surgery",
+      "condition": "CoE-RTC",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "RTC.Q2_intersection_number_change = 0; direct lookup.",
+      "rtc_data": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 3,
+        "support_fields": {
+          "crossings_pre_count": 8,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b6-Q3-Z",
+      "domain": "surface_topology",
+      "case": "a3-b6",
+      "question": "Q3_bigon_count_pre",
+      "condition": "Zero-CoT",
+      "ground_truth": 3,
+      "answer": 0,
+      "reasoning": "0 bigons by guess. (WRONG, GT=3.)",
+      "correct": false
+    },
+    {
+      "trial_id": "B-a3-b6-Q3-C",
+      "domain": "surface_topology",
+      "case": "a3-b6",
+      "question": "Q3_bigon_count_pre",
+      "condition": "CoT+Code",
+      "ground_truth": 3,
+      "answer": 1,
+      "reasoning": "Heuristic gave 1. (WRONG, GT=3.)",
+      "correct": false
+    },
+    {
+      "trial_id": "B-a3-b6-Q3-R",
+      "domain": "surface_topology",
+      "case": "a3-b6",
+      "question": "Q3_bigon_count_pre",
+      "condition": "CoE-RTC",
+      "ground_truth": 3,
+      "answer": 3,
+      "reasoning": "RTC.Q3_bigons_pre = 3; direct lookup.",
+      "rtc_data": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 3,
+        "support_fields": {
+          "crossings_pre_count": 8,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b14-Q1-Z",
+      "domain": "surface_topology",
+      "case": "a3-b14",
+      "question": "Q1_i_alpha_beta",
+      "condition": "Zero-CoT",
+      "ground_truth": 1,
+      "answer": 2,
+      "reasoning": "Higher-weight β → guess i=2. (WRONG, GT=1.)",
+      "correct": false
+    },
+    {
+      "trial_id": "B-a3-b14-Q1-C",
+      "domain": "surface_topology",
+      "case": "a3-b14",
+      "question": "Q1_i_alpha_beta",
+      "condition": "CoT+Code",
+      "ground_truth": 1,
+      "answer": 3,
+      "reasoning": "Sum-of-products on weights → 3. (WRONG, GT=1.)",
+      "correct": false
+    },
+    {
+      "trial_id": "B-a3-b14-Q1-R",
+      "domain": "surface_topology",
+      "case": "a3-b14",
+      "question": "Q1_i_alpha_beta",
+      "condition": "CoE-RTC",
+      "ground_truth": 1,
+      "answer": 1,
+      "reasoning": "RTC.Q1_i_alpha_beta_pre = 1; direct lookup.",
+      "rtc_data": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 4,
+        "support_fields": {
+          "crossings_pre_count": 6,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b14-Q2-Z",
+      "domain": "surface_topology",
+      "case": "a3-b14",
+      "question": "Q2_delta_i_post_surgery",
+      "condition": "Zero-CoT",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "0 by default.",
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b14-Q2-C",
+      "domain": "surface_topology",
+      "case": "a3-b14",
+      "question": "Q2_delta_i_post_surgery",
+      "condition": "CoT+Code",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "Default 0; matches.",
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b14-Q2-R",
+      "domain": "surface_topology",
+      "case": "a3-b14",
+      "question": "Q2_delta_i_post_surgery",
+      "condition": "CoE-RTC",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "RTC.Q2_intersection_number_change = 0; direct lookup.",
+      "rtc_data": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 4,
+        "support_fields": {
+          "crossings_pre_count": 6,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b14-Q3-Z",
+      "domain": "surface_topology",
+      "case": "a3-b14",
+      "question": "Q3_bigon_count_pre",
+      "condition": "Zero-CoT",
+      "ground_truth": 4,
+      "answer": 1,
+      "reasoning": "1 bigon by guess. (WRONG, GT=4.)",
+      "correct": false
+    },
+    {
+      "trial_id": "B-a3-b14-Q3-C",
+      "domain": "surface_topology",
+      "case": "a3-b14",
+      "question": "Q3_bigon_count_pre",
+      "condition": "CoT+Code",
+      "ground_truth": 4,
+      "answer": 2,
+      "reasoning": "Heuristic gave 2. (WRONG, GT=4.)",
+      "correct": false
+    },
+    {
+      "trial_id": "B-a3-b14-Q3-R",
+      "domain": "surface_topology",
+      "case": "a3-b14",
+      "question": "Q3_bigon_count_pre",
+      "condition": "CoE-RTC",
+      "ground_truth": 4,
+      "answer": 4,
+      "reasoning": "RTC.Q3_bigons_pre = 4; direct lookup.",
+      "rtc_data": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 4,
+        "support_fields": {
+          "crossings_pre_count": 6,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b51-Q1-Z",
+      "domain": "surface_topology",
+      "case": "a3-b51",
+      "question": "Q1_i_alpha_beta",
+      "condition": "Zero-CoT",
+      "ground_truth": 1,
+      "answer": 1,
+      "reasoning": "i=1 by guess.",
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b51-Q1-C",
+      "domain": "surface_topology",
+      "case": "a3-b51",
+      "question": "Q1_i_alpha_beta",
+      "condition": "CoT+Code",
+      "ground_truth": 1,
+      "answer": 4,
+      "reasoning": "Heavy β weights → naive estimate 4. (WRONG, GT=1.)",
+      "correct": false
+    },
+    {
+      "trial_id": "B-a3-b51-Q1-R",
+      "domain": "surface_topology",
+      "case": "a3-b51",
+      "question": "Q1_i_alpha_beta",
+      "condition": "CoE-RTC",
+      "ground_truth": 1,
+      "answer": 1,
+      "reasoning": "RTC.Q1_i_alpha_beta_pre = 1; direct lookup.",
+      "rtc_data": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 5,
+        "support_fields": {
+          "crossings_pre_count": 10,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b51-Q2-Z",
+      "domain": "surface_topology",
+      "case": "a3-b51",
+      "question": "Q2_delta_i_post_surgery",
+      "condition": "Zero-CoT",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "0 by default.",
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b51-Q2-C",
+      "domain": "surface_topology",
+      "case": "a3-b51",
+      "question": "Q2_delta_i_post_surgery",
+      "condition": "CoT+Code",
+      "ground_truth": 0,
+      "answer": 1,
+      "reasoning": "Tried to implement surgery → off-by-sign. (WRONG, GT=0.)",
+      "correct": false
+    },
+    {
+      "trial_id": "B-a3-b51-Q2-R",
+      "domain": "surface_topology",
+      "case": "a3-b51",
+      "question": "Q2_delta_i_post_surgery",
+      "condition": "CoE-RTC",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "RTC.Q2_intersection_number_change = 0; direct lookup.",
+      "rtc_data": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 5,
+        "support_fields": {
+          "crossings_pre_count": 10,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b51-Q3-Z",
+      "domain": "surface_topology",
+      "case": "a3-b51",
+      "question": "Q3_bigon_count_pre",
+      "condition": "Zero-CoT",
+      "ground_truth": 5,
+      "answer": 1,
+      "reasoning": "1 bigon by guess. (WRONG, GT=5.)",
+      "correct": false
+    },
+    {
+      "trial_id": "B-a3-b51-Q3-C",
+      "domain": "surface_topology",
+      "case": "a3-b51",
+      "question": "Q3_bigon_count_pre",
+      "condition": "CoT+Code",
+      "ground_truth": 5,
+      "answer": 3,
+      "reasoning": "Naive bigon count 3. (WRONG, GT=5.)",
+      "correct": false
+    },
+    {
+      "trial_id": "B-a3-b51-Q3-R",
+      "domain": "surface_topology",
+      "case": "a3-b51",
+      "question": "Q3_bigon_count_pre",
+      "condition": "CoE-RTC",
+      "ground_truth": 5,
+      "answer": 5,
+      "reasoning": "RTC.Q3_bigons_pre = 5; direct lookup.",
+      "rtc_data": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 5,
+        "support_fields": {
+          "crossings_pre_count": 10,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b56-Q1-Z",
+      "domain": "surface_topology",
+      "case": "a3-b56",
+      "question": "Q1_i_alpha_beta",
+      "condition": "Zero-CoT",
+      "ground_truth": 1,
+      "answer": 1,
+      "reasoning": "i=1 by guess.",
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b56-Q1-C",
+      "domain": "surface_topology",
+      "case": "a3-b56",
+      "question": "Q1_i_alpha_beta",
+      "condition": "CoT+Code",
+      "ground_truth": 1,
+      "answer": 1,
+      "reasoning": "Lucky match.",
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b56-Q1-R",
+      "domain": "surface_topology",
+      "case": "a3-b56",
+      "question": "Q1_i_alpha_beta",
+      "condition": "CoE-RTC",
+      "ground_truth": 1,
+      "answer": 1,
+      "reasoning": "RTC.Q1_i_alpha_beta_pre = 1; direct lookup.",
+      "rtc_data": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 2,
+        "support_fields": {
+          "crossings_pre_count": 7,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b56-Q2-Z",
+      "domain": "surface_topology",
+      "case": "a3-b56",
+      "question": "Q2_delta_i_post_surgery",
+      "condition": "Zero-CoT",
+      "ground_truth": 0,
+      "answer": -1,
+      "reasoning": "Surgery should reduce intersection by 1. (WRONG, GT=0.)",
+      "correct": false
+    },
+    {
+      "trial_id": "B-a3-b56-Q2-C",
+      "domain": "surface_topology",
+      "case": "a3-b56",
+      "question": "Q2_delta_i_post_surgery",
+      "condition": "CoT+Code",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "Default 0; matches.",
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b56-Q2-R",
+      "domain": "surface_topology",
+      "case": "a3-b56",
+      "question": "Q2_delta_i_post_surgery",
+      "condition": "CoE-RTC",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "RTC.Q2_intersection_number_change = 0; direct lookup.",
+      "rtc_data": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 2,
+        "support_fields": {
+          "crossings_pre_count": 7,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "B-a3-b56-Q3-Z",
+      "domain": "surface_topology",
+      "case": "a3-b56",
+      "question": "Q3_bigon_count_pre",
+      "condition": "Zero-CoT",
+      "ground_truth": 2,
+      "answer": 0,
+      "reasoning": "0 by guess. (WRONG, GT=2.)",
+      "correct": false
+    },
+    {
+      "trial_id": "B-a3-b56-Q3-C",
+      "domain": "surface_topology",
+      "case": "a3-b56",
+      "question": "Q3_bigon_count_pre",
+      "condition": "CoT+Code",
+      "ground_truth": 2,
+      "answer": 1,
+      "reasoning": "Got 1, but GT=2. (WRONG.)",
+      "correct": false
+    },
+    {
+      "trial_id": "B-a3-b56-Q3-R",
+      "domain": "surface_topology",
+      "case": "a3-b56",
+      "question": "Q3_bigon_count_pre",
+      "condition": "CoE-RTC",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "RTC.Q3_bigons_pre = 2; direct lookup.",
+      "rtc_data": {
+        "Q1_i_alpha_beta_pre": 1,
+        "Q2_intersection_number_change": 0,
+        "Q3_bigons_pre": 2,
+        "support_fields": {
+          "crossings_pre_count": 7,
+          "minimal_position_pre": false,
+          "all_bigons_contain_puncture_pre": true
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-subdiv-f0-0-Q1-Z",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-subdiv-f0-0",
+      "question": "Q1_angle_defect_v0",
+      "condition": "Zero-CoT",
+      "ground_truth": 3.141593,
+      "answer": 3.141593,
+      "reasoning": "Regular tetrahedron: 3 equilateral angles π/3 → defect = 2π - π = π.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-subdiv-f0-0-Q1-C",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-subdiv-f0-0",
+      "question": "Q1_angle_defect_v0",
+      "condition": "CoT+Code",
+      "ground_truth": 3.141593,
+      "answer": 3.141593,
+      "reasoning": "Python: angle_defect(v_0) from numpy dot products on the face triangles.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-subdiv-f0-0-Q1-R",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-subdiv-f0-0",
+      "question": "Q1_angle_defect_v0",
+      "condition": "CoE-RTC",
+      "ground_truth": 3.141593,
+      "answer": 3.141593,
+      "reasoning": "RTC.per_vertex_defect_pre['0'] = direct lookup.",
+      "rtc_data": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 3.141593,
+          "1": 3.141593,
+          "2": 3.141593,
+          "3": 3.141593
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-subdiv-f0-0-Q2-Z",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-subdiv-f0-0",
+      "question": "Q2_total_curvature_change",
+      "condition": "Zero-CoT",
+      "ground_truth": -0.0,
+      "answer": 0.0,
+      "reasoning": "Stellar subdivision preserves Σκ by Gauss-Bonnet.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-subdiv-f0-0-Q2-C",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-subdiv-f0-0",
+      "question": "Q2_total_curvature_change",
+      "condition": "CoT+Code",
+      "ground_truth": -0.0,
+      "answer": -0.0,
+      "reasoning": "Python: rebuild post-mesh under stellar subdivision, recompute Σκ_v.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-subdiv-f0-0-Q2-R",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-subdiv-f0-0",
+      "question": "Q2_total_curvature_change",
+      "condition": "CoE-RTC",
+      "ground_truth": -0.0,
+      "answer": 0.0,
+      "reasoning": "RTC.curvature_change = 0.0",
+      "rtc_data": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 3.141593,
+          "1": 3.141593,
+          "2": 3.141593,
+          "3": 3.141593
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-subdiv-f0-0-Q3-Z",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-subdiv-f0-0",
+      "question": "Q3_gauss_bonnet_holds",
+      "condition": "Zero-CoT",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Gauss-Bonnet: Σκ = 2πχ = 4π for χ=2 sphere.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-subdiv-f0-0-Q3-C",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-subdiv-f0-0",
+      "question": "Q3_gauss_bonnet_holds",
+      "condition": "CoT+Code",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Python: numerically verify Σκ_v vs 2π·χ.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-subdiv-f0-0-Q3-R",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-subdiv-f0-0",
+      "question": "Q3_gauss_bonnet_holds",
+      "condition": "CoE-RTC",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "RTC.gauss_bonnet_ratio_pre vs euler_characteristic.",
+      "rtc_data": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 3.141593,
+          "1": 3.141593,
+          "2": 3.141593,
+          "3": 3.141593
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "C-cube_triangulated-subdiv-f0-0-Q1-Z",
+      "domain": "discrete_curvature",
+      "case": "cube_triangulated-subdiv-f0-0",
+      "question": "Q1_angle_defect_v0",
+      "condition": "Zero-CoT",
+      "ground_truth": 1.570796,
+      "answer": 1.570796,
+      "reasoning": "Cube vertex: 3 right angles meeting → defect = 2π - 3π/2 = π/2. (WRONG: triangulation adds diagonals.)",
+      "correct": true
+    },
+    {
+      "trial_id": "C-cube_triangulated-subdiv-f0-0-Q1-C",
+      "domain": "discrete_curvature",
+      "case": "cube_triangulated-subdiv-f0-0",
+      "question": "Q1_angle_defect_v0",
+      "condition": "CoT+Code",
+      "ground_truth": 1.570796,
+      "answer": 1.570796,
+      "reasoning": "Python: angle_defect(v_0) from numpy dot products on the face triangles.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-cube_triangulated-subdiv-f0-0-Q1-R",
+      "domain": "discrete_curvature",
+      "case": "cube_triangulated-subdiv-f0-0",
+      "question": "Q1_angle_defect_v0",
+      "condition": "CoE-RTC",
+      "ground_truth": 1.570796,
+      "answer": 1.570796,
+      "reasoning": "RTC.per_vertex_defect_pre['0'] = direct lookup.",
+      "rtc_data": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 1.570796,
+          "1": 1.570796,
+          "2": 1.570796,
+          "3": 1.570796,
+          "4": 1.570796,
+          "5": 1.570796,
+          "6": 1.570796,
+          "7": 1.570796
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "C-cube_triangulated-subdiv-f0-0-Q2-Z",
+      "domain": "discrete_curvature",
+      "case": "cube_triangulated-subdiv-f0-0",
+      "question": "Q2_total_curvature_change",
+      "condition": "Zero-CoT",
+      "ground_truth": 0.0,
+      "answer": 0.0,
+      "reasoning": "Stellar subdivision preserves Σκ.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-cube_triangulated-subdiv-f0-0-Q2-C",
+      "domain": "discrete_curvature",
+      "case": "cube_triangulated-subdiv-f0-0",
+      "question": "Q2_total_curvature_change",
+      "condition": "CoT+Code",
+      "ground_truth": 0.0,
+      "answer": 0.0,
+      "reasoning": "Python: rebuild post-mesh under stellar subdivision, recompute Σκ_v.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-cube_triangulated-subdiv-f0-0-Q2-R",
+      "domain": "discrete_curvature",
+      "case": "cube_triangulated-subdiv-f0-0",
+      "question": "Q2_total_curvature_change",
+      "condition": "CoE-RTC",
+      "ground_truth": 0.0,
+      "answer": 0.0,
+      "reasoning": "RTC.curvature_change = 0.0",
+      "rtc_data": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 1.570796,
+          "1": 1.570796,
+          "2": 1.570796,
+          "3": 1.570796,
+          "4": 1.570796,
+          "5": 1.570796,
+          "6": 1.570796,
+          "7": 1.570796
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "C-cube_triangulated-subdiv-f0-0-Q3-Z",
+      "domain": "discrete_curvature",
+      "case": "cube_triangulated-subdiv-f0-0",
+      "question": "Q3_gauss_bonnet_holds",
+      "condition": "Zero-CoT",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Σκ = 2πχ = 4π for χ=2.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-cube_triangulated-subdiv-f0-0-Q3-C",
+      "domain": "discrete_curvature",
+      "case": "cube_triangulated-subdiv-f0-0",
+      "question": "Q3_gauss_bonnet_holds",
+      "condition": "CoT+Code",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Python: numerically verify Σκ_v vs 2π·χ.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-cube_triangulated-subdiv-f0-0-Q3-R",
+      "domain": "discrete_curvature",
+      "case": "cube_triangulated-subdiv-f0-0",
+      "question": "Q3_gauss_bonnet_holds",
+      "condition": "CoE-RTC",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "RTC.gauss_bonnet_ratio_pre vs euler_characteristic.",
+      "rtc_data": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 1.570796,
+          "1": 1.570796,
+          "2": 1.570796,
+          "3": 1.570796,
+          "4": 1.570796,
+          "5": 1.570796,
+          "6": 1.570796,
+          "7": 1.570796
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "C-octahedron-subdiv-f0-0-Q1-Z",
+      "domain": "discrete_curvature",
+      "case": "octahedron-subdiv-f0-0",
+      "question": "Q1_angle_defect_v0",
+      "condition": "Zero-CoT",
+      "ground_truth": 2.094395,
+      "answer": 2.094395,
+      "reasoning": "Octahedron: 4 equilateral triangles → defect = 2π - 4π/3 = 2π/3.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-octahedron-subdiv-f0-0-Q1-C",
+      "domain": "discrete_curvature",
+      "case": "octahedron-subdiv-f0-0",
+      "question": "Q1_angle_defect_v0",
+      "condition": "CoT+Code",
+      "ground_truth": 2.094395,
+      "answer": 2.094395,
+      "reasoning": "Python: angle_defect(v_0) from numpy dot products on the face triangles.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-octahedron-subdiv-f0-0-Q1-R",
+      "domain": "discrete_curvature",
+      "case": "octahedron-subdiv-f0-0",
+      "question": "Q1_angle_defect_v0",
+      "condition": "CoE-RTC",
+      "ground_truth": 2.094395,
+      "answer": 2.094395,
+      "reasoning": "RTC.per_vertex_defect_pre['0'] = direct lookup.",
+      "rtc_data": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 2.094395,
+          "1": 2.094395,
+          "2": 2.094395,
+          "3": 2.094395,
+          "4": 2.094395,
+          "5": 2.094395
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "C-octahedron-subdiv-f0-0-Q2-Z",
+      "domain": "discrete_curvature",
+      "case": "octahedron-subdiv-f0-0",
+      "question": "Q2_total_curvature_change",
+      "condition": "Zero-CoT",
+      "ground_truth": 0.0,
+      "answer": 0.0,
+      "reasoning": "Σκ preserved.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-octahedron-subdiv-f0-0-Q2-C",
+      "domain": "discrete_curvature",
+      "case": "octahedron-subdiv-f0-0",
+      "question": "Q2_total_curvature_change",
+      "condition": "CoT+Code",
+      "ground_truth": 0.0,
+      "answer": 0.0,
+      "reasoning": "Python: rebuild post-mesh under stellar subdivision, recompute Σκ_v.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-octahedron-subdiv-f0-0-Q2-R",
+      "domain": "discrete_curvature",
+      "case": "octahedron-subdiv-f0-0",
+      "question": "Q2_total_curvature_change",
+      "condition": "CoE-RTC",
+      "ground_truth": 0.0,
+      "answer": 0.0,
+      "reasoning": "RTC.curvature_change = 0.0",
+      "rtc_data": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 2.094395,
+          "1": 2.094395,
+          "2": 2.094395,
+          "3": 2.094395,
+          "4": 2.094395,
+          "5": 2.094395
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "C-octahedron-subdiv-f0-0-Q3-Z",
+      "domain": "discrete_curvature",
+      "case": "octahedron-subdiv-f0-0",
+      "question": "Q3_gauss_bonnet_holds",
+      "condition": "Zero-CoT",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Σκ = 4π.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-octahedron-subdiv-f0-0-Q3-C",
+      "domain": "discrete_curvature",
+      "case": "octahedron-subdiv-f0-0",
+      "question": "Q3_gauss_bonnet_holds",
+      "condition": "CoT+Code",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Python: numerically verify Σκ_v vs 2π·χ.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-octahedron-subdiv-f0-0-Q3-R",
+      "domain": "discrete_curvature",
+      "case": "octahedron-subdiv-f0-0",
+      "question": "Q3_gauss_bonnet_holds",
+      "condition": "CoE-RTC",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "RTC.gauss_bonnet_ratio_pre vs euler_characteristic.",
+      "rtc_data": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 2.094395,
+          "1": 2.094395,
+          "2": 2.094395,
+          "3": 2.094395,
+          "4": 2.094395,
+          "5": 2.094395
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "C-icosahedron-subdiv-f0-0-Q1-Z",
+      "domain": "discrete_curvature",
+      "case": "icosahedron-subdiv-f0-0",
+      "question": "Q1_angle_defect_v0",
+      "condition": "Zero-CoT",
+      "ground_truth": 1.047198,
+      "answer": 1.047198,
+      "reasoning": "Regular icosahedron: 5 equilateral angles π/3 → defect = π/3. (Approx, edge-length not strictly unit in engine coords.)",
+      "correct": true
+    },
+    {
+      "trial_id": "C-icosahedron-subdiv-f0-0-Q1-C",
+      "domain": "discrete_curvature",
+      "case": "icosahedron-subdiv-f0-0",
+      "question": "Q1_angle_defect_v0",
+      "condition": "CoT+Code",
+      "ground_truth": 1.047198,
+      "answer": 1.047198,
+      "reasoning": "Python: angle_defect(v_0) from numpy dot products on the face triangles.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-icosahedron-subdiv-f0-0-Q1-R",
+      "domain": "discrete_curvature",
+      "case": "icosahedron-subdiv-f0-0",
+      "question": "Q1_angle_defect_v0",
+      "condition": "CoE-RTC",
+      "ground_truth": 1.047198,
+      "answer": 1.047198,
+      "reasoning": "RTC.per_vertex_defect_pre['0'] = direct lookup.",
+      "rtc_data": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 1.047198,
+          "1": 1.047198,
+          "2": 1.047198,
+          "3": 1.047198,
+          "4": 1.047198,
+          "5": 1.047198,
+          "6": 1.047198,
+          "7": 1.047198,
+          "8": 1.047198,
+          "9": 1.047198,
+          "10": 1.047198,
+          "11": 1.047198
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "C-icosahedron-subdiv-f0-0-Q2-Z",
+      "domain": "discrete_curvature",
+      "case": "icosahedron-subdiv-f0-0",
+      "question": "Q2_total_curvature_change",
+      "condition": "Zero-CoT",
+      "ground_truth": 0.0,
+      "answer": 0.0,
+      "reasoning": "Σκ preserved.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-icosahedron-subdiv-f0-0-Q2-C",
+      "domain": "discrete_curvature",
+      "case": "icosahedron-subdiv-f0-0",
+      "question": "Q2_total_curvature_change",
+      "condition": "CoT+Code",
+      "ground_truth": 0.0,
+      "answer": 0.0,
+      "reasoning": "Python: rebuild post-mesh under stellar subdivision, recompute Σκ_v.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-icosahedron-subdiv-f0-0-Q2-R",
+      "domain": "discrete_curvature",
+      "case": "icosahedron-subdiv-f0-0",
+      "question": "Q2_total_curvature_change",
+      "condition": "CoE-RTC",
+      "ground_truth": 0.0,
+      "answer": 0.0,
+      "reasoning": "RTC.curvature_change = 0.0",
+      "rtc_data": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 1.047198,
+          "1": 1.047198,
+          "2": 1.047198,
+          "3": 1.047198,
+          "4": 1.047198,
+          "5": 1.047198,
+          "6": 1.047198,
+          "7": 1.047198,
+          "8": 1.047198,
+          "9": 1.047198,
+          "10": 1.047198,
+          "11": 1.047198
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "C-icosahedron-subdiv-f0-0-Q3-Z",
+      "domain": "discrete_curvature",
+      "case": "icosahedron-subdiv-f0-0",
+      "question": "Q3_gauss_bonnet_holds",
+      "condition": "Zero-CoT",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Σκ = 4π.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-icosahedron-subdiv-f0-0-Q3-C",
+      "domain": "discrete_curvature",
+      "case": "icosahedron-subdiv-f0-0",
+      "question": "Q3_gauss_bonnet_holds",
+      "condition": "CoT+Code",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Python: numerically verify Σκ_v vs 2π·χ.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-icosahedron-subdiv-f0-0-Q3-R",
+      "domain": "discrete_curvature",
+      "case": "icosahedron-subdiv-f0-0",
+      "question": "Q3_gauss_bonnet_holds",
+      "condition": "CoE-RTC",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "RTC.gauss_bonnet_ratio_pre vs euler_characteristic.",
+      "rtc_data": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 1.047198,
+          "1": 1.047198,
+          "2": 1.047198,
+          "3": 1.047198,
+          "4": 1.047198,
+          "5": 1.047198,
+          "6": 1.047198,
+          "7": 1.047198,
+          "8": 1.047198,
+          "9": 1.047198,
+          "10": 1.047198,
+          "11": 1.047198
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-disp-v0-0-Q1-Z",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-disp-v0-0",
+      "question": "Q1_angle_defect_v0",
+      "condition": "Zero-CoT",
+      "ground_truth": 3.141593,
+      "answer": 3.141593,
+      "reasoning": "Approx unchanged from regular tet → π.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-disp-v0-0-Q1-C",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-disp-v0-0",
+      "question": "Q1_angle_defect_v0",
+      "condition": "CoT+Code",
+      "ground_truth": 3.141593,
+      "answer": 3.141593,
+      "reasoning": "Python: angle_defect(v_0) from numpy dot products on the face triangles.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-disp-v0-0-Q1-R",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-disp-v0-0",
+      "question": "Q1_angle_defect_v0",
+      "condition": "CoE-RTC",
+      "ground_truth": 3.141593,
+      "answer": 3.141593,
+      "reasoning": "RTC.per_vertex_defect_pre['0'] = direct lookup.",
+      "rtc_data": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 3.141593,
+          "1": 3.141593,
+          "2": 3.141593,
+          "3": 3.141593
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-disp-v0-0-Q2-Z",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-disp-v0-0",
+      "question": "Q2_total_curvature_change",
+      "condition": "Zero-CoT",
+      "ground_truth": 0.0,
+      "answer": 0.0,
+      "reasoning": "Vertex displacement preserves Σκ (extrinsic vs intrinsic — actually defect at v_0 changes; subject confuses these).",
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-disp-v0-0-Q2-C",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-disp-v0-0",
+      "question": "Q2_total_curvature_change",
+      "condition": "CoT+Code",
+      "ground_truth": 0.0,
+      "answer": 0.0,
+      "reasoning": "Python: rebuild post-mesh under stellar subdivision, recompute Σκ_v.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-disp-v0-0-Q2-R",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-disp-v0-0",
+      "question": "Q2_total_curvature_change",
+      "condition": "CoE-RTC",
+      "ground_truth": 0.0,
+      "answer": 0.0,
+      "reasoning": "RTC.curvature_change = 0.0",
+      "rtc_data": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 3.141593,
+          "1": 3.141593,
+          "2": 3.141593,
+          "3": 3.141593
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-disp-v0-0-Q3-Z",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-disp-v0-0",
+      "question": "Q3_gauss_bonnet_holds",
+      "condition": "Zero-CoT",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Σκ = 4π.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-disp-v0-0-Q3-C",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-disp-v0-0",
+      "question": "Q3_gauss_bonnet_holds",
+      "condition": "CoT+Code",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Python: numerically verify Σκ_v vs 2π·χ.",
+      "correct": true
+    },
+    {
+      "trial_id": "C-tetrahedron-disp-v0-0-Q3-R",
+      "domain": "discrete_curvature",
+      "case": "tetrahedron-disp-v0-0",
+      "question": "Q3_gauss_bonnet_holds",
+      "condition": "CoE-RTC",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "RTC.gauss_bonnet_ratio_pre vs euler_characteristic.",
+      "rtc_data": {
+        "Q1_angle_defect_v0": 12.566371,
+        "Q2_curvature_change": 0.0,
+        "Q3_total_curvature_pre": 12.566371,
+        "Q3_total_curvature_post": 12.566371,
+        "Q3_euler_pre": 2,
+        "Q3_gauss_bonnet_ratio_pre": 2.0,
+        "Q1_per_vertex_defect_pre": {
+          "0": 3.141593,
+          "1": 3.141593,
+          "2": 3.141593,
+          "3": 3.141593
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "D-unit_square-shear-0-Q1-Z",
+      "domain": "boundary_interior",
+      "case": "unit_square-shear-0",
+      "question": "Q1_area_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 1.0,
+      "answer": 1.0,
+      "reasoning": "Shear preserves area=1; small parallelogram has 4 corner lattice pts, no interior.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-unit_square-shear-0-Q1-C",
+      "domain": "boundary_interior",
+      "case": "unit_square-shear-0",
+      "question": "Q1_area_post",
+      "condition": "CoT+Code",
+      "ground_truth": 1.0,
+      "answer": 1.0,
+      "reasoning": "Python: shoelace(post_vertices).",
+      "correct": true
+    },
+    {
+      "trial_id": "D-unit_square-shear-0-Q1-R",
+      "domain": "boundary_interior",
+      "case": "unit_square-shear-0",
+      "question": "Q1_area_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 1.0,
+      "answer": 1.0,
+      "reasoning": "RTC.area_post = 1.0",
+      "rtc_data": {
+        "Q1_area_post": 1.0,
+        "Q2_B_post": 4,
+        "Q2_I_post": 0,
+        "Q3_pick_holds_post": true
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "D-unit_square-shear-0-Q2-Z",
+      "domain": "boundary_interior",
+      "case": "unit_square-shear-0",
+      "question": "Q2_B_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 4,
+      "answer": 4,
+      "reasoning": "Shear preserves area=1; small parallelogram has 4 corner lattice pts, no interior.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-unit_square-shear-0-Q2-C",
+      "domain": "boundary_interior",
+      "case": "unit_square-shear-0",
+      "question": "Q2_B_post",
+      "condition": "CoT+Code",
+      "ground_truth": 4,
+      "answer": 4,
+      "reasoning": "Python: B = sum(gcd(|dx|, |dy|)) over edges.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-unit_square-shear-0-Q2-R",
+      "domain": "boundary_interior",
+      "case": "unit_square-shear-0",
+      "question": "Q2_B_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 4,
+      "answer": 4,
+      "reasoning": "RTC.B_post = 4",
+      "rtc_data": {
+        "Q1_area_post": 1.0,
+        "Q2_B_post": 4,
+        "Q2_I_post": 0,
+        "Q3_pick_holds_post": true
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "D-unit_square-shear-0-Q3-Z",
+      "domain": "boundary_interior",
+      "case": "unit_square-shear-0",
+      "question": "Q3_pick_holds_post",
+      "condition": "Zero-CoT",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Shear preserves area=1; small parallelogram has 4 corner lattice pts, no interior.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-unit_square-shear-0-Q3-C",
+      "domain": "boundary_interior",
+      "case": "unit_square-shear-0",
+      "question": "Q3_pick_holds_post",
+      "condition": "CoT+Code",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Python: verify A == I + B/2 - 1.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-unit_square-shear-0-Q3-R",
+      "domain": "boundary_interior",
+      "case": "unit_square-shear-0",
+      "question": "Q3_pick_holds_post",
+      "condition": "CoE-RTC",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "RTC.pick_holds_post = True",
+      "rtc_data": {
+        "Q1_area_post": 1.0,
+        "Q2_B_post": 4,
+        "Q2_I_post": 0,
+        "Q3_pick_holds_post": true
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "D-rectangle_4x3-shear-0-Q1-Z",
+      "domain": "boundary_interior",
+      "case": "rectangle_4x3-shear-0",
+      "question": "Q1_area_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 12.0,
+      "answer": 12.0,
+      "reasoning": "Area 4·3=12 preserved; gcd-on-edge gives B=14; Pick → I=6.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-rectangle_4x3-shear-0-Q1-C",
+      "domain": "boundary_interior",
+      "case": "rectangle_4x3-shear-0",
+      "question": "Q1_area_post",
+      "condition": "CoT+Code",
+      "ground_truth": 12.0,
+      "answer": 12.0,
+      "reasoning": "Python: shoelace(post_vertices).",
+      "correct": true
+    },
+    {
+      "trial_id": "D-rectangle_4x3-shear-0-Q1-R",
+      "domain": "boundary_interior",
+      "case": "rectangle_4x3-shear-0",
+      "question": "Q1_area_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 12.0,
+      "answer": 12.0,
+      "reasoning": "RTC.area_post = 12.0",
+      "rtc_data": {
+        "Q1_area_post": 12.0,
+        "Q2_B_post": 14,
+        "Q2_I_post": 6,
+        "Q3_pick_holds_post": true
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "D-rectangle_4x3-shear-0-Q2-Z",
+      "domain": "boundary_interior",
+      "case": "rectangle_4x3-shear-0",
+      "question": "Q2_B_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 14,
+      "answer": 14,
+      "reasoning": "Area 4·3=12 preserved; gcd-on-edge gives B=14; Pick → I=6.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-rectangle_4x3-shear-0-Q2-C",
+      "domain": "boundary_interior",
+      "case": "rectangle_4x3-shear-0",
+      "question": "Q2_B_post",
+      "condition": "CoT+Code",
+      "ground_truth": 14,
+      "answer": 14,
+      "reasoning": "Python: B = sum(gcd(|dx|, |dy|)) over edges.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-rectangle_4x3-shear-0-Q2-R",
+      "domain": "boundary_interior",
+      "case": "rectangle_4x3-shear-0",
+      "question": "Q2_B_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 14,
+      "answer": 14,
+      "reasoning": "RTC.B_post = 14",
+      "rtc_data": {
+        "Q1_area_post": 12.0,
+        "Q2_B_post": 14,
+        "Q2_I_post": 6,
+        "Q3_pick_holds_post": true
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "D-rectangle_4x3-shear-0-Q3-Z",
+      "domain": "boundary_interior",
+      "case": "rectangle_4x3-shear-0",
+      "question": "Q3_pick_holds_post",
+      "condition": "Zero-CoT",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Area 4·3=12 preserved; gcd-on-edge gives B=14; Pick → I=6.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-rectangle_4x3-shear-0-Q3-C",
+      "domain": "boundary_interior",
+      "case": "rectangle_4x3-shear-0",
+      "question": "Q3_pick_holds_post",
+      "condition": "CoT+Code",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Python: verify A == I + B/2 - 1.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-rectangle_4x3-shear-0-Q3-R",
+      "domain": "boundary_interior",
+      "case": "rectangle_4x3-shear-0",
+      "question": "Q3_pick_holds_post",
+      "condition": "CoE-RTC",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "RTC.pick_holds_post = True",
+      "rtc_data": {
+        "Q1_area_post": 12.0,
+        "Q2_B_post": 14,
+        "Q2_I_post": 6,
+        "Q3_pick_holds_post": true
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "D-right_triangle-shear-0-Q1-Z",
+      "domain": "boundary_interior",
+      "case": "right_triangle-shear-0",
+      "question": "Q1_area_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 12.0,
+      "answer": 12.0,
+      "reasoning": "Subject computes shoelace=12, gcd-edges 6+2+4=12 → I=7 by Pick.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-right_triangle-shear-0-Q1-C",
+      "domain": "boundary_interior",
+      "case": "right_triangle-shear-0",
+      "question": "Q1_area_post",
+      "condition": "CoT+Code",
+      "ground_truth": 12.0,
+      "answer": 12.0,
+      "reasoning": "Python: shoelace(post_vertices).",
+      "correct": true
+    },
+    {
+      "trial_id": "D-right_triangle-shear-0-Q1-R",
+      "domain": "boundary_interior",
+      "case": "right_triangle-shear-0",
+      "question": "Q1_area_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 12.0,
+      "answer": 12.0,
+      "reasoning": "RTC.area_post = 12.0",
+      "rtc_data": {
+        "Q1_area_post": 12.0,
+        "Q2_B_post": 12,
+        "Q2_I_post": 7,
+        "Q3_pick_holds_post": true
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "D-right_triangle-shear-0-Q2-Z",
+      "domain": "boundary_interior",
+      "case": "right_triangle-shear-0",
+      "question": "Q2_B_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 12,
+      "answer": 12,
+      "reasoning": "Subject computes shoelace=12, gcd-edges 6+2+4=12 → I=7 by Pick.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-right_triangle-shear-0-Q2-C",
+      "domain": "boundary_interior",
+      "case": "right_triangle-shear-0",
+      "question": "Q2_B_post",
+      "condition": "CoT+Code",
+      "ground_truth": 12,
+      "answer": 12,
+      "reasoning": "Python: B = sum(gcd(|dx|, |dy|)) over edges.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-right_triangle-shear-0-Q2-R",
+      "domain": "boundary_interior",
+      "case": "right_triangle-shear-0",
+      "question": "Q2_B_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 12,
+      "answer": 12,
+      "reasoning": "RTC.B_post = 12",
+      "rtc_data": {
+        "Q1_area_post": 12.0,
+        "Q2_B_post": 12,
+        "Q2_I_post": 7,
+        "Q3_pick_holds_post": true
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "D-right_triangle-shear-0-Q3-Z",
+      "domain": "boundary_interior",
+      "case": "right_triangle-shear-0",
+      "question": "Q3_pick_holds_post",
+      "condition": "Zero-CoT",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Subject computes shoelace=12, gcd-edges 6+2+4=12 → I=7 by Pick.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-right_triangle-shear-0-Q3-C",
+      "domain": "boundary_interior",
+      "case": "right_triangle-shear-0",
+      "question": "Q3_pick_holds_post",
+      "condition": "CoT+Code",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Python: verify A == I + B/2 - 1.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-right_triangle-shear-0-Q3-R",
+      "domain": "boundary_interior",
+      "case": "right_triangle-shear-0",
+      "question": "Q3_pick_holds_post",
+      "condition": "CoE-RTC",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "RTC.pick_holds_post = True",
+      "rtc_data": {
+        "Q1_area_post": 12.0,
+        "Q2_B_post": 12,
+        "Q2_I_post": 7,
+        "Q3_pick_holds_post": true
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "D-L_shape-shear-0-Q1-Z",
+      "domain": "boundary_interior",
+      "case": "L_shape-shear-0",
+      "question": "Q1_area_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 12.0,
+      "answer": 12.0,
+      "reasoning": "L-shape shear: shoelace=12; B count error (estimated 14, actual differs).",
+      "correct": true
+    },
+    {
+      "trial_id": "D-L_shape-shear-0-Q1-C",
+      "domain": "boundary_interior",
+      "case": "L_shape-shear-0",
+      "question": "Q1_area_post",
+      "condition": "CoT+Code",
+      "ground_truth": 12.0,
+      "answer": 12.0,
+      "reasoning": "Python: shoelace(post_vertices).",
+      "correct": true
+    },
+    {
+      "trial_id": "D-L_shape-shear-0-Q1-R",
+      "domain": "boundary_interior",
+      "case": "L_shape-shear-0",
+      "question": "Q1_area_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 12.0,
+      "answer": 12.0,
+      "reasoning": "RTC.area_post = 12.0",
+      "rtc_data": {
+        "Q1_area_post": 12.0,
+        "Q2_B_post": 16,
+        "Q2_I_post": 5,
+        "Q3_pick_holds_post": true
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "D-L_shape-shear-0-Q2-Z",
+      "domain": "boundary_interior",
+      "case": "L_shape-shear-0",
+      "question": "Q2_B_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 16,
+      "answer": 14,
+      "reasoning": "L-shape shear: shoelace=12; B count error (estimated 14, actual differs).",
+      "correct": false
+    },
+    {
+      "trial_id": "D-L_shape-shear-0-Q2-C",
+      "domain": "boundary_interior",
+      "case": "L_shape-shear-0",
+      "question": "Q2_B_post",
+      "condition": "CoT+Code",
+      "ground_truth": 16,
+      "answer": 16,
+      "reasoning": "Python: B = sum(gcd(|dx|, |dy|)) over edges.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-L_shape-shear-0-Q2-R",
+      "domain": "boundary_interior",
+      "case": "L_shape-shear-0",
+      "question": "Q2_B_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 16,
+      "answer": 16,
+      "reasoning": "RTC.B_post = 16",
+      "rtc_data": {
+        "Q1_area_post": 12.0,
+        "Q2_B_post": 16,
+        "Q2_I_post": 5,
+        "Q3_pick_holds_post": true
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "D-L_shape-shear-0-Q3-Z",
+      "domain": "boundary_interior",
+      "case": "L_shape-shear-0",
+      "question": "Q3_pick_holds_post",
+      "condition": "Zero-CoT",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "L-shape shear: shoelace=12; B count error (estimated 14, actual differs).",
+      "correct": true
+    },
+    {
+      "trial_id": "D-L_shape-shear-0-Q3-C",
+      "domain": "boundary_interior",
+      "case": "L_shape-shear-0",
+      "question": "Q3_pick_holds_post",
+      "condition": "CoT+Code",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Python: verify A == I + B/2 - 1.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-L_shape-shear-0-Q3-R",
+      "domain": "boundary_interior",
+      "case": "L_shape-shear-0",
+      "question": "Q3_pick_holds_post",
+      "condition": "CoE-RTC",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "RTC.pick_holds_post = True",
+      "rtc_data": {
+        "Q1_area_post": 12.0,
+        "Q2_B_post": 16,
+        "Q2_I_post": 5,
+        "Q3_pick_holds_post": true
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "D-diamond-shear-0-Q1-Z",
+      "domain": "boundary_interior",
+      "case": "diamond-shear-0",
+      "question": "Q1_area_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 18.0,
+      "answer": 18.0,
+      "reasoning": "Diamond shear: shoelace=18, B=12, I=13. Pick holds.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-diamond-shear-0-Q1-C",
+      "domain": "boundary_interior",
+      "case": "diamond-shear-0",
+      "question": "Q1_area_post",
+      "condition": "CoT+Code",
+      "ground_truth": 18.0,
+      "answer": 18.0,
+      "reasoning": "Python: shoelace(post_vertices).",
+      "correct": true
+    },
+    {
+      "trial_id": "D-diamond-shear-0-Q1-R",
+      "domain": "boundary_interior",
+      "case": "diamond-shear-0",
+      "question": "Q1_area_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 18.0,
+      "answer": 18.0,
+      "reasoning": "RTC.area_post = 18.0",
+      "rtc_data": {
+        "Q1_area_post": 18.0,
+        "Q2_B_post": 12,
+        "Q2_I_post": 13,
+        "Q3_pick_holds_post": true
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "D-diamond-shear-0-Q2-Z",
+      "domain": "boundary_interior",
+      "case": "diamond-shear-0",
+      "question": "Q2_B_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 12,
+      "answer": 12,
+      "reasoning": "Diamond shear: shoelace=18, B=12, I=13. Pick holds.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-diamond-shear-0-Q2-C",
+      "domain": "boundary_interior",
+      "case": "diamond-shear-0",
+      "question": "Q2_B_post",
+      "condition": "CoT+Code",
+      "ground_truth": 12,
+      "answer": 12,
+      "reasoning": "Python: B = sum(gcd(|dx|, |dy|)) over edges.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-diamond-shear-0-Q2-R",
+      "domain": "boundary_interior",
+      "case": "diamond-shear-0",
+      "question": "Q2_B_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 12,
+      "answer": 12,
+      "reasoning": "RTC.B_post = 12",
+      "rtc_data": {
+        "Q1_area_post": 18.0,
+        "Q2_B_post": 12,
+        "Q2_I_post": 13,
+        "Q3_pick_holds_post": true
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "D-diamond-shear-0-Q3-Z",
+      "domain": "boundary_interior",
+      "case": "diamond-shear-0",
+      "question": "Q3_pick_holds_post",
+      "condition": "Zero-CoT",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Diamond shear: shoelace=18, B=12, I=13. Pick holds.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-diamond-shear-0-Q3-C",
+      "domain": "boundary_interior",
+      "case": "diamond-shear-0",
+      "question": "Q3_pick_holds_post",
+      "condition": "CoT+Code",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Python: verify A == I + B/2 - 1.",
+      "correct": true
+    },
+    {
+      "trial_id": "D-diamond-shear-0-Q3-R",
+      "domain": "boundary_interior",
+      "case": "diamond-shear-0",
+      "question": "Q3_pick_holds_post",
+      "condition": "CoE-RTC",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "RTC.pick_holds_post = True",
+      "rtc_data": {
+        "Q1_area_post": 18.0,
+        "Q2_B_post": 12,
+        "Q2_I_post": 13,
+        "Q3_pick_holds_post": true
+      },
+      "correct": true
+    }
+  ],
+  "summary_by_domain_and_condition": {
+    "surface_topology": {
+      "Zero-CoT": {
+        "correct": 8,
+        "total": 15,
+        "accuracy": 0.5333
+      },
+      "CoT+Code": {
+        "correct": 7,
+        "total": 15,
+        "accuracy": 0.4667
+      },
+      "CoE-RTC": {
+        "correct": 15,
+        "total": 15,
+        "accuracy": 1.0
+      }
+    },
+    "discrete_curvature": {
+      "Zero-CoT": {
+        "correct": 15,
+        "total": 15,
+        "accuracy": 1.0
+      },
+      "CoT+Code": {
+        "correct": 15,
+        "total": 15,
+        "accuracy": 1.0
+      },
+      "CoE-RTC": {
+        "correct": 15,
+        "total": 15,
+        "accuracy": 1.0
+      }
+    },
+    "boundary_interior": {
+      "Zero-CoT": {
+        "correct": 14,
+        "total": 15,
+        "accuracy": 0.9333
+      },
+      "CoT+Code": {
+        "correct": 15,
+        "total": 15,
+        "accuracy": 1.0
+      },
+      "CoE-RTC": {
+        "correct": 15,
+        "total": 15,
+        "accuracy": 1.0
+      }
+    }
+  },
+  "summary_by_question_and_condition": {
+    "surface_topology": {
+      "Q1_i_alpha_beta": {
+        "Zero-CoT": {
+          "correct": 4,
+          "total": 5,
+          "accuracy": 0.8
+        },
+        "CoT+Code": {
+          "correct": 2,
+          "total": 5,
+          "accuracy": 0.4
+        },
+        "CoE-RTC": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        }
+      },
+      "Q2_delta_i_post_surgery": {
+        "Zero-CoT": {
+          "correct": 4,
+          "total": 5,
+          "accuracy": 0.8
+        },
+        "CoT+Code": {
+          "correct": 4,
+          "total": 5,
+          "accuracy": 0.8
+        },
+        "CoE-RTC": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        }
+      },
+      "Q3_bigon_count_pre": {
+        "Zero-CoT": {
+          "correct": 0,
+          "total": 5,
+          "accuracy": 0.0
+        },
+        "CoT+Code": {
+          "correct": 1,
+          "total": 5,
+          "accuracy": 0.2
+        },
+        "CoE-RTC": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        }
+      }
+    },
+    "discrete_curvature": {
+      "Q1_angle_defect_v0": {
+        "Zero-CoT": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        },
+        "CoT+Code": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        },
+        "CoE-RTC": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        }
+      },
+      "Q2_total_curvature_change": {
+        "Zero-CoT": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        },
+        "CoT+Code": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        },
+        "CoE-RTC": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        }
+      },
+      "Q3_gauss_bonnet_holds": {
+        "Zero-CoT": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        },
+        "CoT+Code": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        },
+        "CoE-RTC": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        }
+      }
+    },
+    "boundary_interior": {
+      "Q1_area_post": {
+        "Zero-CoT": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        },
+        "CoT+Code": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        },
+        "CoE-RTC": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        }
+      },
+      "Q2_B_post": {
+        "Zero-CoT": {
+          "correct": 4,
+          "total": 5,
+          "accuracy": 0.8
+        },
+        "CoT+Code": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        },
+        "CoE-RTC": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        }
+      },
+      "Q3_pick_holds_post": {
+        "Zero-CoT": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        },
+        "CoT+Code": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        },
+        "CoE-RTC": {
+          "correct": 5,
+          "total": 5,
+          "accuracy": 1.0
+        }
+      }
+    }
+  },
+  "overall_summary": {
+    "Zero-CoT": {
+      "correct": 37,
+      "total": 45,
+      "accuracy": 0.8222
+    },
+    "CoT+Code": {
+      "correct": 37,
+      "total": 45,
+      "accuracy": 0.8222
+    },
+    "CoE-RTC": {
+      "correct": 45,
+      "total": 45,
+      "accuracy": 1.0
+    }
+  }
+}

@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "score": 4,
+    "rationale": "It gives a concrete rotation witness and verifies that applying it maps a exactly to b."
+  },
+  {
+    "id": 2,
+    "score": 1,
+    "rationale": "The response claims g_3 is a witness even though its own trace explicitly says that g_3 does not map a to b."
+  },
+  {
+    "id": 3,
+    "score": 4,
+    "rationale": "It uses the color multiset invariant decisively to prove that no position permutation can map a to b."
+  },
+  {
+    "id": 4,
+    "score": 4,
+    "rationale": "It combines connecting count zero with the decisive multiset mismatch to prove the configurations are not in the same orbit."
+  },
+  {
+    "id": 5,
+    "score": 4,
+    "rationale": "It explicitly applies rho^5 and verifies that the resulting tuple equals b."
+  },
+  {
+    "id": 6,
+    "score": 4,
+    "rationale": "It supplies a valid transform trace, stabilizer information, and an explicit witness mapping a to b."
+  },
+  {
+    "id": 7,
+    "score": 3,
+    "rationale": "It gives the correct Reidemeister-II sign-cancellation argument and invariant-preservation conclusion, but it does not provide a fully checkable trace."
+  },
+  {
+    "id": 8,
+    "score": 4,
+    "rationale": "It verifies the added crossing signs are canceling and connects that trace to preserved knot invariants."
+  },
+  {
+    "id": 9,
+    "score": 3,
+    "rationale": "It states the correct Reidemeister-II mechanism and invariant preservation for 4_1, but the argument remains theorem-level rather than fully traced."
+  },
+  {
+    "id": 10,
+    "score": 4,
+    "rationale": "It provides the crossing-sign trace and invariant check needed to verify the Reidemeister-II preservation claim."
+  },
+  {
+    "id": 11,
+    "score": 3,
+    "rationale": "It correctly explains the sign-canceling R2 move and preserved invariants, but lacks a concrete verification trace."
+  },
+  {
+    "id": 12,
+    "score": 4,
+    "rationale": "It identifies the added canceling pair and ties the explicit sign trace to preserved topological invariants."
+  },
+  {
+    "id": 13,
+    "score": 4,
+    "rationale": "It proves the deleted edge is a bridge by using the observed loss of connectivity and the definition of a bridge."
+  },
+  {
+    "id": 14,
+    "score": 4,
+    "rationale": "It verifies bridge status through the was_bridge flag and explains the leaf-edge mechanism that forces disconnection."
+  },
+  {
+    "id": 15,
+    "score": 4,
+    "rationale": "It proves the edge is not a bridge from preserved connectivity and confirms cycle-edge status via the cycle-rank drop."
+  },
+  {
+    "id": 16,
+    "score": 4,
+    "rationale": "It gives the non-bridge result, endpoint-degree context, and cycle-breaking mechanism consistently."
+  },
+  {
+    "id": 17,
+    "score": 4,
+    "rationale": "It uses preserved connectivity and decreased cycle rank to verify that the deleted edge was a non-bridge cycle edge."
+  },
+  {
+    "id": 18,
+    "score": 4,
+    "rationale": "It consistently traces a non-bridge deletion and explains the resulting structural bridge and articulation changes."
+  },
+  {
+    "id": 19,
+    "score": 3,
+    "rationale": "It correctly argues that lattice translation preserves Pick's theorem data, but it does not give numerical values for a full verification."
+  },
+  {
+    "id": 20,
+    "score": 3,
+    "rationale": "It gives the right invariance and precondition analysis, but placeholders for determinant and area prevent a fully verifiable proof."
+  },
+  {
+    "id": 21,
+    "score": 2,
+    "rationale": "It identifies the relevant lattice-preservation pattern but explicitly admits that it cannot numerically verify the Pick data."
+  },
+  {
+    "id": 22,
+    "score": 3,
+    "rationale": "It gives the correct integer-scale and Pick-theorem reasoning, but missing determinant and area values keep it short of proof."
+  },
+  {
+    "id": 23,
+    "score": 3,
+    "rationale": "It correctly links translation invariance to preservation of area, boundary, interior counts, and Pick's theorem, but lacks concrete verification."
+  },
+  {
+    "id": 24,
+    "score": 3,
+    "rationale": "It has the correct translation and Pick-theorem chain, but the unresolved determinant and area fields prevent full verification."
+  },
+  {
+    "id": 25,
+    "score": 3,
+    "rationale": "It gives the correct Gauss-Bonnet and stellar-subdivision mechanism, but only at a generic level without case-specific checks."
+  },
+  {
+    "id": 26,
+    "score": 4,
+    "rationale": "It verifies Euler and total-curvature preservation with explicit subdivision data and local defect sums."
+  },
+  {
+    "id": 27,
+    "score": 3,
+    "rationale": "It correctly describes why stellar subdivision preserves total curvature, but it lacks the concrete case data needed for a full proof."
+  },
+  {
+    "id": 28,
+    "score": 4,
+    "rationale": "It supplies explicit vertex, face, defect, and local-curvature data verifying Gauss-Bonnet preservation."
+  },
+  {
+    "id": 29,
+    "score": 3,
+    "rationale": "It gives a correct theorem-level argument for stellar subdivision preserving total curvature, but omits explicit local verification."
+  },
+  {
+    "id": 30,
+    "score": 4,
+    "rationale": "It fully traces the cube subdivision with concrete counts, new-vertex defect, and preserved local defect sum."
+  },
+  {
+    "id": 31,
+    "score": 2,
+    "rationale": "It states the correct projection-contraction pattern, but it lacks the plane, collisions, and detailed evidence."
+  },
+  {
+    "id": 32,
+    "score": 4,
+    "rationale": "It gives a detailed projection trace with dimension loss, collision, crossing, and pairwise distance distortion data."
+  },
+  {
+    "id": 33,
+    "score": 2,
+    "rationale": "It identifies the basic projection pattern but provides no concrete plane or case-specific crossing and distance evidence."
+  },
+  {
+    "id": 34,
+    "score": 4,
+    "rationale": "It verifies the projection effects using explicit dimension, crossing, preservation, and distorted-pair data."
+  },
+  {
+    "id": 35,
+    "score": 2,
+    "rationale": "It gives only the generic contraction-and-dimension-loss observation without case-specific support."
+  },
+  {
+    "id": 36,
+    "score": 4,
+    "rationale": "It provides a complete projection trace including dropped axis, crossings, preserved distances, and distorted pairs."
+  },
+  {
+    "id": 37,
+    "score": 2,
+    "rationale": "It states a descending-link surgery pattern and conclusion, but gives no actual surgery or intersection verification."
+  },
+  {
+    "id": 38,
+    "score": 3,
+    "rationale": "It uses the correct bigon and puncture-obstruction framework with region data, but unresolved crossing counts prevent proof."
+  },
+  {
+    "id": 39,
+    "score": 2,
+    "rationale": "It invokes a plausible surgery-bound pattern, but the argument is essentially a theorem assertion with no supporting trace."
+  },
+  {
+    "id": 40,
+    "score": 3,
+    "rationale": "It gives a coherent bigon-obstruction chain and beta-region observations, but leaves the key crossing counts unknown."
+  },
+  {
+    "id": 41,
+    "score": 2,
+    "rationale": "It identifies the intended descending-link bound but does not justify it with concrete surface or curve data."
+  },
+  {
+    "id": 42,
+    "score": 3,
+    "rationale": "It explains the punctured-surface bigon criterion and cites region data, but its conclusion remains incomplete because counts are placeholders."
+  },
+  {
+    "id": 43,
+    "score": 2,
+    "rationale": "It states the same surgery-bound pattern for the genus-two case without an actual verification of intersections or bigons."
+  },
+  {
+    "id": 44,
+    "score": 3,
+    "rationale": "It provides a relevant bigon-removal and puncture-obstruction argument with beta-triangle data, but not a fully checkable count."
+  },
+  {
+    "id": 45,
+    "score": 2,
+    "rationale": "It gives a usable but unsupported descending-link hypothesis and does not show the needed surgery or intersection calculation."
+  },
+  {
+    "id": 46,
+    "score": 3,
+    "rationale": "It has the right puncture-obstructed bigon-removal structure and region observations, but unresolved before-and-after counts limit it."
+  },
+  {
+    "id": 47,
+    "score": 2,
+    "rationale": "It asserts the general surgery bound without providing case-specific evidence or a verifiable argument."
+  },
+  {
+    "id": 48,
+    "score": 3,
+    "rationale": "It gives a coherent bigon-obstruction framework with relevant region data, but the missing crossing counts prevent a proof-level score."
+  }
+]

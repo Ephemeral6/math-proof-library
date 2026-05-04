@@ -1,0 +1,169 @@
+{
+ "domain": "surface_topology_s21",
+ "condition": "R00",
+ "primitives": {
+  "relation": true,
+  "transform": false,
+  "contrastive": false
+ },
+ "case_id": "a122-b28",
+ "case_data": {
+  "case_id": "a122-b28",
+  "summary_delta": {
+   "weight_a": -14,
+   "intersection_number": 0,
+   "weight_b": 0
+  },
+  "metadata": {
+   "surface": [
+    2,
+    1
+   ],
+   "alpha_index": 122,
+   "beta_index": 28,
+   "alpha_level": 2,
+   "beta_level": 1,
+   "i_alpha_beta": 1
+  },
+  "detailed_comparison": {
+   "crossings_pre_count": 10,
+   "crossings_post_count": 4,
+   "crossings_pre_candidate_total": 10,
+   "crossings_post_candidate_total": 4,
+   "crossings_in_transform_region_pre": 4,
+   "crossings_in_transform_region_post": 0,
+   "crossings_outside_region_pre": 6,
+   "crossings_outside_region_post": 4,
+   "crossings_pre_locations": [
+    {
+     "triangle": 0,
+     "shared_edge": 6
+    },
+    {
+     "triangle": 1,
+     "shared_edge": 5
+    },
+    {
+     "triangle": 2,
+     "shared_edge": 4
+    },
+    {
+     "triangle": 3,
+     "shared_edge": 1
+    },
+    {
+     "triangle": 3,
+     "shared_edge": 1
+    },
+    {
+     "triangle": 4,
+     "shared_edge": 5
+    },
+    {
+     "triangle": 4,
+     "shared_edge": 0
+    },
+    {
+     "triangle": 4,
+     "shared_edge": 0
+    },
+    {
+     "triangle": 4,
+     "shared_edge": 6
+    },
+    {
+     "triangle": 5,
+     "shared_edge": 0
+    }
+   ],
+   "crossings_post_locations": [
+    {
+     "triangle": 0,
+     "shared_edge": 6
+    },
+    {
+     "triangle": 1,
+     "shared_edge": 5
+    },
+    {
+     "triangle": 4,
+     "shared_edge": 5
+    },
+    {
+     "triangle": 4,
+     "shared_edge": 6
+    }
+   ]
+  },
+  "structural_comparison": {
+   "bigons_pre": 4,
+   "bigons_post": 2,
+   "bigons_with_puncture_pre": 4,
+   "bigons_with_puncture_post": 2,
+   "bigons_without_puncture_pre": 0,
+   "bigons_without_puncture_post": 0,
+   "all_bigons_contain_puncture_pre": true,
+   "all_bigons_contain_puncture_post": true,
+   "minimal_position_pre": false,
+   "minimal_position_post": false,
+   "bigon_puncture_classification_pre": [
+    {
+     "triangle_a": 0,
+     "triangle_b": 4,
+     "shared_edge": 6,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 1,
+     "triangle_b": 4,
+     "shared_edge": 5,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 4,
+     "triangle_b": 5,
+     "shared_edge": 0,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 4,
+     "triangle_b": 5,
+     "shared_edge": 0,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    }
+   ],
+   "bigon_puncture_classification_post": [
+    {
+     "triangle_a": 0,
+     "triangle_b": 4,
+     "shared_edge": 6,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 1,
+     "triangle_b": 4,
+     "shared_edge": 5,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    }
+   ]
+  }
+ }
+}

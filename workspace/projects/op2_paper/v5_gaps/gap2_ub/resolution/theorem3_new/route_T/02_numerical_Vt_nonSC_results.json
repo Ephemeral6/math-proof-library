@@ -1,0 +1,370 @@
+{
+  "rank1_beta0.3": [
+    {
+      "variant": "T-A1 twist, w=1, gamma=0",
+      "twisted": true,
+      "gamma": 1.0,
+      "V0": 98.61726932798027,
+      "VT": 96.18979423878915,
+      "max_inc": 0.3743236949129596,
+      "monotone": false,
+      "slope_V": -5.8017395819148315e-05
+    },
+    {
+      "variant": "T-A2 twist, w=1, gamma=1",
+      "twisted": true,
+      "gamma": 1.0,
+      "V0": 98.61726932798027,
+      "VT": 96.18979423878915,
+      "max_inc": 0.3743236949129596,
+      "monotone": false,
+      "slope_V": -5.8017395819148315e-05
+    },
+    {
+      "variant": "T-A3 twist, w=1, gamma=1/eta",
+      "twisted": true,
+      "gamma": 20.000000000000004,
+      "V0": 108.11726932798027,
+      "VT": 105.46698251562668,
+      "max_inc": 0.3208488813539674,
+      "monotone": false,
+      "slope_V": -5.355280591233568e-05
+    },
+    {
+      "variant": "T-B1 twist, w=t+1, gamma=0",
+      "twisted": true,
+      "gamma": 0.0,
+      "V0": 98.11726932798027,
+      "VT": 95.70152117158717,
+      "max_inc": 0.3501662133490271,
+      "monotone": false,
+      "slope_V": -5.968133334374631e-05
+    },
+    {
+      "variant": "T-B2 twist, w=t+1, gamma=1",
+      "twisted": true,
+      "gamma": 1.0,
+      "V0": 98.61726932798027,
+      "VT": 96.18979423878915,
+      "max_inc": 0.3473517494775109,
+      "monotone": false,
+      "slope_V": -5.941527608464193e-05
+    },
+    {
+      "variant": "T-B3 twist, w=t+1, gamma=1/eta",
+      "twisted": true,
+      "gamma": 20.000000000000004,
+      "V0": 108.11726932798027,
+      "VT": 105.46698251562668,
+      "max_inc": 0.2938769359185045,
+      "monotone": false,
+      "slope_V": -5.4827801214695184e-05
+    },
+    {
+      "variant": "T-C  twist, w=sqrt(t+1), gamma=1",
+      "twisted": true,
+      "gamma": 1.0,
+      "V0": 98.61726932798027,
+      "VT": 96.18979423878915,
+      "max_inc": 0.3630385294505203,
+      "monotone": false,
+      "slope_V": -5.845243997912195e-05
+    },
+    {
+      "variant": "T-D1 NAIVE, w=1, gamma=0",
+      "twisted": false,
+      "gamma": 0.0,
+      "V0": 0.6172693279802475,
+      "VT": 0.48827306720197516,
+      "max_inc": 1.07594608421877,
+      "monotone": false,
+      "slope_V": -0.005979944204770945
+    },
+    {
+      "variant": "T-D2 NAIVE, w=t+1, gamma=0",
+      "twisted": false,
+      "gamma": 0.0,
+      "V0": 0.6172693279802475,
+      "VT": 0.48827306720197516,
+      "max_inc": 1.1052634162138317,
+      "monotone": false,
+      "slope_V": -0.0062366993754915155
+    }
+  ],
+  "rank1_beta0.5": [
+    {
+      "variant": "T-A1 twist, w=1, gamma=0",
+      "twisted": true,
+      "gamma": 1.0,
+      "V0": 50.61726932798026,
+      "VT": 49.31557978739949,
+      "max_inc": 0.8472708946572709,
+      "monotone": false,
+      "slope_V": -0.00037731542605681925
+    },
+    {
+      "variant": "T-A2 twist, w=1, gamma=1",
+      "twisted": true,
+      "gamma": 1.0,
+      "V0": 50.61726932798026,
+      "VT": 49.31557978739949,
+      "max_inc": 0.8472708946572709,
+      "monotone": false,
+      "slope_V": -0.00037731542605681925
+    },
+    {
+      "variant": "T-A3 twist, w=1, gamma=1/eta",
+      "twisted": true,
+      "gamma": 20.000000000000004,
+      "V0": 60.11726932798027,
+      "VT": 58.59276806423702,
+      "max_inc": 0.7915679638666617,
+      "monotone": false,
+      "slope_V": -0.0003293376576432634
+    },
+    {
+      "variant": "T-B1 twist, w=t+1, gamma=0",
+      "twisted": true,
+      "gamma": 0.0,
+      "V0": 50.11726932798026,
+      "VT": 48.82730672019752,
+      "max_inc": 0.8208852958617143,
+      "monotone": false,
+      "slope_V": -0.00040813980238760413
+    },
+    {
+      "variant": "T-B2 twist, w=t+1, gamma=1",
+      "twisted": true,
+      "gamma": 1.0,
+      "V0": 50.61726932798026,
+      "VT": 49.31557978739949,
+      "max_inc": 0.8179535626622041,
+      "monotone": false,
+      "slope_V": -0.00040483827361519233
+    },
+    {
+      "variant": "T-B3 twist, w=t+1, gamma=1/eta",
+      "twisted": true,
+      "gamma": 20.000000000000004,
+      "V0": 60.11726932798027,
+      "VT": 58.59276806423702,
+      "max_inc": 0.7622506318715949,
+      "monotone": false,
+      "slope_V": -0.0003525191038043268
+    },
+    {
+      "variant": "T-C  twist, w=sqrt(t+1), gamma=1",
+      "twisted": true,
+      "gamma": 1.0,
+      "V0": 50.61726932798026,
+      "VT": 49.31557978739949,
+      "max_inc": 0.8351272581323173,
+      "monotone": false,
+      "slope_V": -0.0003858329585200408
+    },
+    {
+      "variant": "T-D1 NAIVE, w=1, gamma=0",
+      "twisted": false,
+      "gamma": 0.0,
+      "V0": 0.6172693279802475,
+      "VT": 0.4882730672019751,
+      "max_inc": 1.07594608421877,
+      "monotone": false,
+      "slope_V": -0.016803762720692113
+    },
+    {
+      "variant": "T-D2 NAIVE, w=t+1, gamma=0",
+      "twisted": false,
+      "gamma": 0.0,
+      "V0": 0.6172693279802475,
+      "VT": 0.4882730672019751,
+      "max_inc": 1.1052634162138317,
+      "monotone": false,
+      "slope_V": -0.019109568423643333
+    }
+  ],
+  "dt_beta0.3": [
+    {
+      "variant": "T-A1 twist, w=1, gamma=0",
+      "twisted": true,
+      "gamma": 1.0,
+      "V0": 16.297510350697905,
+      "VT": 0.2490363099945813,
+      "max_inc": -9.978359697127015e-07,
+      "monotone": true,
+      "slope_V": -0.4656225636419626
+    },
+    {
+      "variant": "T-A2 twist, w=1, gamma=1",
+      "twisted": true,
+      "gamma": 1.0,
+      "V0": 16.297510350697905,
+      "VT": 0.2490363099945813,
+      "max_inc": -9.978359697127015e-07,
+      "monotone": true,
+      "slope_V": -0.4656225636419626
+    },
+    {
+      "variant": "T-A3 twist, w=1, gamma=1/eta",
+      "twisted": true,
+      "gamma": 7.804226065180614,
+      "V0": 19.699623383288213,
+      "VT": 0.3039744880309261,
+      "max_inc": -1.2288179427888402e-06,
+      "monotone": true,
+      "slope_V": -0.4758112286703592
+    },
+    {
+      "variant": "T-B1 twist, w=t+1, gamma=0",
+      "twisted": true,
+      "gamma": 0.0,
+      "V0": 15.797510350697905,
+      "VT": 0.2409800859787471,
+      "max_inc": -1.535647444650401e-06,
+      "monotone": true,
+      "slope_V": -0.5043866606263493
+    },
+    {
+      "variant": "T-B2 twist, w=t+1, gamma=1",
+      "twisted": true,
+      "gamma": 1.0,
+      "V0": 16.297510350697905,
+      "VT": 0.24905421189844293,
+      "max_inc": -1.5695942845728172e-06,
+      "monotone": true,
+      "slope_V": -0.5048697771334784
+    },
+    {
+      "variant": "T-B3 twist, w=t+1, gamma=1/eta",
+      "twisted": true,
+      "gamma": 7.804226065180614,
+      "V0": 19.699623383288213,
+      "VT": 0.3039923899347877,
+      "max_inc": -1.800576257648956e-06,
+      "monotone": true,
+      "slope_V": -0.5074220830696743
+    },
+    {
+      "variant": "T-C  twist, w=sqrt(t+1), gamma=1",
+      "twisted": true,
+      "gamma": 1.0,
+      "V0": 16.297510350697905,
+      "VT": 0.24903748950151713,
+      "max_inc": -1.0383459876084355e-06,
+      "monotone": true,
+      "slope_V": -0.47433716925089836
+    },
+    {
+      "variant": "T-D1 NAIVE, w=1, gamma=0",
+      "twisted": false,
+      "gamma": 0.0,
+      "V0": 1.3755539539690087,
+      "VT": 0.008074234270162326,
+      "max_inc": 1.843739936250517,
+      "monotone": false,
+      "slope_V": -0.7134719097373361
+    },
+    {
+      "variant": "T-D2 NAIVE, w=t+1, gamma=0",
+      "twisted": false,
+      "gamma": 0.0,
+      "V0": 1.3755539539690087,
+      "VT": 0.008092136174023948,
+      "max_inc": 2.2084708499509214,
+      "monotone": false,
+      "slope_V": -1.1056767149778313
+    }
+  ],
+  "dt_beta0.5": [
+    {
+      "variant": "T-A1 twist, w=1, gamma=0",
+      "twisted": true,
+      "gamma": 1.0,
+      "V0": 8.988797013524568,
+      "VT": 0.13100045538209154,
+      "max_inc": 0.49758529891537595,
+      "monotone": false,
+      "slope_V": -0.32796011421374804
+    },
+    {
+      "variant": "T-A2 twist, w=1, gamma=1",
+      "twisted": true,
+      "gamma": 1.0,
+      "V0": 8.988797013524568,
+      "VT": 0.13100045538209154,
+      "max_inc": 0.49758529891537595,
+      "monotone": false,
+      "slope_V": -0.32796011421374804
+    },
+    {
+      "variant": "T-A3 twist, w=1, gamma=1/eta",
+      "twisted": true,
+      "gamma": 7.804226065180614,
+      "V0": 12.390910046114875,
+      "VT": 0.18593268864588564,
+      "max_inc": -4.706476847138319e-08,
+      "monotone": true,
+      "slope_V": -0.3466243951510517
+    },
+    {
+      "variant": "T-B1 twist, w=t+1, gamma=0",
+      "twisted": true,
+      "gamma": 0.0,
+      "V0": 8.488797013524568,
+      "VT": 0.1229280005144488,
+      "max_inc": 0.4828939877256384,
+      "monotone": false,
+      "slope_V": -0.376082552299883
+    },
+    {
+      "variant": "T-B2 twist, w=t+1, gamma=1",
+      "twisted": true,
+      "gamma": 1.0,
+      "V0": 8.988797013524568,
+      "VT": 0.13100125274586713,
+      "max_inc": 0.36701207600362284,
+      "monotone": false,
+      "slope_V": -0.3767286800968059
+    },
+    {
+      "variant": "T-B3 twist, w=t+1, gamma=1/eta",
+      "twisted": true,
+      "gamma": 7.804226065180614,
+      "V0": 12.390910046114875,
+      "VT": 0.1859334860096612,
+      "max_inc": -8.56004280791467e-08,
+      "monotone": true,
+      "slope_V": -0.3794389283355161
+    },
+    {
+      "variant": "T-C  twist, w=sqrt(t+1), gamma=1",
+      "twisted": true,
+      "gamma": 1.0,
+      "V0": 8.988797013524568,
+      "VT": 0.13100050791818552,
+      "max_inc": 0.432216471164085,
+      "monotone": false,
+      "slope_V": -0.34033854560863575
+    },
+    {
+      "variant": "T-D1 NAIVE, w=1, gamma=0",
+      "twisted": false,
+      "gamma": 0.0,
+      "V0": 1.3755539539690087,
+      "VT": 0.00807325795351131,
+      "max_inc": 1.843739936250517,
+      "monotone": false,
+      "slope_V": -0.6373012934553107
+    },
+    {
+      "variant": "T-D2 NAIVE, w=t+1, gamma=0",
+      "twisted": false,
+      "gamma": 0.0,
+      "V0": 1.3755539539690087,
+      "VT": 0.008074055317286883,
+      "max_inc": 2.2084708499509214,
+      "monotone": false,
+      "slope_V": -0.859763436453493
+    }
+  ]
+}

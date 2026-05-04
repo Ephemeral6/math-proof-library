@@ -1,0 +1,2171 @@
+                                         CONVERGENCE RATE FOR THE LAST ITERATE OF STOCHASTIC
+                                                                      GRADIENT DESCENT SCHEMES
+
+                                                                                                 MARCEL HUDIANI
+
+                                         Abstract. We study the convergence rate for the last iterate of stochastic gradient descent (SGD)
+
+arXiv:2507.07281v4 [math.OC] 9 Mar 2026  and stochastic heavy ball (SHB) in the parametric setting when the objective function F is globally
+
+                                         convex or non-convex whose gradient is -H¨older. Using only discrete Gronwall's inequality without
+
+                                         Robbins-Siegmund theorem, we recover results for both SGD and SHB: minst F (ws)2 =
+                                         o(tp-1) for non-convex objectives and F (wt) - F = o(t2/(1+)·max(p-1,-2p+1)-) for  
+                                         (0, 1),  := inf{t > 0 : F (wt) = F}, and minst F (ws) - F = o(tp-1) for convex objectives
+
+                                         F whose minimum is F. In addition, we proved that SHB with constant momentum parameter
+
+                                             (0, 1)  attains  a  convergence    rate  of  F (wt)  -  F  =  O(tmax(p-1,-2p+1)  log2  t  )  with     probability
+                                                                                                                                    
+                                                                                                                                        1
+                                         at  least  1-  when     F  is  convex  and     =1  and   step  size  t  = (t-p)  with  p    (  2  ,  1).
+
+                                                                                      1. Introduction
+
+                                             We study the almost sure convergence rate for the last iterate of Stochastic Gradient Descent
+
+                                         (SGD) and Stochastic Heavy Ball (SHB) schemes associated to solving an unconstrained optimiza-
+                                         tion problem involving a cost function defined on a subset of Rd. We consider the application of
+                                         these algorithms in the following context as in [2]:
+
+                                                        wt+1 - wt = -t (Zt, wt) + (wt - wt-1) ,   [0, 1)                                                        (1.1)
+
+                                         where wt is in Rd, Zt  RN is an i.i.d process with finite variance sampled from a continuous
+                                         distribution with density  independent of Ft = (ws : s  t), t is the (non-random) step size, and
+                                          is an estimator of a deterministic cost function F : W  [0, ) defined by F (w) = E[(Z, w)].
+                                         When  = 0, (1.1) is the SGD and can be rewritten as
+
+                                                     wt+1 - wt = -tF (wt) + t mt , mt = F (wt) - (Zt, wt).                                                      (1.2)
+
+                                             SHB (1.1) has been studied quite extensively, especially when F is coercive, convex, and smooth
+                                         with bounded second derivative and with finite variance in the noise. Specifically, under such
+                                         conditions, results on almost sure convergence, scaling limit in distribution, and L2 convergence
+                                         rates have been derived [3, theorem 1-2,4,6]. Similar results can also be found for the special
+                                         case (1.2). Such a scheme is a class of Robbins-Monro procedures [14]. See also [6]. Under
+                                         some conditions on the noise and F , Robbins-Monro type algorithms converge almost surely [10,
+                                         section I.1, thm I.9]. Such a statement relies on the Robbins-Siegmund theorem [13, theorem
+                                         1], which is a convergence theorem for non-negative almost super-martingale. We remark that
+                                         other methods to treat the almost sure convergence of Robbins-Monro algorithm exists, e.g. the
+                                         Ordinary Differential Equation (ODE) method , which relies on the stability theory of ODE.
+                                         See [10, section I, page 11].
+
+                                             Going from classical theory, there are two important directions to pursue. The first belongs to
+                                         the case where F is non-convex with Lipschitz gradient (weakening the convexity and smoothness
+
+                                              Department of Mathematics, University of Arizona, 621 N. Santa Rita Ave., Tucson, AZ 85721, USA
+                                             E-mail address: marcelh@arizona.edu.
+                                             Key words and phrases. stochastic optimization, stochastic gradient descent, stochastic heavy ball, almost sure
+                                         convergence, convergence rate with high probability.
+
+                                                                                                                                     1
+assumptions on F ) under weakened assumption on the noise. The second belongs to almost sure
+convergence rates. Despite many classical results, strong convergence behavior of stochastic gradient
+schemes under general convexity assumptions on F (e.g. non-convex with saddle points) under
+weaker noise assumption has been studied fairly recently. Liu and Yuan provided sufficient conditions
+on F without assuming global uniform variance bound on the estimator  for SHB and SNAG
+(Stochastic Nesterov Accelerated Gradient) to avoid saddle points almost surely [9]. In addition,
+the authors of [9] expanded the application of Robbins-Siegmund theorem for proving almost sure
+convergence rates for SGD, SHB, and SNAG for non-convex, convex, and strongly convex objectives
+whose gradient is Lipschitz [9, table 1]. We remark that other recent convergence rate results include
+[1, 8, 11, 12, 15, 16].
+
+When F is convex, more results are available. The optimal convergence rate O(t-1/2) for sto-
+
+chastic first order oracle was proved for bounded, convex, and Lipschitz cost functions in [1, thm
+
+1-2]. A constructive proof for such an optimal rate using SHB is done in [15]. More precisely,
+
+Sebbouh et al. showed that there exists {(t, t) : t  0} such that eq. (1.1) attains the opti-
+
+mal   convergence         O(t-  1  +  )  for    convex  cost  functions  with   Lipschitz   gradient  [15,  theorem  13].       In
+                                2
+
+this case, the momentum t is a function of the step size t. When the step-size is chosen to be
+t = O(t-1/2), the momentum takes values t = O(0.5t/(t + 1)). Intuitively, when the minimizer
+
+is still far away in the early iterations, the algorithm is approximately an SGD, but gradually tran-
+
+sitions to SHB with large momentum as t  . This shows that the choice of t is crucial since
+
+the almost sure asymptotic performance of SHB is the same as SGD when t =  is held constant
+
+[9]. In the non-parametric setting, Lei, Shi, and Guo provided almost sure convergence rate and
+
+fluctuation for SGD (t = 0) when F is only -Ho¨lder [8]. More precisely, SGD achieves an
+
+almost   sure  convergence         rate      o(tmax(p-1,1-p(+1))+)       given  step  size  O(t-p)    with  p    (    1  ,  1)  for
+                                                                                                                    1+
+
+a convex objective whose gradient is -Ho¨lder [8, theorem 6]. Moreover, SGD converges at rate
+
+F (wt+1) - F          =   O(tmax(p-1,1-p(+1))           log2(t/))  with  probability  at    least  1-  if   p    (    1  ,  1)  [8,
+                                                                                                                    1+
+
+corollary 11].
+
+1.1. Contribution. We will restrict the scope of our study to the case where t :=  is constant in
+(1.1) and (z, ·) is convex and (z, ·)  C(Rd) with Ho¨lder constant L > 0 and   (0, 1]. Further,
+we assume that there exists a global minimum F := minwRd F (w)  0 and a global minimizer
+w  Rd. In the landscape of convergence rate theory for stochastic gradient schemes, the survey of
+prior works provided above indicates that the case of a convex objective whose gradient is -H¨older
+
+for SHB is unexplored. This is where our contribution lies.
+
+There are three main contribution from our work. First, we provide an alternative method
+
+to prove convergence rate using Gronwall's inequality and Doob's martingale convergence theorem
+
+instead of using Robbins-Siegmund theorem (cf. theorem 2.4 and theorem 2.5). Second, we provide
+
+an almost sure convergence rate result for SHB for convex objective whose gradient is -H¨older.
+
+As stated previously, this case is unexplored. Roughly stated, the result says that given a convex
+
+objective with -Ho¨lder gradient, SHB with momentum   (0, 1) and learning rate (step size) t-p
+
+with  p    (    1  ,  1)  converges      to  a  global  minimum    almost  surely  with  rate   2  max(p - 1, 1 - p( + 1))
+              1+                                                                               1+
+
+(cf. theorem 2.7). Finally, we also provide convergence rate in probability for the case  = 1 (cf.
+
+theorem 2.9). This is also unexplored as the case  = 1 was only done for SGD. Our result is
+
+consistent with [9, 8] for the case  = 1. Table 1 compares our convergence rate results with prior
+
+work.
+
+1.2. Acknowledgment. I would like to thank Prof. Sunder Sethuraman, for discussions and sup-
+port throughout the writing process of this manuscript.
+
+                                                                                            2
+Algorithm        Cost Function and Learning Convergence Rate
+                 Rate
+
+SGD-np           Convex, -H¨older gradient O(tmax(p-1,1-p(+1)))
+
+[8]              O(t-p),     p    (    1  ,  1)     a.s. and h.p..
+ SHB                                 1+
+
+                 Convex, Lipschitz gradient
+
+[15]             O(t-  1  ),  t      O(     t    )  O(t-  1  +    )  a.s..
+    SGD,               2                  1+t             2
+
+                 SHB, Convex, Lipschitz gradient
+
+SNAG
+
+[9]              O(t-  2  )                         O(t-  1  )    a.s..
+                       3                                  3
+
+SHB,   (0, 1)    Convex, -Ho¨lder gradient                     2  max(p-1,1-p( +1)) )  a.s.
+
+                                                    O(t 1+
+
+                 O(t-p),     p    (    1  ,  1)     O(tmax(p-1,-2p+1)) h.p.,  = 1.
+                                     1+
+
+Table 1. List of Prior works on Convergence Rates. The notation f (t) = O(g(t))
+
+is defined as the existence of a positive constant c > 0 such that f (t)  c g(t) for
+
+sufficiently large t > 0. Such definition along with other measure of convergence
+
+rates such as f (t) = (g(t)) and f (t) = o(g(t)) can be found in table 2.
+
+                                2. Mathematical Model and Main Results
+
+2.1. Notation and Assumptions. We list notations, assumptions, results, and main mathematical
+arguments that we use in our work for convenience of the reader.
+
+    Symbol       Description
+
+N0 = N  {0}      The set of non-negative integers.
+       R+
+                 The open interval (0, ), i.e. the set of strictly positive real numbers.
+      ·
+                 a  b means that there exists c > 0 such that a  c · b.
+f (t) = o(g(t))  The standard Euclidean norm in Rd.
+f (t) = O(g(t))  f (t)/g(t)  0 as t  .
+f (t) = (g(t))
+                  c > 0 and T > 0 such that f (t)  c g(t) for all t > T .
+   (, F , P)
+       Ft        f (t) = O(g(t)) and g(t) = O(f (t)).
+      F
+      mFt        The probability space for the paired process (Zt, wt) in (1.1).
+                 The filtration {Ft : t  N} where Ft = {ws : s  t}.
+     E a.s.      The -algebra tN Ft.
+     E h.p.      The set of measurable functions w.r.t Ft for t  N  {}.
+     (z, w)      The event E occurs almost surely, i.e. P(E) = 1.
+                 The event E occurs with high probability, i.e.  > 0, P(E)  1 - .
+       Zt        The estimator  : Z × W  [0, ) of the objective function.
+                 An i.i.d sequence of random vectors in Z  RN that makes up the stochastic
+                 gradient estimator (Zt, wt).
+        F        The density function for Zt.
+      mt         The objective function F : W  [0, ) defined by F (w) = E[(Zt, w)].
+                 The injected noise in stochastic algorithms, defined in (1.2).
+
+                                  Table 2. Summary of Notations.
+
+Assumption 2.1. Let Z  Rn, W  Rd and  be a probability density on Z. The function
+ : Z × W  R+ satisfies:
+
+                                                                                            3
+1. (z, ·) is (, L)-smooth, i.e. (z, ·) is differentiable and (z, ·) is (, L)-H¨older:
+            (0, 1] such that (z, u) - (z, v)  L u - v  u, v  W, z  Z.
+
+2. (·, w)  L1(Z, B,  dz) for all w  W where B is the Borel -algebra in RN .
+
+3. F (w) = E[(Z, w)] is bounded below by F = infwW F (w) > - and a global minimizer
+   w  W exists, i.e. F (w) = F.
+
+    The assumption that  is only -Ho¨lder is used in [8, assumption 1], whose application is also
+mentioned in [8]. This is a weakening of the  being Lipschitz used in [9, assumption 1]. However,
+thanks to a slight modification in the proof of Garrigos and Gower [4, lemma 2.25] (see proposition
+C.2), any function f that is (, L)-smooth still enjoys the property
+
+  f (y)  f (x) + f (x), y - x + L y - x1+               x, y  Rd.                      (2.1)
+                                             1+
+
+    Now, observe that E[(Z, w)] exists due to the second property in assumption 2.1. Such a
+property can be satisfied for example when Z is bounded or if Z is Gaussian. Moreover, assuming
+such property is natural; in the gradient descent (GD) scheme
+
+                            1n                                                         (2.2)
+     wt+1 - wt = -t n (Zk, wt)
+
+                                          k=1
+
+such an assumption implies convergence almost surely of the empirical average on the right hand
+side to E[(Z, wt)] = E[(Z, wt)] = F (wt) as the number of data points n  . This
+suggests that (2.2) approximates the deterministic GD [4, algorithm 3.2]. In addition, there are
+important consequences. The first consequence is due to proposition C.1: F inherits the properties
+in assumption 2.1 from the function (z, ·). Secondly, if the joint distribution of (Zt, wt) is the
+product measure  dz  µt, then
+
+1{wtA} E[(Zt, wt) | Ft] dP =      (z, w) (z) dz µt(dw)
+
+                              AZ
+
+     = E[(Z, w)] µt(dw) = E[(Z, w)] µt(dw)                                             (2.3)
+
+                              A                A
+
+     = 1{wtA} F (wt) dP.
+
+Equation (2.3) implies E[(Zt, wt) | Ft] = F (wt) and that the estimator (Z, wt) is unbiased
+(w.r.t ). That F (wt) can be accessed through the estimator (Z, wt) is also assumed in [9, the
+sentence right above assumption 4].
+
+Assumption 2.2. Using the same notation as in assumption 2.1, there exists A, B, C  R+ such
+that E[(Zt, wt)1+ | Ft]  A(F (wt) - F) + B F (wt)1+ + C for all t > 0 a.s.-P.
+
+    The above assumption is called the ABC condition, originally proposed by Khaled and Richt´arik
+in [5], and is used by Liu and Yuan in [9, assumption 4] when F is (1, L)-smooth, i.e.  = 1. It is
+said to be "the weakest assumption" for analysis of SGD in the non-convex setting [9, remark 1].
+By lemma C.5, the first bounding term is a consequence of (, L)-smoothness and convexity:
+
+1{wtA} E[(Zt, wt)1+ | Ft] dP = E(z, w)1+ µt(dw)
+
+                                                                         A
+
+     c1(, )(F (w) - F) + c2(, ) + c3(, ) E[(Z, w)1+] µt(dw).
+
+  A
+
+                                  4
+Note that the last two terms in the integrand are constants and that the existence of a global
+minimizer w  W is required (satisfied by assumption 2.1). When  = 1 and the gradient estimator
+is unbiased, i.e. E[(Z, w)] = F (w), the variance is
+
+     E(Z, w) - F (w)2  E(Z, w)2 - 2 E[(Z, w), F (w)] + F (w)2
+                                      = E(Z, w)2 - F (w)2.
+
+Therefore, if the variance is bounded by 2 < , then E(Z, w)2  F (w)2 + 2. This
+justifies the second term in the ABC assumption. For  < 1, assuming that the gradient estimator
+has variance bounded by 2, we end up with
+
+     E(Zt, wt)1+  21+ (F (wt)1+ + Emt1+ )  B F (wt)1+ + C 1+ .
+
+In fact, with a simple estimate a1+  (a + 1)1+  (a + 1)2  2a2 + 2, setting a = F (wt) gives
+
+             E[(Zt, wt)1+ | Ft]  2B F (wt)2 + (C 1+ + 2) a.s.-P.                                        (2.4)
+
+which has the form of the ABC condition in [9, assumption 4]. Further discussions on the ABC
+condition can be found in [9] and [5].
+
+Assumption 2.3. supzZ (z, w) < .
+
+    Assumption 2.3 is also used in [8]. Such an assumption can be satisfied when Z is bounded. See
+discussions in [8]. Note that by lemma C.6.3b, if (z, ·) is convex and assumption 2.1 holds, then the
+`noise' mt2 defined in (1.2) is bounded by a scalar multiple of wt - w2 + 1. This assumption
+is used to produce probability estimates using concentration inequalities for the convergence rate of
+SHB iterates.
+
+2.2. Almost Sure Convergence Rate. Using assumptions 2.1 and 2.2, one may estimate the
+
+iterates F (wt) - F. Indeed, under -Ho¨lder smoothness assumption, we have F (y) - F (x) 
+F (x), y - x + (L/(1 + )) y - x1+ for all x, y  Rd. If one substitutes y = wt+1 and x = wt,
+
+then for the SGD case, we get an estimate for the iterates of F (wt) almost surely:
+
+F (wt+1)  -  F (wt)    -t    F (wt)2     +  t     F (wt),         mt  +  1  L    t1+ (Zt, wt)1+ .       (2.5)
+                                                                            +
+
+    A natural approach to deal with (2.5) is to apply E[· | Ft]. Upon such application, the martingale
+difference term vanishes and the negative term -tF (wt)2 can be dropped. So the iterates of
+
+E[F (wt+1) - F | Ft] looks like
+
+          E[F (wt+1)   -  F  |  Ft]      [F (wt)  -  F]  +  1  L    t1+  E[(Zt, wt)1+  | Ft].           (2.6)
+                                                               +
+
+Under theorem 2.2, Yt := F (wt) - F is a non-negative almost super-martingale for which an almost
+sure convergence theorem (a.k.a. Robbins-Siegmund ) exists [13]. In [9], an upper bound for trYt
+
+is constructed and then Robbins-Siegmund theorem is used. The Robbins-Siegmund theorem is
+
+proved by constructing a super-martingale and then using Doob's martingale convergence theorem
+
+to conclude the convergence [13]. Our approach is slightly different. While we use the same estimate
+
+as in [9, lemma 19] for the upper bound of trYt, we proved the convergence of trYt using Gronwall's
+
+inequality and Doob's Martingale convergence theorem. Gronwall gives uniform upper bounds to
+
+     t  F  (wt)2,           t   Yt  ,  and trYt.  Then,  one   can  estimate E[trYt | Fs] - srYs  from  above
+t=1                    t=1
+by an absolutely convergent series for some rate r > 0 where lims srYs = 0 if Yt > 0. Due to the
+
+requirement Yt > 0, our result holds only up to the stopping time  := inf{t > 0 : F (wt) = F}.
+
+Proposition 2.4. Let Xt, Yt, Zt be non-negative for all t  N0 and at > 0 be such that
+     1. at, Zt  1(N).
+
+                                                                                            5
+     2. Yt  (1 + at-1)Yt-1 - Xt-1 + Zt-1.
+Then Yt  (N) and Xt  1(N).
+
+Lemma 2.5. Let Yt, Zt be a sequence of positive and non-negative random variables respectively,
+
+adapted to a filtration Ft          and c1, c2  R+       be constants.       Let    t  =  (t-p)     where  p        (    1  ,  1)  and
+                                                                                                                       1+
+
+  (0, 1]. If both of the following holds
+
+     1. For a fixed s > 0, E[Yt+1 | Fs]  E[Yt | Fs](1 + c1 t1+ ) + t1+ (E[Zt | Fs] + c2) for all t  s.
+
+     2.             t  E[Yt]  <     and             t   E[Zt]  <  .
+             t=1                               t=1
+
+then limt tmin(1-p,p(1+)-1)- Yt = 0.
+
+Remark 2.6. Compared to [9, lemma 19] and [13, theorem 1], we require Yt > 0 and item 2 where
+the expectation of the sum is required to be finite. The application of theorem 2.5 will be for convex
+
+cost F and Yt = F (wt) - F. Due to the requirement Yt > 0, instead of stating general convergence
+rate for F (wt) - F, we only make statements about the convergence rate of F (wt) - F where
+ := inf{t > 0 : F (wt) = F}.
+
+Theorem 2.7. Let wt be the iterates in (1.1). With the notation in table 2, if t = O(t-p) with
+
+p    (    1  ,  1)  and  both  assumption      2.1  and  2.2    hold,  then  the  SHB  converges    almost    surely   at      rate
+        1+
+
+     1. min F (ws)2 = o(tp-1) a.s.-P.
+
+          0st
+
+     2. If in addition, (z, ·) is convex for all z  Z, then
+
+         (a) min F (ws) - F = o(tp-1) as t  .
+
+                0st
+
+         (b) Let  := inf{t > 0 : F (wt) = F}. We have
+
+                    F (wt) - F = o(tr max(p-1,1-(1+)p)+) where r =                           2        (0, 1)
+                                                                                            1+                   .
+
+                                                                                            1       =0
+
+Remark 2.8. The slowdown factor r due to the smoothness parameter  appears only with mo-
+
+mentum  > 0 and  < 1. The r factor is counter-intuitive since momentum is supposed to make
+
+convergence         faster  when    the  gradient   is  small.  Examining    (3.13),   the  factor      appears        as   a  scalar
+                                                                                                    1-
+
+multiplier to the `slower' converging terms, which slows down the overall rate for  > 0.
+
+2.3. Convergence Rate with High Probability. Observe that the inner product term on the
+right hand side of (2.5) is a martingale difference. If we sum both sides of (2.5) from t to T - 1,
+then we get
+
+                                                                             T -1
+
+                    F (wT ) - F  [F (wt) - F] + s F (ws), ms - F (ws)2
+
+                                                               s=t                                                                (2.7)
+
+                                    +    1  L    T -1          (Zs, ws)1+ .
+                                            +
+                                                      s1+
+
+                                                 s=t
+
+The term MT :=                T -1  sF      (ws),   ms   is     now    a  martingale   which  can   be  estimated      by      a  term
+                              s=t
+                       T -1
+smaller than           s=t   sF (ws)2          with     high  probability    using  martingale  concentration          inequalities
+
+of Bernstein and Azuma-Hoeffding . These concentration inequalities require strong uniform
+
+                                                                    6
+bound on the martingale difference, which assuming that F is Lipschitz, can be estimated by
+Cauchy-Schwarz |F (ws), ms|  ws - w · ms. Therefore, such an approach requires
+estimating ws - w and ms either almost surely or with high probability (theorem 4.1 and
+theorem 4.7). To produce uniform estimates for these quantities to apply concentration inequalities,
+we require that the step size be `polynomially bounded', i.e. there exists c1, c2 > 0 such that
+c1t-p  t  c2t-p for all t > 0 (cf. table 2).
+
+    There is a nice intuition associated to this approach. Compared to a deterministic algorithm
+where the error F (wt)-F decreases at every iteration [4, thm 3.4, lemma 2.28], the effectiveness of a
+stochastic algorithm is shown over several iterations [t, T ]. That is, one must wait until inefficiencies
+due to noise `averages out' over several iterations. Therefore, estimating F (wt)-F as a sum over an
+interval as in (2.7) can be meaningful. We remark that with existing assumptions (theorem 2.1 and
+theorem 2.2), it is difficult to show directly that F (wt) - F decreases almost surely by conventional
+means (e.g. Borel-Cantelli), which is a key to achieve an optimal convergence rate of O(t-1/2) shown
+in [1] (refer to theorem 3.3).
+
+Theorem 2.9. Let zt, wt, vt be the SHB iterates as in (1.1) and (3.6) and K0(L, , ), K5(L, , ) be
+positive constants defined in (4.1) and proposition 4.3. If (z, ·) is convex for all z  Z, assumption
+2.1 and assumption 2.3 both hold with  = 1,   [0, 1), and t satisfies
+
+                        1
+1. 0  min     1,                ,  K0    .
+                        2 K5
+
+2. t+1  t for all t  0.
+
+3.    t = (t-p)  for       p    (  1  ,  1).
+                                   2
+
+then
+
+                                                                                    T   2
+                                                                                log
+              P F (wT +1) - F = O                       T max(p-1,-2p+1)                      1 - .
+                                                                                     
+
+Remark 2.10. We remark that it is required to have c1t-p  t  c2t-p for all t > 0, which is
+more stringent than the asymptotic -bound or O-bound since we need to estimate ratios of the form
+t+s/t in (4.29) and ( t)-1 in theorem 4.14. This result is consistent with theorem 2.7 and [9,
+theorem 13].
+
+                                   3. Almost Sure Convergence Rate
+
+3.1. Stochastic Gradient Descent.
+
+Proposition 3.1. If assumption 2.1, assumption 2.2 all hold and t  1+(N) satisfies t 
+min{1,  1LB } for all t  0, then the SGD algorithm (1.1) with  = 0 satisfies
+
+1. supt0 E[F (wt) - F] <  and                             t  EF (wt)2           <    .
+                                                     t=1
+
+2.    If  in  addition  t  = O(t-p)           where  p    (    1  ,  1),  then   min F (ws)2          = o(tp-1)  a.s.-P.
+                                                             1+
+                                                                                1st
+
+3. If in addition (z, ·) is convex for all z  Z, then                                t  E[F  (wt)  -  F]  <  .
+                                                                                t=1
+
+                                                                  7
+Proof. Due to (, L)-smoothness of F and assumption 2.2, by proposition C.2,
+
+E[F (wt) - F - (F (wt-1) - F) | Ft-1]  E[F (wt) - F (wt-1) | Ft-1]
+
+     F (wt-1),         E[wt   -  wt-1  |  Ft-1]  +  1  L    E[wt  -  wt-11+  |  Ft-1]                   (3.1)
+                                                       +
+
+     -t-1F (wt-1)2               +  1  L    t1-+1   A (F (wt-1) - F) + B F (wt-1)1+ + C
+                                       +
+
+By (2.4), we get
+
+E[F (wt) - F-(F (wt-1) - F) | Ft-1]  -t-1F (wt-1)2
+
+                       +  1   L    t1-+1    A (F (wt-1) - F) + 2B F (wt-1)2 + 2 + C .                   (3.2)
+                              +                                                                         (3.3)
+
+If Yt = E[F (wt) - F] and LBt  1, then
+
+Yt   1  +          LA  t1-+1  Yt-1 -                t-1   EF (wt-1)2  +  L      (C + 2)        t1-+1 .
+                  1+                      1+                                    1+
+
+Applying proposition 2.4 yields the first claim. For the second claim, note that t F (wt)2 < 
+almost surely since its expectation is finite (due to the first claim). This implies
+
+                                                            
+
+                       t · min F (ws)2  t F (wt)2 < .                                                   (3.4)
+                              1st
+                  t=1                                     t=1
+
+Since in addition min1st F (ws)2 is monotonically decreasing, by [7, theorem 3.3.1], we have
+t1-p min1st F (ws)2  0 almost surely.
+
+For the third claim, let Wt = Ewt - w2. By the convexity of F , we obtain the estimate
+
+Wt+1 = Wt + 2 E[wt+1 - wt, wt - w] + Ewt+1 - wt2
+
+     = Wt - 2t EF (wt), wt - w + t2E(Zt, wt)2
+      Wt - 2t E[F (wt) - F] + t2 A E[F (wt) - F] + B t EF (wt)2 + C .
+
+Since t  2(N), by proposition 3.1, the third term in the above estimate is summable. We may
+
+apply proposition 2.4 and conclude t E[F (wt) - F] < .                                                  
+
+Remark 3.2. Note that the first two results in proposition 3.1 applies to non-convex cost function,
+
+comparable with [4, thm 5.12] by Garrigos and Gower for  = 1, which asserts that for a fixed end
+time T  1, under a constant step size of the order O(T -1/2), we have min0t<T E[F (wt)2] =
+O(T -1/2). More generally, our result is consistent with [9, theorem 6.2].
+
+Remark 3.3. From proposition 3.1, we may conclude that P( t F (wt)2 < ) = 1 and if F is
+convex, P[ t (F (wt) - F)] = 1. Intuitively, this suggests that if t = , then F (wt)2  0
+
+almost surely (resp. for the convex case F (wt) - F  0 almost surely). Moreover, if F (wt) - F
+
+decreases eventually, then we obtain the optimal convergence in [1].
+
+Corollary 3.4. If all assumptions in proposition 3.1 holds and t / 1(N), then
+     1. F (wt)  0 almost surely.
+    2. If (z, ·) is convex for all z  Z, then
+         (a) F (wt) - F  0 almost surely.
+
+                                                                                            8
+       (b)    Let     be  defined     as  in  theorem  2.7.     If  t  = (t-p)        for   p       (    1  ,  1),  then  almost  surely,
+                                                                                                       1+
+
+                                      F (w t) - F = o(tmax(p-1,1-(1+)p)+).
+
+Proof. Following the same argument as in [12, theorem 2], we get
+
+                                1/                                                    t                                   t
+
+F (wt) - F (ws)  F (wt) - F (ws)1/  L i F (wi) + L                                                                           i mi .
+
+                                                                                   i=s                              i=s
+
+Since proposition 3.1 asserts t F (wt)2 <  almost surely, by lemma C.3, it suffices to show
+
+that the second term on the right hand side has finite L2 norm. Indeed, if this is the case, then
+
+t    imi        <     almost    surely.   By   proposition        C.7  and    assumption          2.2,
+i=s
+
+              t              2     t                         t
+
+       E           i mi = i2 Emi2  i2 A E[F (wi) - F] + B EF (wi)2 + C
+
+            i=s                 i=s                          i=s
+
+The term on the right hand side is finite due to the first conclusion in proposition 3.1 and that
+t  1+  2. Therefore, the first claim follows.
+
+    Part 2.a. For the convex case, we know that F has no saddle points and all minima are
+global. Therefore, the set of critical points C = {w  W : F (w)2 = 0} is the set of global
+minima. Therefore, F (wt)2  0 implies wt  w where w  C. By continuity of F , we get
+
+F (wt)  F (w) = F.
+
+    Part 2.b. For a realization   , if  () < , then F (w()t()) = F for t   (). The
+claim then holds trivially. If  () = , then F (w()t()) = F (wt()) for all t > 0. Defining
+Yt = F (wt)-F, applying E[· | Fs] on (3.2), dropping the -t F (wt)2 term, and applying lemma
+
+C.4 yields an inequality of the form
+
+                   E[Yt+1 | Fs]  1 + c0 t1+ E[Yt | Fs] + c0 t1+ c1 E[Yt | Fs] + c2
+
+                                   = 1 + (c0 + c0c1)t1+ E[Yt | Fs] + c0c2 t1+
+
+where  c0  =    L  ,  c1  =  A + 4BL,     and  c2  =   C + 2.     By   proposition          3.1,  all  conditions   in    lemma   2.5  are
+              1+
+
+satisfied. Therefore, the claim holds.                                                                                                 
+
+3.2. Stochastic Heavy Ball. The algorithm for SHB is given in (1.1). From [9, eq. (17) and (18)],
+
+by defining
+
+                                   vt = wt - wt-1         ,  zt   =    wt  +      vt     ,  t  1.                                 (3.5)
+                                                                              1-
+
+                                   w1 = w0.
+
+the SHB can be rewritten as one-step iterates
+
+                                      
+
+                                      vt+1 =  vt - t (Zt, wt)                            t  1.
+                                                             t                           t  1.
+                                               =   zt  -  1  -         (Zt,   wt)                                                 (3.6)
+
+                                        zt+1
+
+                                      
+
+                                      z1 = w1 , v1 = 0.
+
+Proposition 3.5. If assumption 2.1 and assumption 2.2 holds, then there exists a constant b0 > 0
+such that if t  1+ and t  min(1, b0), then the SHB algorithm (3.6) corresponding to (1.1)
+
+satisfies
+
+1. supt0 E[F (zt) - F + vt2] <  and                                    t   EF (zt)2         <       .
+                                                                  t=1
+
+2.               Evt2     <     a.s.-P.
+           t=1
+
+                                                                    9
+3.     If  t = O(t-p)    for  p     (    1  ,  1),  then   min F (ws)2        = o(tp-1)        a.s.-P.
+                                       1+
+                                                          1st
+
+4. If (z, ·) is convex for all z  Z, then                         t  (E[F  (wt)  -  F]    +  E[F  (zt)  -  F])  <  .
+                                                             t=1
+
+Proof. Proof of claim 1. Following [9, eq. (21)-(22)] in the proof of [9, theorem 8] and using the
+simple estimate a1+  2a2 + 2 as in (2.4), we have
+
+                   F (wt)2  2F (zt)2 + c1 vt2                                                                            (3.7)
+                                                                                                                         (3.8)
+                   F (wt)     -  F     F (zt)       -  F  +  F (zt)2       +  {c2  +  c3}  vt2    +  c4
+                                                                   2
+
+where
+
+                   2L22                           2                     L1+
+           c1 := (1 - )2 , c2 := 2(1 - )2 , c3 := (1 + )(1 - )1+ , c4 := 2(c3 + 1).
+
+Observe that the left hand sides of (3.7) and (3.8) makeup the bounding terms in assumption 2.2.
+
+This implies that the upper bound of E[(Zt, wt) | Ft] can be expressed entirely in terms of SHB
+variables F (zt) - F, F (zt)2, and vt2. As a consequence, we may estimate the iterates of the
+
+SHB variables as follows
+
+               E[vt+12   |  Ft]     2  (1      +   1) vt2    +  1   t2  F (wt)2
+                                                                1
+
+                                 + t2 A [F (wt) - F] + B F (wt)2 + C
+
+                                  2 (1 + 1) +                   1          c1 + A c2 + A c3       t2       vt2           (3.9)
+                                                                   +B
+
+                                                                1
+
+                                 +     2    + 2B +        A  t2 F (zt)2 + t2              C + A c4
+
+                                       1                  2
+
+                                 + A t2 [F (zt) - F]
+
+where 1 is an arbitrary constant. In addition, following [9, eq.(20)], we get
+
+           E[F (zt+1) | Ft]  F (zt) -            1 - t c5           t F (zt)2 + 2vt2
+                                               1 -  2
+
+                            + c6 t1+ (A[F (wt) - F] + BF (wt)2 + C)
+
+                             F (zt) -            1 - t c5 -                   A       t      t F (zt)2                   (3.10)
+                                               1 -  2                B c6 + 2
+
+                            + 2 + (c1 c6 B + A c2 + A c3) t1+ vt2
+
+                            + A c6 t1+ [F (zt) - F] + (C + A c4) t1+
+
+where 2 is an arbitrary constant and
+
+                                       c5      :=   c1(L, )  ,  c6  :=  c3(L, , )
+                                                    8(1 - )                1+
+
+Since    < 1,  we  take  1, 2     R+   such         that  2(1 + 1) + 2      1,      e.g.  set  1  =  1-2   and     2  =  1-    2  .
+                                                                                                      22                    2
+
+Now, adding (3.9) and (3.10) yields that there exists positive constants b0, b1, b2, b3  R+ such that
+
+if t  min(1, b0), then
+
+                   E[F (zt+1) - F + vt+12 | Ft]  (1 + b1 t1+ )(F (zt) - F + vt2)                                         (3.11)
+                                                            - b2 t F (zt)2 + b3 t1+ .
+
+                                                             10
+Applying the expectation on both sides and proposition 2.4 yields the first claim.
+
+Proof of claim 2 and 3. Observe that the iterates of vt satisfies                                          (3.12)
+                 Evt+12 = 2 Evt2 - 2 t E[F (wt), vt] + t2 E(Z, wt)2
+                               Evt2 - 2 t E[F (wt), vt] + t2 E(Z, wt)2.
+
+Using assumption 2.2, the first claim, along with 1+  2, (3.7), and (3.8) yields that the last term
+in (3.12) is summable:
+
+                     
+
+                          t2 EF (zt)2 + sup E F (zt) - F + vt2 + 1 < .
+                                               t0
+                     t=1
+
+Therefore, by proposition 2.4, the middle term in (3.12) is also summable: tE[F (wt), vt] <
+
+. Now we have that Evt+12 - 2Evt2 corresponds to summable terms. Since v1 = 0, we know
+                   
+t=1  vt2     =     t=1  vt+12.  Therefore,
+
+                                                                       
+
+     (1 - 2) Evt2 = -2 t E[F (wt), vt] + t2 E(Zt, wt)2 < .
+
+                   t=1                t=1                              t=1
+
+This proves     Evt2 < , which implies                  vt2      <     a.s.-P.     The third claim follows from
+                                                   t=1
+
+(3.7) using similar argument as in the proof of the second result in proposition 3.1.
+
+    Proof of claim 4. Define Ut = Ezt - w2 and KABC = C + (A + 2BL) supt0 E[F (wt) - F].
+By the convexity of F ,
+
+Ut+1 = Ut - 2t E[F (wt), zt - w] + t2 E(Zt, wt)2
+
+     = Ut - 2t                                                                        + t2E(Zt, wt)2
+                          E[F (wt), wt - w] + 1 -  E[F (wt), vt]
+
+      Ut - 2 t E[F (wt) - F] +              1  2   t(F  (wt-1    )  -  F  (wt  ))  +  t2  KABC
+                                               -
+
+      Ut - 2 t E[F (wt) - F] +               2        t-1E[F (wt-1)] - tE[F (wt)]               + t2 KABC  .
+                                            1-
+
+Note that we have used convexity of F and that t is decreasing in the second inequality. Note that
+terms in the parentheses are summable. Applying proposition 2.4 yields that t E[F (wt)-F] < 
+for which the fourth claim follows. Lastly, (, L)-smoothness gives
+
+     F (zt)  -  F    F (wt)  -  F  +  F (wt),  zt  -  wt   +  1  L    zt  -    wt1+
+                                                                 +
+
+                     F (wt) -   F  +  F (wt)2      +  2(1  2    )2  vt2   +    1   L            1+
+                                            2              -                       +      1-
+                                                                                                     vt1+ .
+
+Multiplying both sides by t yields that the right hand side is summable.                                      
+
+Remark 3.6. Proposition 3.5 shows that the SHB converges at rate similar to that of SGD. In
+particular, the SHB parameter  in (1.1) does not impact the almost sure convergence rate, consistent
+with Liu and Yuan's result [9, theorem 8].
+
+Corollary 3.7. If all the assumptions in proposition 3.5 hold and t / 1(N), then
+     1. F (wt)  0 almost surely.
+    2. If (z, ·) is convex for all z  Z, then
+         (a) F (wt) - F  0 almost surely.
+
+                                                                                            11
+(b)  Let    be  defined       as  in  theorem         2.7.  If  t  = (t-p)                       for  p    (    1  ,  1),  then  almost  surely
+                                                                                                              1+
+
+     F (wt) - F = o(tr max(p-1,1-(1+)p)+) where r =                                                       2          (0, 1)
+                                                                                                         1+                     .
+
+                                                                                                         1         =0
+
+Proof. The same argument as in corollary 3.4 can be used. For a realization   , if  () < ,
+then F (w()t()) = F for all t   () and the claim holds trivially. Otherwise, if  () = ,
+then F (w()t()) = F (wt()) so that the argument in the next paragraph can be used.
+
+    Both claims follow from (3.7) and (3.8) along with the first and second conclusion in proposition
+3.5. Let Yt = F (zt) - F + vt2. Applying E[· | Fs] on (3.11) and dropping the -tF (zt)2 term
+yields
+
+                                 E[Yt+1 | Fs]  (1 + b1 t1+ ) E[Yt | Fs] + b3 t1+ .
+
+Proposition 3.5 shows that all conditions in lemma 2.5 holds. Estimating F (wt) - F using (, L)-
+smoothness and applying lemma C.4 yields
+
+                                                                   L                                       1+
+
+F (wt) - F  F (zt) - F + 1 -  F (zt), vt + 1 +  1 -  vt
+
+                                            F (zt)2 + vt2                        L                                         1+
+      F (zt) - F + 1 -                                 2                    +
+                                                                                                         1 -  vt
+                                                                               1+
+
+                                            L1/                                             2     vt2              L                     1+
+      F (zt) - F + 1 -                      1+                                                      2         +
+                                                      · (F (zt) - F) 1+                        +                           1 -  vt           .
+                                                                                                                 1+
+
+                                                                                                                                         (3.13)
+
+Applying lemma 2.5 yields tr(F (wt) - F)  0 if
+
+                r=            min(  1+   ,   2  )  ·  min(1     -  p,  p(1  +  )                 -  1)     (0, 1)
+                                      2     1+
+
+                              min(1 - p, p(1 + ) - 1)                                                     = 0.
+
+This completes the proof.                                                                                                                    
+
+4. Convergence Rate with High Probability for Convex Objective
+
+We will assume throughout this section that (z, ·) is convex for all z  Z, which by proposition
+
+C.1, makes F also convex. It will be convenient to define once and for all the following constants
+
+and notations. Let a1 and a2 be the constants defined in lemma C.6. Also, define the following
+
+     k0   :=               ,  k1  :=  a1(L, )         ,  k2 :=  a2(L, )        ,                 k3 :=     2   · sup (z, w).
+              1-                      (1 - )2                   (1 - )2                                  1-
+                                                                                                                 zZ
+
+     k4 := k0 +  k02 , k5 := k2 + k3 + a2 k02.                                                                                           (4.1)
+
+                                             1
+      K0 := min 1, (a1 k02 + a1 k0 + a1 + k1)(1 - ) .
+     zt = zt - w2 - zt-1 - w2 , vt = vt2 - vt-12.
+
+4.1. Distance from a Minimizer with High Probability.
+
+Lemma 4.1. Let zt, wt, vt be the SHB iterates as in (1.1) and (3.6). With the notation in (4.1), if
+(z, ·) is convex for all z  Z, assumption 2.1 and assumption 2.3 both hold, and t satisfies
+
+     1. 0  K0.
+     2. t+1  t for all t  0.
+     3. t  2(N).
+
+                                                                                            12
+then there exists constants K1(L, , , w0) > 0 and K2(L, , , w0) > 0 such that for all t > 0,
+
+                                                                             t-1
+
+1. max wt - w2, vt2, zt2  K1 s a.s.-P.
+
+                                                                             s=0
+
+2.    t-1  s2  (Zs, ws)        K2  a.s.-P.
+      s=1
+
+Proof. Consider (3.6) for the iterates of vt. Take the squared-norm. Applying lemma C.6.3a yields
+
+                  vt+12 - vt2  vt+12 - 2 vt2                                                                               (4.2)
+                                       = -2 t  (Zt, wt), vt + t2 (Zt, wt)2
+                                        -2 t  (Zt, wt), vt + a1 t2 (Zt, wt) + a2 t2
+
+Using the notation in (4.1), convexity and lemma C.6.3a yields
+
+zt+1  =  -2 t (Zt, wt),            vt   + wt - w  +            1         t2 (Zt, wt)2
+                                        1-                 (1 - )2
+
+         -2 t (Zt, wt),             vt  +       2       t     (Zt, w) - (Zt, wt)                + k1 t2 (Zt, wt) + k2 t2
+                                   1-         1-
+
+         -2 t (Zt, wt),             vt     +  t    (k3  +  k2  t  )  -  t         (Zt,  wt  )     2                 .
+                                   1-                                                           1 -  - t k1
+
+                                                                                                                           (4.3)
+
+Now, let At =     t-1  s  .  Note  that  v1  =  0  and  z1    = w0.     Multiplying            (4.2)  by  k02,   adding    (4.3),  and
+                  s=1
+
+summing from s = 1 to s = t - 1 yields
+
+                  zt - w2 + k02 vt2  w0 - w2 + k5 At
+
+                                             - 2     1  1      +  k02             t-1
+                                                        -
+                                                                                      s (Zs, ws), vs                       (4.4)
+
+                                                                                  s=1
+
+                                                 t-1                     1        2    - s (k1     + a1k02)      .
+                                                                                  -
+                                             - s (Zs, ws)
+
+                                                s=1
+
+Let Xt be the last term in (4.4) and Yt = 2k0w0 - w, vt. Using (4.4) and z1 = w0, we get the
+estimate
+
+      wt - w2 = zt - w2 + k02 vt2 - 2k0 zt - w, vt
+
+                                                                                                            t-1
+
+               = zt - w2 + k02 vt2 - 2k0z1 + w, vt - 2k0 zs+1 - zs, vs
+
+                                                                                                            s=1
+
+                                                                                      2k0  t-1                             (4.5)
+                                                                                     1-
+               =  zt  -  w2    +   k02  vt2  -  2k0w0      -   w,    vt           +             s  (Zs, ws),           vs
+
+                                                                                           s=1
+
+                                                                                            t-1
+
+                w0 - w2 + k5 At + Xt - Yt + 2  k0 s (Zs, ws), vs.
+
+                                                                     s=1
+
+Now, recalling v1 = 0 and rearranging (4.2) and summing from s = 1 to s = t - 1 yields
+
+                  t-1                                                t-1                              t-1
+
+           2 s(Zs, ws), vs  -vt2 + a1 s2 (Zs, ws) + a2 s2.
+
+                  s=1                                                s=1                              s=1
+
+                                                           13
+Combining this with (4.5) yields that the middle term a1 s2(Zs, ws) can be collected with Xt so
+that
+
+                                                                                                                                              t-1
+
+                       wt - w2  w0 - w2 + k5 At - Yt - 2k0vt2 - k0a2 s2
+
+                                                                                        s=1                        (4.6)
+
+                                  t-1                    1  2  - s (k1      + a1k02  +  a1k0)  .
+                                                            -
+                              - s (Zs, ws)
+
+                                    s=1
+
+Requiring t to be small enough, we may drop the last two terms on the right hand side of (4.6).
+
+Now,  using  the  inequality  2|w0  -  w,   vt|     w0      -  w2   +  1  vt  2  and  setting      =  1/2  yields
+                                                                       
+
+                  wt - w2  w0 - w2 + k5 At - Yt - 2k0vt2
+
+                               w0 - w2 + k5 At + 2k0|w0 - w, vt| - 2k0vt2                                          (4.7)
+
+                                w0       -  w2   +  k5  At  +  k0  w0  -  w2.
+                                                               2
+
+Since we define 0 > 0, we have wt - w2                   t-1   s   as  desired.  Since  vt  =  wt  - wt-1,  we     know
+                                                         s=0
+that vt2 has the same order as wt - w2. Similarly, since zt = wt + k0 vt, it follows that zt2
+
+also has the same order as wt - w2.
+
+Now, define vt+1 = 2vt2 - vt+12. Observe that
+
+      zt+1 - vt+1  (k3 + k2 t)t - t (Zt, wt)                         2                - t2(Zt, wt)2
+                                                                   1 -  - t k1
+
+                   k5 t - t (Zt, wt)                      2               + t2(Zt, wt)2
+                                                        1 -  - t k1
+
+                                                                2
+                   (k5 + a2t) t - t (Zt, wt) 1 -  - t (k1 + a1) .
+
+If t is small enough and is decreasing, rearranging the above by moving the last term to the left
+hand side and multiplying by t yields
+
+        1    t2 (Zt, wt)  (k5 + a2 t) t2 - zt+1 + vt+1
+      1-
+                            = (k3 + a2 t) t2 - tzt+1 + t2vt2 - tvt+12
+                             (k3 + a2) t2 + tzt2 - t+1zt+12 + tvt2 - t+1vt+12.                                     (4.8)
+
+Since t  2, summing the above and making use of the first claim completes the proof.                               
+
+Remark 4.2. Note that the -parameter does not affect the long term fluctuation of the iterates as
+can be seen from the conclusion of lemma 4.1 and from setting  = 0 directly in estimates (4.7) and
+(4.8). As such, lemma 4.1 holds if wt is the SGD iterates.
+
+In the sequel, we will require estimating constants of the form t                t      s.  Under     the  assumption
+                                                                                 s=1
+                                                 t-1           t1-     t-1
+t  1+(N) for   (0, 1], we have t                 s=0  s                s=0  s1+  < .        Moreover, such a sum
+
+converges to zero for   (0, 1). If  = 1, 0 = K0, t  K0 t-p for t > 0, then
+
+     t-1                 t-1                 K02 max(t-p, (t - 1)-2p+1)  K02  K0 , t > 0 .                         (4.9)
+
+t s  K02 t-p      1 + s-p
+
+     s=0                 s=1
+
+    In addition, from here onwards, we will estimate probabilities using Azuma-Hoeffding and Bern-
+stein's inequality following the work by Lei, Shi, Guo in [8].
+
+                                                        14
+Proposition 4.3. With the notation in lemma 4.1, if all assumptions in lemma 4.1 holds and in
+
+addition  t    K0t-p  for  p    (  1  ,  1),  then   there  exists  positive    constants   K3, K4, K5           R+   depending
+                                   2
+
+only on L, ,  such that for any t > 0 and   (0, 1),
+
+                                         2                               1         t-1
+                           1-                                            
+P         zt - w2 +                         vt2        K3   +  K4   log     +  K5       s2  ws    -  w2         1 - .
+
+                                                                                   s=1
+
+Proof. We use the notation of constants in (4.1). Using the convexity of F , summing (4.2) and (4.3)
+yields
+
+zt+1 + k02 vt+1  -2 t                    1  1     +  k02  (Zt,      wt),    vt  -   2t      (Zt,      wt),  wt   -  w      +  t
+                                            -                                      1-
+
+                      =  -2 t   k4 F (wt),           wt   - wt-1 -        2t    F (wt),       wt  - w +         2t    + t
+                                                                         1-                                    1-
+
+                       2 k4 t F (wt-1) - F (wt)                + 2t         F (w) - F (wt)        +    2t      + t
+                                                                  1-                                  1-
+
+                              t-1F (wt-1) - tF (wt)                         2                                  + t
+                       2 k4                                         +              t    F (w) - F (wt)                + t
+                                                                       1-
+
+                                                                                                                           (4.10)
+
+where t and t are defined as Ft-adapted processes
+
+                           t = (1 - )k4tmt, vt + tmt, wt - w.                                                              (4.11)
+                           t = t2 (a1k02 + k1) (Zt, wt) + a2k02 + k2 .
+
+By lemma 4.1, we have
+
+                                                                                                                           (4.12)
+
+                               t  (a1k02 + k1)K2 + (a2k02 + k2) <  a.s.-P.
+
+                           t=1
+
+Also, we have E[t | Ft] = 0. We now show that we may bound                         t    k   -  E[k    |  Fk ]  using  [8,  lemma
+                                                                                   k=1
+
+21]. By lemma C.6.3b, lemma 4.1, and (4.9),
+
+t - E[t | Ft] = t  tmt (k4 vt + wt - w)
+
+                            t 6L2wt - w + a4 (k4 + 1)                               t-1
+
+                                                                                        s                                  (4.13)
+
+                                                                         t-1        s=0               t-1
+
+                                (k4      +  1)  6L2       t1-       t s            +1             t2       s   
+                                                                                                               
+                                                                         s=0            + a4
+
+                                                                                                      s=0
+
+                            (k4 + 1) 6L2 K01+ + a4 K0 .
+
+As for the conditional variance, we apply Cauchy-Schwarz, lemma C.6.3d, and lemma 4.1 to get
+
+          E[t2 | Ft]  2t2 k42 E[mt, vt2 | Ft] + E[mt, wt - w2 | Ft]
+
+                2 k42 + 1 t2 E[mt2 | Ft] vt2 + wt - w2
+
+                2 k42 + 1 t2 a6 (F (wt) - F) + a7                                  t-1
+
+                                                                    15                 s + wt - w2 .
+
+                                                                                   s=0
+Recall, by lemma 4.1, we get twt - w2  t                          t-1  s      K0.     Let k11 = 2     k42 + 1  .  There exists
+                                                                  s=0
+
+c > 0 such that
+
+      E[t2 | Ft]  2k11 a6 K0 t (F (wt) - F) + k11 K0 a7 + k11 a7 t2 wt - w2                                                (4.14)
+                    k11 max(2K0 a6 a7, K0a7, a7) 1 + t (F (wt) - F) + t2 wt - w2 .
+
+                                     c
+
+Let b > 0 be the right hand side of (4.13). Applying [8, lemma 21.b], we get for a choice of tolerance
+level   (0, 1) and all q > 0, the following holds with probability at least 1 - :
+
+t-1           (eq - q - 1) c         t-1                               t-1                          b log(1/)
+
+      s                  ·        1 + s (F (ws) - F) + s2 ws - w2                                  +·                .     (4.15)
+                    q     b                                                                         qq
+s=1                                  s=1                             s=1
+
+    Now, we want to `remove' the t (F (w) - F (wt)) term in (4.10) so that the upper bound of
+
+zt+1 + k02vt+1 is of the order O(1 +                t-1  k2   wk  - w2).          To  do  so,   we  choose  q  >  0  such  that
+                                                    k=0
+
+                                                 eq - q - 1 c
+                                                                  · <1                                                     (4.16)
+                                                         q        b
+
+The above inequality is solvable since (eq - q - 1)/q  0 as q  0. Moreover, q is independent of
+
+t and t since b and c are both independent of t and t. Therefore, all constants on the right hand
+
+side of (4.15) are independent of t and t. Since F (wt) > F, the term t(F - F (wt)) in (4.10)
+dominates over that in (4.15). Using the estimate in (4.15) and summing (4.10) from 1 to t - 1
+
+yields the desired result.                                                                                                       
+
+Remark 4.4. Observe that the constant K5 is independent of the step sizes. This can be seen from
+(4.16). The constants b and c on the right hand side of (4.13) and (4.14) respectively are independent
+of the step sizes t.
+
+Proposition 4.5. With the notation in proposition 4.3, if all assumptions in lemma 4.3 holds and
+
+02      1  ,  then  for  any      (0, 1)  there  exists    a  constant  K6(L, , )         >  0  such  that  for   any   T  >  0
+      4K5
+
+                    P     max   wt - w2, zt - w2, vt2                        K6 log       T          1 - .
+                                                                                          
+                         1tT
+
+Proof. It suffices to prove the conclusion for wt - w2 since zt - w2  2wt - w2 + 2k02vt2
+and vt = (wt - w) - (wt-1 - w) gives the following inequalities
+
+                          max   vt2, zt - w2                  10  max(1,    k02)   max    wt    -  w2.
+
+                         1tT                                                      1tT
+
+    As a consequence of proposition 4.3 and wt - w2  2zt - w2 + 2k02vt2, we have
+
+              P     wt   - w2     >  K3   + K4 log      1               t-1                        <  , t  1.              (4.17)
+                          2                             
+                                                              + K5 s2 ws - w2
+
+                                                                  s=1
+
+Let t1 = min{t  [1, T ] : K5         T    s2     1  }.   Note that t1       is well-defined since T2         02           1   .  In
+                                     s=t         4                                                                      4K5
+
+particular, t1 depends only on L, ,  since K5 depends only on those parameters. Using lemma 4.1,
+
+                                                              16
+with probability greater than 1 - , for any t  1,
+
+         wt  - w2                                T                   t1                        T
+              2                                  
+                           K3   + K4     log              + K5 s2 ws - w2 + K5                        s2 ws - w2
+
+                                                                     s=1                       s=t1
+
+                                               T                      t1      s       +  1   max wt - w2
+                          K3 + K4 log                                                    4
+                                                          + K5 s2               k           t1 tT
+
+                                                                    s=1     k=1
+
+                                                          t1                    T  +  1   max  wt     - w2.
+                                                                  + K4 log            4
+                          K3 + K5 K0 s                                                   1tT
+
+                                                         s=1
+
+Since  the  right  hand  side  is  independent         of     t,  we  know  1  max1tT       wt - w2      is  also  bounded  by
+                                                                            2
+the right hand side. Solving the inequality for max1tT wt - w2 yields the desired result, where
+
+K6 = max{4K3 + t1K0, 4K4, 10k02, 10} for all t > 0.                                                                         
+
+Remark 4.6. Although K6 depends on the choice of step sizes {t : t  0}, in the sequel, we will
+
+content ourselves with the choice t uniformly bounded by "polynomially" decaying steps  t-p 
+
+t   t-p for all t > 0 (which is stated as an assumption in theorem 2.9). Under such assumption,
+
+the dependency of K6 on  can be removed. Indeed, the parameter t1 influencing K6 can be chosen
+                   
+such that K5       t=t1   t-2p     <  1  for  p     (  1  ,  1].
+                                      4                2
+
+4.2. Error Rate with High Probability.
+
+Corollary 4.7. With the notation in proposition 4.5, define the event Et as
+
+                       Et :=       max wt - w2, zt - w2, vt2                                      kT  .
+                                                                                       K6 log 
+
+If all assumptions in proposition 4.5 are satisfied, then under the event Et, with the notation in
+proposition 4.5 and lemma C.6,
+
+1. Et  Ft  FT and P(Et)  1 - .
+
+2.     F (wt)      (F  +    L   ·  K6)   log  T      for all t  T         and T > e.
+                          1+                  
+
+3.     mt2  (6L2K6 + a4)                 log  T   for all t  T            and T > e.
+                                              
+
+4.     (Zt, wt)2  (2L2K6 + a5)                   log      T    for all t  T and T > e.
+                                                          
+
+Proof. Under the assumptions of corollary 4.7, T > 0 is fixed and t  T . Therefore, Ek is in Ft.
+
+The proof follows directly from proposition 4.5, lemma C.6.2, C.6.3b, and C.6.3c.                                           
+
+Proposition 4.8. With the notation in lemma 4.1, if all of the assumptions in proposition 4.5
+
+holds, then there exists a constant K7(L, , , w0, w) > 0 such that for any T > 0 and 0 <  <
+
+min (1, 2T /e),
+
+                                   T                                           2T 3/2
+
+                           P          t (F (wt) - F)  K7                  log             1 - .
+                                                                               
+                                t=1
+
+Proof. Using the notation in (4.1), rearranging terms in (4.10) and using F (w) = F gives us
+
+1  2     t(F (wt)  -     F)     2 k4     (t-1F (wt-1)             -  tF (wt))  -   zt+1  -  k02vt+1   +   2 t  +   t  (4.18)
+   -                                                                                                     1-
+
+                                                                     17
+where t and t are defined in (4.11). By lemma C.6.3b, we have
+
+                        t = (1 - )k4 tmt, vt + tmt, wt - w
+
+                          (k4 + 1) t mt (vt + wt - w)                                                             (4.19)
+
+                          (k4 + 1) t 6L2wt - w2 + a4 (vt + wt - w)
+
+Let  Et/2  be the event  in corollary  4.7.  For a fixed       (0, 1) and     T    t,  define  c  =            +  a4 (k4  + 1)
+                                                                                                       4 6L2
+
+and t = 1 t . Et/2 Since 2T / > e, we have wt - w2  log(2T /)  (log(2T /))2. Therefore, by
+
+(4.19), we get
+
+                                                2(6L2 + a4) t2 ·                  2T   2
+                             t  2 2 (k4 + 1)                                  log
+                                                                                        .
+                                                                                   
+
+Applying [8, lemma 21.a] to t yields
+
+                                                                    1                             3
+                                                                                                  2
+                         T               2T         1      T        2                    2T
+                                   c log      2 log                                                 .
+                            t                                   t2          c 2 log                               (4.20)
+                                                    
+                        t=1                                t=1                             
+
+Let K > 0 be the constant on the right hand side of (4.12). Applying proposition 4.5 and substi-
+
+tuting (4.20) to (4.18) yields that the following occurs with probability at least 1 - :
+
+T                            1-                                                     2                      2T  3
+                                                                                    -       c2         log     2
+     t(F (wt) - F)  2               0F (w0)  +  z1   -     w2   +   v12       +  1       ·                                .
+                                                                                                                 + K
+
+t=1                                                                                                       
+
+Since z1 = w0, v1 = 0, and 2T / > e, we take K7 = 4 max 0 F (w0), w0 - w2, c 2, K .                                          
+
+Proposition 4.9. With the notation as in lemma 4.1, if all assumptions in proposition 4.5 holds,
+then there exists a constant K8(L, , ) > 0 such that for any   (0, 1), T > 1, and   [1, T ],
+
+                                                                                                
+
+                  T                                         T       T                   2T     2
+                                                                                    log
+           P             t vt2  K8 · max  ,                     t4, t3                            1 - .
+                                                                                         
+                t= +1                                      t=       t=
+
+Proof. Consider the recursion t+1 vt+12  2t vt2 - 2t2(Zt, wt), vt + t3(Zt, wt)2
+obtained from the recursion of vt2. Since v1 = 0, F is convex and t is decreasing, summing both
+sides from t =  to t = T yields
+
+           T                                                               T
+
+(1 - 2)           t vt2  2 v 2 - T +1vT +12 + -2t2                                     F (wt), vt - mt, vt
+
+           t= +1                                                    t=
+
+                                   T
+
+                             + t3(Zt, wt)2
+
+                                 t=
+
+                              2 v 2 + 2( F (w ) - T F (wT ))
+
+                                T
+
+                             +         2t2mt, vt + t3(Zt, wt)2 .
+
+                                t=
+
+By corollary 4.7, there exists an event Et/2 such that
+
+                     T                           2T  2                  T
+                                             log
+                         t vt2  c0 ·                         +                t2mt, vt + t3            .          (4.21)
+                                                  
+                  t= +1                                             t=
+
+                                                        18
+where
+
+                                 1       2, 2    F   +  LK6        , 2L2K6 + a5       .
+                       c0 = 1 - 2 · max                 1+
+
+It remains to estimate the martingale part in (4.21). Applying Cauchy-Schwarz and lemma
+
+C.6.3b gives                                                                    
+
+                        t2 · |mt, vt| · 1Et/2  t2 ·     6L2 + a4 ·          2T
+                                                                        log
+
+                                                                             
+
+Using Azuma-Hoeffding [8, lemma 21.a], there exists an event E  FT such that P(E )  1 -  and
+tT= Et/2  E for which the following occurs
+
+                                                                                      
+
+                       T                     2T  2                 T       T
+                                         log
+                           tvt2  c0 ·              +            2 t4 + t3 .
+                                              
+                    t= +1                                          t=      t=
+
+This completes the proof.                                                                             
+
+Lemma 4.10. With the notation as in lemma 4.1, if all assumptions in proposition 4.5 holds, then
+there exists a constant K9(L, , ) > 0 such that for any   (0, 1), T > 1, and   [1, T ],
+
+                                                                                          
+
+              T                                      T          T              3T        2
+                                                                           log
+       P  tmt, vt  K9 · max -1,                         t4,           t3                    1 - .
+                                                                                
+           t=                                    t= -1 t= -1
+
+Proof. Let Et/3 be the event defined in corollary 4.7. Using Bernstein's inequality [8, lemma 21.b],
+                             T
+we can bound the martingale  t=  t  mt,  vt      from   above.  By  corollary   4.7,  we  have  the  estimates
+
+                                                                            3T    
+                                                                        log
+                       t · |mt, vt| · 1Et/2      6L2K6 + a4 ·  ·
+                                                                             
+
+and                                                                                          
+
+              t2 · E[|mt, vt|2 · 1Et/2 | Ft]  (6L2K6 + a4) ·  · t · vt2 ·                3T    .
+                                                                                     log
+       
+                                                                                          
+
+Let b = 6L2K6 + a4. Choosing q > 0 such that (eq - q - 1)/q = 1, by Bernstein's inequality [8,
+
+lemma 21.b], the following occurs with probability at least 1 - /3:
+
+                        T                     T            b                3     .                   (4.22)
+                                                        + q ·           log
+                           t mt, vt  b           t vt2
+                                                                            
+                        t=               t=
+
+Let E   FT denote the event of (4.22) and ET  FT be the event in the conclusion of proposition
+4.9 replacing  by 2/3 instead. Note that P(E   ET )  1 -  and in the event E   ET  FT ,
+
+                                                                                
+                                         · max -1,
+       T                         1                           T          T                    3T   2
+                                                                                         log
+              t mt, vt  b · K8 + q                                 t4,          t3 ·               .
+                                                                                              
+       t=                                               t= -1 t= -1
+
+This completes the proof.                                                                             
+
+Lemma 4.11. With the notation as in lemma 4.1, if all assumptions in proposition 4.5 holds, then
+
+there exists a constant K10(L, , ) > 0 such that for any   (0, 1), T > 1, and   [0, T ],
+
+                    T                                                 2T 1+
+
+                 P      F (wt), -t(Zt, wt)  K10 ·               log               1 - .
+                                                                     
+                    t=
+
+                                                 19
+Proof. We may decompose -tF (wt), (Zt, wt) = -tF (wt)2 + t where we define
+
+                                      t 1 = t Et/2 , t = tF (wt), mt.                                                          (4.23)
+
+By Cauchy-Schwarz, -Ho¨lder property of F , lemma C.6.3b, for all t  [, T ],
+
+                              |t|  1E · t · F (wt) · mt
+
+                                    L1E · t 6L2wt - w4 + a4wt - w2                                                             (4.24)
+
+                                   L          K6 (6L2K6 + a4) ·  ·                  2T  2
+                                                                                log
+                                                                                           .
+                                                                                     
+
+We apply Cauchy-Schwarz and lemma C.6.3b to get
+
+                        E[(t)2 | Ft]  t2 · F (wt)2 · E[mt2 · 1Et/2 | Ft]
+
+                                          · t F (wt)2 · (6L2wt - 1 w2 Et/2 + a4)                                               (4.25)
+
+                                          · t F (wt)2 · (6L2 + a4) ·                        2T     
+                                                                                        log
+                                                                                                     .
+                                                                                             
+
+For shorthand notation, denote by b = L K6(6L2K6 + a4) and c = 6L2 + a4 as the constants
+
+appearing on the right hand side of (4.24) and (4.25). By Bernstein's inequality [8, lemma 21.b], for
+
+any  q  >0    and     (0, 1),  there    exists   an    event    E      FT     with  P(E )  1 -     where     E        is  the  event
+                                                                                                2
+
+                     T         eq  -q   -  1     c     T                                     b      2T     1+
+                                     q           b                                  +  · q      log
+                        t                     ·           t F (wt)2                                             .              (4.26)
+                                                                                                     
+                   t=                                  t=
+
+Since (eq - q - 1)/q  0 as q  0, may choose q > 0 such that
+
+                                                       eq - q - 1 c
+                                                                       · < 1.
+                                                             q         b
+
+Let E  FT be the event in the conclusion of proposition 4.5, except with  replaced by /2. Under
+the event E  E , we know t = t and the following occurs with probability P(E  E )  1 - 
+
+        T                                           T
+
+            F (wt), -t(Zt, wt) =                          -t F (wt)2 + t
+
+        t=                                       t=
+
+                                              eq - q - 1 c             T                           b             2T        1+
+                                                                                                + q ·        log
+                              -         1-             q        ·  b      t F (wt)2
+                                                                                                                  
+                                                                       t=
+
+                               b                 2T 1+
+                               q ·         log                  .
+                                                
+
+The proof is complete.                                                                                                                
+
+    Starting from this point, we will assume that the step-sizes are "polynomially" bounded as in
+theorem 2.9. Therefore, per theorem 4.6, the constants appearing in the sequel is independent of
+{t : t  0}.
+
+Proposition 4.12. With the notation in lemma 4.1, if all assumptions of proposition 4.5 holds,
+
+     [0, 1),  and  there   exists  c1, c2     R+       such  that     c1 t-p    t     c2 t-p    where   p    (  1  ,  1),  then  there
+                                                                                                                2
+
+exists a constant K11(L, , , w0, t2(N)) > 0 such that for any   (0, 1), T > 1, and   [1, T ],
+
+                           T                                  3T       2
+                                                          log
+                        P      vt+12  K11                               max  -2p+1, 2            1 - .
+                                                               
+                           t=
+
+                                                                   20
+Proof. By lemma 4.10 and proposition 4.5, there exists an event ET  FT such that with probability
+1 -  both the conclusion in lemma 4.10 and proposition 4.5 holds. We have the recursion vt+12 =
+2vt2 - 2t(Zt, wt), vt + t2 (Zt, wt)2.
+
+    Case  = 0. If  = 0, then vt+12 = t2(Zt, wt)2. Under the event ET , then by corollary
+4.7, we have
+
+           T                   T                                        T   T                 T      
+                                                                    log                   log
+                  vt+12 = t2 (Zt, wt)2                                            t2                    -2p+1.
+                                                                                               
+           t=                  t=                                           t=
+
+    Case   (0, 1). The recursion of vt2 in the previous paragraph can be rewritten into an
+integral equation by proposition B.1:
+
+                            vt+12 =           t-1  2sXt-s.
+                                              s=0
+
+                            Xt = -2t(Zt, wt), vt + t2(Zt, wt)2.
+
+It follows that
+
+           T                   Tt
+
+                  vt+12 =               2(s-1) Xt-s+1
+
+           t=                  t= s=1
+
+                                   T          TT
+
+                            =          +                    2(s-1) Xt-s+1                                       (4.27)
+
+                                   s=1 t= s= t=s
+
+                                              T                                  T -         T - -s+1
+
+                            =        2(s-1)          Xt-s+1 + 2( -1)                  2s               Xt .
+
+                               s=1            t=                                 s=0             t=1
+
+We estimate the parentheses in the first term. By lemma C.6.3c and the convexity of F , we get
+
+       Xt = -2 t F (wt), vt + 2 t mt, vt + t2 (Zt, wt)2                                                         (4.28)
+            2t (F (wt-1) - F (wt) + mt, vt) + t2 (2L2wt - w2 + a5)                                              (4.29)
+            2(t-1F (wt-1) - tF (wt)) + 2tmt, vt + t2 (2L2wt - w2 + a5).
+
+Using  corollary  4.7  and  t  =   (t-p)  with     p    (  1  ,  1),  the  following  holds  in  ET
+                                                           2
+
+       T                                      T -s+1                                 2T   T
+                                                                                 log
+           Xt-s+1  -sF (w-s) +                          tmt, vt +                                  t2-s+1
+                                                                                      
+       t=                                     t= -s+1                                       st=
+
+                                3T  2
+                            log
+                                       2-s + ( - s + 1)-2p+1
+                                 
+
+                                3T  2
+                            log
+                                     ( - s)-2p+1.
+                                 
+
+Therefore, under the event ET ,
+
+                   T                                  3T         2                                    2p-1
+                                                  log
+                          2(s-1)Xt-s+1                               -2p+1        2(s-1)   -s               .
+                                                       
+                 s=1 t=                                                     s=1
+
+Now, the ratio on the right hand side converges to 1 as   . As a consequence, the series
+
+       2(s-1)(    /(   -  s))2p-1  converges  as              by    the  dominated    convergence     theorem.  Therefore,
+s=1
+
+such a series in (4.2) is bounded by a constant independent of  .
+
+    Now, examine the second term on the right hand side of (4.27). By lemma C.6.3a, we have
+t2 (Zt, wt)2  t2 (a1(Zt, wt) + a2). By lemma 4.1, we get t2 (Zt, wt) < K2. Therefore,
+
+                                                                                            21
+using the expression for Xt in (4.28), under the event ET ,
+
+                                                                                                     
+
+T - -s+1                         3T 2                                                             
+
+          Xt  F (w0) +     log         max 1,           t4, t3 +            a1 K2 + a2 t2  .
+                                
+t=1                                                t=1       t=1                                 t=0
+
+Therefore, the claim is proved.                                                                        
+
+Proposition 4.13. With the notation in lemma 4.1, if all the assumptions in proposition 4.12 holds
+
+and  = 1, then there exists a constant K12(L, , , w0, t2(N)) > 0 such that for any   (0, 1),
+T > 1, and   (1, T ],
+
+          P    T                           3T      2                         1 - .
+                                       log
+                  F (wt), vt  K12                   max  -2p+1, 2
+                                            
+             t=
+
+Proof. Fix T > 1 and  > 1. Let t = F (wt), -t(Zt, wt). By lemma 4.11 and proposition
+4.12, there exists an event E  F such that with probability P(E )  1 -  the following occurs:
+
+             T                                                3T      2                       (4.30)
+                                                          log                                 (4.31)
+                vt+12  K11 · max( -2p+1, 2 )                            ,    [1, T ].
+                                                               
+             t=
+
+                        T                      2T 1+
+
+                           t  K10 ·    log                   ,    [0, T ].
+                                            
+                      t=
+
+Since  = 1, i.e. F is Lipschitz, F (wt), vt satisfies the following inequality for any t > 1,
+
+F (wt), vt = F (wt) - F (wt-1) + F (wt-1), vt
+                  = F (wt-1), vt-1 - t-1(Zt-1, wt-1) + F (wt) - F (wt-1), vt
+                  = F (wt-1), vt-1 + t-1 + F (wt) - F (wt-1), vt
+                    F (wt-1), vt-1 + t-1 + vt2.
+
+Also, since v1 = 0, we have F (w1), v1 = 0. Using proposition B.1 and switching the order of
+integration, under the event E , the following occurs with probability P(E )  1 -  for all  > 1:
+
+T                    -2           T                          T -2          T
+
+    F (wt), vt  s                    t-s-1 + vt-s2      +           s          t-s-1 + vt-s2
+
+t=                  s=0          t=                          s= -2      t=s+2
+
+                  -2       T                              T -           T
+
+             = s                 t-s-1 + vt-s2 +               s-2         t- +1 + vt- +22
+
+               s=0         t=                             s=0           t=
+
+                     3T    2      -2                    
+                 log
+                                      s · -s-1 +             s-2
+                      
+                                 s=0                s=0
+
+                                           3T  2    -2                  p   1
+                                       log
+              max( -2p+1,  ) ·                         s      - s - 1 + 2(1 - )        .
+                                            
+                                                   s=0
+
+The summation on the right hand side remains bounded as    by the dominated convergence
+
+theorem so that the summation term is bounded by a constant c > 0 independent of  . The
+
+coefficient K12 must be of the order K12 = O(c · max(K10, K11)).                                       
+
+                                               22
+Theorem 4.14. If all assumptions in proposition 4.5 and proposition 4.13 both holds, then there
+exists a constant K13(L, , , w0, w, t2(N)) > 0 such that for all T > 1, T0  (1, T ],   (0, 1)
+
+          F (wT +1) - F  K13               3T 2         max                                          1                ,  T0-2p+1    ,   T0     1 - .
+                                      log
+       P                                                                                           T      t
+                                                                                                   t=T0
+
+Proof. Let tF = F (wt) - F. By proposition 4.8, proposition 4.12, lemma 4.11, and proposition
+4.13, there exists an event E  FT with P(E )  1 -  such that all of the following holds
+
+                                      T                                                                            3
+
+                                           t tF  K7                                                   2T 2
+                                                                                                log                   .                                   (4.32)
+                                                                                                                                                          (4.33)
+                                      t=1                                                                                                                 (4.34)
+
+                        T                                                                                                     2T 1+
+
+                           F (wt), -t(Zt, wt)  K10 ·                                                                     log              .
+                                                                                                                              
+              t=
+
+          T                                                                                                  3T               2
+                                                                                                         log
+              vt+12 + F (wt), vt                      (K11 + K12)                                                              max  -2p+1,  .
+                                                                                                              
+          t=
+
+If we fix T > 1 and T0  (1, T ], then under the event E , there exists   [T0, T ] such that
+
+                                                  T                                                                   2T      3
+                                                                                                                       
+                                  F                  t tF                                          K7     log                 2
+
+                                               t=T0  T       t                                           T               t
+                                                     t=T0                                                t=T0
+
+where the middle term is the weighted average of tF from t~ to T . Using (, L)-smoothness of F
+along with estimates (4.32), (4.33), and (4.34), on the event E1, we have
+
+                           T                                                                    L     T
+
+T +1F   F +                      F (wt), wt+1 - wt + 1 +                                                  vt+11+
+
+                        t=                                                                            t=
+
+                              T                                                                    T                       L              T
+                                                                                                      F (wt), vt + 2
+          =  F -                 t F (wt)2 - t               +                                                                                vt+12.      (4.35)
+
+                        t=                                                                      t=                                        t=
+
+                        3T 2                 1                                                        -2p+1,             
+          K   log                max                    ,    ,                                  max(                       )     .
+                                           T         t
+                                           t=T0
+
+where
+
+                                                            L + 2
+                                 K = max K7, K10, 2 (K11 + K12) .
+
+The proof is complete.                                                                                                                                            
+
+Remark 4.15. Theorem 2.9 follows from setting T0 = T /2. Observe that                                                                        T       t    T    T  .
+                                                                                                                                             t=T /2            2
+
+Therefore, setting T0 = T /2 in the conclusion of theorem 4.14 yields
+
+              max T -2p+1, T p-1, T = O(T max(p-1,-2p+1)) , p                                                                          1
+                                                                                                                                        ,1 .
+                                                                                                                                       2
+
+Therefore, theorem 2.9 follows.
+
+                                                                                            23
+                        Appendix A. Proof of Proposition 2.4 and Lemma 2.5
+A.1. Proof of Proposition 2.4.
+
+Proof. Since Xt is non-negative, we may drop Xt from the assumed inequality on Yt and obtain
+Yt - Yt-1  at-1Yt-1 - Xt-1 + Zt-1  at-1Yt-1 + Zt-1. We may sum up both sides to obtain the
+
+recursive relation
+
+                                             t                  t
+
+                               Yt  Y0 + as-1Ys-1 + Zs-1.                                                      (A.1)
+
+                                             s=1                s=1
+
+Since Zt  1(N), the above is a Gronwall-type inequality. By proposition B.2, we get
+
+                                                                  
+
+                               Yt  (Y0 + Z1 ) (1 + as-1).
+
+                                                                 s=1
+
+Since at  1, the right hand side converges. Therefore, the first and second claim are proved. To
+
+prove the second claim, repeating the same argument to produce (A.1), but without dropping Xt,
+we get
+
+                    t                   t                    t                     t
+
+                          Xs-1  Yt + Xs-1  Y0 + as-1Ys-1 + Zs-1.
+
+                    s=1                 s=1                s=1                     s=1
+
+By the first claim, Yt is uniformly bounded. Therefore, the right hand side is finite as t  . The
+
+proof is complete.                                                                                                  
+
+A.2. Proof of Lemma 2.5.
+
+Proof. We follow [9, lemma 19]. Let r  (0, 1). By the mean value theorem, there exists   (0, 1)
+
+such that  (t + 1)r - tr  = r(t + )r-1   rtr-1.   For  shorthand notation,         let  r  =      and a1, a2   R+
+                                                                                              1+
+
+be such that a1t-p  t  a2t-p for all t > 0. For a fixed s > 0 and any t  s, we get
+
+E[(t + 1)rYt+1 | Fs]  (1 + c1 t1+ ) 1 + r · t-1 E[trYt | Fs]
+                          + t1+ tr + r · tr-1 (E[Zt | Fs] + c2)
+
+                                                                                                              (A.2)
+
+                           (1 + c1 t1+ ) E[trYt | Fs] + (1 + c1 t1+ ) r E[tr-1Yt | Fs]
+
+                          + a2 t-p(1+)+r + t-1-p(1+)+r (E[Zt | Fs] + c2) .
+
+We require that r - 1 < -p and -p(1 + ) + r < min(-p, -1) so that the second and third term
+
+on the right hand side are both summable.        Since  p    (    1  ,  1),  such  condition  holds  if  and  only  if
+                                                                1+
+
+r < min(1 - p, p(1 + ) - 1). Now, applying proposition 2.4 yields lim supt E[tr · Yt | Fs] < .
+
+Note that under the same condition on r, we may apply expectation on both sides of (A.2) and then
+
+apply theorem 2.4 to conclude supt0 E[tr · Yt] < .
+
+Rearranging (A.2) and summing up from t = s to t = T - 1 yields two inequalities:
+
+E[T r · YT | Fs] - sr · Ys  E  T -1                                     +E   T -1                             (A.3)
+E[T r · YT | Fs] - sr · Ys  E                                           +E                                    (A.4)
+                                   (t1+ · tr + tr-1) · Yt Fs                      t-p(1+)+rZt Fs .
+
+                               t=s                                            t=s
+                                                                              
+                                
+                                                                                 t-p(1+)+rZt Fs .
+                                   (t1+ · tr + tr-1) · Yt Fs
+                                                                             t=1
+                               t=1
+
+Taking absolute value on both sides of (A.3), the limit T   (with Lebesgue's monotone convergence
+theorem since summands are non-negative), and then s   yields that the right hand side is zero.
+
+                                                  24
+Therefore, we may conclude
+
+                           lim lim E[T r · YT | Fs] - sr · Ys = 0 a.s.-P.
+
+                           s T 
+
+This implies that lims sr Ys is F-measurable. Furthermore, since                               t  Yt  <    almost  surely,
+                                                                     t=1
+by [7, theorem 3.3.1], we have minst Ys = o(tp-1).
+
+    We need to conclude lim infs srYs = 0 a.s.-P. This holds if we require Yt > 0 for all t  0
+(counterexample can be constructed if otherwise) assuming tr minst Ys  0 as t  . If Yt > 0
+
+for all t  0, then one can take a subsequence Ytn  0 decreasing to zero. For instance, one can
+take {tn : n  N} such that Ytn = minttn Yt. Therefore, we have trnYtn = trn minttn Yt where the
+RHS converges to zero. This implies that there exists a subsequence of trYt converging to zero, i.e.
+lim infs srYs = 0 a.s.-P. Therefore, taking lim infs on both sides of (A.4) yields almost surely
+
+    lim T r · YT = lim lim inf E[T r · YT | Fs] - sr · Ys
+    T                        T  s
+
+                                                                
+
+                                    (t1+ · tr + tr-1) · Yt  +E       t-p(1+)+rZt F
+
+                               t=1                              t=1
+
+                           < .
+
+Since E[limt trYt | Fs] converges as s  , we know
+
+                           lim inf E[lim trYt | Fs] = lim E[lim trYt | Fs].
+                             s t                    s t
+
+If we take 0 < s < T and s   so that T   and use DCT on limT  E[T rYT | Fs] and the right
+hand side of (A.3), we get
+
+                                               
+
+lim T r · YT = lim inf E lim T r · YT Fs  lim               (t1+ · tr + tr-1) · Yt + t-p(1+)+rZt = 0.
+T   s                      T        s
+                                               t=s
+
+This completes the proof.                                                                                          
+
+                           Appendix B. Gronwall-type Inequalities
+
+Proposition B.1. Let {Xn  R : n  N0} and {Yn  R : n  N0} be sequences, n0  N0, and
+ > 0. The sequence
+
+                                                                                          n-1
+
+                           Yn+n0 = 2ny + 1N(n) 2kXn0+n-1-k , n  0
+
+                                                                                          k=0
+
+is the unique solution to the difference equation
+
+                             Yn0+n = 2 Yn0+n-1 + Xn0+n-1 , n > 0.                                                  (B.1)
+                             Yn0 = y.
+
+If Zn satisfies Zn0+n  2 Zn0+n-1 + Xn0+n-1 (resp. ) and Zn0  y (resp. ), then Zn0+n 
+Yn0+n (resp. ).
+
+                                                                                            25
+Proof. We have Yn0 = 0y = y and Yn0+1 = 2y + Xn0 = 2Yn0 + Xn0 . Moreover, for n > 0,
+
+                                                                                             n-1
+
+                     Xn0+n + 2Yn0+n = Xn0+n + 2(n+1)y +                                              2k+2 Xn0 +n-1-k
+
+                                                                                             k=0
+
+                                                                                             n
+
+                        = Xn0+n + 2(n+1)y +                                                          2k Xn0 +n-k
+
+                                                                                             k=1
+
+                        = Yn0+n+1.
+
+For uniqueness, if Zn0+n satisfies (B.1), then Zn0+n - Yn0+n = 2(Zn0+n-1 - Yn0+n-1) for all n > 0
+with Zn0 - Yn0 = 0. This implies Zn0+n - Yn0+n = (Zn0 - Yn0 ) 2n = 0 for all n  0.
+
+    For the second part, we show by induction that Zn0+n  Yn0+n. Note that Zn0  y = Yn0 and
+Zn0+1  2y + Xn0 = Yn0+1. For the inductive step, assume Zn0+n  Yn0+n for n  N . From the
+first claim, Yn0+n+1 = 2Yn0+n + Xn0+n. Therefore, we have
+
+                     Zn0+N+1  2 Zn0+N + Xn0+N  2 Yn0+N + Xn0+N = Yn0+N+1.
+
+On the other hand, if Zn0+n  2Zn0+n-1 + Xn0+n, then we may consider
+
+                        -Zn0+n  2(-Zn0+n-1) + (-Xn0+n-1)
+                        -Zn0  -y.
+
+We can apply the previous claim and get -Zn0+n  -Yn0+n.                                                                 
+
+Proposition B.2. Let A  0, Xn  0, cn  0.                                                                             n
+
+                                                      n                                   = Xn  A (1 + ck-1) .
+
+                      Xn  A + ck-1 Xk-1 , X0  A                                                                    k=1
+
+                                                    k=1
+
+Proof. Define the sequence
+
+                                                                                   n
+
+                        Yn = A + ck-1 Xk-1 , Y0 = A
+
+                              k=1
+
+Observe that Yn - Yn-1 = cn-1Xn-1  cn-1Yn-1 for all n  1, which implies
+
+                         Yn    1 + cn-1                                                   ,  n  1.
+                        Yn-1
+
+The above is a telescoping product. Along with the assumption Xn  Yn, the above argument yields
+
+the desired result.                                                                                                     
+
+                        Appendix C. Some Facts Used in Proofs
+
+Proposition C.1. If the first two properties in assumption 2.1 are both satisfied, then F is convex
+and (, L)-smooth.
+
+Proof. By the convexity of (z, ·), we get (z, a w1 +(1-a)w2)  a (z, w1)+(1-a)(z, w2). Applying
+the expectation w.r.t  proves that F is convex. Now, observe that we have
+
+                        F (w1) - F (w2) = E[(Z, w1) - (Z, w2)]
+                                                      E(Z, w1) - (Z, w2)
+                                                      L w1 - w2 .
+
+The proof is complete.                                                                                                  
+
+                                                                                      26
+Proposition C.2. If f : Rd  R is (, L)-smooth, then (2.1) holds.
+
+Proof. Let (t) = f (x + t(y - x)). Note that  is continuously differentiable. Using the fundamental
+theorem of calculus on  yields
+
+                                                     1
+
+                     f (y) = f (x) + f (x + t(y - x)) - f (x), y - x dt
+
+                                                   0
+                                                     1
+
+                            f (x) + f (x + t(y - x)) - f (x) y - x dt
+
+                                                   0
+                                                                              1
+
+                            f (x) + L y - x1+ t dt.
+
+                                                                            0
+
+Integrating the right hand side yields the desired result.                                                                              
+
+Lemma C.3. ([12, lemma 1]) Let bt, t be two non-negative sequences and at be a sequence of
+                                                                                                 tbpt             
+vectors in a vector space X. Let p  1 and assume                                            t=1        <    and   t=1  t  =  .  Assume  also
+
+that there exists L > 0 such that both of the following conditions hold
+
+1. |bt+ - bt|  L          t+   ibi  +                                   t+   -1  i  ai  .
+                          i=t                                           i=t
+
+2.           iai  <  .
+     i=1
+
+Then bt  0.
+
+Lemma C.4. ([8, lemma 13]). If f : Rd  R is (, L)-smooth and convex, then
+
+                                                                 1+   f (y) - f (x) - f (x), y - x               L y - x1+   .
+
+              f (y) - f (x) 
+
+                  (1 + )L1/                                                                                       1+
+
+Lemma C.5. ([8, lemma 14]). If assumption 2.1 holds and (z, ·) is convex for all z  Z, then for
+all   (0, 1],
+
+    E[(Z,      w)1+ ]       2L1/ (1                                  +  ) [F (w)    -   F]  +  2(1 - )      +  2  E[(Z, w)1+].
+                                                                                                  1+
+
+Lemma C.6. Assume assumption 2.1 holds and (z, ·) is convex for all z  Z.
+
+1. There exists a0, a1  R+ such that F (w)2  a1 F (w) + a0 where a1 is in (3a).
+
+2.  F (wt)     F  +    L  wt   -  w1+ .
+                     1+
+
+3. If in addition assumption 2.3 holds, then there exists a1, a2, a4, a5, a6, a7  R+ such that
+
+    (a) (z, w)2  a1 (z, w) + a2.
+
+    (b) F (w) - (z, w)2  6L2 w - w2 + a4.
+
+    (c) (z, w)2  2L2 w - w2 + a5.
+
+    (d) E[F (wt) - (Z, wt)2 | Ft]  a6 (F (wt) - F) + a7.
+
+                                                                                    27
+Proof. Proof of (1). We use the same argument as (C.1), but replace (z, w) with F.
+
+Proof of (2). Use F (wt) = F (wt) - F + F and apply lemma C.4.
+
+    Proof of (3.a). Applying lemma C.4 and subsequently Young's inequality [8, eq 4.3] with
+p = (1 + )/(1 - ) and q = (1 + )/(2) for   (0, 1] yields
+
+                               2
+
+(z, w)2                    1+  1+        2                      2
+                             
+                                   L 1+ ((z, w) - (z, w)) 1+
+
+                                                 2
+
+   1-                          1 +  · L1/        1-     2
+                                 
+                                                     + 1 +  ((z, w) - (z, w))                             (C.1)
+   1+
+
+                                                                2
+
+                           2             1-         1 +  · L1/  1-             2
+                                                      
+                           1+  (z, w) +  1+                              +  1  +    ·  sup  (z, w).
+
+                                                                                       zZ
+
+    Proof of (3.b). Observe that if assumption 2.3 and a minimizer w  W exists and (z, ·) is
+convex in the second slot, then applying (3a) yields
+
+        F (w) - (z, w)2  2 F (w)2 + 2 (z, w)2
+
+                                       2L2 wt - w2 + 4 (z, w)2 + 4(z, w) - (z, w)2
+                                       6L2wt - w2 + 4 a1 sup (z, w) + 4 a2.
+
+                                                                                                   zZ
+
+Proof of (3.c). By assumption 2.3 and claim (1), we get
+                      (z, w)2  2(z, w)2 + 2(z, w) - (z, w)2
+
+                                        2a1 sup (z, w) + 2a2 + 2L2w - w2
+
+                                                                    zZ
+
+Proof of (3.d). Another way of estimating F (w) - (z, w)2 is by using (1)
+
+F (w) - (z, w)2  2F (wt)2 + 2(Zt, wt)2
+                              2a1 (F (w) - F) + 2a1F + 2a0 + 2a1 (z, w) + 2a2.
+
+Applying E[· | Ft] yields
+                          E[mt2 | Ft]  2a1 (F (wt) - F) + 2a1 F (wt) + 2(a0 + a2)
+                                             = 4a1 (F (wt) - F) + 2(a0 + a2 + a1 F).
+
+This completes the proof.                                                                                 
+
+Proposition C.7. Let mt be as in (1.2) corresponding to the SHB iterates wt in (1.1).
+
+1. E[mt | Fs] = 0 and E[m(si) mt(j)] = 0 for all s < t and i = j.
+
+2. E[F (wt), mt | Ft] = 0 for all t > 0.
+
+3. If t is a sequence in R, then E          T    s  ms  2       T    s2  E     ms  2   for  all  t    T.
+                                            s=t                 s=t
+                                                          =
+
+Proof. By (2.3), we have E[mt | Ft] = F (wt) - E[(Z, wt) | Ft] = 0. Furthermore,
+
+                       E[mt | Ft-1] = E[F (wt) | Ft-1] - E[E[(Z, wt)] | Ft-1] = 0.
+                      E[ms(i) m(tj)] = E[ms(i) E[m(tj) | Ft-1 | Fs]] = 0 , s < t.
+
+                                                                                            28
+Since the standard inner product on Rd is a finite sum and the conditional expectation is linear,
+applying the first claim yields
+
+                                                                  d
+
+           E[F (wt), mt | Ft] = E[F (wt)(i)m(ti) | Ft] = F (wt), E[mt | Ft] = 0.
+
+                                                                i=1
+
+For the last claim, we have by the first claim,
+
+   T                       2     T
+
+E       s mt =                          r · s · Emr, ms
+
+   s=t                           r,s=t
+
+                                    T                    T
+
+                              =         s2 Ems2 + 2         r · s · Emr, ms
+
+                                 r=s=t               r<s=t
+
+                                 T
+
+                              =         s2 Ems2.
+
+                                 r=s=t
+
+This completes the proof.                                                         
+
+                                                        References
+
+ [1] Alekh Agarwal, Peter L. Bartlett, Pradeep Ravikumar, and Martin J. Wainwright. Information-theoretic lower
+      bounds on the oracle complexity of stochastic convex optimization. IEEE Transactions on Information Theory,
+      58(5):3235­3249, 2012.
+
+ [2] L´eon Bottou. Stochastic Gradient Descent Tricks, pages 421­436. Springer Berlin Heidelberg, Berlin, Heidelberg,
+      2012.
+
+ [3] S´ebastien Gadat, Fabien Panloup, and Sofiane Saadane. Stochastic heavy ball, 2016.
+ [4] Guillaume Garrigos and Robert M. Gower. Handbook of convergence theorems for (stochastic) gradient methods,
+
+      2024.
+ [5] Ahmed Khaled and Peter Richta´rik. Better theory for SGD in the nonconvex world, 2023. Survey Certification.
+ [6] J. Kiefer and J. Wolfowitz. Stochastic Estimation of the Maximum of a Regression Function. The Annals of
+
+      Mathematical Statistics, 23(3):462 ­ 466, 1952.
+ [7] K. Knopp. Infinite Sequences and Series. Dover Books on Mathematics. Dover Publications, 1956.
+ [8] Yunwen Lei, Lei Shi, and Zheng-Chu Guo. Convergence of unregularized online learning algorithms. Journal of
+
+      Machine Learning Research, 18(171):1­33, 2018.
+ [9] Jun Liu and Ye Yuan. Almost sure convergence rates analysis and saddle avoidance of stochastic gradient methods.
+
+      Journal of Machine Learning Research, 25(271):1­40, 2024.
+[10] L. Ljung, G.C. Pflug, and H. Walk. Stochastic Approximation and Optimization of Random Systems. Oberwolfach
+
+      Seminars. Birkh¨auser Basel, 1992.
+[11] Lam M. Nguyen, Phuong Ha Nguyen, Peter Richt´arik, Katya Scheinberg, Martin Tak´ac, and Marten van Dijk.
+
+      New convergence aspects of stochastic gradient algorithms, 2019.
+[12] Francesco Orabona. Almost sure convergence of sgd on smooth nonconvex functions., 2020.
+[13] H. Robbins and D. Siegmund. A convergence theorem for non negative almost supermartingales and some appli-
+
+      cations**research supported by nih grant 5-r01-gm-16895-03 and onr grant n00014-67-a-0108-0018. In Jagdish S.
+      Rustagi, editor, Optimizing Methods in Statistics, pages 233­257. Academic Press, 1971.
+[14] Herbert Robbins and Sutton Monro. A Stochastic Approximation Method. The Annals of Mathematical Statistics,
+      22(3):400 ­ 407, 1951.
+[15] Othmane Sebbouh, Robert M Gower, and Aaron Defazio. Almost sure convergence rates for stochastic gradient
+      descent and stochastic heavy ball. In Mikhail Belkin and Samory Kpotufe, editors, Proceedings of Thirty Fourth
+      Conference on Learning Theory, volume 134 of Proceedings of Machine Learning Research, pages 3935­3971.
+      PMLR, 15­19 Aug 2021.
+[16] Simon Weissmann, Sara Klein, Wa¨iss Azizian, and Leif Do¨ring. Almost sure convergence rates of stochastic
+      gradient methods under gradient domination, 2025.
+
+                                        29
+

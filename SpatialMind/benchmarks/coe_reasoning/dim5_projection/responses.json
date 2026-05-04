@@ -1,0 +1,98 @@
+{
+  "dim5_q01": {
+    "baseline": "[ANSWER]\n(a) 4\n(b) 0\n(c) 12\n[/ANSWER]\n\n[REASONING]\n4 vertical edges of cube collapse ⇒ 4 collisions. I'd guess 0 crossings (forgetting coincident edges) and estimate ~half the distances are preserved.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 4\n(b) 0\n(c) 12\n[/ANSWER]\n\n[REASONING]\nSame reasoning; CoT doesn't unblock the coincident-edge insight.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 4\n(b) 8\n(c) 12\n[/ANSWER]\n\n[REASONING]\nWith 3D coords given, I project mentally; coincident edges (top vs bottom face) count as crossings ⇒ 8.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 4\n(b) 8\n(c) 12\n[/ANSWER]\n\n[REASONING]\nT trace gives n_point_collisions=4, n_edge_crossings_introduced=8. Preserved fraction 0.4286 × 28 ≈ 12.\n[/REASONING]"
+  },
+  "dim5_q02": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 0\n(c) 5\n[/ANSWER]\n\n[REASONING]\nDiagonal projection of cube along (1,1,1) is hexagon-like; I'd guess no collisions and few crossings.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 0\n(c) 5\n[/ANSWER]\n\n[REASONING]\nSame.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 2\n(c) 6\n[/ANSWER]\n\n[REASONING]\nComputing diagonal projection of all 8 vertices: opposite corners (0,0,0) and (1,1,1) both project to origin ⇒ 1 collision.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 2\n(c) 6\n[/ANSWER]\n\n[REASONING]\nT: 1 collision, 2 crossings; preserved=6 out of 28.\n[/REASONING]"
+  },
+  "dim5_q03": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 1\n(c) 2\n[/ANSWER]\n\n[REASONING]\nTetra has 4 vertices; xy projection of (1,1,1),(-1,-1,1),(-1,1,-1),(1,-1,-1) gives 4 distinct 2D points and likely 1 edge crossing.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 1\n(c) 2\n[/ANSWER]\n\n[REASONING]\nSame.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 1\n(c) 2\n[/ANSWER]\n\n[REASONING]\nConfirmed by computing.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 1\n(c) 2\n[/ANSWER]\n\n[REASONING]\nT trace agrees.\n[/REASONING]"
+  },
+  "dim5_q04": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 1\n(c) 2\n[/ANSWER]\n\n[REASONING]\nSymmetric to xy projection.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 1\n(c) 2\n[/ANSWER]\n\n[REASONING]\nSame.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 1\n(c) 2\n[/ANSWER]\n\n[REASONING]\nComputed.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 1\n(c) 2\n[/ANSWER]\n\n[REASONING]\nT.\n[/REASONING]"
+  },
+  "dim5_q05": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) 0\n(c) 6\n[/ANSWER]\n\n[REASONING]\nocta has top (0,0,1) and bottom (0,0,-1) collapsing in xy ⇒ 1 collision. Equator vertices remain at distinct positions ⇒ no crossings.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) 0\n(c) 6\n[/ANSWER]\n\n[REASONING]\nSame.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 0\n(c) 6\n[/ANSWER]\n\n[REASONING]\nConfirmed.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 0\n(c) 6\n[/ANSWER]\n\n[REASONING]\nT.\n[/REASONING]"
+  },
+  "dim5_q06": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 0\n(c) 8\n[/ANSWER]\n\n[REASONING]\nDiagonal of octa: I'd guess no collisions and underestimate crossings.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 2\n(c) 8\n[/ANSWER]\n\n[REASONING]\nSlightly more careful: maybe a few crossings.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 6\n(c) 6\n[/ANSWER]\n\n[REASONING]\nComputing diagonal projection of 6 octa vertices and 12 edges; many edges cross in the hexagonal silhouette.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 6\n(c) 6\n[/ANSWER]\n\n[REASONING]\nT trace gives 6 crossings directly.\n[/REASONING]"
+  },
+  "dim5_q07": {
+    "baseline": "[ANSWER]\n(a) 3\n(b) 6\n(c) 6\n[/ANSWER]\n\n[REASONING]\nPrism has 3 top + 3 bottom vertices. xy collapses each top onto bottom ⇒ 3 collisions; 3 vertical edges collapse, 3 top edges coincide with 3 bottom ⇒ 6 crossings.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 3\n(b) 6\n(c) 6\n[/ANSWER]\n\n[REASONING]\nSame.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 3\n(b) 6\n(c) 6\n[/ANSWER]\n\n[REASONING]\nConfirmed.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 3\n(b) 6\n(c) 6\n[/ANSWER]\n\n[REASONING]\nT.\n[/REASONING]"
+  },
+  "dim5_q08": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 4\n(c) 12\n[/ANSWER]\n\n[REASONING]\nantiprism rotated 45° between top/bottom squares ⇒ no collisions; I'd guess 4 crossings of slanted edges.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 4\n(c) 12\n[/ANSWER]\n\n[REASONING]\nSame.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 8\n(c) 12\n[/ANSWER]\n\n[REASONING]\nAntiprism has 16 edges; in xy projection, the 8 slanted edges cross each other in 8 places.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 8\n(c) 12\n[/ANSWER]\n\n[REASONING]\nT.\n[/REASONING]"
+  },
+  "dim5_q09": {
+    "baseline": "[ANSWER]\n(a) 2\n(b) 4\n(c) 1\n[/ANSWER]\n\n[REASONING]\ncube diameter ≈ √3 ≈ 1.73 ⇒ 2. xy collapses 4 pairs; diagonal collapses (0,0,0)↔(1,1,1) ⇒ 1 collision. Diagonal is less lossy.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 2\n(b) 4\n(c) 1\n[/ANSWER]\n\n[REASONING]\nSame.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 2\n(b) 4\n(c) 1\n[/ANSWER]\n\n[REASONING]\nConfirmed.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 2\n(b) 4\n(c) 1\n[/ANSWER]\n\n[REASONING]\nT.\n[/REASONING]"
+  },
+  "dim5_q10": {
+    "baseline": "[ANSWER]\n(a) 2\n(b) 4\n(c) 4\n[/ANSWER]\n\n[REASONING]\nBy symmetry of the unit cube.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 2\n(b) 4\n(c) 4\n[/ANSWER]\n\n[REASONING]\nSame.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 2\n(b) 4\n(c) 4\n[/ANSWER]\n\n[REASONING]\nConfirmed.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 2\n(b) 4\n(c) 4\n[/ANSWER]\n\n[REASONING]\nT.\n[/REASONING]"
+  },
+  "dim5_q11": {
+    "baseline": "[ANSWER]\n(a) 3\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nTetra (1,1,1),(-1,-1,1),(-1,1,-1),(1,-1,-1): pairwise dist √8 ≈ 2.83 ⇒ 3. Both projections produce 0 collisions.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 3\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nSame.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 3\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nConfirmed.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 3\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nT.\n[/REASONING]"
+  },
+  "dim5_q12": {
+    "baseline": "[ANSWER]\n(a) 3\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nSame as q11.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 3\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nSame.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 3\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nConfirmed.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 3\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nT.\n[/REASONING]"
+  },
+  "dim5_q13": {
+    "baseline": "[ANSWER]\n(a) 2\n(b) 1\n(c) 0\n[/ANSWER]\n\n[REASONING]\nOcta diameter = 2 (pole-to-pole or equator-pair). xy: 1 collision (poles). diag: 0 collisions but more crossings.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 2\n(b) 1\n(c) 0\n[/ANSWER]\n\n[REASONING]\nSame.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 2\n(b) 1\n(c) 0\n[/ANSWER]\n\n[REASONING]\nConfirmed.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 2\n(b) 1\n(c) 0\n[/ANSWER]\n\n[REASONING]\nT.\n[/REASONING]"
+  },
+  "dim5_q14": {
+    "baseline": "[ANSWER]\n(a) 2\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nSymmetric octa; one collision per cardinal projection.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 2\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nSame.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 2\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nConfirmed.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 2\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nT.\n[/REASONING]"
+  },
+  "dim5_q15": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) 3\n(c) 0\n[/ANSWER]\n\n[REASONING]\nDiameter √(1+1) ≈ 1.4 ⇒ 1. xy: 3 vertex pairs collide (top vs bottom).\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) 3\n(c) 0\n[/ANSWER]\n\n[REASONING]\nSame.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 3\n(c) 0\n[/ANSWER]\n\n[REASONING]\nConfirmed.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 3\n(c) 0\n[/ANSWER]\n\n[REASONING]\nT.\n[/REASONING]"
+  },
+  "dim5_q16": {
+    "baseline": "[ANSWER]\n(a) 2\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nantiprism diameter ≈ √(2+1)=√3 ≈ 1.7. xy keeps top/bottom rotated 45° distinct.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 2\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nSame.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 2\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nConfirmed.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 2\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nT.\n[/REASONING]"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "theorem_name": "gradient_method_convergence_rate",
+  "layer": 3,
+  "natural_language_statement": "Let f : E → ℝ be convex with L-Lipschitz gradient on E, and let xm be a minimizer. Run fixed-step gradient descent x_{k+1} = x_k - a · f'(x_k) with step a ≤ 1/L starting from x_0. Then for every k ≥ 0, f(x_{k+1}) - f(xm) ≤ ‖x_0 - xm‖^2 / (2 · (k + 1) · a).",
+  "assumptions": [
+    "E is a complete real inner product space",
+    "f : E → ℝ is convex on univ (ConvexOn ℝ univ f)",
+    "f' : E → E is L-Lipschitz with L > 0",
+    "iterates: x_{k+1} = x_k - a · f'(x_k); a > 0; a ≤ 1/L; x_0 fixed",
+    "xm is any vector (typically the minimizer)"
+  ],
+  "conclusion": "∀ k : ℕ, f (alg.x (k + 1)) - f xm ≤ 1 / (2 * (k + 1) * alg.a) * ‖x₀ - xm‖ ^ 2",
+  "proof_sketch": [
+    "Sufficient decrease (convex_lipschitz): f(x_{k+1}) ≤ f(x_k) - (a/2) ‖f'(x_k)‖^2 — sequence f(x_k) is monotone non-increasing.",
+    "Per-step bound (point_descent_for_convex): f(x_{k+1}) ≤ f(xm) + (1 / (2a)) (‖x_k - xm‖^2 - ‖x_{k+1} - xm‖^2). Telescoping over k = 0..n.",
+    "Sum the per-step bounds: Σ_{k=0}^{n} (f(x_{k+1}) - f(xm)) ≤ (1 / (2a)) (‖x_0 - xm‖^2 - ‖x_{n+1} - xm‖^2) ≤ (1 / (2a)) ‖x_0 - xm‖^2.",
+    "Apply monotonicity argument (mono_sum_prop): the largest term is bounded by the average — (n+1) · (f(x_{n+1}) - f(xm)) ≤ (1/(2a)) ‖x_0 - xm‖^2.",
+    "Divide by (n+1) to obtain the O(1/T) bound."
+  ],
+  "key_mathlib_lemmas": [
+    "Finset.sum_range_succ",
+    "Finset.sum_le_sum",
+    "div_le_div_of_nonneg_right"
+  ],
+  "registry_dependencies": [
+    "convex_lipschitz (sufficient decrease)",
+    "Convex_first_order_condition' (convexity inequality)",
+    "lipschitz_continuos_upper_bound' (descent lemma)",
+    "mono_sum_prop / mono_sum_prop_primal' (averaging)",
+    "point_descent_for_convex"
+  ]
+}

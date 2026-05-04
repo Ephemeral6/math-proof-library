@@ -1,0 +1,39 @@
+{
+  "theorem_name": "proximal_gradient_method_convergence",
+  "layer": 3,
+  "natural_language_statement": "Consider the composite problem min_x f(x) + h(x), where f is convex with L-Lipschitz gradient and h is closed convex (continuous on univ). The proximal gradient method x_{k+1} = prox_{t · h}(x_k - t · f'(x_k)) with step t ≤ 1/L produces, starting from x_0 with minimizer xm, the bound (f + h)(x_k) - (f + h)(xm) ≤ ‖x_0 - xm‖^2 / (2 · k · t) for all k ≥ 1.",
+  "assumptions": [
+    "E is a complete real inner product space (ProperSpace E)",
+    "f, h : E → ℝ both convex on univ",
+    "f' is the gradient of f and is L-Lipschitz (L > 0)",
+    "t > 0 with t ≤ 1/L",
+    "x_{k+1} = prox_{t · h}(x_k - t · f'(x_k)); x_0 fixed",
+    "xm minimizes (f + h) on univ"
+  ],
+  "conclusion": "∀ (k : ℕ+), (f (alg.x k) + h (alg.x k) - f alg.xm - h alg.xm) ≤ 1 / (2 * k * alg.t) * ‖x₀ - alg.xm‖ ^ 2",
+  "proof_sketch": [
+    "Define gradient mapping G_t(x) = (1/t) (x - prox_{t·h}(x - t · f'(x))). Then x - t·G_t(x) = next iterate when applied at the iterate.",
+    "By prox subdifferential characterization, G_t(x) - f'(x) ∈ ∂h(x - t·G_t(x)).",
+    "Descent lemma on f: f(x - t·G_t(x)) ≤ f(x) - t·⟨f'(x), G_t(x)⟩ + t^2·L/2·‖G_t(x)‖^2 ≤ f(x) - t·⟨f'(x), G_t(x)⟩ + t/2·‖G_t(x)‖^2 since t·L ≤ 1.",
+    "Subgradient inequality on h: h(x - t·G_t(x)) ≤ h(z) - ⟨G_t(x) - f'(x), z - x + t·G_t(x)⟩.",
+    "First-order convex inequality on f: f(x) + ⟨f'(x), z - x⟩ ≤ f(z).",
+    "Combine to get: φ(x - t·G_t(x)) ≤ φ(z) + ⟨G_t(x), x - z⟩ - (t/2)·‖G_t(x)‖^2 where φ = f + h.",
+    "Specialize z = xm and rewrite ⟨G_t(x), x - xm⟩ - (t/2)‖G_t‖^2 = (1/(2t))(‖x - xm‖^2 - ‖x - t·G_t(x) - xm‖^2).",
+    "Conclude per-step bound; sum / multiply by k to get O(1/T)."
+  ],
+  "key_mathlib_lemmas": [
+    "ConvexOn.smul",
+    "ContinuousOn.const_smul",
+    "Finset.sum_range_sub'",
+    "Finset.sum_le_sum",
+    "Finset.sum_const"
+  ],
+  "registry_dependencies": [
+    "lipschitz_continuos_upper_bound'",
+    "Convex_first_order_condition'",
+    "prox_iff_subderiv_smul",
+    "prox_unique_of_convex",
+    "prox_point_c'",
+    "SubderivAt + HasSubgradientAt"
+  ]
+}

@@ -1,0 +1,36 @@
+========================================================================
+C4 rigorous proof — Route M: dense grid + mode + cone margin
+mpmath dps = 50
+========================================================================
+
+Box: β∈[0.78,0.82], ηL∈[3.2,3.32], κ∈[0.375,0.4]
+Grid: 6^3 = 216 points, T = 300, T_settled = 100
+
+  [12/216] 12 3cycle so far, t=4.6s
+  [24/216] 24 3cycle so far, t=8.9s
+  [36/216] 36 3cycle so far, t=13.6s
+  [48/216] 48 3cycle so far, t=18.2s
+  [60/216] 60 3cycle so far, t=22.6s
+  [72/216] 72 3cycle so far, t=27.1s
+  [84/216] 84 3cycle so far, t=31.5s
+  [96/216] 96 3cycle so far, t=35.8s
+  [108/216] 108 3cycle so far, t=40.2s
+  [120/216] 120 3cycle so far, t=44.6s
+  [132/216] 132 3cycle so far, t=49.0s
+  [144/216] 144 3cycle so far, t=53.3s
+  [156/216] 156 3cycle so far, t=57.7s
+  [168/216] 168 3cycle so far, t=62.1s
+  [180/216] 180 3cycle so far, t=66.6s
+  [192/216] 192 3cycle so far, t=71.0s
+  [204/216] 204 3cycle so far, t=75.5s
+  [216/216] 216 3cycle so far, t=79.9s
+
+  Total: 216 grid points, T=300
+  All vertex modes after t > T_settled: 216/216
+  Identified as a 3-cycle of vertex modes: 216/216
+  Cycle patterns observed: {(0, 2, 1): 114, (2, 0, 1): 102}
+  Margins (distance to mode boundary): min=0.5566, max=0.5732, median=0.5657
+  Failures: 0
+
+Saved to C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap1_init\caveat_fix\c4_proof\c4_main_results.json
+Total wall time: 79.9s

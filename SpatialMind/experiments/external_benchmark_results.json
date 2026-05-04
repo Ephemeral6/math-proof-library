@@ -1,0 +1,3059 @@
+{
+  "experiment": "external_benchmark_v1",
+  "subject": "claude-opus-4-7-as-test-subject",
+  "date": "2026-05-02",
+  "description": "Experiment 3 — Validate CoE-RTC against Zero-CoT and CoT+Code on third-party standard benchmarks: KnotInfo signatures/determinants/Alexander polynomials (Part B) and NetworkX graph connectivity (Part C). Ground truth is independent of the SpatialMind engines.",
+  "ground_truth_sources": {
+    "knot_signature": "https://stoimenov.net/stoimeno/homepage/ptab/sig10.html (Stoimenov +convention; negated for KnotInfo/SnapPy convention)",
+    "knot_alexander": "https://stoimenov.net/stoimeno/homepage/ptab/a10.html",
+    "knot_determinant": "Computed as |Δ(-1)|; cross-checked with KnotInfo",
+    "graph_ground_truth": "Independently computed via NetworkX 3.6.1 (this script)"
+  },
+  "scoring": {
+    "metric": "accuracy (binary correct/incorrect)",
+    "signature": "exact integer match against KnotInfo convention",
+    "determinant": "exact non-negative integer match",
+    "alexander": "normalized coefficient list match (strip ±t^k, force positive head)",
+    "graph": "exact match (bool / int / int)"
+  },
+  "ground_truth_knots": {
+    "3_1": {
+      "signature": -2,
+      "determinant": 3,
+      "alexander_normalized": [
+        1,
+        -1,
+        1
+      ],
+      "pd_code": [
+        [
+          5,
+          2,
+          0,
+          3
+        ],
+        [
+          3,
+          0,
+          4,
+          1
+        ],
+        [
+          1,
+          4,
+          2,
+          5
+        ]
+      ]
+    },
+    "4_1": {
+      "signature": 0,
+      "determinant": 5,
+      "alexander_normalized": [
+        1,
+        -3,
+        1
+      ],
+      "pd_code": [
+        [
+          7,
+          4,
+          0,
+          5
+        ],
+        [
+          3,
+          0,
+          4,
+          1
+        ],
+        [
+          1,
+          7,
+          2,
+          6
+        ],
+        [
+          5,
+          3,
+          6,
+          2
+        ]
+      ]
+    },
+    "5_1": {
+      "signature": -4,
+      "determinant": 5,
+      "alexander_normalized": [
+        1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "pd_code": [
+        [
+          9,
+          4,
+          0,
+          5
+        ],
+        [
+          5,
+          0,
+          6,
+          1
+        ],
+        [
+          1,
+          6,
+          2,
+          7
+        ],
+        [
+          7,
+          2,
+          8,
+          3
+        ],
+        [
+          3,
+          8,
+          4,
+          9
+        ]
+      ]
+    },
+    "5_2": {
+      "signature": -2,
+      "determinant": 7,
+      "alexander_normalized": [
+        2,
+        -3,
+        2
+      ],
+      "pd_code": [
+        [
+          4,
+          0,
+          5,
+          9
+        ],
+        [
+          0,
+          6,
+          1,
+          5
+        ],
+        [
+          8,
+          2,
+          9,
+          1
+        ],
+        [
+          2,
+          8,
+          3,
+          7
+        ],
+        [
+          6,
+          4,
+          7,
+          3
+        ]
+      ]
+    },
+    "6_1": {
+      "signature": 0,
+      "determinant": 9,
+      "alexander_normalized": [
+        2,
+        -5,
+        2
+      ],
+      "pd_code": [
+        [
+          6,
+          11,
+          7,
+          0
+        ],
+        [
+          0,
+          5,
+          1,
+          6
+        ],
+        [
+          10,
+          2,
+          11,
+          1
+        ],
+        [
+          2,
+          10,
+          3,
+          9
+        ],
+        [
+          8,
+          4,
+          9,
+          3
+        ],
+        [
+          4,
+          8,
+          5,
+          7
+        ]
+      ]
+    },
+    "6_2": {
+      "signature": -2,
+      "determinant": 11,
+      "alexander_normalized": [
+        1,
+        -3,
+        3,
+        -3,
+        1
+      ],
+      "pd_code": [
+        [
+          11,
+          7,
+          0,
+          6
+        ],
+        [
+          7,
+          1,
+          8,
+          0
+        ],
+        [
+          1,
+          9,
+          2,
+          8
+        ],
+        [
+          5,
+          3,
+          6,
+          2
+        ],
+        [
+          3,
+          10,
+          4,
+          11
+        ],
+        [
+          9,
+          4,
+          10,
+          5
+        ]
+      ]
+    },
+    "6_3": {
+      "signature": 0,
+      "determinant": 13,
+      "alexander_normalized": [
+        1,
+        -3,
+        5,
+        -3,
+        1
+      ],
+      "pd_code": [
+        [
+          8,
+          11,
+          9,
+          0
+        ],
+        [
+          0,
+          4,
+          1,
+          3
+        ],
+        [
+          6,
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          3,
+          7
+        ],
+        [
+          4,
+          9,
+          5,
+          10
+        ],
+        [
+          10,
+          5,
+          11,
+          6
+        ]
+      ]
+    },
+    "7_1": {
+      "signature": -6,
+      "determinant": 7,
+      "alexander_normalized": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "pd_code": [
+        [
+          13,
+          6,
+          0,
+          7
+        ],
+        [
+          7,
+          0,
+          8,
+          1
+        ],
+        [
+          1,
+          8,
+          2,
+          9
+        ],
+        [
+          9,
+          2,
+          10,
+          3
+        ],
+        [
+          3,
+          10,
+          4,
+          11
+        ],
+        [
+          11,
+          4,
+          12,
+          5
+        ],
+        [
+          5,
+          12,
+          6,
+          13
+        ]
+      ]
+    },
+    "7_2": {
+      "signature": -2,
+      "determinant": 11,
+      "alexander_normalized": [
+        3,
+        -5,
+        3
+      ],
+      "pd_code": [
+        [
+          13,
+          10,
+          0,
+          11
+        ],
+        [
+          9,
+          0,
+          10,
+          1
+        ],
+        [
+          1,
+          8,
+          2,
+          9
+        ],
+        [
+          7,
+          2,
+          8,
+          3
+        ],
+        [
+          3,
+          6,
+          4,
+          7
+        ],
+        [
+          11,
+          4,
+          12,
+          5
+        ],
+        [
+          5,
+          12,
+          6,
+          13
+        ]
+      ]
+    },
+    "7_3": {
+      "signature": -4,
+      "determinant": 13,
+      "alexander_normalized": [
+        2,
+        -3,
+        3,
+        -3,
+        2
+      ],
+      "pd_code": [
+        [
+          13,
+          8,
+          0,
+          9
+        ],
+        [
+          7,
+          0,
+          8,
+          1
+        ],
+        [
+          1,
+          6,
+          2,
+          7
+        ],
+        [
+          9,
+          2,
+          10,
+          3
+        ],
+        [
+          3,
+          10,
+          4,
+          11
+        ],
+        [
+          11,
+          4,
+          12,
+          5
+        ],
+        [
+          5,
+          12,
+          6,
+          13
+        ]
+      ]
+    }
+  },
+  "ground_truth_graphs": {
+    "Petersen": {
+      "n_vertices": 10,
+      "n_edges": 15,
+      "deleted_edge": [
+        5,
+        7
+      ],
+      "is_connected_post_gt": true,
+      "n_bridges_post_gt": 0,
+      "shortest_path_0_to_nminus1_post_gt": 2
+    },
+    "Karate": {
+      "n_vertices": 34,
+      "n_edges": 78,
+      "deleted_edge": [
+        0,
+        21
+      ],
+      "is_connected_post_gt": true,
+      "n_bridges_post_gt": 2,
+      "shortest_path_0_to_nminus1_post_gt": 2
+    },
+    "ER_15_03_42": {
+      "n_vertices": 15,
+      "n_edges": 38,
+      "deleted_edge": [
+        0,
+        14
+      ],
+      "is_connected_post_gt": true,
+      "n_bridges_post_gt": 0,
+      "shortest_path_0_to_nminus1_post_gt": 2
+    },
+    "ER_15_03_43": {
+      "n_vertices": 15,
+      "n_edges": 28,
+      "deleted_edge": [
+        6,
+        11
+      ],
+      "is_connected_post_gt": true,
+      "n_bridges_post_gt": 0,
+      "shortest_path_0_to_nminus1_post_gt": 2
+    },
+    "ER_15_03_44": {
+      "n_vertices": 15,
+      "n_edges": 41,
+      "deleted_edge": [
+        13,
+        14
+      ],
+      "is_connected_post_gt": true,
+      "n_bridges_post_gt": 2,
+      "shortest_path_0_to_nminus1_post_gt": 2
+    }
+  },
+  "engine_rtc_data_knots": {
+    "3_1": {
+      "signature_pre": -2,
+      "det_pre": 3,
+      "alexander_pre_normalized": [
+        1,
+        -1,
+        1
+      ]
+    },
+    "4_1": {
+      "signature_pre": 0,
+      "det_pre": 5,
+      "alexander_pre_normalized": [
+        1,
+        -3,
+        1
+      ]
+    },
+    "5_1": {
+      "signature_pre": -4,
+      "det_pre": 5,
+      "alexander_pre_normalized": [
+        1,
+        -1,
+        1,
+        -1,
+        1
+      ]
+    },
+    "5_2": {
+      "signature_pre": 2,
+      "det_pre": 7,
+      "alexander_pre_normalized": [
+        2,
+        -3,
+        2
+      ]
+    },
+    "6_1": {
+      "signature_pre": 0,
+      "det_pre": 9,
+      "alexander_pre_normalized": [
+        2,
+        -5,
+        2
+      ]
+    },
+    "6_2": {
+      "signature_pre": 2,
+      "det_pre": 11,
+      "alexander_pre_normalized": [
+        1,
+        -3,
+        3,
+        -3,
+        1
+      ]
+    },
+    "6_3": {
+      "signature_pre": 0,
+      "det_pre": 13,
+      "alexander_pre_normalized": [
+        1,
+        -3,
+        5,
+        -3,
+        1
+      ]
+    },
+    "7_1": {
+      "signature_pre": -6,
+      "det_pre": 7,
+      "alexander_pre_normalized": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1
+      ]
+    },
+    "7_2": {
+      "signature_pre": -2,
+      "det_pre": 11,
+      "alexander_pre_normalized": [
+        3,
+        -5,
+        3
+      ]
+    },
+    "7_3": {
+      "signature_pre": -4,
+      "det_pre": 13,
+      "alexander_pre_normalized": [
+        2,
+        -3,
+        3,
+        -3,
+        2
+      ]
+    }
+  },
+  "engine_vs_gt_knot_summary": {
+    "3_1": {
+      "signature_match": true,
+      "determinant_match": true,
+      "alexander_match": true
+    },
+    "4_1": {
+      "signature_match": true,
+      "determinant_match": true,
+      "alexander_match": true
+    },
+    "5_1": {
+      "signature_match": true,
+      "determinant_match": true,
+      "alexander_match": true
+    },
+    "5_2": {
+      "signature_match": false,
+      "determinant_match": true,
+      "alexander_match": true
+    },
+    "6_1": {
+      "signature_match": true,
+      "determinant_match": true,
+      "alexander_match": true
+    },
+    "6_2": {
+      "signature_match": false,
+      "determinant_match": true,
+      "alexander_match": true
+    },
+    "6_3": {
+      "signature_match": true,
+      "determinant_match": true,
+      "alexander_match": true
+    },
+    "7_1": {
+      "signature_match": true,
+      "determinant_match": true,
+      "alexander_match": true
+    },
+    "7_2": {
+      "signature_match": true,
+      "determinant_match": true,
+      "alexander_match": true
+    },
+    "7_3": {
+      "signature_match": true,
+      "determinant_match": true,
+      "alexander_match": true
+    }
+  },
+  "trials": [
+    {
+      "trial_id": "K-3_1-sig-Z",
+      "domain": "knot",
+      "object": "3_1",
+      "invariant": "signature",
+      "condition": "Zero-CoT",
+      "ground_truth": -2,
+      "answer": -2,
+      "reasoning": "trefoil 3_1 (only 3-crossing prime knot)",
+      "correct": true
+    },
+    {
+      "trial_id": "K-3_1-det-Z",
+      "domain": "knot",
+      "object": "3_1",
+      "invariant": "determinant",
+      "condition": "Zero-CoT",
+      "ground_truth": 3,
+      "answer": 3,
+      "reasoning": "trefoil 3_1",
+      "correct": true
+    },
+    {
+      "trial_id": "K-3_1-alex-Z",
+      "domain": "knot",
+      "object": "3_1",
+      "invariant": "alexander",
+      "condition": "Zero-CoT",
+      "ground_truth": [
+        1,
+        -1,
+        1
+      ],
+      "answer": [
+        1,
+        -1,
+        1
+      ],
+      "reasoning": "trefoil 3_1",
+      "correct": true
+    },
+    {
+      "trial_id": "K-3_1-sig-C",
+      "domain": "knot",
+      "object": "3_1",
+      "invariant": "signature",
+      "condition": "CoT+Code",
+      "ground_truth": -2,
+      "answer": -2,
+      "reasoning": "snappy.Link(pd_code).seifert_matrix() → eigenvalue signature",
+      "correct": true
+    },
+    {
+      "trial_id": "K-3_1-det-C",
+      "domain": "knot",
+      "object": "3_1",
+      "invariant": "determinant",
+      "condition": "CoT+Code",
+      "ground_truth": 3,
+      "answer": 3,
+      "reasoning": "|det(S+S^T)| via numpy",
+      "correct": true
+    },
+    {
+      "trial_id": "K-3_1-alex-C",
+      "domain": "knot",
+      "object": "3_1",
+      "invariant": "alexander",
+      "condition": "CoT+Code",
+      "ground_truth": [
+        1,
+        -1,
+        1
+      ],
+      "answer": [
+        1,
+        -1,
+        1
+      ],
+      "reasoning": "det(t·S - S^T) via sympy, normalize",
+      "correct": true
+    },
+    {
+      "trial_id": "K-3_1-sig-R",
+      "domain": "knot",
+      "object": "3_1",
+      "invariant": "signature",
+      "condition": "CoE-RTC",
+      "ground_truth": -2,
+      "answer": -2,
+      "reasoning": "RTC.signature_pre = -2; direct lookup.",
+      "rtc_data": {
+        "signature_pre": -2,
+        "det_pre": 3,
+        "alexander_pre_normalized": [
+          1,
+          -1,
+          1
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-3_1-det-R",
+      "domain": "knot",
+      "object": "3_1",
+      "invariant": "determinant",
+      "condition": "CoE-RTC",
+      "ground_truth": 3,
+      "answer": 3,
+      "reasoning": "RTC.det_pre = 3; direct lookup.",
+      "rtc_data": {
+        "signature_pre": -2,
+        "det_pre": 3,
+        "alexander_pre_normalized": [
+          1,
+          -1,
+          1
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-3_1-alex-R",
+      "domain": "knot",
+      "object": "3_1",
+      "invariant": "alexander",
+      "condition": "CoE-RTC",
+      "ground_truth": [
+        1,
+        -1,
+        1
+      ],
+      "answer": [
+        1,
+        -1,
+        1
+      ],
+      "reasoning": "RTC.alexander_pre_normalized = [1, -1, 1]; direct lookup.",
+      "rtc_data": {
+        "signature_pre": -2,
+        "det_pre": 3,
+        "alexander_pre_normalized": [
+          1,
+          -1,
+          1
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-4_1-sig-Z",
+      "domain": "knot",
+      "object": "4_1",
+      "invariant": "signature",
+      "condition": "Zero-CoT",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "figure-eight 4_1 (only 4-crossing prime knot, amphichiral)",
+      "correct": true
+    },
+    {
+      "trial_id": "K-4_1-det-Z",
+      "domain": "knot",
+      "object": "4_1",
+      "invariant": "determinant",
+      "condition": "Zero-CoT",
+      "ground_truth": 5,
+      "answer": 5,
+      "reasoning": "figure-eight 4_1",
+      "correct": true
+    },
+    {
+      "trial_id": "K-4_1-alex-Z",
+      "domain": "knot",
+      "object": "4_1",
+      "invariant": "alexander",
+      "condition": "Zero-CoT",
+      "ground_truth": [
+        1,
+        -3,
+        1
+      ],
+      "answer": [
+        1,
+        -3,
+        1
+      ],
+      "reasoning": "figure-eight 4_1",
+      "correct": true
+    },
+    {
+      "trial_id": "K-4_1-sig-C",
+      "domain": "knot",
+      "object": "4_1",
+      "invariant": "signature",
+      "condition": "CoT+Code",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "snappy.Link(pd_code).seifert_matrix() → eigenvalue signature",
+      "correct": true
+    },
+    {
+      "trial_id": "K-4_1-det-C",
+      "domain": "knot",
+      "object": "4_1",
+      "invariant": "determinant",
+      "condition": "CoT+Code",
+      "ground_truth": 5,
+      "answer": 5,
+      "reasoning": "|det(S+S^T)| via numpy",
+      "correct": true
+    },
+    {
+      "trial_id": "K-4_1-alex-C",
+      "domain": "knot",
+      "object": "4_1",
+      "invariant": "alexander",
+      "condition": "CoT+Code",
+      "ground_truth": [
+        1,
+        -3,
+        1
+      ],
+      "answer": [
+        1,
+        -3,
+        1
+      ],
+      "reasoning": "det(t·S - S^T) via sympy, normalize",
+      "correct": true
+    },
+    {
+      "trial_id": "K-4_1-sig-R",
+      "domain": "knot",
+      "object": "4_1",
+      "invariant": "signature",
+      "condition": "CoE-RTC",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "RTC.signature_pre = 0; direct lookup.",
+      "rtc_data": {
+        "signature_pre": 0,
+        "det_pre": 5,
+        "alexander_pre_normalized": [
+          1,
+          -3,
+          1
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-4_1-det-R",
+      "domain": "knot",
+      "object": "4_1",
+      "invariant": "determinant",
+      "condition": "CoE-RTC",
+      "ground_truth": 5,
+      "answer": 5,
+      "reasoning": "RTC.det_pre = 5; direct lookup.",
+      "rtc_data": {
+        "signature_pre": 0,
+        "det_pre": 5,
+        "alexander_pre_normalized": [
+          1,
+          -3,
+          1
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-4_1-alex-R",
+      "domain": "knot",
+      "object": "4_1",
+      "invariant": "alexander",
+      "condition": "CoE-RTC",
+      "ground_truth": [
+        1,
+        -3,
+        1
+      ],
+      "answer": [
+        1,
+        -3,
+        1
+      ],
+      "reasoning": "RTC.alexander_pre_normalized = [1, -3, 1]; direct lookup.",
+      "rtc_data": {
+        "signature_pre": 0,
+        "det_pre": 5,
+        "alexander_pre_normalized": [
+          1,
+          -3,
+          1
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-5_1-sig-Z",
+      "domain": "knot",
+      "object": "5_1",
+      "invariant": "signature",
+      "condition": "Zero-CoT",
+      "ground_truth": -4,
+      "answer": -4,
+      "reasoning": "(2,5) torus knot 5_1 (PD code is highly regular cyclic)",
+      "correct": true
+    },
+    {
+      "trial_id": "K-5_1-det-Z",
+      "domain": "knot",
+      "object": "5_1",
+      "invariant": "determinant",
+      "condition": "Zero-CoT",
+      "ground_truth": 5,
+      "answer": 5,
+      "reasoning": "T(2,5)",
+      "correct": true
+    },
+    {
+      "trial_id": "K-5_1-alex-Z",
+      "domain": "knot",
+      "object": "5_1",
+      "invariant": "alexander",
+      "condition": "Zero-CoT",
+      "ground_truth": [
+        1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "answer": [
+        1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "reasoning": "T(2,5) → cyclotomic-like",
+      "correct": true
+    },
+    {
+      "trial_id": "K-5_1-sig-C",
+      "domain": "knot",
+      "object": "5_1",
+      "invariant": "signature",
+      "condition": "CoT+Code",
+      "ground_truth": -4,
+      "answer": -4,
+      "reasoning": "snappy.Link(pd_code).seifert_matrix() → eigenvalue signature",
+      "correct": true
+    },
+    {
+      "trial_id": "K-5_1-det-C",
+      "domain": "knot",
+      "object": "5_1",
+      "invariant": "determinant",
+      "condition": "CoT+Code",
+      "ground_truth": 5,
+      "answer": 5,
+      "reasoning": "|det(S+S^T)| via numpy",
+      "correct": true
+    },
+    {
+      "trial_id": "K-5_1-alex-C",
+      "domain": "knot",
+      "object": "5_1",
+      "invariant": "alexander",
+      "condition": "CoT+Code",
+      "ground_truth": [
+        1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "answer": [
+        1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "reasoning": "det(t·S - S^T) via sympy, normalize",
+      "correct": true
+    },
+    {
+      "trial_id": "K-5_1-sig-R",
+      "domain": "knot",
+      "object": "5_1",
+      "invariant": "signature",
+      "condition": "CoE-RTC",
+      "ground_truth": -4,
+      "answer": -4,
+      "reasoning": "RTC.signature_pre = -4; direct lookup.",
+      "rtc_data": {
+        "signature_pre": -4,
+        "det_pre": 5,
+        "alexander_pre_normalized": [
+          1,
+          -1,
+          1,
+          -1,
+          1
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-5_1-det-R",
+      "domain": "knot",
+      "object": "5_1",
+      "invariant": "determinant",
+      "condition": "CoE-RTC",
+      "ground_truth": 5,
+      "answer": 5,
+      "reasoning": "RTC.det_pre = 5; direct lookup.",
+      "rtc_data": {
+        "signature_pre": -4,
+        "det_pre": 5,
+        "alexander_pre_normalized": [
+          1,
+          -1,
+          1,
+          -1,
+          1
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-5_1-alex-R",
+      "domain": "knot",
+      "object": "5_1",
+      "invariant": "alexander",
+      "condition": "CoE-RTC",
+      "ground_truth": [
+        1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "answer": [
+        1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "reasoning": "RTC.alexander_pre_normalized = [1, -1, 1, -1, 1]; direct lookup.",
+      "rtc_data": {
+        "signature_pre": -4,
+        "det_pre": 5,
+        "alexander_pre_normalized": [
+          1,
+          -1,
+          1,
+          -1,
+          1
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-5_2-sig-Z",
+      "domain": "knot",
+      "object": "5_2",
+      "invariant": "signature",
+      "condition": "Zero-CoT",
+      "ground_truth": -2,
+      "answer": -2,
+      "reasoning": "5_2 twist knot",
+      "correct": true
+    },
+    {
+      "trial_id": "K-5_2-det-Z",
+      "domain": "knot",
+      "object": "5_2",
+      "invariant": "determinant",
+      "condition": "Zero-CoT",
+      "ground_truth": 7,
+      "answer": 7,
+      "reasoning": "5_2",
+      "correct": true
+    },
+    {
+      "trial_id": "K-5_2-alex-Z",
+      "domain": "knot",
+      "object": "5_2",
+      "invariant": "alexander",
+      "condition": "Zero-CoT",
+      "ground_truth": [
+        2,
+        -3,
+        2
+      ],
+      "answer": [
+        2,
+        -3,
+        2
+      ],
+      "reasoning": "5_2",
+      "correct": true
+    },
+    {
+      "trial_id": "K-5_2-sig-C",
+      "domain": "knot",
+      "object": "5_2",
+      "invariant": "signature",
+      "condition": "CoT+Code",
+      "ground_truth": -2,
+      "answer": 2,
+      "reasoning": "snappy.Link(pd_code).seifert_matrix() → eigenvalue signature",
+      "correct": false
+    },
+    {
+      "trial_id": "K-5_2-det-C",
+      "domain": "knot",
+      "object": "5_2",
+      "invariant": "determinant",
+      "condition": "CoT+Code",
+      "ground_truth": 7,
+      "answer": 7,
+      "reasoning": "|det(S+S^T)| via numpy",
+      "correct": true
+    },
+    {
+      "trial_id": "K-5_2-alex-C",
+      "domain": "knot",
+      "object": "5_2",
+      "invariant": "alexander",
+      "condition": "CoT+Code",
+      "ground_truth": [
+        2,
+        -3,
+        2
+      ],
+      "answer": [
+        2,
+        -3,
+        2
+      ],
+      "reasoning": "det(t·S - S^T) via sympy, normalize",
+      "correct": true
+    },
+    {
+      "trial_id": "K-5_2-sig-R",
+      "domain": "knot",
+      "object": "5_2",
+      "invariant": "signature",
+      "condition": "CoE-RTC",
+      "ground_truth": -2,
+      "answer": 2,
+      "reasoning": "RTC.signature_pre = 2; direct lookup.",
+      "rtc_data": {
+        "signature_pre": 2,
+        "det_pre": 7,
+        "alexander_pre_normalized": [
+          2,
+          -3,
+          2
+        ]
+      },
+      "correct": false
+    },
+    {
+      "trial_id": "K-5_2-det-R",
+      "domain": "knot",
+      "object": "5_2",
+      "invariant": "determinant",
+      "condition": "CoE-RTC",
+      "ground_truth": 7,
+      "answer": 7,
+      "reasoning": "RTC.det_pre = 7; direct lookup.",
+      "rtc_data": {
+        "signature_pre": 2,
+        "det_pre": 7,
+        "alexander_pre_normalized": [
+          2,
+          -3,
+          2
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-5_2-alex-R",
+      "domain": "knot",
+      "object": "5_2",
+      "invariant": "alexander",
+      "condition": "CoE-RTC",
+      "ground_truth": [
+        2,
+        -3,
+        2
+      ],
+      "answer": [
+        2,
+        -3,
+        2
+      ],
+      "reasoning": "RTC.alexander_pre_normalized = [2, -3, 2]; direct lookup.",
+      "rtc_data": {
+        "signature_pre": 2,
+        "det_pre": 7,
+        "alexander_pre_normalized": [
+          2,
+          -3,
+          2
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_1-sig-Z",
+      "domain": "knot",
+      "object": "6_1",
+      "invariant": "signature",
+      "condition": "Zero-CoT",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "stevedore knot 6_1 (slice → σ=0)",
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_1-det-Z",
+      "domain": "knot",
+      "object": "6_1",
+      "invariant": "determinant",
+      "condition": "Zero-CoT",
+      "ground_truth": 9,
+      "answer": 9,
+      "reasoning": "6_1",
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_1-alex-Z",
+      "domain": "knot",
+      "object": "6_1",
+      "invariant": "alexander",
+      "condition": "Zero-CoT",
+      "ground_truth": [
+        2,
+        -5,
+        2
+      ],
+      "answer": [
+        2,
+        -5,
+        2
+      ],
+      "reasoning": "6_1",
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_1-sig-C",
+      "domain": "knot",
+      "object": "6_1",
+      "invariant": "signature",
+      "condition": "CoT+Code",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "snappy.Link(pd_code).seifert_matrix() → eigenvalue signature",
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_1-det-C",
+      "domain": "knot",
+      "object": "6_1",
+      "invariant": "determinant",
+      "condition": "CoT+Code",
+      "ground_truth": 9,
+      "answer": 9,
+      "reasoning": "|det(S+S^T)| via numpy",
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_1-alex-C",
+      "domain": "knot",
+      "object": "6_1",
+      "invariant": "alexander",
+      "condition": "CoT+Code",
+      "ground_truth": [
+        2,
+        -5,
+        2
+      ],
+      "answer": [
+        2,
+        -5,
+        2
+      ],
+      "reasoning": "det(t·S - S^T) via sympy, normalize",
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_1-sig-R",
+      "domain": "knot",
+      "object": "6_1",
+      "invariant": "signature",
+      "condition": "CoE-RTC",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "RTC.signature_pre = 0; direct lookup.",
+      "rtc_data": {
+        "signature_pre": 0,
+        "det_pre": 9,
+        "alexander_pre_normalized": [
+          2,
+          -5,
+          2
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_1-det-R",
+      "domain": "knot",
+      "object": "6_1",
+      "invariant": "determinant",
+      "condition": "CoE-RTC",
+      "ground_truth": 9,
+      "answer": 9,
+      "reasoning": "RTC.det_pre = 9; direct lookup.",
+      "rtc_data": {
+        "signature_pre": 0,
+        "det_pre": 9,
+        "alexander_pre_normalized": [
+          2,
+          -5,
+          2
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_1-alex-R",
+      "domain": "knot",
+      "object": "6_1",
+      "invariant": "alexander",
+      "condition": "CoE-RTC",
+      "ground_truth": [
+        2,
+        -5,
+        2
+      ],
+      "answer": [
+        2,
+        -5,
+        2
+      ],
+      "reasoning": "RTC.alexander_pre_normalized = [2, -5, 2]; direct lookup.",
+      "rtc_data": {
+        "signature_pre": 0,
+        "det_pre": 9,
+        "alexander_pre_normalized": [
+          2,
+          -5,
+          2
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_2-sig-Z",
+      "domain": "knot",
+      "object": "6_2",
+      "invariant": "signature",
+      "condition": "Zero-CoT",
+      "ground_truth": -2,
+      "answer": 0,
+      "reasoning": "guessed as 6_1 / 6_3 family — σ=0 (WRONG, GT=-2)",
+      "correct": false
+    },
+    {
+      "trial_id": "K-6_2-det-Z",
+      "domain": "knot",
+      "object": "6_2",
+      "invariant": "determinant",
+      "condition": "Zero-CoT",
+      "ground_truth": 11,
+      "answer": 11,
+      "reasoning": "6_2",
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_2-alex-Z",
+      "domain": "knot",
+      "object": "6_2",
+      "invariant": "alexander",
+      "condition": "Zero-CoT",
+      "ground_truth": [
+        1,
+        -3,
+        3,
+        -3,
+        1
+      ],
+      "answer": [
+        1,
+        -3,
+        3,
+        -3,
+        1
+      ],
+      "reasoning": "6_2",
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_2-sig-C",
+      "domain": "knot",
+      "object": "6_2",
+      "invariant": "signature",
+      "condition": "CoT+Code",
+      "ground_truth": -2,
+      "answer": 2,
+      "reasoning": "snappy.Link(pd_code).seifert_matrix() → eigenvalue signature",
+      "correct": false
+    },
+    {
+      "trial_id": "K-6_2-det-C",
+      "domain": "knot",
+      "object": "6_2",
+      "invariant": "determinant",
+      "condition": "CoT+Code",
+      "ground_truth": 11,
+      "answer": 11,
+      "reasoning": "|det(S+S^T)| via numpy",
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_2-alex-C",
+      "domain": "knot",
+      "object": "6_2",
+      "invariant": "alexander",
+      "condition": "CoT+Code",
+      "ground_truth": [
+        1,
+        -3,
+        3,
+        -3,
+        1
+      ],
+      "answer": [
+        1,
+        -3,
+        3,
+        -3,
+        1
+      ],
+      "reasoning": "det(t·S - S^T) via sympy, normalize",
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_2-sig-R",
+      "domain": "knot",
+      "object": "6_2",
+      "invariant": "signature",
+      "condition": "CoE-RTC",
+      "ground_truth": -2,
+      "answer": 2,
+      "reasoning": "RTC.signature_pre = 2; direct lookup.",
+      "rtc_data": {
+        "signature_pre": 2,
+        "det_pre": 11,
+        "alexander_pre_normalized": [
+          1,
+          -3,
+          3,
+          -3,
+          1
+        ]
+      },
+      "correct": false
+    },
+    {
+      "trial_id": "K-6_2-det-R",
+      "domain": "knot",
+      "object": "6_2",
+      "invariant": "determinant",
+      "condition": "CoE-RTC",
+      "ground_truth": 11,
+      "answer": 11,
+      "reasoning": "RTC.det_pre = 11; direct lookup.",
+      "rtc_data": {
+        "signature_pre": 2,
+        "det_pre": 11,
+        "alexander_pre_normalized": [
+          1,
+          -3,
+          3,
+          -3,
+          1
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_2-alex-R",
+      "domain": "knot",
+      "object": "6_2",
+      "invariant": "alexander",
+      "condition": "CoE-RTC",
+      "ground_truth": [
+        1,
+        -3,
+        3,
+        -3,
+        1
+      ],
+      "answer": [
+        1,
+        -3,
+        3,
+        -3,
+        1
+      ],
+      "reasoning": "RTC.alexander_pre_normalized = [1, -3, 3, -3, 1]; direct lookup.",
+      "rtc_data": {
+        "signature_pre": 2,
+        "det_pre": 11,
+        "alexander_pre_normalized": [
+          1,
+          -3,
+          3,
+          -3,
+          1
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_3-sig-Z",
+      "domain": "knot",
+      "object": "6_3",
+      "invariant": "signature",
+      "condition": "Zero-CoT",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "6_3 (amphichiral)",
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_3-det-Z",
+      "domain": "knot",
+      "object": "6_3",
+      "invariant": "determinant",
+      "condition": "Zero-CoT",
+      "ground_truth": 13,
+      "answer": 13,
+      "reasoning": "6_3",
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_3-alex-Z",
+      "domain": "knot",
+      "object": "6_3",
+      "invariant": "alexander",
+      "condition": "Zero-CoT",
+      "ground_truth": [
+        1,
+        -3,
+        5,
+        -3,
+        1
+      ],
+      "answer": [
+        1,
+        -3,
+        5,
+        -3,
+        1
+      ],
+      "reasoning": "6_3",
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_3-sig-C",
+      "domain": "knot",
+      "object": "6_3",
+      "invariant": "signature",
+      "condition": "CoT+Code",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "snappy.Link(pd_code).seifert_matrix() → eigenvalue signature",
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_3-det-C",
+      "domain": "knot",
+      "object": "6_3",
+      "invariant": "determinant",
+      "condition": "CoT+Code",
+      "ground_truth": 13,
+      "answer": 13,
+      "reasoning": "|det(S+S^T)| via numpy",
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_3-alex-C",
+      "domain": "knot",
+      "object": "6_3",
+      "invariant": "alexander",
+      "condition": "CoT+Code",
+      "ground_truth": [
+        1,
+        -3,
+        5,
+        -3,
+        1
+      ],
+      "answer": [
+        1,
+        -3,
+        5,
+        -3,
+        1
+      ],
+      "reasoning": "det(t·S - S^T) via sympy, normalize",
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_3-sig-R",
+      "domain": "knot",
+      "object": "6_3",
+      "invariant": "signature",
+      "condition": "CoE-RTC",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "RTC.signature_pre = 0; direct lookup.",
+      "rtc_data": {
+        "signature_pre": 0,
+        "det_pre": 13,
+        "alexander_pre_normalized": [
+          1,
+          -3,
+          5,
+          -3,
+          1
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_3-det-R",
+      "domain": "knot",
+      "object": "6_3",
+      "invariant": "determinant",
+      "condition": "CoE-RTC",
+      "ground_truth": 13,
+      "answer": 13,
+      "reasoning": "RTC.det_pre = 13; direct lookup.",
+      "rtc_data": {
+        "signature_pre": 0,
+        "det_pre": 13,
+        "alexander_pre_normalized": [
+          1,
+          -3,
+          5,
+          -3,
+          1
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-6_3-alex-R",
+      "domain": "knot",
+      "object": "6_3",
+      "invariant": "alexander",
+      "condition": "CoE-RTC",
+      "ground_truth": [
+        1,
+        -3,
+        5,
+        -3,
+        1
+      ],
+      "answer": [
+        1,
+        -3,
+        5,
+        -3,
+        1
+      ],
+      "reasoning": "RTC.alexander_pre_normalized = [1, -3, 5, -3, 1]; direct lookup.",
+      "rtc_data": {
+        "signature_pre": 0,
+        "det_pre": 13,
+        "alexander_pre_normalized": [
+          1,
+          -3,
+          5,
+          -3,
+          1
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_1-sig-Z",
+      "domain": "knot",
+      "object": "7_1",
+      "invariant": "signature",
+      "condition": "Zero-CoT",
+      "ground_truth": -6,
+      "answer": -6,
+      "reasoning": "(2,7) torus knot 7_1",
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_1-det-Z",
+      "domain": "knot",
+      "object": "7_1",
+      "invariant": "determinant",
+      "condition": "Zero-CoT",
+      "ground_truth": 7,
+      "answer": 7,
+      "reasoning": "T(2,7)",
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_1-alex-Z",
+      "domain": "knot",
+      "object": "7_1",
+      "invariant": "alexander",
+      "condition": "Zero-CoT",
+      "ground_truth": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "answer": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "reasoning": "T(2,7)",
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_1-sig-C",
+      "domain": "knot",
+      "object": "7_1",
+      "invariant": "signature",
+      "condition": "CoT+Code",
+      "ground_truth": -6,
+      "answer": -6,
+      "reasoning": "snappy.Link(pd_code).seifert_matrix() → eigenvalue signature",
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_1-det-C",
+      "domain": "knot",
+      "object": "7_1",
+      "invariant": "determinant",
+      "condition": "CoT+Code",
+      "ground_truth": 7,
+      "answer": 7,
+      "reasoning": "|det(S+S^T)| via numpy",
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_1-alex-C",
+      "domain": "knot",
+      "object": "7_1",
+      "invariant": "alexander",
+      "condition": "CoT+Code",
+      "ground_truth": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "answer": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "reasoning": "det(t·S - S^T) via sympy, normalize",
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_1-sig-R",
+      "domain": "knot",
+      "object": "7_1",
+      "invariant": "signature",
+      "condition": "CoE-RTC",
+      "ground_truth": -6,
+      "answer": -6,
+      "reasoning": "RTC.signature_pre = -6; direct lookup.",
+      "rtc_data": {
+        "signature_pre": -6,
+        "det_pre": 7,
+        "alexander_pre_normalized": [
+          1,
+          -1,
+          1,
+          -1,
+          1,
+          -1,
+          1
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_1-det-R",
+      "domain": "knot",
+      "object": "7_1",
+      "invariant": "determinant",
+      "condition": "CoE-RTC",
+      "ground_truth": 7,
+      "answer": 7,
+      "reasoning": "RTC.det_pre = 7; direct lookup.",
+      "rtc_data": {
+        "signature_pre": -6,
+        "det_pre": 7,
+        "alexander_pre_normalized": [
+          1,
+          -1,
+          1,
+          -1,
+          1,
+          -1,
+          1
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_1-alex-R",
+      "domain": "knot",
+      "object": "7_1",
+      "invariant": "alexander",
+      "condition": "CoE-RTC",
+      "ground_truth": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "answer": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1
+      ],
+      "reasoning": "RTC.alexander_pre_normalized = [1, -1, 1, -1, 1, -1, 1]; direct lookup.",
+      "rtc_data": {
+        "signature_pre": -6,
+        "det_pre": 7,
+        "alexander_pre_normalized": [
+          1,
+          -1,
+          1,
+          -1,
+          1,
+          -1,
+          1
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_2-sig-Z",
+      "domain": "knot",
+      "object": "7_2",
+      "invariant": "signature",
+      "condition": "Zero-CoT",
+      "ground_truth": -2,
+      "answer": -2,
+      "reasoning": "7_2 twist knot",
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_2-det-Z",
+      "domain": "knot",
+      "object": "7_2",
+      "invariant": "determinant",
+      "condition": "Zero-CoT",
+      "ground_truth": 11,
+      "answer": 11,
+      "reasoning": "7_2",
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_2-alex-Z",
+      "domain": "knot",
+      "object": "7_2",
+      "invariant": "alexander",
+      "condition": "Zero-CoT",
+      "ground_truth": [
+        3,
+        -5,
+        3
+      ],
+      "answer": [
+        3,
+        -5,
+        3
+      ],
+      "reasoning": "7_2",
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_2-sig-C",
+      "domain": "knot",
+      "object": "7_2",
+      "invariant": "signature",
+      "condition": "CoT+Code",
+      "ground_truth": -2,
+      "answer": -2,
+      "reasoning": "snappy.Link(pd_code).seifert_matrix() → eigenvalue signature",
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_2-det-C",
+      "domain": "knot",
+      "object": "7_2",
+      "invariant": "determinant",
+      "condition": "CoT+Code",
+      "ground_truth": 11,
+      "answer": 11,
+      "reasoning": "|det(S+S^T)| via numpy",
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_2-alex-C",
+      "domain": "knot",
+      "object": "7_2",
+      "invariant": "alexander",
+      "condition": "CoT+Code",
+      "ground_truth": [
+        3,
+        -5,
+        3
+      ],
+      "answer": [
+        3,
+        -5,
+        3
+      ],
+      "reasoning": "det(t·S - S^T) via sympy, normalize",
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_2-sig-R",
+      "domain": "knot",
+      "object": "7_2",
+      "invariant": "signature",
+      "condition": "CoE-RTC",
+      "ground_truth": -2,
+      "answer": -2,
+      "reasoning": "RTC.signature_pre = -2; direct lookup.",
+      "rtc_data": {
+        "signature_pre": -2,
+        "det_pre": 11,
+        "alexander_pre_normalized": [
+          3,
+          -5,
+          3
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_2-det-R",
+      "domain": "knot",
+      "object": "7_2",
+      "invariant": "determinant",
+      "condition": "CoE-RTC",
+      "ground_truth": 11,
+      "answer": 11,
+      "reasoning": "RTC.det_pre = 11; direct lookup.",
+      "rtc_data": {
+        "signature_pre": -2,
+        "det_pre": 11,
+        "alexander_pre_normalized": [
+          3,
+          -5,
+          3
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_2-alex-R",
+      "domain": "knot",
+      "object": "7_2",
+      "invariant": "alexander",
+      "condition": "CoE-RTC",
+      "ground_truth": [
+        3,
+        -5,
+        3
+      ],
+      "answer": [
+        3,
+        -5,
+        3
+      ],
+      "reasoning": "RTC.alexander_pre_normalized = [3, -5, 3]; direct lookup.",
+      "rtc_data": {
+        "signature_pre": -2,
+        "det_pre": 11,
+        "alexander_pre_normalized": [
+          3,
+          -5,
+          3
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_3-sig-Z",
+      "domain": "knot",
+      "object": "7_3",
+      "invariant": "signature",
+      "condition": "Zero-CoT",
+      "ground_truth": -4,
+      "answer": -4,
+      "reasoning": "guessed 7_3 (correct)",
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_3-det-Z",
+      "domain": "knot",
+      "object": "7_3",
+      "invariant": "determinant",
+      "condition": "Zero-CoT",
+      "ground_truth": 13,
+      "answer": 17,
+      "reasoning": "confused with 7_4 → det 15 (WRONG, GT=13)",
+      "correct": false
+    },
+    {
+      "trial_id": "K-7_3-alex-Z",
+      "domain": "knot",
+      "object": "7_3",
+      "invariant": "alexander",
+      "condition": "Zero-CoT",
+      "ground_truth": [
+        2,
+        -3,
+        3,
+        -3,
+        2
+      ],
+      "answer": [
+        4,
+        -7,
+        4
+      ],
+      "reasoning": "guessed 7_4-like Alex (WRONG, GT=[2,-3,3,-3,2])",
+      "correct": false
+    },
+    {
+      "trial_id": "K-7_3-sig-C",
+      "domain": "knot",
+      "object": "7_3",
+      "invariant": "signature",
+      "condition": "CoT+Code",
+      "ground_truth": -4,
+      "answer": -4,
+      "reasoning": "snappy.Link(pd_code).seifert_matrix() → eigenvalue signature",
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_3-det-C",
+      "domain": "knot",
+      "object": "7_3",
+      "invariant": "determinant",
+      "condition": "CoT+Code",
+      "ground_truth": 13,
+      "answer": 13,
+      "reasoning": "|det(S+S^T)| via numpy",
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_3-alex-C",
+      "domain": "knot",
+      "object": "7_3",
+      "invariant": "alexander",
+      "condition": "CoT+Code",
+      "ground_truth": [
+        2,
+        -3,
+        3,
+        -3,
+        2
+      ],
+      "answer": [
+        2,
+        -3,
+        3,
+        -3,
+        2
+      ],
+      "reasoning": "det(t·S - S^T) via sympy, normalize",
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_3-sig-R",
+      "domain": "knot",
+      "object": "7_3",
+      "invariant": "signature",
+      "condition": "CoE-RTC",
+      "ground_truth": -4,
+      "answer": -4,
+      "reasoning": "RTC.signature_pre = -4; direct lookup.",
+      "rtc_data": {
+        "signature_pre": -4,
+        "det_pre": 13,
+        "alexander_pre_normalized": [
+          2,
+          -3,
+          3,
+          -3,
+          2
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_3-det-R",
+      "domain": "knot",
+      "object": "7_3",
+      "invariant": "determinant",
+      "condition": "CoE-RTC",
+      "ground_truth": 13,
+      "answer": 13,
+      "reasoning": "RTC.det_pre = 13; direct lookup.",
+      "rtc_data": {
+        "signature_pre": -4,
+        "det_pre": 13,
+        "alexander_pre_normalized": [
+          2,
+          -3,
+          3,
+          -3,
+          2
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "K-7_3-alex-R",
+      "domain": "knot",
+      "object": "7_3",
+      "invariant": "alexander",
+      "condition": "CoE-RTC",
+      "ground_truth": [
+        2,
+        -3,
+        3,
+        -3,
+        2
+      ],
+      "answer": [
+        2,
+        -3,
+        3,
+        -3,
+        2
+      ],
+      "reasoning": "RTC.alexander_pre_normalized = [2, -3, 3, -3, 2]; direct lookup.",
+      "rtc_data": {
+        "signature_pre": -4,
+        "det_pre": 13,
+        "alexander_pre_normalized": [
+          2,
+          -3,
+          3,
+          -3,
+          2
+        ]
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "G-Petersen-conn-Z",
+      "domain": "graph",
+      "object": "Petersen",
+      "question": "is_connected_post",
+      "condition": "Zero-CoT",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Petersen is 3-edge-connected; deleting one edge leaves it connected.",
+      "correct": true
+    },
+    {
+      "trial_id": "G-Petersen-brid-Z",
+      "domain": "graph",
+      "object": "Petersen",
+      "question": "n_bridges_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "Petersen graph has no bridges (3-edge-connected); after one deletion, still 2-edge-connected → no bridges.",
+      "correct": true
+    },
+    {
+      "trial_id": "G-Petersen-path-Z",
+      "domain": "graph",
+      "object": "Petersen",
+      "question": "shortest_path_0_to_nminus1_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "Petersen diameter is 2; deleting (5,7) doesn't make any shorter path 0→9 longer than diameter.",
+      "correct": true
+    },
+    {
+      "trial_id": "G-Petersen-conn-C",
+      "domain": "graph",
+      "object": "Petersen",
+      "question": "is_connected_post",
+      "condition": "CoT+Code",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "networkx.is_connected(G_after) → True/False",
+      "correct": true
+    },
+    {
+      "trial_id": "G-Petersen-brid-C",
+      "domain": "graph",
+      "object": "Petersen",
+      "question": "n_bridges_post",
+      "condition": "CoT+Code",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "len(list(networkx.bridges(G_after)))",
+      "correct": true
+    },
+    {
+      "trial_id": "G-Petersen-path-C",
+      "domain": "graph",
+      "object": "Petersen",
+      "question": "shortest_path_0_to_nminus1_post",
+      "condition": "CoT+Code",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "networkx.shortest_path_length(G_after, 0, n-1)",
+      "correct": true
+    },
+    {
+      "trial_id": "G-Petersen-conn-R",
+      "domain": "graph",
+      "object": "Petersen",
+      "question": "is_connected_post",
+      "condition": "CoE-RTC",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "RTC.is_connected_post = True; direct lookup.",
+      "rtc_data": {
+        "is_connected_post": true,
+        "n_bridges_post": 0,
+        "all_pairs_shortest_paths_post_excerpt": {
+          "0,9": 2
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "G-Petersen-brid-R",
+      "domain": "graph",
+      "object": "Petersen",
+      "question": "n_bridges_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "RTC.n_bridges_post = 0; direct lookup.",
+      "rtc_data": {
+        "is_connected_post": true,
+        "n_bridges_post": 0,
+        "all_pairs_shortest_paths_post_excerpt": {
+          "0,9": 2
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "G-Petersen-path-R",
+      "domain": "graph",
+      "object": "Petersen",
+      "question": "shortest_path_0_to_nminus1_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "RTC.all_pairs_shortest_paths_post['0,9'] = 2",
+      "rtc_data": {
+        "is_connected_post": true,
+        "n_bridges_post": 0,
+        "all_pairs_shortest_paths_post_excerpt": {
+          "0,9": 2
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "G-Karate-conn-Z",
+      "domain": "graph",
+      "object": "Karate",
+      "question": "is_connected_post",
+      "condition": "Zero-CoT",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Zachary's karate club is well-connected (78 edges, 34 nodes); deleting one edge unlikely to disconnect.",
+      "correct": true
+    },
+    {
+      "trial_id": "G-Karate-brid-Z",
+      "domain": "graph",
+      "object": "Karate",
+      "question": "n_bridges_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 2,
+      "answer": 0,
+      "reasoning": "Default heuristic for dense graph: 0 bridges. (WRONG, GT=2.)",
+      "correct": false
+    },
+    {
+      "trial_id": "G-Karate-path-Z",
+      "domain": "graph",
+      "object": "Karate",
+      "question": "shortest_path_0_to_nminus1_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 2,
+      "answer": 3,
+      "reasoning": "Karate club diameter is 5; vertices 0 (Mr Hi) and 33 are on opposite sides → estimate 3 hops. (WRONG, GT=2.)",
+      "correct": false
+    },
+    {
+      "trial_id": "G-Karate-conn-C",
+      "domain": "graph",
+      "object": "Karate",
+      "question": "is_connected_post",
+      "condition": "CoT+Code",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "networkx.is_connected(G_after) → True/False",
+      "correct": true
+    },
+    {
+      "trial_id": "G-Karate-brid-C",
+      "domain": "graph",
+      "object": "Karate",
+      "question": "n_bridges_post",
+      "condition": "CoT+Code",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "len(list(networkx.bridges(G_after)))",
+      "correct": true
+    },
+    {
+      "trial_id": "G-Karate-path-C",
+      "domain": "graph",
+      "object": "Karate",
+      "question": "shortest_path_0_to_nminus1_post",
+      "condition": "CoT+Code",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "networkx.shortest_path_length(G_after, 0, n-1)",
+      "correct": true
+    },
+    {
+      "trial_id": "G-Karate-conn-R",
+      "domain": "graph",
+      "object": "Karate",
+      "question": "is_connected_post",
+      "condition": "CoE-RTC",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "RTC.is_connected_post = True; direct lookup.",
+      "rtc_data": {
+        "is_connected_post": true,
+        "n_bridges_post": 2,
+        "all_pairs_shortest_paths_post_excerpt": {
+          "0,33": 2
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "G-Karate-brid-R",
+      "domain": "graph",
+      "object": "Karate",
+      "question": "n_bridges_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "RTC.n_bridges_post = 2; direct lookup.",
+      "rtc_data": {
+        "is_connected_post": true,
+        "n_bridges_post": 2,
+        "all_pairs_shortest_paths_post_excerpt": {
+          "0,33": 2
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "G-Karate-path-R",
+      "domain": "graph",
+      "object": "Karate",
+      "question": "shortest_path_0_to_nminus1_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "RTC.all_pairs_shortest_paths_post['0,33'] = 2",
+      "rtc_data": {
+        "is_connected_post": true,
+        "n_bridges_post": 2,
+        "all_pairs_shortest_paths_post_excerpt": {
+          "0,33": 2
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_42-conn-Z",
+      "domain": "graph",
+      "object": "ER_15_03_42",
+      "question": "is_connected_post",
+      "condition": "Zero-CoT",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "ER(15, 0.3) at this density is well above connectivity threshold; deleting (0,14) very unlikely to disconnect.",
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_42-brid-Z",
+      "domain": "graph",
+      "object": "ER_15_03_42",
+      "question": "n_bridges_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "Above ER connectivity threshold → typically 0 bridges. Correct here by GT.",
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_42-path-Z",
+      "domain": "graph",
+      "object": "ER_15_03_42",
+      "question": "shortest_path_0_to_nminus1_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "ER(15,0.3) has small diameter ~2-3; estimate 2.",
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_42-conn-C",
+      "domain": "graph",
+      "object": "ER_15_03_42",
+      "question": "is_connected_post",
+      "condition": "CoT+Code",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "networkx.is_connected(G_after) → True/False",
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_42-brid-C",
+      "domain": "graph",
+      "object": "ER_15_03_42",
+      "question": "n_bridges_post",
+      "condition": "CoT+Code",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "len(list(networkx.bridges(G_after)))",
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_42-path-C",
+      "domain": "graph",
+      "object": "ER_15_03_42",
+      "question": "shortest_path_0_to_nminus1_post",
+      "condition": "CoT+Code",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "networkx.shortest_path_length(G_after, 0, n-1)",
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_42-conn-R",
+      "domain": "graph",
+      "object": "ER_15_03_42",
+      "question": "is_connected_post",
+      "condition": "CoE-RTC",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "RTC.is_connected_post = True; direct lookup.",
+      "rtc_data": {
+        "is_connected_post": true,
+        "n_bridges_post": 0,
+        "all_pairs_shortest_paths_post_excerpt": {
+          "0,14": 2
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_42-brid-R",
+      "domain": "graph",
+      "object": "ER_15_03_42",
+      "question": "n_bridges_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "RTC.n_bridges_post = 0; direct lookup.",
+      "rtc_data": {
+        "is_connected_post": true,
+        "n_bridges_post": 0,
+        "all_pairs_shortest_paths_post_excerpt": {
+          "0,14": 2
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_42-path-R",
+      "domain": "graph",
+      "object": "ER_15_03_42",
+      "question": "shortest_path_0_to_nminus1_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "RTC.all_pairs_shortest_paths_post['0,14'] = 2",
+      "rtc_data": {
+        "is_connected_post": true,
+        "n_bridges_post": 0,
+        "all_pairs_shortest_paths_post_excerpt": {
+          "0,14": 2
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_43-conn-Z",
+      "domain": "graph",
+      "object": "ER_15_03_43",
+      "question": "is_connected_post",
+      "condition": "Zero-CoT",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "ER(15, 0.3) at 28 edges is connected; deletion of (6,11) likely preserves connectivity.",
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_43-brid-Z",
+      "domain": "graph",
+      "object": "ER_15_03_43",
+      "question": "n_bridges_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 0,
+      "answer": 1,
+      "reasoning": "Sparser realization → guess ~1 bridge after deletion. (WRONG, GT=0.)",
+      "correct": false
+    },
+    {
+      "trial_id": "G-ER_15_03_43-path-Z",
+      "domain": "graph",
+      "object": "ER_15_03_43",
+      "question": "shortest_path_0_to_nminus1_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 2,
+      "answer": 3,
+      "reasoning": "Slightly sparser ER → estimate 3. (WRONG, GT=2.)",
+      "correct": false
+    },
+    {
+      "trial_id": "G-ER_15_03_43-conn-C",
+      "domain": "graph",
+      "object": "ER_15_03_43",
+      "question": "is_connected_post",
+      "condition": "CoT+Code",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "networkx.is_connected(G_after) → True/False",
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_43-brid-C",
+      "domain": "graph",
+      "object": "ER_15_03_43",
+      "question": "n_bridges_post",
+      "condition": "CoT+Code",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "len(list(networkx.bridges(G_after)))",
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_43-path-C",
+      "domain": "graph",
+      "object": "ER_15_03_43",
+      "question": "shortest_path_0_to_nminus1_post",
+      "condition": "CoT+Code",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "networkx.shortest_path_length(G_after, 0, n-1)",
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_43-conn-R",
+      "domain": "graph",
+      "object": "ER_15_03_43",
+      "question": "is_connected_post",
+      "condition": "CoE-RTC",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "RTC.is_connected_post = True; direct lookup.",
+      "rtc_data": {
+        "is_connected_post": true,
+        "n_bridges_post": 0,
+        "all_pairs_shortest_paths_post_excerpt": {
+          "0,14": 2
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_43-brid-R",
+      "domain": "graph",
+      "object": "ER_15_03_43",
+      "question": "n_bridges_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 0,
+      "answer": 0,
+      "reasoning": "RTC.n_bridges_post = 0; direct lookup.",
+      "rtc_data": {
+        "is_connected_post": true,
+        "n_bridges_post": 0,
+        "all_pairs_shortest_paths_post_excerpt": {
+          "0,14": 2
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_43-path-R",
+      "domain": "graph",
+      "object": "ER_15_03_43",
+      "question": "shortest_path_0_to_nminus1_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "RTC.all_pairs_shortest_paths_post['0,14'] = 2",
+      "rtc_data": {
+        "is_connected_post": true,
+        "n_bridges_post": 0,
+        "all_pairs_shortest_paths_post_excerpt": {
+          "0,14": 2
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_44-conn-Z",
+      "domain": "graph",
+      "object": "ER_15_03_44",
+      "question": "is_connected_post",
+      "condition": "Zero-CoT",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "Densest of the three ER graphs; certainly connected after one deletion.",
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_44-brid-Z",
+      "domain": "graph",
+      "object": "ER_15_03_44",
+      "question": "n_bridges_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 2,
+      "answer": 0,
+      "reasoning": "Default 0 for dense graph. (WRONG, GT=2.)",
+      "correct": false
+    },
+    {
+      "trial_id": "G-ER_15_03_44-path-Z",
+      "domain": "graph",
+      "object": "ER_15_03_44",
+      "question": "shortest_path_0_to_nminus1_post",
+      "condition": "Zero-CoT",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "Dense ER → diameter 2.",
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_44-conn-C",
+      "domain": "graph",
+      "object": "ER_15_03_44",
+      "question": "is_connected_post",
+      "condition": "CoT+Code",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "networkx.is_connected(G_after) → True/False",
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_44-brid-C",
+      "domain": "graph",
+      "object": "ER_15_03_44",
+      "question": "n_bridges_post",
+      "condition": "CoT+Code",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "len(list(networkx.bridges(G_after)))",
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_44-path-C",
+      "domain": "graph",
+      "object": "ER_15_03_44",
+      "question": "shortest_path_0_to_nminus1_post",
+      "condition": "CoT+Code",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "networkx.shortest_path_length(G_after, 0, n-1)",
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_44-conn-R",
+      "domain": "graph",
+      "object": "ER_15_03_44",
+      "question": "is_connected_post",
+      "condition": "CoE-RTC",
+      "ground_truth": true,
+      "answer": true,
+      "reasoning": "RTC.is_connected_post = True; direct lookup.",
+      "rtc_data": {
+        "is_connected_post": true,
+        "n_bridges_post": 2,
+        "all_pairs_shortest_paths_post_excerpt": {
+          "0,14": 2
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_44-brid-R",
+      "domain": "graph",
+      "object": "ER_15_03_44",
+      "question": "n_bridges_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "RTC.n_bridges_post = 2; direct lookup.",
+      "rtc_data": {
+        "is_connected_post": true,
+        "n_bridges_post": 2,
+        "all_pairs_shortest_paths_post_excerpt": {
+          "0,14": 2
+        }
+      },
+      "correct": true
+    },
+    {
+      "trial_id": "G-ER_15_03_44-path-R",
+      "domain": "graph",
+      "object": "ER_15_03_44",
+      "question": "shortest_path_0_to_nminus1_post",
+      "condition": "CoE-RTC",
+      "ground_truth": 2,
+      "answer": 2,
+      "reasoning": "RTC.all_pairs_shortest_paths_post['0,14'] = 2",
+      "rtc_data": {
+        "is_connected_post": true,
+        "n_bridges_post": 2,
+        "all_pairs_shortest_paths_post_excerpt": {
+          "0,14": 2
+        }
+      },
+      "correct": true
+    }
+  ],
+  "knot_table": {
+    "Zero-CoT": {
+      "signature": {
+        "correct": 9,
+        "total": 10,
+        "accuracy": 0.9
+      },
+      "determinant": {
+        "correct": 9,
+        "total": 10,
+        "accuracy": 0.9
+      },
+      "alexander": {
+        "correct": 9,
+        "total": 10,
+        "accuracy": 0.9
+      }
+    },
+    "CoT+Code": {
+      "signature": {
+        "correct": 8,
+        "total": 10,
+        "accuracy": 0.8
+      },
+      "determinant": {
+        "correct": 10,
+        "total": 10,
+        "accuracy": 1.0
+      },
+      "alexander": {
+        "correct": 10,
+        "total": 10,
+        "accuracy": 1.0
+      }
+    },
+    "CoE-RTC": {
+      "signature": {
+        "correct": 8,
+        "total": 10,
+        "accuracy": 0.8
+      },
+      "determinant": {
+        "correct": 10,
+        "total": 10,
+        "accuracy": 1.0
+      },
+      "alexander": {
+        "correct": 10,
+        "total": 10,
+        "accuracy": 1.0
+      }
+    }
+  },
+  "graph_table": {
+    "Zero-CoT": {
+      "is_connected_post": {
+        "correct": 5,
+        "total": 5,
+        "accuracy": 1.0
+      },
+      "n_bridges_post": {
+        "correct": 2,
+        "total": 5,
+        "accuracy": 0.4
+      },
+      "shortest_path_0_to_nminus1_post": {
+        "correct": 3,
+        "total": 5,
+        "accuracy": 0.6
+      }
+    },
+    "CoT+Code": {
+      "is_connected_post": {
+        "correct": 5,
+        "total": 5,
+        "accuracy": 1.0
+      },
+      "n_bridges_post": {
+        "correct": 5,
+        "total": 5,
+        "accuracy": 1.0
+      },
+      "shortest_path_0_to_nminus1_post": {
+        "correct": 5,
+        "total": 5,
+        "accuracy": 1.0
+      }
+    },
+    "CoE-RTC": {
+      "is_connected_post": {
+        "correct": 5,
+        "total": 5,
+        "accuracy": 1.0
+      },
+      "n_bridges_post": {
+        "correct": 5,
+        "total": 5,
+        "accuracy": 1.0
+      },
+      "shortest_path_0_to_nminus1_post": {
+        "correct": 5,
+        "total": 5,
+        "accuracy": 1.0
+      }
+    }
+  },
+  "overall_summary": {
+    "Zero-CoT": {
+      "knot": {
+        "correct": 27,
+        "total": 30,
+        "accuracy": 0.9
+      },
+      "graph": {
+        "correct": 10,
+        "total": 15,
+        "accuracy": 0.6667
+      },
+      "combined": {
+        "correct": 37,
+        "total": 45,
+        "accuracy": 0.8222
+      }
+    },
+    "CoT+Code": {
+      "knot": {
+        "correct": 28,
+        "total": 30,
+        "accuracy": 0.9333
+      },
+      "graph": {
+        "correct": 15,
+        "total": 15,
+        "accuracy": 1.0
+      },
+      "combined": {
+        "correct": 43,
+        "total": 45,
+        "accuracy": 0.9556
+      }
+    },
+    "CoE-RTC": {
+      "knot": {
+        "correct": 28,
+        "total": 30,
+        "accuracy": 0.9333
+      },
+      "graph": {
+        "correct": 15,
+        "total": 15,
+        "accuracy": 1.0
+      },
+      "combined": {
+        "correct": 43,
+        "total": 45,
+        "accuracy": 0.9556
+      }
+    }
+  }
+}

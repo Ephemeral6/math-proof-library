@@ -1,0 +1,128 @@
+========================================================================
+Gap 1 final audit — mpmath dps=100, T=10000
+R* = (0.78, 0.82) x (3.2, 3.32) x (0.375, 0.4)
+Wall start: 2026-04-29 22:02:01
+========================================================================
+Using 19 worker processes.
+
+========================================================================
+Task 1: Expand R* in 6 directions
+========================================================================
+
+--- Expanding beta_lo ---
+  step 0.77:  box=[0.77, 0.82]x[3.2, 3.32]x[0.375, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 0.76:  box=[0.76, 0.82]x[3.2, 3.32]x[0.375, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 0.75:  box=[0.75, 0.82]x[3.2, 3.32]x[0.375, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 0.74:  box=[0.74, 0.82]x[3.2, 3.32]x[0.375, 0.4]  9-cycle: 8/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'decay', 'cycle', 'cycle', 'cycle', 'cycle']
+    FAIL at step 0.74. Failed points:
+      beta_lo_0.74_corner_011: b=0.74 etaL=3.32 kap=0.4  |x_T|=3.1850077407  verdict=decay
+  STOP. Last valid beta_lo = 0.75.
+
+--- Expanding beta_hi ---
+  step 0.83:  box=[0.78, 0.83]x[3.2, 3.32]x[0.375, 0.4]  9-cycle: 8/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'decay', 'cycle']
+    FAIL at step 0.83. Failed points:
+      beta_hi_0.83_corner_110: b=0.83 etaL=3.32 kap=0.375  |x_T|=4.6408983546  verdict=decay
+  STOP. Last valid beta_hi = 0.82.
+
+--- Expanding etaL_lo ---
+  step 3.19:  box=[0.78, 0.82]x[3.19, 3.32]x[0.375, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 3.18:  box=[0.78, 0.82]x[3.18, 3.32]x[0.375, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 3.15:  box=[0.78, 0.82]x[3.15, 3.32]x[0.375, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 3.1:  box=[0.78, 0.82]x[3.1, 3.32]x[0.375, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 3.05:  box=[0.78, 0.82]x[3.05, 3.32]x[0.375, 0.4]  9-cycle: 7/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'decay', 'decay', 'cycle', 'cycle']
+    FAIL at step 3.05. Failed points:
+      etaL_lo_3.05_corner_100: b=0.82 etaL=3.05 kap=0.375  |x_T|=2.8406019581  verdict=decay
+      etaL_lo_3.05_corner_101: b=0.82 etaL=3.05 kap=0.4  |x_T|=4.0824805261  verdict=decay
+  STOP. Last valid etaL_lo = 3.1.
+
+--- Expanding etaL_hi ---
+  step 3.33:  box=[0.78, 0.82]x[3.2, 3.33]x[0.375, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 3.35:  box=[0.78, 0.82]x[3.2, 3.35]x[0.375, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 3.4:  box=[0.78, 0.82]x[3.2, 3.4]x[0.375, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 3.45:  box=[0.78, 0.82]x[3.2, 3.45]x[0.375, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 3.5:  box=[0.78, 0.82]x[3.2, 3.5]x[0.375, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 3.55:  box=[0.78, 0.82]x[3.2, 3.55]x[0.375, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  All 6 steps passed. Last valid etaL_hi = 3.55.
+
+--- Expanding kappa_lo ---
+  step 0.37:  box=[0.78, 0.82]x[3.2, 3.32]x[0.37, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 0.36:  box=[0.78, 0.82]x[3.2, 3.32]x[0.36, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 0.35:  box=[0.78, 0.82]x[3.2, 3.32]x[0.35, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 0.3:  box=[0.78, 0.82]x[3.2, 3.32]x[0.3, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 0.25:  box=[0.78, 0.82]x[3.2, 3.32]x[0.25, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 0.2:  box=[0.78, 0.82]x[3.2, 3.32]x[0.2, 0.4]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 0.15:  box=[0.78, 0.82]x[3.2, 3.32]x[0.15, 0.4]  9-cycle: 8/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'decay', 'cycle', 'cycle', 'cycle']
+    FAIL at step 0.15. Failed points:
+      kappa_lo_0.15_corner_100: b=0.82 etaL=3.2 kap=0.15  |x_T|=5.8361964556  verdict=decay
+  STOP. Last valid kappa_lo = 0.2.
+
+--- Expanding kappa_hi ---
+  step 0.41:  box=[0.78, 0.82]x[3.2, 3.32]x[0.375, 0.41]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 0.42:  box=[0.78, 0.82]x[3.2, 3.32]x[0.375, 0.42]  9-cycle: 9/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle', 'cycle']
+  step 0.45:  box=[0.78, 0.82]x[3.2, 3.32]x[0.375, 0.45]  9-cycle: 8/9  verdicts: ['cycle', 'cycle', 'cycle', 'cycle', 'decay', 'cycle', 'cycle', 'cycle', 'cycle']
+    FAIL at step 0.45. Failed points:
+      kappa_hi_0.45_corner_011: b=0.78 etaL=3.32 kap=0.45  |x_T|=3.4132534045  verdict=decay
+  STOP. Last valid kappa_hi = 0.42.
+
+========================================================================
+Univariate expansion result:
+  R*_ext = β:[0.75, 0.82]  ηL:[3.1, 3.55]  κ:[0.2, 0.42]
+  Volume: 6.93000e-03
+  Expansion vs R*: 57.75x
+========================================================================
+
+Verifying R*_extended jointly (8 corners + center):
+  WARNING: R*_extended joint corners NOT all F-feasible.
+  ext_joint_center          b=0.7849999999999999 etaL=3.325 kap=0.31  |x_T|=2.619716506  p3=1.151516608  decay
+  ext_joint_corner_000      b=0.75 etaL=3.1 kap=0.2  |x_T|=0.707106781  p3=4.286202717  cycle
+  ext_joint_corner_001      b=0.75 etaL=3.1 kap=0.42  |x_T|=0.707106781  p3=3.642571882  cycle
+  ext_joint_corner_010      b=0.75 etaL=3.55 kap=0.2  |x_T|=0.707106781  p3=3.030803006  cycle
+  ext_joint_corner_011      b=0.75 etaL=3.55 kap=0.42  |x_T|=0.233461617  p3=0.646730316  other
+  ext_joint_corner_100      b=0.82 etaL=3.1 kap=0.2  |x_T|=4.545315087  p3=1.699597368  decay
+  ext_joint_corner_101      b=0.82 etaL=3.1 kap=0.42  |x_T|=0.707106781  p3=4.041070675  cycle
+  ext_joint_corner_110      b=0.82 etaL=3.55 kap=0.2  |x_T|=0.707106781  p3=9.314207687  cycle
+  ext_joint_corner_111      b=0.82 etaL=3.55 kap=0.42  |x_T|=0.707106781  p3=2.857468478  cycle
+
+R*_extended joint cycling: 6/9
+
+========================================================================
+Task 3: Small-κ tests at (β=0.80, ηL=3.26)
+========================================================================
+id              kappa   norm_T         p3_res         rel_norm        verdict
+smallk_0.01     0.01    0.70710678118  4.51805436663  2.62669593935   cycle
+smallk_0.05     0.05    8.36930340365  2.09937854777  1.0             decay
+smallk_0.1      0.1     1.39483208506  1.93153236513  1.0             decay
+smallk_0.2      0.2     0.70710678118  4.04107067593  1.01026766898   cycle
+smallk_0.3      0.3     0.70710678118  0.0            1.01026766898   cycle
+
+========================================================================
+Task 4: Bias-ratio table at 8 R* corners, T=1..20  (dps=100)
+========================================================================
+
+corner         beta   etaL    kap       T= 1      T= 2      T= 3      T= 4      T= 5      T= 6      T= 7      T= 8      T= 9      T=10      T=11      T=12      T=13      T=14      T=15      T=16      T=17      T=18      T=19      T=20    
+corner_000     0.78   3.2     0.375     0.7063    0.5092    1.6252    0.0369    2.4044    0.1478    3.0469    0.8904    1.6273    2.6215    1.0138    4.6324    1.4129    3.5959    3.0505    3.3199    5.3791    4.4426    6.6156    4.2885  
+corner_001     0.78   3.2     0.4       0.7063    0.4167    1.8250    0.0159    2.2886    0.0801    2.1261    1.5149    1.2596    3.4626    1.5990    5.2885    2.4435    5.5177    2.5488    4.7341    3.1164    4.3634    4.7331    5.1579  
+corner_010     0.78   3.32    0.375     0.7063    0.4559    1.7406    0.0240    2.4107    0.1404    2.7664    1.2318    2.1386    2.9580    2.1381    4.7439    2.5173    5.4498    2.4444    5.2984    2.7331    5.5951    3.8865    6.0896  
+corner_011     0.78   3.32    0.4       0.7063    0.3654    1.9323    0.0066    2.1677    0.0859    1.5658    2.0978    1.3127    4.9553    2.1207    6.2439    2.0538    5.2080    1.8634    3.7231    3.4941    3.6358    6.2400    4.7786  
+corner_100     0.82   3.2     0.375     0.7543    0.6329    1.6861    0.1075    3.4905    0.4658    5.7528    0.1268    5.4435    0.4806    5.8213    1.4221    3.7934    2.6515    1.7360    4.4886    1.4614    2.7931    5.0943    3.5306  
+corner_101     0.82   3.2     0.4       0.7543    0.5253    1.9268    0.0676    3.4532    0.2544    6.0484    0.1448    4.1684    0.3850    2.1298    4.1886    2.5236    7.4265    3.0371    7.6030    1.9903    6.4985    1.4419    1.6404  
+corner_110     0.82   3.32    0.375     0.7543    0.5710    1.8243    0.0854    3.6389    0.3989    6.2066    0.1960    5.7413    1.1623    6.3023    2.2442    5.7566    2.0437    3.3168    3.3177    2.2307    6.5630    3.5886    8.7814  
+corner_111     0.82   3.32    0.4       0.7543    0.4654    2.0596    0.0428    3.4351    0.1684    5.4005    0.3453    2.5456    1.4470    0.5571    4.3115    1.3900    3.8182    3.8644    4.4621    5.7702    4.2667    6.0026    3.4413  
+anchor         0.8    3.247   0.387     0.7300    0.4972    1.8151    0.0437    2.9157    0.1728    4.3239    0.4926    1.9110    1.8345    0.4424    4.0791    0.8614    0.8169    2.8683    1.4036    0.3688    3.6462    2.5246    0.7598  
+
+corner          binding T   min ratio   c (=1/min ratio)
+corner_000           4        0.0369     27.1109
+corner_001           4        0.0159     62.7715
+corner_010           4        0.0240     41.7144
+corner_011           4        0.0066    151.8017
+corner_100           4        0.1075      9.3036
+corner_101           4        0.0676     14.7861
+corner_110           4        0.0854     11.7117
+corner_111           4        0.0428     23.3860
+anchor               4        0.0437     22.8780
+
+Min ratio over t in [10, 20] across all 9 corners+anchor: 0.3688
+So c >= 1/10 valid for T >= 10? True
+
+Total wall time: 180.1 s
+Saved JSON to C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap1_init\detailed_verification\gap1_audit_results.json

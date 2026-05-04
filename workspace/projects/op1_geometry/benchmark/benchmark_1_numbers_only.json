@@ -1,0 +1,996 @@
+{
+  "surface": "S_{1,2}",
+  "n_pairs": 99,
+  "pairs": [
+    {
+      "pair_id": "a38-b1",
+      "alpha_idx": 38,
+      "beta_idx": 1,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a38-b8",
+      "alpha_idx": 38,
+      "beta_idx": 8,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a38-b12",
+      "alpha_idx": 38,
+      "beta_idx": 12,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a38-b14",
+      "alpha_idx": 38,
+      "beta_idx": 14,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a38-b25",
+      "alpha_idx": 38,
+      "beta_idx": 25,
+      "k_alpha": 4,
+      "i_alpha_beta": 0,
+      "i_sigma_beta": 0,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a38-b39",
+      "alpha_idx": 38,
+      "beta_idx": 39,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a38-b41",
+      "alpha_idx": 38,
+      "beta_idx": 41,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a38-b73",
+      "alpha_idx": 38,
+      "beta_idx": 73,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a38-b168",
+      "alpha_idx": 38,
+      "beta_idx": 168,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a105-b1",
+      "alpha_idx": 105,
+      "beta_idx": 1,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a105-b22",
+      "alpha_idx": 105,
+      "beta_idx": 22,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a105-b24",
+      "alpha_idx": 105,
+      "beta_idx": 24,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a105-b33",
+      "alpha_idx": 105,
+      "beta_idx": 33,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a105-b41",
+      "alpha_idx": 105,
+      "beta_idx": 41,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a105-b68",
+      "alpha_idx": 105,
+      "beta_idx": 68,
+      "k_alpha": 4,
+      "i_alpha_beta": 0,
+      "i_sigma_beta": 0,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a105-b120",
+      "alpha_idx": 105,
+      "beta_idx": 120,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a105-b209",
+      "alpha_idx": 105,
+      "beta_idx": 209,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a117-b5",
+      "alpha_idx": 117,
+      "beta_idx": 5,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a117-b6",
+      "alpha_idx": 117,
+      "beta_idx": 6,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a117-b24",
+      "alpha_idx": 117,
+      "beta_idx": 24,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a117-b37",
+      "alpha_idx": 117,
+      "beta_idx": 37,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a117-b72",
+      "alpha_idx": 117,
+      "beta_idx": 72,
+      "k_alpha": 4,
+      "i_alpha_beta": 0,
+      "i_sigma_beta": 0,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a117-b116",
+      "alpha_idx": 117,
+      "beta_idx": 116,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a117-b123",
+      "alpha_idx": 117,
+      "beta_idx": 123,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a117-b219",
+      "alpha_idx": 117,
+      "beta_idx": 219,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a119-b1",
+      "alpha_idx": 119,
+      "beta_idx": 1,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a119-b6",
+      "alpha_idx": 119,
+      "beta_idx": 6,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a119-b15",
+      "alpha_idx": 119,
+      "beta_idx": 15,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a119-b39",
+      "alpha_idx": 119,
+      "beta_idx": 39,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a119-b43",
+      "alpha_idx": 119,
+      "beta_idx": 43,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a119-b74",
+      "alpha_idx": 119,
+      "beta_idx": 74,
+      "k_alpha": 4,
+      "i_alpha_beta": 0,
+      "i_sigma_beta": 0,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a119-b125",
+      "alpha_idx": 119,
+      "beta_idx": 125,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a119-b221",
+      "alpha_idx": 119,
+      "beta_idx": 221,
+      "k_alpha": 4,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 4,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a118-b1",
+      "alpha_idx": 118,
+      "beta_idx": 1,
+      "k_alpha": 5,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 5,
+      "i_sigma_gamma": 3
+    },
+    {
+      "pair_id": "a118-b14",
+      "alpha_idx": 118,
+      "beta_idx": 14,
+      "k_alpha": 5,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 5,
+      "i_sigma_gamma": 3
+    },
+    {
+      "pair_id": "a118-b25",
+      "alpha_idx": 118,
+      "beta_idx": 25,
+      "k_alpha": 5,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 5,
+      "i_sigma_gamma": 3
+    },
+    {
+      "pair_id": "a118-b38",
+      "alpha_idx": 118,
+      "beta_idx": 38,
+      "k_alpha": 5,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 5,
+      "i_sigma_gamma": 3
+    },
+    {
+      "pair_id": "a118-b39",
+      "alpha_idx": 118,
+      "beta_idx": 39,
+      "k_alpha": 5,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 5,
+      "i_sigma_gamma": 3
+    },
+    {
+      "pair_id": "a118-b73",
+      "alpha_idx": 118,
+      "beta_idx": 73,
+      "k_alpha": 5,
+      "i_alpha_beta": 0,
+      "i_sigma_beta": 0,
+      "i_alpha_gamma": 5,
+      "i_sigma_gamma": 3
+    },
+    {
+      "pair_id": "a118-b124",
+      "alpha_idx": 118,
+      "beta_idx": 124,
+      "k_alpha": 5,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 5,
+      "i_sigma_gamma": 3
+    },
+    {
+      "pair_id": "a118-b220",
+      "alpha_idx": 118,
+      "beta_idx": 220,
+      "k_alpha": 5,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 5,
+      "i_sigma_gamma": 3
+    },
+    {
+      "pair_id": "a88-b1",
+      "alpha_idx": 88,
+      "beta_idx": 1,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a88-b8",
+      "alpha_idx": 88,
+      "beta_idx": 8,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a88-b25",
+      "alpha_idx": 88,
+      "beta_idx": 25,
+      "k_alpha": 6,
+      "i_alpha_beta": 0,
+      "i_sigma_beta": 0,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a88-b29",
+      "alpha_idx": 88,
+      "beta_idx": 29,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a88-b39",
+      "alpha_idx": 88,
+      "beta_idx": 39,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a88-b73",
+      "alpha_idx": 88,
+      "beta_idx": 73,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a88-b89",
+      "alpha_idx": 88,
+      "beta_idx": 89,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a88-b118",
+      "alpha_idx": 88,
+      "beta_idx": 118,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a88-b168",
+      "alpha_idx": 88,
+      "beta_idx": 168,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a186-b1",
+      "alpha_idx": 186,
+      "beta_idx": 1,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 4
+    },
+    {
+      "pair_id": "a186-b12",
+      "alpha_idx": 186,
+      "beta_idx": 12,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 4
+    },
+    {
+      "pair_id": "a186-b14",
+      "alpha_idx": 186,
+      "beta_idx": 14,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 4
+    },
+    {
+      "pair_id": "a186-b38",
+      "alpha_idx": 186,
+      "beta_idx": 38,
+      "k_alpha": 6,
+      "i_alpha_beta": 0,
+      "i_sigma_beta": 0,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 4
+    },
+    {
+      "pair_id": "a186-b61",
+      "alpha_idx": 186,
+      "beta_idx": 61,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 4
+    },
+    {
+      "pair_id": "a186-b73",
+      "alpha_idx": 186,
+      "beta_idx": 73,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 4
+    },
+    {
+      "pair_id": "a186-b118",
+      "alpha_idx": 186,
+      "beta_idx": 118,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 4
+    },
+    {
+      "pair_id": "a186-b206",
+      "alpha_idx": 186,
+      "beta_idx": 206,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 4
+    },
+    {
+      "pair_id": "a253-b1",
+      "alpha_idx": 253,
+      "beta_idx": 1,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a253-b22",
+      "alpha_idx": 253,
+      "beta_idx": 22,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a253-b68",
+      "alpha_idx": 253,
+      "beta_idx": 68,
+      "k_alpha": 6,
+      "i_alpha_beta": 0,
+      "i_sigma_beta": 0,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a253-b82",
+      "alpha_idx": 253,
+      "beta_idx": 82,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a253-b120",
+      "alpha_idx": 253,
+      "beta_idx": 120,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a253-b209",
+      "alpha_idx": 253,
+      "beta_idx": 209,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a253-b271",
+      "alpha_idx": 253,
+      "beta_idx": 271,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a253-b330",
+      "alpha_idx": 253,
+      "beta_idx": 330,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a268-b5",
+      "alpha_idx": 268,
+      "beta_idx": 5,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a268-b24",
+      "alpha_idx": 268,
+      "beta_idx": 24,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a268-b72",
+      "alpha_idx": 268,
+      "beta_idx": 72,
+      "k_alpha": 6,
+      "i_alpha_beta": 0,
+      "i_sigma_beta": 0,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a268-b87",
+      "alpha_idx": 268,
+      "beta_idx": 87,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a268-b116",
+      "alpha_idx": 268,
+      "beta_idx": 116,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a268-b219",
+      "alpha_idx": 268,
+      "beta_idx": 219,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a268-b267",
+      "alpha_idx": 268,
+      "beta_idx": 267,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a268-b362",
+      "alpha_idx": 268,
+      "beta_idx": 362,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a270-b1",
+      "alpha_idx": 270,
+      "beta_idx": 1,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a270-b6",
+      "alpha_idx": 270,
+      "beta_idx": 6,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a270-b43",
+      "alpha_idx": 270,
+      "beta_idx": 43,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a270-b74",
+      "alpha_idx": 270,
+      "beta_idx": 74,
+      "k_alpha": 6,
+      "i_alpha_beta": 0,
+      "i_sigma_beta": 0,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a270-b89",
+      "alpha_idx": 270,
+      "beta_idx": 89,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a270-b128",
+      "alpha_idx": 270,
+      "beta_idx": 128,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a270-b221",
+      "alpha_idx": 270,
+      "beta_idx": 221,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a270-b364",
+      "alpha_idx": 270,
+      "beta_idx": 364,
+      "k_alpha": 6,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 6,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a269-b1",
+      "alpha_idx": 269,
+      "beta_idx": 1,
+      "k_alpha": 7,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 7,
+      "i_sigma_gamma": 3
+    },
+    {
+      "pair_id": "a269-b25",
+      "alpha_idx": 269,
+      "beta_idx": 25,
+      "k_alpha": 7,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 7,
+      "i_sigma_gamma": 3
+    },
+    {
+      "pair_id": "a269-b39",
+      "alpha_idx": 269,
+      "beta_idx": 39,
+      "k_alpha": 7,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 7,
+      "i_sigma_gamma": 3
+    },
+    {
+      "pair_id": "a269-b73",
+      "alpha_idx": 269,
+      "beta_idx": 73,
+      "k_alpha": 7,
+      "i_alpha_beta": 0,
+      "i_sigma_beta": 0,
+      "i_alpha_gamma": 7,
+      "i_sigma_gamma": 3
+    },
+    {
+      "pair_id": "a269-b88",
+      "alpha_idx": 269,
+      "beta_idx": 88,
+      "k_alpha": 7,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 7,
+      "i_sigma_gamma": 3
+    },
+    {
+      "pair_id": "a269-b89",
+      "alpha_idx": 269,
+      "beta_idx": 89,
+      "k_alpha": 7,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 7,
+      "i_sigma_gamma": 3
+    },
+    {
+      "pair_id": "a269-b220",
+      "alpha_idx": 269,
+      "beta_idx": 220,
+      "k_alpha": 7,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 7,
+      "i_sigma_gamma": 3
+    },
+    {
+      "pair_id": "a269-b363",
+      "alpha_idx": 269,
+      "beta_idx": 363,
+      "k_alpha": 7,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 7,
+      "i_sigma_gamma": 3
+    },
+    {
+      "pair_id": "a236-b1",
+      "alpha_idx": 236,
+      "beta_idx": 1,
+      "k_alpha": 8,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 8,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a236-b8",
+      "alpha_idx": 236,
+      "beta_idx": 8,
+      "k_alpha": 8,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 8,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a236-b25",
+      "alpha_idx": 236,
+      "beta_idx": 25,
+      "k_alpha": 8,
+      "i_alpha_beta": 0,
+      "i_sigma_beta": 0,
+      "i_alpha_gamma": 8,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a236-b73",
+      "alpha_idx": 236,
+      "beta_idx": 73,
+      "k_alpha": 8,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 8,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a236-b78",
+      "alpha_idx": 236,
+      "beta_idx": 78,
+      "k_alpha": 8,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 8,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a236-b89",
+      "alpha_idx": 236,
+      "beta_idx": 89,
+      "k_alpha": 8,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 8,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a236-b168",
+      "alpha_idx": 236,
+      "beta_idx": 168,
+      "k_alpha": 8,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 8,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a236-b237",
+      "alpha_idx": 236,
+      "beta_idx": 237,
+      "k_alpha": 8,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 8,
+      "i_sigma_gamma": 2
+    },
+    {
+      "pair_id": "a236-b269",
+      "alpha_idx": 236,
+      "beta_idx": 269,
+      "k_alpha": 8,
+      "i_alpha_beta": 1,
+      "i_sigma_beta": 1,
+      "i_alpha_gamma": 8,
+      "i_sigma_gamma": 2
+    }
+  ]
+}

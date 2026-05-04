@@ -1,0 +1,82 @@
+S_{1,2}: triangles = 4
+  triangle edges: [(5, 2, 0), (4, 3, 5), (1, 3, 4), (0, 1, 2)]
+  γ_0 weights: [1, 1, 0, 1, 0, 1]
+
+Per-α data (α, δ):
+
+α= 13 δ=  1  α_w=[1, 1, 2, 1, 0, 1]  δ_w=[1, 0, 1, 0, 0, 0]
+α= 40 δ=  1  α_w=[3, 1, 2, 1, 0, 1]  δ_w=[1, 0, 1, 0, 0, 0]
+α= 42 δ=  6  α_w=[3, 1, 2, 1, 2, 3]  δ_w=[2, 1, 1, 0, 1, 1]
+α= 68 δ=  1  α_w=[3, 3, 4, 2, 1, 1]  δ_w=[1, 0, 1, 0, 0, 0]
+α= 74 δ=  6  α_w=[3, 1, 2, 0, 1, 1]  δ_w=[2, 1, 1, 0, 1, 1]
+α=113 δ=  8  α_w=[1, 3, 2, 1, 2, 1]  δ_w=[0, 1, 1, 0, 1, 1]
+α=121 δ=  5  α_w=[5, 3, 2, 3, 0, 3]  δ_w=[2, 1, 1, 1, 0, 1]
+α=122 δ=  6  α_w=[5, 3, 2, 1, 2, 3]  δ_w=[2, 1, 1, 0, 1, 1]
+α=126 δ= 18  α_w=[3, 5, 2, 3, 2, 1]  δ_w=[2, 3, 1, 2, 1, 1]
+α=127 δ= 15  α_w=[5, 3, 2, 1, 4, 5]  δ_w=[2, 1, 1, 1, 2, 3]
+α=145 δ=  4  α_w=[1, 3, 2, 3, 0, 3]  δ_w=[0, 1, 1, 1, 0, 1]
+α=156 δ=  8  α_w=[1, 3, 2, 1, 2, 3]  δ_w=[0, 1, 1, 0, 1, 1]
+α=170 δ=  8  α_w=[1, 3, 2, 0, 3, 3]  δ_w=[0, 1, 1, 0, 1, 1]
+α=201 δ=  1  α_w=[5, 5, 6, 4, 1, 3]  δ_w=[1, 0, 1, 0, 0, 0]
+α=210 δ=  6  α_w=[7, 3, 4, 2, 3, 5]  δ_w=[2, 1, 1, 0, 1, 1]
+α=212 δ=  4  α_w=[1, 1, 2, 2, 1, 3]  δ_w=[0, 1, 1, 1, 0, 1]
+α=216 δ= 14  α_w=[3, 1, 2, 2, 3, 5]  δ_w=[1, 0, 1, 1, 1, 2]
+α=222 δ= 19  α_w=[5, 3, 2, 0, 3, 3]  δ_w=[3, 2, 1, 0, 2, 2]
+α=322 δ= 22  α_w=[5, 7, 6, 5, 2, 3]  δ_w=[2, 3, 3, 2, 1, 1]
+α=359 δ= 15  α_w=[5, 3, 2, 3, 4, 7]  δ_w=[2, 1, 1, 1, 2, 3]
+α=371 δ= 16  α_w=[7, 5, 2, 5, 0, 5]  δ_w=[3, 2, 1, 2, 0, 2]
+α=373 δ= 17  α_w=[7, 5, 2, 3, 2, 5]  δ_w=[3, 2, 1, 1, 1, 2]
+α=374 δ= 18  α_w=[5, 7, 2, 5, 2, 3]  δ_w=[2, 3, 1, 2, 1, 1]
+α=376 δ= 19  α_w=[7, 5, 2, 1, 4, 5]  δ_w=[3, 2, 1, 0, 2, 2]
+α=386 δ= 54  α_w=[7, 9, 6, 7, 2, 5]  δ_w=[4, 5, 3, 4, 1, 3]
+α=387 δ= 18  α_w=[5, 11, 6, 7, 4, 3]  δ_w=[2, 3, 1, 2, 1, 1]
+α=389 δ= 45  α_w=[7, 5, 2, 1, 6, 7]  δ_w=[3, 2, 1, 1, 3, 4]
+
+Distinct δ values: 14
+Top δ values:
+  δ=1 (count=4, weights=[1, 0, 1, 0, 0, 0])
+  δ=6 (count=4, weights=[2, 1, 1, 0, 1, 1])
+  δ=8 (count=3, weights=[0, 1, 1, 0, 1, 1])
+  δ=18 (count=3, weights=[2, 3, 1, 2, 1, 1])
+  δ=15 (count=2, weights=[2, 1, 1, 1, 2, 3])
+  δ=4 (count=2, weights=[0, 1, 1, 1, 0, 1])
+  δ=19 (count=2, weights=[3, 2, 1, 0, 2, 2])
+  δ=5 (count=1, weights=[2, 1, 1, 1, 0, 1])
+  δ=14 (count=1, weights=[1, 0, 1, 1, 1, 2])
+  δ=22 (count=1, weights=[2, 3, 3, 2, 1, 1])
+
+Relation between α and δ weights (per-edge differences):
+  α= 13 δ=  1  diff (α-δ)= [0, 1, 1, 1, 0, 1]
+  α= 40 δ=  1  diff (α-δ)= [2, 1, 1, 1, 0, 1]
+  α= 42 δ=  6  diff (α-δ)= [1, 0, 1, 1, 1, 2]
+  α= 68 δ=  1  diff (α-δ)= [2, 3, 3, 2, 1, 1]
+  α= 74 δ=  6  diff (α-δ)= [1, 0, 1, 0, 0, 0]
+  α=113 δ=  8  diff (α-δ)= [1, 2, 1, 1, 1, 0]
+  α=121 δ=  5  diff (α-δ)= [3, 2, 1, 2, 0, 2]
+  α=122 δ=  6  diff (α-δ)= [3, 2, 1, 1, 1, 2]
+  α=126 δ= 18  diff (α-δ)= [1, 2, 1, 1, 1, 0]
+  α=127 δ= 15  diff (α-δ)= [3, 2, 1, 0, 2, 2]
+Traceback (most recent call last):
+  File "C:\Users\12729\Desktop\Math\SpatialMind\experiments\op1_lemma34_path1.py", line 112, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\12729\Desktop\Math\SpatialMind\experiments\op1_lemma34_path1.py", line 107, in main
+    json.dump(out, fh, indent=2, default=str)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12729\AppData\Local\Programs\Python\Python313\Lib\json\__init__.py", line 179, in dump
+    for chunk in iterable:
+                 ^^^^^^^^
+  File "C:\Users\12729\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "C:\Users\12729\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Users\12729\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 326, in _iterencode_list
+    yield from chunks
+  File "C:\Users\12729\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Users\12729\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Users\12729\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 377, in _iterencode_dict
+    raise TypeError(f'keys must be str, int, float, bool or None, '
+                    f'not {key.__class__.__name__}')
+TypeError: keys must be str, int, float, bool or None, not tuple

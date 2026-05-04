@@ -1,0 +1,79 @@
+======================================================================
+Gap 2 verification — last-iterate UB for fixed-momentum SHB on
+L-smooth convex non-SC. mpmath dps = 50 (where used).
+======================================================================
+--- (S1) SymPy: discrete Lyapunov closed-form Var_inf[x] ---
+  Lyapunov solution Var_inf[x] (raw): eta*sigma**2*(beta + 1)/(L*(L*beta*eta - L*eta - 2*beta**2 + 2))
+  Boxed formula (5):                 eta*sigma**2*(beta + 1)/(L*(1 - beta)*(-L*eta + 2*beta + 2))
+  Difference:                        0
+  S1 PASS: True
+
+--- (S2) SymPy: leading-eta expansion + beta=0 collapse ---
+  lim_{eta -> 0} Var_inf / eta = -sigma**2/(2*L*(beta - 1))
+  target sigma^2 / [2 L (1-beta)] = sigma**2/(2*L*(1 - beta))
+  diff = 0
+  formula_5 at beta=0  = -eta*sigma**2/(L*(L*eta - 2))
+  target eta sigma^2 / (L (2-eta L)) = eta*sigma**2/(L*(-L*eta + 2))
+  diff = 0
+  S2 PASS: True
+
+--- (S3) SymPy: 3-term Lyapunov drift (Cesàro UB cross-term cancel) ---
+  c1 + c2 - (1-L eta)/(2 eta) = 0
+  -eta + L eta^2/2 + eta^2(c1+c2) - (-eta/2) = 0
+  cross-term coefficient (should be 0) = 0
+  S3 PASS: True
+
+--- (S4) SymPy: change-of-variables z_t identity (Theorem D) ---
+  z_{t+1} - z_t + eta_eff * g_t = 0    (should be 0)
+  S4 PASS: True
+
+--- (M1) mpmath: independent Lyapunov solve at (beta, etaL) = (0.5, 0.1) ---
+  P[0,1] - P[1,0] = 1.63133e-55     (symmetry)
+  P[0,0] - P[1,1] = 0.0     (p11 = p22 for SHB)
+  Var_inf[x] (mpmath Lyapunov solve): 0.1034482758620689655172414
+  Closed-form formula (5):            0.1034482758620689655172414
+  Relative difference:                1.86553e-51
+  M1 PASS: True
+
+--- (MC1) Monte Carlo at multiple (beta, eta L) settings ---
+  beta=0.00  etaL=0.500  formula=0.33333  MC=0.33370  rel_err=0.1110%  -> OK
+  beta=0.50  etaL=0.100  formula=0.10345  MC=0.10348  rel_err=0.0328%  -> OK
+  beta=0.90  etaL=0.050  formula=0.25333  MC=0.25370  rel_err=0.1444%  -> OK
+  beta=0.95  etaL=0.020  formula=0.20103  MC=0.20018  rel_err=0.4248%  -> OK
+  MC1 PASS (all rel_err < 1%): True
+
+--- (MC2) Monte Carlo: log-log rate fit at eta_T = D/(sigma sqrt(T)) ---
+  T=  100  eta=0.1000  E[f(x_T)]=0.05176  noise_floor=0.05172  predicted_minimax=0.05000
+  T=  300  eta=0.0577  E[f(x_T)]=0.02934  noise_floor=0.02943  predicted_minimax=0.02887
+  T= 1000  eta=0.0316  E[f(x_T)]=0.01587  noise_floor=0.01598  predicted_minimax=0.01581
+  T= 3000  eta=0.0183  E[f(x_T)]=0.00927  noise_floor=0.00918  predicted_minimax=0.00913
+  T=10000  eta=0.0100  E[f(x_T)]=0.00514  noise_floor=0.00502  predicted_minimax=0.00500
+  empirical rate (log-log fit slope): T^(-0.501)
+  expected: T^(-0.5) for Theta(sigma D / sqrt(T))
+  MC2 PASS (rate in [0.4, 0.6]): True
+
+--- (MC3) Monte Carlo: at fixed (beta, eta), E[f(x_T)] does NOT decay ---
+  At (beta, etaL) = (0.5, 0.1), f-floor = 0.051724
+  T=   100  E[f(x_T)]=0.051379  ratio to floor=0.9933
+  T=  1000  E[f(x_T)]=0.054693  ratio to floor=1.0574
+  T= 10000  E[f(x_T)]=0.053184  ratio to floor=1.0282
+  T= 50000  E[f(x_T)]=0.050589  ratio to floor=0.9781
+  At T=10000 vs T=50000, |E_f change| / E_f = 0.0488  (must be < 0.10 for no decay)
+  MC3 PASS (no T-decay; saturation at noise floor): True
+
+======================================================================
+SUMMARY
+======================================================================
+  S1_closed_form                : PASS
+  S2_small_eta_and_beta0        : PASS
+  S3_three_term_lyapunov        : PASS
+  S4_change_of_variables        : PASS
+  M1_mpmath_lyapunov            : PASS
+  MC1_monte_carlo               : PASS
+  MC2_horizon_tuned_rate        : PASS
+  MC3_no_decay_fixed_eta        : PASS
+
+  Wall time: 12.4s
+  Overall:   ALL PASS
+
+  Saved results to C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap2_ub\gap2_verify_results.json

@@ -1,0 +1,26 @@
+{
+  "theorem_name": "descent_lemma_for_l_smooth",
+  "layer": 1,
+  "natural_language_statement": "Let E be a real inner product space and f : E → ℝ have gradient f'(x) at every point x. If f' is Lipschitz with constant l, then the quadratic upper bound (descent lemma) holds: for all x, y in E, f(y) ≤ f(x) + ⟨f'(x), y - x⟩ + (l / 2) * ‖y - x‖^2.",
+  "assumptions": [
+    "E is a real inner product space, complete",
+    "f : E → ℝ",
+    "f' : E → E (gradient as element of E via Riesz)",
+    "l : NNReal",
+    "h₁ : ∀ x : E, HasGradientAt f (f' x) x",
+    "h₂ : LipschitzWith l f'"
+  ],
+  "conclusion": "∀ x y : E, f y ≤ f x + inner (f' x) (y - x) + (l / 2) * ‖y - x‖ ^ 2",
+  "proof_sketch": [
+    "Convert gradient form to Frechet derivative form via Riesz isomorphism toDual ℝ E.",
+    "Define g(x) = (toDual ℝ E) (f' x); g is the Frechet derivative of f.",
+    "Show LipschitzWith l g using that toDual is an isometry and h₂.",
+    "Apply the FDeriv-form descent lemma (lipschitz_continuous_upper_bound) to f, g.",
+    "Rewrite (g x)(y - x) as inner (f' x) (y - x) via toDual_apply."
+  ],
+  "key_mathlib_lemmas": [
+    "InnerProductSpace.toDual_apply",
+    "LinearIsometryEquiv.norm_map",
+    "lipschitzWith_iff_norm_sub_le"
+  ]
+}

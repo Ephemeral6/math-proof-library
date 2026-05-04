@@ -1,0 +1,181 @@
+{
+ "domain": "knot_theory",
+ "condition": "0T0",
+ "primitives": {
+  "relation": false,
+  "transform": true,
+  "contrastive": false
+ },
+ "case_id": "5_2-r2-5",
+ "case_data": {
+  "case_id": "5_2-r2-5",
+  "summary_delta": {
+   "writhe_delta": 0,
+   "linking_number": 0.0,
+   "crossing_count_b": 0,
+   "writhe_b": 0,
+   "crossing_count_a": 2,
+   "writhe_a": 0
+  },
+  "metadata": {
+   "knot": "5_2",
+   "move": "R2",
+   "trial": 5,
+   "writhe_pre": 5,
+   "writhe_post": 5,
+   "n_crossings_pre": 5,
+   "n_crossings_post": 7
+  },
+  "transform_trace": {
+   "operation_name": "R2",
+   "operation_params": {
+    "target_signs": [
+     1,
+     -1
+    ]
+   },
+   "before_state": {
+    "pd_code": [
+     [
+      4,
+      0,
+      5,
+      9
+     ],
+     [
+      0,
+      6,
+      1,
+      5
+     ],
+     [
+      8,
+      2,
+      9,
+      1
+     ],
+     [
+      2,
+      8,
+      3,
+      7
+     ],
+     [
+      6,
+      4,
+      7,
+      3
+     ]
+    ],
+    "writhe": 5,
+    "n_crossings": 5,
+    "signs": [
+     1,
+     1,
+     1,
+     1,
+     1
+    ]
+   },
+   "after_state": {
+    "pd_code": [
+     [
+      8,
+      2,
+      9,
+      1
+     ],
+     [
+      0,
+      8,
+      1,
+      7
+     ],
+     [
+      2,
+      0,
+      3,
+      13
+     ],
+     [
+      12,
+      4,
+      13,
+      3
+     ],
+     [
+      6,
+      10,
+      7,
+      9
+     ],
+     [
+      10,
+      6,
+      11,
+      5
+     ],
+     [
+      11,
+      4,
+      12,
+      5
+     ]
+    ],
+    "writhe": 5,
+    "n_crossings": 7,
+    "signs": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     -1
+    ]
+   },
+   "delta": {
+    "crossing_count_delta": 2,
+    "writhe_delta": 0
+   },
+   "region_affected": {
+    "added_crossing_labels": [
+     "new2",
+     "new3"
+    ],
+    "added_crossing_signs": [
+     1,
+     -1
+    ],
+    "added_crossing_signs_pair": [
+     -1,
+     1
+    ],
+    "added_crossing_count": 2,
+    "persistent_crossing_labels": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "persistent_crossing_count": 5
+   },
+   "sub_steps": []
+  },
+  "reference_in_transform_region": {
+   "persistent_crossing_count": 5,
+   "persistent_crossing_labels": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "added_crossing_labels": [
+    "new2",
+    "new3"
+   ]
+  }
+ }
+}

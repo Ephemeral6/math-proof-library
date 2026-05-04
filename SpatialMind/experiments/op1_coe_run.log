@@ -1,0 +1,20 @@
+
+=== S_1_2 (g=1, n=2) ===
+  cache initialized (lazy), 400 curves
+  R-axis: 91 samples in 5.8s
+  T-axis: 10 surgeries in 1.8s
+  C-axis: levels 2..5, 0 α with neither chordal nor cone, 6.2s
+
+=== S_1_1 (g=1, n=1) ===
+  cache initialized (lazy), 100 curves
+  R-axis: 66 samples in 0.6s
+  T-axis: 10 surgeries in 0.4s
+  C-axis: levels 2..5, 0 α with neither chordal nor cone, 0.1s
+
+=== S_2_1 (g=2, n=1) ===
+  cache initialized (lazy), 250 curves
+  R-axis: 19 samples in 2.6s
+  T-axis: 3 surgeries in 0.5s
+  C-axis: levels 2..4, 6 α with neither chordal nor cone, 2.0s
+
+Wrote C:\Users\12729\Desktop\Math\SpatialMind\experiments\op1_coe_data.json

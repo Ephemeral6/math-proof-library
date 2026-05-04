@@ -1,0 +1,33 @@
+{
+ "domain": "graph_connectivity",
+ "condition": "000",
+ "primitives": {
+  "relation": false,
+  "transform": false,
+  "contrastive": false
+ },
+ "case_id": "R16_n12-t1",
+ "case_data": {
+  "case_id": "R16_n12-t1",
+  "summary_delta": {
+   "n_vertices_b": 0,
+   "n_components_b": 0,
+   "is_connected_a": 0,
+   "n_vertices_a": 0,
+   "n_edges_b": 0,
+   "is_connected_b": 0,
+   "n_edges_a": -1,
+   "n_components_a": 0
+  },
+  "metadata": {
+   "graph_idx": 16,
+   "n_vertices": 12,
+   "n_edges_before": 17,
+   "deleted_edge": [
+    2,
+    11
+   ],
+   "trial": 1
+  }
+ }
+}

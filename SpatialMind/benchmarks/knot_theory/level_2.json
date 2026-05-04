@@ -1,0 +1,4107 @@
+{
+  "level": 2,
+  "domain": "knot_theory",
+  "n_cases": 100,
+  "cases": [
+    {
+      "case_id": "3_1-r2-0",
+      "object_a_id": "3_1",
+      "object_b_id": "3_1",
+      "transformed_a_id": "3_1-r2-0",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 3,
+        "crossings_a_after": 5,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "3_1",
+        "move": "R2",
+        "trial": 0,
+        "writhe_pre": -3,
+        "writhe_post": -3,
+        "n_crossings_pre": 3,
+        "n_crossings_post": 5
+      }
+    },
+    {
+      "case_id": "3_1-r2-1",
+      "object_a_id": "3_1",
+      "object_b_id": "3_1",
+      "transformed_a_id": "3_1-r2-1",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 3,
+        "crossings_a_after": 5,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "3_1",
+        "move": "R2",
+        "trial": 1,
+        "writhe_pre": -3,
+        "writhe_post": -3,
+        "n_crossings_pre": 3,
+        "n_crossings_post": 5
+      }
+    },
+    {
+      "case_id": "3_1-r2-2",
+      "object_a_id": "3_1",
+      "object_b_id": "3_1",
+      "transformed_a_id": "3_1-r2-2",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 3,
+        "crossings_a_after": 5,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "3_1",
+        "move": "R2",
+        "trial": 2,
+        "writhe_pre": -3,
+        "writhe_post": -3,
+        "n_crossings_pre": 3,
+        "n_crossings_post": 5
+      }
+    },
+    {
+      "case_id": "3_1-r2-3",
+      "object_a_id": "3_1",
+      "object_b_id": "3_1",
+      "transformed_a_id": "3_1-r2-3",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 3,
+        "crossings_a_after": 5,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "3_1",
+        "move": "R2",
+        "trial": 3,
+        "writhe_pre": -3,
+        "writhe_post": -3,
+        "n_crossings_pre": 3,
+        "n_crossings_post": 5
+      }
+    },
+    {
+      "case_id": "3_1-r2-4",
+      "object_a_id": "3_1",
+      "object_b_id": "3_1",
+      "transformed_a_id": "3_1-r2-4",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 3,
+        "crossings_a_after": 5,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "3_1",
+        "move": "R2",
+        "trial": 4,
+        "writhe_pre": -3,
+        "writhe_post": -3,
+        "n_crossings_pre": 3,
+        "n_crossings_post": 5
+      }
+    },
+    {
+      "case_id": "3_1-r2-5",
+      "object_a_id": "3_1",
+      "object_b_id": "3_1",
+      "transformed_a_id": "3_1-r2-5",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 3,
+        "crossings_a_after": 5,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "3_1",
+        "move": "R2",
+        "trial": 5,
+        "writhe_pre": -3,
+        "writhe_post": -3,
+        "n_crossings_pre": 3,
+        "n_crossings_post": 5
+      }
+    },
+    {
+      "case_id": "3_1-r2-6",
+      "object_a_id": "3_1",
+      "object_b_id": "3_1",
+      "transformed_a_id": "3_1-r2-6",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 3,
+        "crossings_a_after": 5,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "3_1",
+        "move": "R2",
+        "trial": 6,
+        "writhe_pre": -3,
+        "writhe_post": -3,
+        "n_crossings_pre": 3,
+        "n_crossings_post": 5
+      }
+    },
+    {
+      "case_id": "3_1-r2-7",
+      "object_a_id": "3_1",
+      "object_b_id": "3_1",
+      "transformed_a_id": "3_1-r2-7",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 3,
+        "crossings_a_after": 5,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "3_1",
+        "move": "R2",
+        "trial": 7,
+        "writhe_pre": -3,
+        "writhe_post": -3,
+        "n_crossings_pre": 3,
+        "n_crossings_post": 5
+      }
+    },
+    {
+      "case_id": "3_1-r2-8",
+      "object_a_id": "3_1",
+      "object_b_id": "3_1",
+      "transformed_a_id": "3_1-r2-8",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 3,
+        "crossings_a_after": 5,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "3_1",
+        "move": "R2",
+        "trial": 8,
+        "writhe_pre": -3,
+        "writhe_post": -3,
+        "n_crossings_pre": 3,
+        "n_crossings_post": 5
+      }
+    },
+    {
+      "case_id": "3_1-r2-9",
+      "object_a_id": "3_1",
+      "object_b_id": "3_1",
+      "transformed_a_id": "3_1-r2-9",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 3,
+        "crossings_a_after": 5,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "3_1",
+        "move": "R2",
+        "trial": 9,
+        "writhe_pre": -3,
+        "writhe_post": -3,
+        "n_crossings_pre": 3,
+        "n_crossings_post": 5
+      }
+    },
+    {
+      "case_id": "4_1-r2-0",
+      "object_a_id": "4_1",
+      "object_b_id": "4_1",
+      "transformed_a_id": "4_1-r2-0",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 4,
+        "crossings_a_after": 6,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 2,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 3,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "4_1",
+        "move": "R2",
+        "trial": 0,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 4,
+        "n_crossings_post": 6
+      }
+    },
+    {
+      "case_id": "4_1-r2-1",
+      "object_a_id": "4_1",
+      "object_b_id": "4_1",
+      "transformed_a_id": "4_1-r2-1",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 4,
+        "crossings_a_after": 6,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 2,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 3,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "4_1",
+        "move": "R2",
+        "trial": 1,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 4,
+        "n_crossings_post": 6
+      }
+    },
+    {
+      "case_id": "4_1-r2-2",
+      "object_a_id": "4_1",
+      "object_b_id": "4_1",
+      "transformed_a_id": "4_1-r2-2",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 4,
+        "crossings_a_after": 6,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 2,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 3,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "4_1",
+        "move": "R2",
+        "trial": 2,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 4,
+        "n_crossings_post": 6
+      }
+    },
+    {
+      "case_id": "4_1-r2-3",
+      "object_a_id": "4_1",
+      "object_b_id": "4_1",
+      "transformed_a_id": "4_1-r2-3",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 4,
+        "crossings_a_after": 6,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 2,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 3,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "4_1",
+        "move": "R2",
+        "trial": 3,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 4,
+        "n_crossings_post": 6
+      }
+    },
+    {
+      "case_id": "4_1-r2-4",
+      "object_a_id": "4_1",
+      "object_b_id": "4_1",
+      "transformed_a_id": "4_1-r2-4",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 4,
+        "crossings_a_after": 6,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 2,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 3,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "4_1",
+        "move": "R2",
+        "trial": 4,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 4,
+        "n_crossings_post": 6
+      }
+    },
+    {
+      "case_id": "4_1-r2-5",
+      "object_a_id": "4_1",
+      "object_b_id": "4_1",
+      "transformed_a_id": "4_1-r2-5",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 4,
+        "crossings_a_after": 6,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 2,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 3,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "4_1",
+        "move": "R2",
+        "trial": 5,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 4,
+        "n_crossings_post": 6
+      }
+    },
+    {
+      "case_id": "4_1-r2-6",
+      "object_a_id": "4_1",
+      "object_b_id": "4_1",
+      "transformed_a_id": "4_1-r2-6",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 4,
+        "crossings_a_after": 6,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 2,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 3,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "4_1",
+        "move": "R2",
+        "trial": 6,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 4,
+        "n_crossings_post": 6
+      }
+    },
+    {
+      "case_id": "4_1-r2-7",
+      "object_a_id": "4_1",
+      "object_b_id": "4_1",
+      "transformed_a_id": "4_1-r2-7",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 4,
+        "crossings_a_after": 6,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 2,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 3,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "4_1",
+        "move": "R2",
+        "trial": 7,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 4,
+        "n_crossings_post": 6
+      }
+    },
+    {
+      "case_id": "4_1-r2-8",
+      "object_a_id": "4_1",
+      "object_b_id": "4_1",
+      "transformed_a_id": "4_1-r2-8",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 4,
+        "crossings_a_after": 6,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 2,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 3,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "4_1",
+        "move": "R2",
+        "trial": 8,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 4,
+        "n_crossings_post": 6
+      }
+    },
+    {
+      "case_id": "4_1-r2-9",
+      "object_a_id": "4_1",
+      "object_b_id": "4_1",
+      "transformed_a_id": "4_1-r2-9",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 4,
+        "crossings_a_after": 6,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 2,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 3,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "4_1",
+        "move": "R2",
+        "trial": 9,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 4,
+        "n_crossings_post": 6
+      }
+    },
+    {
+      "case_id": "5_1-r2-0",
+      "object_a_id": "5_1",
+      "object_b_id": "5_1",
+      "transformed_a_id": "5_1-r2-0",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 5,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 6
+      },
+      "metadata": {
+        "knot": "5_1",
+        "move": "R2",
+        "trial": 0,
+        "writhe_pre": -5,
+        "writhe_post": -5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_1-r2-1",
+      "object_a_id": "5_1",
+      "object_b_id": "5_1",
+      "transformed_a_id": "5_1-r2-1",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 5,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 6
+      },
+      "metadata": {
+        "knot": "5_1",
+        "move": "R2",
+        "trial": 1,
+        "writhe_pre": -5,
+        "writhe_post": -5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_1-r2-2",
+      "object_a_id": "5_1",
+      "object_b_id": "5_1",
+      "transformed_a_id": "5_1-r2-2",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 5,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 6
+      },
+      "metadata": {
+        "knot": "5_1",
+        "move": "R2",
+        "trial": 2,
+        "writhe_pre": -5,
+        "writhe_post": -5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_1-r2-3",
+      "object_a_id": "5_1",
+      "object_b_id": "5_1",
+      "transformed_a_id": "5_1-r2-3",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 5,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 6
+      },
+      "metadata": {
+        "knot": "5_1",
+        "move": "R2",
+        "trial": 3,
+        "writhe_pre": -5,
+        "writhe_post": -5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_1-r2-4",
+      "object_a_id": "5_1",
+      "object_b_id": "5_1",
+      "transformed_a_id": "5_1-r2-4",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 5,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 6
+      },
+      "metadata": {
+        "knot": "5_1",
+        "move": "R2",
+        "trial": 4,
+        "writhe_pre": -5,
+        "writhe_post": -5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_1-r2-5",
+      "object_a_id": "5_1",
+      "object_b_id": "5_1",
+      "transformed_a_id": "5_1-r2-5",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 5,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 6
+      },
+      "metadata": {
+        "knot": "5_1",
+        "move": "R2",
+        "trial": 5,
+        "writhe_pre": -5,
+        "writhe_post": -5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_1-r2-6",
+      "object_a_id": "5_1",
+      "object_b_id": "5_1",
+      "transformed_a_id": "5_1-r2-6",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 5,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 6
+      },
+      "metadata": {
+        "knot": "5_1",
+        "move": "R2",
+        "trial": 6,
+        "writhe_pre": -5,
+        "writhe_post": -5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_1-r2-7",
+      "object_a_id": "5_1",
+      "object_b_id": "5_1",
+      "transformed_a_id": "5_1-r2-7",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 5,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 6
+      },
+      "metadata": {
+        "knot": "5_1",
+        "move": "R2",
+        "trial": 7,
+        "writhe_pre": -5,
+        "writhe_post": -5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_1-r2-8",
+      "object_a_id": "5_1",
+      "object_b_id": "5_1",
+      "transformed_a_id": "5_1-r2-8",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 5,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 6
+      },
+      "metadata": {
+        "knot": "5_1",
+        "move": "R2",
+        "trial": 8,
+        "writhe_pre": -5,
+        "writhe_post": -5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_1-r2-9",
+      "object_a_id": "5_1",
+      "object_b_id": "5_1",
+      "transformed_a_id": "5_1-r2-9",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 5,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 6
+      },
+      "metadata": {
+        "knot": "5_1",
+        "move": "R2",
+        "trial": 9,
+        "writhe_pre": -5,
+        "writhe_post": -5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_2-r2-0",
+      "object_a_id": "5_2",
+      "object_b_id": "5_2",
+      "transformed_a_id": "5_2-r2-0",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 5,
+        "signs_count_neg_pre": 0,
+        "signs_count_pos_post": 6,
+        "signs_count_neg_post": 1
+      },
+      "metadata": {
+        "knot": "5_2",
+        "move": "R2",
+        "trial": 0,
+        "writhe_pre": 5,
+        "writhe_post": 5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_2-r2-1",
+      "object_a_id": "5_2",
+      "object_b_id": "5_2",
+      "transformed_a_id": "5_2-r2-1",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 5,
+        "signs_count_neg_pre": 0,
+        "signs_count_pos_post": 6,
+        "signs_count_neg_post": 1
+      },
+      "metadata": {
+        "knot": "5_2",
+        "move": "R2",
+        "trial": 1,
+        "writhe_pre": 5,
+        "writhe_post": 5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_2-r2-2",
+      "object_a_id": "5_2",
+      "object_b_id": "5_2",
+      "transformed_a_id": "5_2-r2-2",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 5,
+        "signs_count_neg_pre": 0,
+        "signs_count_pos_post": 6,
+        "signs_count_neg_post": 1
+      },
+      "metadata": {
+        "knot": "5_2",
+        "move": "R2",
+        "trial": 2,
+        "writhe_pre": 5,
+        "writhe_post": 5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_2-r2-3",
+      "object_a_id": "5_2",
+      "object_b_id": "5_2",
+      "transformed_a_id": "5_2-r2-3",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 5,
+        "signs_count_neg_pre": 0,
+        "signs_count_pos_post": 6,
+        "signs_count_neg_post": 1
+      },
+      "metadata": {
+        "knot": "5_2",
+        "move": "R2",
+        "trial": 3,
+        "writhe_pre": 5,
+        "writhe_post": 5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_2-r2-4",
+      "object_a_id": "5_2",
+      "object_b_id": "5_2",
+      "transformed_a_id": "5_2-r2-4",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 5,
+        "signs_count_neg_pre": 0,
+        "signs_count_pos_post": 6,
+        "signs_count_neg_post": 1
+      },
+      "metadata": {
+        "knot": "5_2",
+        "move": "R2",
+        "trial": 4,
+        "writhe_pre": 5,
+        "writhe_post": 5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_2-r2-5",
+      "object_a_id": "5_2",
+      "object_b_id": "5_2",
+      "transformed_a_id": "5_2-r2-5",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 5,
+        "signs_count_neg_pre": 0,
+        "signs_count_pos_post": 6,
+        "signs_count_neg_post": 1
+      },
+      "metadata": {
+        "knot": "5_2",
+        "move": "R2",
+        "trial": 5,
+        "writhe_pre": 5,
+        "writhe_post": 5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_2-r2-6",
+      "object_a_id": "5_2",
+      "object_b_id": "5_2",
+      "transformed_a_id": "5_2-r2-6",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 5,
+        "signs_count_neg_pre": 0,
+        "signs_count_pos_post": 6,
+        "signs_count_neg_post": 1
+      },
+      "metadata": {
+        "knot": "5_2",
+        "move": "R2",
+        "trial": 6,
+        "writhe_pre": 5,
+        "writhe_post": 5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_2-r2-7",
+      "object_a_id": "5_2",
+      "object_b_id": "5_2",
+      "transformed_a_id": "5_2-r2-7",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 5,
+        "signs_count_neg_pre": 0,
+        "signs_count_pos_post": 6,
+        "signs_count_neg_post": 1
+      },
+      "metadata": {
+        "knot": "5_2",
+        "move": "R2",
+        "trial": 7,
+        "writhe_pre": 5,
+        "writhe_post": 5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_2-r2-8",
+      "object_a_id": "5_2",
+      "object_b_id": "5_2",
+      "transformed_a_id": "5_2-r2-8",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 5,
+        "signs_count_neg_pre": 0,
+        "signs_count_pos_post": 6,
+        "signs_count_neg_post": 1
+      },
+      "metadata": {
+        "knot": "5_2",
+        "move": "R2",
+        "trial": 8,
+        "writhe_pre": 5,
+        "writhe_post": 5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "5_2-r2-9",
+      "object_a_id": "5_2",
+      "object_b_id": "5_2",
+      "transformed_a_id": "5_2-r2-9",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 5,
+        "crossings_a_after": 7,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 5,
+        "signs_count_neg_pre": 0,
+        "signs_count_pos_post": 6,
+        "signs_count_neg_post": 1
+      },
+      "metadata": {
+        "knot": "5_2",
+        "move": "R2",
+        "trial": 9,
+        "writhe_pre": 5,
+        "writhe_post": 5,
+        "n_crossings_pre": 5,
+        "n_crossings_post": 7
+      }
+    },
+    {
+      "case_id": "6_1-r2-0",
+      "object_a_id": "6_1",
+      "object_b_id": "6_1",
+      "transformed_a_id": "6_1-r2-0",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_1",
+        "move": "R2",
+        "trial": 0,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_1-r2-1",
+      "object_a_id": "6_1",
+      "object_b_id": "6_1",
+      "transformed_a_id": "6_1-r2-1",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_1",
+        "move": "R2",
+        "trial": 1,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_1-r2-2",
+      "object_a_id": "6_1",
+      "object_b_id": "6_1",
+      "transformed_a_id": "6_1-r2-2",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_1",
+        "move": "R2",
+        "trial": 2,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_1-r2-3",
+      "object_a_id": "6_1",
+      "object_b_id": "6_1",
+      "transformed_a_id": "6_1-r2-3",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_1",
+        "move": "R2",
+        "trial": 3,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_1-r2-4",
+      "object_a_id": "6_1",
+      "object_b_id": "6_1",
+      "transformed_a_id": "6_1-r2-4",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_1",
+        "move": "R2",
+        "trial": 4,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_1-r2-5",
+      "object_a_id": "6_1",
+      "object_b_id": "6_1",
+      "transformed_a_id": "6_1-r2-5",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_1",
+        "move": "R2",
+        "trial": 5,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_1-r2-6",
+      "object_a_id": "6_1",
+      "object_b_id": "6_1",
+      "transformed_a_id": "6_1-r2-6",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_1",
+        "move": "R2",
+        "trial": 6,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_1-r2-7",
+      "object_a_id": "6_1",
+      "object_b_id": "6_1",
+      "transformed_a_id": "6_1-r2-7",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_1",
+        "move": "R2",
+        "trial": 7,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_1-r2-8",
+      "object_a_id": "6_1",
+      "object_b_id": "6_1",
+      "transformed_a_id": "6_1-r2-8",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_1",
+        "move": "R2",
+        "trial": 8,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_1-r2-9",
+      "object_a_id": "6_1",
+      "object_b_id": "6_1",
+      "transformed_a_id": "6_1-r2-9",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_1",
+        "move": "R2",
+        "trial": 9,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_2-r2-0",
+      "object_a_id": "6_2",
+      "object_b_id": "6_2",
+      "transformed_a_id": "6_2-r2-0",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_2",
+        "move": "R2",
+        "trial": 0,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_2-r2-1",
+      "object_a_id": "6_2",
+      "object_b_id": "6_2",
+      "transformed_a_id": "6_2-r2-1",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_2",
+        "move": "R2",
+        "trial": 1,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_2-r2-2",
+      "object_a_id": "6_2",
+      "object_b_id": "6_2",
+      "transformed_a_id": "6_2-r2-2",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_2",
+        "move": "R2",
+        "trial": 2,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_2-r2-3",
+      "object_a_id": "6_2",
+      "object_b_id": "6_2",
+      "transformed_a_id": "6_2-r2-3",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_2",
+        "move": "R2",
+        "trial": 3,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_2-r2-4",
+      "object_a_id": "6_2",
+      "object_b_id": "6_2",
+      "transformed_a_id": "6_2-r2-4",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_2",
+        "move": "R2",
+        "trial": 4,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_2-r2-5",
+      "object_a_id": "6_2",
+      "object_b_id": "6_2",
+      "transformed_a_id": "6_2-r2-5",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_2",
+        "move": "R2",
+        "trial": 5,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_2-r2-6",
+      "object_a_id": "6_2",
+      "object_b_id": "6_2",
+      "transformed_a_id": "6_2-r2-6",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_2",
+        "move": "R2",
+        "trial": 6,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_2-r2-7",
+      "object_a_id": "6_2",
+      "object_b_id": "6_2",
+      "transformed_a_id": "6_2-r2-7",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_2",
+        "move": "R2",
+        "trial": 7,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_2-r2-8",
+      "object_a_id": "6_2",
+      "object_b_id": "6_2",
+      "transformed_a_id": "6_2-r2-8",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_2",
+        "move": "R2",
+        "trial": 8,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_2-r2-9",
+      "object_a_id": "6_2",
+      "object_b_id": "6_2",
+      "transformed_a_id": "6_2-r2-9",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 4,
+        "signs_count_neg_pre": 2,
+        "signs_count_pos_post": 5,
+        "signs_count_neg_post": 3
+      },
+      "metadata": {
+        "knot": "6_2",
+        "move": "R2",
+        "trial": 9,
+        "writhe_pre": 2,
+        "writhe_post": 2,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_3-r2-0",
+      "object_a_id": "6_3",
+      "object_b_id": "6_3",
+      "transformed_a_id": "6_3-r2-0",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 3,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 4,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "6_3",
+        "move": "R2",
+        "trial": 0,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_3-r2-1",
+      "object_a_id": "6_3",
+      "object_b_id": "6_3",
+      "transformed_a_id": "6_3-r2-1",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 3,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 4,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "6_3",
+        "move": "R2",
+        "trial": 1,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_3-r2-2",
+      "object_a_id": "6_3",
+      "object_b_id": "6_3",
+      "transformed_a_id": "6_3-r2-2",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 3,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 4,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "6_3",
+        "move": "R2",
+        "trial": 2,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_3-r2-3",
+      "object_a_id": "6_3",
+      "object_b_id": "6_3",
+      "transformed_a_id": "6_3-r2-3",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 3,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 4,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "6_3",
+        "move": "R2",
+        "trial": 3,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_3-r2-4",
+      "object_a_id": "6_3",
+      "object_b_id": "6_3",
+      "transformed_a_id": "6_3-r2-4",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 3,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 4,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "6_3",
+        "move": "R2",
+        "trial": 4,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_3-r2-5",
+      "object_a_id": "6_3",
+      "object_b_id": "6_3",
+      "transformed_a_id": "6_3-r2-5",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 3,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 4,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "6_3",
+        "move": "R2",
+        "trial": 5,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_3-r2-6",
+      "object_a_id": "6_3",
+      "object_b_id": "6_3",
+      "transformed_a_id": "6_3-r2-6",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 3,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 4,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "6_3",
+        "move": "R2",
+        "trial": 6,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_3-r2-7",
+      "object_a_id": "6_3",
+      "object_b_id": "6_3",
+      "transformed_a_id": "6_3-r2-7",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 3,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 4,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "6_3",
+        "move": "R2",
+        "trial": 7,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_3-r2-8",
+      "object_a_id": "6_3",
+      "object_b_id": "6_3",
+      "transformed_a_id": "6_3-r2-8",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 3,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 4,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "6_3",
+        "move": "R2",
+        "trial": 8,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "6_3-r2-9",
+      "object_a_id": "6_3",
+      "object_b_id": "6_3",
+      "transformed_a_id": "6_3-r2-9",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 6,
+        "crossings_a_after": 8,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 3,
+        "signs_count_neg_pre": 3,
+        "signs_count_pos_post": 4,
+        "signs_count_neg_post": 4
+      },
+      "metadata": {
+        "knot": "6_3",
+        "move": "R2",
+        "trial": 9,
+        "writhe_pre": 0,
+        "writhe_post": 0,
+        "n_crossings_pre": 6,
+        "n_crossings_post": 8
+      }
+    },
+    {
+      "case_id": "7_1-r2-0",
+      "object_a_id": "7_1",
+      "object_b_id": "7_1",
+      "transformed_a_id": "7_1-r2-0",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_1",
+        "move": "R2",
+        "trial": 0,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_1-r2-1",
+      "object_a_id": "7_1",
+      "object_b_id": "7_1",
+      "transformed_a_id": "7_1-r2-1",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_1",
+        "move": "R2",
+        "trial": 1,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_1-r2-2",
+      "object_a_id": "7_1",
+      "object_b_id": "7_1",
+      "transformed_a_id": "7_1-r2-2",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_1",
+        "move": "R2",
+        "trial": 2,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_1-r2-3",
+      "object_a_id": "7_1",
+      "object_b_id": "7_1",
+      "transformed_a_id": "7_1-r2-3",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_1",
+        "move": "R2",
+        "trial": 3,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_1-r2-4",
+      "object_a_id": "7_1",
+      "object_b_id": "7_1",
+      "transformed_a_id": "7_1-r2-4",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_1",
+        "move": "R2",
+        "trial": 4,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_1-r2-5",
+      "object_a_id": "7_1",
+      "object_b_id": "7_1",
+      "transformed_a_id": "7_1-r2-5",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_1",
+        "move": "R2",
+        "trial": 5,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_1-r2-6",
+      "object_a_id": "7_1",
+      "object_b_id": "7_1",
+      "transformed_a_id": "7_1-r2-6",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_1",
+        "move": "R2",
+        "trial": 6,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_1-r2-7",
+      "object_a_id": "7_1",
+      "object_b_id": "7_1",
+      "transformed_a_id": "7_1-r2-7",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_1",
+        "move": "R2",
+        "trial": 7,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_1-r2-8",
+      "object_a_id": "7_1",
+      "object_b_id": "7_1",
+      "transformed_a_id": "7_1-r2-8",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_1",
+        "move": "R2",
+        "trial": 8,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_1-r2-9",
+      "object_a_id": "7_1",
+      "object_b_id": "7_1",
+      "transformed_a_id": "7_1-r2-9",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_1",
+        "move": "R2",
+        "trial": 9,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_2-r2-0",
+      "object_a_id": "7_2",
+      "object_b_id": "7_2",
+      "transformed_a_id": "7_2-r2-0",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_2",
+        "move": "R2",
+        "trial": 0,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_2-r2-1",
+      "object_a_id": "7_2",
+      "object_b_id": "7_2",
+      "transformed_a_id": "7_2-r2-1",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_2",
+        "move": "R2",
+        "trial": 1,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_2-r2-2",
+      "object_a_id": "7_2",
+      "object_b_id": "7_2",
+      "transformed_a_id": "7_2-r2-2",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_2",
+        "move": "R2",
+        "trial": 2,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_2-r2-3",
+      "object_a_id": "7_2",
+      "object_b_id": "7_2",
+      "transformed_a_id": "7_2-r2-3",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_2",
+        "move": "R2",
+        "trial": 3,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_2-r2-4",
+      "object_a_id": "7_2",
+      "object_b_id": "7_2",
+      "transformed_a_id": "7_2-r2-4",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_2",
+        "move": "R2",
+        "trial": 4,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_2-r2-5",
+      "object_a_id": "7_2",
+      "object_b_id": "7_2",
+      "transformed_a_id": "7_2-r2-5",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_2",
+        "move": "R2",
+        "trial": 5,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_2-r2-6",
+      "object_a_id": "7_2",
+      "object_b_id": "7_2",
+      "transformed_a_id": "7_2-r2-6",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_2",
+        "move": "R2",
+        "trial": 6,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_2-r2-7",
+      "object_a_id": "7_2",
+      "object_b_id": "7_2",
+      "transformed_a_id": "7_2-r2-7",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_2",
+        "move": "R2",
+        "trial": 7,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_2-r2-8",
+      "object_a_id": "7_2",
+      "object_b_id": "7_2",
+      "transformed_a_id": "7_2-r2-8",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_2",
+        "move": "R2",
+        "trial": 8,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_2-r2-9",
+      "object_a_id": "7_2",
+      "object_b_id": "7_2",
+      "transformed_a_id": "7_2-r2-9",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_2",
+        "move": "R2",
+        "trial": 9,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_3-r2-0",
+      "object_a_id": "7_3",
+      "object_b_id": "7_3",
+      "transformed_a_id": "7_3-r2-0",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_3",
+        "move": "R2",
+        "trial": 0,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_3-r2-1",
+      "object_a_id": "7_3",
+      "object_b_id": "7_3",
+      "transformed_a_id": "7_3-r2-1",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_3",
+        "move": "R2",
+        "trial": 1,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_3-r2-2",
+      "object_a_id": "7_3",
+      "object_b_id": "7_3",
+      "transformed_a_id": "7_3-r2-2",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_3",
+        "move": "R2",
+        "trial": 2,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_3-r2-3",
+      "object_a_id": "7_3",
+      "object_b_id": "7_3",
+      "transformed_a_id": "7_3-r2-3",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_3",
+        "move": "R2",
+        "trial": 3,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_3-r2-4",
+      "object_a_id": "7_3",
+      "object_b_id": "7_3",
+      "transformed_a_id": "7_3-r2-4",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_3",
+        "move": "R2",
+        "trial": 4,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_3-r2-5",
+      "object_a_id": "7_3",
+      "object_b_id": "7_3",
+      "transformed_a_id": "7_3-r2-5",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_3",
+        "move": "R2",
+        "trial": 5,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_3-r2-6",
+      "object_a_id": "7_3",
+      "object_b_id": "7_3",
+      "transformed_a_id": "7_3-r2-6",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_3",
+        "move": "R2",
+        "trial": 6,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_3-r2-7",
+      "object_a_id": "7_3",
+      "object_b_id": "7_3",
+      "transformed_a_id": "7_3-r2-7",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_3",
+        "move": "R2",
+        "trial": 7,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_3-r2-8",
+      "object_a_id": "7_3",
+      "object_b_id": "7_3",
+      "transformed_a_id": "7_3-r2-8",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          1,
+          -1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_3",
+        "move": "R2",
+        "trial": 8,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    },
+    {
+      "case_id": "7_3-r2-9",
+      "object_a_id": "7_3",
+      "object_b_id": "7_3",
+      "transformed_a_id": "7_3-r2-9",
+      "summary_delta": {
+        "writhe_delta": 0,
+        "linking_number": 0.0,
+        "crossing_count_b": 0,
+        "writhe_b": 0,
+        "crossing_count_a": 2,
+        "writhe_a": 0
+      },
+      "detailed_comparison": {
+        "crossings_a_before": 7,
+        "crossings_a_after": 9,
+        "added_crossing_count": 2,
+        "added_crossing_signs": [
+          -1,
+          1
+        ],
+        "added_crossing_signs_pair": [
+          -1,
+          1
+        ],
+        "writhe_change_a": 0,
+        "signs_count_pos_pre": 0,
+        "signs_count_neg_pre": 7,
+        "signs_count_pos_post": 1,
+        "signs_count_neg_post": 8
+      },
+      "metadata": {
+        "knot": "7_3",
+        "move": "R2",
+        "trial": 9,
+        "writhe_pre": -7,
+        "writhe_post": -7,
+        "n_crossings_pre": 7,
+        "n_crossings_post": 9
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+
+======================================================================
+TASK 4.4 — Edge of cycling region
+======================================================================
+  (beta=0.7, etaL=3.4) [upper stab=3.4]: NOT in stability strip (2.7375, 3.4000). Skipping classification but running anyway.
+  (beta=0.7, etaL=3.4) [upper stab=3.4]: kappa=0.3340, final=7.07107e-01, target_R=0.7071, rel_diff=0.0000e+00 -> cycling
+  (beta=0.8, etaL=3.6) [upper stab=3.6]: NOT in stability strip (2.8154, 3.6000). Skipping classification but running anyway.
+  (beta=0.8, etaL=3.6) [upper stab=3.6]: kappa=0.3542, final=7.07107e-01, target_R=0.7071, rel_diff=0.0000e+00 -> cycling
+  (beta=0.65, etaL=3.0) [just below 0.7]: kappa=0.3250, final=0.00000e+00, target_R=0.7071, rel_diff=1.0000e+00 -> decay
+
+======================================================================
+TASK 4.5 — Precision sensitivity at boundary point
+======================================================================
+Boundary point: beta=0.8, etaL=3.05
+  dps= 20: kappa=0.400000, final=0.00000e+00, rel_diff=1.0000e+00 -> decay
+  dps= 50: kappa=0.400000, final=0.00000e+00, rel_diff=1.0000e+00 -> decay
+  dps=100: kappa=0.400000, final=0.00000e+00, rel_diff=1.0000e+00 -> decay
+  dps=200: kappa=0.400000, final=0.00000e+00, rel_diff=1.0000e+00 -> decay
+
+Elapsed: 26.3s. Saved to C:\Users\12729\Desktop\Math\workspace\active\li_xiao_directions\reaudit_boundary_precision_results.json

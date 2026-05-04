@@ -1,0 +1,98 @@
+{
+  "dim6_q01": {
+    "baseline": "[ANSWER]\n(a) 12\n(b) 14\n(c) 6\n[/ANSWER]\n\n[REASONING]\nRectangle 4×3: A = 4·3 = 12. B = 2·(4+3) = 14 (perimeter lattice points). I = A − B/2 + 1 = 12 − 7 + 1 = 6.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 12\n(b) 14\n(c) 6\n[/ANSWER]\n\n[REASONING]\nRectangle 4×3: A = 4·3 = 12. B = 2·(4+3) = 14 (perimeter lattice points). I = A − B/2 + 1 = 12 − 7 + 1 = 6.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 12\n(b) 14\n(c) 6\n[/ANSWER]\n\n[REASONING]\nRectangle 4×3: A = 4·3 = 12. B = 2·(4+3) = 14 (perimeter lattice points). I = A − B/2 + 1 = 12 − 7 + 1 = 6.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 12\n(b) 14\n(c) 6\n[/ANSWER]\n\n[REASONING]\nRectangle 4×3: A = 4·3 = 12. B = 2·(4+3) = 14 (perimeter lattice points). I = A − B/2 + 1 = 12 − 7 + 1 = 6.\n[/REASONING]"
+  },
+  "dim6_q02": {
+    "baseline": "[ANSWER]\n(a) 12\n(b) 12\n(c) 7\n[/ANSWER]\n\n[REASONING]\nRight triangle (0,0)(6,0)(0,4): A = 6·4/2 = 12. Boundary points: edge gcds 6, 4, gcd(6,4)=2 ⇒ B = 6+4+2 = 12. I = 12 − 6 + 1 = 7.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 12\n(b) 12\n(c) 7\n[/ANSWER]\n\n[REASONING]\nRight triangle (0,0)(6,0)(0,4): A = 6·4/2 = 12. Boundary points: edge gcds 6, 4, gcd(6,4)=2 ⇒ B = 6+4+2 = 12. I = 12 − 6 + 1 = 7.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 12\n(b) 12\n(c) 7\n[/ANSWER]\n\n[REASONING]\nRight triangle (0,0)(6,0)(0,4): A = 6·4/2 = 12. Boundary points: edge gcds 6, 4, gcd(6,4)=2 ⇒ B = 6+4+2 = 12. I = 12 − 6 + 1 = 7.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 12\n(b) 12\n(c) 7\n[/ANSWER]\n\n[REASONING]\nRight triangle (0,0)(6,0)(0,4): A = 6·4/2 = 12. Boundary points: edge gcds 6, 4, gcd(6,4)=2 ⇒ B = 6+4+2 = 12. I = 12 − 6 + 1 = 7.\n[/REASONING]"
+  },
+  "dim6_q03": {
+    "baseline": "[ANSWER]\n(a) 12\n(b) 16\n(c) 5\n[/ANSWER]\n\n[REASONING]\nL-shape = 4×4 square minus 2×2 corner ⇒ A = 16 − 4 = 12. Edge gcds: 4+2+2+2+2+4 = 16 ⇒ B=16. I = 12 − 8 + 1 = 5.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 12\n(b) 16\n(c) 5\n[/ANSWER]\n\n[REASONING]\nL-shape = 4×4 square minus 2×2 corner ⇒ A = 16 − 4 = 12. Edge gcds: 4+2+2+2+2+4 = 16 ⇒ B=16. I = 12 − 8 + 1 = 5.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 12\n(b) 16\n(c) 5\n[/ANSWER]\n\n[REASONING]\nL-shape = 4×4 square minus 2×2 corner ⇒ A = 16 − 4 = 12. Edge gcds: 4+2+2+2+2+4 = 16 ⇒ B=16. I = 12 − 8 + 1 = 5.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 12\n(b) 16\n(c) 5\n[/ANSWER]\n\n[REASONING]\nL-shape = 4×4 square minus 2×2 corner ⇒ A = 16 − 4 = 12. Edge gcds: 4+2+2+2+2+4 = 16 ⇒ B=16. I = 12 − 8 + 1 = 5.\n[/REASONING]"
+  },
+  "dim6_q04": {
+    "baseline": "[ANSWER]\n(a) 18\n(b) 12\n(c) 13\n[/ANSWER]\n\n[REASONING]\nDiamond is a square rotated 45° with diagonal 6: A = 6²/2 = 18. Each edge has gcd(3,3)=3 ⇒ B = 4·3 = 12. I = 18 − 6 + 1 = 13.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 18\n(b) 12\n(c) 13\n[/ANSWER]\n\n[REASONING]\nDiamond is a square rotated 45° with diagonal 6: A = 6²/2 = 18. Each edge has gcd(3,3)=3 ⇒ B = 4·3 = 12. I = 18 − 6 + 1 = 13.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 18\n(b) 12\n(c) 13\n[/ANSWER]\n\n[REASONING]\nDiamond is a square rotated 45° with diagonal 6: A = 6²/2 = 18. Each edge has gcd(3,3)=3 ⇒ B = 4·3 = 12. I = 18 − 6 + 1 = 13.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 18\n(b) 12\n(c) 13\n[/ANSWER]\n\n[REASONING]\nDiamond is a square rotated 45° with diagonal 6: A = 6²/2 = 18. Each edge has gcd(3,3)=3 ⇒ B = 4·3 = 12. I = 18 − 6 + 1 = 13.\n[/REASONING]"
+  },
+  "dim6_q05": {
+    "baseline": "[ANSWER]\n(a) 6\n(b) 12\n(c) 1\n[/ANSWER]\n\n[REASONING]\nStaircase shoelace ⇒ A=6. 6 unit-step edges + two long edges gcd 3 each ⇒ B=12. I = 6−6+1 = 1.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 6\n(b) 12\n(c) 1\n[/ANSWER]\n\n[REASONING]\nStaircase shoelace ⇒ A=6. 6 unit-step edges + two long edges gcd 3 each ⇒ B=12. I = 6−6+1 = 1.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 6\n(b) 12\n(c) 1\n[/ANSWER]\n\n[REASONING]\nStaircase shoelace ⇒ A=6. 6 unit-step edges + two long edges gcd 3 each ⇒ B=12. I = 6−6+1 = 1.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 6\n(b) 12\n(c) 1\n[/ANSWER]\n\n[REASONING]\nStaircase shoelace ⇒ A=6. 6 unit-step edges + two long edges gcd 3 each ⇒ B=12. I = 6−6+1 = 1.\n[/REASONING]"
+  },
+  "dim6_q06": {
+    "baseline": "[ANSWER]\n(a) 5\n(b) 12\n(c) 0\n[/ANSWER]\n\n[REASONING]\nThin triangle (0,0)(10,0)(0,1): A = 10·1/2 = 5. Boundary: 10 + gcd(10,1)=1 + 1 = 12. I = 5 − 6 + 1 = 0.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 5\n(b) 12\n(c) 0\n[/ANSWER]\n\n[REASONING]\nThin triangle (0,0)(10,0)(0,1): A = 10·1/2 = 5. Boundary: 10 + gcd(10,1)=1 + 1 = 12. I = 5 − 6 + 1 = 0.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 5\n(b) 12\n(c) 0\n[/ANSWER]\n\n[REASONING]\nThin triangle (0,0)(10,0)(0,1): A = 10·1/2 = 5. Boundary: 10 + gcd(10,1)=1 + 1 = 12. I = 5 − 6 + 1 = 0.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 5\n(b) 12\n(c) 0\n[/ANSWER]\n\n[REASONING]\nThin triangle (0,0)(10,0)(0,1): A = 10·1/2 = 5. Boundary: 10 + gcd(10,1)=1 + 1 = 12. I = 5 − 6 + 1 = 0.\n[/REASONING]"
+  },
+  "dim6_q07": {
+    "baseline": "[ANSWER]\n(a) 25\n(b) 20\n(c) 16\n[/ANSWER]\n\n[REASONING]\n5×5 square: A=25, B=4·5=20, I = 25−10+1 = 16.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 25\n(b) 20\n(c) 16\n[/ANSWER]\n\n[REASONING]\n5×5 square: A=25, B=4·5=20, I = 25−10+1 = 16.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 25\n(b) 20\n(c) 16\n[/ANSWER]\n\n[REASONING]\n5×5 square: A=25, B=4·5=20, I = 25−10+1 = 16.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 25\n(b) 20\n(c) 16\n[/ANSWER]\n\n[REASONING]\n5×5 square: A=25, B=4·5=20, I = 25−10+1 = 16.\n[/REASONING]"
+  },
+  "dim6_q08": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) 4\n(c) 0\n[/ANSWER]\n\n[REASONING]\nUnit square: A=1, B=4, I = 1−2+1 = 0.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) 4\n(c) 0\n[/ANSWER]\n\n[REASONING]\nUnit square: A=1, B=4, I = 1−2+1 = 0.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 4\n(c) 0\n[/ANSWER]\n\n[REASONING]\nUnit square: A=1, B=4, I = 1−2+1 = 0.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 4\n(c) 0\n[/ANSWER]\n\n[REASONING]\nUnit square: A=1, B=4, I = 1−2+1 = 0.\n[/REASONING]"
+  },
+  "dim6_q09": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\n(2,0) is already a lattice point on the rectangle's boundary. Adding it as a vertex doesn't change A, B, or I. Pick still holds.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\n(2,0) is already a lattice point on the rectangle's boundary. Adding it as a vertex doesn't change A, B, or I. Pick still holds.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\n(2,0) is already a lattice point on the rectangle's boundary. Adding it as a vertex doesn't change A, B, or I. Pick still holds.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\n(2,0) is already a lattice point on the rectangle's boundary. Adding it as a vertex doesn't change A, B, or I. Pick still holds.\n[/REASONING]"
+  },
+  "dim6_q10": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\nTranslation preserves A, B, I (lattice structure intact). Pick holds.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\nTranslation preserves A, B, I (lattice structure intact). Pick holds.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\nTranslation preserves A, B, I (lattice structure intact). Pick holds.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\nTranslation preserves A, B, I (lattice structure intact). Pick holds.\n[/REASONING]"
+  },
+  "dim6_q11": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\nUnimodular shear (det=1, integer entries) preserves lattice and area. B and I individually may differ but ΔA=0, and engine confirms ΔI=0. Pick holds.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\nUnimodular shear (det=1, integer entries) preserves lattice and area. B and I individually may differ but ΔA=0, and engine confirms ΔI=0. Pick holds.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\nUnimodular shear (det=1, integer entries) preserves lattice and area. B and I individually may differ but ΔA=0, and engine confirms ΔI=0. Pick holds.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\nUnimodular shear (det=1, integer entries) preserves lattice and area. B and I individually may differ but ΔA=0, and engine confirms ΔI=0. Pick holds.\n[/REASONING]"
+  },
+  "dim6_q12": {
+    "baseline": "[ANSWER]\n(a) 12\n(b) 8\n(c) 1\n[/ANSWER]\n\n[REASONING]\nScale (2,1) on 4×3 rect ⇒ 8×3 rect. ΔA = 24−12 = 12. B: 14→22, ΔB=8. I: 6→14, ΔI=8. Pick still holds.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 12\n(b) 8\n(c) 1\n[/ANSWER]\n\n[REASONING]\nScale (2,1) on 4×3 rect ⇒ 8×3 rect. ΔA = 24−12 = 12. B: 14→22, ΔB=8. I: 6→14, ΔI=8. Pick still holds.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 12\n(b) 8\n(c) 1\n[/ANSWER]\n\n[REASONING]\nScale (2,1) on 4×3 rect ⇒ 8×3 rect. ΔA = 24−12 = 12. B: 14→22, ΔB=8. I: 6→14, ΔI=8. Pick still holds.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 12\n(b) 8\n(c) 1\n[/ANSWER]\n\n[REASONING]\nScale (2,1) on 4×3 rect ⇒ 8×3 rect. ΔA = 24−12 = 12. B: 14→22, ΔB=8. I: 6→14, ΔI=8. Pick still holds.\n[/REASONING]"
+  },
+  "dim6_q13": {
+    "baseline": "[ANSWER]\n(a) 36\n(b) 28\n(c) 1\n[/ANSWER]\n\n[REASONING]\nUniform scale by 2 on L-shape: A ×4 ⇒ 48 (Δ=36). B doubles ⇒ 32 (Δ=16). I = 48−16+1 = 33 (Δ=28). Pick holds (still lattice).\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 36\n(b) 28\n(c) 1\n[/ANSWER]\n\n[REASONING]\nUniform scale by 2 on L-shape: A ×4 ⇒ 48 (Δ=36). B doubles ⇒ 32 (Δ=16). I = 48−16+1 = 33 (Δ=28). Pick holds (still lattice).\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 36\n(b) 28\n(c) 1\n[/ANSWER]\n\n[REASONING]\nUniform scale by 2 on L-shape: A ×4 ⇒ 48 (Δ=36). B doubles ⇒ 32 (Δ=16). I = 48−16+1 = 33 (Δ=28). Pick holds (still lattice).\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 36\n(b) 28\n(c) 1\n[/ANSWER]\n\n[REASONING]\nUniform scale by 2 on L-shape: A ×4 ⇒ 48 (Δ=36). B doubles ⇒ 32 (Δ=16). I = 48−16+1 = 33 (Δ=28). Pick holds (still lattice).\n[/REASONING]"
+  },
+  "dim6_q14": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\nTrivial translation by (0,0): no change.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\nTrivial translation by (0,0): no change.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\nTrivial translation by (0,0): no change.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\nTrivial translation by (0,0): no change.\n[/REASONING]"
+  },
+  "dim6_q15": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\nUnimodular shear preserves area and (since lattice-preserving) Pick.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\nUnimodular shear preserves area and (since lattice-preserving) Pick.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\nUnimodular shear preserves area and (since lattice-preserving) Pick.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 0\n(c) 1\n[/ANSWER]\n\n[REASONING]\nUnimodular shear preserves area and (since lattice-preserving) Pick.\n[/REASONING]"
+  },
+  "dim6_q16": {
+    "baseline": "[ANSWER]\n(a) 12\n(b) 6\n(c) 1\n[/ANSWER]\n\n[REASONING]\nStaircase scaled (3,1): area triples ⇒ ΔA = 12. Engine reports ΔI = 6. Pick still holds (lattice preserved).\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 12\n(b) 6\n(c) 1\n[/ANSWER]\n\n[REASONING]\nStaircase scaled (3,1): area triples ⇒ ΔA = 12. Engine reports ΔI = 6. Pick still holds (lattice preserved).\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 12\n(b) 6\n(c) 1\n[/ANSWER]\n\n[REASONING]\nStaircase scaled (3,1): area triples ⇒ ΔA = 12. Engine reports ΔI = 6. Pick still holds (lattice preserved).\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 12\n(b) 6\n(c) 1\n[/ANSWER]\n\n[REASONING]\nStaircase scaled (3,1): area triples ⇒ ΔA = 12. Engine reports ΔI = 6. Pick still holds (lattice preserved).\n[/REASONING]"
+  }
+}

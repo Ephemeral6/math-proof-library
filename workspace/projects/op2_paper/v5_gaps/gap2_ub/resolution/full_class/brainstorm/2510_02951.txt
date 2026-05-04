@@ -1,0 +1,2382 @@
+                                         Long-Time Analysis of Stochastic Heavy Ball Dynamics for Convex
+                                                          Optimization and Monotone Equations
+
+                                                         Radu Ioan Bot,          Chiara Schindler 
+
+arXiv:2510.02951v1 [math.OC] 3 Oct 2025                                                                          Abstract
+
+                                                      In a separable real Hilbert space, we study the problem of minimizing a convex function with Lipschitz
+                                                 continuous gradient in the presence of noisy evaluations. To this end, we associate a stochastic Heavy
+                                                 Ball system, incorporating a friction coefficient, with the optimization problem. We establish existence
+                                                 and uniqueness of trajectory solutions for this system. Under a square integrability condition for the
+                                                 diffusion term, we prove almost sure convergence of the trajectory process to an optimal solution, as well
+                                                 as almost sure convergence of its time derivative to zero. Moreover, we derive almost sure and expected
+                                                 convergence rates for the function values along the trajectory towards the infimal value. Finally, we
+                                                 show that the stochastic Heavy Ball system is equivalent to a Su-Boyd-Cand`es-type system for a suitable
+                                                 choice of the parameter function, and we provide corresponding convergence rate results for the latter.
+
+                                                      In the second part of this paper, we extend our analysis beyond the optimization framework and
+                                                 investigate a monotone equation induced by a monotone and Lipschitz continuous operator, whose eval-
+                                                 uations are assumed to be corrupted by noise. As before, we consider a stochastic Heavy Ball system with
+                                                 a friction coefficient and a correction term, now augmented by an additional component that accounts for
+                                                 the time derivative of the operator. We establish analogous convergence results for both the trajectory
+                                                 process and its time derivative, and derive almost sure as well as expected convergence rates for the
+                                                 decay of the residual and the gap function along the trajectory. As a final result, we show that a par-
+                                                 ticular instance of the stochastic Heavy Ball system for monotone equations is equivalent to a stochastic
+                                                 second-order dynamical system with a vanishing damping term. Remarkably, this system exhibits fast
+                                                 convergence rates for both the residual and gap functions.
+
+                                         Key Words. stochastic Heavy Ball method, convex optimization, monotone equation, convergence of
+                                         trajectories, convergence rates, time scaling
+                                         AMS subject classification. 34F05, 37N40, 47H05, 60H10
+
+                                         1 Introduction
+
+                                         For the minimization problem of a convex differentiable function f : H  R with Lf -Lipschitz continuous
+                                         gradient, where H denotes a separable real Hilbert space,
+
+                                                                          min f (y),                (1)
+                                                                          yH
+
+                                         and assume that its set of solutions argmin f = {y  H : f (y) = infH f } is nonempty. Here, infH f  R
+                                         denotes the infimal value of f .
+
+                                             Faculty of Mathematics, University of Vienna, Oskar-Morgenstern-Platz 1, 1090 Vienna, Austria, e-mail: radu.bot@univie.
+                                         ac.at. Research partially supported by the Austrian Science Fund (FWF), project 10.55776/P34922.
+
+                                             Faculty of Mathematics, University of Vienna, Oskar-Morgenstern-Platz 1, 1090 Vienna, Austria, e-mail: chiara.
+                                         schindler@univie.ac.at.
+
+                                                                              1
+    We attach to this minimization problem the stochastic Heavy Ball with friction system on [t0, +),
+where t0  0,
+
+                                                                                                   (SHBF)
+                         dY (t) = X(t)dt
+                         
+
+                           dX(t) = (-X(t) - b(t)f (Y (t)))dt + Y (t)dW (t)
+
+                         Y (t0) = Y0, X(t0) = X0,
+
+defined on a filtered probability space (, F , {Ft}tt0 , P), where W denotes a H-valued Brownian motion, the
+diffusion term, denoted by Y : [t0, +)  L(H, H), is a measurable map,  > 0 and b : [t0, +)  (0, +)
+is a continuously differentiable and nondecreasing function.
+
+Our first goal is to establish the existence and uniqueness of trajectory solutions of (SHBF) and to inves-
+
+tigate their long-time behavior. Assuming that Y is square integrable with respect to the Hilbert­Schmidt
+
+norm ·HS on L(H, H), we derive for f (Y (t))-infH f an almost sure (a.s.) convergence rate of o     1    and
+                                                                                                   b(t)
+
+a convergence rate of O   1    in expectation as t  +. Moreover, we show that the trajectory process
+                         b(t)
+
+Y (t) converges, almost surely, weakly to a minimizer of f , and that X(t) converges almost surely to 0 as
+
+t  +.
+
+Note that (SHBF) is the stochastic counterpart of the deterministic system
+
+                                  y¨(t) + y(t) + b(t)f (y(t)) = 0,                                       (2)
+
+with Cauchy data y(t0) := Y0 and y(t0) := X0, which has recently been investigated in [2] from the viewpoint
+of its asymptotic properties. This system as its turn can be seen as the time parametrization of the Heavy
+Ball dynamics with friction
+
+                                  y¨(t) + y(t) + f (y(t)) = 0,                                           (3)
+
+first introduced by Polyak in in [20, 21]. A´ lvarez later showed in [1] that the trajectory y(t) satisfies
+f (y(t))  infH f and converges weakly to a minimizer of f as t  +. According to [5], y(t) can be
+interpreted as the horizontal position of a heavy ball moving alongside the graph of f under viscous friction
+with coefficient . This interpretation gives the system its well-known name, the "Heavy Ball dynamics".
+
+    Using the time­rescaling technique introduced in the deterministic setting by Attouch, Bot, and Ngyuen
+in [3], we relate the stochastic Heavy Ball dynamics (SHBF) to the following dynamics with vanishing
+damping of Su-Boyd-Cand`es type on [s0, +), for s0 > 0 and  > 3,
+
+                         
+                         dZ(s) = Q(s)ds
+                         
+
+                         dQ(s) =  -      Q(s)  -  f   (Z  (s))  ds + Z (s)dW (s)                   (SAVD)
+                                     s
+
+                         Z(s0) = Z0, Q(s0) = Q0,
+
+and establish asymptotic properties for the latter by transferring them from the original system. In particular,
+
+we demonstrate that f (Z(s))-infH f = o  1   almost surely, and E (f (Z(s)) - infH f ) = O  1   , in addition
+                                         s2                                                 s2
+
+to the almost sure weak convergence of Z(s) to a minimizer of f as s  +. In this way, we recover ­
+
+via a different route ­ the results obtained by Maulen-Soto, Fadili, Attouch and Ochs in [16]. Observe that
+
+(SAVD) is indeed a stochastic version of the celebrated deterministic Su-Boyd-Cand`es system [22]
+
+                                           
+                                  z¨(s) + z(s) + f (z(s)) = 0,
+
+                                           s
+
+which shows a rate of convergence for f (z(s)) - infH of O  1   as s  +, thus outperforming the classical
+                                                            s2
+                                                                              1
+gradient flow, which exhibits a rate of convergence for f (z(s)) - infH of o  s   as s  +. Even more,
+
+according to [4], if  > 3, then f (z(s)) - infH of o  1   , and the trajectory solution z(s) converges weakly
+                                                      s2
+
+to a minimizer of f as s  +. An explicit discretization of this system leads to the Nesterov accelerated
+
+gradient method [17, 11], which shares the asymptotic properties of the continuous time dynamics.
+
+                                                      2
+    It is worth noting that the accelerated convergence of function values observed in the deterministic
+Su­Boyd­Cand`es dynamical system, when compared to the classical gradient flow, also manifests in the
+stochastic setting. In particular, analogous improvements arise for the stochastic differential equation
+(SAVD), when compared with the stochastic gradient flow
+
+                       dZ(s) = -f (Z(s))dt + Z (s)dW (s)
+                       Z(s0) = Z0,
+
+that has been explored by Maulen-Soto, Fadili and Attouch in [15].
+    In the second part of the paper, we will generalize the framework to the problem of solving the monotone
+
+equation
+
+                       V (y) = 0,                                                          (4)
+
+where V : H  H is a monotone and LV -Lipschitz continuous operator. We assume that the set of zeros of
+V , zerV = {y  H : V (y) = 0}, is nonempty. The operator V is said to be monotone if
+
+                       V (y) - V (x), y - x  0 for every x, y  H.
+
+The most illustrative examples of monotone operators include V = f , the gradient of a convex and
+differentiable function f : H  R, and the resolvent V = (Id +M )-1 : H  H of a (set-valued) maximally
+monotone operator M : H  2H, where Id denotes the identity operator on H. A further example of a
+
+monotone operator is the saddle-point operator
+
+                       V : H × G  H × G, V (x, y) = (x(x, y), -y(x, y))
+
+of a convex-concave differentiable function  : H × G  R.
+    We attach to the monotone equation (4) the following stochastic Heavy Ball system on [t0, +), for
+
+t0  0,
+
+dY (t) = X(t)dt                                                                            (SHBFOP)
+
+
+dV (Y (t)) = H(t)dt
+
+dX(t) = (-X(t) - µ(t)H(t) - (t)V (Y (t))) dt + Y (t)dW (t)
+
+
+Y (t0) = Y0, X(t0) = X0,
+
+where X(·), Y (·) and V (Y (·)) are adapted stochastic processes with the property that there exists a con-
+
+tinuous adapted process H(·) such that dV (Y (t)) = H(t)dt for every t  t0. In addition, we assume
+
+that  > 0, µ : [t0, +)  (0, +) is a continuously differentiable and nondecreasing function, and
+
+ : [t0, +)  (0, +) a continuous function. As in the optimization setting, first we establish the ex-
+
+istence and uniqueness of trajectory solutions of (SHBFOP). Assuming that Y is square integrable with
+
+respect to the Hilbert­Schmidt norm  · HS on L(H, H), we derive for the residual V (Y (t)) and the gap
+
+function Y (t) - y, V (Y (t)), where y  zerV , an almost sure convergence rate of o    1   and a conver-
+                                                                                     µ(t)
+
+gence rate of O    1   in expectation as t  +. Moreover, we show that the trajectory process Y (t)
+                 µ(t)
+
+converges, almost surely, weakly to a zero of V , and that X(t) converges almost surely to 0 as t  +.
+
+Note that (SHBFOP) is the stochastic counterpart of the deterministic system
+
+                       d
+                       y¨(t) + y(t) + µ(t) V (y(t)) + (t)V (y(t)) = 0                      (5)
+                       dt
+
+with Cauchy data y(t0) := Y0 and y(t0) := X0, which has recently been investigated in [2] from the viewpoint
+of asymptotic properties. The trajectory solutions of (5) are understood in the strong global sense, meaning
+that the mapping t  V (y(t)) is differentiable almost everywhere, and the equation holds almost everywhere.
+
+                           3
+The dynamical system (5) can be seen as a second-order regularization that improves the convergence
+behavior of
+
+                                                  d                                                                (6)
+                                y(t) + µ(t) V (y(t)) + µ(t)V (y(t)) = 0
+                                           dt
+
+with Cauchy data y(t0) = Y0 , introduced by Attouch and Svaiter in [6]. For this first-order system, it holds
+that V (y(t))  0 as t  +, and the trajectory y(t) converges weakly to a zero of V .
+
+    Consider the first-order dynamical system, which directly mirrors the gradient flow approach,
+
+                                                   y(t) = V (y(t)).                                                (7)
+
+This system does not provide the appropriate model for approaching the solution set of (4) when the operator
+
+V  is monotone and Lipschitz continuous.   Indeed, in this case only the ergodic trajectory t              1   t   y(s)ds
+                                                                                                         t-t0  t0
+
+converges to a zero of V as t  + (see [7].) In general, the trajectory y(t) itself does not converge, as
+
+exemplified  by  the  counterclockwise  rotation  operator      by     radians  in  R2  (see  [12]).  Convergence of the
+                                                                    2
+
+trajectory y(t) arises only when V is cocoercive; that is, there exists  > 0 such that
+
+                         V (y) - V (x), y - x  V (y) - V (x)2 for every x, y  H.
+
+In this case, y(t) converges weakly to a zero of V , while the residual V (y(t)) decays to zero with rate
+
+o 1 as t  + (see [3]).
+
+        t
+
+    By applying the same time­rescaling technique as in the convex minimization setting, we connect
+(SHBFOP) with the following dynamics on [s0, +), where s0 > 0 and  > 2 and  > 0,
+
+                                                                                                         (SFOGDA)
+
+                 dZ(s) = Q(s)ds
+                 
+                 
+
+                   dV (Z(s)) = K(s)ds
+
+                 dQ(s) =  -     Q(s)    -   K (s)  -      V  (Z (s))   + Z (s)dW (s).
+                             s                        2s
+
+We then establish the asymptotic behavior of (SFOGDA) by transferring properties from the original sys-
+
+tem.  In particular, we show that V (Z(s)) = o               1  and Z(s) - z, V (z(s)) = o            1  almost surely,
+                                                             s                                        s
+                      1  and E(Z(s) - z, V (Z(s))) = O              1  , for every z  zerV , in addition to the almost
+E(V (Z(s))) = O       s                                             s
+
+sure weak convergence of Z(s) to a zero of V as s  +.
+
+   Equation (SFOGDA) can be seen as a stochastic counterpart of the Fast Optimistic Gradient Descent
+
+Ascent (OGDA) system
+
+                                                      d                
+                             z¨(s) + z(s) +  V (z(s)) + V (z(s)) = 0,                                              (8)
+                                        s            ds                2s
+
+recently introduced by Bot,, Csetnek and Nguyen in [9] in connection with solving monotone equations
+
+(4). Beyond the weak convergence of trajectories to a zero of V , this system achieves convergence rates of
+
+order o  1   for both the residual V (z(s)) and the gap function z(s) - z, V (z(s)), for every z  zerV , as
+         s
+
+s  +. The Fast OGDA algorithm, obtained via an explicit discretization of (8), inherits these asymptotic
+
+guarantees. Remarkably, both the continuous- and discrete-time formulations of Fast OGDA currently yield
+
+the best known convergence rates for monotone equations in the literature.
+
+   It is worth noting that in [10] we have investigated the following stochastic dynamical system (in a slightly
+
+more general form) on [0, +) ­ a stochastic counterpart of (6) in the finite-dimensional setting
+
+                      d Y (t) + µ(t)V (Y (t)) = -((t) - µ (t))V (Y (t))dt + Y (t)dW (t),                           (9)
+
+where µ : [0, +)  (0, +) and  : [0, +)  (0, +) are bounded away from zero, with µ continuous
+differentiable and nonincreasing, and  integrable. Assuming the diffusion term is square integrable, we have
+established ergodic convergence rates in expectation for both the norm square of the residual and the gap
+function. We emphasize, however, that the asymptotic behavior of (8) significantly outperforms that of (9).
+
+                                                             4
+2 The case of convex minimization problem
+
+In this section we will investigate the stochastic Heavy Ball dynamics (SHBF)
+
+                                  
+                                  dY (t) = X(t)dt
+                                  
+
+                                     dX(t) = (-X(t) - b(t)f (Y (t)))dt + Y (t)dW (t)
+                                  Y (t0) = Y0, X(t0) = X0
+
+in relation to the convex minimization problem (1).
+
+2.1 Long-time analysis of (SHBF)
+
+We begin by establishing the existence and uniqueness of trajectory solutions to (SHBF), drawing on results
+from the theory of stochastic differential equations. The relevant theorems and definitions are collected in
+the appendix.
+
+Theorem 2.1. If Y (t)HS   for every t  t0, then (SHBF) has a unique strong solution (Y, X). In
+addition, (Y, X)  SH ×H for every   2.
+
+Proof. Let t0  T . First, we prove that condition (1) in Theorem A.4 (i) is satisfied. Let Y, X  C([t0, T ], H),
+t0  t  T and    be fixed. For y  argmin f , it holds
+
+              X(, t)        + Y (t)HS
+-X(, t) - b(t)f (Y (, t))
+
+= X(, t)2 + X(, t) + b(t)f (Y (, t))2 + Y (t)HS
+
+ X(, t)2(1 + 22) + 2b(t)2L2f Y (, t) - y2 + Y (t)HS
+
+ X(, t)2(1 + 22) + 4b(t)2L2f Y (, t) + 4b(t)2L2 f y2 + Y (t)HS
+
+ max   1 + 22, 2Lf sup b(t), 2Lf y sup b(t) +                1 + sup                     X(, s)   .
+                                                                                         Y (, s)
+         t0 tT                            t0 tT                     t0 sT
+
+Condition (2) in Theorem A.4 (i) is also satisfied. Indeed, let Y1, X1, Y2, X2  C([t0, T ], H), t0  t  T and
+   be fixed. It holds
+
+              X1(, t)       -                   X2(, t)                               + Y (t) - Y (t)HS
+-X1(, t) - b(t)f (Y1(, t))        -X2(, t) - b(t)f (Y2(, t))
+
+= X1(, t) - X2(, t)2 + (X1(, t) - X2(, t)) + b(t)(f (Y1(, t)) - f (Y2(, t)))2
+
+ (1 + 22)X1(, t) - X2(, t)2 + 2b(t)2L2 f Y1(, t) - Y2(, t)2
+
+                                              X1(, s)     X2(, s)
+= max  1 + 22, 2Lf sup b(t) max               Y1(, s)  -  Y2(, s)                     .
+                               t0 sT
+         t0 tT
+
+According to Theorem A.4 (i), (SHBF) has a unique strong solution on [t0, T ]. Since t0  T has been
+arbitrarily chosen, the existence of a unique solution of (SHBF) on [t0, +) follows by standard extension
+arguments.
+
+    By using the same estimates as in the verification of condition (2), one easily sees, by using Theorem A.4
+(ii), that for every   2 the solution (Y, X) of (SHBF) lies in SH ×H[t0, T ] for every t0  T , and therefore
+in SH ×H.
+
+    For the long-time analysis of the trajectory solution of (SHBF), we shall assume that
+
+                                  sup  b (t)  <  .                                                       (10)
+                                       b(t)
+                                  tt0
+
+                                       5
+Theorem 2.2. Let Y be square integrable, and let (Y, X)  SH2 ×H be a strong solution of (SHBF). Then,
+the following statements are true:
+
+(i) f (Y (t)) - infH f = o          1      and X(t) = o(1) as t  + a.s.;
+                                   b(t)
+
+(ii) E (f (Y (t)) - infH f ) = O            1     and E X(t)2 = O (1) as t  +;
+                                           b(t)
+
+(iii) Y (t) converges weakly to a minimizer of f as t  + a.s.
+
+Proof. Choose y  argmin f and  such that
+
+                                                                b (t)
+                                                           sup <  < .
+                                                           tt0 b(t)
+
+Consider the energy function
+
+         E (t,          y, x)  :=  b(t) (f (y)    -  inf H  f)  +  1            -  y)  +  x2  +  1   -  )y  -   y2.
+                                                                    (y                            (
+
+                                                                   2                             2
+
+We have
+
+                        d      E  (t,  y,  x)  =  b (t)(f  (y)  -  inf H  f  )
+                        dt
+
+                        d      E  (t,  y,  x)  =  b(t)f    (y)  +  ((y       -  y)  +  x)  +  (  -  )(y  -  y)
+                        dy
+
+                        d      E  (t,  y,  x)  =  (y  -    y)   +  x
+                        dx
+
+                        d2
+                        dx2 E(t, y, x) = Id,
+
+so, by It^o's formula,
+
+          dE(t, Y (t), X(t))
+       = b(t)(f (Y (t)) - infH f ) + b(t)f (Y (t)) + 2(Y (t) - y) + X(t) + ( - )(Y (t) - y), X(t)
+
+             + (Y (t) - y) + X(t), -X(t) - b(t)f (Y (t)) + tr (Y (t)Y (t)) dt
+           + (Y (t) - y) + X(t), Y (t)dW (t)
+       = b(t)(f (Y (t)) - infH f ) + b(t)f (Y (t)) + X(t) + (Y (t) - y), X(t) - Y (t) - y, X(t)
+
+             - b(t)Y (t) - y, f (Y (t)) - X(t)2 - b(t)X(t), f (Y (t)) + Y (t)H2 S dt
+           + (Y (t) - y) + X(t), Y (t)dW (t)
+       = b(t)(f (Y (t)) - infH f ) - b(t)f (Y (t)), Y (t) - y + ( - )X(t)2 dt
+           + Y (t)2HSdt + (Y (t) - y) + X(t), Y (t)dW (t) t  t0.
+
+By using the convexity of f , for every s  t0, we have
+                               u(s) := b(s)(f (Y (s)) - infH f ) - b(s)f (Y (s)), Y (s) - y
+                                       (b(s) - b(s))(f (Y (s)) - infH f )  0.
+
+Thus, for every t  t0
+
+E(t, Y (t), X(t)) = E(t0, Y (t0), X(t0))
+
+                                                                      6
+                         t
+
+                       + b(s)(f (Y (s)) - infH f ) - b(s)f (Y (s)), Y (s) - y + ( - )X(s)2     ds
+                                                                                                (11)
+                         t0
+
+                         t              t
+
+                       + Y (s)2HSds + (Y (s) - y) + X(s), Y (s)dW (s)
+
+                         t0             t0
+
+                                        t
+
+                   = E(t0, Y (t0), X(t0)) - ( - )X(s)2 - u(s)ds
+
+                                        t0
+
+                                                     =:U (t)
+
+                             t              t
+
+                         + Y (s)H2 Sds + (Y (s) - y) + X(s), Y (s)dW (s),
+
+                         t0             t0
+
+                                =:A(t)                 =:N (t)
+
+where A(·) and U (·) are increasing processes fulfilling U (t0) = 0 = A(t0) a.s. According to Proposition A.5,
+N (·) is a martingale, since (Y, X)  SH2 ×H and for every t  t0
+
+                   t
+
+              E          Y (s)((Y (s) - y) + X(s))2ds
+
+                   t0
+
+                   t
+
+              E          3Y (s)2 2(Y (s)2 + y2) + X(s)2 ds
+
+                   t0
+
+               3E        2 sup Y (s)2 + sup X(s)2 + 2y2                t
+
+                         s[t0 ,t]       s[t0 ,t]                        Y (s)2ds < +.
+
+                                                                      t0
+
+From the square-integrability of Y , we obtain the existence of limt+ A(t) < +. Therefore, by Theorem
+A.6, the limits limt+ E(t, Y (t), X(t)) and limt+ U (t) exist and are finite a.s.
+
+    Taking the expectation in (11), we obtain, for every t  t0, that
+
+              E (E(t, Y (t), X(t)))  E(E(t0, Y (t0), X(t0))) + E         t               < +,
+                                          E(E(t0, Y (t0), X(t0)) + E
+                                                                          Y (s)2HSds
+
+                                                                       t0
+
+                                                                       +
+
+                                                                            Y (s)H2 Sds
+
+                                                                      t0
+
+which means, in particular, that
+
+                                        sup E Y (t) - y2 < +,
+
+                                        tt0
+
+sup E (b(t) (f (Y (t)) - infH f )) < +, and sup E (Y (t) - y) + X(t)2 < +.
+
+tt0                                                    tt0
+
+Since, for every t  t0,
+
+                         X(t)2  2(Y (t) - y) + X(t)2 + 22Y (t) - y2,
+
+we have that                                    sup E X(t)2 < +.
+Therefore,
+                                                       tt0
+
+                                sup E b(t) (f (Y (t)) - infH f ) + X(t)2 < +,
+
+                                tt0
+
+                                                  7
+in other words,
+
+                           E b(t) (f (Y (t)) - infH f ) + X(t)2 = O (1) as t  +,
+
+thus proving (ii).
+    Further, it follows from
+
+                                                       lim U (t) < + a.s.
+
+                                                      t+
+
+that                           +                                            +
+From here, since
+                                    X(t)2dt < + and                             (-u(t))dt < + a.s.
+
+                              t0                                           t0
+
+             +                     b (t)  (f (Y (t)) - infH f )dt                +
+                         - sup                                       
+                  b(t)                                                               (b(t) - b(t))(f (Y (t)) - infH f )dt
+                             tt0 b(t)
+            t0                                                                  t0
+
+                                                                                 +
+
+                                                                                     (-u(t)) < + a.s.,
+
+                                                                                t0
+
+it follows
+
+                                           +
+
+                                                b(t)(f (Y (t)) - infH f )dt < + a.s.
+
+                                          t0
+
+Now we choose 1, 2            suptt0      b (t)  ,    , 1 = 2. For every t  t0 it holds
+                                          b(t)
+
+E1 (t, Y (t), X(t))        -  E2 (t, Y    (t), X(t))  =    1         -  2)Y     (t)   -  y2  +  (1   -  2)Y  (t)  -  y, X(t)
+                                                           2 (1
+
+                                                      = (1 - 2)             Y (t) - y2 + Y (t) - y, X(t)                  .
+                                                                           2
+
+Denoting
+
+                              p(t)        :=                      y2    +  Y (t)   - y, X(t),
+                                                     Y (t) -
+                                                   2
+
+it follows from the existence of limt+ E1 (t, Y (t), X(t)) - E2 (t, Y (t), X(t)) a.s. that also limt+ p(t) <
++ must exist a.s. Observe that for every t  t0
+
+E (t,       Y  (t), X(t))  =  b(t)(f (Y   (t))  -   inf H  f)  +  1        (t)  -  y)  +  X (t)2  +  1   -   )Y      (t)  -  y2
+                                                                   (Y                                 (
+
+                                                                  2                                  2
+
+                           =  b(t)(f (Y   (t))  -   inf H  f)  +  1 X(t)2       +  p(t).
+                                                                  2
+
+Denoting
+
+                              h(t)        :=     b(t)(f (Y     (t))  -  inf H  f)  +  1 X(t)2,
+                                                                                      2
+
+it yields that the limit
+
+                                                  lim h(t) < + exists a.s.
+
+                                                 t+
+
+                                                                     8
+Since
+
+        +                        +                             1      +
+
+             h(t)dt =            t0 b(t)(f (Y (t)) - infH f )dt + 2        X(t)2dt < +,
+
+       t0                                                            t0
+
+we can conclude that
+
+                                            lim h(t) = 0 a.s.
+
+                                           t+
+
+Thus,
+
+                      f (Y (t)) - infH f = o     1       and lim X(t) = 0 a.s.,
+                                                b(t)
+                                                                  t+
+
+which proves (i).
+    Let us proceed to the proof of statement (iii). For y  argmin f fixed, we have
+
+                                 d(Y (t) - y2) = 2Y (t) - y, X(t)dt.
+
+Applying Lemma A.1, we deduce that the existence of limt+ p(t) < + implies that limt+ Y (t) -
+y2 < + also exists. Hence, there exist subsets 1, y   of full measure such that
+
+       f (Y (, t)) - infH f = o       1      1  and       lim Y (, t) - y2 < +   y .
+                                     b(t)
+                                                         t+
+
+Before concluding our argument, we must establish the existence of a set of full measure, independent of
+y argmin f , that can take the place of y in the second property. This can be attained using an argument
+from [15, 10], which relies on the separability assumption on H. Since argmin f is closed, the separability of
+
+H ensures the existence of a countable set S  H that is dense in argmin f . By the countability of S,
+
+                          P          s = 1 - P        sc  1 - P(sc) = 1.
+
+                                 sS             sS             sS
+
+Then, P( sS s  1) = 1.
+    Now let   sS s  1 be fixed and take y  argmin f . Then, there exists a sequence (sk)k0  S
+
+such that sk  y as k  +. For every k  0, since   sk , it holds
+
+                                                  lim Y (, t) - sk < + exists.
+
+                                                                     t+
+
+Using the triangle inequality, we obtain
+
+                      Y (, t) - sk - Y (, t) - y  sk - y k  0 t  0.
+
+Hence, for every k  0, it holds
+
+       -sk - y + lim Y (, t) - sk  lim inf Y (, t) - y
+       t+                                  t+
+
+                                            lim sup Y (, t) - y  lim Y (, t) - sk + sk - y.
+                                                                     t+
+                                           t+
+
+Letting k  +, it follows
+
+                      lim Y (, t) - y = lim lim Y (, t) - sk < +.
+                      t+                        k+ t+
+
+Recall that there exists a set cont   of full measure such that Y (, ·) is continuous for every   cont.
+Define converge := 1  cont  sS s , which is also a subset of full measure of .
+
+                                                      9
+    We will use Opial's Lemma ([19]) to prove the weak almost sure convergence of the trajectory process
+to a minimizer of f . To this end, we fix   converge. From the above, for every y  argmin f , the
+limit limt+ Y (, t) - y < + exists. This verifies the first condition of Opial's Lemma. Using the
+continuity of Y (, ·), we can also show that Y (, ·) is bounded. If y¯() is a weak limit point of this trajectory
+
+process, then using (i) and the weak lower semicontinuity of f , we get that f (y¯()) = infH f . Therefore,
+y¯()  argmin f . This shows that the second condition of Opial's Lemma is also satisfied. In conclusion,
+
+Y (, t) converges weakly to a minimizer of f as t  +.
+
+Remark 2.3. Note that in order to use Ito^'s formula in the above proof, we do need to require that, for
+
+every t  t0, the mapping (y, x)  E(y, x) is twice differentiable in y. This is because the correspoding
+components in (y,x)E(t, y, x) and (2y,x)E(t, y, x) are multiplied by 0 in the integral representation of
+E(t, Y (t), X(t)) ­ in the proof of Ito^'s formula, the assumptions are only used for precisely the components
+that are not multiplied by 0, so it is sufficient to have the requirements verified only on them.
+
+    Depending on the choice for the parameter function b, these convergence rates may still leave room for
+improvement­an issue explored in the theorem below and in the remark immediately following the proof.
+
+                                                                  + 1         s
+                                                                 t0 b(s)
+Theorem 2.4. Assume Y is square integrable and                                     b(r)dr    Y (s)2HSds < +.      If
+(Y, X)  SH2 ×H is a strong solution of (SHBF), then
+                                                                              s+t0
+
+                                                                              2
+
+                                                                                             
+
+f (Y (t)) - infH f = O              1              and     X(t) = O                    b(t)       as  t  +  a.s.
+
+                              t                                                  t             
+                                    b(s)ds                                             b(s)ds
+                              t+t0                                               t+t0
+
+                              2                                                     2
+
+Proof. Define
+
+                              (t,      y,  x)  :=  (f (y)  -  inf H  f)  +    1 x2,
+                                                                            2b(t)
+
+and set
+
+                                           (t, y, x) := g(t)(t, y, x),
+
+where                                                         t
+Observe that
+                                               g(t) :=     t+t0  b(s)ds.
+
+                                                              2
+
+                    d (t, y, x) = - b(t) x2g(t) +                b(t) - b   t + t0     (t, x, y)
+                    dt                 2b(t)                                  2
+
+                    d
+                       (t, y, x) = g(t)f (y)
+
+                    dy
+
+                    d                  g(t)
+                            (t, y, x) = x
+                    dx                 b(t)
+
+                    d2                 g(t)
+                    dx2 (t, y, x) = b(t) Id .
+
+By It^o's formula,
+
+         d(t, Y (t), X(t))
+
+                                                           10
+      = g(t)        b (t)  X (t)2   +    f (Y    (t)),  X (t)   +   1                   -   b(t)f (Y  (t))    dt
+                - 2b(t)2                                                X(t), -X(t)
+
+                                                                   b(t)
+
+      + b(t) - b t + t0               (t, X(t), Y (t))dt +         g(t)                         +  g(t)   tr  (Y  (t)Y  (t)) dt
+                          2         X(t)2dt - b t + t0             b(t) X(t), Y (t)dW (t)          2b(t)
+
+      =-    g(t) b(t)      +                                2      (t, X(t), Y (t))dt + b(t)(t, X(t), Y (t))dt
+
+            b(t) 2b(t)
+
+         +  g(t)  Y     (t) X (t),  dW (t)    +  g(t)   tr (Y   (t)Y   (t))  dt     t  t0,
+            b(t)                                 2b(t)
+
+therefore,
+
+              (t, Y (t), X(t)) = (0, Y (0), X(0))
+
+                                    -       t g(s) b(s)         +      X(s)2 + b        s + t0  (s, X(s), Y (s))ds
+                                                                                           2
+                                            t0 b(s) 2b(s)
+
+                                                                               =:U (t)
+
+                                    +        t  g(s)   tr(Y  (s)Y  (s))  +     b(s)(s, X(s), Y  (s))ds
+                                            t0  2b(s)
+
+                                                                       =:A(t)
+
+                                    +        t  g(s)  Y  (s) X (s),    dW (s)       t  t0.
+                                            t0  b(s)
+
+                                                         =:N (t)
+
+A(·) and U (·) are increasing processes fulfilling U (t0) = 0 = A(t0) a.s. Since (Y, X)  SH2 ×H and for every
+t  t0
+
+      E      t    g(s)  Y  (s)X     (s)  2       E        T      g(s)  2
+            t0    b(s)                                   t0      b(s)
+                                          ds                            Y (s)2X(s)2ds
+
+                                                  sup           g(s) 2        sup X(s)2             t
+                                                                b(s) E
+                                                      t0 st                  t0 st                   Y (s)2HSds < +,
+
+                                                                                                   t0
+
+taking into account Proposition A.5, N (·) is a martingale. We have seen in the proof of Theorem 2.2
+
+that  +     b(t)(f  (Y  (t))  -  inf H )dt  <   +      and   +     X   (t)2dt    <  +,  hence      +      b(t)(t,  Y  (t),  X  (t))dt  <
+      t0                                                     t0                                    t0
++. This, together with the second integrability assumption in the hypothesis, guarantees the existence
+
+of limt+ A(t) < +. Thus, from Theorem A.6 we obtain that the limit limt+ (t, X(t), Y (t)) exists
+
+and is finite a.s. This leads to the desired convergence rates.
+
+Remark 2.5. Depending on b and under stronger integrability conditions on the diffusion term, the con-
+vergence rate results in Theorem 2.4 may offer an improvement over those established in Theorem 2.2.
+
+    (a) For r > 1, let
+
+                                                        b(t) := tr t  t0.
+
+For every s  t0 it holds
+
+                                                       1s         b(u)du         s  ,
+
+                                                      b(s) s+t0                r+1
+                                                             2
+
+                                                                   11
+thus, assuming that
+
+                                                                               +
+
+                                                            sY (s)2HSds < +,
+
+                                                                             t0
+
+both integrability conditions in Theorem 2.4 are satisfied. Under this assumption, the convergence rates
+improve to
+
+         f (Y (t)) - infH f = O               1     and X(t) = O 1                           as t  + a.s.
+                                            tr+1
+                                                                                         t
+
+(b) As a second example, we consider for r > 1 and t0 > 0
+                                                  b(t) := tr log(t) t  t0.
+
+For every s  t0, it holds
+
+ 1    s                    1    s                            1         ur+1                     s         s  ur
+b(s)                                                        log(s)
+      s+t0 b(u)du = sr log(s)  s+t0  ur  log(u)du    =  sr          r+1                     log(u) -      s+t0 r + 1  du
+
+      2                        2                                                                s+t0      2
+
+                                                                                                   2
+
+                 1             sr+1  log(s)       -  (s + t0)r+1  log       s + t0           -    sr+1    +  (s + t0)r+1
+         = sr log(s)           r+1                   2r+1(r + 1)               2                (r + 1)2     2r+1(r + 1)2
+
+          s for s large enough.
+
+This shows that if
+
+                                                                               +
+
+                                                            sY (s)2HSds < +,
+
+                                                                             t0
+
+then both integrability conditions in Theorem 2.4 are satisfied. Under this assumption, the convergence
+rates improve to
+
+         f (Y (t)) - infH f = O             1        and X(t) = O 1                          as t  + a.s.
+                                     tr+1 log(t)
+                                                                                          t
+
+    (c) In contrast, if b(t) = exp(t), no improvement in the convergence rates can be achieved via Theorem 2.4.
+Namely,
+
+         f (Y (t)) - infH f = O                1     and X(t) = O (1) as t  + a.s.
+                                            exp(t)
+
+This is not surprising, since for every s  t0 we have
+
+                               1 s b(u)du = 1 - exp t0 - s ,
+                               b(s) s+t0                                    2
+                                         2
+
+and therefore the second integrability assumption does not strengthen the required square integrability of
+the diffusion term.
+
+2.2 Application to the stochastic Su-Boyd-Cand`es system with vanishing damp-
+       ing
+
+In the following, we show ­ via time-scaling arguments ­ that a particular formulation of the stochastic Heavy
+Ball system (SHBF) is closely related to the stochastic Su­Boyd­Cand`es system with vanishing damping
+(SAVD). This connection allows us to derive a long-time statements for the latter, not through a technically
+involved energy-dissipativity argument, but rather by transferring the results of Theorem 2.2.
+
+                                                       12
+Theorem 2.6. Let  > 1. For given t0  0 and s0 > 0, consider the dynamical systems
+
+            dY (t) = X(t)dt
+            
+
+                                              2
+
+                                               exp        2(t-t0 )
+                                                            -1
+                dX(t) =   -X(t) -         s0                            f (Y (t))       dt + Y (t)dW (t)                       (SHBFEXP)
+                                         -1
+
+            
+            
+            Y (t0) = Y0, X(t0) = X0
+
+on [t0, +), and
+
+                               
+
+                               dZ(s) = Q(s)ds
+                               
+
+                                 dQ(s) =      -     Q(s)     -  f       (Z  (s))  ds + Z (s)dW (s)                             (SAVD)
+                                                 s
+
+                               Z(s0) = Z0, Q(s0) = Q0
+
+on [s0, +). Then, the following statements are true:
+  (i) Let (Y, X) be a strong solution of (SHBFEXP). Then, for
+
+                                                                                s            s  s0,
+                                              (s) := t0 + ( - 1) log s0
+     it holds that (Z, Q), defined by
+
+                                     Z(s) := Y ( (s)) and Q(s) :=                       -1         X( (s)),
+
+                                                                                        s
+
+     is a strong solution of     (SAVD) with initial conditions Z(s0) = Z0                         = Y0  and Q(s0) = Q0 =      -1   X0  ,
+                                                                                                                                s0
+     and diffusion term
+
+                                                                                             3
+
+                                                          3                         -1 2         Y ( (s)) .
+                                     Z (s) = ( (s)) 2 Y ( (s)) = s
+
+(ii) Let (Z, Q) be a strong solution of (SAVD). Then, for
+
+                                              (t) := s0 exp                 t - t0      t  t0,
+                                                                            -1
+
+     it holds that (Y, X), defined by
+
+                               Y (t) = Z((t)) and X(t) = s0 exp t - t0 Q((t))
+                                                                              -1                -1
+
+     is a strong solution of     (SHBFEXP) with initial conditions Y (t0)Y0 = Z0                         and X(t0) = X0 =       s0  Q0  ,
+                                                                                                                               -1
+
+     and diffusion term
+
+                                                                     3    s0 exp        t - t0          3
+                                                                        -1              -1              2
+                               Y (t) = ( (t)) 2 Z ((t)) =
+                                                                                                          Z ((t)).
+
+Proof. (i) Let (Y, X) be a strong solution of (SHBFEXP). We denote
+
+                                         b(t) :=          s0            2         2(t - t0)     .
+
+                                                    -1                   exp        -1
+
+For  Z (s)  :=  Y ( (s))  and  Q(s)  :=  -1   X  (  (s))  =   (s)X( (s)),           it  yields,    for  every  s    s0,  that
+                                           s
+
+                               dZ(s) = dY ( (s)) (s)ds = X( (s)) (s)ds = Q(s)ds,
+
+                                                                    13
+and
+
+     dQ(s) = ¨(s)X( (s))ds +  (s)d(X( (s)))
+
+            = ¨(s)X( (s))ds +  (s)2 - X( (s)) - b( (s))f (Y ( (s))) ds +  (s)Y ( (s))dW ( (s))
+
+            = ¨(s)X( (s)) +  (s)2                                                                                                                               3
+
+                                         - X( (s)) - b( (s))f (Y ( (s))) ds + ( (s)) 2 Y ( (s))dW (s)
+
+            =   ¨(s) Q(s) -  (s)Q(s) - b( (s)) (s)2f (Z(s))                                           3
+                 (s)
+                                                                         ds + ( (s)) 2 Y ( (s))dW (s),
+
+where we used [18, Theorem 8.5.7] to justify the time transformation of the term integrated with respect to
+the Brownian motion.
+
+    Since, for every s  s0,
+
+                                         ¨(s)              1 -1 
+                                               -  (s) = - -        =- ,
+                                          (s)              ss            s
+
+and
+
+            b( (s))( (s))2 =  - 1 2             s0  2         -( - 1) log(s0) + ( - 1) log(s)  = 1,
+
+                                     s         -1    exp                 -1
+
+we have                                       
+
+                              dQ(s) =    - Q(s) - f (Z(s))      ds + Z (s)dW (s).
+                                           s
+
+Noting that conditions (i) and (ii) in the definition of a strong solution (see Definition A.2) are trivially
+
+satisfied, we conclude that (Z, Q) is a strong solution of (SAVD).
+
+(ii) Conversely, let (Z, Q) be a strong solution of (SAVD). It is clear that  : [s0, +)  [t0, +) and
+
+ : [t0, +)  [s0, +) are bijections and mutually inverse.
+
+For  Y (t)  :=  Z ((t))  and  X (t)  :=   s0   exp  t-t0  Q((t)) =  (t)Q((t)), it yields, for every t  t0, that
+                                         -1         -1
+
+                              dY (t) = dZ((t)) (t)dt = Q((t)) (t)dt = X(t)dt,
+
+and
+
+     dX(t) = ¨(t)Q((t)) +  (t)d(Q((t)))
+
+            =   ¨(t)Q((t)) +  (t)2                                                                      3
+                                         - Q((t)) - f (Z((t)))
+                                               (t)                          dt + ( (t)) 2 Z ((t))dW (t)
+
+            =             (t)2            1 X(t) -  (t)2f (Y (t))                              3
+                ¨(t) -                    (t)
+                                                                   dt + ( (t)) 2 Z ((t))dW (t)
+                          (t)
+
+            =   1        -               X(t) -  (t)2f (Y (t))                              3
+
+                -1 -1                                           dt + ( (t)) 2 Z ((t))dW (t)
+
+            =   -X(t) -       s0         2      2(t - t0)     f (Y (t))  dt + Y (t)dW (t),
+                                                 -1
+                              -1          exp
+
+                                                    3
+
+since Y (t) = ( (t)) 2 Z ((t)). The conditions (i) and (ii) in the definition of a strong solution (see Definition
+A.2) are also in this case satisfied, therefore (Y, X) is a strong solution of (SHBFEXP).
+
+    We can now use the strong connection established in the above theorem to derive long-time statements
+for (SAVD), by transferring those proved for (SHBFEXP) in Theorem 2.2.
+
+Theorem 2.7. Let  > 3, let s  sZ (s) be square integrable, and let (Z, Q)  SH2 ×H be a strong solution
+of (SAVD). Then, the following statements are true:
+
+                                                          14
+(i) f (Z(s)) - infH f = o        1   and Q(s) = o       1     as s  + a.s.;
+                                 s2                     s
+
+(ii) E (f (Q(s)) - infH f ) = O      1      and E  Q(s)2      =O    1       as s  +;
+                                     s2                             s2
+
+(iii) Z(s) converges weakly to a minimizer of f as s  + a.s.
+
+Proof. Let (Z, Q)  SH2 ×H be a strong solution of (SAVD) and t0  0. Consistently with Theorem 2.6, we
+define, for every t  t0,
+
+                                     Y (t) := Z((t)) and X(t) :=          (t)    Q((t)),
+
+                                                                        -1
+
+where  : [t0, +)  [s0, +), (t) := s0 exp               t-t0   . It holds limt+ (t) = +. Then, (Y, X)  SH2 ×H
+                                                       -1
+
+is a strong solution of (SHBF) for
+
+              = 1,  b(t) =       s0      2         2(t - t0)  ,   and                                           3  t  t0.
+                                                    -1
+                                 -1       exp                             Y (t) = ( (t)) 2 Z ((t))
+
+      Since
+
+                                     b (t)  =     2s02  exp      2(t - t0)       t  t0.
+                                               ( - 1)3            -1
+
+assumption (10), which reads
+
+                                                            b (t)
+                                                       sup < ,
+                                                       tt0 b(t)
+
+is equivalent to
+
+                                                             2
+                                                                  < 1   > 3.
+
+                                                          -1
+
+This explains the more restrictive assumption  > 3, which is in fact consistent with the one used in the
+deterministic setting for the Su­Boyd­Cand`es dynamical system.
+
+    Furthermore, we observe that
+
+       +                             +    (t)3Z ((t))2HS dt t==(s)          +
+
+            Y (t)2HSdt =                                                          ( (s))3 (s)Z (s)H2 Sds
+
+      t0                         t0                                         s0
+
+                              =   +                                                   +    s2  1 Z (s)H2 Sds          <  +,
+                                                                                     s0  -
+                                        ( (s))2(   )(s)Z (s)2HSds =
+
+                                 s0
+
+where  = -1 : [s0, +)  [t0, +),  (s) := t0 + ( - 1) log                          s   .   It holds lims+  (s) = +.                  In
+                                                                                 s0
+
+conclusion, all hypotheses of Theorem 2.2 are satisfied.
+
+      We notice that, for every s  s0,
+
+                                                                                               s   
+                                                                                               s0
+                    s0      2        2( (s) - t0)               s0  2            2( - 1) log                          1
+                                         -1                   -1                                                      -
+      b( (s)) =     -1       exp                       =               exp               -1          =             (     1)2  s2.
+
+and
+
+                                     Q(s) =        -1  X( (s)) =       -1        X( (s)).
+
+                                               ( (s))                       s
+
+      From Theorem 2.2 (i), we have that f (Y ( (s))) - infH f = o                  1    and X( (s)) = o(1) as s  +
+                                                                                b( (s))
+
+a.s.  Therefore, f (Z(s)) - infH f = o         1   and Q(s) = o        1    as s  + a.s. This proves (i). The two
+                                               s2                      s
+
+statements in (ii) follow analogously, by using Theorem 2.2 (ii). Finally, by using Theorem 2.2 (iii), we obtain
+
+that Z(s) = Y ( (s)) converges weakly to a minimizer of f as s  + a.s., therefore statement (iii).
+
+                                                              15
+Remark 2.8. The technique used in the proof of the above theorem enabled us to recover the statements
+of [16, Theorem 4.4] without resorting to a technically involved energy-dissipativity argument and without
+requiring the objective function f to be twice continuously differentiable.
+
+3 The case of a monotone equation
+
+In this section we will carry out a conceptually similar analysis for the stochastic Heavy Ball system
+(SHBFOP) on [t0, +)
+
+dY (t) = X(t)dt
+
+
+dV (Y (t)) = H(t)dt
+
+dX(t) = - X(t) - µ(t)H(t) - (t)V (Y (t)) dt + Y (t)dW (t),
+
+
+Y (t0) = Y0, X(t0) = X0,
+
+attached to the monotone equation (4), where X(·), Y (·) and V (Y (·)) are adapted stochastic processes with
+the property that there exists a continuous adapted process H(·) such that dV (Y (t)) = H(t)dt for every
+t  t0.
+
+    In the spirit of Definition A.2, we consider as solutions of (SHBFOP) pairs of trajectory processes
+(Y, X)  C([t0, +), H × H) such that, for every t  t0,
+
+XVY (((tYt))(==t))YX=00+V+(tYt0tt00X) +(-s)dtt0XsH(s()s)-dsµ(s)H(s) - (s)V (Y (s)) ds +                     almost surely.
+
+                                                                                         t   Y  (s)dW  (s)
+                                                                                         t0
+
+The rather strong requirement that a continuous adapted process H(·) exists such that dV (Y (t)) = H(t)dt
+for every t  t0 can be met if V is continuously differentiable, for example. Then,
+
+H(t) = V (Y (t))X(t) t  t0,
+
+and its continuity is guaranteed in the case of a bounded diffusion term by Theorem 3.1.
+    Since we do not assume that V derives from a potential function, the convergence rate results will be
+
+formulated in terms of the residual V (Y (t), the gap function Y (t) - y, V (Y (t)), where y  zerV , and
+the velocity norm X(t).
+
+3.1 Long-time analysis of (SHBFOP)
+
+Firstly, we consider the existence and uniqueness of the trajectories defined by (SHBFOP). For a trajectory
+solution (Y, X) of (SHBFOP), defining, for every t  t0,
+
+                                                    Z(t) := X(t) + µ(t)V (Y (t)).
+
+it yields
+
+         dZ(t) = - X(t) - µ(t)H(t) - (t)V (Y (t)) dt + Y (t)dW (t) + µ(t)H(t)dt + µ (t)V (Y (t))dt
+                 = - Z(t) + (µ(t) - (t) + µ (t))V (Y (t)) dt + Y (t)dW (t).
+
+From the definition of Z we have
+
+                                           dY (t) = (Z(t) - µ(t)V (Y (t)))dt t  t0,
+
+16
+which means that (Y, Z) is a trajectory solution of the dynamical system on [t0, +)                     (SHBFOPALT)
+
+              
+              dY (t) = (Z(t) - µ(t)V (Y (t)))dt
+              
+
+                dZ(t) = (-Z(t) + (µ(t) - (t) + µ (t))V (Y (t)))dt + Y (t)dW (t)
+              Y (t0) = Y0, Z(t0) = X0 + µ(t0)V (Y0).
+
+Conversely, if (Y, Z) is a trajectory solution of (SHBFOPALT) and there exists a continuous adaptive process
+H(·) such that
+
+                              dV (Y (t)) = H(t)dt t  t0,
+
+then, by setting
+
+                              X(t) := Z(t) - µ(t)V (Y (t)) t  t0,
+
+we obtain that (Y, X) is a trajectory solution of (SHBFOP).
+
+    Using the Lipschitz continuity of V and the continuity of µ, we also have that, for every   2, (Y, X) 
+SH ×H if and only if (Y, Z)  SH ×H.
+
+    In the following result we establish the existence and uniqueness of trajectory solutions of (SHBFOPALT).
+
+Theorem 3.1. If Y (t)HS   for every t  t0, then (SHBFOPALT) has a unique strong solution
+(Y, Z). In addition, (Y, Z)  SH ×H for every   2.
+
+Proof. Let t0  T . We denote
+
+                                  B := LV sup µ(t)2 + (µ(t) - (t) + µ (t))2.
+
+                                                                  t0 tT
+
+For Y, Z  C([t0, T ], H), t0  t  T ,    and y  zerV , it holds
+
+             Z(, t) - µ(t)V (Y (, t))                    + Y (t)HS
+-Z(, t) + (µ(t) - (t) + µ (t))V (Y (, t))
+
+= Z(, t) - µ(t)V (Y (, t))2 +  - Z(, t) + (µ(t) - (t) + µ (t))V (Y (, t))2 + Y (t)HS
+
+ 2(1 + 2)Z(, t)2 + 2LV2 µ(t)2 + (µ(t) - (t) + µ (t))2 Y (, t) - y2 + Y (t)HS
+
+ max              2(1 + 2), 4B, 4By +  1 + sup                                              Y (, s)  .
+                                                                                            Z(, s)
+                                                                                     t0 sT
+
+which shows that condition (1) in Theorem A.4 (i) is satisfied.
+    Now, let Y1, Y2, Z1, Z2  C([t0, T ], H), t0  t  T and    be fixed. It holds
+
+             Z1(, t) - µ(t)V (Y1(, t))             -                  Z2(, t) - µ(t)V (Y2(, t))
+-Z1(, t) + µ(t) - (t) + µ (t) V (Y1(, t))                -Z2(, t) + µ(t) - (t) + µ (t) V (Y2(, t))
+
++ Y (t) - Y (t)HS
+
+ 2(1 + 2)Z1(, t) - Z2(, t)2 + 2LV2 (µ(t)2 + (µ(t) - (t) + µ (t))2)Y1(, t) - Y2(, t)2
+
+                              Y1(, t)  -  Y2(, t)     .
+ max 2(1 + 2), 2B             Z1(, t)     Z2(, t)
+
+Hence, condition (2) in Theorem A.4 (i) is also satisfied, thus (SHBFOPALT) has a unique strong solution
+
+on [t0, T ]. Standard extension arguments guarantee the existence of a unique solution of (SHBFOPALT)
+on [t0, +).
+
+    Arguing as above, according to Theorem A.4 (ii), we obtain that for every   2 the solution (Y, Z)
+of (SHBFOPALT) lies in SH ×H[t0, T ] for every T  t0, and thus in SH ×H.
+
+                                           17
+   For the long-time analysis of the trajectory solution of (SHBFOP), we shall assume that
+
+                                   (t)                              µ (t)                                           µ (t)
+                    lim                    =:  > 0, sup < 1 and 2 - 3 + inf                                                  > 0.                     (12)
+                      t+ µ(t)                                 tt0 (t)                                         tt0 µ(t)
+
+Remark 3.2. Assumption (12) implies in particular that  > . Indeed, let  > 0 be such that 2 -
+
+       3 - inftt0  µ (t)  .  Since     limt+          (t)     =  ,     there      exists    t1         t0  such  that  for   every     t      t1  it  holds
+                   µ(t)                               µ(t)
+
+-        (t)   +      ,   and      in  particular     µ (t)      ( +        )  µ (t)    +        .  Consequently,      for   every  t     t1  it  holds
+    2    µ(t)      2                                  µ(t)             2       (t)            2
+
+                                2  -         3    -   inf    µ (t)     3    -   µ (t)        3   -  -         =  2  -     ,
+                                                             µ(t)               µ(t)                       2           2
+                                                      tt0
+
+which  implies  2  >  2      +     >   2,   and   thus        >  .
+                                2
+
+Theorem 3.3. Let Y be square integrable, let (Y, X)  SH2 ×H be a trajectory solution of (SHBFOP), and
+let y be a zero of V . Then, the following statements are true:
+
+  (i) V (Y (t)) = o            1   , Y (t) - y, V (Y (t)) = o                     1     , and X(t) = o(1) as t  + a.s.;
+                             µ(t)                                               µ(t)
+
+  (ii) E(V (Y (t))2) = O              1     , E(Y (t) - y, V (Y (t))) = O                          1    , and E(X(t)2) = O(1) as t  +
+                                   µ(t)2                                                         µ(t)
+
+       a.s.;
+
+(iii) Y (t) converges weakly to a zero of V as t  + a.s.
+
+Proof. Choose y  zerV and 0 <  < . Consider the energy function
+
+                                           E(t, x, y, v)      =  1  2(y - y) + 2x + µ(t)v2                                                (E1(t, x, y, v))
+                                                                 2                                                                        (E2(t, x, y, v))
+                                                                                                                                          (E3(t, x, y, v))
+                                                                    + 2( - )y - y2
+                                                                                                                                          (E4(t, x, y, v))
+                                                                    + 2µ(t)y - y, v
+
+                                                                    + 1 µ(t)2v2.
+                                                                       2
+
+We compute the derivatives
+
+                                       d   E1(t,  x,  y,  v)  =  µ (t)v,       2(y    -   y)    +   2x  +  µ(t)v,
+                                       dt
+
+                                       d   E1(t,  x,  y,  v)  =  2(2(y         -  y)    +  2x    +  µ(t)v),
+                                       dx
+
+                                       d   E1(t,  x,  y,  v)  =  2(2(y          -     y)  +  2x     +  µ(t)v),
+                                       dy
+
+                                       d   E1(t,  x,  y,  v)  =  µ(t)(2(y         -   y)    +   2x  +   µ(t)v),
+                                       dv
+
+                                       d2   E1(t,  x,  y,  v)  =    4  Id,
+                                       dx2
+
+                                       d   E2(t,  x,  y,  v)  =  4(    -       )(y    -   y),
+                                       dy
+
+                                       d   E3(t,  x,  y,  v)  =  2µ (t)y        -     y,  v,
+                                       dt
+
+                                       d   E3(t,  x,  y,  v)  =  2µ(t)v,
+                                       dy
+
+                                                                            18
+                            d   E3(t,  x,  y,  v)  =  2µ(t)(y  -  y)
+                            dv
+
+                            d   E4(t,  x,  y,  v)  =  µ(t)µ (t)v2,
+                            dt
+
+                            d   E4(t,  x,  y,  v)  =  µ(t)2v.
+                            dv
+
+The continuity of (Y, X), the Lipschitz continuity of V and the square integrability of the diffusion term
+allow us to apply It^o's formula as stated in Proposition A.5. For every t  t0, it holds
+
+      dE1(t, X(t), Y (t), V (Y (t)))
+   = 2(Y (t) - y) + 2X(t) + µ(t)V (Y (t)), µ (t)V (Y (t)) + 2X(t)dt
+
+       + 2(Y (t) - y) + 2X(t) + µ(t)V (Y (t)), 2(-X(t) - µ(t)H(t) - (t)V (Y (t))) + µ(t)H(t)dt
+       + Y (t)(2(2(Y (t) - y) + 2X(t) + µ(t)V (Y (t)))), dW (t) + 2 tr(Y (t)Y (t))dt
+
+   = 4( - )Y (t) - y, X(t) + 2(µ (t) - 2(t))Y (t) - y, V (Y (t)) - 2µ(t)Y (t) - y, H(t)
+
+         + 4( - )X(t)2 + (2(µ (t) - 2(t)) + 2( - )µ(t))X(t), V (Y (t)) - 2µ(t)X(t), H(t)
+
+         + µ(t)(µ (t) - 2(t))V (Y (t))2 - µ(t)2V (Y (t)), H(t) dt
+
+         + Y (t)(2(2(Y (t) - y) + 2X(t) + µ(t)V (Y (t)))), dW (t) + 2Y (t)H2 Sdt,
+      dE2(t, X(t), Y (t), V (X(t))) = 4( - )Y (t) - y, X(t)dt,
+      dE3(t, X(t), Y (t), V (Y (t)))
+   = (2µ (t)Y (t) - y, V (Y (t)) + 2µ(t)X(t), V (Y (t)) + 2µ(t)Y (t) - y, H(t))dt,
+      dE4(t, X(t), Y (t), V (Y (t))) = (µ(t)µ (t)V (Y (t))2 + µ(t)2V (Y (t)), H(t))dt.
+
+Summing these formulas gives, for every t  t0,
+
+      dE(t, X(t), Y (t), V (X(t)))
+   = dE1(t, X(t), Y (t), V (Y (t))) + dE2(t, X(t), Y (t), V (Y (t)))
+
+      + dE3(t, X(t), Y (t), V (Y (t))) + dE4(t, X(t), Y (t), V (Y (t)))
+
+   = 4(µ (t) - (t))Y (t) - y, V (Y (t)) + 4( - )X(t)2 - 2µ(t)X(t), H(t)
+
+        + 2(2( - )µ(t) + µ(t) - 2(t) + µ (t))X(t), V (Y (t)) + 2µ(t)(µ (t) - (t))V (Y (t))2 dt
+        + Y (t)(2(2(Y (t) - y) + 2X(t) + µ(t)V (Y (t)))), dW (t) + 2Y (t)H2 Sdt.
+
+We set
+
+                                                       :=  -  > 0.
+
+In the following analysis, it will be important to know the sign of
+
+t       -3X (t)2  +  2(-2µ(t)   +  µ(t)        -  2(t)  +  µ (t))X(t),  V  (Y  (t))  +  4            -  (t))V  (Y  (t))2.
+                                                                                         µ(t)(µ (t)
+                                                                                        3
+
+                                                                                                                      (13)
+
+To accomplish this, we set
+
+   A(t) := -3,    B(t) := -2µ(t) + µ(t) - 2(t) + µ (t),                 C (t)  :=    4               (t))V (Y (t))2.
+                                                                                      µ(t)(µ (t) -
+                                                                                     3
+
+                                                           19
+It holds
+
+B(t)2 - A(t)C(t) = (-2µ(t) + µ(t) - 2(t) + µ (t))2 + 4µ(t)(µ (t) - (t))
+
+                    = 42µ(t)2 - 4µ(t)(µ(t) - 2(t) + µ (t)) + (µ(t) - 2(t) + µ (t))2 + +4µ(t)(µ (t) - (t))
+
+                    = µ(t)2       42 - 4              (t)           -     2(t) µ (t) 2
+                                                 -             +                    +               .
+                                                      µ(t)                  µ(t) µ(t)
+
+Our next aim is to identify an interval I  (0, ) such that the parabola B2 - AC is negative for every   I
+and large enough t. To this end we use a technique introduced in [2].
+
+    From (12), there exist 1, 2 such that
+
+                                                            µ (t)                                                           (14)
+                                           max 2 - , sup                     < 1 < 2 < 1,
+                                                          tt0 (t)
+
+which implies
+
+               -    2(t) µ (t)                 +   (1       (t)     <     +         -      (t)            (t)       t  t0.
+                               +        <              -   2)                (2        2)       <-
+                    µ(t)          µ(t)                        µ(t)                        µ(t)           µ(t)
+
+Using  that  limt+       (t)   =    >  0,  there   exist   1, 2     >  0  and   t1     t0  and  such      that
+                         µ(t)
+
+                    2(t) µ (t)                                                                                (t)
+              - µ(t) + µ(t) <  + (1 - 2) < 1 < 2 <  + (2 - 2) <  - µ(t) t  t1.                                              (15)
+
+On the other hand, we also know from (12) that
+
+                                                                                µ (t)
+                                                     -  <  - 2 - inf .
+
+                                                                          tt0 µ(t)
+
+We choose 3, 4 > 0 such that
+
+                                              -    <  -4    <  -3      <    -   2   +  inf  µ (t)
+                                                                                                 ,
+                                                                                       tt0  µ(t)
+
+and,  using  again  that  limt+         (t)   =    >   0,  we  obtain     that  there  exists   t2     >  t1  such  that
+                                        µ(t)
+
+               (t)                                         2(t)             µ (s)   -       2(t) µ (t)              t  t2.  (16)
+               µ(t) -  < -4 < -3 <  -                             + inf                                +
+                                                           µ(t)      st0 µ(s)               µ(t)          µ(t)
+
+Combining (15) with (16), we obtain
+
+                    (t)                                     2(t) µ (t)                                 (t)
+                    µ(t) -  < -4 < -3 <  -                          +           < 1 < 2 <  - µ(t)               t  t2.
+                                                            µ(t)       µ(t)
+
+Without loss of generality, we assume
+
+                                                            max(1, 3) = 1.
+Then, the discriminant of the quadratic expression in B(t)2 - A(t)C(t) is
+
+                                              (t) 2    -            2(t) µ (t) 2             16(22 - 12) > 0.
+                    t := 16             -                      -            +                                               (17)
+                                              µ(t)                  µ(t) µ(t)
+
+                                                                    20
+Now, we choose 3 > 0 such that
+
+                                                                                    
+
+                                             3 < min ,  - ,                22 - 12  .
+                                                                             2
+
+Using  that  limt+    (t)    =    once    more   yields  the  existence    of   t3    t2  such  that
+                      µ(t)
+
+                                                          (t)
+                                      -  - 3   - µ(t)   -  + 3 t  t3.                                                           (18)
+
+Going back to B(t)2 - A(t)C(t), the roots of the quadratic form in this expression are given by
+
+                                  1          (t)         t                   1           (t)          t .
+                           t := 2       -                8                   2      -                 8
+                                                    -            and  t  :=                      +
+                                             µ(t)                                        µ(t)
+
+Using (17) and (18), we see that
+
+                        1         (t)          t <  -  + 3 -                 22 - 12 <  -  - 3
+                  t = 2      -
+                                          -  8                2                 2                2          t  t3.
+                                  µ(t)
+
+Similarly, we obtain                                -  + 3       <  t    t  t3.
+In other words,                                         2
+
+                                  I :=     -  - 3 ,  -  + 3                 (t, t)        t  t3.
+                                                2                2
+
+The way that 3 was chosen also ensures that
+                                                                I  (0, ).
+
+Therefore, for every   I and every t  t3,
+
+                                                    B(t)2 - A(t)C(t) < 0.                                                       (19)
+
+In the following, we choose   I and set  :=  -   (0, ). For every t  t3, we have
+
+       dE(t, Y (t), X(t), V (Y (t))) = u(t)dt + Y (t)(2(2(Y (t) - y) + 2X(t) + µ(t)V (Y (t)))), dW (t)
+                                              + 2Y (t)H2 Sdt,
+
+where
+
+       u(t) := 4(µ (t) - (t))Y (t) - y, V (Y (t)) + 4( - )X(t)2 - 2µ(t)X(t), H(t)
+
+               + 2(2( - )µ(t) + µ(t) - 2(t) + µ (t))X(t), V (Y (t)) + 2µ(t)(µ (t) - (t))V (Y (t))2
+
+               4  (µ (t)  -  (t)) Y  (t)  -  y,  V  (Y  (t))  +  (   -  )X (t)2       +   2      (µ (t)  -  (t))  V  (Y  (t))2
+                                                                                           µ(t)
+                                                                                          3
+
+              0,
+
+which follows from (19), together with the facts that X(t), H(t)  0 and Y (t) - y, V (Y (t))  0, both of
+which are consequences of the monotonicity of V .
+
+                                                                 21
+Denoting
+
+                             t                             t
+
+                     U (t) := (-u(s))ds, A(t) := 2Y (s)2HSds,
+
+                             t3                            t3
+
+                             t
+
+                     N (t) := Y (s)(2(2(Y (s) - y) + 2X(s) + µ(s)V (Y (s)))), dW (s),
+
+                             t3
+
+we thus obtain, for every t  t3,
+
+                E(t, Y (t), X(t), V (Y (t))) = E(t3, Y (t3), X(t3), V (Y (t3))) - U (t) + N (t) + A(t).                     (20)
+
+The processes A(·) and U (·) are increasing and fulfill A(t3) = U (t3) = 0. According to Proposition A.5, N (·)
+is a martingale, since (Y, X)  SH2 ×H and for every t  t3
+
+       t   Y (s)(2(Y (s) - y) + 2X(s) + µ(s)V (Y (s)))2 ds
+
+E
+
+       t3
+
+       t
+
+E          4Y (s)2HS (42 + 2LV2 µ(s)2)(Y (s)2 + y2) + 4X(s)2 ds
+
+       t3
+
+ 4 max sup (42 + 2L2V µ(s)2), 4 E sup X(s)2 + sup Y (s)2 + y2                                                t
+           t3 st                               t3 st                   t3 st
+                                                                                                              Y (s)2HSds < +.
+
+                                                                                                            t3
+
+From the square-integrability of Y , we have limt+ A(t) < +, therefore, by Theorem A.6, the limits
+limt+ E(t, Y (t), X(t), V (Y (t))) < + and limt+ U (t) exist and are finite a.s.
+
+    Taking the expectation in (20), we obtain, for every t  t0, that
+
+E (E(t, Y (t), X(t), V (Y (t))))  E(E(t0, Y (t3), X(t3), V (Y (t3))) + 2E                         t                 < +.
+                                        E(E(t0, Y (t3), X(t3), V (Y (t3))) + 2E
+                                                                                                   Y (s)H2 Sds
+
+                                                                                                 t3
+
+                                                                                                  +
+
+                                                                                                       Y (s)2HSds
+
+                                                                                                 t0
+
+This means, in particular, that
+
+           sup E 2(Y (t) - y) + 2X(t) + µ(t)V (Y (t))2 < +, sup E Y (t) - y2 < +,
+
+           tt0                                                                    tt0
+
+                sup E (µ(t)Y (t) - y, V (Y (t))) < + and sup E µ(t)2V (Y (t))2 < +.
+
+                tt0                                                         tt0
+
+Thus,
+
+                                               sup E(X(t)2) < +,
+
+                                               tt0
+
+which proves (ii).
+
+Recall     that  from  (14)  and  (18)     we  have,  for  every  t    t3,  that  µ (t)    1     <  1  and   - 3    (t)      + 3,
+                                                                                  (t)                               µ(t)
+
+thus
+
+                                  (1 - 1)( - 3)µ(t)  (1 - 1)(t)  (t) - µ (t).
+
+Therefore, for every t  t3,
+
+                                        t                                                     t
+
+                4( - 3)(1 - 1) µ(s)Y (s) - y, V (Y (s))ds + ( - ) X(s)2ds
+
+                                  t3                                                       t3
+
+                                                           22
+              +  2       -                    t µ(s)2V (Y (s))2ds + 2          t
+                  (          3)(1  -  1)
+                 3                                                        3     µ(s) ((s) - µ (s)) V (Y (s))2ds
+                                           t3
+                                                                              t3
+
+                     t                                                                  t
+
+               4 ((s) - µ (s)) Y (s) - y, V (Y (s))ds + ( - ) X(s)2ds
+
+                     t0                                                          t3
+
+                 2       t
+              +
+                          µ(s) ((s) - µ (s)) V (Y (s))2ds
+                 3 t3
+
+                 t
+
+               (-u(s))ds = U (t).
+
+                 t3
+
+Given that limt+ U (t) < + a.s., it follows that
+
+ +                                                     +                                           +
+
+      µ(t)Y (t) - y, V (Y (t))dt < +,                       X(t)2dt < + and                             µ(t)2V (Y (t))2dt < + a.s.
+
+t3                                                    t3                                          t3
+
+Now, we choose 1, 2  I, 1 = 2, and set i :=  - i, i = 1, 2. For every t  t3 it holds
+
+        E2 (t, Y (t), X(t), V (Y (t))) - E1 (t, Y (t), X(t), V (Y (t)))
+
+           1  22(Y (t) - y) + 2X(t) + µ(t)V (Y (t))2 - 22(Y (t) - y) + 2X(t) + µ(t)V (Y (t))2
+        =
+
+           2
+
+        + 2(2( - 2) - 1( - 1))Y (t) - y2 + 2(2 - 1)µ(t)Y (t) - y, V (Y (t))
+
+        = 2(22 - 12)Y (t) - y2 + 2(2 - 1)Y (t) - y, 2X(t) + µ(t)V (Y (t))
+
+        + 2(2 - 1) - 2(22 - 12) Y (t) - y2 + 2(2 - 1)µ(t)Y (t) - y, V (Y (t))
+
+        = 4(2 - 1)            Y (t) - y2 + Y (t) - y, X(t) + µ(t)V (Y (t))                     .
+                             2
+
+We denote
+
+                         p(t)  :=       (t)   -  y2   +   Y  (t)  -  y, X(t)  +  µ(t)V     (Y  (t))  t  t3.
+                                     Y
+                                   2
+
+Thus, since limt+ E(t, Y (t), X(t), V (Y (t))) < + exists a.s., it follows that limt+ p(t) < + must
+exist a.s. With this in mind, we rewrite E(t, Y (t), X(t), V (Y (t))), for every t  t3, as
+
+E(t, Y (t), X(t), V          (Y  (t)))  =  1   2(Y   (t)  - y) + 2X(t)      + µ(t)V (Y (t))2      +  2( -  )Y (t) -  y2
+                                           2
+
+                                           + 2µ(t)Y (t) - y, V (Y (t)) + 1 µ(t)2V (Y (t))2
+                                                                                     2
+
+                                        =  4p(t)   +  1           +  µ(t)V   (Y  (t))2  +  1 µ(t)2V  (Y  (t))2
+                                                       2X (t)
+                                                      2                                    2
+
+                                        = 4p(t) + X(t) + µ(t)V (Y (t))2 + X(t)2.
+
+Define
+
+                                   h(t) := X(t) + µ(t)V (Y (t))2 + X(t)2 t  t3.
+
+Since both limt+ E1 (t, Y (t), X(t), V (Y (t))) < + and limt+ p(t) < + exist a.s., so does limt+ h(t) <
++ exist. Since
+
+                         +                       +                    +
+
+                               h(t)dt  3            X(t)2dt + 2               µ(t)2V (Y (t))2dt < +,
+
+                         t3                    t3                     t3
+
+it yields that limt+ h(t) = 0 a.s. Thus,
+
+                                                       lim X(t) = 0 a.s.,
+
+                                                      t+
+
+                                                                  23
+which can be combined with limt+ X(t) + µ(t)V (Y (t))2 = 0 a.s. to deduce
+
+                                                     lim µ(t)V (Y (t)) = 0 a.s.
+
+                                                                          t+
+
+Using the boundedness of t  Y (t) - y, it yields
+
+                               lim µ(t)Y (t) - y, V (Y (t)) = 0 a.s.,
+
+                              t+
+
+thus, (i) is proved.
+
+    It remains to show weak convergence of the trajectory Y (t). Combining the fact that limt+ p(t) < +
+and limt+ µ(t)Y (t) - y, V (Y (t)) = 0, we obtain
+
+                      lim  Y (t) - y2 + Y (t) - y, X(t) < + a.s.
+                     t+ 2
+
+Further, Lemma A.1 guarantees that
+
+                                     lim Y (t) - y < + a.s.
+
+                                       t+
+
+Hence, there exist subsets 1, y   of full measure such that
+
+                             1        1 and lim Y (, t) - y < +   y .
+  V (Y (, t)) = o
+                                                                   t+
+                           b(t)
+
+Since zerV is a closed set, by using the separability of H, we can show by repeating the arguments from
+the proof of Theorem 2.2 that there exists a countable set S  H, which is dense in zerV , such that
+P( sS s  1) = 1 and, for every   sS s  1 and for every y  zerV , it holds
+
+                                                      lim Y (, t) - y < +.
+
+                                                                           t+
+
+Let cont  F be such that P(cont) = 1 and Y (, ·) is continuous for every   cont, and converge :=
+1  cont  sS s, which is also a subset of full measure of .
+
+    We fix   converge. Since limt+ Y (, t) - y < + exists, for every y  zerV , the first
+requirement for Opial's Lemma ([19]) is satisfied. As Y (, ·) is bounded, we can choose weak limit point y¯()
+of it. Using (i) and the fact that the graph of V is sequentially closed in the weak×strong topology of H × H
+(see [8]), it yields V (y¯()) = 0. Therefore, y¯()  zerV . This shows that the second condition of Opial's
+Lemma is also satisfied and therefore proves that Y (, t) converges weakly to a zero of V as t  +.
+
+3.2 Application to the stochastic Fast Optimistic Gradient Descent Ascent
+       (OGDA) system
+
+Analogously to the minimization setting, we show ­ using again time-scaling arguments ­ that a particular
+formulation of (SHBFOP) is closely connected to the stochastic variant of the Fast Optimistic Gradient
+Descent Ascent (OGDA) system recently introduced by Bo¸t, Csetnek, and Nguyen in [9]. This connection
+will also enable us to establish long-time results for the latter.
+
+Theorem 3.4. Let  > 1 and  > 0. For given t0  0 and s0 > 0, consider the dynamical systems
+
+
+
+dY (t) = X(t)dt
+
+dV (Y (t)) = H(t)dt
+
+dX(t) =  -  2(-1)  X  (t)  -  2s0  exp  2(t-t0 )  H (t)  -  2s0  exp  2(t-t0 )   V (Y (t))  dt + Y (t)dW (t)
+                                                                                                    (SHBFOPEXP)
+
+
+
+Y (t0) = Y0, X(t0) = X0
+
+                                                  24
+on [t0, +) and
+
+                                                                                                                    (SFOGDA)
+
+                   dZ(s) = Q(s)ds
+                   
+                   dV (Z(s)) = K(s)ds
+
+                   dQ(s) =       -     Q(s)   -   K (s)   -      V  (Z (s))  + Z (s)dW (s)
+                                    s                        2s
+
+                   
+
+                   Z(s0) = Z0, Q(s0) = Q0
+
+on [s0, +). Then, the following statements are true:
+  (i) Let (Y, X) be a trajectory solution of (SHBFOPEXP). Then, for
+
+                                                                          s       s  s0,
+                                                  (s) := t0 + 2 log s0
+
+     it holds that (Z, Q) defined by
+
+                                                                                       
+                                           Z(s) := Y ( (s)) and Q(s) := X( (s))
+
+                                                                                      2s
+
+     is a trajectory solution of    (SFOGDA) with initial conditions Z(s0) = Z0                   = Y0  and Q(s0) = Q0       =         X0
+                                                                                                                                  2s0
+     and diffusion term
+
+                                                             3                    3
+                                                                                           2
+                                       Z (s) = ( (s)) 2 Y ( (s)) = 2s Y ( (s)).
+
+(ii) Let (Z, Q) be a trajectory solution of (SFOGDA). Then, for
+
+                                              (t) := s0 exp         2(t - t0)     t  t0,
+                                                                        
+
+     it holds that (Y, X) defined by
+
+                              Y (t) := Z((t)) and X(t) := 2s0 exp 2(t - t0) Q((t))
+                                                                                              
+
+     is a trajectory solution of (SHBFOPEXP) with initial conditions Y (t0) = Y0 = Z0 and X(t0) = X0 =
+
+     2s0  Q0  and  diffusion  term
+      
+
+                                                                 3      2s0 exp   2(t - t0)       3
+                                                                                                  2
+                           Y (t) = ( (t)) 2 Z ((t)) =
+                                                                                                    Z ((t)).
+
+Proof. (i) Let (Y, X) be a trajectory solution of (SHBFOPEXP). We denote
+
+                                  := 2( - 1) and µ(t) := 2s0 exp 2(t - t0) .
+                                                                                              
+
+For  Z (s)  :=  Y ( (s)),  Q(s)  :=        X  (  (s))  =   (s)X( (s)),       and  K (s)       :=   (s)H( (s)),  it  yields,  for  every
+                                       2s
+
+s  s0, that
+
+                                 dZ(s) = dY ( (s)) (s)ds = X( (s)) (s)ds = Q(s)ds,
+
+and
+
+            dQ(s) = ¨(s)X( (s))ds +  (s)d(X( (s)))
+                    = ¨(s)X( (s))ds + ( (s))2 (-X( (s)) - µ( (s))H( (s)) - µ( (s))V (Y ( (s)))) ds
+
+                                                                    25
+                      +  (s)Y ( (s))dW ( (s))
+                  = ¨(s)X( (s))ds + ( (s))2(-X( (s)) - µ( (s))H( (s)) - µ( (s))V (Y ( (s))))ds
+
+                                                3
+
+                      + ( (s)) 2 Y ( (s))dW (s)
+                  = ¨(s) Q(s) -  (s)Q(s) -  (s)µ( (s))K(s) - ( (s))2µ( (s))V (Z(s)) ds
+
+                         (s)
+
+                                                3
+
+                      + ( (s)) 2 Y ( (s))dW (s),
+
+where we used [18, Theorem 8.5.7] to justify the time transformation of the term integrated with respect to
+the Brownian motion. Since, for every s  s0,
+
+                                            ¨(s)              1 -1 
+                                                  -  (s) = +               =- ,
+                                             (s)              ss                   s
+
+and
+
+                                                                           s                  
+                                                                   2       s0    + t0 - t0
+                                                  2s0          2      log
+                                                                                              =
+                             (s)µ( (s)) =    2s        exp                    
+
+as well as
+
+                                             ( (s))2µ( (s))   =     (s)    =   
+                                                                                   ,
+                                                                               2s
+
+we obtain that, for every s  s0,
+
+                                                              
+                       dQ(s) =         - Q(s) - K(s) - V (Z(s))                  ds + Z (s)dW (s).
+                                        s                     2s
+
+The continuity property is obviously inherited, therefore, (Z, Q) is a trajectory solution of (SFOGDA).
+
+(ii) Conversely, let (Z, Q) be a trajectory solution of (SFOGDA). It is clear that  : [s0, +)  [t0, +)
+
+and  : [t0, +)  [s0, +) are bijections and mutually inverse.
+
+For  Y  (t)  :=   Z ((t)),  X (t)  :=  2s0  exp   2(t-t0 )  Q((t)) =  (t)Q((t)) and H(t) :=  (t)K((t)), it yields,
+                                                      
+
+for every t  t0, that
+
+                                 dY (t) = dZ((t)) (t)dt = Q((t)) (t)dt = X(t)dt,
+
+and
+
+dX(t) = ¨(t)Q((t)) +  (t)d(Q((t)))
+
+     = ¨(t)Q((t)) + ( (t))2                                                                                                  3
+                                   - Q((t)) - K((t)) -                           V (Z((t)))
+                                        (t)                                2(t)                  dt + ( (t)) 2 Z ((t))dW (t)
+
+     =      ¨(t)  X(t) -   (t)    X(t) -  (t)H(t) -          (t)2  V (Y (t))       dt + Y (t)dW (t)
+
+             (t)            (t)                             2(t)
+
+     =        2(  -  1)        -   2s0  exp      2(t - t0)  H(t) - 2s0 exp            2(t - t0)  V (Y (t))  dt + Y (t)dW (t).
+            -           X (t)                                                             
+                                   
+
+In this case as well, the continuity property is inherited, thus (Y, X) is a trajectory solution of (SHBFOPEXP).
+
+    In the next theorem, we transfer the long-time statements for (SHBFOPEXP), as provided by Theorem
+3.3, to (SFOGDA).
+
+                                                              26
+Theorem 3.5. Let  > 2,  > 0, let s  sZ (s) be square integrable, and let (Z, Q)  SH2 ×H be a trajectory
+solution of (SFOGDA), and let z be a zero of V . Then, the following statements are true:
+
+(i) V (Z(s)) = o      1  , Z(s) - z, V (Z(s)) = o               1   , and Q(s) = o           1  as s  + a.s.;
+                      s                                         s                            s
+
+(ii) E(V (Z(s))2) = O          1   , E(Z(s) - z, V (Z(s))) = O               1   , and E(Q(s)2) = O        1   as s  +;
+                               s2                                            s                             s2
+
+(iii) Z(s) converges weakly to a zero of V as s  + a.s.
+
+Proof. Let (Z, Q)  SH2 ×H be a trajectory solution of (SFOGDA) and t0  0. Consistently with Theorem 3.4,
+we define
+
+                                                                                  2
+                                         Y (t) := Z((t)) and X(t) := (t)Q((t)),
+
+                                                                                  
+
+where  : [t0, +)  [s0, +) is given by (t) := s0 exp                          2(t-t0 )  . It holds limt+ (t) = +. Then,
+                                                                                 
+
+(Y, X)  SH2 ×H is a trajectory solution of (SHBFOP) for
+
+ :=  2( - 1)       µ(t) = (t) :=   2s0   exp  2(t - t0)           and Y (t) :=         2s0 exp  2(t - t0)      3
+                ,                                                                                              2
+                                                   
+                                                                                                                 Z ((t)) t  t0.
+
+Notice that
+
+                                              s0      2                 (t-t0 )
+                                              -1         -1               -1
+                         µ (t) µ (t)                         exp                       
+                               ==                                                =
+                                                          2        (t-t0 )                      t  t0.
+                         (t) µ(t)                                    -1             -1
+                                              s0             exp
+                                              -1
+
+Hence, assumption (12) is satisfied if and only if
+
+                                              < 1 and 2 - 3 +                          > 0,
+
+                                         -1                                  -1
+
+which is nothing else than
+
+                                                              > 2.
+
+This explains the more restrictive assumption  > 2, which is consistent with the one used in the deterministic
+setting for the Fast OGDA system.
+
+    It remains to show square integrability of Y . We have
+
+         +                         +
+
+             Y (t)H2 Sdt =                ( (s))3 (s)Z (s)2HSds
+
+         t0                        s0
+
+     =    +                                            +     4s20   s2   Z   (s)2ds    =  4      +
+                                                      s0     2      s20                   2
+                ( (s))2(   )(s)Z (s)2ds =                                                             s2Z (s)2ds < +,
+
+         s0                                                                                     s0
+
+where    =   -1    :  [s0, +)      [t0, +),   (s)  =  t0  +     log      s   . It holds lims+  (s) = +. In conclusion,
+                                                             2           s0
+
+all hypotheses of Theorem 3.3 are satisfied.
+
+Recall that, for every s  s0,
+
+                                                                         s                2s
+                                   µ( (s)) = µ t0 + 2 log                    + t0      =,
+                                                                         s0                
+
+so, according to Theorem 3.3(i), it holds
+
+                      V (Z(s)) = V (Y ( (s))) = o                    1       =o        1  as s  + a.s.
+
+                                                                  µ( (s))              s
+
+                                                                27
+and
+
+        Y ( (s)) - z, V (Y ( (s))) = Z(s) - z, V (Z(s)) = o                    1        =o    1      as s  + a.s.
+
+                                                                            µ( (s))             s
+
+Furthermore, it holds  2s
+which implies             Q(s) = X( (s))  0 as s  + a.s.,
+
+                       
+
+                                Q(s) = o                 1    as s  + a.s..
+
+                                                         s
+
+The statements in (ii) follow analogously from Theorem 3.3(ii). Since  (s)  + as s  +, we obtain
+that Z(s) = Y ( (s)) converges weakly to a zero of V as s  + a.s., which proves statement (iii).
+
+Remark 3.6. The deterministic counterpart of (SFOGDA) is the dynamical system
+
+                       Z¨(s)    +      Z  (s)  +     d   V  (Z (s))  +      V  (Z (s))  =  0
+                                    s                ds                 2s
+
+                       Z(t0) = Z0 and Z (t0) = Q0
+
+which was introduced and studied in [9] (in a slightly more general form) as the Fast Optimistic Gradient
+Descent Ascent (OGDA) dynamical system, in connection with solving monotone equations. The Fast
+OGDA dynamics achieve the best known convergence rates for monotone equations in the literature and
+reveal the surprising phenomenon that inertial dynamics with vanishing damping can have an accelerating
+effect beyond the setting of convex minimization. The same phenomenon has also been observed in [9] for
+the explicit discretization of Fast OGDA, which yields an algorithm combining Nesterov momentum with a
+correction-term evaluation of the operator.
+
+Acknowledgements
+
+The authors would like to thank Julio Backhoff-Veraguas for fruitful discussions on various aspects of this
+work.
+
+A Appendix
+
+The following lemma plays a crucial in our long-time analysis.
+
+Lemma A.1. Let  > 0, t0  0 and  : [t0, +)  R an It^o process with (t) = (t0) +                              t   (s)ds   almost
+                                                                                                            t0
+
+surely  such  that  limt+((t) + (t))   =          R  almost      surely.  Then,       limt+ (t)      =      R   almost  surely.
+                                                                                                        
+
+Proof. Let 1 be the subset of  of measure 1 such that for all   1 it holds limt+ (, t) + (, t) =
+
+() as well as (, t) = (, t0) +  t   (, s)ds       for    all  t    t0.  We     fix      1  and  set  (, t)  :=  (, t) -  ()
+                                t0                                                                                         
+
+for all t  t0. Hence, limt+((, t) + (, t)) = 0, and thus, for  > 0, there exists T  t0 such that for
+
+all t  T it holds
+
+                                          |(, t) + (, t)| < ,
+
+therefore,
+
+                       | exp(t)((, t) + (, t))| <  exp(t).
+
+                                                            28
+Denoting
+
+                                                             
+                          F (, , t) := exp(t)  - ,
+
+                                                            
+
+we have
+
+          d                                 d                         d           1
+              F (, , t) =  exp(t)  - ,         F (, , t) = exp(t),       F (, , t) = - exp(t).
+          dt                                                          d           
+                                            d
+
+By Ito^'s formula, we have for all t  t0
+                                                        
+
+           dF (, (t), t) =  exp(t) (t) - dt + exp(t)d(t) = ( exp(t)(t) + exp(t)(t))dt.
+                                                        
+
+From here it follows that for all t  T
+
+                                                t
+
+              | exp(t)(, t) - exp(T)(, T)| = ( exp(s)(, s) + exp(s)(, s))ds
+
+                                                T
+
+                                                    t               
+
+                                                       exp(s)ds  =    (exp(t)  -  exp(T)),
+                                                                    
+                                                T
+
+hence
+
+              exp(t)|(, t)|  |exp(t)(, t) - exp(T)(T)| + exp(T)|(, T)|
+
+                     <                                 + exp(T)|(, T)|,
+                          (exp(t) -         exp(T))
+                        
+
+and thus
+
+                                                                      
+                     |(, t)| <  + exp((T - t)) |(, T)| -  .
+
+From here it yields
+
+                                                       
+                                          0  lim sup |(, t)|  ,
+                                                       
+                                            t+
+
+which completes the proof, since  > 0 and   1 were chosen arbitrarily.
+
+Next, consider the general formulation of a stochastic differential equation on [t0, +], where t0  0,
+
+                     dX(t) = F (t, X(t))dt + G(t, X(t))dW (t)                               (SDEGEN)
+                     X(t0) = X0  H,
+
+defined on a filtered probability space (, F , {Ft}tt0 , P), where W denotes a H-valued Brownian motion,
+F : [t0, +) × H  H and G : [t0, +) × H  L(H, H). We equip L(H, H) with the Hilbert-Schmidt inner
+product and corresponding norm  · HS.
+
+    In the following definition, we introduce the notion of a solution that we consider for (SDEGEN).
+
+Definition A.2. ([13, Definition 3.1]) A stochastic process X :  × [t0, +)  H is a strong solution
+of (SDEGEN) if
+
+  (i) X  C([t0, +), H) almost surely;
+
+ (ii) for every t  t0 it holds
+
+                                                    t
+
+                                       F (s, X(s)) + G(s, X(s))H2 S ds < + almost surely;
+
+                                                  t0
+
+                                                29
+(iii) for every t  t0 it holds
+
+                                t       t
+
+X(t) = X(t0) + F (s, X(s))ds + G(s, X(s))dW (s) almost surely.
+
+                                t0      t0
+
+    Furthermore, we introduce a class of stochastic processes characterized by a key property governing the
+expectation of their norm raised to a given power.
+
+Definition A.3. (i) A stochastic process X :  × [t0, +)  H is called progressively measurable, if for
+every T  t0 the mapping
+
+                                 × [t0, T ]  H, (, s)  X(, s),
+
+is FT  B([t0, T ])-measurable, where  denotes the product -algebra and B is the Borel -algebra. Further,
+X is called adapted if X(·, T ) is FT -measurable for every T  t0.
+
+For T  t0, we define the quotient space as
+
+SH0 [t0, T ] := {X :  × [t0, T ]  H : X is a progressively measurable continuous stochastic process} R,
+
+and set SH0 := T t0 SH0 [t0, T ].
+    (ii) For  > 0 and T  t0, we define SH [t0, T ] as the following subset of stochastic processes in SH0 [t0, T ]
+
+                             SH [t0, T ] := X  SH0 [t0, T ] : E sup X(t) < + .
+
+                                                                                                              t[t0,T ]
+
+Finally, we set SH := T t0 SH [t0, T ].
+    The theorem below ensures the existence and uniqueness of solutions to (SDEGEN) within a fixed
+
+compact interval.
+
+Theorem A.4. Consider the general stochastic differential equation (SDEGEN) and let T  t0. Assume
+that F and G are jointly measurable, i.e. F : [t0, T ] × H  H and G : [t0, T ] × H  L(H, H) are
+B([t0, T ])  B(H)-measurable, and also measurable with respect to the product -field B([t0, t])  B(H) on
+[t0, t] × H for every t0  t  T .
+
+  (i) ([13, Theorem 3.3]) Assume that the following conditions hold:
+
+       (1) There exists a constant  such that for every X  C([t0, T ], H) almost surely it holds
+
+           F (t, X(, t)) + G(t, X(, t))HS   1 + sup X(, s) for every t0  t  T and   .
+
+                                                                                                       t0 sT
+
+     (2) For every X, Y  C([t0, T ], H), t0  t  T and   , there exists K > 0 such that
+
+           F (t, X(, t)) - F (t, Y (, t)) + G(t, X(, t)) - G(t, Y (, t))HS  K sup X(, s) - Y (, s).
+
+                                                                                                                                                       t0 sT
+
+     Then, (SDEGEN) has a unique strong solution on [t0, T ].
+(ii) ([15, Theorem A.7], [18, Theorem 5.2.1]) Additionally, assume that there exists C > 0 such that
+
+            F (t, x) - F (t, y) + G(t, x) - G(t, y)HS  Cx - y for every x, y  H and t0  t  T.
+     Then, the unique solution of the stochastic differential equation (SDEGEN) on [t0, T ] lies in SH [t0, T ]
+     for every   2.
+
+                                    30
+    Using standard extension arguments, we then obtain a unique solution of the system (SDEGEN) on
+[t0, +) which also belongs to SH for every   2.
+
+    Next we recall the Ito^ formula.
+
+Proposition A.5. [13, Theorem 2.9] Let T  t0 be fixed. Let X be a stochastic process given by
+
+                                               t                t
+
+                              X(t) = X0 + F (s)ds + G(s)dW (s) t  [t0, T ],
+
+                                               t0               t0
+
+defined, as before, on a filtered probability space (, F , {Ft}t0tT , P), where W denotes a H-valued Brownian
+motion, F : [t0, T ]  H and G : [t0, T ]  L(H, H). Moreover, we require that X0 is an Ft0 -measurable
+H-valued random variable, F (·) is adapted such that
+
+                                                    T
+
+                                                      F (t)dt < + a.s.,
+
+                                                   t0
+
+and G(·) is adapted such that
+
+                                                                                T
+
+                                                          G(t)H2 Sdt < + a.s.
+
+                                                                              t0
+
+Let  : [t0, +) × H  R be such that (·, x)  C1([t0, +)) for every x  H and (t, ·)  C2(H) for every
+t  t0. Then,
+
+                                                           X~ (t) := (t, X(t))
+
+is an Ito^ process such that
+
+             dX~ (t)    =  d               +   x(t, X(t)), F (t) dt        +   x(t, X(t)), G(t)dW (t)
+                              (t, X(t))dt
+
+                           dt
+
+                                              1     x2x(t, X(t))G(t)G(t)          dt      t  t0.
+                                           + tr
+
+                                              2
+
+Here, G(t) denotes the adjoint operator of G(t) and tr(·) the trace of an operator A  L(H, H), defined by
+
+                                                                    
+
+                                                   tr(A) = Aek, ek,
+
+                                                                  k=1
+
+where {ek}kN denotes an orthonormal basis of the Hilbert space H. Further, if, for every t0  t  T ,
+
+                                           t
+
+                                       E      G(s)x(s, X(s))2ds < +,
+
+                                          t0
+
+then t   t   G(s)x(s,         X (s)),  dW (s)  is,  for  every  t0    t    T,  a  square  integrable  continuous  martingale
+         t0
+with expected value 0.
+
+The following theorem is central to the asymptotic analysis.
+
+Theorem A.6. ([14, Theorem 3.9]) Let A : [t0, +)  H and U : [t0, +)  H be two continuous adapted
+increasing processes with A(t0) = U (t0) = 0 almost surely. Let N : [t0, +]  H be a real-valued continuous
+local martingale with N (t0) = 0 almost surely and  be a nonnegative F0-measurable random variable. Define
+
+                                       X(t) :=  + A(t) - U (t) + N (t) t  t0.
+
+If X(·) is nonnegative and limt+ A(t) < + almost surely, then the limits limt+ X(t) < + and
+limt+ U (t) < + exist almost surely.
+
+                                                         31
+    In the analysis of the dynamical system governed by an operator we shall make use of the following
+lemma.
+Lemma A.7. Let A, B, C  R be such that A = 0 and B2 - AC  0. The following statements are true:
+
+  (i) If A > 0, then it holds
+
+                                            AP 2 + 2BP, Q + CQ2  0 P, Q  H;
+
+(ii) If A < 0, then it holds
+
+                              AP 2 + 2BP, Q + CQ2  0 P, Q  H.
+
+References
+
+ [1] F. A´ lvarez. "On the minimizing property of a second-order dissipative system in Hilbert spaces". In:
+       SIAM Journal on Control and Optimization 38(4) (2000), pp. 1102­1119.
+
+ [2] H. Attouch, R. I. Bot,, D. A. Hulett, and D.-K. Nguyen. "Recovering Nesterov accelerated dynamics
+       from Heavy Ball dynamics via time rescaling". In: arXiv: 2504.15852 [math.OC] (2025).
+
+ [3] H. Attouch, R. I. Bot,, and D.-K. Nguyen. "Fast convex optimization via time scale and averaging of
+       the steepest descent". In: Mathematics of Operations Research (2024). doi: 10.1287/moor.2023.0186.
+
+ [4] H. Attouch, Z. Chbani, J. Peypouquet, and H. Riahi. "Fast convergence of inertial dynamics and
+       algorithms with asymptotic vanishing viscosity". In: Mathematical Programming 168 (2018), pp. 123­
+       175.
+
+ [5] H. Attouch, X. Goudou, and P. Redont. "The heavy ball with friction method. The continuous dynam-
+       ical system, global exploration of the local minima of a real-valued function by asymptotical analysis
+       of a dissipative dynamical system". In: Communications in Contemporary Mathematics 2(1) (2000),
+       pp. 1­34.
+
+ [6] H. Attouch and B. F. Svaiter. "A continuous dynamical Newton-like approach to solving monotone
+       inclusions". In: SIAM Journal on Control and Optimization 49(3) (2011), pp. 574­598.
+
+ [7] J.-B. Baillon and H. Br´ezis. "Une remarque sur le comportement asymptotique des semi-groupes non
+       lin´eaires". In: Houston Journal of Mathematics 2 (1976), pp. 5­7.
+
+ [8] H. Bauschke and P. Combettes. Convex Analysis and Monotone Operator Theory in Hilbert Spaces.
+       New York: CMS Books in Mathematics, Springer, 2017.
+
+ [9] R. I. Bot,, E. R. Csetnek, and D.-K. Nguyen. "Fast Optimistic Gradient Descent Ascent (OGDA)
+       method in continuous and discrete time". In: Foundations of Computational Mathematics 25(1) (2025),
+       pp. 162­222.
+
+[10] R. I. Bot, and C. Schindler. "On a stochastic differential equation with correction term governed by
+       a monotone and Lipschitz continuous operator". In: Evolution Equations and Control Theory 14(3)
+       (2025), pp. 463­493.
+
+[11] A. Chambolle and C. Dossal. "On the convergence of the iterates of the "Fast Iterative Shrink-
+       age/Thresholding Algorithm"". In: Journal of Optimization Theory and Applications 166 (2015),
+       pp. 968­982.
+
+[12] R. Cominetti, J. Peypouquet, and S. Sorin. "Strong asymptotic convergence of evolution equations
+       governed by maximal monotone operators with Tikhonov regularization". In: Journal of Differential
+       Equations 245(12) (2008), pp. 3753­3763.
+
+[13] L. Gawarecki and V. Mandrekar. Stochastic Differential Equations in Infinite Dimensions. Springer,
+       2011.
+
+                              32
+[14] X. Mao. Stochastic Differential Equations and Applications. Elesvier, 2007.
+[15] R. Maulen-Soto, J. Fadili, and H. Attouch. "An SDE perspective on stochastic convex optimization".
+
+       In: Mathematics of Operations Research (2024). doi: 10.1287/moor.2022.0162.
+[16] R. Maulen-Soto, J. Fadili, H. Attouch, and P. Ochs. "An SDE perspective on stochastic inertial gradient
+
+       dynamics with time-dependent viscosity and geometric damping". In: arXiv: 2407.04562 [math.OC]
+       (2024).
+[17] Y. Nesterov. "A method of solving a convex programming problem with convergence rate O(1/k2)".
+       In: Soviet Mathematics Doklady 27(2) (1983), pp. 372­376.
+[18] B. Øksendal. Stochastic Differential Equations. Springer, 2003.
+[19] Z. Opial. "Weak convergence of the sequence of successive approximations for nonexpansive mappings".
+       In: Bulletin of the American Mathematical Society 73 (1967), pp. 591­597.
+[20] B. T. Polyak. Introduction to Optimization. Optimization Software, 1987.
+[21] B. T. Polyak. "Some methods of speeding up the convergence of iteration methods". In: USSR Com-
+       putational Mathematics and Mathematical Physics 4 (1964), pp. 1­17.
+[22] W. J. Su, S. Boyd, and E. J. Cand`es. "A differential equation for modeling Nesterov's accelerated
+       gradient method: theory and insights". In: Neural Information Processing Systems 27 (2014), pp. 2510­
+       2518.
+
+                                                                     33
+

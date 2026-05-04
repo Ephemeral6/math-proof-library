@@ -1,0 +1,177 @@
+{
+ "domain": "knot_theory",
+ "condition": "R0C",
+ "primitives": {
+  "relation": true,
+  "transform": false,
+  "contrastive": true
+ },
+ "case_id": "4_1-r2-4",
+ "case_data": {
+  "case_id": "4_1-r2-4",
+  "summary_delta": {
+   "writhe_delta": 0,
+   "linking_number": 0.0,
+   "crossing_count_b": 0,
+   "writhe_b": 0,
+   "crossing_count_a": 2,
+   "writhe_a": 0
+  },
+  "metadata": {
+   "knot": "4_1",
+   "move": "R2",
+   "trial": 4,
+   "writhe_pre": 0,
+   "writhe_post": 0,
+   "n_crossings_pre": 4,
+   "n_crossings_post": 6
+  },
+  "detailed_comparison": {
+   "crossings_a_before": 4,
+   "crossings_a_after": 6,
+   "added_crossing_count": 2,
+   "added_crossing_signs": [
+    1,
+    -1
+   ],
+   "added_crossing_signs_pair": [
+    -1,
+    1
+   ],
+   "writhe_change_a": 0,
+   "signs_count_pos_pre": 2,
+   "signs_count_neg_pre": 2,
+   "signs_count_pos_post": 3,
+   "signs_count_neg_post": 3
+  },
+  "structural_comparison": {
+   "signature_pre": 0,
+   "signature_post": 0,
+   "signature_preserved": true,
+   "determinant_pre": 5,
+   "determinant_post": 5,
+   "determinant_preserved": true,
+   "alexander_pre_raw": "-t**2 + 3*t - 1",
+   "alexander_post_raw": "-t**5 + 3*t**4 - t**3",
+   "alexander_pre_normalized": [
+    1,
+    -3,
+    1
+   ],
+   "alexander_post_normalized": [
+    1,
+    -3,
+    1
+   ],
+   "alexander_preserved": true,
+   "writhe_pre": 0,
+   "writhe_post": 0,
+   "writhe_preserved": true,
+   "all_topological_invariants_preserved": true
+  }
+ },
+ "counterfactual": [
+  {
+   "strategy": "boundary_relaxation",
+   "original_condition": {
+    "r2_added_signs_pair": [
+     -1,
+     1
+    ],
+    "writhe_change_required": 0
+   },
+   "modified_condition": {
+    "r2_added_signs_pair": [
+     -1,
+     -1
+    ],
+    "writhe_change_observed": -2
+   },
+   "original_result": {
+    "signature": -2,
+    "determinant": 3,
+    "alexander_normalized": [
+     1,
+     -1,
+     1
+    ]
+   },
+   "counterfactual_result": {
+    "signature": -2,
+    "determinant": 7,
+    "alexander_normalized": [
+     2,
+     -3,
+     2
+    ]
+   },
+   "delta": {
+    "signature_delta": 0,
+    "determinant_delta": 4,
+    "writhe_delta": -2,
+    "alexander_changed": true
+   },
+   "condition_is_critical": true,
+   "explanation": "Real R2 inserts a (+1, -1) crossing pair so writhe is preserved. Forcing same-sign pair gives a 'pseudo R2' that changes writhe by ±2 and breaks topological invariants."
+  },
+  {
+   "strategy": "operation_perturbation",
+   "original_condition": {
+    "flipped_crossing_index": null
+   },
+   "modified_condition": {
+    "flipped_crossing_index": 0
+   },
+   "original_result": {
+    "signature": -2,
+    "determinant": 3,
+    "alexander_normalized": [
+     1,
+     -1,
+     1
+    ]
+   },
+   "counterfactual_result": {
+    "signature": 0,
+    "determinant": 1,
+    "alexander_normalized": [
+     1
+    ]
+   },
+   "delta": {
+    "signature_delta": 2,
+    "determinant_delta": -2,
+    "writhe_delta": 2,
+    "alexander_changed": true
+   },
+   "condition_is_critical": true,
+   "explanation": "Flipping one crossing's over/under is not a Reidemeister move; it changes the knot type, so signature / determinant / Alexander all generally change."
+  },
+  {
+   "strategy": "condition_removal",
+   "original_condition": {
+    "planarity_check": true
+   },
+   "modified_condition": {
+    "planarity_check": false,
+    "swap_strands": [
+     0,
+     1
+    ]
+   },
+   "original_result": {
+    "valid_diagram": true
+   },
+   "counterfactual_result": {
+    "valid_diagram": true,
+    "signature": -1,
+    "determinant": 2
+   },
+   "delta": {
+    "signature_delta": 1
+   },
+   "condition_is_critical": true,
+   "explanation": "Dropping planarity (swapping strand labels at random) yields an inconsistent diagram. This shows the planarity constraint is structurally required for any topological reasoning."
+  }
+ ]
+}

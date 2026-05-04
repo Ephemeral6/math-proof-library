@@ -1,0 +1,264 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  10.5pt,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{Times New Roman}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{4pt}{1pt}
+\textbackslash titleformat*\{\textbackslash section\}\{\normalsize\bfseries\}
+\setlength{\parskip}{1pt}
+\setlength{\parindent}{0pt}
+\usepackage{enumitem}
+\setlist{nosep,topsep=0pt}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Conjecture Discovery via Iterative Refinement: An AI Agent for Open Mathematical Problems},
+  pdfauthor={Guancheng Pan, Chu Kochen Honors College, Zhejiang University},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Conjecture Discovery via Iterative Refinement: An AI Agent for
+Open Mathematical Problems}
+\author{Guancheng Pan, Chu Kochen Honors College, Zhejiang University}
+\date{April 2026}
+
+\begin{document}
+\maketitle
+
+Existing AI mathematics systems perform proof search (AlphaProof),
+formalization (Gauss), or algorithm search (FunSearch). The system
+described here performs \textbf{mathematical research}: autonomously
+refining the right statement to prove, deriving results not in the
+literature, proving publication-grade theorems, and closing the loop
+with Lean 4 formal verification. Four demos exhibit four capabilities
+--- a closed negative result (OP-2), a new explicit constant (Theorem
+3), 7-round conjecture refinement (OP-1), and machine-verified
+formalization --- spanning two fields: optimization theory and
+low-dimensional topology.
+
+\subsection{Demos 1+2 --- A complete upper/lower bound story for
+Stochastic Heavy
+Ball}\label{demos-12-a-complete-upperlower-bound-story-for-stochastic-heavy-ball}
+
+\textbf{Problem.} Can SHB (fixed momentum \(\beta>0\)) accelerate over
+SGD on \(L\)-smooth convex stochastic problems? I.e., can the bias term
+beat \(O(LD^2/T)\) --- like Nesterov AC-SA's \(O(LD^2/T^2)\)?
+
+\textbf{OP-2 (lower bound, CLOSED, publication-grade).} \emph{No.} For
+every \((\beta,\eta)\) in the Goujaud feasibility region
+\(\mathcal F_{K=3}\), \(\exists\) hard instance with SHB error
+\(\Omega(LD^2/T+\sigma D/\sqrt T)\) --- strictly worse than AC-SA,
+identical to SGD. Three contributions: \textbf{(a)} \emph{rescaled GTD23
+cycling} --- lift the Goujaud--Taylor--Dieuleveut 2023 strongly-convex
+cycling construction into the non-SC class by flattening one coordinate
+while preserving the \(K{=}3\) orbit on the SC subspace; \textbf{(b)}
+\emph{Le Cam two-point variance bound} --- produce
+\(\Omega(\sigma D/\sqrt T)\) via a coordinate-separable two-point
+hypothesis test, correctly handling SHB's adaptive queries; \textbf{(c)}
+\emph{positive-measure cycling region} --- characterize the
+zero-momentum-init cycling sub-region
+\(\mathcal R^* \subset \mathcal F_{K=3}\) (anchor
+\(\beta\!\approx\!0.303\)) with
+\(\operatorname{Leb}_3(\mathcal R^*) \ge 1.20\!\times\!10^{-4}\),
+certified by 216 mpmath-50-digit grid points + closed-form affine
+analysis.
+
+\textbf{Theorem 3 (upper bound, NEW).} For every \(\beta<1\),
+deterministic last-iterate
+\(f(y_T)-f^* \le C(\beta;k)\,LD^2/(T+W(\beta;k)-1)\), with
+\(C(\beta) \approx 0.36\,(1-\beta)^{-1.22}\). \textbf{No prior work
+gives an explicit closed-form \(C(\beta)\):} Ghadimi--Liang--Zhang 2015
+covers only Cesàro averages; Sebbouh--Gower 2021 gives only small-\(o\).
+Method: PEP-style SDP + 2-step Lyapunov with \(k\)-step lookahead
+anchors; \(\beta^*_{\text{LMI}}(k){=}0.957\!\to\!0.978\!\to\!0.993\),
+geometric ratio \(\approx 0.71\) extrapolating to \(\beta^*_\infty=1\).
+\textbf{Nine exact rational certificates}
+(\(\beta\in\{0,0.1,\ldots,0.5,0.6,0.8\}\), SymPy QQ, PSD symbolic);
+CLARABEL numerical up to \(\beta=0.993\); blow-up exponent
+\(p\!\in\![1.21,1.25]\) consistent across \(k=0,1,2\).
+
+\textbf{Joint significance.} Matching upper (Theorem 3) and lower (OP-2)
+bounds pin the SHB bias term at \(\Theta(LD^2/T)\) --- a definitive
+\emph{no} to ``does fixed-momentum SHB accelerate?'', forming a
+self-contained SIOPT/Math. Prog. paper.
+
+\subsection{\texorpdfstring{Demo 3 --- OP-1: 7-round conjecture
+refinement on the curve complex
+\(C_1(S_{g,n})\)}{Demo 3 --- OP-1: 7-round conjecture refinement on the curve complex C\_1(S\_\{g,n\})}}\label{demo-3-op-1-7-round-conjecture-refinement-on-the-curve-complex-c_1s_gn}
+
+\textbf{Open problem (Souto 2007 et al.):} is \(C_1(S_{g,n})\)
+contractible for positive-genus surfaces? The agent ran seven autonomous
+refinement rounds:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2941}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2353}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2353}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2353}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\#
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Conjecture
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Evidence
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Key event
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & Universal vertex & 132/138 sample & DISPROVED: 6 \(K_4\)-core
+counterexamples \\
+2 & Contractible & 64/64 exhaustive & Verified, no proof technique \\
+3 & Dismantlable & 378/378 exhaustive & Polat 2002 /
+Boulet--Fieux--Jouve 2008 connection \\
+4 & Chordal & 259/271 & 12 non-chordal exceptions at \(k\!\ge\!4\) \\
+5 & (W4) wheel + (M) metric & 318/318 exhaustive &
+\textbf{Chepoi--Osajda 2014 cross-field connection} \\
+6 & Hatcher surgery filler & 12/12 non-chordal & level \(k-2\),
+\(i(\alpha,\sigma_\alpha)=0\), uniform \\
+7 & Chordal-or-cone dichotomy & 383/389 exhaustive &
+\(i(\sigma_\alpha,\beta)=i(\alpha,\beta)\) exactly, 49/49 \\
+\end{longtable}
+}
+
+The Iteration-5 connection to Chepoi--Osajda was discovered
+autonomously: a topology-side failure (no universal vertex on
+\(S_{1,2}\) at \(k{=}2\)) triggered a graph-theory literature search,
+surfacing a theorem on weakly modular graphs that had not previously
+been linked to curve-complex contractibility. \textbf{\(S_{1,1}\) is
+closed rigorously} via a Stern--Brocot argument inside the same
+Bestvina--Brady filtration. The remaining gap is reduced to a
+\emph{single} surgery argument --- prove
+\(i(\sigma_\alpha,\beta)=i(\alpha,\beta)\) --- empirically exact across
+49/49 pairs. The full statement was \emph{not} visible at iteration 1;
+it emerged only through structured failure.
+
+\subsection{Demo 4 --- System architecture and Lean
+verification}\label{demo-4-system-architecture-and-lean-verification}
+
+\textbf{Discovery loop:}
+\texttt{Proposer\ -\textgreater{}\ Rep\ Selector\ -\textgreater{}\ Verifier\ -\textgreater{}\ Explain-Why\ -\textgreater{}\ Tracker\ -\textgreater{}\ Prover\ -\textgreater{}\ Diagnoser\ -\textgreater{}\ Bridge\ -\textgreater{}\ (repeat)}.
+Three modules carry the load. \textbf{(i) Representation Registry} (31
+validated entries) records distinct formalizations of the same object
+with cost-annotated transports; on stall the agent switches
+representation rather than restarting. \textbf{(ii) Explain-Why +
+Hypothesis Tracker:} on the smallest tractable instance the agent must
+articulate \emph{why} a conjecture holds; the working hypothesis is then
+stress-tested on larger instances --- turning failures into sharper
+successor conjectures. \textbf{(iii) Lean Verification Backend:}
+\textbf{13/13 CERTIFIED} on the optlib benchmark; \texttt{OptLib2} is a
+self-contained 1371-LOC library with 9 named theorems, all axiom-clean
+over \texttt{{[}propext,\ Classical.choice,\ Quot.sound{]}}. On the
+hardest item (Nesterov \(O(1/T^2)\)), the agent \textbf{autonomously
+synthesized the auxiliary sequence} \texttt{zSeq} with bridge identities
+\texttt{xkk1\_eq\_combine} and \texttt{y\_eq\_combine} (closed by
+\texttt{match\_scalars\ \textless{};\textgreater{}\ field\_simp\ \textless{};\textgreater{}\ ring})
+--- definition synthesis, not just proof search.
+
+\subsection{What distinguishes this from existing
+systems}\label{what-distinguishes-this-from-existing-systems}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1379}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1724}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1724}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1724}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1724}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1724}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+AlphaProof
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Gauss
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FunSearch
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Liam Price (vibe maths)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{This system}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Task & Proof search & Formalization & Algorithm search & One-shot
+prompting & \textbf{Math research} \\
+Input & Fixed statement & Informal proof & Objective fn & Open problem &
+\textbf{Open problem} \\
+New mathematical results & No & No & Yes (kissing \#) & Yes (\#1196) &
+\textbf{Yes (OP-2 + Thm 3)} \\
+Reproducible end-to-end & Yes & Yes & Yes & \textbf{No} &
+\textbf{Yes} \\
+Cross-field analogy transfer & No & No & No & No & \textbf{Yes} \\
+Learns from failure & No & No & Evolutionary & No & \textbf{Structured
+(registry+tracker)} \\
+Formal verification & Lean & Lean & No & No & \textbf{Lean (13/13,
+axiom-clean)} \\
+Matching upper + lower bound & N/A & N/A & N/A & N/A & \textbf{Yes (OP-2
++ Thm 3)} \\
+\end{longtable}
+}
+
+All code, verification scripts, Lean proofs, and SDP certificates are
+reproducible end-to-end. Author: \textbf{Guancheng Pan}, freshman, Chu
+Kochen Honors College, Zhejiang University.
+
+\end{document}

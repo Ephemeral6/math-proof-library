@@ -1,0 +1,20 @@
+Pool: 400 curves
+Generating α via Dehn twists...
+Generated 21 candidate fresh α in 0.1s
+  unique fresh α (not in DB): 13
+
+Tested 13 fresh α in 2.3s
+
+  k | n  | chord_only | cone_only | both | neither | disman
+----|----|------------|-----------|------|---------|--------
+   5 |  1 |          0 |         0 |    1 |       0 |      1
+   6 |  2 |          0 |         0 |    2 |       0 |      2
+   7 |  2 |          0 |         0 |    2 |       0 |      2
+   8 |  2 |          0 |         0 |    2 |       0 |      2
+   9 |  2 |          0 |         0 |    2 |       0 |      2
+  10 |  2 |          0 |         0 |    2 |       0 |      2
+  11 |  2 |          0 |         0 |    2 |       0 |      2
+
+TOTAL fresh: 13, chordal-or-cone: 13 (100.0%), dismantlable: 13 (100.0%)
+
+Wrote C:\Users\12729\Desktop\Math\SpatialMind\experiments\op1_fresh_alphas.json

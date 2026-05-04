@@ -1,0 +1,35 @@
+{
+  "theorem_name": "nesterov_first_convergence",
+  "layer": 3,
+  "natural_language_statement": "For Nesterov's first accelerated proximal gradient scheme on min f(x) + h(x) with f convex L-smooth and h closed convex, given step sizes t_k and momentum factors γ_k satisfying (1 - γ_k) t_k / γ_k^2 ≤ t_{k-1} / γ_{k-1}^2 (with γ_0 = 1, t_k ∈ (0, 1/L]), the iterates x_k satisfy (f + h)(x_{k+1}) - (f + h)(xm) ≤ γ_k^2 / (2 t_k) · ‖x_0 - xm‖^2. With γ_k ≈ 2/(k+2), this gives the O(1/k^2) acceleration.",
+  "assumptions": [
+    "E is a complete real inner product space",
+    "f, h : E → ℝ convex; f L-smooth (gradient L-Lipschitz)",
+    "Iterates: y_k = x_k + (γ_k (1 - γ_{k-1}) / γ_{k-1}) (x_k - x_{k-1}) for k ≥ 1; x_{k+1} = prox_{t_k h}(y_k - t_k f'(y_k))",
+    "Initial conditions: y_0 = x_0, γ_0 = 1, x_0 fixed",
+    "Step/momentum constraints: 0 < t_k ≤ 1/L; 0 < γ_k ≤ 1; (1 - γ_k) t_k / γ_k^2 ≤ t_{k-1} / γ_{k-1}^2 for k ≥ 1",
+    "minφ : IsMinOn (f + h) univ xm"
+  ],
+  "conclusion": "∀ k, f (alg.x (k + 1)) + h (alg.x (k + 1)) - f xm - h xm ≤ (alg.γ k) ^ 2 / (2 * alg.t k) * ‖x0 - xm‖ ^ 2",
+  "proof_sketch": [
+    "Subgradient characterization of prox: y_k - x_{k+1} - t_k f'(y_k) ∈ t_k ∂h(x_{k+1}); so for any z, t_k h(x_{k+1}) ≤ t_k h(z) + ⟨f'(y_k) + (1/t_k)(x_{k+1} - y_k), z - x_{k+1}⟩ · t_k  (after rearranging).",
+    "Descent lemma on f at y_k, x_{k+1}: f(x_{k+1}) ≤ f(y_k) + ⟨f'(y_k), x_{k+1} - y_k⟩ + (1/(2t_k)) ‖x_{k+1} - y_k‖^2 (using t_k ≤ 1/L).",
+    "Convexity of f at y_k: f(y_k) + ⟨f'(y_k), z - y_k⟩ ≤ f(z).",
+    "Combine to get for any z: φ(x_{k+1}) ≤ φ(z) + (1/t_k)⟨x_{k+1} - y_k, z - x_{k+1}⟩ + (1/(2t_k)) ‖x_{k+1} - y_k‖^2.",
+    "Take a convex combination of z = x_k (weight 1 - γ_k) and z = xm (weight γ_k): φ(x_{k+1}) ≤ (1 - γ_k) φ(x_k) + γ_k φ(xm) + (1/(2t_k))(‖z_k - xm‖^2 - ‖z_{k+1} - xm‖^2) · γ_k^2 where z_k is an extrapolated point.",
+    "Define Lyapunov V_k = (t_{k-1}/γ_{k-1}^2)(φ(x_k) - φ(xm)) + (1/2)‖z_k - xm‖^2 (with V_0 = (1/2)‖x_0 - xm‖^2). The momentum/step constraint cond gives V_{k+1} ≤ V_k.",
+    "Therefore (t_k / γ_k^2)(φ(x_{k+1}) - φ(xm)) ≤ V_{k+1} ≤ V_0 = (1/2)‖x_0 - xm‖^2; rearrange."
+  ],
+  "key_mathlib_lemmas": [
+    "Finset.sum_range_succ",
+    "norm_sub_sq_real",
+    "sq_nonneg",
+    "div_le_div_iff"
+  ],
+  "registry_dependencies": [
+    "lipschitz_continuos_upper_bound'",
+    "Convex_first_order_condition'",
+    "prox_iff_subderiv",
+    "prox_prop"
+  ]
+}

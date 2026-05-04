@@ -1,0 +1,91 @@
+================================================================================
+Resolution Theorem 1 verification — Average-iterate UB matches LB rate
+================================================================================
+--- (S1) SymPy: change-of-variables identity ---
+  z_{t+1} - z_t + ν g_t = 0
+  S1 PASS: True
+
+--- (S2) SymPy: Cesaro UB leading constants ---
+  Cesaro bound = D²(1-β)/(2ηT) + ησ²/(2(1-β))
+  d/dη = (D**2*(beta - 1)**2 - T*eta**2*sigma**2)/(2*T*eta**2*(beta - 1))
+  η_opt = [D*(1 - beta)/(sqrt(T)*sigma), D*(beta - 1)/(sqrt(T)*sigma)]
+  Cesaro bound at η_opt = D*sigma/sqrt(T)
+  Diff from σD/√T:        0
+  S2 PASS: True
+
+--- (M1) mpmath: precise Cesaro for SHB on quadratic, varying β ---
+  At T=1000, L=1.0, σ=1.0, D=1.0.
+  η_opt = D(1-β)/(σ√T)
+  Theoretical Cesaro UB at η_opt = σD/√T (independent of β)
+
+      β      η_opt    Cesaro UB        σD/√T      ratio
+   0.00    0.03162     0.031623     0.031623     1.0000
+   0.30    0.02214     0.031623     0.031623     1.0000
+   0.50    0.01581     0.031623     0.031623     1.0000
+   0.70    0.00949     0.031623     0.031623     1.0000
+   0.90    0.00316     0.031623     0.031623     1.0000
+  M1 PASS (all ratios = 1.0 to high precision): True
+
+--- (MC1) Monte Carlo: empirical Cesaro rate fit ---
+  β=0.00  T=  100  η=0.10000  Cesaro_avg=0.05162  theoretical_target=0.10000
+  β=0.00  T=  300  η=0.05774  Cesaro_avg=0.02919  theoretical_target=0.05774
+  β=0.00  T= 1000  η=0.03162  Cesaro_avg=0.01592  theoretical_target=0.03162
+  β=0.00  T= 3000  η=0.01826  Cesaro_avg=0.00917  theoretical_target=0.01826
+  β=0.00  T=10000  η=0.01000  Cesaro_avg=0.00502  theoretical_target=0.01000
+  β=0.00: empirical rate T^(-0.506)
+
+  β=0.50  T=  100  η=0.05000  Cesaro_avg=0.05207  theoretical_target=0.10000
+  β=0.50  T=  300  η=0.02887  Cesaro_avg=0.02992  theoretical_target=0.05774
+  β=0.50  T= 1000  η=0.01581  Cesaro_avg=0.01606  theoretical_target=0.03162
+  β=0.50  T= 3000  η=0.00913  Cesaro_avg=0.00922  theoretical_target=0.01826
+  β=0.50  T=10000  η=0.00500  Cesaro_avg=0.00502  theoretical_target=0.01000
+  β=0.50: empirical rate T^(-0.508)
+
+  β=0.90  T=  100  η=0.01000  Cesaro_avg=0.07030  theoretical_target=0.10000
+  β=0.90  T=  300  η=0.00577  Cesaro_avg=0.03606  theoretical_target=0.05774
+  β=0.90  T= 1000  η=0.00316  Cesaro_avg=0.01802  theoretical_target=0.03162
+  β=0.90  T= 3000  η=0.00183  Cesaro_avg=0.00988  theoretical_target=0.01826
+  β=0.90  T=10000  η=0.00100  Cesaro_avg=0.00523  theoretical_target=0.01000
+  β=0.90: empirical rate T^(-0.564)
+
+  MC1 PASS (all rates in [0.4, 0.6]): True
+
+--- (MC2) Monte Carlo: average-iterate empirical rate ---
+  β=0.00  T=  100  η=0.10000  E[f(x̄_T)]=0.009432  target σD/√T=0.10000
+  β=0.00  T=  300  η=0.05774  E[f(x̄_T)]=0.003162  target σD/√T=0.05774
+  β=0.00  T= 1000  η=0.03162  E[f(x̄_T)]=0.001003  target σD/√T=0.03162
+  β=0.00  T= 3000  η=0.01826  E[f(x̄_T)]=0.000331  target σD/√T=0.01826
+  β=0.00  T=10000  η=0.01000  E[f(x̄_T)]=0.000098  target σD/√T=0.01000
+  β=0.00: empirical avg-iterate rate T^(-0.989)
+
+  β=0.50  T=  100  η=0.05000  E[f(x̄_T)]=0.009189  target σD/√T=0.10000
+  β=0.50  T=  300  η=0.02887  E[f(x̄_T)]=0.003221  target σD/√T=0.05774
+  β=0.50  T= 1000  η=0.01581  E[f(x̄_T)]=0.000972  target σD/√T=0.03162
+  β=0.50  T= 3000  η=0.00913  E[f(x̄_T)]=0.000334  target σD/√T=0.01826
+  β=0.50  T=10000  η=0.00500  E[f(x̄_T)]=0.000098  target σD/√T=0.01000
+  β=0.50: empirical avg-iterate rate T^(-0.986)
+
+  β=0.90  T=  100  η=0.01000  E[f(x̄_T)]=0.009787  target σD/√T=0.10000
+  β=0.90  T=  300  η=0.00577  E[f(x̄_T)]=0.003234  target σD/√T=0.05774
+  β=0.90  T= 1000  η=0.00316  E[f(x̄_T)]=0.001006  target σD/√T=0.03162
+  β=0.90  T= 3000  η=0.00183  E[f(x̄_T)]=0.000337  target σD/√T=0.01826
+  β=0.90  T=10000  η=0.00100  E[f(x̄_T)]=0.000095  target σD/√T=0.01000
+  β=0.90: empirical avg-iterate rate T^(-1.002)
+
+  MC2 PASS (all rates in [0.4, 1.5]): True
+
+================================================================================
+SUMMARY
+================================================================================
+  S1 (COV identity):                PASS
+  S2 (Cesaro optimum constant):     PASS
+  M1 (mpmath Cesaro at η_opt):      PASS
+  MC1 (Cesaro rate ~ T^(-0.5)):     PASS
+    Rates: {0.0: np.float64(0.5055517088471716), 0.5: np.float64(0.5084783824428618), 0.9: np.float64(0.5636887295402895)}
+  MC2 (avg-iterate rate ~ T^(-0.5)+):PASS
+    Rates: {0.0: np.float64(0.9886210734229313), 0.5: np.float64(0.9858638229406556), 0.9: np.float64(1.0016843734677243)}
+
+  Wall time: 14.7s
+  Overall:   ALL PASS
+
+  Saved results to C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap2_ub\resolution\numerical_verify_results.json

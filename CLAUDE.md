@@ -27,8 +27,23 @@ When I give you a math problem or theorem to prove:
 
 1. Create a working directory: `workspace/active/proof_work_YYYYMMDD_HHMMSS/`
 2. Save the problem statement as `problem.md` inside that directory
-3. Trigger the math-proof-agent skill and run the five-phase protocol
+3. Trigger the math-proof-agent skill and run the protocol below
 4. All intermediate files go into the working directory
+
+### Pipeline stages
+
+The proof agent runs the following stages in order. (As of 2026-04-29 the pipeline has six stages, up from the original five — the new stage is **Tightness Pre-Audit**, between Explorer and Judge.)
+
+```
+Proposer → Scout → Explorer ×N → Tightness Pre-Audit → Judge → Auditor → Fixer → Archive
+```
+
+- **Proposer / Scout**: route generation and library lookup. (Unchanged.)
+- **Explorer**: parallel route execution. Emits one proof markdown per frame. (Unchanged.)
+- **Tightness Pre-Audit** (new, 2026-04-29): for each Explorer frame, runs five checks (T1 rate preservation, T2 metric consistency, T3 constant tracking, T4 triangle/CS alert, T5 stochastic vs deterministic) and emits `tightness_report.md` plus a verdict in `{PROCEED, FIX_BEFORE_JUDGE, REJECT_FRAME}`. Full spec at `workspace/agents_spec/tightness_preaudit.md`. Frames marked REJECT_FRAME are pulled from Judge's candidate set unless every frame is rejected (in which case the orchestrator triggers an extra Explorer round with the failure modes injected as anti-hints).
+- **Judge**: existing 4 criteria (rigor, constant tightness, agreement, readability) plus criterion (5) Tightness Pre-Audit verdict — prefer PROCEED frames over FIX_BEFORE_JUDGE over REJECT_FRAME, then break ties by CRITICAL count, then WARNING count.
+- **Auditor**: existing rules unchanged, plus **Rule A-NEW**: every Pre-Audit WARNING must be explicitly checked for rate impact. If the warning's loose constant is dominated by a different term in the leading constant, PASS with annotation `[T{n}-WARNING-DOMINATED]`. If it propagates into the rate, FAIL with annotation `[T{n}-WARNING-PROPAGATED]`. Pre-Audit CRITICALs that somehow leak past Judge fail immediately with `[T{n}-CRITICAL-LEAKED-FROM-PREAUDIT]`.
+- **Fixer**: when verdict is FIX_BEFORE_JUDGE, Fixer's first task is to apply the Pre-Audit's suggested replacements (T4 alternatives are listed inline in the report); the orchestrator re-runs Pre-Audit on the fixed proof before re-entering Auditor.
 
 ### After proof completion - AUTO ARCHIVE
 

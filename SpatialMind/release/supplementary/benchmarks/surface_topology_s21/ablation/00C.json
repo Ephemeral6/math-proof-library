@@ -1,0 +1,2514 @@
+{
+ "condition": "00C",
+ "surface": "S_{2,1}",
+ "primitives": {
+  "relation": false,
+  "transform": false,
+  "contrastive": true
+ },
+ "n_cases": 128,
+ "cases": [
+  {
+   "case_id": "a122-b2",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 2,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b6",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 6,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b9",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 9,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b13",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 13,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b17",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 17,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b24",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 24,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b28",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 28,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b44",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 44,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b45",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 45,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b50",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 50,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b57",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 57,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b63",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 63,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b65",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 65,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b70",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 70,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b76",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 76,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b78",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 78,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b110",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 110,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b119",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 119,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b121",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 121,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b124",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 124,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b137",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 137,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b177",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 177,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b185",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 185,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b191",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 191,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b194",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 194,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b207",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 207,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a122-b213",
+   "summary_delta": {
+    "weight_a": -14,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 122,
+    "beta_index": 213,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b3",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 3,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b6",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 6,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b7",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 7,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b10",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 10,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b12",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 12,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b13",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 13,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b14",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 14,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b15",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 15,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b20",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 20,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b25",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 25,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b27",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 27,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b31",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 31,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b35",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 35,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b37",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 37,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b38",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 38,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b53",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 53,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b55",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 55,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b57",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 57,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b63",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 63,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b66",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 66,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b67",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 67,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b69",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 69,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b71",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 71,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b74",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 74,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b75",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 75,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b83",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 83,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b85",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 85,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b86",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 86,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b97",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 97,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b98",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 98,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b103",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 103,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b104",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 104,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b145",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 145,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b150",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 150,
+    "alpha_level": 2,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b178",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 178,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b181",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 181,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b184",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 184,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b190",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 190,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b196",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 196,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b206",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 206,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b227",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 227,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b231",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 231,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a151-b235",
+   "summary_delta": {
+    "weight_a": -9,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 151,
+    "beta_index": 235,
+    "alpha_level": 2,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a215-b1",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 215,
+    "beta_index": 1,
+    "alpha_level": 4,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a215-b5",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 215,
+    "beta_index": 5,
+    "alpha_level": 4,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a215-b10",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 215,
+    "beta_index": 10,
+    "alpha_level": 4,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a215-b12",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 215,
+    "beta_index": 12,
+    "alpha_level": 4,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a215-b13",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 215,
+    "beta_index": 13,
+    "alpha_level": 4,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a215-b17",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 215,
+    "beta_index": 17,
+    "alpha_level": 4,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a215-b33",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 215,
+    "beta_index": 33,
+    "alpha_level": 4,
+    "beta_level": 2,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a215-b34",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 215,
+    "beta_index": 34,
+    "alpha_level": 4,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a215-b44",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 215,
+    "beta_index": 44,
+    "alpha_level": 4,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a215-b76",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 215,
+    "beta_index": 76,
+    "alpha_level": 4,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a215-b77",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 215,
+    "beta_index": 77,
+    "alpha_level": 4,
+    "beta_level": 2,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a215-b154",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 215,
+    "beta_index": 154,
+    "alpha_level": 4,
+    "beta_level": 3,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a215-b209",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 215,
+    "beta_index": 209,
+    "alpha_level": 4,
+    "beta_level": 3,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b1",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 1,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b5",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 5,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b13",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 13,
+    "alpha_level": 3,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b14",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 14,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b44",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 44,
+    "alpha_level": 3,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b63",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 63,
+    "alpha_level": 3,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b70",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 70,
+    "alpha_level": 3,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b76",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 76,
+    "alpha_level": 3,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b77",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 77,
+    "alpha_level": 3,
+    "beta_level": 2,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b78",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 78,
+    "alpha_level": 3,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b79",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 79,
+    "alpha_level": 3,
+    "beta_level": 2,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b97",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 97,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b98",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 98,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b103",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 103,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b122",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 122,
+    "alpha_level": 3,
+    "beta_level": 2,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b155",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 155,
+    "alpha_level": 3,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b159",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 159,
+    "alpha_level": 3,
+    "beta_level": 2,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b196",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 196,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a221-b227",
+   "summary_delta": {
+    "weight_a": -28,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 221,
+    "beta_index": 227,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b8",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 8,
+    "alpha_level": 3,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b9",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 9,
+    "alpha_level": 3,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b11",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 11,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b19",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 19,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b26",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 26,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b30",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 30,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b40",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 40,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b41",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 41,
+    "alpha_level": 3,
+    "beta_level": 2,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b43",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 43,
+    "alpha_level": 3,
+    "beta_level": 2,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b45",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 45,
+    "alpha_level": 3,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b52",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 52,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b68",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 68,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b73",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 73,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b84",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 84,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b92",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": -1,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 92,
+    "alpha_level": 3,
+    "beta_level": 2,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b95",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 95,
+    "alpha_level": 3,
+    "beta_level": 1,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b105",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 105,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b143",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 143,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b180",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 180,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b183",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 183,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b188",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 188,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b202",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 202,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b204",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 204,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b208",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 208,
+    "alpha_level": 3,
+    "beta_level": 2,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b230",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 230,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  },
+  {
+   "case_id": "a249-b233",
+   "summary_delta": {
+    "weight_a": -22,
+    "intersection_number": 0,
+    "weight_b": 0
+   },
+   "metadata": {
+    "surface": [
+     2,
+     1
+    ],
+    "alpha_index": 249,
+    "beta_index": 233,
+    "alpha_level": 3,
+    "beta_level": 0,
+    "i_alpha_beta": 1
+   }
+  }
+ ],
+ "counterfactual": [
+  {
+   "strategy": "boundary_relaxation",
+   "original_condition": {
+    "intersection_bound": 1,
+    "beta_id": "c2",
+    "i(alpha, beta)": 1
+   },
+   "modified_condition": {
+    "intersection_bound": 2,
+    "beta_id": "a_0",
+    "i(alpha, beta)": 2
+   },
+   "original_result": {
+    "net_change": -1
+   },
+   "counterfactual_result": {
+    "net_change": -2
+   },
+   "delta": {
+    "net_change": -1
+   },
+   "condition_is_critical": false,
+   "explanation": "Relaxed i(α, β) ≤ 1 to i(α, β) = 2. Original net_change=-1, counterfactual net_change=-2. Bound may not be tight here."
+  },
+  {
+   "strategy": "condition_removal",
+   "original_condition": {
+    "descending_link_required": true,
+    "level_beta_lt_level_alpha": true,
+    "beta_id": "c2"
+   },
+   "modified_condition": {
+    "descending_link_required": false,
+    "level_beta_lt_level_alpha": false,
+    "beta_id": "c209"
+   },
+   "original_result": {
+    "net_change": -1
+   },
+   "counterfactual_result": {
+    "net_change": 0
+   },
+   "delta": {
+    "net_change": 1
+   },
+   "condition_is_critical": false,
+   "explanation": "Dropped 'β in descending link' constraint. Original net_change=-1, counterfactual=0."
+  },
+  {
+   "strategy": "operation_perturbation",
+   "original_condition": {
+    "surgery_curve": "a_0"
+   },
+   "modified_condition": {
+    "surgery_curve": "c0"
+   },
+   "original_result": {
+    "net_change": -1
+   },
+   "counterfactual_result": {
+    "net_change": -1
+   },
+   "delta": {
+    "net_change": 0
+   },
+   "condition_is_critical": false,
+   "explanation": "Replaced γ_0 with c0. Original net_change=-1, counterfactual=-1."
+  }
+ ]
+}

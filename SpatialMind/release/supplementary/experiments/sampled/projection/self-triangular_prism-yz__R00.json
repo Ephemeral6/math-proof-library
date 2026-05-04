@@ -1,0 +1,59 @@
+{
+ "domain": "projection",
+ "condition": "R00",
+ "primitives": {
+  "relation": true,
+  "transform": false,
+  "contrastive": false
+ },
+ "case_id": "self-triangular_prism-yz",
+ "case_data": {
+  "case_id": "self-triangular_prism-yz",
+  "summary_delta": {
+   "dimension_a": -1,
+   "edge_crossings_a": {
+    "pre": null,
+    "post": 0
+   },
+   "diameter_a": -0.09135500000000008,
+   "diameter_b": 0.0,
+   "n_points_b": 0,
+   "n_points_a": 0,
+   "dimension_b": 0
+  },
+  "metadata": {
+   "case_type": "self_projection",
+   "object": "triangular_prism",
+   "plane": "yz",
+   "n_points": 6,
+   "n_edges": 9
+  },
+  "detailed_comparison": {
+   "collisions_introduced": 2,
+   "crossings_introduced": 0,
+   "fraction_distances_preserved": 0.2,
+   "diameter_change": -0.091355
+  },
+  "structural_comparison": {
+   "distances_preserved_count": 3,
+   "distances_total": 15,
+   "dimension_before": 3,
+   "dimension_after": 2,
+   "information_loss_summary": {
+    "collisions": 2,
+    "crossings": 0,
+    "distance_distortion": 0.8
+   },
+   "invariants_preserved": {
+    "n_points": true,
+    "dimension": false,
+    "diameter": false
+   },
+   "invariants_delta": {
+    "n_points": 0,
+    "dimension": -1,
+    "diameter": -0.091355
+   }
+  }
+ }
+}

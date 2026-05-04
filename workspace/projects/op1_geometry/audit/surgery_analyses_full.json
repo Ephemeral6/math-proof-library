@@ -1,0 +1,3848 @@
+{
+  "n_non_chordal_alphas": 12,
+  "total_pairs": 99,
+  "induced_4_cycle_pairs": 60,
+  "results": [
+    {
+      "alpha_idx": 38,
+      "k_alpha": 4,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 1,
+      "f_beta": 1,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 3,
+      "post_candidate_crossings": 2,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 2,
+      "beta_through_short_arc": 2,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 38,
+      "k_alpha": 4,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 8,
+      "f_beta": 1,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 5,
+      "post_candidate_crossings": 2,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 38,
+      "k_alpha": 4,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 12,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 13,
+      "post_candidate_crossings": 8,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 38,
+      "k_alpha": 4,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 14,
+      "f_beta": 1,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 8,
+      "post_candidate_crossings": 6,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 38,
+      "k_alpha": 4,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 25,
+      "f_beta": 2,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 0,
+      "post_intersection": 0,
+      "net_change": 0,
+      "pre_candidate_crossings": 8,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 38,
+      "k_alpha": 4,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 39,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 17,
+      "post_candidate_crossings": 10,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 38,
+      "k_alpha": 4,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 41,
+      "f_beta": 3,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 10,
+      "post_candidate_crossings": 6,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 38,
+      "k_alpha": 4,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 73,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 9,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 38,
+      "k_alpha": 4,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 168,
+      "f_beta": 3,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 10,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 105,
+      "k_alpha": 4,
+      "sigma_idx": 68,
+      "f_sigma": 2,
+      "beta_idx": 1,
+      "f_beta": 1,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 3,
+      "post_candidate_crossings": 3,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 2,
+      "beta_through_short_arc": 2,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 105,
+      "k_alpha": 4,
+      "sigma_idx": 68,
+      "f_sigma": 2,
+      "beta_idx": 22,
+      "f_beta": 1,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 15,
+      "post_candidate_crossings": 13,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 105,
+      "k_alpha": 4,
+      "sigma_idx": 68,
+      "f_sigma": 2,
+      "beta_idx": 24,
+      "f_beta": 1,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 8,
+      "post_candidate_crossings": 8,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 105,
+      "k_alpha": 4,
+      "sigma_idx": 68,
+      "f_sigma": 2,
+      "beta_idx": 33,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 21,
+      "post_candidate_crossings": 17,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 105,
+      "k_alpha": 4,
+      "sigma_idx": 68,
+      "f_sigma": 2,
+      "beta_idx": 41,
+      "f_beta": 3,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 10,
+      "post_candidate_crossings": 9,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 105,
+      "k_alpha": 4,
+      "sigma_idx": 68,
+      "f_sigma": 2,
+      "beta_idx": 68,
+      "f_beta": 2,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 0,
+      "post_intersection": 0,
+      "net_change": 0,
+      "pre_candidate_crossings": 17,
+      "post_candidate_crossings": 14,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 105,
+      "k_alpha": 4,
+      "sigma_idx": 68,
+      "f_sigma": 2,
+      "beta_idx": 120,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 25,
+      "post_candidate_crossings": 18,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 105,
+      "k_alpha": 4,
+      "sigma_idx": 68,
+      "f_sigma": 2,
+      "beta_idx": 209,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 18,
+      "post_candidate_crossings": 14,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 117,
+      "k_alpha": 4,
+      "sigma_idx": 72,
+      "f_sigma": 2,
+      "beta_idx": 5,
+      "f_beta": 1,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 9,
+      "post_candidate_crossings": 8,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 117,
+      "k_alpha": 4,
+      "sigma_idx": 72,
+      "f_sigma": 2,
+      "beta_idx": 6,
+      "f_beta": 1,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 9,
+      "post_candidate_crossings": 9,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 117,
+      "k_alpha": 4,
+      "sigma_idx": 72,
+      "f_sigma": 2,
+      "beta_idx": 24,
+      "f_beta": 1,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 9,
+      "post_candidate_crossings": 8,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 117,
+      "k_alpha": 4,
+      "sigma_idx": 72,
+      "f_sigma": 2,
+      "beta_idx": 37,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 24,
+      "post_candidate_crossings": 17,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 117,
+      "k_alpha": 4,
+      "sigma_idx": 72,
+      "f_sigma": 2,
+      "beta_idx": 72,
+      "f_beta": 2,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 0,
+      "post_intersection": 0,
+      "net_change": 0,
+      "pre_candidate_crossings": 17,
+      "post_candidate_crossings": 12,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 117,
+      "k_alpha": 4,
+      "sigma_idx": 72,
+      "f_sigma": 2,
+      "beta_idx": 116,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 27,
+      "post_candidate_crossings": 17,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 117,
+      "k_alpha": 4,
+      "sigma_idx": 72,
+      "f_sigma": 2,
+      "beta_idx": 123,
+      "f_beta": 3,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 16,
+      "post_candidate_crossings": 10,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 117,
+      "k_alpha": 4,
+      "sigma_idx": 72,
+      "f_sigma": 2,
+      "beta_idx": 219,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 21,
+      "post_candidate_crossings": 14,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 119,
+      "k_alpha": 4,
+      "sigma_idx": 74,
+      "f_sigma": 2,
+      "beta_idx": 1,
+      "f_beta": 1,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 4,
+      "post_candidate_crossings": 2,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 2,
+      "beta_through_short_arc": 2,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 119,
+      "k_alpha": 4,
+      "sigma_idx": 74,
+      "f_sigma": 2,
+      "beta_idx": 6,
+      "f_beta": 1,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 10,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 119,
+      "k_alpha": 4,
+      "sigma_idx": 74,
+      "f_sigma": 2,
+      "beta_idx": 15,
+      "f_beta": 1,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 14,
+      "post_candidate_crossings": 8,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 119,
+      "k_alpha": 4,
+      "sigma_idx": 74,
+      "f_sigma": 2,
+      "beta_idx": 39,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 21,
+      "post_candidate_crossings": 12,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 119,
+      "k_alpha": 4,
+      "sigma_idx": 74,
+      "f_sigma": 2,
+      "beta_idx": 43,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 22,
+      "post_candidate_crossings": 13,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 119,
+      "k_alpha": 4,
+      "sigma_idx": 74,
+      "f_sigma": 2,
+      "beta_idx": 74,
+      "f_beta": 2,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 0,
+      "post_intersection": 0,
+      "net_change": 0,
+      "pre_candidate_crossings": 13,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 119,
+      "k_alpha": 4,
+      "sigma_idx": 74,
+      "f_sigma": 2,
+      "beta_idx": 125,
+      "f_beta": 3,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 20,
+      "post_candidate_crossings": 10,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 119,
+      "k_alpha": 4,
+      "sigma_idx": 74,
+      "f_sigma": 2,
+      "beta_idx": 221,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 17,
+      "post_candidate_crossings": 6,
+      "alpha_gamma_intersection": 4,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 118,
+      "k_alpha": 5,
+      "sigma_idx": 73,
+      "f_sigma": 3,
+      "beta_idx": 1,
+      "f_beta": 1,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 3,
+      "post_candidate_crossings": 2,
+      "alpha_gamma_intersection": 5,
+      "sigma_gamma_intersection": 3,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 2,
+      "beta_through_short_arc": 2,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 118,
+      "k_alpha": 5,
+      "sigma_idx": 73,
+      "f_sigma": 3,
+      "beta_idx": 14,
+      "f_beta": 1,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 8,
+      "post_candidate_crossings": 6,
+      "alpha_gamma_intersection": 5,
+      "sigma_gamma_intersection": 3,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 118,
+      "k_alpha": 5,
+      "sigma_idx": 73,
+      "f_sigma": 3,
+      "beta_idx": 25,
+      "f_beta": 2,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 8,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 5,
+      "sigma_gamma_intersection": 3,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 118,
+      "k_alpha": 5,
+      "sigma_idx": 73,
+      "f_sigma": 3,
+      "beta_idx": 38,
+      "f_beta": 4,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 14,
+      "post_candidate_crossings": 9,
+      "alpha_gamma_intersection": 5,
+      "sigma_gamma_intersection": 3,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 118,
+      "k_alpha": 5,
+      "sigma_idx": 73,
+      "f_sigma": 3,
+      "beta_idx": 39,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 17,
+      "post_candidate_crossings": 12,
+      "alpha_gamma_intersection": 5,
+      "sigma_gamma_intersection": 3,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 118,
+      "k_alpha": 5,
+      "sigma_idx": 73,
+      "f_sigma": 3,
+      "beta_idx": 73,
+      "f_beta": 3,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 0,
+      "post_intersection": 0,
+      "net_change": 0,
+      "pre_candidate_crossings": 9,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 5,
+      "sigma_gamma_intersection": 3,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 118,
+      "k_alpha": 5,
+      "sigma_idx": 73,
+      "f_sigma": 3,
+      "beta_idx": 124,
+      "f_beta": 4,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 10,
+      "post_candidate_crossings": 6,
+      "alpha_gamma_intersection": 5,
+      "sigma_gamma_intersection": 3,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 118,
+      "k_alpha": 5,
+      "sigma_idx": 73,
+      "f_sigma": 3,
+      "beta_idx": 220,
+      "f_beta": 4,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 9,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 5,
+      "sigma_gamma_intersection": 3,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 88,
+      "k_alpha": 6,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 1,
+      "f_beta": 1,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 4,
+      "post_candidate_crossings": 2,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 2,
+      "beta_through_short_arc": 2,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 88,
+      "k_alpha": 6,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 8,
+      "f_beta": 1,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 6,
+      "post_candidate_crossings": 2,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 88,
+      "k_alpha": 6,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 25,
+      "f_beta": 2,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 0,
+      "post_intersection": 0,
+      "net_change": 0,
+      "pre_candidate_crossings": 10,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 88,
+      "k_alpha": 6,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 29,
+      "f_beta": 5,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 25,
+      "post_candidate_crossings": 10,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 88,
+      "k_alpha": 6,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 39,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 21,
+      "post_candidate_crossings": 10,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 88,
+      "k_alpha": 6,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 73,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 13,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 88,
+      "k_alpha": 6,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 89,
+      "f_beta": 5,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 29,
+      "post_candidate_crossings": 10,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 88,
+      "k_alpha": 6,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 118,
+      "f_beta": 5,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 20,
+      "post_candidate_crossings": 8,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 88,
+      "k_alpha": 6,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 168,
+      "f_beta": 3,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 13,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 186,
+      "k_alpha": 6,
+      "sigma_idx": 38,
+      "f_sigma": 4,
+      "beta_idx": 1,
+      "f_beta": 1,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 3,
+      "post_candidate_crossings": 3,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 4,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 2,
+      "beta_through_short_arc": 2,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 186,
+      "k_alpha": 6,
+      "sigma_idx": 38,
+      "f_sigma": 4,
+      "beta_idx": 12,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 15,
+      "post_candidate_crossings": 13,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 4,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 186,
+      "k_alpha": 6,
+      "sigma_idx": 38,
+      "f_sigma": 4,
+      "beta_idx": 14,
+      "f_beta": 1,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 8,
+      "post_candidate_crossings": 8,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 4,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 186,
+      "k_alpha": 6,
+      "sigma_idx": 38,
+      "f_sigma": 4,
+      "beta_idx": 38,
+      "f_beta": 4,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 0,
+      "post_intersection": 0,
+      "net_change": 0,
+      "pre_candidate_crossings": 17,
+      "post_candidate_crossings": 14,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 4,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 186,
+      "k_alpha": 6,
+      "sigma_idx": 38,
+      "f_sigma": 4,
+      "beta_idx": 61,
+      "f_beta": 5,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 21,
+      "post_candidate_crossings": 17,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 4,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 186,
+      "k_alpha": 6,
+      "sigma_idx": 38,
+      "f_sigma": 4,
+      "beta_idx": 73,
+      "f_beta": 3,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 10,
+      "post_candidate_crossings": 9,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 4,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 186,
+      "k_alpha": 6,
+      "sigma_idx": 38,
+      "f_sigma": 4,
+      "beta_idx": 118,
+      "f_beta": 5,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 18,
+      "post_candidate_crossings": 14,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 4,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 186,
+      "k_alpha": 6,
+      "sigma_idx": 38,
+      "f_sigma": 4,
+      "beta_idx": 206,
+      "f_beta": 5,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 25,
+      "post_candidate_crossings": 18,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 4,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 253,
+      "k_alpha": 6,
+      "sigma_idx": 68,
+      "f_sigma": 2,
+      "beta_idx": 1,
+      "f_beta": 1,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 4,
+      "post_candidate_crossings": 3,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 2,
+      "beta_through_short_arc": 2,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 253,
+      "k_alpha": 6,
+      "sigma_idx": 68,
+      "f_sigma": 2,
+      "beta_idx": 22,
+      "f_beta": 1,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 18,
+      "post_candidate_crossings": 13,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 253,
+      "k_alpha": 6,
+      "sigma_idx": 68,
+      "f_sigma": 2,
+      "beta_idx": 68,
+      "f_beta": 2,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 0,
+      "post_intersection": 0,
+      "net_change": 0,
+      "pre_candidate_crossings": 20,
+      "post_candidate_crossings": 14,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 253,
+      "k_alpha": 6,
+      "sigma_idx": 68,
+      "f_sigma": 2,
+      "beta_idx": 82,
+      "f_beta": 5,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 46,
+      "post_candidate_crossings": 20,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 253,
+      "k_alpha": 6,
+      "sigma_idx": 68,
+      "f_sigma": 2,
+      "beta_idx": 120,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 37,
+      "post_candidate_crossings": 18,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 253,
+      "k_alpha": 6,
+      "sigma_idx": 68,
+      "f_sigma": 2,
+      "beta_idx": 209,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 22,
+      "post_candidate_crossings": 14,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 253,
+      "k_alpha": 6,
+      "sigma_idx": 68,
+      "f_sigma": 2,
+      "beta_idx": 271,
+      "f_beta": 5,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 49,
+      "post_candidate_crossings": 21,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 253,
+      "k_alpha": 6,
+      "sigma_idx": 68,
+      "f_sigma": 2,
+      "beta_idx": 330,
+      "f_beta": 5,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 31,
+      "post_candidate_crossings": 17,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 268,
+      "k_alpha": 6,
+      "sigma_idx": 72,
+      "f_sigma": 2,
+      "beta_idx": 5,
+      "f_beta": 1,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 9,
+      "post_candidate_crossings": 8,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 268,
+      "k_alpha": 6,
+      "sigma_idx": 72,
+      "f_sigma": 2,
+      "beta_idx": 24,
+      "f_beta": 1,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 9,
+      "post_candidate_crossings": 8,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 268,
+      "k_alpha": 6,
+      "sigma_idx": 72,
+      "f_sigma": 2,
+      "beta_idx": 72,
+      "f_beta": 2,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 0,
+      "post_intersection": 0,
+      "net_change": 0,
+      "pre_candidate_crossings": 18,
+      "post_candidate_crossings": 12,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 268,
+      "k_alpha": 6,
+      "sigma_idx": 72,
+      "f_sigma": 2,
+      "beta_idx": 87,
+      "f_beta": 5,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 44,
+      "post_candidate_crossings": 18,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 268,
+      "k_alpha": 6,
+      "sigma_idx": 72,
+      "f_sigma": 2,
+      "beta_idx": 116,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 31,
+      "post_candidate_crossings": 17,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 268,
+      "k_alpha": 6,
+      "sigma_idx": 72,
+      "f_sigma": 2,
+      "beta_idx": 219,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 26,
+      "post_candidate_crossings": 14,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 268,
+      "k_alpha": 6,
+      "sigma_idx": 72,
+      "f_sigma": 2,
+      "beta_idx": 267,
+      "f_beta": 5,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 47,
+      "post_candidate_crossings": 18,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 268,
+      "k_alpha": 6,
+      "sigma_idx": 72,
+      "f_sigma": 2,
+      "beta_idx": 362,
+      "f_beta": 5,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 37,
+      "post_candidate_crossings": 17,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 270,
+      "k_alpha": 6,
+      "sigma_idx": 74,
+      "f_sigma": 2,
+      "beta_idx": 1,
+      "f_beta": 1,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 4,
+      "post_candidate_crossings": 2,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 2,
+      "beta_through_short_arc": 2,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 270,
+      "k_alpha": 6,
+      "sigma_idx": 74,
+      "f_sigma": 2,
+      "beta_idx": 6,
+      "f_beta": 1,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 10,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 270,
+      "k_alpha": 6,
+      "sigma_idx": 74,
+      "f_sigma": 2,
+      "beta_idx": 43,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 26,
+      "post_candidate_crossings": 13,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 270,
+      "k_alpha": 6,
+      "sigma_idx": 74,
+      "f_sigma": 2,
+      "beta_idx": 74,
+      "f_beta": 2,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 0,
+      "post_intersection": 0,
+      "net_change": 0,
+      "pre_candidate_crossings": 14,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 270,
+      "k_alpha": 6,
+      "sigma_idx": 74,
+      "f_sigma": 2,
+      "beta_idx": 89,
+      "f_beta": 5,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 33,
+      "post_candidate_crossings": 14,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 270,
+      "k_alpha": 6,
+      "sigma_idx": 74,
+      "f_sigma": 2,
+      "beta_idx": 128,
+      "f_beta": 5,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 34,
+      "post_candidate_crossings": 14,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 270,
+      "k_alpha": 6,
+      "sigma_idx": 74,
+      "f_sigma": 2,
+      "beta_idx": 221,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 21,
+      "post_candidate_crossings": 6,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 270,
+      "k_alpha": 6,
+      "sigma_idx": 74,
+      "f_sigma": 2,
+      "beta_idx": 364,
+      "f_beta": 5,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 32,
+      "post_candidate_crossings": 13,
+      "alpha_gamma_intersection": 6,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 269,
+      "k_alpha": 7,
+      "sigma_idx": 73,
+      "f_sigma": 3,
+      "beta_idx": 1,
+      "f_beta": 1,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 4,
+      "post_candidate_crossings": 2,
+      "alpha_gamma_intersection": 7,
+      "sigma_gamma_intersection": 3,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 2,
+      "beta_through_short_arc": 2,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 269,
+      "k_alpha": 7,
+      "sigma_idx": 73,
+      "f_sigma": 3,
+      "beta_idx": 25,
+      "f_beta": 2,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 10,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 7,
+      "sigma_gamma_intersection": 3,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 269,
+      "k_alpha": 7,
+      "sigma_idx": 73,
+      "f_sigma": 3,
+      "beta_idx": 39,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 21,
+      "post_candidate_crossings": 12,
+      "alpha_gamma_intersection": 7,
+      "sigma_gamma_intersection": 3,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 269,
+      "k_alpha": 7,
+      "sigma_idx": 73,
+      "f_sigma": 3,
+      "beta_idx": 73,
+      "f_beta": 3,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 0,
+      "post_intersection": 0,
+      "net_change": 0,
+      "pre_candidate_crossings": 13,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 7,
+      "sigma_gamma_intersection": 3,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 269,
+      "k_alpha": 7,
+      "sigma_idx": 73,
+      "f_sigma": 3,
+      "beta_idx": 88,
+      "f_beta": 6,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 26,
+      "post_candidate_crossings": 13,
+      "alpha_gamma_intersection": 7,
+      "sigma_gamma_intersection": 3,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 269,
+      "k_alpha": 7,
+      "sigma_idx": 73,
+      "f_sigma": 3,
+      "beta_idx": 89,
+      "f_beta": 5,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 29,
+      "post_candidate_crossings": 14,
+      "alpha_gamma_intersection": 7,
+      "sigma_gamma_intersection": 3,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 269,
+      "k_alpha": 7,
+      "sigma_idx": 73,
+      "f_sigma": 3,
+      "beta_idx": 220,
+      "f_beta": 4,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 14,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 7,
+      "sigma_gamma_intersection": 3,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 269,
+      "k_alpha": 7,
+      "sigma_idx": 73,
+      "f_sigma": 3,
+      "beta_idx": 363,
+      "f_beta": 6,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 20,
+      "post_candidate_crossings": 9,
+      "alpha_gamma_intersection": 7,
+      "sigma_gamma_intersection": 3,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 236,
+      "k_alpha": 8,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 1,
+      "f_beta": 1,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 4,
+      "post_candidate_crossings": 2,
+      "alpha_gamma_intersection": 8,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 2,
+      "beta_through_short_arc": 2,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 236,
+      "k_alpha": 8,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 8,
+      "f_beta": 1,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 6,
+      "post_candidate_crossings": 2,
+      "alpha_gamma_intersection": 8,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 236,
+      "k_alpha": 8,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 25,
+      "f_beta": 2,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 0,
+      "post_intersection": 0,
+      "net_change": 0,
+      "pre_candidate_crossings": 10,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 8,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 236,
+      "k_alpha": 8,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 73,
+      "f_beta": 3,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 14,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 8,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 236,
+      "k_alpha": 8,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 78,
+      "f_beta": 7,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 37,
+      "post_candidate_crossings": 10,
+      "alpha_gamma_intersection": 8,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 236,
+      "k_alpha": 8,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 89,
+      "f_beta": 5,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 33,
+      "post_candidate_crossings": 10,
+      "alpha_gamma_intersection": 8,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 236,
+      "k_alpha": 8,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 168,
+      "f_beta": 3,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 14,
+      "post_candidate_crossings": 4,
+      "alpha_gamma_intersection": 8,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 236,
+      "k_alpha": 8,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 237,
+      "f_beta": 7,
+      "in_induced_4_cycle": true,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 41,
+      "post_candidate_crossings": 10,
+      "alpha_gamma_intersection": 8,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "alpha_idx": 236,
+      "k_alpha": 8,
+      "sigma_idx": 25,
+      "f_sigma": 2,
+      "beta_idx": 269,
+      "f_beta": 7,
+      "in_induced_4_cycle": false,
+      "pre_intersection": 1,
+      "post_intersection": 1,
+      "net_change": 0,
+      "pre_candidate_crossings": 32,
+      "post_candidate_crossings": 10,
+      "alpha_gamma_intersection": 8,
+      "sigma_gamma_intersection": 2,
+      "surgery_region_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "surgery_region_punctures": 2,
+      "short_arc_triangles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "long_arc_triangles": [],
+      "beta_in_surgery_region": 4,
+      "beta_through_short_arc": 4,
+      "beta_through_long_arc": 0,
+      "beta_triangles": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "theorem_name": "first_order_unconstrained",
+  "layer": 1,
+  "natural_language_statement": "Let f : E → ℝ have gradient f'(x) at every point and let xm be a minimum of f on the entire space E. If f' is continuous, then f'(xm) = 0.",
+  "assumptions": [
+    "E is a complete real inner product space",
+    "f : E → ℝ with gradient f' : E → E",
+    "hf : ∀ x : E, HasGradientAt f (f' x) x",
+    "min : IsMinOn f univ xm",
+    "hfc : ContinuousOn f' univ"
+  ],
+  "conclusion": "f' xm = 0",
+  "proof_sketch": [
+    "Suppose f'(xm) ≠ 0 for contradiction.",
+    "Build descent direction d = -f'(xm). The inner product ⟨f'(xm), -f'(xm)⟩ = -‖f'(xm)‖^2 < 0, so DescentDirection holds.",
+    "The auxiliary lemma optimal_no_descent_direction says: at an unconstrained minimum, no descent direction exists.",
+    "This contradicts h1, hence f'(xm) = 0."
+  ],
+  "key_mathlib_lemmas": [
+    "real_inner_self_eq_norm_sq",
+    "inner_neg_right",
+    "Left.neg_neg_iff"
+  ],
+  "registry_dependencies": [
+    "optimal_no_descent_direction (helper from optlib)",
+    "DescentDirection (definition from optlib)"
+  ]
+}

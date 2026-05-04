@@ -1,0 +1,19 @@
+{
+  "lemma_name": "convex_first_order_condition_grad_depth2_idx1",
+  "nl_statement": "If f is convex on s and has gradient f'(x) at every x ∈ s, then f(x) + ⟨f'(x), y - x⟩ ≤ f(y) for all x, y ∈ s.",
+  "lean_signature": "theorem convex_first_order_condition_grad_depth2_idx1 {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E] {s : Set E} {f : E → ℝ} {f' : E → E} (hfun : ConvexOn ℝ s f) (h : ∀ x ∈ s, HasGradientAt f (f' x) x) : ∀ x ∈ s, ∀ y ∈ s, f x + inner ℝ (f' x) (y - x) ≤ f y",
+  "lean_file": "LeanAgent/Generated/convex_first_order_condition_grad_depth2_idx1.lean",
+  "imports": ["Mathlib"],
+  "depends_on": [],
+  "assumptions": ["E real inner product space (complete)", "f convex on s", "f has gradient f' on s"],
+  "verdict": "CERTIFIED",
+  "n_stuck": 0,
+  "pr_ready": true,
+  "abstraction_level": "InnerProductSpace ℝ E + CompleteSpace E (generic)",
+  "reuse_potential": "high",
+  "reuse_reason": "first-order characterization of convexity in gradient form — used pervasively",
+  "synthesized": true,
+  "parent_lemma": "convex_monotone_gradient_prime_helper_depth1_idx2",
+  "depth": 2,
+  "ts": "2026-04-28T20:58:00+08:00"
+}

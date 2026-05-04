@@ -1,0 +1,17 @@
+{
+  "lemma_name": "strong_convex_gradient_lower_bound",
+  "nl_statement": "If f is strongly convex on s with parameter m and has gradient f'(x) at every x ∈ s, then ⟨f'(x) - f'(y), x - y⟩ ≥ m·‖x - y‖² for all x, y ∈ s.",
+  "lean_signature": "theorem strong_convex_gradient_lower_bound {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E] {s : Set E} {f : E → ℝ} {m : ℝ} {f' : E → E} (hsc : StrongConvexOn s m f) (hf : ∀ x ∈ s, HasGradientAt f (f' x) x) : ∀ x ∈ s, ∀ y ∈ s, inner ℝ (f' x - f' y) (x - y) ≥ m * ‖x - y‖ ^ 2",
+  "lean_file": "LeanAgent/Generated/strong_convex_gradient_lower_bound.lean",
+  "imports": ["Mathlib", "LeanAgent.Generated.sub_normsquare_gradient_helper_depth1_idx1", "LeanAgent.Generated.convex_monotone_gradient_prime_helper_depth1_idx2"],
+  "depends_on": ["sub_normsquare_gradient_helper_depth1_idx1", "convex_monotone_gradient_prime_helper_depth1_idx2"],
+  "assumptions": ["E real inner product space (complete)", "f m-strongly convex on s", "f has gradient f' on s"],
+  "verdict": "CERTIFIED",
+  "n_stuck": 0,
+  "pr_ready": true,
+  "abstraction_level": "InnerProductSpace ℝ E + CompleteSpace E (generic)",
+  "reuse_potential": "high",
+  "reuse_reason": "core property used by every strong convexity convergence proof",
+  "synthesized": false,
+  "ts": "2026-04-28T21:05:00+08:00"
+}

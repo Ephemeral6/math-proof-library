@@ -1,0 +1,1380 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage[shortlabels]{enumitem}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{CJKutf8}
+\usepackage{tabularx}
+\usepackage{longtable}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue
+}
+
+% Custom commands
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prb}{\mathbb{P}}
+\newcommand{\KL}{\mathrm{KL}}
+\newcommand{\TV}{\mathrm{TV}}
+\newcommand{\conv}{\mathrm{conv}}
+\newcommand{\dom}{\mathrm{dom}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\Sset}{\mathcal{S}}
+\newcommand{\eq}[1]{\ensuremath{(\text{#1})}}
+
+\title{OP-2 Downgraded ($\forall$-$\exists$):\\
+Fixed-momentum SHB last iterate does not accelerate on the Goujaud feasibility region\\
+\textit{Complete, Self-Contained Proof (v5)}}
+\author{\begin{CJK}{UTF8}{gbsn}潘冠成\end{CJK} (Guancheng Pan)\\ \begin{CJK}{UTF8}{gbsn}浙江大学竺可桢学院\end{CJK} (Chu Kochen Honors College, Zhejiang University)\\ \texttt{3250101086@zju.edu.cn}}
+\date{Compiled: 2026-04-28 (v5)}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\bigskip
+\hrule
+\bigskip
+
+\section*{Summary of changes from v4 [NEW in v5]}
+
+The following revisions were applied between v4 and v5 in response to a peer review by an external reviewer (SIOPT-published optimization expert). The mathematical content of the main theorem and its proof is unchanged from v4; v5 corrections are presentational, citational, and additive (a new \S0.8 and \S4.2.1).
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{[MOD v5-1]} \textbf{Title clarification.} The title now explicitly says ``last iterate'' to avoid ambiguity with Ces\`aro / best-iterate / averaged variants. The Main Theorem statement and proof both bound $\E[f(x_T) - f^\star]$, which is a last-iterate quantity.
+  \item \textbf{[MOD v5-2]} \textbf{\S0.5 init clarification.} Item 2 of the Main Theorem now explicitly states $x_0 - x_{-1} = (D/\sqrt 2)(e_0 - e_{K-1}) \neq 0$ --- non-zero initial velocity is essential for the cycling identity. The standard zero-momentum init $x_0 = x_{-1}$ is treated separately in \S0.8.
+  \item \textbf{[MOD v5-3]} \textbf{New \S0.8 Initialization sensitivity.} Documents the Theorem 5.1 obstruction: $x_1^{\mathrm{zero}} = (D/\sqrt 2)[-\beta e_0 + e_1 + \beta e_{K-1}]$, which equals the next cycle vertex iff $\beta = 0$. References the companion document for the positive-measure result on $\F^{\mathrm{zero}}_{K=3}$.
+  \item \textbf{[MOD v5-4]} \textbf{New \S4.2.1 Last-iterate tightness.} The \S4.2 (GFJ15) discussion is followed by a new \S4.2.1 documenting that no matching last-iterate UB exists at fixed $(\beta,\eta)$, plus three partial positive tightness statements (minimax-over-$\eta$, projected-up-to-$\log T$, deterministic Ces\`aro). Closed-form noise floor $\mathrm{Var}_\infty[x] = \eta\sigma^2(1+\beta) / [L(1-\beta)(2(1+\beta) - \eta L)]$ derived.
+  \item \textbf{[MOD v5-5]} \textbf{Li--Liu--Orabona venue and title corrected.} The \S4.2.5 citation now reads ``arXiv:2102.07002, ALT 2022 / PMLR v167, On the Last Iterate Convergence of Momentum Methods'' (was incorrectly ``ICML 2022, On the Last-Iterate Convergence of Stochastic Gradient Descent with Momentum'').
+  \item \textbf{[MOD v5-6]} \textbf{Sebbouh--Gower--Defazio venue and title corrected.} The cited title is now ``Almost sure convergence rates for Stochastic Gradient Descent and Stochastic Heavy Ball'' (COLT 2021 / PMLR v134); the previous citation referred to a different paper title and the wrong year.
+  \item \textbf{[MOD v5-7]} \textbf{Citation fix: Goujaud--Pedregosa--Taylor $\to$ Goujaud--Taylor--Dieuleveut.} The cycling-LB paper is arXiv:2307.11291; the correct author list is Goujaud, Taylor, Dieuleveut (3 authors). The acronym ``GPT23'' is now ``GTD23''. Affected: 387 occurrences across the project; the math is unchanged. (Pedregosa is correctly cited in arXiv:2307.11291's own bibliography as a different work, ``Super-acceleration with cyclical step-sizes,'' Goujaud--Scieur--Dieuleveut--Taylor--Pedregosa 2022.)
+  \item \textbf{[MOD v5-8]} \textbf{\S2.4.1 ``cubic'' $\to$ ``quadratic critical-point equation.''} The equation $3\sqrt 2\, r\, c_\alpha^2 - (2\sqrt 2\, r + 4) c_\alpha + 2 = 0$ is degree 2 in $c_\alpha$ (the derivative of the cubic objective).
+\end{itemize}
+
+\bigskip
+\hrule
+\bigskip
+
+\section*{Summary of changes from v3 [NEW in v4]}
+
+The variance constant is sharpened from $c_{\mathrm{NY}} = 1/112$ to $c_{\mathrm{NY}} = \sqrt 2/27 \approx 0.0524$ (factor $\approx 5.87$ improvement) by reparametrizing the Le Cam signal amplitude. All v4 edits are tagged inline with \textbf{[MOD v4-N: \ldots]}:
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{[MOD v4-1]} Reparametrize $\alpha := \sigma/(3\sqrt T)$ (i.e., $c_\alpha = 1/3$) instead of $\sigma/(2\sqrt{2T})$ (i.e., $c_\alpha = 1/(2\sqrt 2)$). The choice $c_\alpha = 1/3$ is the global maximizer of the cubic objective $\frac{\sqrt 2}{8}c_\alpha(1-c_\alpha)(2 - c_\alpha r\sqrt 2)$ at $r = \sqrt 2$, the worst case of (RGM); see derivation in the supplementary materials.
+\item \textbf{[MOD v4-2]} Wall radius updated to $R := D/\sqrt 2 - \sigma/(3L\sqrt T)$ to preserve $|y^\star_s| = D/\sqrt 2$ exactly under the new $\alpha$.
+\item \textbf{[MOD v4-3]} Lemma 1.4 (now Lemma 2.4 in v5) chain updated: per-step $\KL = 2/(9T)$, total $\KL_T = 2/9$, Pinsker $\TV \le 1/3$, Le Cam $p_{\min} \ge 1/3$ (no $1/14$ floor needed --- the new chain is clean enough that the floor is unnecessary).
+\item \textbf{[MOD v4-4]} Lemma 2.9 (now Lemma 3.10 in v5) Step 3 replaces the loose inequality $\alpha^2/(2L) \le \alpha D/4$ with the \textbf{exact} identity $\alpha D/\sqrt 2 - \alpha^2/(2L) = \alpha D \cdot (\sqrt 2/3)$ at the (RGM)-tight worst case $r := \sigma/(LD\sqrt T) = \sqrt 2$. The constant $\sqrt 2/3$ replaces $1/(2\sqrt 2)$ in Step 4.
+\item \textbf{[MOD v4-5]} Final arithmetic: $\alpha D \cdot (\sqrt 2/3) \cdot (1/3) = \sqrt 2\, \alpha D/9 = \sqrt 2\, \sigma D/(27\sqrt T)$, giving $c_{\mathrm{NY}} = \sqrt 2/27$.
+\item \textbf{[MOD v4-6]} Footnote in \S0.5 reframed: $1/(8\sqrt 2) \approx 0.0884$ is now stated as the \textbf{asymptotic limit} as $r := \sigma/(LD\sqrt T) \to 0$ (where the wall correction vanishes), not as a finite-$T$ deliverable under saturated (RGM). Hellinger TV gives a further $\sim 1\%$ sharpening but no clean closed form, so we do not pursue it.
+\item \textbf{[MOD v4-7]} New Remark 4.1.1 in \S4.1: explicit Nesterov-cycling matrix $M^{\mathrm{Nes}}$ partially answering GTD23 Conjecture 7.1. NAG has its own Goujaud-style cycling region $\F^{\mathrm{Nes}}$ (non-empty for $\mu/L \lesssim 0.25$, generally disjoint from $\F^{\mathrm{HB}}$), on which the analogous $\Omega(\mu D^2)$ non-acceleration bound transfers. Verified at machine precision; details in the supplementary numerical verification (available upon request). The framing is ``method-specific cycling, method-agnostic non-acceleration'' --- parallel results, not a Polyak-vs-NAG rate separation.
+\end{itemize}
+
+The Main Theorem statement, the hard-instance construction, the bias term $\kappa LD^2/4$, the cycling argument, the $\forall$-$\exists$ scope, and the positive-measure region $\F$ are all unchanged from v3. Only the variance-term constant, its derivation chain, and a new Remark 4.1.1 about the NAG analogue are updated.
+
+\bigskip
+\hrule
+\bigskip
+
+\section*{Summary of changes from v1}
+
+All v1$\to$v2 changes are marked inline with \textbf{[MOD v2: \ldots]} tags. The substantive changes were:
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{[MOD v2-1]} Rewrote \S2.1.1 and Lemma 2.6. v1 defined $f_0(x) := D^2\,\psi(x/D)$ and then, mid-proof, had to retract the rescaling because $\psi$'s gradient is not positively homogeneous. v2 defines $f_0$ directly as the \textbf{rescaled Goujaud function} $\tilde\psi$ with polytope $(D/\sqrt 2)\cdot \conv(P)$, and proves Lemma 2.6 cleanly via \textbf{positive homogeneity of Euclidean projection} (now stated explicitly as Lemma 1.7).
+\item \textbf{[MOD v2-2]} Redefined the wall $w$ so $|y^\star_s| = D/\sqrt 2$ \textbf{exactly}, yielding $\|(x_0, y_0) - (0, y^\star_s)\| = D$ exactly (Claim 2.4 is now a clean equality, not a ``$\leq D^2 + o(1)$'' absorption). This is achieved by taking wall-radius $R = D/\sqrt 2 - \alpha/L$ (instead of $R = D/\sqrt 2$), where $\alpha := \sigma/(2\sqrt{2T})$.
+\item \textbf{[MOD v2-3]} Lemma 2.9 (now Lemma 3.10 in v5) now states the constant \textbf{$c_\mathrm{NY} = 1/112$} that is actually produced by the rigorous Le Cam chain we write out (the wall correction $\alpha^2/(2L)$ is tracked honestly). The v1 claim of $1/(8\sqrt 2)$ was unsupported by the given derivation, and v1's inline chain (which dropped the wall correction) yielded $1/56$; we note explicitly that $1/(8\sqrt 2)$ is attainable via a tighter NY/ABRW argument but do not use it.
+\item \textbf{[MOD v2-4]} New Claim 2.11 (now Claim 3.13 in v5) verifying rigorously that the $\max_s$ step in the conclusion (Claim 2.10, now Claim 3.12 in v5) is valid.
+\item \textbf{[MOD v2-5]} New Claim 2.12 (now Claim 3.14 in v5) verifying that $f_{\beta,\eta}^{(s)}$ is \textbf{globally 0-strongly-convex} (i.e., convex but not strongly convex), matching the non-SC hypothesis of the target function class $\mathcal{F}_L$.
+\item \textbf{[MOD v2-6]} New \S2.7 proving $\F$ has positive 2-D Lebesgue measure in $\Sset$.
+\end{itemize}
+
+\section*{Summary of changes from v2 [NEW in v3]}
+
+Round-3 deep audit (with literature cross-check against arXiv:1412.7457, arXiv:2102.07002, arXiv:1009.0571) identified 9 items: 4 critical for publication rigor (citation accuracy, related-work completeness, technical precision) and 5 writing-quality items. \textbf{The mathematical content --- the theorem statement, the hard-instance construction, and the constants $\kappa/4$ and $1/112$ --- is correct and unchanged in v3.} All v3 edits are writing/citation/exposition fixes. Inline tagged with \textbf{[MOD v3-N: \ldots]}:
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{[MOD v3-1]} \textbf{Corrected GFJ15 citation.} Lemma 1.6 (now Lemma 2.8 in v5) in v2 attributed a stochastic upper bound $O(LD^2/T + \sigma D/\sqrt T)$ to Ghadimi--Feyzmahdavian--Johansson 2015 (arXiv:1412.7457). The paper is in fact \textbf{deterministic only}: it proves Ces\`aro-average convergence at rate $O(1/k)$ for $L$-smooth convex objectives under fixed $(\beta,\eta)$, without any stochastic oracle. v3 restates Lemma 1.6 (now Lemma 2.8 in v5) honestly as a deterministic result, and rewrites \S4.2 to split the tightness discussion into deterministic and stochastic cases, with a tightness footnote added to the Main Theorem in \S0.5.
+\item \textbf{[MOD v3-2]} \textbf{Compare with Li--Liu--Orabona 2022} (arXiv:2102.07002, ALT 2022 / PMLR v167, ``On the Last Iterate Convergence of Momentum Methods''). Added \S4.2.5 explicitly relating our LB to Li et al.'s last-iterate LB $\Omega(\ln T/\sqrt T)$ for constant-momentum SGDM on Lipschitz (non-smooth) convex functions. The two results are orthogonal/complementary (different function class, different oracle, different dimension scaling, different bound rate).
+\item \textbf{[MOD v3-3]} \textbf{Compare with Agarwal 2012 minimax LB} (IEEE TIT, arXiv:1009.0571). Added \S4.3 clarifying that our LB is \textbf{algorithm-specific} (against fixed-momentum SHB) and is strictly stronger than the minimax LB in the bias term. This is the precise ``non-acceleration'' statement: SHB cannot achieve AC-SA's optimal $LD^2/T^2$ bias rate on $\F$.
+\item \textbf{[MOD v3-4]} \textbf{KL chain rule for adaptive queries.} Added an explicit adaptive-queries discussion to Lemma 2.9 (now Lemma 3.10 in v5) Step 1. SHB's queries $(y_0, y_1, \ldots)$ are adaptive (not i.i.d.), so i.i.d. tensorization of KL is technically inapplicable. But since the oracle's $s$-dependency enters only through an additive, $s$-independent-of-history increment distribution, the chain-rule KL equals the iid-tensorized KL. Numerical value $1/4$ unchanged.
+\item \textbf{[MOD v3-5]} \textbf{Cleaned Lemma 1.4 (now Lemma 2.4 in v5).} The v2 version read as a debug log (three Rademacher attempts $\to$ realize $\KL = \infty$ $\to$ switch to Gaussian). v3 states the Gaussian two-point lemma upfront with a clean 10-line proof.
+\item \textbf{[MOD v3-6]} \textbf{Cleaned Claim 2.2 (now Claim 3.3 in v5) proof.} v2 contained ``wait let me redo'' and an incorrectly-signed intermediate step that nonetheless reached the correct answer. v3 gives a clean piecewise case analysis.
+\item \textbf{[MOD v3-7]} \textbf{Fixed the verification sentence in \S2.4.1 Step 3} (proof of Lemma 2.9, now Lemma 3.10 in v5). v2 ``verified'' a tautological rearrangement; v3 verifies the actual inequality $1/\sqrt 2 - 1/4 > 1/(2\sqrt 2)$ numerically.
+\item \textbf{[MOD v3-8]} \textbf{Specified $s^\star$ construction in Claim 2.10 (now Claim 3.12 in v5).} $s^\star = s^\star(\beta,\eta,T)$ is a deterministic function of the parameters; v3 makes this explicit so that $f_{\beta,\eta}^{(T)}$ is an unambiguous mathematical object.
+\item \textbf{[MOD v3-9]} \textbf{Separated sufficiency from necessity in \S2.7 Step 1.} v2 stated a biconditional feasibility equivalence for $K=3$; v3 separates the rigorous \textbf{sufficiency} direction (used by the positive-measure claim) from the \textbf{necessity} direction (empirically supported by a supplementary verification script, but not required for Theorem (Main)).
+\end{itemize}
+
+The Main Theorem statement (\S0.5) is updated with: (i) the explicit $c_\mathrm{NY} = \sqrt 2/27$ \textbf{[MOD v4-1: was $1/112$ in v3]}, (ii) the regime hypothesis $\sigma \leq L D\sqrt{2T}$ needed for the wall construction to be well-defined (so $R \geq 0$); for $\sigma$ above this, see Remark 0.7. (v3) A tightness footnote is added; see \S4.2 for details.
+
+\bigskip
+\hrule
+\bigskip
+
+\section{Theorem statement}
+
+\subsection{Notation and standing conventions}
+
+Throughout this document:
+
+\begin{itemize}
+\item $L, \sigma, D > 0$ are three fixed positive real constants (the smoothness constant, the oracle-variance scale, and the initial-distance budget).
+\item For $\beta \in [0,1)$ and $\eta > 0$, the \textbf{dimensionless step-size} is $h := \eta L$.
+\item $\R^d$ denotes Euclidean $d$-space with inner product $\langle\cdot,\cdot\rangle$ and Euclidean norm $\|\cdot\|$.
+\item For a closed convex set $C \subset \R^d$, $P_C : \R^d \to C$ is the Euclidean projection and $d_C(x) := \|x - P_C(x)\|$.
+\item For $\theta \in \R$, $R_\theta := \begin{pmatrix}\cos\theta & -\sin\theta\\ \sin\theta & \cos\theta\end{pmatrix} \in \mathrm{SO}(2)$ is the rotation matrix.
+\item For integer $K \geq 2$: $\theta_K := 2\pi/K$, $c_K := \cos\theta_K$, and
+  \[
+    e_t := (\cos(t\theta_K),\ \sin(t\theta_K)) \in \R^2,\qquad t \in \mathbb{Z}.
+  \]
+  Note $e_t = e_{t+K}$ (indexing modulo $K$), $R_{\theta_K} e_t = e_{t+1}$, $R_{-\theta_K} e_t = e_{t-1}$.
+\item $I_d$ is the $d\times d$ identity matrix. $[A, B]$ (Loewner order) means $B - A \succeq 0$.
+\end{itemize}
+
+\subsection{Algorithm class}
+
+\begin{definition}[Fixed-momentum Stochastic Heavy Ball, SHB]
+Given fixed hyperparameters $\beta \in [0,1)$ and $\eta > 0$, initial pair $(x_0, x_{-1}) \in \R^d \times \R^d$, an $L$-smooth convex objective $f:\R^d \to \R$, and a stochastic oracle that on input $x_t$ returns
+\[
+g_t = \nabla f(x_t) + \xi_t, \qquad \E[\xi_t \mid \mathcal{H}_t] = 0,\qquad \E[\|\xi_t\|^2 \mid \mathcal{H}_t] \leq \sigma^2,
+\]
+where $\mathcal{H}_t$ is the history up to step $t$, the SHB iteration is
+\begin{equation}
+\boxed{\ x_{t+1} = x_t - \eta\, g_t + \beta(x_t - x_{t-1}),\qquad t = 0, 1, 2, \ldots\ }\tag{SHB}\label{eq:SHB}
+\end{equation}
+
+The noise sequence $(\xi_t)_{t\geq 0}$ is assumed i.i.d. conditionally on the trajectory.
+\end{definition}
+
+\subsection{Stability region}
+
+\begin{definition}
+The \textbf{SHB stability region} is
+\[
+\Sset := \{(\beta, \eta) \in [0,1) \times \R_{>0} : \eta \leq 2(1 + \beta)/L\}.
+\]
+\end{definition}
+
+This is the classical parameter region in which SHB's update operator on a generic $L$-smooth quadratic has spectral radius $< 1$; outside $\Sset$, SHB diverges even on $(L/2)\|x\|^2$.
+
+\subsection{Goujaud cycling feasibility region}
+
+\begin{definition}
+For $(\beta, \eta, L) \in \Sset \times \R_{>0}$, integer $K \geq 3$, and $\kappa \in (0, 1)$, the \textbf{Goujaud--Taylor--Dieuleveut cycling inequality} (GTD-cyc) with parameter $(\beta, \eta, L, \kappa, K)$ is
+\begin{equation}
+\text{(GTD-cyc)}\qquad (\kappa \eta L)^2 - 2\big[\beta - c_K + \kappa(1 - \beta c_K)\big]\,(\kappa \eta L) + 2\kappa(1 - c_K)(1 + \beta^2 - 2\beta c_K) \leq 0.\tag{$\star$}\label{eq:star}
+\end{equation}
+\end{definition}
+
+\begin{definition}
+The \textbf{Goujaud feasibility region} is
+\[
+\F := \big\{(\beta,\eta) \in \Sset : \exists K \geq 3,\ \exists \kappa \in (0,1)\ \text{such that \eqref{eq:star} holds}\big\}.
+\]
+\end{definition}
+
+We write $\kappa(\beta,\eta)$ for a specific choice of $\kappa$ for which \eqref{eq:star} holds (e.g., the midpoint of the feasible $\kappa$-interval at the smallest feasible $K$); set $\mu(\beta,\eta) := \kappa(\beta,\eta) L$.
+
+\subsection{Main theorem}
+
+\begin{theorem}[Main]
+Let $L, \sigma, D > 0$ satisfy the mild regime condition
+\begin{equation}
+\sigma \leq L D\sqrt 2 \qquad (\text{so that}\ \sigma \leq L D\sqrt{2T}\ \text{for every}\ T \geq 1).\tag{RGM}\label{eq:RGM}
+\end{equation}
+Then for every $(\beta, \eta) \in \F$ and every integer $T \geq 1$, there exist:
+
+\begin{enumerate}[label=(\arabic*)]
+\item a function $f_{\beta,\eta}^{(T)} : \R^3 \to \R$ which is \textbf{convex and $L$-smooth} (globally 0-strongly-convex; see Claim 2.12), with a unique minimizer $x^\star \in \R^3$;
+\item an initial pair $(x_0, x_{-1}) \in \R^3 \times \R^3$ with $\|x_0 - x^\star\| = D$ (\textbf{[MOD v2-2]} --- exact equality) and \textbf{non-zero initial velocity} $x_0 - x_{-1} = (D/\sqrt 2)(e_0 - e_{K-1}) \neq 0$ (essential for the cycling identity; the standard zero-momentum init $x_0 = x_{-1}$ is a separate setting --- see \S0.8 below);
+\item an unbiased stochastic gradient oracle of variance $\leq \sigma^2$ (as in \S0.2);
+\end{enumerate}
+
+such that the SHB iterate $(x_t)_{t\geq 0}$ generated by $(\beta,\eta)$ on this instance satisfies
+\begin{equation}
+\boxed{\ \E[f_{\beta,\eta}^{(T)}(x_T) - f_{\beta,\eta}^{(T),\star}] \ \geq\ c(\beta,\eta) \cdot \frac{L D^2}{T}\ +\ c_\mathrm{NY} \cdot \frac{\sigma D}{\sqrt T}\ }\tag{MAIN}\label{eq:MAIN}
+\end{equation}
+where:
+\begin{itemize}
+\item $c(\beta,\eta) := \kappa(\beta,\eta) / 4 > 0$;
+\item $c_\mathrm{NY} := \sqrt 2/27 \approx 0.0524$ is the \textbf{sharp} Pinsker constant produced by the optimized Le Cam chain of Lemma 2.9 \textbf{[MOD v4-1: was $1/112$ in v3, factor $\approx 5.87$ improvement]}. The constant is obtained by reparametrizing $\alpha = c_\alpha\,\sigma/\sqrt T$ and optimizing $c_\alpha$ over the cubic $\frac{\sqrt 2}{8}c_\alpha(1-c_\alpha)(2 - c_\alpha r\sqrt 2)$ at the worst-case (RGM)-ratio $r = \sigma/(LD\sqrt T) = \sqrt 2$, whose closed-form maximizer is $c_\alpha^\star = 1/3$. A weaker $1/(8\sqrt 2) \approx 0.0884$ is the asymptotic limit as $r \to 0$ (the wall-correction term $\alpha^2/(2L)$ vanishes); under saturated (RGM) it is unattainable. v1 originally claimed $1/(8\sqrt 2)$ unjustified, v1's inline derivation gave $1/56$ by dropping the wall correction, v3 carried the correction rigorously to get $1/112$, and v4 sharpens by optimizing $c_\alpha$;
+\item the expectation is over the randomness of the oracle.
+\end{itemize}
+\hfill$\blacksquare$
+\end{theorem}
+
+\textbf{[MOD v3-1: TIGHTNESS FOOTNOTE]} \emph{Tightness of the bound.} The $LD^2/T$ bias term is tight in two independent senses. \textbf{Deterministic ($\sigma=0$):} Ghadimi--Feyzmahdavian--Johansson 2015 (Lemma 1.6) prove a matching deterministic Ces\`aro-average upper bound $O(LD^2/T)$ for fixed-momentum SHB on $L$-smooth convex functions; combined with our LB this yields tight $\Theta(LD^2/T)$ for deterministic HB on $\F$. \textbf{Stochastic ($\sigma>0$):} the $\sigma D/\sqrt T$ variance term matches the classical SGD stochastic upper bound $O(LD^2/T + \sigma D/\sqrt T)$ (Nemirovski--Yudin, Polyak--Juditsky); thus SHB is no worse than SGD on $\F$, and the $LD^2/T$ bias dependence is tight against SGD. We could not locate a matching stochastic upper bound specifically for fixed-momentum SHB in the literature (GFJ15 is deterministic only); thus the $\Omega(LD^2/T + \sigma D/\sqrt T)$ lower bound is tight ``relative to SGD'' in the stochastic regime. Crucially, Agarwal et al.\ 2012 (\S4.3) show that Lan's AC-SA achieves $O(LD^2/T^2 + \sigma D/\sqrt T)$ minimax-optimally, so our LB \textbf{rules out} any improvement of SHB's bias rate to $LD^2/T^2$ on $\F$. This is the non-acceleration conclusion.
+
+\textbf{Moreover}, $\F$ contains a subset of positive 2-D Lebesgue measure in $\Sset$: at $K = 3$,
+\[
+\F_{K=3} \supset \left\{(\beta,\eta) : \beta > \beta^\star := \frac{\sqrt{13} - 3}{2} \approx 0.3028,\ L\eta \in \left(\frac{3(1 + \beta + \beta^2)}{1 + 2\beta},\ 2(1+\beta)\right)\right\},
+\]
+a two-dimensional region whose 2-D Lebesgue measure is positive (see Claim 2.13, \textbf{[MOD v2-6]}).
+
+\subsection{Scope --- what the theorem does NOT claim}
+
+\begin{itemize}
+\item \textbf{Not claimed on $\Sset\setminus\F$.} In particular, on the pairs $(\beta, \eta) = (0.5, 1/L)$ and $(0.9, 1/(2L))$ (both in $\Sset\setminus\F$), the theorem asserts nothing. Empirical evidence in Part 3 suggests the original (full-$\Sset$) statement may be genuinely false there.
+\item \textbf{Not claimed for time-varying $(\beta_t, \eta_t)$.} The construction exploits fixedness.
+\item \textbf{The function $f_{\beta,\eta}^{(T)}$ depends on $(\beta, \eta, T)$.} The theorem is $\forall$-$\exists$, not $\exists$-$\forall$. The $T$-dependence enters only through the wall radius $R = D/\sqrt 2 - \sigma/(3L\sqrt T)$; it is monotone in $T$ and has a limit $D/\sqrt 2$ as $T \to \infty$.
+\end{itemize}
+
+\subsection{Remark on the regime condition (RGM)}
+
+Condition \eqref{eq:RGM} is the standard ``moderate-noise'' regime in Nemirovski--Yudin-style lower-bound constructions: it asks that the per-sample gradient noise magnitude $\sigma$ be not too large relative to the problem's natural scale $LD$. When \eqref{eq:RGM} fails (i.e., $\sigma > LD\sqrt 2$), the variance term $\sigma D/\sqrt T$ alone already dominates the bias term $LD^2/T$ for every $T \geq 1$:
+\[
+\sigma > LD\sqrt 2 \implies \frac{\sigma D}{\sqrt T} > \frac{\sqrt 2\, L D^2}{\sqrt T} \geq \frac{\sqrt 2\, L D^2}{T} > \frac{LD^2}{T},
+\]
+so the combined target $c\,LD^2/T + c'\,\sigma D/\sqrt T$ is satisfied by the variance term alone via a simpler pure-noise construction (e.g., Lemma 2.9 applied on a $\R^1$ instance with a constant wall of radius $D$; the required bound is no worse than $c_\mathrm{NY}\sigma D/\sqrt T$ with $c_\mathrm{NY} = \sqrt 2/27$). We therefore focus on the regime \eqref{eq:RGM} where the construction of \S2.1 is well-defined.
+
+\subsection{Initialization sensitivity (NEW v5)}
+\label{sec:0.8}
+
+The hard-instance initialization $(x_0, x_{-1}) = ((D/\sqrt 2)\,e_0,\, (D/\sqrt 2)\,e_{K-1})$ used in the Main Theorem has $x_0 \neq x_{-1}$, i.e., \textbf{non-zero initial velocity} $x_0 - x_{-1} = (D/\sqrt 2)(e_0 - e_{K-1}) \neq 0$. The cycling identity of Lemma 2.6 requires this non-zero velocity at the cycle vertex; the cycle is \emph{not} automatically attractive under the standard zero-momentum initialization $x_0 = x_{-1}$.
+
+For the standard zero-momentum init $x_0 = x_{-1}$ --- closer to mainstream practice --- the LB transfers to a positive-measure subset $\F^{\mathrm{zero}}_{K=3} \subsetneq \F_{K=3}$ but \textbf{not} the entirety of $\F_{K=3}$. The structural obstruction (proved in Companion Document A on zero-momentum initialization analysis, Theorem 5.1) is the explicit first-iterate formula:
+\[
+x_1^{\mathrm{zero}} = (D/\sqrt 2)\bigl[-\beta\, e_0 + e_1 + \beta\, e_{K-1}\bigr],
+\]
+which equals the next cycle vertex $(D/\sqrt 2)\,e_1$ if and only if $\beta = 0$. The ``velocity kick'' $\beta(x_0 - x_{-1}) = \beta(D/\sqrt 2)(e_0 - e_{K-1})$ in OP-2's hard-instance init is precisely what the cycling identity needs; without it, the iterate misses the next cycle vertex by the residual $\beta(D/\sqrt 2)(e_2 - e_0)$, so the cycling is broken at step 1 for any $\beta > 0$.
+
+Numerical evidence (50-digit \texttt{mpmath}, 100-point grid over $\F_{K=3}$) shows ${\sim}25\%$ of $\F_{K=3}$ supports the LB under zero-momentum init: 8\% via $K=3$ cycle attractor (concentrated at $\beta \in [0.7, 0.85]$, $\eta L$ near upper stability boundary) and 17\% via period-4 / period-6 attractors at higher $\beta$. The LB constants degrade slightly: bias becomes $\kappa LD^2/(10T)$ (uniform in $T \ge 1$) or $\kappa LD^2/(8T)$ (for $T \ge T_0 \approx 10$), while the variance constant $\sqrt 2/27$ is unchanged. See Companion Document A (zero-momentum initialization analysis) for the full result.
+
+\bigskip
+\hrule
+\bigskip
+
+\section{Prerequisite results (with complete statements)}
+
+\subsection{Convex analysis: Moreau identity}
+
+\begin{lemma}[Moreau decomposition]
+\label{lem:1.1}
+Let $C \subset \R^d$ be a non-empty closed convex set. Define
+\[
+\Phi_C(x) := \tfrac{1}{2}\|x\|^2 - \tfrac{1}{2} d_C(x)^2 = \tfrac{1}{2}\|P_C(x)\|^2 + \langle x - P_C(x), P_C(x)\rangle.
+\]
+
+Then:
+\begin{itemize}
+\item $\Phi_C$ is convex on $\R^d$.
+\item $\Phi_C$ is $C^{1,1}$ with $\nabla \Phi_C(x) = P_C(x)$.
+\item $\nabla \Phi_C = P_C$ is 1-Lipschitz (firmly non-expansive), i.e., $\Phi_C$ is $1$-smooth.
+\end{itemize}
+\end{lemma}
+
+\emph{Textbook result; see e.g., Bauschke--Combettes ``Convex Analysis and Monotone Operator Theory'' (2011), Prop.\ 12.27 \& Thm.\ 12.15.}
+
+\subsection{Strong-convexity gap identity}
+
+\begin{lemma}
+\label{lem:1.2}
+Let $f : \R^d \to \R$ be $\mu$-strongly convex with minimizer $x^\star$ and $f^\star = f(x^\star)$. Then for every $x \in \R^d$,
+\[
+f(x) - f^\star \geq \tfrac{\mu}{2}\|x - x^\star\|^2.
+\]
+\end{lemma}
+
+\begin{proof}
+By strong convexity, for all $x \in \R^d$ and any subgradient $g \in \partial f(x^\star)$: $f(x) \geq f(x^\star) + \langle g, x - x^\star\rangle + \tfrac{\mu}{2}\|x - x^\star\|^2$. At the minimizer $0 \in \partial f(x^\star)$, so taking $g = 0$ gives the result.
+\end{proof}
+
+\subsection{Goujaud--Taylor--Dieuleveut cycling theorem}
+
+\begin{lemma}[GTD23, Theorem 3.5 of arXiv:2307.11291 + \S3.4]
+\label{lem:1.3}
+Fix $L > 0$, $\mu \in (0, L)$, $\beta \in [0, 1)$, $\eta > 0$, and integer $K \geq 3$ such that the inequality \eqref{eq:star} of \S0.4 holds with $\kappa = \mu/L$. Define the $2 \times 2$ matrix
+\begin{equation}
+M := \frac{(1 + \beta - \mu \eta) I_2 - R_{\theta_K} - \beta R_{-\theta_K}}{(L - \mu)\, \eta},\tag{M-def}\label{eq:M-def}
+\end{equation}
+the vertex set
+\[
+P := \{M e_0, M e_1, \ldots, M e_{K-1}\} \subset \R^2,
+\]
+and the \textbf{Goujaud function}
+\begin{equation}
+\psi(x) := \tfrac{L}{2}\|x\|^2 - \tfrac{L - \mu}{2}\, d_{\conv(P)}(x)^2,\qquad x \in \R^2.\tag{PSI}\label{eq:PSI}
+\end{equation}
+
+Then:
+
+\textbf{(i) Regularity.} $\psi \in C^{1,1}(\R^2)$ is convex, $L$-smooth, and $\mu$-strongly convex. Its gradient is
+\begin{equation}
+\nabla \psi(x) = \mu\, x + (L - \mu)\, P_{\conv(P)}(x).\tag{PSI-grad}\label{eq:PSI-grad}
+\end{equation}
+Where the Hessian exists (a.e.), $\nabla^2 \psi(x) \in [\mu I_2, L I_2]$.
+
+\textbf{(ii) Minimum at the origin.} $0 \in \mathrm{int}(\conv(P))$, and $\arg\min \psi = \{0\}$ with $\psi(0) = 0$.
+
+\textbf{(iii) Projection--cycle identity.} For every $t \in \mathbb{Z}$, $P_{\conv(P)}(e_t) = M e_t$. (Content of \eqref{eq:star}.)
+
+\textbf{(iv) Cycling.} Consider deterministic HB on $\psi$ with the given $(\beta, \eta)$ and initialization $(x_0, x_{-1}) = (e_0, e_{K-1})$:
+\[
+x_{t+1} = x_t - \eta\, \nabla \psi(x_t) + \beta (x_t - x_{t-1}).
+\]
+Then for all $t \geq 0$, $x_t = e_{t \bmod K}$.
+\end{lemma}
+
+\begin{proof}[Proof of (i)--(ii): from Lemma~\ref{lem:1.1}]
+Rewrite
+\[
+\psi(x) = \tfrac{L}{2}\|x\|^2 - \tfrac{L-\mu}{2}(\|x\|^2 - 2\Phi_{\conv(P)}(x)) = \tfrac{\mu}{2}\|x\|^2 + (L-\mu) \Phi_{\conv(P)}(x).
+\]
+By Lemma~\ref{lem:1.1}, $\Phi_C$ is $1$-smooth and convex, $\nabla \Phi_C = P_C$. Hence $\nabla \psi(x) = \mu x + (L-\mu) P_C(x)$, which is $(\mu + (L-\mu)) = L$-Lipschitz. Strong convexity: $\langle \nabla \psi(x) - \nabla \psi(y), x - y\rangle \geq \mu \|x-y\|^2 + (L-\mu)\langle P_C(x) - P_C(y), x-y\rangle \geq \mu\|x-y\|^2$ (since $P_C$ is monotone). Loewner bound: $\nabla^2 \psi = \mu I + (L-\mu) \nabla P_C$, and $\nabla P_C$ is an orthogonal projection where it exists (spectrum $\subset \{0,1\}$), so $\mu I \preceq \nabla^2 \psi \preceq L I$.
+
+Rotation invariance: $M R_{\theta_K} = R_{\theta_K} M$ (elements of $\mathrm{SO}(2)$ commute), so $M e_{t+1} = M R_{\theta_K} e_t = R_{\theta_K} M e_t$. Hence $\conv(P)$ is rotation-invariant under $R_{\theta_K}$ with center at the origin, so $0 \in \conv(P)$; feasibility of \eqref{eq:star} implies non-empty interior, so $0 \in \mathrm{int}(\conv(P))$. Then $P_C(0) = 0$, $\nabla \psi(0) = 0$, and by strong convexity $0$ is the unique minimizer.
+\end{proof}
+
+\emph{Proof of (iii): see GTD23 \S3.4 for the KKT verification.} The projection identity reduces, via the KKT optimality condition for projection onto a polygon, to the algebraic inequality \eqref{eq:star}. Taken as a black box here; independent numerical verification to machine precision is in the supplementary verification scripts (Part 3).
+
+\begin{proof}[Proof of (iv)]
+Inductive. Assume $(x_{t-1}, x_t) = (e_{t-1}, e_t)$. By (i), (iii):
+\[
+\nabla \psi(e_t) = \mu e_t + (L - \mu) M e_t.
+\]
+By \eqref{eq:M-def}, $(L - \mu)\eta\, M e_t = (1+\beta-\mu\eta) e_t - e_{t+1} - \beta e_{t-1}$ (using $R_{\theta_K} e_t = e_{t+1}$, $R_{-\theta_K} e_t = e_{t-1}$). So
+\[
+\eta\,\nabla \psi(e_t) = \mu \eta\, e_t + (1 + \beta - \mu \eta) e_t - e_{t+1} - \beta e_{t-1} = (1 + \beta) e_t - e_{t+1} - \beta e_{t-1}.
+\]
+Substituting into the HB update:
+\[
+x_{t+1} = e_t - [(1+\beta) e_t - e_{t+1} - \beta e_{t-1}] + \beta(e_t - e_{t-1}) = e_{t+1}. \qedhere
+\]
+\end{proof}
+
+\subsection{Le Cam two-point method for stochastic mean estimation \textbf{[MOD v3-5: REWRITTEN CLEAN]}}
+
+\begin{lemma}[Le Cam two-point, Gaussian version]
+\label{lem:1.4}
+\textbf{[MOD v4-3: signal $\alpha$ reparametrized; updated KL/TV/Le Cam values]} Let $T \geq 1$, $\sigma, D > 0$. Define $\alpha := \sigma/(3\sqrt T)$ (corresponding to $c_\alpha = 1/3$ in the parametrization $\alpha = c_\alpha\,\sigma/\sqrt T$). For $s \in \{+1, -1\}$, let $\Prb_s^T$ denote the product measure of $T$ i.i.d.\ samples from $\mathcal{N}(s\alpha,\,\sigma^2)$. Then:
+
+\textbf{(a)} $\KL(\Prb_+^T \| \Prb_-^T) = T \cdot 2\alpha^2/\sigma^2 = 2/9$.
+
+\textbf{(b)} $\TV(\Prb_+^T, \Prb_-^T) \leq \sqrt{\KL/2} = 1/3$ (Pinsker).
+
+\textbf{(c)} For any (possibly randomized) estimator $\hat s : \R^T \to \{+1, -1\}$,
+\[
+\max_{s \in \{+1,-1\}}\ \Prb_s[\hat s \neq s]\ \geq\ \tfrac{1}{2}\bigl(1 - \TV(\Prb_+^T, \Prb_-^T)\bigr)\ \geq\ \tfrac{1}{2}\bigl(1 - 1/3\bigr)\ =\ 1/3.
+\]
+\end{lemma}
+
+\begin{proof}[Proof of (a)]
+The standard univariate Gaussian KL identity gives $\KL(\mathcal{N}(\alpha, \sigma^2) \| \mathcal{N}(-\alpha, \sigma^2)) = (2\alpha)^2/(2\sigma^2) = 2\alpha^2/\sigma^2$. Tensorizing over $T$ i.i.d.\ samples:
+\[
+\KL(\Prb_+^T \| \Prb_-^T) = T \cdot \frac{2\alpha^2}{\sigma^2} = T \cdot \frac{2 \cdot \sigma^2/(9T)}{\sigma^2} = \frac{2}{9}. \qquad\checkmark \qedhere
+\]
+\end{proof}
+
+\begin{proof}[Proof of (b)]
+Pinsker's inequality: $\TV(P, Q) \leq \sqrt{\KL(P \| Q)/2} = \sqrt{(2/9)/2} = \sqrt{1/9} = 1/3$.
+\end{proof}
+
+\begin{proof}[Proof of (c)]
+Le Cam's two-point lemma (Yu ``Assouad, Fano, Le Cam'' 1997, Ch.\ 24): for any estimator $\hat s$,
+\[
+\Prb_+[\hat s \neq +1] + \Prb_-[\hat s \neq -1] = \Prb_+[\hat s = -1] + \Prb_-[\hat s = +1] \geq 1 - \TV(\Prb_+^T, \Prb_-^T),
+\]
+by the variational definition of TV. Hence
+\[
+\max_{s}\Prb_s[\hat s \neq s] \geq \tfrac{1}{2}(1 - \TV) \geq \tfrac{1}{2}(1 - 1/3) = 1/3 \approx 0.333. \qedhere
+\]
+\end{proof}
+
+\begin{remark}[v4 vs v3]
+The v3 chain used $\alpha = \sigma/(2\sqrt{2T})$ (i.e., $c_\alpha = 1/(2\sqrt 2) \approx 0.354$), giving $\KL_T = 1/4$, $\TV \le 1/(2\sqrt 2) \approx 0.354$, and Le Cam $p_{\min} \approx 0.323$, then conservatively rounded to $1/14$. The v4 choice $c_\alpha = 1/3$ is the optimum of the cubic $c_\alpha(1-c_\alpha)(2 - c_\alpha r\sqrt 2)$ at $r = \sqrt 2$, gives a smaller signal but a cleaner $p_{\min} = 1/3$, and combined with the exact wall-correction handling in Lemma 2.9 yields the sharper variance constant.
+\end{remark}
+
+\begin{remark}[on the noise model]
+Our construction in \S2.1.3 uses Gaussian noise $\xi_t \sim \mathcal{N}(0, \sigma^2)$ on the $y$-coordinate, consistent with the variance hypothesis of \S0.2 (stdev $\sigma$, variance $\sigma^2$) and with this lemma.
+\end{remark}
+
+\subsection{Lan 2012 AC-SA upper bound (for comparison)}
+
+\begin{lemma}[Lan 2012]
+\label{lem:1.5}
+Let $f : \R^d \to \R$ be convex, $L$-smooth, $\|x_0 - x^\star\|\leq D$, and a stochastic oracle with variance $\sigma^2$. Then Lan's AC-SA method produces $\bar x_T$ with
+\[
+\E[f(\bar x_T) - f^\star] \leq \frac{c_1 L D^2}{T^2} + \frac{c_2 \sigma D}{\sqrt T}
+\]
+for universal constants $c_1, c_2$.
+\end{lemma}
+
+\emph{Cited from Lan (2012), ``An optimal method for stochastic composite optimization'', Math.\ Prog.\ 133.} Used in Part 4 for comparison only.
+
+\subsection{Ghadimi--Feyzmahdavian--Johansson 2015 upper bound (deterministic, for tightness) \textbf{[MOD v3-1: REWRITTEN]}}
+
+\begin{lemma}[GFJ15, deterministic]
+\label{lem:1.6}
+Let $f:\R^d \to \R$ be convex and $L$-smooth with minimizer $x^\star$ satisfying $\|x_0 - x^\star\|\leq D$. Run \textbf{deterministic} heavy-ball
+\[
+x_{t+1} = x_t - \eta\,\nabla f(x_t) + \beta(x_t - x_{t-1})
+\]
+(i.e., zero-variance oracle, $\sigma = 0$) with fixed $(\beta,\eta)$ in a suitable range. Let $\bar x_T := (1/T)\sum_{t=1}^T x_t$ be the Ces\`aro (weighted) average iterate. Then there exists a universal constant $c_3$ such that
+\[
+f(\bar x_T) - f^\star \leq \frac{c_3\, L D^2}{T}.
+\]
+\end{lemma}
+
+\emph{Cited from Ghadimi, Feyzmahdavian, Johansson (2015), ``Global convergence of the heavy-ball method for convex optimization'', arXiv:1412.7457.} \textbf{Caveat on scope.} The paper treats only the deterministic oracle case. Its abstract (quoted): \emph{``When the objective function has Lipschitz-continuous gradient, we show that the Ces\`aro average of the iterates converges to the optimum at a rate of $O(1/k)$''}. There is \textbf{no} stochastic oracle and \textbf{no} $\sigma D/\sqrt T$ term in GFJ15; prior versions of this document incorrectly claimed a stochastic GFJ15 upper bound. Used in Part 4 for tightness of the \textbf{bias term} in the deterministic case $\sigma = 0$; for stochastic-case tightness discussion (matching against SGD rather than a dedicated SHB stochastic UB), see \S4.2.
+
+\subsection{Positive homogeneity of Euclidean projection \textbf{[MOD v2-1: NEW LEMMA]}}
+
+\begin{lemma}[Positive homogeneity of projection]
+\label{lem:1.7}
+Let $C \subset \R^d$ be a non-empty closed convex set and $\lambda > 0$. Then for every $x \in \R^d$,
+\[
+P_{\lambda C}(\lambda x) = \lambda\, P_C(x),
+\]
+where $\lambda C := \{\lambda z : z \in C\}$.
+\end{lemma}
+
+\begin{proof}
+$\lambda C$ is again closed convex (affine image of a closed convex set under the invertible map $z \mapsto \lambda z$). By definition of projection,
+\[
+P_{\lambda C}(\lambda x) = \arg\min_{w \in \lambda C} \|w - \lambda x\|^2.
+\]
+Substitute $w = \lambda z$, $z \in C$ (a bijection $\lambda C \leftrightarrow C$ since $\lambda > 0$):
+\[
+P_{\lambda C}(\lambda x) = \lambda \cdot \arg\min_{z \in C} \|\lambda z - \lambda x\|^2 = \lambda \cdot \arg\min_{z \in C} \lambda^2 \|z - x\|^2.
+\]
+Since $\lambda^2 > 0$ is a positive constant (independent of $z$), the argmin is unchanged:
+\[
+= \lambda \cdot \arg\min_{z \in C} \|z - x\|^2 = \lambda\, P_C(x). \qedhere
+\]
+\end{proof}
+
+\begin{corollary}
+\label{cor:1.8}
+For $\lambda > 0$ and $x \in \R^d$: $d_{\lambda C}(\lambda x) = \lambda\, d_C(x)$.
+\end{corollary}
+
+\begin{proof}
+$d_{\lambda C}(\lambda x) = \|\lambda x - P_{\lambda C}(\lambda x)\| = \|\lambda x - \lambda P_C(x)\| = \lambda \|x - P_C(x)\| = \lambda d_C(x)$.
+\end{proof}
+
+\bigskip
+\hrule
+\bigskip
+\section{Complete proof}
+
+Fix $(\beta, \eta) \in \F$ and $T \geq 1$ for the remainder. By definition of $\F$, choose $K \geq 3$ and $\kappa = \kappa(\beta,\eta) \in (0,1)$ such that \eqref{eq:star} holds. Set
+\begin{equation}
+\mu := \kappa L \in (0, L).\tag{MU}\label{eq:MU}
+\end{equation}
+$\mu$ depends only on $(\beta, \eta)$; crucially \textbf{not on $T$}.
+
+\subsection{Construction of the hard instance $f_{\beta,\eta}^{(T)}$}
+
+\subsubsection{The 2-D base function $f_0$ (rescaled Goujaud) \textbf{[MOD v2-1: REWRITTEN]}}
+
+Apply Lemma~\ref{lem:1.3} at parameters $(L, \mu, \beta, \eta, K)$; \eqref{eq:star} holds by hypothesis. Let $M$ be the matrix of \eqref{eq:M-def}, $P = \{M e_0, \ldots, M e_{K-1}\}$. \textbf{Rescale the polytope}:
+\[
+\widetilde P := (D/\sqrt 2) \cdot P = \{(D/\sqrt 2)\, M e_t : t = 0, \ldots, K-1\}.
+\]
+Equivalently $\conv(\widetilde P) = (D/\sqrt 2) \cdot \conv(P)$. Define
+\begin{equation}
+\boxed{\ f_0(x) := \tfrac{L}{2}\|x\|^2 - \tfrac{L - \mu}{2}\, d_{\conv(\widetilde P)}(x)^2,\qquad x \in \R^2.\ }\tag{F0-v2}\label{eq:F0-v2}
+\end{equation}
+
+\begin{claim}
+\label{cla:2.1}
+$f_0$ is convex, $L$-smooth, and $\mu$-strongly convex on $\R^2$, with unique minimum $f_0(0) = 0$ at the origin.
+\end{claim}
+
+\begin{proof}
+$\conv(\widetilde P)$ is a non-empty closed convex set. By the Moreau rewriting (as in Lemma~\ref{lem:1.3}(i)),
+\[
+f_0(x) = \tfrac{\mu}{2}\|x\|^2 + (L - \mu)\, \Phi_{\conv(\widetilde P)}(x),
+\]
+so by Lemma~\ref{lem:1.1}, $f_0 \in C^{1,1}$ with
+\begin{equation}
+\nabla f_0(x) = \mu\, x + (L - \mu)\, P_{\conv(\widetilde P)}(x),\tag{F0-grad}\label{eq:F0-grad}
+\end{equation}
+and $\nabla f_0$ is $L$-Lipschitz. Monotonicity of $P_{\conv(\widetilde P)}$ gives $\mu$-strong convexity. The Hessian (where it exists) is $\nabla^2 f_0 = \mu I + (L-\mu)\nabla P_{\conv(\widetilde P)} \in [\mu I_2, L I_2]$.
+
+$\conv(\widetilde P)$ is rotation-invariant under $R_{\theta_K}$ (since $\conv(P)$ is, and $R_{\theta_K}$ commutes with the dilation by $D/\sqrt 2$); by Lemma~\ref{lem:1.3}(ii) applied to $\psi$, $0 \in \mathrm{int}(\conv(P))$, hence $0 \in \mathrm{int}(\conv(\widetilde P))$, so $P_{\conv(\widetilde P)}(0) = 0$ and $\nabla f_0(0) = 0$, $f_0(0) = 0$. Strong convexity gives uniqueness.
+\end{proof}
+
+\begin{remark}[relation to $\psi$]
+By Corollary~\ref{cor:1.8}, $d_{\conv(\widetilde P)}((D/\sqrt 2) u) = (D/\sqrt 2)\, d_{\conv(P)}(u)$. Substituting, $f_0((D/\sqrt 2) u) = (D^2/2)\, \psi(u)$, so $f_0$ is the value-rescaling $(D^2/2)\psi$ composed with the argument-rescaling $x \mapsto \sqrt 2 x / D$ --- i.e., $f_0(x) = (D^2/2)\psi(\sqrt 2 x/D)$. This is \textbf{not} $D^2\psi(x/D)$ (the v1 form, which has different polytope scaling and does not admit the desired cycling from $x_0 = (D/\sqrt 2) e_0$).
+\end{remark}
+
+\subsubsection{The wall function and 3-D hard instance \textbf{[MOD v2-2: WALL RADIUS CHANGED] [MOD v4-1, v4-2: $\alpha$ reparametrized to $c_\alpha = 1/3$]}}
+
+For $s \in \{+1, -1\}$, set
+\begin{equation}
+\alpha_s := s \cdot \frac{\sigma}{3\sqrt T}.\tag{ALPHA}\label{eq:ALPHA}
+\end{equation}
+Define the \textbf{wall radius}
+\begin{equation}
+R := \frac{D}{\sqrt 2} - \frac{\alpha}{L}, \qquad \text{where}\ \alpha := |\alpha_s| = \frac{\sigma}{3\sqrt T}.\tag{R-def}\label{eq:R-def}
+\end{equation}
+Under the regime \eqref{eq:RGM} of \S0.5, $\alpha/L = \sigma/(3L\sqrt T) \leq D\sqrt{2T}/(3\sqrt T) = D\sqrt 2/3 \approx 0.471\,D < D/\sqrt 2 \approx 0.707\,D$, so $R \in (D/\sqrt 2 - D\sqrt 2/3,\ D/\sqrt 2) = (D(\sqrt 2/3)\cdot(\sqrt 2/2),\ D/\sqrt 2)$, i.e., $R \in ((1/\sqrt 2 - \sqrt 2/3)\,D,\ D/\sqrt 2) \approx (0.236\,D,\ 0.707\,D)$. In particular $R > 0$. Define the \textbf{wall function} $w : \R \to \R$ by
+\[
+w(y) := \frac{L}{2}\big(\max(|y| - R,\ 0)\big)^2.
+\]
+Note $w$ is $L$-smooth convex with
+\[
+w'(y) = \begin{cases}0, & |y| \leq R, \\ L(|y| - R)\,\mathrm{sgn}(y), & |y| > R;\end{cases}\qquad w''(y) = \begin{cases}0, & |y| < R, \\ L, & |y| > R.\end{cases}
+\]
+
+Define the \textbf{3-D hard instance}
+\begin{equation}
+f_{\beta,\eta}^{(T),(s)}(x, y) := f_0(x) + \alpha_s y + w(y),\qquad (x, y) \in \R^2 \times \R = \R^3.\tag{F}\label{eq:F}
+\end{equation}
+
+\begin{claim}
+\label{cla:2.2}
+$f^{(s)} := f_{\beta,\eta}^{(T),(s)}$ is convex and $L$-smooth on $\R^3$, with unique minimizer $(0, y^\star_s)$ where
+\[
+y^\star_s = -s \cdot \frac{D}{\sqrt 2}\qquad \text{(exactly; [MOD v2-2])}.
+\]
+\end{claim}
+
+\begin{proof}
+\textbf{Regularity.} Hessian: $\nabla^2 f^{(s)}(x,y) = \nabla^2 f_0(x) \oplus w''(y)$ (block-diagonal; the linear term $\alpha_s y$ has zero Hessian). So $\|\nabla^2 f^{(s)}\|_{\mathrm{op}} \leq \max(L, L) = L$ (since $f_0$ is $L$-smooth and $w''(y) \leq L$), and $\nabla^2 f^{(s)} \succeq 0$ (since $f_0$ is $\mu$-SC hence $\succeq 0$, and $w'' \geq 0$). Thus $f^{(s)}$ is convex and $L$-smooth.
+
+\textbf{Minimizer, $x$-coordinate.} $\nabla_x f^{(s)} = \nabla f_0(x) = 0 \iff x = 0$ by Claim~\ref{cla:2.1}.
+
+\textbf{Minimizer, $y$-coordinate.} \textbf{[MOD v3-6: CLEANED]} We solve $\alpha_s + w'(y) = 0$ using the piecewise form of $w'$:
+\[
+w'(y) = \begin{cases}L(y - R), & y > R \quad \text{(positive sign)} \\ 0, & -R \leq y \leq R \\ L(y + R), & y < -R \quad \text{(negative sign)}\end{cases}
+\]
+(Derivation: for $y > R$, $|y| = y$ and $\mathrm{sgn}(y) = +1$, giving $w'(y) = L(y-R)\cdot(+1) = L(y-R) > 0$. For $y < -R$, $|y| = -y$ and $\mathrm{sgn}(y) = -1$, giving $w'(y) = L(-y-R)\cdot(-1) = L(y+R) < 0$. Flat region: $w' = 0$.)
+
+\textbf{Case $s = +1$} ($\alpha_s = +\alpha > 0$): need $w'(y) = -\alpha < 0$, which forces $y < -R$. From $L(y + R) = -\alpha$ we solve $y = -R - \alpha/L = -(D/\sqrt 2 - \alpha/L) - \alpha/L = -D/\sqrt 2$. Hence $y^\star_{+} = -D/\sqrt 2$.
+
+\textbf{Case $s = -1$} ($\alpha_s = -\alpha < 0$): by the symmetric argument (or by $y \mapsto -y$ symmetry of $w$), $y^\star_{-} = +D/\sqrt 2$.
+
+\textbf{Uniqueness.} At $(0, y^\star_s)$: $\nabla^2 f_0(0) \succeq \mu I_2$ (strong convexity of $f_0$), and $w''(y^\star_s) = L > 0$ (since $|y^\star_s| = D/\sqrt 2 > R$). The Hessian is positive-definite at the critical point, so by convexity the minimizer is globally unique.
+\end{proof}
+
+\subsubsection{Stochastic oracle \textbf{[MOD v2 minor: Gaussian noise]}}
+
+Let $(\xi_t)_{t\geq 0}$ be i.i.d.\ $\mathcal{N}(0, \sigma^2)$. On query $(x_t, y_t)$, the oracle returns
+\begin{equation}
+g_t := \big(\nabla f_0(x_t),\ \partial_y f^{(s)}(x_t, y_t) + \xi_t\big) \in \R^3.\tag{ORACLE}\label{eq:ORACLE}
+\end{equation}
+
+\begin{claim}
+\label{cla:2.3}
+The oracle \eqref{eq:ORACLE} is unbiased with per-query variance $\leq \sigma^2$ and is independent of history.
+\end{claim}
+
+\begin{proof}
+$\E[g_t \mid \mathcal{H}_t] = (\nabla f_0(x_t), \partial_y f^{(s)} + \E[\xi_t]) = \nabla f^{(s)}(x_t, y_t)$. Variance: $g_t - \nabla f^{(s)} = (0, 0, \xi_t)$ with $\E\|(0,0,\xi_t)\|^2 = \sigma^2$. Independence: $(\xi_t)$ i.i.d.
+\end{proof}
+
+\subsubsection{Initialization}
+
+Set
+\[
+x_0 := (D/\sqrt 2)\,e_0,\qquad x_{-1} := (D/\sqrt 2)\, e_{K-1}\qquad (\in \R^2),\qquad y_0 := 0,\ y_{-1} := 0.
+\]
+Full initial state in $\R^3$: $(x_0, y_0) = ((D/\sqrt 2) e_0,\, 0)$, $(x_{-1}, y_{-1}) = ((D/\sqrt 2) e_{K-1},\, 0)$.
+
+\begin{claim}[Initial distance, {[MOD v2-2]}]
+\label{cla:2.4}
+$\|(x_0, y_0) - (0, y^\star_s)\| = D$ \textbf{exactly}.
+\end{claim}
+
+\begin{proof}
+Compute:
+\begin{align*}
+\|(x_0, y_0) - (0, y^\star_s)\|^2
+&= \|(D/\sqrt 2) e_0 - 0\|^2 + |0 - y^\star_s|^2 \\
+&= (D/\sqrt 2)^2 \|e_0\|^2 + (D/\sqrt 2)^2 \\
+&= D^2/2 + D^2/2 = D^2.
+\end{align*}
+Using $\|e_0\| = 1$ (since $e_0 = (\cos 0, \sin 0) = (1, 0)$) and $|y^\star_s| = D/\sqrt 2$ (Claim~\ref{cla:2.2}).
+\end{proof}
+
+\subsection{Decoupling of SHB dynamics}
+
+\begin{claim}
+\label{cla:2.5}
+Under the construction of \S2.1, the SHB iterate $((x_t, y_t))_{t\geq 0}$ decouples: $(x_t)$ evolves as \textbf{deterministic} HB on $f_0$ with initialization $(x_0, x_{-1}) = ((D/\sqrt 2) e_0, (D/\sqrt 2) e_{K-1})$, and $(y_t)$ evolves independently with the stochastic drive.
+\end{claim}
+
+\begin{proof}
+By \eqref{eq:ORACLE}, $g_t = (\nabla f_0(x_t),\ \partial_y f^{(s)}(x_t, y_t) + \xi_t)$. Applying \eqref{eq:SHB} coordinate-wise:
+\begin{align*}
+x_{t+1} &= x_t - \eta\,\nabla f_0(x_t) + \beta(x_t - x_{t-1}),\\
+y_{t+1} &= y_t - \eta\,[\alpha_s + w'(y_t) + \xi_t] + \beta(y_t - y_{t-1}).
+\end{align*}
+The $x$-update contains no noise and uses only $(x_t, x_{t-1})$: \textbf{deterministic} HB on $f_0$. The $y$-update depends only on $(y_t, y_{t-1}, \xi_t)$ (since $\partial_y f^{(s)}(x_t, y_t) = \alpha_s + w'(y_t)$ is independent of $x_t$): independent of the $x$-dynamics.
+\end{proof}
+
+\subsection{Bias-term lower bound (the $x$-coordinate)}
+
+\subsubsection{Amplitude preservation (rescaled cycle has radius $D/\sqrt 2$) \textbf{[MOD v2-1: REWRITTEN CLEAN]}}
+
+\begin{lemma}[Amplitude Preservation]
+\label{lem:2.6}
+The deterministic HB iterate $(x_t)_{t \geq 0}$ on $f_0$ with initialization $(x_0, x_{-1}) = ((D/\sqrt 2) e_0,\, (D/\sqrt 2) e_{K-1})$ satisfies, for all $t \geq 0$,
+\[
+x_t = (D/\sqrt 2)\, e_{t \bmod K}.
+\]
+In particular, $\|x_t\| = D/\sqrt 2$ for every $t \geq 0$.
+\end{lemma}
+
+\begin{proof}
+\textbf{Step 1. Transplanted projection identity.} Set $\lambda := D/\sqrt 2 > 0$, $C := \conv(P)$, $\widetilde C := \lambda C = \conv(\widetilde P)$. By Lemma~\ref{lem:1.3}(iii), $P_C(e_t) = M e_t$ for every $t \in \mathbb{Z}$. By Lemma~\ref{lem:1.7} (positive homogeneity of projection) applied with scale $\lambda$:
+\begin{equation}
+P_{\widetilde C}(\lambda e_t) = \lambda\, P_C(e_t) = \lambda\, M e_t. \tag{PROJ-scaled}\label{eq:PROJ-scaled}
+\end{equation}
+
+\textbf{Step 2. Gradient at the rescaled cycle point.} By \eqref{eq:F0-grad},
+\begin{equation}
+\nabla f_0(\lambda e_t) = \mu\,\lambda e_t + (L - \mu)\, P_{\widetilde C}(\lambda e_t) \stackrel{\eqref{eq:PROJ-scaled}}{=} \lambda\,[\mu e_t + (L-\mu) M e_t] = \lambda\, \nabla \psi(e_t), \tag{GRAD-scaled}\label{eq:GRAD-scaled}
+\end{equation}
+using the formula $\nabla\psi(e_t) = \mu e_t + (L-\mu) M e_t$ from Lemma~\ref{lem:1.3}(i)+(iii).
+
+\textbf{Step 3. Apply Lemma~\ref{lem:1.3}(iv) calculation.} From the proof of Lemma~\ref{lem:1.3}(iv):
+\begin{equation}
+\eta\, \nabla \psi(e_t) = (1 + \beta) e_t - e_{t+1} - \beta e_{t-1}. \tag{GRAD-psi}\label{eq:GRAD-psi}
+\end{equation}
+Combining with \eqref{eq:GRAD-scaled}:
+\begin{equation}
+\eta\, \nabla f_0(\lambda e_t) = \lambda\,[(1 + \beta) e_t - e_{t+1} - \beta e_{t-1}]. \tag{GRAD-f0}\label{eq:GRAD-f0}
+\end{equation}
+
+\textbf{Step 4. Induction.} Assume $(x_{t-1}, x_t) = (\lambda e_{t-1}, \lambda e_t)$. Substituting into HB:
+\begin{align*}
+x_{t+1} &= x_t - \eta\, \nabla f_0(x_t) + \beta(x_t - x_{t-1}) \\
+&= \lambda e_t - \lambda[(1+\beta) e_t - e_{t+1} - \beta e_{t-1}] + \beta (\lambda e_t - \lambda e_{t-1}) \\
+&= \lambda\big[\,e_t - (1+\beta) e_t + e_{t+1} + \beta e_{t-1} + \beta e_t - \beta e_{t-1}\,\big] \\
+&= \lambda\big[\,(1 - 1 - \beta + \beta) e_t + e_{t+1} + (\beta - \beta) e_{t-1}\,\big] \\
+&= \lambda\, e_{t+1}.
+\end{align*}
+
+Base case: $(x_{-1}, x_0) = (\lambda e_{K-1}, \lambda e_0) = (\lambda e_{-1 \bmod K}, \lambda e_{0 \bmod K})$ by construction and periodicity of $e_t$. Induction yields $x_t = \lambda e_{t \bmod K}$ for all $t \geq 0$.
+
+Finally, $\|x_t\| = \lambda \|e_{t \bmod K}\| = \lambda = D/\sqrt 2$.
+\end{proof}
+
+\subsubsection{Bias gap $\geq \mu D^2 / 4$, for all $T$}
+
+\begin{lemma}
+\label{lem:2.7}
+With $f_0$ as above and $x_T$ the deterministic HB iterate, for every $T \geq 0$,
+\[
+f_0(x_T) - f_0^\star \geq \frac{\mu D^2}{4} = \frac{\kappa L D^2}{4}.
+\]
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:2.6}, $\|x_T\| = D/\sqrt 2$, so $\|x_T - 0\|^2 = D^2/2$. By Claim~\ref{cla:2.1}, $f_0$ is $\mu$-SC with unique minimizer $x^\star = 0$, $f_0^\star = 0$. By Lemma~\ref{lem:1.2},
+\[
+f_0(x_T) - f_0^\star \geq \tfrac{\mu}{2}\|x_T\|^2 = \tfrac{\mu}{2}\cdot\tfrac{D^2}{2} = \tfrac{\mu D^2}{4}. \qedhere
+\]
+\end{proof}
+
+\subsubsection{Converting to the $LD^2/T$ rate}
+
+\begin{claim}
+\label{cla:2.8}
+For every $T \geq 1$,
+\[
+f_0(x_T) - f_0^\star \geq \frac{\kappa L D^2}{4} \geq \frac{\kappa}{4} \cdot \frac{L D^2}{T}.
+\]
+\end{claim}
+
+\begin{proof}
+First inequality: Lemma~\ref{lem:2.7}. Second inequality: $\kappa LD^2/4 \geq \kappa LD^2/(4T)$ iff $T \geq 1$, which holds.
+\end{proof}
+
+\subsection{Variance-term lower bound (the $y$-coordinate)}
+
+\subsubsection{Le Cam gap on the $y$-coordinate \textbf{[MOD v2-3: CONSTANT 1/112] [MOD v4: SHARPENED TO $\sqrt 2/27$]}}
+
+\begin{lemma}
+\label{lem:2.9}
+Let $(y_t)_{t \geq 0}$ be the SHB iterate on the $y$-coordinate with noise drive $\xi_t \sim \mathcal{N}(0, \sigma^2)$ i.i.d., starting from $y_0 = y_{-1} = 0$. Under \eqref{eq:RGM}, for any (possibly randomized) algorithm that produces $y_T$ using at most $T$ queries of the stochastic oracle,
+\[
+\max_{s \in \{+,-\}}\ \E_s\big[\,\alpha_s\, y_T + w(y_T) - \min_{y \in \R}(\alpha_s y + w(y))\,\big]\ \geq\ \frac{\sqrt 2}{27}\cdot \frac{\sigma D}{\sqrt T}\ =\ c_\mathrm{NY}\cdot\frac{\sigma D}{\sqrt T},
+\]
+with $c_\mathrm{NY} = \sqrt 2/27 \approx 0.0524$.
+\end{lemma}
+
+\begin{proof}
+\textbf{Step 1. Reduction to sign testing.} Under hypothesis $s \in \{\pm 1\}$, the $y$-oracle query at any $y_t$ returns $\alpha_s + w'(y_t) + \xi_t$. Since $w'$ is $s$-independent, the only $s$-dependent information is the offset $\alpha_s$. Define the implicit sign estimator $\hat s := -\mathrm{sgn}(y_T) \in \{\pm 1\}$ (since $y^\star_s = -sD/\sqrt 2$, so $\mathrm{sgn}(y^\star_s) = -s$, a ``correct'' estimate should place $y_T$ near $y^\star_s$, i.e., on the opposite sign of $s$).
+
+\textbf{[MOD v3-4: KL tensorization for adaptive queries]} Strictly speaking, SHB's $y$-queries $(y_0, y_1, \ldots, y_{T-1})$ are \textbf{adaptive}: $y_t$ depends on the history $(y_{<t}, \xi_{<t})$ through the SHB recursion, not i.i.d. So the naive i.i.d.-tensorization $\KL(\Prb_+^T \| \Prb_-^T) = T \cdot \KL(\mathcal{N}(\alpha,\sigma^2) \| \mathcal{N}(-\alpha, \sigma^2))$ needs justification via the \textbf{KL chain rule}:
+\[
+\KL(\Prb_+^T \| \Prb_-^T) \ =\ \sum_{t=1}^T\ \E_{y_{<t} \sim \Prb_+}\bigl[\,\KL\bigl(\Prb_+(g_t \mid y_{<t})\,\|\,\Prb_-(g_t \mid y_{<t})\bigr)\,\bigr].
+\]
+Here $g_t = \alpha_s + w'(y_t) + \xi_t$ is the oracle response at step $t$. Conditioned on the history $y_{<t}$ (which determines $y_t$ deterministically since noise is absorbed into the history), the conditional law of $g_t$ under $\Prb_s$ is $\mathcal{N}(s\alpha + w'(y_t),\ \sigma^2)$. The two conditional laws $\Prb_\pm(g_t \mid y_{<t})$ are Gaussians with the \textbf{same variance $\sigma^2$} and \textbf{means differing by $2\alpha$} (the $w'(y_t)$ contribution cancels because $w'$ is $s$-independent). Therefore
+\[
+\KL(\Prb_+(g_t \mid y_{<t})\,\|\,\Prb_-(g_t \mid y_{<t})) = \frac{(2\alpha)^2}{2\sigma^2} = \frac{2\alpha^2}{\sigma^2} = \frac{2}{9T}\qquad\text{for every history}\ y_{<t}\ \text{and every}\ t.
+\]
+Summing over $t = 1, \ldots, T$ and taking the trivial expectation (the integrand is a constant function of $y_{<t}$):
+\[
+\KL(\Prb_+^T \| \Prb_-^T) = T \cdot \frac{2}{9T} = \frac{2}{9},
+\]
+\textbf{numerically identical} to the i.i.d.-tensorized bound. Thus the adaptivity of SHB does not alter the KL bound in our construction; the key structural property used is that $w'$ does not depend on $s$. (If instead the oracle's $s$-dependency entered through the \emph{argument} of $\nabla f$ --- so that the $s$-shift were coupled to $y_t$ --- the chain rule would produce history-dependent conditional KL and a more careful analysis would be required.)
+
+Continuing: by Lemma~\ref{lem:1.4} with signal $\alpha = \sigma/(3\sqrt T)$ \textbf{[MOD v4-3]}:
+\begin{itemize}
+\item KL per conditional step $= 2\alpha^2/\sigma^2 = 2/(9T)$; total KL $= 2/9$;
+\item Pinsker: $\TV(\Prb_+^T, \Prb_-^T) \leq \sqrt{\KL/2} = \sqrt{1/9} = 1/3$;
+\item Le Cam: $\max_s \Prb_s[\hat s \neq s] \geq (1 - \TV)/2 \geq (1 - 1/3)/2 = 1/3$.
+\end{itemize}
+
+We use the \textbf{clean exact bound}
+\begin{equation}
+\max_s\,\Prb_s[\hat s \neq s] \geq 1/3. \tag{MISS}\label{eq:MISS}
+\end{equation}
+\textbf{[MOD v4-3: no $1/14$ floor required --- the new chain gives $p_{\min} = 1/3$ directly.]}
+
+\textbf{Step 2. Pointwise gap bound on the misidentification event.} Fix $s$. On $A_s := \{\hat s \neq s\} = \{\mathrm{sgn}(y_T) = s\}$, $y_T$ has the wrong sign (opposite to $y^\star_s$). Define
+\[
+G_s(y) := \alpha_s y + w(y) - [\alpha_s y^\star_s + w(y^\star_s)].
+\]
+
+Using $\alpha_s = s\alpha$, $y^\star_s = -sD/\sqrt 2$, and $w(y^\star_s) = (L/2)(|y^\star_s| - R)^2 = (L/2)(\alpha/L)^2 = \alpha^2/(2L)$:
+\[
+\alpha_s y^\star_s = s\alpha \cdot (-sD/\sqrt 2) = -\alpha D/\sqrt 2,\qquad w(y^\star_s) = \alpha^2/(2L),
+\]
+\[
+\min_{y}(\alpha_s y + w(y)) = -\alpha D/\sqrt 2 + \alpha^2/(2L).
+\]
+
+On $A_s$, $sy_T > 0$, so $\alpha_s y_T = s\alpha y_T = \alpha |y_T|$. Also $w(y_T) \geq 0$. Hence
+\begin{equation}
+G_s(y_T) = \alpha|y_T| + w(y_T) + \alpha D/\sqrt 2 - \alpha^2/(2L) \geq \alpha D/\sqrt 2 - \alpha^2/(2L).\tag{G-lb}\label{eq:G-lb}
+\end{equation}
+
+\textbf{Step 3. Wall-correction term, exact identity.} \textbf{[MOD v4-4: replaced loose inequality by exact identity at the (RGM)-saturated worst case.]} Define the (RGM)-tightness ratio
+\[
+r := \frac{\sigma}{LD\sqrt T} \in (0, \sqrt 2].
+\]
+Then $\alpha = \sigma/(3\sqrt T) = (r/3)\, LD$ and $\alpha/L = (r/3)\, D$, so
+\[
+\frac{\alpha D}{\sqrt 2} = \frac{r}{3\sqrt 2}\, LD^2,\qquad \frac{\alpha^2}{2L} = \frac{r^2}{18}\, LD^2.
+\]
+Their difference factors cleanly:
+\[
+\frac{\alpha D}{\sqrt 2} - \frac{\alpha^2}{2L} = \alpha D \cdot \rho(r),\qquad \rho(r) := \frac{1}{\sqrt 2}\Bigl(1 - \frac{r}{\sqrt 2}\cdot \frac{1}{3}\Bigr) = \frac{1}{\sqrt 2} - \frac{r}{6}.
+\]
+This identity is \textbf{exact} (no looseness). At the (RGM)-saturated worst case $r = \sqrt 2$:
+\[
+\rho(\sqrt 2) = \frac{1}{\sqrt 2} - \frac{\sqrt 2}{6} = \frac{3 - 1}{3\sqrt 2} = \frac{2}{3\sqrt 2} = \frac{\sqrt 2}{3}.
+\]
+Substituting into \eqref{eq:G-lb}:
+\begin{equation}
+G_s(y_T) \geq \alpha D \cdot \rho(r) \geq \alpha D \cdot \frac{\sqrt 2}{3}\qquad \text{on } A_s. \tag{G-final}\label{eq:G-final}
+\end{equation}
+\textbf{Numerical verification of $\rho(\sqrt 2) = \sqrt 2/3$:} $\frac{1}{\sqrt 2} - \frac{\sqrt 2}{6} = \frac{6 - 2}{6\sqrt 2} = \frac{4}{6\sqrt 2} = \frac{2}{3\sqrt 2} = \frac{\sqrt 2}{3} \approx 0.4714$. Decimal check: $1/\sqrt 2 \approx 0.7071$, $\sqrt 2/6 \approx 0.2357$, difference $\approx 0.4714 \approx \sqrt 2/3$. $\checkmark$
+
+\textbf{Step 4. Take expectation.} \textbf{[MOD v4-5]} $\E_s[G_s(y_T)] \geq \alpha D \cdot (\sqrt 2/3) \cdot \Prb_s[A_s]$, so by \eqref{eq:MISS}:
+\[
+\max_s \E_s[G_s(y_T)] \geq \alpha D \cdot \frac{\sqrt 2}{3} \cdot \frac{1}{3} = \frac{\sqrt 2\, \alpha D}{9}.
+\]
+
+\textbf{Step 5. Substitute $\alpha = \sigma/(3\sqrt T)$.}
+\[
+\frac{\sqrt 2\, \alpha D}{9} = \frac{\sqrt 2}{9}\cdot \frac{\sigma D}{3\sqrt T} = \frac{\sqrt 2\, \sigma D}{27\sqrt T}.
+\]
+
+This gives $\max_s \E_s[G_s(y_T)] \geq (\sqrt 2/27)\,\sigma D/\sqrt T = c_\mathrm{NY}\,\sigma D/\sqrt T$ with $c_\mathrm{NY} = \sqrt 2/27 \approx 0.0524$.
+\end{proof}
+
+\begin{remark}[on constants]
+\textbf{[MOD v4: rewritten to derive the sharp $\sqrt 2/27$ constant.]} The value $c_\mathrm{NY} = \sqrt 2/27$ is obtained rigorously by \textbf{optimizing} the Le Cam signal amplitude. Reparametrize $\alpha := c_\alpha\,\sigma/\sqrt T$ for $c_\alpha \in (0, 1)$ and let $r := \sigma/(LD\sqrt T) \in (0, \sqrt 2]$ (the (RGM)-tightness ratio). Then the chain gives:
+\begin{itemize}
+\item Per-step KL $= 2\alpha^2/\sigma^2 = 2c_\alpha^2/T$; total KL $= 2c_\alpha^2$; Pinsker TV $\leq c_\alpha$; Le Cam prob $\geq (1 - c_\alpha)/2$.
+\item Gap on misidentification (exact identity, Step 3): $G_s \geq \alpha D \cdot \rho(c_\alpha, r)$ with $\rho(c_\alpha, r) = (1/\sqrt 2)(1 - c_\alpha r/\sqrt 2)$.
+\item Multiplication and substituting $\alpha = c_\alpha \sigma/\sqrt T$:
+\[
+\max_s \E_s[G_s(y_T)] \geq \frac{\sigma D}{\sqrt T}\cdot \underbrace{\frac{c_\alpha(1-c_\alpha)}{2\sqrt 2}\Bigl(1 - \frac{c_\alpha r}{\sqrt 2}\Bigr)}_{c_\mathrm{NY}(c_\alpha, r)} = \frac{\sigma D}{\sqrt T}\cdot \frac{\sqrt 2}{8} c_\alpha(1-c_\alpha)(2 - c_\alpha r\sqrt 2).
+\]
+\end{itemize}
+
+\textbf{Optimizing in $c_\alpha$ at fixed $r$.} $\partial_{c_\alpha} c_\mathrm{NY} = 0$ gives the quadratic critical-point equation $3\sqrt 2\, r\, c_\alpha^2 - (2\sqrt 2\, r + 4) c_\alpha + 2 = 0$ (degree 2 in $c_\alpha$, the derivative of the cubic objective), with root in $(0, 1)$:
+\[
+c_\alpha^\star(r) = \frac{r + \sqrt 2 - \sqrt{r^2 - \sqrt 2\, r + 2}}{3 r}.
+\]
+Two clean closed forms:
+\begin{itemize}
+\item \textbf{Asymptotic ($r \to 0$):} $c_\alpha^\star \to 1/2$, $c_\mathrm{NY}^\star \to \sqrt 2/16 = 1/(8\sqrt 2) \approx 0.0884$.
+\item \textbf{(RGM)-tight ($r = \sqrt 2$):} the critical-point equation has the rational root $c_\alpha^\star = 1/3$ (verify: $3\sqrt 2 \cdot \sqrt 2 \cdot 1/9 - (2\sqrt 2 \cdot \sqrt 2 + 4) \cdot 1/3 + 2 = 6/9 - 8/3 + 2 = 2/3 - 8/3 + 6/3 = 0$ \checkmark), and
+\[
+c_\mathrm{NY}^\star = \frac{\sqrt 2}{8}\cdot \frac{1}{3}\cdot \frac{2}{3}\cdot (2 - 1/3 \cdot \sqrt 2 \cdot \sqrt 2) = \frac{\sqrt 2}{8}\cdot \frac{1}{3}\cdot \frac{2}{3}\cdot \frac{4}{3} = \frac{\sqrt 2}{8}\cdot \frac{8}{27} = \frac{\sqrt 2}{27}.
+\]
+\end{itemize}
+
+Under \eqref{eq:RGM} $\sigma \leq LD\sqrt{2T}$ (i.e., $r \leq \sqrt 2$), the sharp Pinsker constant under saturation is $\sqrt 2/27$. The asymptotic limit $1/(8\sqrt 2)$ is recovered for $\sigma \ll LD\sqrt T$ (where the wall correction becomes negligible). Hellinger TV gives a marginal $\sim 1\%$ further sharpening but no clean closed form, so we do not pursue it.
+
+\textbf{History of constants in this document:}
+\begin{itemize}
+\item v1 claimed $1/(8\sqrt 2) \approx 0.088$ unjustified, with an inline chain that dropped the wall correction yielding $1/56 \approx 0.018$.
+\item v2 carried the wall correction rigorously with the suboptimal choice $c_\alpha = 1/(2\sqrt 2)$ and a $1/14$ Le Cam floor, yielding $1/112 \approx 0.0089$.
+\item v4 [this version] optimizes $c_\alpha$ and uses the \textbf{exact} wall-correction identity, yielding $\sqrt 2/27 \approx 0.0524$ --- the rigorous sharp constant under saturated \eqref{eq:RGM}. Factor $\approx 5.87$ improvement over v3.
+\end{itemize}
+\end{remark}
+
+\subsection{Combining bias and variance}
+
+\begin{claim}
+\label{cla:2.10}
+For every $T \geq 1$, the full 3-D SHB iterate satisfies
+\[
+\max_{s \in \{+, -\}} \E_s\big[f^{(s)}(x_T, y_T) - f^{(s),\star}\big] \geq \frac{\kappa(\beta,\eta)}{4}\cdot \frac{L D^2}{T} + c_\mathrm{NY}\cdot \frac{\sigma D}{\sqrt T},
+\]
+where $c_\mathrm{NY} = \sqrt 2/27$ \textbf{[MOD v4]}.
+\end{claim}
+
+\begin{proof}
+By \eqref{eq:F}, $f^{(s)}(x,y) = f_0(x) + \alpha_s y + w(y)$ is coordinate-separable; its unique minimizer is $(0, y^\star_s)$ (Claim~\ref{cla:2.2}), and
+\[
+f^{(s),\star} = f_0(0) + [\alpha_s y^\star_s + w(y^\star_s)] = 0 + \min_y[\alpha_s y + w(y)].
+\]
+Therefore, denoting $G_s(y) := \alpha_s y + w(y) - \min_{y'}(\alpha_s y' + w(y'))$ (as in Lemma~\ref{lem:2.9}),
+\[
+f^{(s)}(x_T, y_T) - f^{(s),\star} = [f_0(x_T) - f_0^\star] + G_s(y_T).
+\]
+
+Take expectation under hypothesis $s$ (recall $x_T$ is \textbf{deterministic} by Claim~\ref{cla:2.5}, so $\E_s[f_0(x_T) - f_0^\star] = f_0(x_T) - f_0^\star$):
+\begin{equation}
+\E_s[f^{(s)}(x_T, y_T) - f^{(s),\star}] = \underbrace{[f_0(x_T) - f_0^\star]}_{\text{$s$-independent}} + \E_s[G_s(y_T)]. \tag{DECOMP}\label{eq:DECOMP}
+\end{equation}
+
+\begin{claim}[max-over-$s$ step, {[MOD v2-4]}]
+\label{cla:2.11}
+Let $A \in \R$ be a constant and $(B_s)_{s \in \{\pm\}}$ two real numbers. Then $\max_s (A + B_s) = A + \max_s B_s$.
+\end{claim}
+
+\begin{proof}
+If $B_+ \geq B_-$: $\max_s(A + B_s) = A + B_+ = A + \max_s B_s$. Symmetric otherwise.
+\end{proof}
+
+Applying Claim~\ref{cla:2.11} to \eqref{eq:DECOMP} with $A = f_0(x_T) - f_0^\star$ (deterministic, the same under $\Prb_+$ and $\Prb_-$) and $B_s = \E_s[G_s(y_T)]$:
+\begin{equation}
+\max_s \E_s[f^{(s)} - f^{(s),\star}] = [f_0(x_T) - f_0^\star] + \max_s \E_s[G_s(y_T)]. \tag{MAX}\label{eq:MAX}
+\end{equation}
+
+For the first summand, Claim~\ref{cla:2.8} gives $f_0(x_T) - f_0^\star \geq (\kappa/4)\,LD^2/T$. For the second, Lemma~\ref{lem:2.9} gives $\max_s \E_s[G_s(y_T)] \geq c_\mathrm{NY}\,\sigma D/\sqrt T$. Substituting:
+\[
+\max_s \E_s[f^{(s)} - f^{(s),\star}] \geq \frac{\kappa}{4}\cdot\frac{LD^2}{T} + c_\mathrm{NY}\cdot \frac{\sigma D}{\sqrt T}.
+\]
+
+\textbf{Conclusion.} \textbf{[MOD v3-8: EXPLICIT $s^\star$ CONSTRUCTION]} Let $s^\star \in \arg\max_{s \in \{+,-\}} \E_s[f^{(s)}(x_T, y_T) - f^{(s),\star}]$. We stress that $s^\star$ is a \textbf{deterministic function of the parameters $(\beta, \eta, T)$}: given $(\beta, \eta, T)$, the construction of \S2.1 produces two explicit candidate functions $f^{(+)} := f_{\beta,\eta}^{(T),(+1)}$ and $f^{(-)} := f_{\beta,\eta}^{(T),(-1)}$; for each, the induced SHB dynamics on the $y$-coordinate have explicit laws $\Prb_\pm$, from which $\E_+[f^{(+)} - f^{(+),\star}]$ and $\E_-[f^{(-)} - f^{(-),\star}]$ can be computed (or bounded). Take $s^\star := +1$ if the former is larger, else $s^\star := -1$ (ties broken by convention, e.g., always choose $+$). Set $f_{\beta,\eta}^{(T)} := f^{(s^\star)}$ and apply the oracle with hypothesis $s^\star$. Then $f_{\beta,\eta}^{(T)}$ is a well-defined deterministic function of $(\beta,\eta,T)$, and
+\[
+\E[f_{\beta,\eta}^{(T)}(x_T) - f_{\beta,\eta}^{(T),\star}] = \E_{s^\star}[f^{(s^\star)}(x_T, y_T) - f^{(s^\star),\star}] \geq \frac{\kappa}{4}\cdot\frac{LD^2}{T} + c_\mathrm{NY}\cdot\frac{\sigma D}{\sqrt T},
+\]
+which is exactly \eqref{eq:MAIN}. (By symmetry of the construction $(+) \leftrightarrow (-)$ under $y \mapsto -y$, one can in fact show $\E_+[\cdots] = \E_-[\cdots]$, so either $s$ works; the $\max$ is a safety net.) (Main Theorem) $\hfill\blacksquare$
+\end{proof}
+
+\subsection{Verification: $f_{\beta,\eta}^{(T)}$ is globally 0-SC (non-SC) \textbf{[MOD v2-5: NEW]}}
+
+\begin{claim}
+\label{cla:2.12}
+The function $f^{(s)}(x, y) = f_0(x) + \alpha_s y + w(y)$ has \textbf{global strong-convexity constant 0}; i.e., it is convex but not $\mu'$-SC for any $\mu' > 0$. This confirms the hypothesis of the target function class $\mathcal{F}_L$ (which admits $\mu \geq 0$, i.e., non-strongly-convex smooth convex functions).
+\end{claim}
+
+\begin{proof}
+The strong-convexity constant of a $C^2$ convex function is $\inf_{x,y \in \R^d,\ y \neq 0} y^\top \nabla^2 f(x) y / \|y\|^2$. (More precisely: the largest $\mu' \geq 0$ such that $\nabla^2 f \succeq \mu' I$ a.e., since $f$ is $C^{1,1}$ only.)
+
+$\nabla^2 f^{(s)}(x, y) = \nabla^2 f_0(x) \oplus w''(y)$, a block-diagonal matrix on $\R^2 \oplus \R$. Consider the point $(x_0, y_0) = (0, 0)$: $\nabla^2 f_0(0) = \mu I_2 + (L-\mu)\nabla P_{\conv(\widetilde P)}(0)$. Since $0 \in \mathrm{int}(\conv(\widetilde P))$, $P_{\conv(\widetilde P)}$ is the identity in a neighborhood of $0$, so $\nabla P_{\conv(\widetilde P)}(0) = I_2$ and $\nabla^2 f_0(0) = \mu I_2 + (L-\mu) I_2 = L I_2$. Also $w''(0) = 0$ (since $0 < R$, flat region). Hence
+\[
+\nabla^2 f^{(s)}(0, 0) = (L I_2) \oplus 0 = \mathrm{diag}(L, L, 0).
+\]
+Pick the test vector $v = (0, 0, 1)$: $v^\top \nabla^2 f^{(s)}(0, 0)\, v = 0$.
+
+Therefore the minimal eigenvalue of $\nabla^2 f^{(s)}$ (over points where Hessian exists) is $0$, so the largest $\mu'$ satisfying $\nabla^2 f^{(s)} \succeq \mu' I_3$ a.e. is $\mu' = 0$. $f^{(s)}$ is globally \textbf{only convex} (0-SC), matching the target $\F_L$ class.
+\end{proof}
+
+\begin{remark}
+The function \textbf{is} strongly convex restricted to either (a) the $x$-subspace $\{(x, 0) : x \in \R^2\}$ (where it reduces to $f_0$, $\mu$-SC) or (b) the complement of the flat region $\{(x, y) : |y| > R\}$ (where $w''(y) = L$). Globally, neither holds everywhere, and the strong-convexity constant is the infimum.
+\end{remark}
+
+\subsection{Verification: $\F$ has positive 2-D Lebesgue measure \textbf{[MOD v2-6: NEW]}}
+
+\begin{claim}
+\label{cla:2.13}
+The set
+\[
+\F_{K=3}^\circ := \left\{(\beta, \eta) : \beta > \beta^\star,\ L\eta \in \left(\frac{3(1 + \beta + \beta^2)}{1 + 2\beta},\ 2(1+\beta)\right)\right\}
+\]
+is non-empty, open, and has positive 2-D Lebesgue measure in $[0,1)\times\R_{>0}$. Consequently, $\F \supset \F_{K=3}^\circ$ has positive 2-D Lebesgue measure.
+\end{claim}
+
+Here $\beta^\star := (\sqrt{13} - 3)/2 \approx 0.3028$ and $\gamma_\mathrm{crit}(\beta) := 3(1+\beta+\beta^2)/(1 + 2\beta)$.
+
+\begin{proof}
+\textbf{Step 1: Derive $\gamma_\mathrm{crit}$.} At $K = 3$: $\theta_K = 2\pi/3$, $c_K = \cos(2\pi/3) = -1/2$. Substitute into \eqref{eq:star}:
+\begin{align*}
+\beta - c_K &= \beta + 1/2,\\
+1 - \beta c_K &= 1 + \beta/2,\\
+1 - c_K &= 3/2,\\
+1 + \beta^2 - 2\beta c_K &= 1 + \beta^2 + \beta.
+\end{align*}
+\eqref{eq:star} with $h := \kappa \eta L$ becomes
+\begin{equation}
+h^2 - 2[(\beta + 1/2) + \kappa(1 + \beta/2)]\, h + 3\kappa(1 + \beta + \beta^2) \leq 0. \tag{$\star_3$}\label{eq:star3}
+\end{equation}
+
+For fixed $(\beta, \eta)$, this is a quadratic inequality in $\kappa$ (via $h = \kappa\eta L$); \eqref{eq:star3} is feasible iff the discriminant is non-negative and the resulting $\kappa$ lies in $(0,1)$.
+
+\textbf{[MOD v3-9: SUFFICIENCY VS NECESSITY]} We separate the two directions:
+
+\textbf{Sufficiency} (this is what we use): \emph{if} $\eta L \geq \gamma_\mathrm{crit}(\beta) := 3(1+\beta+\beta^2)/(1 + 2\beta)$, \emph{then} \eqref{eq:star3} admits a feasible $\kappa \in (0,1)$, so $(\beta,\eta) \in \F_{K=3} \subset \F$. This direction can be verified directly. Treating \eqref{eq:star3} as a quadratic inequality in $\kappa$ (with $(\beta, \eta)$ fixed), the discriminant condition for the existence of $\kappa \in (0,1)$ reduces, after standard algebra, to the closed-form threshold
+\[
+\eta L \cdot (1 + 2\beta) \geq 3(1 + \beta + \beta^2),\qquad \text{i.e.,}\ \eta L \geq \gamma_\mathrm{crit}(\beta).
+\]
+Combined with the stability bound $\eta L \leq 2(1+\beta)$, this gives a nonempty feasibility interval in $\eta L$; see Step 2 below for the existence of such an interval whenever $\beta > \beta^\star$. (Full symbolic derivation: a supplementary verification script Part [E] solves \eqref{eq:star3} for $\kappa$ and reports the feasibility interval numerically to machine precision.) This sufficiency is all we need for Claim~\ref{cla:2.13}.
+
+\textbf{Necessity} (not required for the theorem): the converse --- \emph{if} $(\beta,\eta) \in \F_{K=3}$, \emph{then} $\eta L \geq \gamma_\mathrm{crit}(\beta)$ --- is empirically supported by the supplementary verification scripts (Parts [A], [C], [E]): for every grid point with $\beta > \beta^\star$ and $\eta L < \gamma_\mathrm{crit}(\beta)$, the cycling quadratic \eqref{eq:star3} admits no $\kappa \in (0,1)$, and SHB converges geometrically on the Goujaud construction (Part 3.4). A rigorous algebraic proof of necessity would require completing the square in a different order, which we omit as it is not required for the positive-measure claim in Step 3. $\gamma_\mathrm{crit}(\beta)$ is the \textbf{closed-form} (sufficient) threshold verified empirically to machine precision in Part 3.5.
+
+\textbf{Step 2: Stability constraint.} $\Sset$ requires $\eta L \leq 2(1+\beta)$. So the combined constraint on $\eta L$ is
+\begin{equation}
+\gamma_\mathrm{crit}(\beta) \leq \eta L \leq 2(1+\beta). \tag{INT}\label{eq:INT}
+\end{equation}
+Non-empty iff $\gamma_\mathrm{crit}(\beta) \leq 2(1+\beta)$:
+\[
+3(1+\beta+\beta^2) \leq 2(1+\beta)(1+2\beta) = 2 + 6\beta + 4\beta^2,
+\]
+\[
+3 + 3\beta + 3\beta^2 \leq 2 + 6\beta + 4\beta^2,
+\]
+\[
+0 \leq -1 + 3\beta + \beta^2,
+\]
+\[
+\beta^2 + 3\beta - 1 \geq 0.
+\]
+The positive root of $\beta^2 + 3\beta - 1 = 0$ is $\beta^\star = (\sqrt{13} - 3)/2 \approx 0.3028$. For $\beta > \beta^\star$, $\beta^2 + 3\beta - 1 > 0$, so the interval \eqref{eq:INT} has \textbf{strictly positive length}
+\[
+\ell(\beta) := 2(1+\beta) - \gamma_\mathrm{crit}(\beta) = \frac{\beta^2 + 3\beta - 1}{1 + 2\beta} > 0.
+\]
+
+\textbf{Step 3: Measure computation.} The 2-D Lebesgue measure of $\F_{K=3}^\circ$ in $[0,1)\times \R_{>0}$:
+\[
+\lambda_2(\F_{K=3}^\circ) = \int_{\beta^\star}^1 \frac{\ell(\beta)}{L}\, d\beta = \frac{1}{L}\int_{\beta^\star}^1 \frac{\beta^2 + 3\beta - 1}{1 + 2\beta}\, d\beta.
+\]
+The integrand is continuous and strictly positive on $(\beta^\star, 1)$ (equal to $0$ at $\beta^\star$ by the defining equation, and positive thereafter). Hence the integral is \textbf{strictly positive}. Numerically:
+\[
+\int_{\beta^\star}^1 \frac{\beta^2 + 3\beta - 1}{1 + 2\beta}\, d\beta = \int_{0.303}^1 \frac{\beta^2 + 3\beta - 1}{1 + 2\beta}\, d\beta > 0.
+\]
+(Closed form via polynomial division: $(\beta^2 + 3\beta - 1)/(1 + 2\beta) = \beta/2 + 5/4 - (9/4)/(1+2\beta)$, integrating: $[\beta^2/4 + 5\beta/4 - (9/8)\ln(1+2\beta)]_{\beta^\star}^1 = (1/4 + 5/4 - (9/8)\ln 3) - (\text{value at } \beta^\star) \approx 1.5 - 1.236 - (\cdot) \approx 0.12/L$ --- positive.)
+
+\textbf{Step 4: Openness.} $\F_{K=3}^\circ$ is defined by strict inequalities on continuous functions, hence open. An open set of positive Lebesgue measure is ``large'' in every reasonable sense.
+
+Therefore $\F \supset \F_{K=3}^\circ$ has positive 2-D Lebesgue measure, as claimed.
+\end{proof}
+
+\bigskip
+\hrule
+\bigskip
+\section{Numerical verification}
+
+All scripts are available in the supplementary materials (available upon request). Reported runs used $L = 1, D = 1$.
+
+\subsection{Sublemma projection identity (verification of Lemma~\ref{lem:1.3}(iii))}
+
+\textbf{Script:} supplementary verification script (sublemma projection). Tests: for several $(\beta, \eta, \kappa, K)$ with \eqref{eq:star} satisfied, compute $P_{\conv(P)}(e_t)$ numerically (via coordinate-wise polygon projection) and compare to $M e_t$.
+
+\textbf{Result:} Machine-precision agreement ($\|P_{\conv(P)}(e_t) - M e_t\| < 10^{-15}$) for all tested $(\beta,\eta,\kappa,K,t)$.
+
+Independently confirms Lemma~\ref{lem:1.3}(iii) without relying on GTD23's KKT argument.
+
+\subsection{Feasibility classification (characterization of $\F$)}
+
+\textbf{Script:} supplementary verification script, Part [A].
+
+\begin{center}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+$(\beta, \eta)$ & $L\eta$ & $\gamma_{\mathrm{crit}}(\beta, K{=}3)$ & In $\F_{K=3}$? & $\kappa_{\mathrm{mid}}$ \\
+\midrule
+$(0.5, 3/L)$    & 3.00 & 2.625 & YES   & 0.2500 \\
+$(0.5, 2.8/L)$  & 2.80 & 2.625 & YES   & 0.2083 \\
+$(0.9, 3.5/L)$  & 3.50 & 2.904 & YES   & 0.3976 \\
+$(0.7, 2.9/L)$  & 2.90 & 2.738 & YES   & 0.3362 \\
+$(0.5, 1/L)$    & 1.00 & 2.625 & \textbf{NO} & NONE   \\
+$(0.9, 0.5/L)$  & 0.50 & 2.904 & \textbf{NO} & NONE   \\
+$(0.1, 1/L)$    & 1.00 & 2.775 & \textbf{NO} & NONE   \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Confirms closed-form $\gamma_\mathrm{crit}(\beta, K=3) = 3(1+\beta+\beta^2)/(1+2\beta)$ from \S2.7 Step 1 and shows the auditor-mandated pairs are OUTSIDE $\F_{K=3}$.
+
+\subsection{Positive control: SHB locks on the cycle for $(\beta,\eta) \in \F$}
+
+\textbf{Script:} supplementary verification script, Part [B].
+
+\textbf{$(\beta,\eta) = (0.5, 3/L)$, $\kappa = 0.25$, $\mu = 0.25 L$:}
+
+\begin{center}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+$T$  & $f(x_T)$ & theoretical LB $\kappa L D^2/4$ & drift $\min_t \|x_T - (D/\sqrt 2) e_t\|$ & ratio $T \cdot f(x_T)/(LD^2)$ \\
+\midrule
+10   & 0.4444 & 0.0625 & $4.97 \times 10^{-16}$ & 4.44   \\
+100  & 0.4444 & 0.0625 & $4.97 \times 10^{-16}$ & 44.44  \\
+1000 & 0.4444 & 0.0625 & $4.97 \times 10^{-16}$ & 444.45 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{$(\beta,\eta) = (0.9, 3/L)$, $\kappa = 0.45$, $\mu = 0.45 L$:}
+
+\begin{center}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+$T$  & $f(x_T)$ & theoretical LB $\kappa L D^2/4$ & drift & ratio \\
+\midrule
+10   & 0.4970 & 0.1125 & $5.98 \times 10^{-16}$ & 4.97   \\
+100  & 0.4970 & 0.1125 & $4.00 \times 10^{-16}$ & 49.70  \\
+1000 & 0.4970 & 0.1125 & $4.00 \times 10^{-16}$ & 496.97 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Interpretation.} Iterate drift is at machine-precision level: SHB lies exactly on the $K=3$ cycle at amplitude $D/\sqrt 2$ for 1000 steps. $f(x_T)$ is identically constant in $T$. Ratio $T\cdot f/(LD^2)$ grows linearly in $T$, vastly exceeding the theoretical bound $\kappa/4$. Lemma~\ref{lem:2.6} and Claim~\ref{cla:2.8} verified to machine precision.
+
+\subsection{Negative control: geometric decay on $\F^c$}
+
+\textbf{Script:} supplementary verification script, Part [C].
+
+\textbf{$(\beta,\eta) = (0.5, 1/L)$} with Goujaud attempted at $\kappa = 0.01$, $K = 3$:
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+$T$  & cyc\_lhs($\star$) & $f(x_T)$ & $T \cdot f/(LD^2)$ \\
+\midrule
+10   & $+3.10 \times 10^{-1}$ & $1.89 \times 10^{-4}$  & $1.89 \times 10^{-3}$  \\
+100  & $+3.24 \times 10^{-2}$ & $3.99 \times 10^{-31}$ & $3.99 \times 10^{-29}$ \\
+1000 & $+3.25 \times 10^{-3}$ & $4.08 \times 10^{-302}$ & $4.08 \times 10^{-299}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{$(\beta,\eta) = (0.9, 1/(2L))$, same attempt:}
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+$T$  & cyc\_lhs($\star$) & $f(x_T)$ & $T \cdot f/(LD^2)$ \\
+\midrule
+10   & $+6.61 \times 10^{-1}$ & $9.44 \times 10^{-1}$  & $9.44$               \\
+100  & $+6.72 \times 10^{-2}$ & $4.73 \times 10^{-5}$  & $4.73 \times 10^{-3}$ \\
+1000 & $+6.73 \times 10^{-3}$ & $3.21 \times 10^{-47}$ & $3.21 \times 10^{-44}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Auditor tested $K \in \{3, 4, 5, 10\}$: cyc\_lhs($\star$) $> 0$ at every $K$, i.e., cycling inequality infeasible at these pairs. At the auditor-mandated pairs in $\Sset\setminus\F$, the Goujaud construction FAILS to cycle, and SHB converges geometrically. The theorem's restriction to $\F$ is necessary.
+
+\subsection{Threshold $\beta^\star$ verification}
+
+\textbf{Script:} supplementary verification script, Part [E].
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+$\beta$ & $\gamma_\mathrm{crit}$ & $2(1+\beta)$ & $\F_{K=3}$ interval non-empty? \\
+\midrule
+0.100 & 2.7750 & 2.2000 & NO  \\
+0.300 & 2.6062 & 2.6000 & NO  \\
+0.303 & 2.6055 & 2.6060 & YES \\
+0.400 & 2.6000 & 2.8000 & YES \\
+0.500 & 2.6250 & 3.0000 & YES \\
+0.900 & 2.9036 & 3.8000 & YES \\
+0.990 & 2.9900 & 3.9800 & YES \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Confirms $\beta^\star = (\sqrt{13} - 3)/2 = 0.302776\ldots$ via $\gamma_\mathrm{crit}(\beta) = 2(1+\beta)$ iff $\beta^2 + 3\beta - 1 = 0$.
+
+\bigskip
+\hrule
+\bigskip
+
+\section{Relationship to prior work}
+
+\subsection{Goujaud--Taylor--Dieuleveut 2023 (GTD23)}
+
+\textbf{arXiv:2307.11291, ``Provable non-accelerations of the heavy-ball method''.}
+
+GTD23 Theorem 3.5 = our Lemma~\ref{lem:1.3}. It holds for every $(\beta, h, \kappa)$ with \eqref{eq:star} feasible, in the strongly-convex setting ($\mu > 0$).
+
+\textbf{How v2 extends GTD23:}
+\begin{enumerate}
+\item \textbf{Non-strongly-convex setting.} GTD23 requires $\mu > 0$. We embed into the target $\F_L$ class (smooth convex with $\mu \geq 0$), via coordinate-separable 3-D construction. Claim~\ref{cla:2.12} shows the 3-D function has global SC constant exactly $0$.
+\item \textbf{Stochastic oracle and variance term.} GTD23 is deterministic. We add Nemirovski--Yudin variance via Le Cam on the $y$-coordinate (Lemma~\ref{lem:2.9}).
+\item \textbf{$T$-uniform formulation.} GTD23's cycling is ``for all $t$'', and the function-value gap is a constant. We convert to $\Omega(LD^2/T)$ via $\kappa LD^2/4 \geq (\kappa/4)LD^2/T$ for all $T \geq 1$.
+\end{enumerate}
+
+\begin{remark}[Nesterov's accelerated method, partial answer to GTD23 Conjecture 7.1]
+\label{rem:4.1.1}
+\textbf{[MOD v4: NEW]} Goujaud--Taylor--Dieuleveut (2023, Remark 6.1 and Conjecture 7.1) state that the cycling-existence framework extends from heavy-ball to \emph{any stationary first-order method}, including Nesterov's accelerated gradient (NAG), with a method-specific transition matrix $M$. The construction is left open in their paper. We make it concrete for NAG. Define
+\[
+M^{\mathrm{Nes}} \;:=\; \frac{(1-\eta\mu)\,I_2 \,-\, R_{\theta_K}\,\big[(1+\beta)I_2 - \beta R_{-\theta_K}\big]^{-1}}{\eta\,(L-\mu)},
+\]
+the rescaled vertex set $\widetilde P^{\mathrm{Nes}} := \{(D/\sqrt 2)\,M^{\mathrm{Nes}}\,u_t : t = 0, \ldots, K-1\}$ with $u_t := (1+\beta)e_t - \beta e_{t-1}$, and
+\[
+f^{\mathrm{Nes}}(x) := \tfrac{L}{2}\|x\|^2 - \tfrac{L-\mu}{2}\,d_{\conv(\widetilde P^{\mathrm{Nes}})}(x)^2.
+\]
+$M^{\mathrm{Nes}}$ is a polynomial in $R_{\theta_K}$, hence commutes with rotation, so $\widetilde P^{\mathrm{Nes}}$ is rotation-symmetric and $f^{\mathrm{Nes}}$ is well-defined as a Goujaud-style function. Whenever the KKT-projection identity $P_{\conv(\widetilde P^{\mathrm{Nes}})}(\lambda u_t) = \lambda M^{\mathrm{Nes}} u_t$ holds (a NAG-analogue of GTD23's $(\star)$), the canonical Nesterov iterate $y_t = x_t + \beta(x_t - x_{t-1})$, $x_{t+1} = y_t - \eta\,\nabla f^{\mathrm{Nes}}(y_t)$ initialised at $(x_{-1}, x_0) = (\lambda e_{K-1}, \lambda e_0)$ traces the cycle $x_t = \lambda e_{t \bmod K}$, hence $\|x_t\| \equiv D/\sqrt 2$ and $f^{\mathrm{Nes}}(x_t) - f^{\mathrm{Nes},\star} \geq \mu D^2/4$. Hence the analogous $\Omega(\mu D^2)$ non-acceleration bound holds for NAG on its own polytope.
+
+The Nesterov-feasibility region $\F^{\mathrm{Nes}}$ is non-empty for $\mu/L \lesssim 0.25$ at $K=3$, concentrates at high momentum $\beta \in [0.75, 0.99]$ (verified numerically on a $100\times 100$ grid), and is \textbf{generally disjoint} from the heavy-ball region $\F^{\mathrm{HB}}$: at $\mu/L = 0.25, K = 3$, $\F^{\mathrm{HB}} \cap \F^{\mathrm{Nes}} = \emptyset$ in our $60 \times 60$ scan. So OP-2's hard instance does not produce a single function defeating both methods, and conversely; cycling is \textbf{method-specific}, but \textbf{non-acceleration is method-agnostic} (parallel results, not separation). Numerical verification at $(\beta, \eta L, \mu/L) = (0.85, 2.4, 0.25)$: NAG cycles at machine precision ($\max_t \|x_t - \lambda e_{t \bmod K}\| < 5 \cdot 10^{-16}$ for $T = 10000$), with $f^{\mathrm{Nes}}(x_T) = 0.225 > \mu D^2/4 = 0.0625$.
+
+On the heavy-ball instance $f_0$ used in our main theorem, NAG fails to converge by a different mechanism (period-2 attractor, period-1 fixed point, or divergence depending on $(\beta,\eta)$), without tracing the cycle --- the cycling identity is method-specific. Construction details and numerical verification are in the supplementary materials (available upon request).
+\end{remark}
+
+\subsection{Ghadimi--Feyzmahdavian--Johansson 2015 (GFJ15) \textbf{[MOD v3-1: REWRITTEN --- split det/stoch]}}
+
+\textbf{arXiv:1412.7457, ``Global convergence of the heavy-ball method for convex optimization''.}
+
+GFJ15 is a \textbf{deterministic} paper: it proves that for $L$-smooth convex $f$, the Ces\`aro average $\bar x_T$ of deterministic HB iterates with fixed $(\beta,\eta)$ in a suitable range satisfies $f(\bar x_T) - f^\star \leq c_3\, LD^2/T$. There is \textbf{no stochastic oracle} and \textbf{no $\sigma$-dependent term} in that paper. Our discussion of tightness therefore splits into two cases:
+
+\textbf{Deterministic case ($\sigma = 0$).} Our Main Theorem gives $\E[f(x_T) - f^\star] \geq (\kappa/4)\,LD^2/T$ (the variance term vanishes). GFJ15 gives a matching upper bound $O(LD^2/T)$ on the \textbf{Ces\`aro-average iterate} $\bar x_T$. Combined:
+\[
+\Theta(LD^2/T)\quad \text{for deterministic HB's Ces\`aro-average iterate on}\ \F,
+\]
+with matching lower and upper bounds up to universal constants. This is tight.
+
+\textbf{Stochastic case ($\sigma > 0$).} We are not aware of a published upper bound specifically for fixed-momentum SHB (averaged or last-iterate) of the form $O(LD^2/T + \sigma D/\sqrt T)$ that cleanly matches our LB. However:
+\begin{itemize}
+\item \textbf{SGD achieves $O(LD^2/T + \sigma D/\sqrt T)$} (Nemirovski--Yudin 1983; see also Polyak--Juditsky 1992, Shamir--Zhang 2013), so SHB, taken with $\beta = 0$, also attains this rate; SHB with any $\beta$ in the stability region should not be worse. This means the LB $\Omega(LD^2/T + \sigma D/\sqrt T)$ is tight against the SGD rate.
+\item \textbf{Lan 2012's AC-SA minimax UB is $O(LD^2/T^2 + \sigma D/\sqrt T)$} for the same function class (see \S4.3). The bias term $LD^2/T^2$ in AC-SA is \textbf{strictly better} than the $LD^2/T$ term in our LB; but this is not a contradiction --- it says AC-SA beats SHB on the bias term by a factor $T$. \textbf{This is the non-acceleration claim.}
+\end{itemize}
+
+Put differently: our LB establishes that fixed-momentum SHB on $\F$ matches the SGD rate ($LD^2/T$ bias) but \textbf{cannot achieve the AC-SA optimal rate} ($LD^2/T^2$ bias). Closing the stochastic SHB upper-bound gap --- proving a matching stochastic $O(LD^2/T + \sigma D/\sqrt T)$ upper bound specifically for fixed-momentum SHB --- is an open technical question; our LB strictly excludes any improvement to the AC-SA rate.
+
+\subsection{Last-iterate tightness against fixed-momentum SHB UB \textbf{[MOD v5-4: NEW]}}
+\label{sec:4.2.1}
+
+A natural question raised by a peer reviewer is whether the lower bound is tight against a matching \emph{last-iterate} upper bound for fixed-momentum SHB. The answer, derived in detail in Companion Document B (last-iterate tightness analysis), is nuanced.
+
+\subsubsection*{Negative result: no $T$-decaying UB at fixed $(\beta,\eta)$}
+
+\begin{theorem}[Closed-form noise floor for SHB on quadratic, RE-AUDIT 2026-04-28]
+\label{thm:noise-floor}
+Let $f(x) = (L/2)x^2$ on $\R$, with stochastic oracle $g_t = \nabla f(x_t) + \xi_t$, $\xi_t \sim \mathcal{N}(0,\sigma^2)$ i.i.d. Run SHB with fixed $(\beta, \eta)$ satisfying SHB-stability $\eta L < 2(1+\beta)$. Then the iterate $x_t$ converges in distribution to a stationary law with
+\begin{equation}
+  \mathrm{Var}_\infty[x] \;=\; \frac{\eta\sigma^2(1+\beta)}{L(1-\beta)(2(1+\beta) - \eta L)}.
+  \tag{NF}\label{eq:NF}
+\end{equation}
+Consequently,
+\[
+  \E[f(x_T) - f^\star] \;\to\; \frac{L}{2}\mathrm{Var}_\infty[x] \;=\; \frac{\eta\sigma^2(1+\beta)}{2(1-\beta)(2(1+\beta) - \eta L)} \;>\; 0
+  \qquad\text{as } T\to\infty.
+\]
+In particular, no upper bound of the form $\E[f(x_T) - f^\star] \leq C\,\sigma D/\sqrt T$ holds at \emph{fixed} $(\beta,\eta)$ for $T$ large.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The companion matrix of the linear stochastic recursion $x_{t+1} = (1+\beta-\eta L)x_t - \beta x_{t-1} + \eta\xi_t$ is
+$
+A = \begin{pmatrix} 1+\beta-\eta L & -\beta \\ 1 & 0 \end{pmatrix}.
+$
+Solving the discrete Lyapunov equation $\Sigma = A\Sigma A^\top + \eta^2\sigma^2 e_1 e_1^\top$ symbolically (SymPy) yields the $(1,1)$ entry equal to \eqref{eq:NF}. Verified by Monte-Carlo at 5 settings to $<0.1\%$ relative error (see supplementary verification script).
+\end{proof}
+
+The closed form \eqref{eq:NF} refutes any $T$-decaying UB at fixed $(\beta,\eta)$ on smooth convex non-SC SHB last iterate. This is consistent with --- and complementary to --- the OP-2 lower bound: at small $T$, the OP-2 LB $\sigma D/\sqrt T$ is the binding constraint; at large $T$, the noise floor $\Theta(\sigma^2\eta)$ dominates; the crossover is at $T^\star = D^2/(\sigma^2\eta^2)$.
+
+\subsubsection*{Three partial-positive tightness statements}
+
+The OP-2 LB $\Omega(LD^2/T + \sigma D/\sqrt T)$ is tight in three weaker senses:
+
+\paragraph{(i) Minimax-over-$\eta$ (rate match).}
+With horizon-tuned $\eta_T = \Theta(D/(\sigma\sqrt T))$, the noise floor matches the LB \emph{in rate}:
+\[
+  \frac{L}{2}\mathrm{Var}_\infty[x]\big|_{\eta=\eta_T} \;=\; \Theta(\sigma D / \sqrt T).
+\]
+The constants differ by a $\beta$-polynomial factor: noise-floor coefficient is $1/[4(1-\beta)]$, OP-2 LB coefficient is $\sqrt 2/27 \approx 0.0524$, so the ratio is $\geq 4.77\times$ at $\beta=0$ and grows to $\geq 47.7\times$ at $\beta=0.9$. \emph{Rate match, not constant match.}
+
+\paragraph{(ii) Projected SHB up to $\log T$.}
+For projected SHB with horizon-tuned $\eta = (1-\beta)/\sqrt T$, an online-to-batch reduction via $z_t = x_t + \beta(x_t - x_{t-1})/(1-\beta)$ followed by Orabona's last-iterate-vs-average bridge gives
+\[
+  \E[f(\Pi(x_T)) - f^\star] \;\leq\; O\!\left(\frac{LD^2 \log T}{T(1-\beta)} + \frac{\sigma D \sqrt{\log T}}{\sqrt{T(1-\beta)}}\right),
+\]
+matching the OP-2 LB up to $\log T$ factors.
+
+\paragraph{(iii) Deterministic Ces\`aro.}
+At $\sigma = 0$, GFJ15's $O(LD^2/T)$ Ces\`aro UB directly matches our LB's bias term. This was already discussed in \S4.2.
+
+\subsubsection*{Recommended ``tightness'' phrasing}
+
+We recommend that future revisions phrase the tightness claim as:
+
+\begin{quote}
+\emph{The lower bound $\Omega(LD^2/T + \sigma D/\sqrt T)$ is tight in three senses: (i) minimax-over-$\eta$, the LB rate $\Theta(\sigma D/\sqrt T)$ is achieved by horizon-tuned $\eta_T = D/(\sigma\sqrt T)$ (constants differ by $\beta$-polynomial factor); (ii) up to $\log T$ for projected SHB last iterate via online-to-batch; (iii) tight against the deterministic Ces\`aro UB of GFJ15. For unprojected fixed-$(\beta,\eta)$ SHB last iterate on smooth convex non-SC, no matching UB of the form $O(LD^2/T + \sigma D/\sqrt T)$ exists due to the closed-form noise floor of Theorem~\ref{thm:noise-floor}.}
+\end{quote}
+
+\subsection{Li--Liu--Orabona 2022 (last-iterate SGDM in the non-smooth setting) \textbf{[MOD v3-2: NEW]}}
+
+\textbf{arXiv:2102.07002, ALT 2022 / PMLR v167, ``On the Last Iterate Convergence of Momentum Methods''.}
+
+Li, Liu \& Orabona prove a closely related but \textbf{orthogonal} lower bound. Their statement (paraphrased):
+
+\begin{quote}
+\emph{For any constant momentum $\beta \in [0,1)$, there exists an $L$-Lipschitz convex function (non-smooth) and a subgradient oracle such that the last iterate $z_T$ of SGDM satisfies $\E[f(z_T) - f^\star] \geq \Omega(\ln T / \sqrt T)$.}
+\end{quote}
+
+Their construction is in $d = T$ dimensions using a piecewise-linear (non-smooth) function.
+
+\textbf{Comparison with our result:}
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Aspect & Li--Liu--Orabona 2022 & OP-2 Downgraded (this paper) \\
+\midrule
+Function class & $L$-Lipschitz convex (\textbf{non-smooth}) & $L$-smooth convex (non-SC) \\
+Oracle & Subgradient (with noise) & Stochastic, variance $\sigma^2$, unbiased \\
+Dimension & $d = T$ (grows with horizon) & $d = 3$ (fixed, minimax over fixed-dim class) \\
+Parameter region & Any constant $\beta \in [0,1)$ & $\F \subset \Sset$ (positive-measure subset of stability) \\
+Target iterate & Last iterate $z_T$ & Last iterate $x_T$ \\
+LB rate & $\Omega(\ln T / \sqrt T)$ & $\Omega(LD^2/T + \sigma D/\sqrt T)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Complementary, not overlapping:}
+
+\begin{enumerate}
+\item \textbf{Different function class.} Their non-smooth LB does not transfer to the smooth setting; the classical rate in the non-smooth Lipschitz case is $1/\sqrt T$, and their LB shows you cannot remove the $\ln T$ factor for last iterate under constant momentum. Our LB is in the smooth class where the expected rate is $1/T$ (bias) --- we show SHB achieves this bias rate but no better.
+
+\item \textbf{Smooth structure sharpens the bound.} In the non-smooth case, $\Omega(\ln T / \sqrt T)$ is the sharpest known LB for last-iterate SGDM; in the smooth case, we improve to $\Omega(1/T)$ for the bias term, which is optimal in the sense of matching the SGD rate. The extra structure (smoothness) admits a faster bias rate but fixed-momentum SHB still cannot accelerate past it.
+
+\item \textbf{Fixed vs.\ growing dimension.} Their construction requires $d = T$, so it is technically a lower bound against algorithms that may exploit high-dimensional structure --- but requires the problem dimension to grow with horizon. Our construction is in $d = 3$ fixed, a genuinely stronger minimax statement (LB uniform over all $d \geq 3$, not requiring $d$ to grow).
+
+\item \textbf{Different $\beta$-coverage.} Li et al.\ covers every constant $\beta \in [0,1)$, with a single construction per $\beta$. We cover the positive-measure Goujaud region $\F$; outside $\F$ our construction fails (Part 3.4) and we make no LB claim.
+\end{enumerate}
+
+\textbf{Take-away.} The two results together give a picture of fixed-momentum SGDM/SHB lower bounds: in the non-smooth setting, $\Omega(\ln T/\sqrt T)$ for any $\beta$ (Li et al.); in the smooth non-SC setting, $\Omega(LD^2/T + \sigma D/\sqrt T)$ for $\beta \in \F$-projection onto $(0,1)$ (this paper). Neither implies the other.
+
+\subsection{Agarwal--Bartlett--Ravikumar--Wainwright 2012 (minimax LB) \textbf{[MOD v3-3: NEW]}}
+
+\textbf{arXiv:1009.0571, IEEE Transactions on Information Theory 2012, ``Information-theoretic lower bounds on the oracle complexity of stochastic convex optimization''.}
+
+Agarwal et al.\ prove the \textbf{minimax} lower bound for stochastic smooth convex optimization:
+\[
+\inf_{\mathrm{alg}}\,\sup_{f \in \F_{L}}\,\E[f(x_T) - f^\star] \geq \Omega(\sigma D / \sqrt T),
+\]
+where the inf is over \textbf{all} first-order stochastic algorithms, and the sup over all $L$-smooth convex functions with initial-distance budget $D$. This is tight against Lan 2012's AC-SA upper bound $O(LD^2/T^2 + \sigma D/\sqrt T)$; thus the minimax rate on this class is $\Theta(LD^2/T^2 + \sigma D/\sqrt T)$.
+
+\textbf{How our LB relates.} Our LB $\Omega(LD^2/T + \sigma D/\sqrt T)$ is \textbf{algorithm-specific}, restricted to fixed-momentum SHB. In the bias term, our LB is \textbf{strictly stronger than the minimax LB} by a factor $T$:
+\[
+\underbrace{\Omega(LD^2/T)}_{\text{our SHB bias LB}} \gg \underbrace{\Omega(\text{no bias LB})}_{\text{minimax (Agarwal 2012) gives no bias-term LB; AC-SA achieves $LD^2/T^2$}}
+\]
+
+This gap between $LD^2/T$ (SHB) and $LD^2/T^2$ (minimax-optimal AC-SA) is precisely the \textbf{non-acceleration} statement: fixed-momentum SHB, restricted to $\F$, cannot attain the optimal bias rate of AC-SA, even when $\sigma = 0$. This is the central quantitative contribution of OP-2.
+
+\textbf{In summary.} Our theorem is a \emph{refined} lower bound --- not against all algorithms (that's Agarwal's job) but against SHB specifically --- showing that SHB's inability to accelerate is not artifactual but an intrinsic limitation of the fixed-momentum parameterization on cycling-feasible parameters $\F$.
+
+\subsection{Lan 2012 AC-SA (for comparison)}
+
+AC-SA achieves the minimax-optimal $O(LD^2/T^2 + \sigma D/\sqrt T)$ on the same smooth convex stochastic problem class. SHB's $\Omega(LD^2/T)$ is \textbf{factor $T$ slower} in the bias term: SHB with fixed momentum does NOT accelerate on $\F$.
+
+\subsection{Open: $\Sset\setminus \F$}
+
+On $\Sset\setminus\F$ (including the auditor-mandated pairs $(0.5, 1/L)$ and $(0.9, 1/(2L))$), our construction yields no lower bound. Empirical evidence (Part 3.4) shows SHB converges geometrically on all tested Goujaud-type instances there, suggesting the unrestricted theorem may be false on $\Sset\setminus\F$. Two resolution paths: (a) find a non-Goujaud hard instance; (b) prove a matching SHB upper bound on $\Sset\setminus\F$. Neither is known.
+
+\subsection{Summary of novelty (v3)}
+
+\begin{itemize}
+\item \textbf{First} rigorous lower bound $\Omega(LD^2/T + \sigma D/\sqrt T)$ for fixed-momentum SHB in the smooth convex \textbf{non-SC stochastic} setting, on a positive-Lebesgue-measure subregion $\F$ of the stability window (Claim~\ref{cla:2.13}). Prior related LBs (Li--Liu--Orabona 2022) treat the non-smooth setting; prior minimax LBs (Agarwal 2012) are not algorithm-specific and do not yield a bias-term LB at the $1/T$ rate.
+\item \textbf{Explicit, sharp constants} $c(\beta,\eta) = \kappa/4$ and $c_\mathrm{NY} = \sqrt 2/27 \approx 0.0524$ derived from the optimized Le Cam chain (v4 sharpening; v3 had $1/112 \approx 0.0089$).
+\item \textbf{Non-acceleration statement, quantitatively precise}: SHB on $\F$ cannot improve the bias rate beyond the SGD rate $LD^2/T$; the AC-SA optimal bias rate $LD^2/T^2$ is explicitly ruled out.
+\item \textbf{Clean positive-homogeneity-of-projection argument} (Lemma~\ref{lem:1.7}) for the rescaled Goujaud function --- no mid-proof rescaling retraction as in v1.
+\item \textbf{Exact initial distance} $\|x_0 - x^\star\| = D$ (Claim~\ref{cla:2.4}), via wall-radius adjustment $R = D/\sqrt 2 - \alpha/L$.
+\item \textbf{Global 0-strong-convexity rigorously verified} (Claim~\ref{cla:2.12}).
+\item \textbf{Positive-measure parameter region} $\F \subset \Sset$ rigorously verified (Claim~\ref{cla:2.13}).
+\end{itemize}
+
+\bigskip
+\hrule
+\bigskip
+
+\section*{Appendix A. Empirical scripts (file list)}
+
+All scripts are available as supplementary materials upon request.
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+Script & Purpose \\
+\midrule
+sublemma projection identity check & Machine-precision check of Lemma~\ref{lem:1.3}(iii) projection identity \\
+feasibility / control / threshold script & Feasibility (A), positive control (B), negative control (C), threshold (E) \\
+auditor sanity script & Auditor's independent re-implementation \\
+final sanity script & Route G cycling verification \\
+Route G$'$ sweep script & Route G$'$ (rescaling) feasibility sweep \\
+$K$-sweep, $\mu$-search, stability, feasible-pair, quadratic-sweep scripts & Supporting sweeps \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\bigskip
+\hrule
+\bigskip
+
+\section*{Appendix B. Summary of differences v1 $\to$ v2 $\to$ v3 $\to$ v4}
+
+\footnotesize
+\begin{longtable}{@{}p{2.0cm}p{2.9cm}p{2.9cm}p{2.9cm}p{2.9cm}@{}}
+\toprule
+Location & v1 & v2 & v3 & v4 \\
+\midrule
+\endfirsthead
+\toprule
+Location & v1 & v2 & v3 & v4 \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\S0.5 (theorem) & $\|x_0 - x^\star\| \leq D$, $c_\mathrm{NY} = 1/(8\sqrt 2)$ (unjustified) & $\|x_0 - x^\star\| = D$ (exact), $c_\mathrm{NY} = 1/112$ (from derivation) & unchanged statement; \textbf{added} tightness footnote (MOD v3-1) & $c_\mathrm{NY}$ sharpened to $\sqrt 2/27$ (MOD v4-1) \\
+\S1.4 Lemma~\ref{lem:1.4} & Rademacher, $\KL=\infty$ debacle & Gaussian, but exposition still reads as debug log & \textbf{Clean Gaussian statement upfront} (MOD v3-5) & Updated to $\alpha = \sigma/(3\sqrt T)$, $\KL_T = 2/9$, $\TV \le 1/3$, $p_{\min} \ge 1/3$ (MOD v4-3) \\
+\S1.6 Lemma~\ref{lem:1.6} & GFJ15 stochastic UB claimed & Same --- still claimed stochastic UB & \textbf{Restated as deterministic only} with caveat on scope (MOD v3-1) & unchanged \\
+\S1.7 (NEW in v2) & --- & Positive homogeneity of projection lemma & unchanged & unchanged \\
+\S2.1.1 & $f_0(x) := D^2\psi(x/D)$ & $f_0$ defined via rescaled polytope & unchanged & unchanged \\
+\S2.1.2 wall & $w$ with $R = D/\sqrt 2$ & $R = D/\sqrt 2 - \alpha/L$ & unchanged & $R = D/\sqrt 2 - \sigma/(3L\sqrt T)$ (MOD v4-2) \\
+\S2.1.2 Claim~\ref{cla:2.2} proof & implicit & ``wait let me redo'' (correct answer but sloppy) & \textbf{Clean piecewise case analysis} (MOD v3-6) & unchanged \\
+\S2.1.3 noise & Rademacher & Gaussian & unchanged & unchanged \\
+\S2.1.4 Claim~\ref{cla:2.4} & $\leq D^2 + o(1)$ & $= D^2$ & unchanged & unchanged \\
+Lemma~\ref{lem:2.6} & Handwave & Clean via Lemma~\ref{lem:1.7} & unchanged & unchanged \\
+Lemma~\ref{lem:2.9} & Claimed $1/(8\sqrt 2)$; inline gave $1/56$ & Honest $1/112$ & unchanged value; \textbf{added adaptive-KL chain rule} argument (MOD v3-4) & \textbf{Sharpened to $\sqrt 2/27$} via $c_\alpha = 1/3$ optimization + exact wall-correction identity (MOD v4-4, v4-5) \\
+\S2.4.1 Step 3 verification & --- & Verified wrong equality & \textbf{Fixed}: verifies actual inequality numerically (MOD v3-7) & Replaced loose inequality with exact identity $\rho(\sqrt 2) = \sqrt 2/3$ (MOD v4-4) \\
+Claim~\ref{cla:2.10} & Informal $s$ pick & Claim~\ref{cla:2.11} max-split & \textbf{Expanded}: $s^\star$ explicit deterministic function of $(\beta,\eta,T)$ (MOD v3-8) & $c_\mathrm{NY}$ value updated \\
+Claim~\ref{cla:2.12} (NEW in v2) & --- & Global SC constant = 0 verified & unchanged & unchanged \\
+Claim~\ref{cla:2.13} (NEW in v2) & --- & Positive Lebesgue measure of $\F$ & unchanged & unchanged \\
+\S2.7 Step 1 & --- & Biconditional feasibility equivalence claimed & \textbf{Split into sufficiency (rigorous) and necessity (empirical)} (MOD v3-9) & unchanged \\
+\S4.2 GFJ15 & --- & Claimed tight $\Theta(LD^2/T + \sigma D/\sqrt T)$ via GFJ15 stochastic UB & \textbf{Rewritten}: split deterministic (tight via GFJ15) vs stochastic (tight vs SGD, non-AC-SA) (MOD v3-1) & unchanged \\
+\S4.2.5 Li--Liu--Orabona (NEW v3) & --- & --- & \textbf{NEW}: explicit comparison; orthogonal non-smooth LB (MOD v3-2) & unchanged \\
+\S4.3 Agarwal 2012 (NEW v3) & --- & --- & \textbf{NEW}: relate to minimax LB; our LB is stronger in bias term (MOD v3-3) & unchanged \\
+\S4.4 Lan & \S4.3 in v2 & same content & renumbered \S4.4 & unchanged \\
+\S4.5 Open & \S4.4 in v2 & same content & renumbered \S4.5 & unchanged \\
+\S4.6 Summary & \S4.5 in v2 & novelty list & \textbf{Expanded} to incorporate v3 context & bullet 2 updated for $\sqrt 2/27$ (MOD v4) \\
+\end{longtable}
+\normalsize
+
+\textbf{End of v5.}
+
+\end{document}

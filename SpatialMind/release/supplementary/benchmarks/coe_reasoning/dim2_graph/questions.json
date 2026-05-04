@@ -1,0 +1,2903 @@
+{
+  "benchmark": "coe_reasoning",
+  "dimension": 2,
+  "dimension_name": "graph_connectivity",
+  "n_questions": 16,
+  "conditions": [
+    "baseline",
+    "cot",
+    "coe_r",
+    "coe_ctr"
+  ],
+  "scoring": "0-4 per question via grade_coe_reasoning.py",
+  "questions": [
+    {
+      "question_id": "dim2_q01",
+      "type": "bridge_test",
+      "stem": "给定无向图 G：顶点 {0, ..., 6}，边集\n  E = [[0, 1], [0, 4], [1, 2], [2, 3], [2, 5], [3, 4], [5, 6]]\n现在考虑从 G 中删除一条边 e = [5, 6]。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "删除 e=[5, 6] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "删除 e 之后图有多少个连通分量？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(c)",
+          "text": "原图 G 中总共有多少条桥边（删去后会增加分量数的边）？",
+          "answer_type": "integer",
+          "answer": 2
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "deleted_edge": [
+          5,
+          6
+        ],
+        "is_bridge": true,
+        "n_components_after": 2,
+        "total_bridges": 2
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 7,
+          "n_edges": 7,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              5,
+              6
+            ]
+          ],
+          "degrees": {
+            "0": 2,
+            "1": 2,
+            "2": 3,
+            "3": 2,
+            "4": 2,
+            "5": 2,
+            "6": 1
+          },
+          "adjacency_list": {
+            "0": [
+              1,
+              4
+            ],
+            "1": [
+              0,
+              2
+            ],
+            "2": [
+              1,
+              3,
+              5
+            ],
+            "3": [
+              2,
+              4
+            ],
+            "4": [
+              0,
+              3
+            ],
+            "5": [
+              2,
+              6
+            ],
+            "6": [
+              5
+            ]
+          },
+          "note": "Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself."
+        },
+        "T": {
+          "operation": "delete_edge",
+          "deleted_edge": [
+            5,
+            6
+          ],
+          "before": {
+            "n_edges": 7,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "after": {
+            "n_edges": 6,
+            "is_connected": false,
+            "n_components": 2
+          },
+          "delta": {
+            "is_bridge": true,
+            "components_change": 1,
+            "connectivity_lost": true
+          },
+          "note": "Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly."
+        },
+        "C": {
+          "alternative_deletions": [
+            {
+              "alternative_deleted_edge": [
+                5,
+                6
+              ],
+              "result": {
+                "is_bridge": true,
+                "components_change": 1
+              }
+            },
+            {
+              "alternative_deleted_edge": [
+                0,
+                1
+              ],
+              "result": {
+                "is_bridge": false,
+                "components_change": 0
+              }
+            }
+          ],
+          "note": "Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast."
+        }
+      },
+      "prompts": {
+        "baseline": "给定无向图 G：顶点 {0, ..., 6}，边集\n  E = [[0, 1], [0, 4], [1, 2], [2, 3], [2, 5], [3, 4], [5, 6]]\n现在考虑从 G 中删除一条边 e = [5, 6]。\n\n请回答以下子问题：\n  (a) 删除 e=[5, 6] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定无向图 G：顶点 {0, ..., 6}，边集\n  E = [[0, 1], [0, 4], [1, 2], [2, 3], [2, 5], [3, 4], [5, 6]]\n现在考虑从 G 中删除一条边 e = [5, 6]。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 删除 e=[5, 6] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定无向图 G：顶点 {0, ..., 6}，边集\n  E = [[0, 1], [0, 4], [1, 2], [2, 3], [2, 5], [3, 4], [5, 6]]\n现在考虑从 G 中删除一条边 e = [5, 6]。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 7,\n  \"n_edges\": 7,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      5,\n      6\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 2,\n    \"2\": 3,\n    \"3\": 2,\n    \"4\": 2,\n    \"5\": 2,\n    \"6\": 1\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      4\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      1,\n      3,\n      5\n    ],\n    \"3\": [\n      2,\n      4\n    ],\n    \"4\": [\n      0,\n      3\n    ],\n    \"5\": [\n      2,\n      6\n    ],\n    \"6\": [\n      5\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 删除 e=[5, 6] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定无向图 G：顶点 {0, ..., 6}，边集\n  E = [[0, 1], [0, 4], [1, 2], [2, 3], [2, 5], [3, 4], [5, 6]]\n现在考虑从 G 中删除一条边 e = [5, 6]。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 7,\n  \"n_edges\": 7,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      5,\n      6\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 2,\n    \"2\": 3,\n    \"3\": 2,\n    \"4\": 2,\n    \"5\": 2,\n    \"6\": 1\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      4\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      1,\n      3,\n      5\n    ],\n    \"3\": [\n      2,\n      4\n    ],\n    \"4\": [\n      0,\n      3\n    ],\n    \"5\": [\n      2,\n      6\n    ],\n    \"6\": [\n      5\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"delete_edge\",\n  \"deleted_edge\": [\n    5,\n    6\n  ],\n  \"before\": {\n    \"n_edges\": 7,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"after\": {\n    \"n_edges\": 6,\n    \"is_connected\": false,\n    \"n_components\": 2\n  },\n  \"delta\": {\n    \"is_bridge\": true,\n    \"components_change\": 1,\n    \"connectivity_lost\": true\n  },\n  \"note\": \"Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_deletions\": [\n    {\n      \"alternative_deleted_edge\": [\n        5,\n        6\n      ],\n      \"result\": {\n        \"is_bridge\": true,\n        \"components_change\": 1\n      }\n    },\n    {\n      \"alternative_deleted_edge\": [\n        0,\n        1\n      ],\n      \"result\": {\n        \"is_bridge\": false,\n        \"components_change\": 0\n      }\n    }\n  ],\n  \"note\": \"Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 删除 e=[5, 6] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim2_q02",
+      "type": "bridge_test",
+      "stem": "给定无向图 G：顶点 {0, ..., 4}，边集\n  E = [[0, 1], [0, 2], [0, 3], [1, 2], [2, 3], [3, 4]]\n现在考虑从 G 中删除一条边 e = [3, 4]。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "删除 e=[3, 4] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "删除 e 之后图有多少个连通分量？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(c)",
+          "text": "原图 G 中总共有多少条桥边（删去后会增加分量数的边）？",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "deleted_edge": [
+          3,
+          4
+        ],
+        "is_bridge": true,
+        "n_components_after": 2,
+        "total_bridges": 1
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 5,
+          "n_edges": 6,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "degrees": {
+            "0": 3,
+            "1": 2,
+            "2": 3,
+            "3": 3,
+            "4": 1
+          },
+          "adjacency_list": {
+            "0": [
+              1,
+              2,
+              3
+            ],
+            "1": [
+              0,
+              2
+            ],
+            "2": [
+              0,
+              1,
+              3
+            ],
+            "3": [
+              0,
+              2,
+              4
+            ],
+            "4": [
+              3
+            ]
+          },
+          "note": "Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself."
+        },
+        "T": {
+          "operation": "delete_edge",
+          "deleted_edge": [
+            3,
+            4
+          ],
+          "before": {
+            "n_edges": 6,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "after": {
+            "n_edges": 5,
+            "is_connected": false,
+            "n_components": 2
+          },
+          "delta": {
+            "is_bridge": true,
+            "components_change": 1,
+            "connectivity_lost": true
+          },
+          "note": "Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly."
+        },
+        "C": {
+          "alternative_deletions": [
+            {
+              "alternative_deleted_edge": [
+                3,
+                4
+              ],
+              "result": {
+                "is_bridge": true,
+                "components_change": 1
+              }
+            },
+            {
+              "alternative_deleted_edge": [
+                0,
+                2
+              ],
+              "result": {
+                "is_bridge": false,
+                "components_change": 0
+              }
+            }
+          ],
+          "note": "Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast."
+        }
+      },
+      "prompts": {
+        "baseline": "给定无向图 G：顶点 {0, ..., 4}，边集\n  E = [[0, 1], [0, 2], [0, 3], [1, 2], [2, 3], [3, 4]]\n现在考虑从 G 中删除一条边 e = [3, 4]。\n\n请回答以下子问题：\n  (a) 删除 e=[3, 4] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定无向图 G：顶点 {0, ..., 4}，边集\n  E = [[0, 1], [0, 2], [0, 3], [1, 2], [2, 3], [3, 4]]\n现在考虑从 G 中删除一条边 e = [3, 4]。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 删除 e=[3, 4] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定无向图 G：顶点 {0, ..., 4}，边集\n  E = [[0, 1], [0, 2], [0, 3], [1, 2], [2, 3], [3, 4]]\n现在考虑从 G 中删除一条边 e = [3, 4]。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 5,\n  \"n_edges\": 6,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 3,\n    \"1\": 2,\n    \"2\": 3,\n    \"3\": 3,\n    \"4\": 1\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      2,\n      3\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      0,\n      1,\n      3\n    ],\n    \"3\": [\n      0,\n      2,\n      4\n    ],\n    \"4\": [\n      3\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 删除 e=[3, 4] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定无向图 G：顶点 {0, ..., 4}，边集\n  E = [[0, 1], [0, 2], [0, 3], [1, 2], [2, 3], [3, 4]]\n现在考虑从 G 中删除一条边 e = [3, 4]。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 5,\n  \"n_edges\": 6,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 3,\n    \"1\": 2,\n    \"2\": 3,\n    \"3\": 3,\n    \"4\": 1\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      2,\n      3\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      0,\n      1,\n      3\n    ],\n    \"3\": [\n      0,\n      2,\n      4\n    ],\n    \"4\": [\n      3\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"delete_edge\",\n  \"deleted_edge\": [\n    3,\n    4\n  ],\n  \"before\": {\n    \"n_edges\": 6,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"after\": {\n    \"n_edges\": 5,\n    \"is_connected\": false,\n    \"n_components\": 2\n  },\n  \"delta\": {\n    \"is_bridge\": true,\n    \"components_change\": 1,\n    \"connectivity_lost\": true\n  },\n  \"note\": \"Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_deletions\": [\n    {\n      \"alternative_deleted_edge\": [\n        3,\n        4\n      ],\n      \"result\": {\n        \"is_bridge\": true,\n        \"components_change\": 1\n      }\n    },\n    {\n      \"alternative_deleted_edge\": [\n        0,\n        2\n      ],\n      \"result\": {\n        \"is_bridge\": false,\n        \"components_change\": 0\n      }\n    }\n  ],\n  \"note\": \"Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 删除 e=[3, 4] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim2_q03",
+      "type": "bridge_test",
+      "stem": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [0, 2], [0, 3], [1, 2], [3, 4], [3, 5], [4, 5]]\n现在考虑从 G 中删除一条边 e = [0, 3]。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "删除 e=[0, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "删除 e 之后图有多少个连通分量？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(c)",
+          "text": "原图 G 中总共有多少条桥边（删去后会增加分量数的边）？",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "deleted_edge": [
+          0,
+          3
+        ],
+        "is_bridge": true,
+        "n_components_after": 2,
+        "total_bridges": 1
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 6,
+          "n_edges": 7,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          "degrees": {
+            "0": 3,
+            "1": 2,
+            "2": 2,
+            "3": 3,
+            "4": 2,
+            "5": 2
+          },
+          "adjacency_list": {
+            "0": [
+              1,
+              2,
+              3
+            ],
+            "1": [
+              0,
+              2
+            ],
+            "2": [
+              0,
+              1
+            ],
+            "3": [
+              0,
+              4,
+              5
+            ],
+            "4": [
+              3,
+              5
+            ],
+            "5": [
+              3,
+              4
+            ]
+          },
+          "note": "Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself."
+        },
+        "T": {
+          "operation": "delete_edge",
+          "deleted_edge": [
+            0,
+            3
+          ],
+          "before": {
+            "n_edges": 7,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "after": {
+            "n_edges": 6,
+            "is_connected": false,
+            "n_components": 2
+          },
+          "delta": {
+            "is_bridge": true,
+            "components_change": 1,
+            "connectivity_lost": true
+          },
+          "note": "Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly."
+        },
+        "C": {
+          "alternative_deletions": [
+            {
+              "alternative_deleted_edge": [
+                0,
+                3
+              ],
+              "result": {
+                "is_bridge": true,
+                "components_change": 1
+              }
+            },
+            {
+              "alternative_deleted_edge": [
+                0,
+                1
+              ],
+              "result": {
+                "is_bridge": false,
+                "components_change": 0
+              }
+            }
+          ],
+          "note": "Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast."
+        }
+      },
+      "prompts": {
+        "baseline": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [0, 2], [0, 3], [1, 2], [3, 4], [3, 5], [4, 5]]\n现在考虑从 G 中删除一条边 e = [0, 3]。\n\n请回答以下子问题：\n  (a) 删除 e=[0, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [0, 2], [0, 3], [1, 2], [3, 4], [3, 5], [4, 5]]\n现在考虑从 G 中删除一条边 e = [0, 3]。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 删除 e=[0, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [0, 2], [0, 3], [1, 2], [3, 4], [3, 5], [4, 5]]\n现在考虑从 G 中删除一条边 e = [0, 3]。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 7,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      5\n    ],\n    [\n      4,\n      5\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 3,\n    \"1\": 2,\n    \"2\": 2,\n    \"3\": 3,\n    \"4\": 2,\n    \"5\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      2,\n      3\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      0,\n      1\n    ],\n    \"3\": [\n      0,\n      4,\n      5\n    ],\n    \"4\": [\n      3,\n      5\n    ],\n    \"5\": [\n      3,\n      4\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 删除 e=[0, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [0, 2], [0, 3], [1, 2], [3, 4], [3, 5], [4, 5]]\n现在考虑从 G 中删除一条边 e = [0, 3]。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 7,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      5\n    ],\n    [\n      4,\n      5\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 3,\n    \"1\": 2,\n    \"2\": 2,\n    \"3\": 3,\n    \"4\": 2,\n    \"5\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      2,\n      3\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      0,\n      1\n    ],\n    \"3\": [\n      0,\n      4,\n      5\n    ],\n    \"4\": [\n      3,\n      5\n    ],\n    \"5\": [\n      3,\n      4\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"delete_edge\",\n  \"deleted_edge\": [\n    0,\n    3\n  ],\n  \"before\": {\n    \"n_edges\": 7,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"after\": {\n    \"n_edges\": 6,\n    \"is_connected\": false,\n    \"n_components\": 2\n  },\n  \"delta\": {\n    \"is_bridge\": true,\n    \"components_change\": 1,\n    \"connectivity_lost\": true\n  },\n  \"note\": \"Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_deletions\": [\n    {\n      \"alternative_deleted_edge\": [\n        0,\n        3\n      ],\n      \"result\": {\n        \"is_bridge\": true,\n        \"components_change\": 1\n      }\n    },\n    {\n      \"alternative_deleted_edge\": [\n        0,\n        1\n      ],\n      \"result\": {\n        \"is_bridge\": false,\n        \"components_change\": 0\n      }\n    }\n  ],\n  \"note\": \"Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 删除 e=[0, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim2_q04",
+      "type": "bridge_test",
+      "stem": "给定无向图 G：顶点 {0, ..., 7}，边集\n  E = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]\n现在考虑从 G 中删除一条边 e = [3, 4]。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "删除 e=[3, 4] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "删除 e 之后图有多少个连通分量？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(c)",
+          "text": "原图 G 中总共有多少条桥边（删去后会增加分量数的边）？",
+          "answer_type": "integer",
+          "answer": 7
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "deleted_edge": [
+          3,
+          4
+        ],
+        "is_bridge": true,
+        "n_components_after": 2,
+        "total_bridges": 7
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 8,
+          "n_edges": 7,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ]
+          ],
+          "degrees": {
+            "0": 1,
+            "1": 2,
+            "2": 2,
+            "3": 2,
+            "4": 2,
+            "5": 2,
+            "6": 2,
+            "7": 1
+          },
+          "adjacency_list": {
+            "0": [
+              1
+            ],
+            "1": [
+              0,
+              2
+            ],
+            "2": [
+              1,
+              3
+            ],
+            "3": [
+              2,
+              4
+            ],
+            "4": [
+              3,
+              5
+            ],
+            "5": [
+              4,
+              6
+            ],
+            "6": [
+              5,
+              7
+            ],
+            "7": [
+              6
+            ]
+          },
+          "note": "Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself."
+        },
+        "T": {
+          "operation": "delete_edge",
+          "deleted_edge": [
+            3,
+            4
+          ],
+          "before": {
+            "n_edges": 7,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "after": {
+            "n_edges": 6,
+            "is_connected": false,
+            "n_components": 2
+          },
+          "delta": {
+            "is_bridge": true,
+            "components_change": 1,
+            "connectivity_lost": true
+          },
+          "note": "Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly."
+        },
+        "C": {
+          "alternative_deletions": [
+            {
+              "alternative_deleted_edge": [
+                3,
+                4
+              ],
+              "result": {
+                "is_bridge": true,
+                "components_change": 1
+              }
+            }
+          ],
+          "note": "Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast."
+        }
+      },
+      "prompts": {
+        "baseline": "给定无向图 G：顶点 {0, ..., 7}，边集\n  E = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]\n现在考虑从 G 中删除一条边 e = [3, 4]。\n\n请回答以下子问题：\n  (a) 删除 e=[3, 4] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定无向图 G：顶点 {0, ..., 7}，边集\n  E = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]\n现在考虑从 G 中删除一条边 e = [3, 4]。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 删除 e=[3, 4] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定无向图 G：顶点 {0, ..., 7}，边集\n  E = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]\n现在考虑从 G 中删除一条边 e = [3, 4]。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 8,\n  \"n_edges\": 7,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 1,\n    \"1\": 2,\n    \"2\": 2,\n    \"3\": 2,\n    \"4\": 2,\n    \"5\": 2,\n    \"6\": 2,\n    \"7\": 1\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      1,\n      3\n    ],\n    \"3\": [\n      2,\n      4\n    ],\n    \"4\": [\n      3,\n      5\n    ],\n    \"5\": [\n      4,\n      6\n    ],\n    \"6\": [\n      5,\n      7\n    ],\n    \"7\": [\n      6\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 删除 e=[3, 4] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定无向图 G：顶点 {0, ..., 7}，边集\n  E = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]\n现在考虑从 G 中删除一条边 e = [3, 4]。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 8,\n  \"n_edges\": 7,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 1,\n    \"1\": 2,\n    \"2\": 2,\n    \"3\": 2,\n    \"4\": 2,\n    \"5\": 2,\n    \"6\": 2,\n    \"7\": 1\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      1,\n      3\n    ],\n    \"3\": [\n      2,\n      4\n    ],\n    \"4\": [\n      3,\n      5\n    ],\n    \"5\": [\n      4,\n      6\n    ],\n    \"6\": [\n      5,\n      7\n    ],\n    \"7\": [\n      6\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"delete_edge\",\n  \"deleted_edge\": [\n    3,\n    4\n  ],\n  \"before\": {\n    \"n_edges\": 7,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"after\": {\n    \"n_edges\": 6,\n    \"is_connected\": false,\n    \"n_components\": 2\n  },\n  \"delta\": {\n    \"is_bridge\": true,\n    \"components_change\": 1,\n    \"connectivity_lost\": true\n  },\n  \"note\": \"Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_deletions\": [\n    {\n      \"alternative_deleted_edge\": [\n        3,\n        4\n      ],\n      \"result\": {\n        \"is_bridge\": true,\n        \"components_change\": 1\n      }\n    }\n  ],\n  \"note\": \"Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 删除 e=[3, 4] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim2_q05",
+      "type": "bridge_test",
+      "stem": "给定无向图 G：顶点 {0, ..., 4}，边集\n  E = [[0, 1], [0, 4], [1, 2], [1, 3], [2, 3], [3, 4]]\n现在考虑从 G 中删除一条边 e = [1, 3]。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "删除 e=[1, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "删除 e 之后图有多少个连通分量？",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "原图 G 中总共有多少条桥边（删去后会增加分量数的边）？",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "deleted_edge": [
+          1,
+          3
+        ],
+        "is_bridge": false,
+        "n_components_after": 1,
+        "total_bridges": 0
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 5,
+          "n_edges": 6,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "degrees": {
+            "0": 2,
+            "1": 3,
+            "2": 2,
+            "3": 3,
+            "4": 2
+          },
+          "adjacency_list": {
+            "0": [
+              1,
+              4
+            ],
+            "1": [
+              0,
+              2,
+              3
+            ],
+            "2": [
+              1,
+              3
+            ],
+            "3": [
+              1,
+              2,
+              4
+            ],
+            "4": [
+              0,
+              3
+            ]
+          },
+          "note": "Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself."
+        },
+        "T": {
+          "operation": "delete_edge",
+          "deleted_edge": [
+            1,
+            3
+          ],
+          "before": {
+            "n_edges": 6,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "after": {
+            "n_edges": 5,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "delta": {
+            "is_bridge": false,
+            "components_change": 0,
+            "connectivity_lost": false
+          },
+          "note": "Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly."
+        },
+        "C": {
+          "alternative_deletions": [
+            {
+              "alternative_deleted_edge": [
+                1,
+                3
+              ],
+              "result": {
+                "is_bridge": false,
+                "components_change": 0
+              }
+            }
+          ],
+          "note": "Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast."
+        }
+      },
+      "prompts": {
+        "baseline": "给定无向图 G：顶点 {0, ..., 4}，边集\n  E = [[0, 1], [0, 4], [1, 2], [1, 3], [2, 3], [3, 4]]\n现在考虑从 G 中删除一条边 e = [1, 3]。\n\n请回答以下子问题：\n  (a) 删除 e=[1, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定无向图 G：顶点 {0, ..., 4}，边集\n  E = [[0, 1], [0, 4], [1, 2], [1, 3], [2, 3], [3, 4]]\n现在考虑从 G 中删除一条边 e = [1, 3]。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 删除 e=[1, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定无向图 G：顶点 {0, ..., 4}，边集\n  E = [[0, 1], [0, 4], [1, 2], [1, 3], [2, 3], [3, 4]]\n现在考虑从 G 中删除一条边 e = [1, 3]。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 5,\n  \"n_edges\": 6,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 3,\n    \"2\": 2,\n    \"3\": 3,\n    \"4\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      4\n    ],\n    \"1\": [\n      0,\n      2,\n      3\n    ],\n    \"2\": [\n      1,\n      3\n    ],\n    \"3\": [\n      1,\n      2,\n      4\n    ],\n    \"4\": [\n      0,\n      3\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 删除 e=[1, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定无向图 G：顶点 {0, ..., 4}，边集\n  E = [[0, 1], [0, 4], [1, 2], [1, 3], [2, 3], [3, 4]]\n现在考虑从 G 中删除一条边 e = [1, 3]。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 5,\n  \"n_edges\": 6,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 3,\n    \"2\": 2,\n    \"3\": 3,\n    \"4\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      4\n    ],\n    \"1\": [\n      0,\n      2,\n      3\n    ],\n    \"2\": [\n      1,\n      3\n    ],\n    \"3\": [\n      1,\n      2,\n      4\n    ],\n    \"4\": [\n      0,\n      3\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"delete_edge\",\n  \"deleted_edge\": [\n    1,\n    3\n  ],\n  \"before\": {\n    \"n_edges\": 6,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"after\": {\n    \"n_edges\": 5,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"delta\": {\n    \"is_bridge\": false,\n    \"components_change\": 0,\n    \"connectivity_lost\": false\n  },\n  \"note\": \"Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_deletions\": [\n    {\n      \"alternative_deleted_edge\": [\n        1,\n        3\n      ],\n      \"result\": {\n        \"is_bridge\": false,\n        \"components_change\": 0\n      }\n    }\n  ],\n  \"note\": \"Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 删除 e=[1, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim2_q06",
+      "type": "bridge_test",
+      "stem": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [0, 2], [1, 2], [2, 3], [3, 4], [3, 5], [4, 5]]\n现在考虑从 G 中删除一条边 e = [2, 3]。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "删除 e=[2, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "删除 e 之后图有多少个连通分量？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(c)",
+          "text": "原图 G 中总共有多少条桥边（删去后会增加分量数的边）？",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "deleted_edge": [
+          2,
+          3
+        ],
+        "is_bridge": true,
+        "n_components_after": 2,
+        "total_bridges": 1
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 6,
+          "n_edges": 7,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          "degrees": {
+            "0": 2,
+            "1": 2,
+            "2": 3,
+            "3": 3,
+            "4": 2,
+            "5": 2
+          },
+          "adjacency_list": {
+            "0": [
+              1,
+              2
+            ],
+            "1": [
+              0,
+              2
+            ],
+            "2": [
+              0,
+              1,
+              3
+            ],
+            "3": [
+              2,
+              4,
+              5
+            ],
+            "4": [
+              3,
+              5
+            ],
+            "5": [
+              3,
+              4
+            ]
+          },
+          "note": "Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself."
+        },
+        "T": {
+          "operation": "delete_edge",
+          "deleted_edge": [
+            2,
+            3
+          ],
+          "before": {
+            "n_edges": 7,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "after": {
+            "n_edges": 6,
+            "is_connected": false,
+            "n_components": 2
+          },
+          "delta": {
+            "is_bridge": true,
+            "components_change": 1,
+            "connectivity_lost": true
+          },
+          "note": "Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly."
+        },
+        "C": {
+          "alternative_deletions": [
+            {
+              "alternative_deleted_edge": [
+                2,
+                3
+              ],
+              "result": {
+                "is_bridge": true,
+                "components_change": 1
+              }
+            },
+            {
+              "alternative_deleted_edge": [
+                0,
+                1
+              ],
+              "result": {
+                "is_bridge": false,
+                "components_change": 0
+              }
+            }
+          ],
+          "note": "Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast."
+        }
+      },
+      "prompts": {
+        "baseline": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [0, 2], [1, 2], [2, 3], [3, 4], [3, 5], [4, 5]]\n现在考虑从 G 中删除一条边 e = [2, 3]。\n\n请回答以下子问题：\n  (a) 删除 e=[2, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [0, 2], [1, 2], [2, 3], [3, 4], [3, 5], [4, 5]]\n现在考虑从 G 中删除一条边 e = [2, 3]。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 删除 e=[2, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [0, 2], [1, 2], [2, 3], [3, 4], [3, 5], [4, 5]]\n现在考虑从 G 中删除一条边 e = [2, 3]。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 7,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      5\n    ],\n    [\n      4,\n      5\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 2,\n    \"2\": 3,\n    \"3\": 3,\n    \"4\": 2,\n    \"5\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      2\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      0,\n      1,\n      3\n    ],\n    \"3\": [\n      2,\n      4,\n      5\n    ],\n    \"4\": [\n      3,\n      5\n    ],\n    \"5\": [\n      3,\n      4\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 删除 e=[2, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [0, 2], [1, 2], [2, 3], [3, 4], [3, 5], [4, 5]]\n现在考虑从 G 中删除一条边 e = [2, 3]。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 7,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      5\n    ],\n    [\n      4,\n      5\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 2,\n    \"2\": 3,\n    \"3\": 3,\n    \"4\": 2,\n    \"5\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      2\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      0,\n      1,\n      3\n    ],\n    \"3\": [\n      2,\n      4,\n      5\n    ],\n    \"4\": [\n      3,\n      5\n    ],\n    \"5\": [\n      3,\n      4\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"delete_edge\",\n  \"deleted_edge\": [\n    2,\n    3\n  ],\n  \"before\": {\n    \"n_edges\": 7,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"after\": {\n    \"n_edges\": 6,\n    \"is_connected\": false,\n    \"n_components\": 2\n  },\n  \"delta\": {\n    \"is_bridge\": true,\n    \"components_change\": 1,\n    \"connectivity_lost\": true\n  },\n  \"note\": \"Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_deletions\": [\n    {\n      \"alternative_deleted_edge\": [\n        2,\n        3\n      ],\n      \"result\": {\n        \"is_bridge\": true,\n        \"components_change\": 1\n      }\n    },\n    {\n      \"alternative_deleted_edge\": [\n        0,\n        1\n      ],\n      \"result\": {\n        \"is_bridge\": false,\n        \"components_change\": 0\n      }\n    }\n  ],\n  \"note\": \"Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 删除 e=[2, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim2_q07",
+      "type": "bridge_test",
+      "stem": "给定无向图 G：顶点 {0, ..., 7}，边集\n  E = [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7]]\n现在考虑从 G 中删除一条边 e = [0, 4]。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "删除 e=[0, 4] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "删除 e 之后图有多少个连通分量？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(c)",
+          "text": "原图 G 中总共有多少条桥边（删去后会增加分量数的边）？",
+          "answer_type": "integer",
+          "answer": 7
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ]
+        ],
+        "deleted_edge": [
+          0,
+          4
+        ],
+        "is_bridge": true,
+        "n_components_after": 2,
+        "total_bridges": 7
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 8,
+          "n_edges": 7,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "degrees": {
+            "0": 7,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1
+          },
+          "adjacency_list": {
+            "0": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "1": [
+              0
+            ],
+            "2": [
+              0
+            ],
+            "3": [
+              0
+            ],
+            "4": [
+              0
+            ],
+            "5": [
+              0
+            ],
+            "6": [
+              0
+            ],
+            "7": [
+              0
+            ]
+          },
+          "note": "Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself."
+        },
+        "T": {
+          "operation": "delete_edge",
+          "deleted_edge": [
+            0,
+            4
+          ],
+          "before": {
+            "n_edges": 7,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "after": {
+            "n_edges": 6,
+            "is_connected": false,
+            "n_components": 2
+          },
+          "delta": {
+            "is_bridge": true,
+            "components_change": 1,
+            "connectivity_lost": true
+          },
+          "note": "Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly."
+        },
+        "C": {
+          "alternative_deletions": [
+            {
+              "alternative_deleted_edge": [
+                0,
+                4
+              ],
+              "result": {
+                "is_bridge": true,
+                "components_change": 1
+              }
+            }
+          ],
+          "note": "Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast."
+        }
+      },
+      "prompts": {
+        "baseline": "给定无向图 G：顶点 {0, ..., 7}，边集\n  E = [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7]]\n现在考虑从 G 中删除一条边 e = [0, 4]。\n\n请回答以下子问题：\n  (a) 删除 e=[0, 4] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定无向图 G：顶点 {0, ..., 7}，边集\n  E = [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7]]\n现在考虑从 G 中删除一条边 e = [0, 4]。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 删除 e=[0, 4] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定无向图 G：顶点 {0, ..., 7}，边集\n  E = [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7]]\n现在考虑从 G 中删除一条边 e = [0, 4]。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 8,\n  \"n_edges\": 7,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      0,\n      5\n    ],\n    [\n      0,\n      6\n    ],\n    [\n      0,\n      7\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 7,\n    \"1\": 1,\n    \"2\": 1,\n    \"3\": 1,\n    \"4\": 1,\n    \"5\": 1,\n    \"6\": 1,\n    \"7\": 1\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      2,\n      3,\n      4,\n      5,\n      6,\n      7\n    ],\n    \"1\": [\n      0\n    ],\n    \"2\": [\n      0\n    ],\n    \"3\": [\n      0\n    ],\n    \"4\": [\n      0\n    ],\n    \"5\": [\n      0\n    ],\n    \"6\": [\n      0\n    ],\n    \"7\": [\n      0\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 删除 e=[0, 4] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定无向图 G：顶点 {0, ..., 7}，边集\n  E = [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7]]\n现在考虑从 G 中删除一条边 e = [0, 4]。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 8,\n  \"n_edges\": 7,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      0,\n      5\n    ],\n    [\n      0,\n      6\n    ],\n    [\n      0,\n      7\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 7,\n    \"1\": 1,\n    \"2\": 1,\n    \"3\": 1,\n    \"4\": 1,\n    \"5\": 1,\n    \"6\": 1,\n    \"7\": 1\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      2,\n      3,\n      4,\n      5,\n      6,\n      7\n    ],\n    \"1\": [\n      0\n    ],\n    \"2\": [\n      0\n    ],\n    \"3\": [\n      0\n    ],\n    \"4\": [\n      0\n    ],\n    \"5\": [\n      0\n    ],\n    \"6\": [\n      0\n    ],\n    \"7\": [\n      0\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"delete_edge\",\n  \"deleted_edge\": [\n    0,\n    4\n  ],\n  \"before\": {\n    \"n_edges\": 7,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"after\": {\n    \"n_edges\": 6,\n    \"is_connected\": false,\n    \"n_components\": 2\n  },\n  \"delta\": {\n    \"is_bridge\": true,\n    \"components_change\": 1,\n    \"connectivity_lost\": true\n  },\n  \"note\": \"Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_deletions\": [\n    {\n      \"alternative_deleted_edge\": [\n        0,\n        4\n      ],\n      \"result\": {\n        \"is_bridge\": true,\n        \"components_change\": 1\n      }\n    }\n  ],\n  \"note\": \"Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 删除 e=[0, 4] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim2_q08",
+      "type": "bridge_test",
+      "stem": "给定无向图 G：顶点 {0, ..., 3}，边集\n  E = [[0, 1], [0, 3], [1, 2], [1, 3], [2, 3]]\n现在考虑从 G 中删除一条边 e = [1, 3]。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "删除 e=[1, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "删除 e 之后图有多少个连通分量？",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "原图 G 中总共有多少条桥边（删去后会增加分量数的边）？",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "deleted_edge": [
+          1,
+          3
+        ],
+        "is_bridge": false,
+        "n_components_after": 1,
+        "total_bridges": 0
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 4,
+          "n_edges": 5,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "degrees": {
+            "0": 2,
+            "1": 3,
+            "2": 2,
+            "3": 3
+          },
+          "adjacency_list": {
+            "0": [
+              1,
+              3
+            ],
+            "1": [
+              0,
+              2,
+              3
+            ],
+            "2": [
+              1,
+              3
+            ],
+            "3": [
+              0,
+              1,
+              2
+            ]
+          },
+          "note": "Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself."
+        },
+        "T": {
+          "operation": "delete_edge",
+          "deleted_edge": [
+            1,
+            3
+          ],
+          "before": {
+            "n_edges": 5,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "after": {
+            "n_edges": 4,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "delta": {
+            "is_bridge": false,
+            "components_change": 0,
+            "connectivity_lost": false
+          },
+          "note": "Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly."
+        },
+        "C": {
+          "alternative_deletions": [
+            {
+              "alternative_deleted_edge": [
+                1,
+                3
+              ],
+              "result": {
+                "is_bridge": false,
+                "components_change": 0
+              }
+            }
+          ],
+          "note": "Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast."
+        }
+      },
+      "prompts": {
+        "baseline": "给定无向图 G：顶点 {0, ..., 3}，边集\n  E = [[0, 1], [0, 3], [1, 2], [1, 3], [2, 3]]\n现在考虑从 G 中删除一条边 e = [1, 3]。\n\n请回答以下子问题：\n  (a) 删除 e=[1, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定无向图 G：顶点 {0, ..., 3}，边集\n  E = [[0, 1], [0, 3], [1, 2], [1, 3], [2, 3]]\n现在考虑从 G 中删除一条边 e = [1, 3]。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 删除 e=[1, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定无向图 G：顶点 {0, ..., 3}，边集\n  E = [[0, 1], [0, 3], [1, 2], [1, 3], [2, 3]]\n现在考虑从 G 中删除一条边 e = [1, 3]。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 4,\n  \"n_edges\": 5,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      2,\n      3\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 3,\n    \"2\": 2,\n    \"3\": 3\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      3\n    ],\n    \"1\": [\n      0,\n      2,\n      3\n    ],\n    \"2\": [\n      1,\n      3\n    ],\n    \"3\": [\n      0,\n      1,\n      2\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 删除 e=[1, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定无向图 G：顶点 {0, ..., 3}，边集\n  E = [[0, 1], [0, 3], [1, 2], [1, 3], [2, 3]]\n现在考虑从 G 中删除一条边 e = [1, 3]。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 4,\n  \"n_edges\": 5,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      2,\n      3\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 3,\n    \"2\": 2,\n    \"3\": 3\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      3\n    ],\n    \"1\": [\n      0,\n      2,\n      3\n    ],\n    \"2\": [\n      1,\n      3\n    ],\n    \"3\": [\n      0,\n      1,\n      2\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"delete_edge\",\n  \"deleted_edge\": [\n    1,\n    3\n  ],\n  \"before\": {\n    \"n_edges\": 5,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"after\": {\n    \"n_edges\": 4,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"delta\": {\n    \"is_bridge\": false,\n    \"components_change\": 0,\n    \"connectivity_lost\": false\n  },\n  \"note\": \"Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_deletions\": [\n    {\n      \"alternative_deleted_edge\": [\n        1,\n        3\n      ],\n      \"result\": {\n        \"is_bridge\": false,\n        \"components_change\": 0\n      }\n    }\n  ],\n  \"note\": \"Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 删除 e=[1, 3] 之后，G 是否仍连通？请回答 1（连通）或 0（不连通）。\n  (b) 删除 e 之后图有多少个连通分量？\n  (c) 原图 G 中总共有多少条桥边（删去后会增加分量数的边）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim2_q09",
+      "type": "global_topology",
+      "stem": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [0, 5], [1, 2], [1, 4], [2, 3], [3, 4], [4, 5]]",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "G 有多少个连通分量？",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "G 有多少条桥边？",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "G 有多少个割点（articulation points，删去后增加分量数的顶点）？",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "n_components": 1,
+        "n_bridges": 0,
+        "n_articulation_points": 0
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 6,
+          "n_edges": 7,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          "degrees": {
+            "0": 2,
+            "1": 3,
+            "2": 2,
+            "3": 2,
+            "4": 3,
+            "5": 2
+          },
+          "adjacency_list": {
+            "0": [
+              1,
+              5
+            ],
+            "1": [
+              0,
+              2,
+              4
+            ],
+            "2": [
+              1,
+              3
+            ],
+            "3": [
+              2,
+              4
+            ],
+            "4": [
+              1,
+              3,
+              5
+            ],
+            "5": [
+              0,
+              4
+            ]
+          },
+          "note": "Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself."
+        },
+        "T": {
+          "operation": "delete_edge",
+          "deleted_edge": [
+            1,
+            4
+          ],
+          "before": {
+            "n_edges": 7,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "after": {
+            "n_edges": 6,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "delta": {
+            "is_bridge": false,
+            "components_change": 0,
+            "connectivity_lost": false
+          },
+          "note": "Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly."
+        },
+        "C": {
+          "alternative_deletions": [],
+          "note": "Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast."
+        }
+      },
+      "prompts": {
+        "baseline": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [0, 5], [1, 2], [1, 4], [2, 3], [3, 4], [4, 5]]\n\n请回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [0, 5], [1, 2], [1, 4], [2, 3], [3, 4], [4, 5]]\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [0, 5], [1, 2], [1, 4], [2, 3], [3, 4], [4, 5]]\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 7,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      5\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      4,\n      5\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 3,\n    \"2\": 2,\n    \"3\": 2,\n    \"4\": 3,\n    \"5\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      5\n    ],\n    \"1\": [\n      0,\n      2,\n      4\n    ],\n    \"2\": [\n      1,\n      3\n    ],\n    \"3\": [\n      2,\n      4\n    ],\n    \"4\": [\n      1,\n      3,\n      5\n    ],\n    \"5\": [\n      0,\n      4\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [0, 5], [1, 2], [1, 4], [2, 3], [3, 4], [4, 5]]\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 7,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      5\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      4,\n      5\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 3,\n    \"2\": 2,\n    \"3\": 2,\n    \"4\": 3,\n    \"5\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      5\n    ],\n    \"1\": [\n      0,\n      2,\n      4\n    ],\n    \"2\": [\n      1,\n      3\n    ],\n    \"3\": [\n      2,\n      4\n    ],\n    \"4\": [\n      1,\n      3,\n      5\n    ],\n    \"5\": [\n      0,\n      4\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"delete_edge\",\n  \"deleted_edge\": [\n    1,\n    4\n  ],\n  \"before\": {\n    \"n_edges\": 7,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"after\": {\n    \"n_edges\": 6,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"delta\": {\n    \"is_bridge\": false,\n    \"components_change\": 0,\n    \"connectivity_lost\": false\n  },\n  \"note\": \"Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_deletions\": [],\n  \"note\": \"Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim2_q10",
+      "type": "global_topology",
+      "stem": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [2, 3], [4, 5]]",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "G 有多少个连通分量？",
+          "answer_type": "integer",
+          "answer": 3
+        },
+        {
+          "label": "(b)",
+          "text": "G 有多少条桥边？",
+          "answer_type": "integer",
+          "answer": 3
+        },
+        {
+          "label": "(c)",
+          "text": "G 有多少个割点（articulation points，删去后增加分量数的顶点）？",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "n_components": 3,
+        "n_bridges": 3,
+        "n_articulation_points": 0
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 6,
+          "n_edges": 3,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          "degrees": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1
+          },
+          "adjacency_list": {
+            "0": [
+              1
+            ],
+            "1": [
+              0
+            ],
+            "2": [
+              3
+            ],
+            "3": [
+              2
+            ],
+            "4": [
+              5
+            ],
+            "5": [
+              4
+            ]
+          },
+          "note": "Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself."
+        },
+        "T": {
+          "operation": "delete_edge",
+          "deleted_edge": [
+            0,
+            1
+          ],
+          "before": {
+            "n_edges": 3,
+            "is_connected": false,
+            "n_components": 3
+          },
+          "after": {
+            "n_edges": 2,
+            "is_connected": false,
+            "n_components": 4
+          },
+          "delta": {
+            "is_bridge": true,
+            "components_change": 1,
+            "connectivity_lost": false
+          },
+          "note": "Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly."
+        },
+        "C": {
+          "alternative_deletions": [],
+          "note": "Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast."
+        }
+      },
+      "prompts": {
+        "baseline": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [2, 3], [4, 5]]\n\n请回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [2, 3], [4, 5]]\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [2, 3], [4, 5]]\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 3,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      4,\n      5\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 1,\n    \"1\": 1,\n    \"2\": 1,\n    \"3\": 1,\n    \"4\": 1,\n    \"5\": 1\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1\n    ],\n    \"1\": [\n      0\n    ],\n    \"2\": [\n      3\n    ],\n    \"3\": [\n      2\n    ],\n    \"4\": [\n      5\n    ],\n    \"5\": [\n      4\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [2, 3], [4, 5]]\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 3,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      4,\n      5\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 1,\n    \"1\": 1,\n    \"2\": 1,\n    \"3\": 1,\n    \"4\": 1,\n    \"5\": 1\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1\n    ],\n    \"1\": [\n      0\n    ],\n    \"2\": [\n      3\n    ],\n    \"3\": [\n      2\n    ],\n    \"4\": [\n      5\n    ],\n    \"5\": [\n      4\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"delete_edge\",\n  \"deleted_edge\": [\n    0,\n    1\n  ],\n  \"before\": {\n    \"n_edges\": 3,\n    \"is_connected\": false,\n    \"n_components\": 3\n  },\n  \"after\": {\n    \"n_edges\": 2,\n    \"is_connected\": false,\n    \"n_components\": 4\n  },\n  \"delta\": {\n    \"is_bridge\": true,\n    \"components_change\": 1,\n    \"connectivity_lost\": false\n  },\n  \"note\": \"Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_deletions\": [],\n  \"note\": \"Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim2_q11",
+      "type": "global_topology",
+      "stem": "给定无向图 G：顶点 {0, ..., 7}，边集\n  E = [[0, 1], [0, 7], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "G 有多少个连通分量？",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "G 有多少条桥边？",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "G 有多少个割点（articulation points，删去后增加分量数的顶点）？",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "n_components": 1,
+        "n_bridges": 0,
+        "n_articulation_points": 0
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 8,
+          "n_edges": 8,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ]
+          ],
+          "degrees": {
+            "0": 2,
+            "1": 2,
+            "2": 2,
+            "3": 2,
+            "4": 2,
+            "5": 2,
+            "6": 2,
+            "7": 2
+          },
+          "adjacency_list": {
+            "0": [
+              1,
+              7
+            ],
+            "1": [
+              0,
+              2
+            ],
+            "2": [
+              1,
+              3
+            ],
+            "3": [
+              2,
+              4
+            ],
+            "4": [
+              3,
+              5
+            ],
+            "5": [
+              4,
+              6
+            ],
+            "6": [
+              5,
+              7
+            ],
+            "7": [
+              0,
+              6
+            ]
+          },
+          "note": "Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself."
+        },
+        "T": {
+          "operation": "delete_edge",
+          "deleted_edge": [
+            0,
+            1
+          ],
+          "before": {
+            "n_edges": 8,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "after": {
+            "n_edges": 7,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "delta": {
+            "is_bridge": false,
+            "components_change": 0,
+            "connectivity_lost": false
+          },
+          "note": "Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly."
+        },
+        "C": {
+          "alternative_deletions": [],
+          "note": "Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast."
+        }
+      },
+      "prompts": {
+        "baseline": "给定无向图 G：顶点 {0, ..., 7}，边集\n  E = [[0, 1], [0, 7], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]\n\n请回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定无向图 G：顶点 {0, ..., 7}，边集\n  E = [[0, 1], [0, 7], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定无向图 G：顶点 {0, ..., 7}，边集\n  E = [[0, 1], [0, 7], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 8,\n  \"n_edges\": 8,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      7\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 2,\n    \"2\": 2,\n    \"3\": 2,\n    \"4\": 2,\n    \"5\": 2,\n    \"6\": 2,\n    \"7\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      7\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      1,\n      3\n    ],\n    \"3\": [\n      2,\n      4\n    ],\n    \"4\": [\n      3,\n      5\n    ],\n    \"5\": [\n      4,\n      6\n    ],\n    \"6\": [\n      5,\n      7\n    ],\n    \"7\": [\n      0,\n      6\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定无向图 G：顶点 {0, ..., 7}，边集\n  E = [[0, 1], [0, 7], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 8,\n  \"n_edges\": 8,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      7\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 2,\n    \"2\": 2,\n    \"3\": 2,\n    \"4\": 2,\n    \"5\": 2,\n    \"6\": 2,\n    \"7\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      7\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      1,\n      3\n    ],\n    \"3\": [\n      2,\n      4\n    ],\n    \"4\": [\n      3,\n      5\n    ],\n    \"5\": [\n      4,\n      6\n    ],\n    \"6\": [\n      5,\n      7\n    ],\n    \"7\": [\n      0,\n      6\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"delete_edge\",\n  \"deleted_edge\": [\n    0,\n    1\n  ],\n  \"before\": {\n    \"n_edges\": 8,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"after\": {\n    \"n_edges\": 7,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"delta\": {\n    \"is_bridge\": false,\n    \"components_change\": 0,\n    \"connectivity_lost\": false\n  },\n  \"note\": \"Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_deletions\": [],\n  \"note\": \"Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim2_q12",
+      "type": "global_topology",
+      "stem": "给定无向图 G：顶点 {0, ..., 6}，边集\n  E = [[0, 1], [0, 3], [1, 2], [2, 3], [3, 4], [4, 5], [4, 6], [5, 6]]",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "G 有多少个连通分量？",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "G 有多少条桥边？",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "G 有多少个割点（articulation points，删去后增加分量数的顶点）？",
+          "answer_type": "integer",
+          "answer": 2
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "n_components": 1,
+        "n_bridges": 1,
+        "n_articulation_points": 2
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 7,
+          "n_edges": 8,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              6
+            ]
+          ],
+          "degrees": {
+            "0": 2,
+            "1": 2,
+            "2": 2,
+            "3": 3,
+            "4": 3,
+            "5": 2,
+            "6": 2
+          },
+          "adjacency_list": {
+            "0": [
+              1,
+              3
+            ],
+            "1": [
+              0,
+              2
+            ],
+            "2": [
+              1,
+              3
+            ],
+            "3": [
+              0,
+              2,
+              4
+            ],
+            "4": [
+              3,
+              5,
+              6
+            ],
+            "5": [
+              4,
+              6
+            ],
+            "6": [
+              4,
+              5
+            ]
+          },
+          "note": "Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself."
+        },
+        "T": {
+          "operation": "delete_edge",
+          "deleted_edge": [
+            3,
+            4
+          ],
+          "before": {
+            "n_edges": 8,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "after": {
+            "n_edges": 7,
+            "is_connected": false,
+            "n_components": 2
+          },
+          "delta": {
+            "is_bridge": true,
+            "components_change": 1,
+            "connectivity_lost": true
+          },
+          "note": "Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly."
+        },
+        "C": {
+          "alternative_deletions": [],
+          "note": "Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast."
+        }
+      },
+      "prompts": {
+        "baseline": "给定无向图 G：顶点 {0, ..., 6}，边集\n  E = [[0, 1], [0, 3], [1, 2], [2, 3], [3, 4], [4, 5], [4, 6], [5, 6]]\n\n请回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定无向图 G：顶点 {0, ..., 6}，边集\n  E = [[0, 1], [0, 3], [1, 2], [2, 3], [3, 4], [4, 5], [4, 6], [5, 6]]\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定无向图 G：顶点 {0, ..., 6}，边集\n  E = [[0, 1], [0, 3], [1, 2], [2, 3], [3, 4], [4, 5], [4, 6], [5, 6]]\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 7,\n  \"n_edges\": 8,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      4,\n      6\n    ],\n    [\n      5,\n      6\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 2,\n    \"2\": 2,\n    \"3\": 3,\n    \"4\": 3,\n    \"5\": 2,\n    \"6\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      3\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      1,\n      3\n    ],\n    \"3\": [\n      0,\n      2,\n      4\n    ],\n    \"4\": [\n      3,\n      5,\n      6\n    ],\n    \"5\": [\n      4,\n      6\n    ],\n    \"6\": [\n      4,\n      5\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定无向图 G：顶点 {0, ..., 6}，边集\n  E = [[0, 1], [0, 3], [1, 2], [2, 3], [3, 4], [4, 5], [4, 6], [5, 6]]\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 7,\n  \"n_edges\": 8,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      4,\n      6\n    ],\n    [\n      5,\n      6\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 2,\n    \"2\": 2,\n    \"3\": 3,\n    \"4\": 3,\n    \"5\": 2,\n    \"6\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      3\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      1,\n      3\n    ],\n    \"3\": [\n      0,\n      2,\n      4\n    ],\n    \"4\": [\n      3,\n      5,\n      6\n    ],\n    \"5\": [\n      4,\n      6\n    ],\n    \"6\": [\n      4,\n      5\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"delete_edge\",\n  \"deleted_edge\": [\n    3,\n    4\n  ],\n  \"before\": {\n    \"n_edges\": 8,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"after\": {\n    \"n_edges\": 7,\n    \"is_connected\": false,\n    \"n_components\": 2\n  },\n  \"delta\": {\n    \"is_bridge\": true,\n    \"components_change\": 1,\n    \"connectivity_lost\": true\n  },\n  \"note\": \"Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_deletions\": [],\n  \"note\": \"Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim2_q13",
+      "type": "global_topology",
+      "stem": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [1, 2], [1, 3], [1, 4], [2, 5], [3, 5], [4, 5]]",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "G 有多少个连通分量？",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "G 有多少条桥边？",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "G 有多少个割点（articulation points，删去后增加分量数的顶点）？",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "n_components": 1,
+        "n_bridges": 1,
+        "n_articulation_points": 1
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 6,
+          "n_edges": 7,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          "degrees": {
+            "0": 1,
+            "1": 4,
+            "2": 2,
+            "3": 2,
+            "4": 2,
+            "5": 3
+          },
+          "adjacency_list": {
+            "0": [
+              1
+            ],
+            "1": [
+              0,
+              2,
+              3,
+              4
+            ],
+            "2": [
+              1,
+              5
+            ],
+            "3": [
+              1,
+              5
+            ],
+            "4": [
+              1,
+              5
+            ],
+            "5": [
+              2,
+              3,
+              4
+            ]
+          },
+          "note": "Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself."
+        },
+        "T": {
+          "operation": "delete_edge",
+          "deleted_edge": [
+            0,
+            1
+          ],
+          "before": {
+            "n_edges": 7,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "after": {
+            "n_edges": 6,
+            "is_connected": false,
+            "n_components": 2
+          },
+          "delta": {
+            "is_bridge": true,
+            "components_change": 1,
+            "connectivity_lost": true
+          },
+          "note": "Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly."
+        },
+        "C": {
+          "alternative_deletions": [],
+          "note": "Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast."
+        }
+      },
+      "prompts": {
+        "baseline": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [1, 2], [1, 3], [1, 4], [2, 5], [3, 5], [4, 5]]\n\n请回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [1, 2], [1, 3], [1, 4], [2, 5], [3, 5], [4, 5]]\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [1, 2], [1, 3], [1, 4], [2, 5], [3, 5], [4, 5]]\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 7,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      3,\n      5\n    ],\n    [\n      4,\n      5\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 1,\n    \"1\": 4,\n    \"2\": 2,\n    \"3\": 2,\n    \"4\": 2,\n    \"5\": 3\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1\n    ],\n    \"1\": [\n      0,\n      2,\n      3,\n      4\n    ],\n    \"2\": [\n      1,\n      5\n    ],\n    \"3\": [\n      1,\n      5\n    ],\n    \"4\": [\n      1,\n      5\n    ],\n    \"5\": [\n      2,\n      3,\n      4\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定无向图 G：顶点 {0, ..., 5}，边集\n  E = [[0, 1], [1, 2], [1, 3], [1, 4], [2, 5], [3, 5], [4, 5]]\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 7,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      3,\n      5\n    ],\n    [\n      4,\n      5\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 1,\n    \"1\": 4,\n    \"2\": 2,\n    \"3\": 2,\n    \"4\": 2,\n    \"5\": 3\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1\n    ],\n    \"1\": [\n      0,\n      2,\n      3,\n      4\n    ],\n    \"2\": [\n      1,\n      5\n    ],\n    \"3\": [\n      1,\n      5\n    ],\n    \"4\": [\n      1,\n      5\n    ],\n    \"5\": [\n      2,\n      3,\n      4\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"delete_edge\",\n  \"deleted_edge\": [\n    0,\n    1\n  ],\n  \"before\": {\n    \"n_edges\": 7,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"after\": {\n    \"n_edges\": 6,\n    \"is_connected\": false,\n    \"n_components\": 2\n  },\n  \"delta\": {\n    \"is_bridge\": true,\n    \"components_change\": 1,\n    \"connectivity_lost\": true\n  },\n  \"note\": \"Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_deletions\": [],\n  \"note\": \"Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim2_q14",
+      "type": "global_topology",
+      "stem": "给定无向图 G：顶点 {0, ..., 9}，边集\n  E = [[0, 1], [0, 9], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]]",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "G 有多少个连通分量？",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "G 有多少条桥边？",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "G 有多少个割点（articulation points，删去后增加分量数的顶点）？",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "n_components": 1,
+        "n_bridges": 0,
+        "n_articulation_points": 0
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 10,
+          "n_edges": 10,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              9
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              9
+            ]
+          ],
+          "degrees": {
+            "0": 2,
+            "1": 2,
+            "2": 2,
+            "3": 2,
+            "4": 2,
+            "5": 2,
+            "6": 2,
+            "7": 2,
+            "8": 2,
+            "9": 2
+          },
+          "adjacency_list": {
+            "0": [
+              1,
+              9
+            ],
+            "1": [
+              0,
+              2
+            ],
+            "2": [
+              1,
+              3
+            ],
+            "3": [
+              2,
+              4
+            ],
+            "4": [
+              3,
+              5
+            ],
+            "5": [
+              4,
+              6
+            ],
+            "6": [
+              5,
+              7
+            ],
+            "7": [
+              6,
+              8
+            ],
+            "8": [
+              7,
+              9
+            ],
+            "9": [
+              0,
+              8
+            ]
+          },
+          "note": "Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself."
+        },
+        "T": {
+          "operation": "delete_edge",
+          "deleted_edge": [
+            0,
+            1
+          ],
+          "before": {
+            "n_edges": 10,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "after": {
+            "n_edges": 9,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "delta": {
+            "is_bridge": false,
+            "components_change": 0,
+            "connectivity_lost": false
+          },
+          "note": "Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly."
+        },
+        "C": {
+          "alternative_deletions": [],
+          "note": "Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast."
+        }
+      },
+      "prompts": {
+        "baseline": "给定无向图 G：顶点 {0, ..., 9}，边集\n  E = [[0, 1], [0, 9], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]]\n\n请回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定无向图 G：顶点 {0, ..., 9}，边集\n  E = [[0, 1], [0, 9], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]]\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定无向图 G：顶点 {0, ..., 9}，边集\n  E = [[0, 1], [0, 9], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]]\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 10,\n  \"n_edges\": 10,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      9\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      7,\n      8\n    ],\n    [\n      8,\n      9\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 2,\n    \"2\": 2,\n    \"3\": 2,\n    \"4\": 2,\n    \"5\": 2,\n    \"6\": 2,\n    \"7\": 2,\n    \"8\": 2,\n    \"9\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      9\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      1,\n      3\n    ],\n    \"3\": [\n      2,\n      4\n    ],\n    \"4\": [\n      3,\n      5\n    ],\n    \"5\": [\n      4,\n      6\n    ],\n    \"6\": [\n      5,\n      7\n    ],\n    \"7\": [\n      6,\n      8\n    ],\n    \"8\": [\n      7,\n      9\n    ],\n    \"9\": [\n      0,\n      8\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定无向图 G：顶点 {0, ..., 9}，边集\n  E = [[0, 1], [0, 9], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]]\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 10,\n  \"n_edges\": 10,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      9\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      7,\n      8\n    ],\n    [\n      8,\n      9\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 2,\n    \"2\": 2,\n    \"3\": 2,\n    \"4\": 2,\n    \"5\": 2,\n    \"6\": 2,\n    \"7\": 2,\n    \"8\": 2,\n    \"9\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      9\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      1,\n      3\n    ],\n    \"3\": [\n      2,\n      4\n    ],\n    \"4\": [\n      3,\n      5\n    ],\n    \"5\": [\n      4,\n      6\n    ],\n    \"6\": [\n      5,\n      7\n    ],\n    \"7\": [\n      6,\n      8\n    ],\n    \"8\": [\n      7,\n      9\n    ],\n    \"9\": [\n      0,\n      8\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"delete_edge\",\n  \"deleted_edge\": [\n    0,\n    1\n  ],\n  \"before\": {\n    \"n_edges\": 10,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"after\": {\n    \"n_edges\": 9,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"delta\": {\n    \"is_bridge\": false,\n    \"components_change\": 0,\n    \"connectivity_lost\": false\n  },\n  \"note\": \"Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_deletions\": [],\n  \"note\": \"Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim2_q15",
+      "type": "global_topology",
+      "stem": "给定无向图 G：顶点 {0, ..., 8}，边集\n  E = [[0, 1], [2, 3], [2, 5], [3, 4], [4, 5], [5, 6], [6, 7], [6, 8], [7, 8]]",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "G 有多少个连通分量？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(b)",
+          "text": "G 有多少条桥边？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(c)",
+          "text": "G 有多少个割点（articulation points，删去后增加分量数的顶点）？",
+          "answer_type": "integer",
+          "answer": 2
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "n_components": 2,
+        "n_bridges": 2,
+        "n_articulation_points": 2
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 9,
+          "n_edges": 9,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              7,
+              8
+            ]
+          ],
+          "degrees": {
+            "0": 1,
+            "1": 1,
+            "2": 2,
+            "3": 2,
+            "4": 2,
+            "5": 3,
+            "6": 3,
+            "7": 2,
+            "8": 2
+          },
+          "adjacency_list": {
+            "0": [
+              1
+            ],
+            "1": [
+              0
+            ],
+            "2": [
+              3,
+              5
+            ],
+            "3": [
+              2,
+              4
+            ],
+            "4": [
+              3,
+              5
+            ],
+            "5": [
+              2,
+              4,
+              6
+            ],
+            "6": [
+              5,
+              7,
+              8
+            ],
+            "7": [
+              6,
+              8
+            ],
+            "8": [
+              6,
+              7
+            ]
+          },
+          "note": "Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself."
+        },
+        "T": {
+          "operation": "delete_edge",
+          "deleted_edge": [
+            2,
+            3
+          ],
+          "before": {
+            "n_edges": 9,
+            "is_connected": false,
+            "n_components": 2
+          },
+          "after": {
+            "n_edges": 8,
+            "is_connected": false,
+            "n_components": 2
+          },
+          "delta": {
+            "is_bridge": false,
+            "components_change": 0,
+            "connectivity_lost": false
+          },
+          "note": "Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly."
+        },
+        "C": {
+          "alternative_deletions": [],
+          "note": "Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast."
+        }
+      },
+      "prompts": {
+        "baseline": "给定无向图 G：顶点 {0, ..., 8}，边集\n  E = [[0, 1], [2, 3], [2, 5], [3, 4], [4, 5], [5, 6], [6, 7], [6, 8], [7, 8]]\n\n请回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定无向图 G：顶点 {0, ..., 8}，边集\n  E = [[0, 1], [2, 3], [2, 5], [3, 4], [4, 5], [5, 6], [6, 7], [6, 8], [7, 8]]\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定无向图 G：顶点 {0, ..., 8}，边集\n  E = [[0, 1], [2, 3], [2, 5], [3, 4], [4, 5], [5, 6], [6, 7], [6, 8], [7, 8]]\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 9,\n  \"n_edges\": 9,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      6,\n      8\n    ],\n    [\n      7,\n      8\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 1,\n    \"1\": 1,\n    \"2\": 2,\n    \"3\": 2,\n    \"4\": 2,\n    \"5\": 3,\n    \"6\": 3,\n    \"7\": 2,\n    \"8\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1\n    ],\n    \"1\": [\n      0\n    ],\n    \"2\": [\n      3,\n      5\n    ],\n    \"3\": [\n      2,\n      4\n    ],\n    \"4\": [\n      3,\n      5\n    ],\n    \"5\": [\n      2,\n      4,\n      6\n    ],\n    \"6\": [\n      5,\n      7,\n      8\n    ],\n    \"7\": [\n      6,\n      8\n    ],\n    \"8\": [\n      6,\n      7\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定无向图 G：顶点 {0, ..., 8}，边集\n  E = [[0, 1], [2, 3], [2, 5], [3, 4], [4, 5], [5, 6], [6, 7], [6, 8], [7, 8]]\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 9,\n  \"n_edges\": 9,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      6,\n      8\n    ],\n    [\n      7,\n      8\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 1,\n    \"1\": 1,\n    \"2\": 2,\n    \"3\": 2,\n    \"4\": 2,\n    \"5\": 3,\n    \"6\": 3,\n    \"7\": 2,\n    \"8\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1\n    ],\n    \"1\": [\n      0\n    ],\n    \"2\": [\n      3,\n      5\n    ],\n    \"3\": [\n      2,\n      4\n    ],\n    \"4\": [\n      3,\n      5\n    ],\n    \"5\": [\n      2,\n      4,\n      6\n    ],\n    \"6\": [\n      5,\n      7,\n      8\n    ],\n    \"7\": [\n      6,\n      8\n    ],\n    \"8\": [\n      6,\n      7\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"delete_edge\",\n  \"deleted_edge\": [\n    2,\n    3\n  ],\n  \"before\": {\n    \"n_edges\": 9,\n    \"is_connected\": false,\n    \"n_components\": 2\n  },\n  \"after\": {\n    \"n_edges\": 8,\n    \"is_connected\": false,\n    \"n_components\": 2\n  },\n  \"delta\": {\n    \"is_bridge\": false,\n    \"components_change\": 0,\n    \"connectivity_lost\": false\n  },\n  \"note\": \"Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_deletions\": [],\n  \"note\": \"Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim2_q16",
+      "type": "global_topology",
+      "stem": "给定无向图 G：顶点 {0, ..., 8}，边集\n  E = [[0, 1], [0, 2], [1, 2], [2, 3], [3, 4], [3, 5], [4, 5], [5, 6], [6, 7], [6, 8], [7, 8]]",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "G 有多少个连通分量？",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "G 有多少条桥边？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(c)",
+          "text": "G 有多少个割点（articulation points，删去后增加分量数的顶点）？",
+          "answer_type": "integer",
+          "answer": 4
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "n_components": 1,
+        "n_bridges": 2,
+        "n_articulation_points": 4
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 9,
+          "n_edges": 11,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              7,
+              8
+            ]
+          ],
+          "degrees": {
+            "0": 2,
+            "1": 2,
+            "2": 3,
+            "3": 3,
+            "4": 2,
+            "5": 3,
+            "6": 3,
+            "7": 2,
+            "8": 2
+          },
+          "adjacency_list": {
+            "0": [
+              1,
+              2
+            ],
+            "1": [
+              0,
+              2
+            ],
+            "2": [
+              0,
+              1,
+              3
+            ],
+            "3": [
+              2,
+              4,
+              5
+            ],
+            "4": [
+              3,
+              5
+            ],
+            "5": [
+              3,
+              4,
+              6
+            ],
+            "6": [
+              5,
+              7,
+              8
+            ],
+            "7": [
+              6,
+              8
+            ],
+            "8": [
+              6,
+              7
+            ]
+          },
+          "note": "Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself."
+        },
+        "T": {
+          "operation": "delete_edge",
+          "deleted_edge": [
+            2,
+            3
+          ],
+          "before": {
+            "n_edges": 11,
+            "is_connected": true,
+            "n_components": 1
+          },
+          "after": {
+            "n_edges": 10,
+            "is_connected": false,
+            "n_components": 2
+          },
+          "delta": {
+            "is_bridge": true,
+            "components_change": 1,
+            "connectivity_lost": true
+          },
+          "note": "Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly."
+        },
+        "C": {
+          "alternative_deletions": [],
+          "note": "Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast."
+        }
+      },
+      "prompts": {
+        "baseline": "给定无向图 G：顶点 {0, ..., 8}，边集\n  E = [[0, 1], [0, 2], [1, 2], [2, 3], [3, 4], [3, 5], [4, 5], [5, 6], [6, 7], [6, 8], [7, 8]]\n\n请回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "给定无向图 G：顶点 {0, ..., 8}，边集\n  E = [[0, 1], [0, 2], [1, 2], [2, 3], [3, 4], [3, 5], [4, 5], [5, 6], [6, 7], [6, 8], [7, 8]]\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "给定无向图 G：顶点 {0, ..., 8}，边集\n  E = [[0, 1], [0, 2], [1, 2], [2, 3], [3, 4], [3, 5], [4, 5], [5, 6], [6, 7], [6, 8], [7, 8]]\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 9,\n  \"n_edges\": 11,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      5\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      6,\n      8\n    ],\n    [\n      7,\n      8\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 2,\n    \"2\": 3,\n    \"3\": 3,\n    \"4\": 2,\n    \"5\": 3,\n    \"6\": 3,\n    \"7\": 2,\n    \"8\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      2\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      0,\n      1,\n      3\n    ],\n    \"3\": [\n      2,\n      4,\n      5\n    ],\n    \"4\": [\n      3,\n      5\n    ],\n    \"5\": [\n      3,\n      4,\n      6\n    ],\n    \"6\": [\n      5,\n      7,\n      8\n    ],\n    \"7\": [\n      6,\n      8\n    ],\n    \"8\": [\n      6,\n      7\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "给定无向图 G：顶点 {0, ..., 8}，边集\n  E = [[0, 1], [0, 2], [1, 2], [2, 3], [3, 4], [3, 5], [4, 5], [5, 6], [6, 7], [6, 8], [7, 8]]\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 9,\n  \"n_edges\": 11,\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      5\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      6,\n      8\n    ],\n    [\n      7,\n      8\n    ]\n  ],\n  \"degrees\": {\n    \"0\": 2,\n    \"1\": 2,\n    \"2\": 3,\n    \"3\": 3,\n    \"4\": 2,\n    \"5\": 3,\n    \"6\": 3,\n    \"7\": 2,\n    \"8\": 2\n  },\n  \"adjacency_list\": {\n    \"0\": [\n      1,\n      2\n    ],\n    \"1\": [\n      0,\n      2\n    ],\n    \"2\": [\n      0,\n      1,\n      3\n    ],\n    \"3\": [\n      2,\n      4,\n      5\n    ],\n    \"4\": [\n      3,\n      5\n    ],\n    \"5\": [\n      3,\n      4,\n      6\n    ],\n    \"6\": [\n      5,\n      7,\n      8\n    ],\n    \"7\": [\n      6,\n      8\n    ],\n    \"8\": [\n      6,\n      7\n    ]\n  },\n  \"note\": \"Adjacency list is the raw structure; bridge / component info is intentionally NOT included — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"delete_edge\",\n  \"deleted_edge\": [\n    2,\n    3\n  ],\n  \"before\": {\n    \"n_edges\": 11,\n    \"is_connected\": true,\n    \"n_components\": 1\n  },\n  \"after\": {\n    \"n_edges\": 10,\n    \"is_connected\": false,\n    \"n_components\": 2\n  },\n  \"delta\": {\n    \"is_bridge\": true,\n    \"components_change\": 1,\n    \"connectivity_lost\": true\n  },\n  \"note\": \"Trace tells you what the deletion did. To answer questions about OTHER potential bridges, examine the adjacency list directly.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_deletions\": [],\n  \"note\": \"Each entry shows what would happen if a DIFFERENT edge were deleted instead — provides bridge-vs-non-bridge contrast.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) G 有多少个连通分量？\n  (b) G 有多少条桥边？\n  (c) G 有多少个割点（articulation points，删去后增加分量数的顶点）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    }
+  ]
+}

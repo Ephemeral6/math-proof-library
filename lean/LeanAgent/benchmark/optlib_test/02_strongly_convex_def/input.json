@@ -1,0 +1,28 @@
+{
+  "theorem_name": "strongly_convex_jensen_form",
+  "layer": 1,
+  "substitution_note": "Used as substitute for 'Jensen inequality (convex version)' since optlib has no classical Jensen lemma; this is the equivalent inequality definition for strong convexity (degenerates to Jensen when m = 0).",
+  "natural_language_statement": "On a convex set s, if f satisfies the two-point inequality f(a·x + b·y) ≤ a·f(x) + b·f(y) - (m/2)·a·b·‖x - y‖^2 for all convex combinations a·x + b·y with a, b ≥ 0 and a + b = 1, then f is strongly convex on s with parameter m.",
+  "assumptions": [
+    "E is a real inner product space (with NormedAddCommGroup, InnerProductSpace ℝ E)",
+    "s : Set E",
+    "f : E → ℝ",
+    "m : ℝ",
+    "hs : Convex ℝ s",
+    "hfun : ∀ x ∈ s, ∀ y ∈ s, ∀ a b, 0 ≤ a → 0 ≤ b → a + b = 1 → f (a • x + b • y) ≤ a * f x + b * f y - m/2 * a * b * ‖x - y‖^2"
+  ],
+  "conclusion": "StrongConvexOn s m f",
+  "proof_sketch": [
+    "Build the StrongConvexOn record by anonymous constructor.",
+    "First field: convexity of s — directly from hs.",
+    "Second field: for all x ∈ s, y ∈ s, and a, b ≥ 0 with a + b = 1, prove the strong-convex inequality.",
+    "Apply hfun to specialize.",
+    "Rewrite m/2 * a * b * ‖x-y‖^2 as a * b * (m/2 * ‖x-y‖^2) by ring.",
+    "Match the form expected by Mathlib's StrongConvexOn definition (UniformConvexOn with quadratic modulus)."
+  ],
+  "key_mathlib_lemmas": [
+    "StrongConvexOn.constructor (anonymous)",
+    "Convex.smul_combo / convex_iff_forall_pos",
+    "ring_nf"
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "per_level": {
+    "k_2": {
+      "total": 64,
+      "sigma_strict": 31,
+      "sigma_relaxed_only": 0,
+      "sigma_neither": 33
+    },
+    "k_3": {
+      "total": 63,
+      "sigma_strict": 46,
+      "sigma_relaxed_only": 17,
+      "sigma_neither": 0
+    },
+    "k_4": {
+      "total": 49,
+      "sigma_strict": 44,
+      "sigma_relaxed_only": 5,
+      "sigma_neither": 0
+    }
+  },
+  "k2_chordal_only_signatures": [
+    {
+      "alpha": 25,
+      "sig": "(8, 18, (6, 6, 6, 6, 3, 3, 3, 3))"
+    },
+    {
+      "alpha": 72,
+      "sig": "(8, 18, (6, 6, 6, 6, 3, 3, 3, 3))"
+    },
+    {
+      "alpha": 149,
+      "sig": "(8, 18, (6, 6, 6, 6, 3, 3, 3, 3))"
+    },
+    {
+      "alpha": 189,
+      "sig": "(9, 22, (7, 7, 7, 6, 5, 4, 3, 3, 2))"
+    },
+    {
+      "alpha": 208,
+      "sig": "(8, 18, (6, 6, 6, 6, 3, 3, 3, 3))"
+    },
+    {
+      "alpha": 217,
+      "sig": "(8, 18, (6, 6, 6, 6, 3, 3, 3, 3))"
+    },
+    {
+      "alpha": 218,
+      "sig": "(8, 18, (6, 6, 6, 6, 3, 3, 3, 3))"
+    }
+  ],
+  "k2_cone_only_cones": [
+    {
+      "alpha": 13,
+      "cone": 1,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 40,
+      "cone": 1,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 42,
+      "cone": 6,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 68,
+      "cone": 1,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 74,
+      "cone": 6,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 113,
+      "cone": 8,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 121,
+      "cone": 5,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 122,
+      "cone": 6,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 126,
+      "cone": 18,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 127,
+      "cone": 15,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 145,
+      "cone": 4,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 156,
+      "cone": 8,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 170,
+      "cone": 8,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 201,
+      "cone": 1,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 210,
+      "cone": 6,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 212,
+      "cone": 4,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 216,
+      "cone": 14,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 222,
+      "cone": 19,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 322,
+      "cone": 22,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 359,
+      "cone": 15,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 371,
+      "cone": 16,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 373,
+      "cone": 17,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 374,
+      "cone": 18,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 376,
+      "cone": 19,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 386,
+      "cone": 54,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 387,
+      "cone": 18,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    },
+    {
+      "alpha": 389,
+      "cone": 45,
+      "f_cone": 1,
+      "i_alpha_cone": 1
+    }
+  ],
+  "phase4_cone_topology": [
+    {
+      "alpha": 13,
+      "cone": 1,
+      "f_cone": 1,
+      "weights_total": 2
+    },
+    {
+      "alpha": 40,
+      "cone": 1,
+      "f_cone": 1,
+      "weights_total": 2
+    },
+    {
+      "alpha": 42,
+      "cone": 6,
+      "f_cone": 1,
+      "weights_total": 6
+    },
+    {
+      "alpha": 68,
+      "cone": 1,
+      "f_cone": 1,
+      "weights_total": 2
+    },
+    {
+      "alpha": 74,
+      "cone": 6,
+      "f_cone": 1,
+      "weights_total": 6
+    },
+    {
+      "alpha": 113,
+      "cone": 8,
+      "f_cone": 1,
+      "weights_total": 4
+    },
+    {
+      "alpha": 121,
+      "cone": 5,
+      "f_cone": 1,
+      "weights_total": 6
+    },
+    {
+      "alpha": 122,
+      "cone": 6,
+      "f_cone": 1,
+      "weights_total": 6
+    },
+    {
+      "alpha": 126,
+      "cone": 18,
+      "f_cone": 1,
+      "weights_total": 10
+    },
+    {
+      "alpha": 127,
+      "cone": 15,
+      "f_cone": 1,
+      "weights_total": 10
+    }
+  ]
+}

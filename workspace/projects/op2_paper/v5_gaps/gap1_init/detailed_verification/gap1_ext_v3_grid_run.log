@@ -1,0 +1,44 @@
+========================================================================
+R*_ext_v3 1000-grid verification — mpmath dps=100, T=10000
+R*_ext_v3 = (0.77, 0.82) x (3.2, 3.36) x (0.37, 0.42)
+Volume = 4.0000e-04  (R* = 1.20e-4, ratio = 3.33x)
+Wall start: 2026-04-29 22:30:56
+========================================================================
+
+Running 1008 points on 19 workers
+
+  [  50/1008]  elapsed=   24.4s  eta=  466.8s  verdict=cycle
+  [ 100/1008]  elapsed=   47.4s  eta=  430.5s  verdict=cycle
+  [ 150/1008]  elapsed=   49.4s  eta=  282.8s  verdict=cycle
+  [ 200/1008]  elapsed=   71.8s  eta=  290.0s  verdict=cycle
+  [ 250/1008]  elapsed=   94.5s  eta=  286.6s  verdict=cycle
+  [ 300/1008]  elapsed=   97.3s  eta=  229.6s  verdict=cycle
+  [ 350/1008]  elapsed=  119.9s  eta=  225.3s  verdict=cycle
+  [ 400/1008]  elapsed=  141.2s  eta=  214.7s  verdict=cycle
+  [ 450/1008]  elapsed=  144.2s  eta=  178.8s  verdict=cycle
+  [ 500/1008]  elapsed=  166.4s  eta=  169.1s  verdict=cycle
+  [ 550/1008]  elapsed=  189.0s  eta=  157.4s  verdict=cycle
+  [ 600/1008]  elapsed=  191.5s  eta=  130.2s  verdict=cycle
+  [ 650/1008]  elapsed=  214.4s  eta=  118.1s  verdict=cycle
+  [ 700/1008]  elapsed=  235.8s  eta=  103.7s  verdict=cycle
+  [ 750/1008]  elapsed=  238.6s  eta=   82.1s  verdict=cycle
+  [ 800/1008]  elapsed=  261.7s  eta=   68.1s  verdict=cycle
+  [ 850/1008]  elapsed=  283.5s  eta=   52.7s  verdict=cycle
+  [ 900/1008]  elapsed=  286.5s  eta=   34.4s  verdict=cycle
+  [ 950/1008]  elapsed=  308.4s  eta=   18.8s  verdict=cycle
+  [1000/1008]  elapsed=  332.2s  eta=    2.7s  verdict=cycle
+  [1008/1008]  elapsed=  332.6s  eta=    0.0s  verdict=cycle
+
+========================================================================
+SUMMARY
+========================================================================
+  Corners: 8/8 cycle
+  Grid:    1000/1000 cycle  (0 decay, 0 other)
+
+  ALL 1000 GRID POINTS CYCLE ✓
+
+  Grid p3 res: max=1.429e-100 mean=3.621e-101
+  Grid rel:    max=8.082e-101 mean=1.567e-101
+
+Total wall time: 332.7 s
+Saved JSON to C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap1_init\detailed_verification\gap1_ext_v3_grid_results.json

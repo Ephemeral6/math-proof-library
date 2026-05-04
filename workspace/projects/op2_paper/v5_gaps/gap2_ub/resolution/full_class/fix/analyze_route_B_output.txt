@@ -1,0 +1,41 @@
+================================================================================
+Route B analysis: convexity-based signed bias bound
+================================================================================
+
+Convexity LB: <∇f(y_t), u_t> >= f(y_t) - f(y_{t-1})
+Sum: Σ -a <∇f(y_t), u_t> <= -a (f(y_T) - f(y_0))
+Worst case: |bias_sum| <= a * LD^2/2  (if f(y_T) -> f^* and f(y_0) ~ LD^2/2)
+
+Empirical check: actual signed sum vs convexity-telescope upper bound
+
+--- beta = 0.5 (a = 1.000) ---
+Convexity-telescope UB on |bias_sum|: a*LD^2/2 = 0.5000
+
+       T        eta       a*Σ<∇f,u>    -a(f(y_T)-f(y_0))    ∇f·u/T (per step)
+     100    0.05000         0.28255              0.47447        -2.825523e-03
+     300    0.02887         0.30330              0.48533        -1.011002e-03
+    1000    0.01581         0.31683              0.49206        -3.168308e-04
+    3000    0.00913         0.32364              0.49530        -1.078784e-04
+   10000    0.00500         0.32804              0.49740        -3.280416e-05
+
+--- beta = 0.9 (a = 9.000) ---
+Convexity-telescope UB on |bias_sum|: a*LD^2/2 = 4.5000
+
+       T        eta       a*Σ<∇f,u>    -a(f(y_T)-f(y_0))    ∇f·u/T (per step)
+     100    0.01000         3.83127              4.26982        -4.256971e-03
+     300    0.00577         4.01123              4.37009        -1.485639e-03
+    1000    0.00316         4.12231              4.42856        -4.580342e-04
+    3000    0.00183         4.18058              4.45842        -1.548365e-04
+   10000    0.00100         4.21758              4.47684        -4.686204e-05
+
+================================================================================
+CONCLUSION:
+================================================================================
+If empirical |bias_sum| << a*LD^2/2 with strong T-decay, the convexity-telescope
+UB is much looser than reality. Closing the proof requires showing the actual
+signed sum decays faster.
+
+If empirical |bias_sum| ~ a*LD^2/2 (constant), the convexity telescope is tight
+but gives a constant offset that doesn't help for last-iterate decay.
+
+The numerical evidence will tell us which route to pursue.

@@ -1,0 +1,501 @@
+{
+  "experiment": "cross_model_sonnet",
+  "model": "claude-sonnet-4-6",
+  "design": {
+    "factors": "8 domains x 3 cases x 2 conditions = 48 trials",
+    "domains": [
+      "symmetry", "knot_theory", "graph_connectivity",
+      "boundary_interior", "discrete_curvature", "projection",
+      "surface_topology", "surface_topology_s21"
+    ],
+    "cases_per_domain": {
+      "symmetry": ["same-006", "diff-163", "same-028"],
+      "knot_theory": ["7_2-r2-1", "4_1-r2-4", "3_1-r2-3"],
+      "graph_connectivity": ["R16_n12-t1", "R02_n12-t4", "R00_n8-t3"],
+      "boundary_interior": ["crosspair-4-L_shape-vs-staircase", "rectangle_4x3-shear-1", "unit_square-shear-0"],
+      "discrete_curvature": ["cross-octahedron-vs-icosahedron-f1-1", "cube_triangulated-subdiv-f4-4", "tetrahedron-subdiv-f3-3"],
+      "projection": ["self-triangular_prism-yz", "self-cube-diagonal", "cross-octahedron-xzvsyz"],
+      "surface_topology": ["a331-b69", "a62-b12", "a12-b1"],
+      "surface_topology_s21": ["a151-b6", "a122-b28", "a215-b1"]
+    },
+    "rubric_0_to_4": {
+      "0": "completely wrong / no real reasoning",
+      "1": "wrong conclusion or fundamentally confused",
+      "2": "correct conclusion but weak / hand-wavy reasoning",
+      "3": "correct conclusion + sound reasoning",
+      "4": "correct + rigorous explicit verification + invariant identification"
+    },
+    "scoring_administered_by": "claude-opus-4-7 (this conversation, blind to model identity within trial)",
+    "execution": "Each trial dispatched as Agent(model='sonnet', subagent_type='general-purpose'); prompts pre-built and persisted to per-trial markdown files for verbatim auditability."
+  },
+  "trials": [
+    {
+      "trial_id": 1,
+      "domain": "symmetry",
+      "case_id": "same-006",
+      "condition": "baseline",
+      "response": "Initially confused on permutation conventions for g_perm=[3,4,5,0,1,2]. Tried multiple readings (b[i]=a[g(i)] and b[g(i)]=a[i]) — neither matched. Pivoted to searching directly for the connecting rotation; correctly identified that rotation by 2 steps gives b[i]=a[(i+2) mod 6] = b position-by-position. Concluded: same orbit, witness is r^2.",
+      "score": 2,
+      "score_rationale": "Correct conclusion via correct alternative computation, but reasoning was muddled by repeated convention-flipping; the witness was found by trial-and-error rather than principled analysis. The metadata's g_idx=3 is actually a stabilizer of a (since a has period 3), so the agent's failure to apply g_3 as a connecting element is excusable, but the recovery was not clean."
+    },
+    {
+      "trial_id": 2,
+      "domain": "symmetry",
+      "case_id": "same-006",
+      "condition": "rtc",
+      "response": "Correctly read transform_trace before/after states and noticed g_3 fixes a (after_state = before_state, is_fixed_point=true) — i.e., g_3 is in the stabilizer, not a connecting element. Used connecting_pre=2 from detailed_comparison to deduce that a two-step path connects a and b. Verified via orbit-stabilizer (|G|=6=2*3). Cited counterfactuals correctly: D_6 enlargement preserves equivalence, {e} kills it (CRITICAL).",
+      "score": 3,
+      "score_rationale": "Correct conclusion with thoughtful analysis of the structure. Avoided the easy mistake of treating g_3 as the connector. Did not produce an explicit connecting witness, but the orbit-stabilizer + connecting_pre argument is sound."
+    },
+    {
+      "trial_id": 3,
+      "domain": "symmetry",
+      "case_id": "diff-163",
+      "condition": "baseline",
+      "response": "Computed all 6 rotations of a explicitly (k=0..5) and verified none equals b. Then identified the color frequency multiset invariant: a={0:2,1:2,2:2}, b={0:3,1:1,2:2}; multisets differ, so no permutation can map a to b. Concluded: not same orbit.",
+      "score": 4,
+      "score_rationale": "Exhaustive enumeration + clean invariant-based proof. Decisive and rigorous."
+    },
+    {
+      "trial_id": 4,
+      "domain": "symmetry",
+      "case_id": "diff-163",
+      "condition": "rtc",
+      "response": "Used Hamming-post=4 from detailed_comparison + multiset invariant (a vs b multisets differ in colors 0 and 1). Skeptically noted that the counterfactual block lists 'original same_orbit=True' which is a generic template field, not case-specific. Stab=1 ⇒ orbit=6, but b's multiset disqualifies it. Three counterfactuals interpreted correctly.",
+      "score": 4,
+      "score_rationale": "Correct conclusion with the cleanest possible argument (multiset) + skeptical reading of canned counterfactual data."
+    },
+    {
+      "trial_id": 5,
+      "domain": "symmetry",
+      "case_id": "same-028",
+      "condition": "baseline",
+      "response": "g_perm=[5,0,1,2,3,4] interpreted as r^5 (60-degree shift). Applied b[i]=a[g_perm[i]] position-by-position: (a[5],a[0],a[1],a[2],a[3],a[4]) = (1,0,1,1,0,2) = b exactly. Concluded: same orbit, witness g=r^5; orbit size 6, stabilizer trivial.",
+      "score": 4,
+      "score_rationale": "Explicit witness verification at every position; clean and decisive."
+    },
+    {
+      "trial_id": 6,
+      "domain": "symmetry",
+      "case_id": "same-028",
+      "condition": "rtc",
+      "response": "Cited transform_trace's before/after explicitly; verified each position of after equals b (hamming_post=0 from detailed_comparison). |stab|=1 ⇒ |orbit|=6, b is the rho^5 image of a. Three counterfactuals interpreted with mechanism (group structure is the load-bearing condition; non-group permutation breaks closure).",
+      "score": 4,
+      "score_rationale": "Tight reasoning with hamming_post=0 interpretation + counterfactual mechanism analysis."
+    },
+    {
+      "trial_id": 7,
+      "domain": "knot_theory",
+      "case_id": "7_2-r2-1",
+      "condition": "baseline",
+      "response": "Read writhe_delta=0 and crossing_count_a=2; recognized as R2 (sign-canceling pair, +1/-1). Asserted signature, determinant, Alexander polynomial preserved (R2 is Reidemeister equivalence). Quoted standard 7_2 invariants from background knowledge (det=11). Concluded: valid R2.",
+      "score": 3,
+      "score_rationale": "Sound R2 theory + correct invariant identification, but the baseline data lacks PD codes / sign data so verification stays at the theoretical level."
+    },
+    {
+      "trial_id": 8,
+      "domain": "knot_theory",
+      "case_id": "7_2-r2-1",
+      "condition": "rtc",
+      "response": "All four invariants verified by direct citation: signature -2 → -2, det 11 → 11, Alexander normalized [3,-5,3] preserved, writhe -7 → -7. Sign distribution: pre 0 pos + 7 neg, post 1 pos + 8 neg (the inserted (+1,-1) pair). Three counterfactuals interpreted: same-sign pair shifts writhe ±2 and breaks Alexander; crossing flip changes knot type; non-planar swap invalidates the diagram.",
+      "score": 4,
+      "score_rationale": "Full invariant verification + sign arithmetic + counterfactual interpretation."
+    },
+    {
+      "trial_id": 9,
+      "domain": "knot_theory",
+      "case_id": "4_1-r2-4",
+      "condition": "baseline",
+      "response": "Standard R2 analysis: 4 → 6 crossings, sign-canceling pair, writhe 0 preserved (correct for figure-eight). Cited 4_1 invariants from background (sig 0, det 5, Alexander -t+3-t^{-1}). Concluded: valid R2, knot type preserved.",
+      "score": 3,
+      "score_rationale": "Sound theoretical reasoning with correct 4_1 invariants quoted."
+    },
+    {
+      "trial_id": 10,
+      "domain": "knot_theory",
+      "case_id": "4_1-r2-4",
+      "condition": "rtc",
+      "response": "Verified Alexander [1,-3,1] = 1-3t+t^2, det 5, sig 0, writhe 0 — all preserved. Sign distribution: pre 2 pos + 2 neg, post 3 pos + 3 neg (added (+1,-1) pair). Three counterfactuals analyzed: same-sign pair breaks invariants; crossing-flip changes knot to trivial; non-planarity invalidates the diagram.",
+      "score": 4,
+      "score_rationale": "All four invariants explicitly verified; counterfactuals interpreted with clear mechanisms."
+    },
+    {
+      "trial_id": 11,
+      "domain": "knot_theory",
+      "case_id": "3_1-r2-3",
+      "condition": "baseline",
+      "response": "R2 analysis on trefoil: 3 → 5 crossings, sign-canceling pair, writhe -3 preserved. Cited 3_1 invariants (sig -2, det 3, Alexander t^{-1}-1+t). Concluded: valid R2.",
+      "score": 3,
+      "score_rationale": "Sound R2 reasoning with correct invariants."
+    },
+    {
+      "trial_id": 12,
+      "domain": "knot_theory",
+      "case_id": "3_1-r2-3",
+      "condition": "rtc",
+      "response": "Verified all four invariants: sig -2, det 3, Alexander [1,-1,1] = t^2-t+1, writhe -3 — all preserved. Sign analysis: pre 3 neg, post 4 neg + 1 pos (added (+1,-1) pair). Three counterfactuals: same-sign pair shifts writhe and changes invariants; crossing-flip yields determinant 1 (trivial knot); non-planarity invalidates.",
+      "score": 4,
+      "score_rationale": "Full verification + sign arithmetic + counterfactual mechanism."
+    },
+    {
+      "trial_id": 13,
+      "domain": "graph_connectivity",
+      "case_id": "R16_n12-t1",
+      "condition": "baseline",
+      "response": "Read summary_delta: n_components_a=0 and is_connected_a=0. Concluded edge (2,11) is not a bridge (component count unchanged) and graph remains connected. Acknowledged that bridge count and articulation point changes cannot be precisely determined from summary delta alone.",
+      "score": 3,
+      "score_rationale": "Correct conclusions via delta-reading; honest acknowledgement of data limits for the third question."
+    },
+    {
+      "trial_id": 14,
+      "domain": "graph_connectivity",
+      "case_id": "R16_n12-t1",
+      "condition": "rtc",
+      "response": "Bridge=false, connectivity preserved. Endpoint degrees 4→3 and 2→1 (neither isolated). Bridges 0→2 (two new bridges exposed), articulation points {}→{3,8}. Mechanism: deleting a non-bridge edge in a cycle removes redundancy and exposes other edges as new bridges. Counterfactuals interpreted correctly.",
+      "score": 4,
+      "score_rationale": "Identified the new articulation points and explained the bridge-creation mechanism via cycle-breaking redundancy loss."
+    },
+    {
+      "trial_id": 15,
+      "domain": "graph_connectivity",
+      "case_id": "R02_n12-t4",
+      "condition": "baseline",
+      "response": "All connectivity deltas zero except n_edges (-1). Edge (6,7) is not a bridge; graph remains connected (12 vertices, 13 edges, 1 component). Acknowledged that bridge count and articulation point changes cannot be precisely determined without full adjacency information.",
+      "score": 3,
+      "score_rationale": "Correct conclusion via delta-reading; honest about data limits."
+    },
+    {
+      "trial_id": 16,
+      "domain": "graph_connectivity",
+      "case_id": "R02_n12-t4",
+      "condition": "rtc",
+      "response": "Bridge=false, connectivity preserved. Endpoint degrees 5→4 and 3→2. Articulation points unchanged at {6,7,8,11}. Bridges 5→7 (+2), explained as cycle-breaking exposure of redundant edges. Counterfactuals interpreted (boundary_relaxation: bridge would disconnect; operation asymmetry).",
+      "score": 4,
+      "score_rationale": "Correct conclusion + bridge-count mechanism explained + articulation point invariance noted."
+    },
+    {
+      "trial_id": 17,
+      "domain": "graph_connectivity",
+      "case_id": "R00_n8-t3",
+      "condition": "baseline",
+      "response": "Read summary_delta is_connected_a:{pre:true,post:false}; concluded edge (4,7) is a bridge, deletion disconnects the graph. Could not precisely determine bridge count and articulation point changes without more info, but acknowledged the structural implications.",
+      "score": 3,
+      "score_rationale": "Correct conclusion via direct delta interpretation; honest about further structural uncertainty."
+    },
+    {
+      "trial_id": 18,
+      "domain": "graph_connectivity",
+      "case_id": "R00_n8-t3",
+      "condition": "rtc",
+      "response": "Bridge=true, vertex 4 had degree 1 (leaf), becomes isolated. Components: {0,1,2,3,5,6,7} and {4}. Bridge count 1→0 (the deleted edge was the unique bridge). Articulation points {7}→{} (vertex 7 was articulating because of leaf 4; once 4 is gone it no longer articulates). Three counterfactuals interpreted with mechanism.",
+      "score": 4,
+      "score_rationale": "Explicit leaf-degree analysis + articulation point mechanism + bridge-count reasoning."
+    },
+    {
+      "trial_id": 19,
+      "domain": "boundary_interior",
+      "case_id": "crosspair-4-L_shape-vs-staircase",
+      "condition": "baseline",
+      "response": "Recognized that all summary_delta fields are zero (area, B, I, perimeter, vertex count, pick_holds_*). Concluded both polygons are equivalent in all relevant lattice-geometry quantities and Pick's theorem holds for both (or fails for both). Identified them as a classic 'area-matched pair' of 6-vertex lattice polygons.",
+      "score": 2,
+      "score_rationale": "Correct conclusion but reasoning is purely 'deltas are zero so equal'; no actual Pick computation, no specific values for A, B, or I given."
+    },
+    {
+      "trial_id": 20,
+      "domain": "boundary_interior",
+      "case_id": "crosspair-4-L_shape-vs-staircase",
+      "condition": "rtc",
+      "response": "Read A=12, B=16, I=5 from R data; verified Pick: 5 + 16/2 - 1 = 12.0. Edge-by-edge breakdown: B = 4+2+2+2+2+4 = 16 (sum of gcds). Three counterfactuals interpreted: non-lattice vertex breaks B/I; non-unimodular linear map preserves Pick but changes A; self-intersection breaks Pick. Identified the operation as identity_compare (zero translation), making A and B literally the same polygon.",
+      "score": 4,
+      "score_rationale": "Explicit Pick verification with all quantities + edge-gcd derivation + counterfactual condition analysis."
+    },
+    {
+      "trial_id": 21,
+      "domain": "boundary_interior",
+      "case_id": "rectangle_4x3-shear-1",
+      "condition": "baseline",
+      "response": "Computed shear matrix det = 1 (unimodular), so area = 12 preserved. Verified Pick pre: A=12, B=2(4+3)=14, I=12-7+1=6. Post: B=14 unchanged (gcd-based), I=6 unchanged. Perimeter changes by ~3.31 (sheared edges become diagonal), all other deltas zero. Pick holds pre and post.",
+      "score": 4,
+      "score_rationale": "Full Pick verification from theory alone (no R data needed); correct mechanism for perimeter delta."
+    },
+    {
+      "trial_id": 22,
+      "domain": "boundary_interior",
+      "case_id": "rectangle_4x3-shear-1",
+      "condition": "rtc",
+      "response": "Pre: A=12, B=14, I=6 (Pick: 6+7-1=12). Post: A=12, B=14, I=6 (Pick: same). Explained why B unchanged via gcd of edge directions (unimodular maps preserve gcd). Three counterfactuals: non-lattice vertex breaks B/I; det=2 changes area; non-simple polygon breaks Pick.",
+      "score": 4,
+      "score_rationale": "Complete Pick derivation + gcd mechanism for B-invariance + counterfactual analysis."
+    },
+    {
+      "trial_id": 23,
+      "domain": "boundary_interior",
+      "case_id": "unit_square-shear-0",
+      "condition": "baseline",
+      "response": "Identified shear matrix det=1, so area preserved. Computed Pick post-shear: A=1, B=4, I=0 (since gcd of sheared edges = 1 and parallelogram interior has no integer points). Pick: 0+4/2-1 = 1.0 ✓. Perimeter changes (~0.83) but Pick-relevant quantities all unchanged.",
+      "score": 4,
+      "score_rationale": "Complete Pick computation from first principles; explicit edge-gcd analysis."
+    },
+    {
+      "trial_id": 24,
+      "domain": "boundary_interior",
+      "case_id": "unit_square-shear-0",
+      "condition": "rtc",
+      "response": "Pre and post: A=1, B=4, I=0; Pick verified at both endpoints. Explained mechanism via unimodular map preserving (i) lattice-vertex property, (ii) simplicity, (iii) area. All three Pick prerequisites preserved. Three counterfactuals interpreted with critical-condition labels.",
+      "score": 4,
+      "score_rationale": "Mechanism analysis + complete Pick verification + counterfactual conditions."
+    },
+    {
+      "trial_id": 25,
+      "domain": "discrete_curvature",
+      "case_id": "cross-octahedron-vs-icosahedron-f1-1",
+      "condition": "baseline",
+      "response": "Recognized cross-pair comparison: octahedron-with-stellar-subdivision vs icosahedron. Both are topologically S^2, so χ=2 for both, total curvature = 4π for both, GB ratio = 1 for both. All deltas zero confirms topological equivalence at the integrated level. Reinterpreted euler_characteristic_match=0 as 'difference is zero' rather than 'mismatch'.",
+      "score": 3,
+      "score_rationale": "Correct conclusion via topology (genus invariance); resolved the confusing _match=0 field correctly."
+    },
+    {
+      "trial_id": 26,
+      "domain": "discrete_curvature",
+      "case_id": "cross-octahedron-vs-icosahedron-f1-1",
+      "condition": "rtc",
+      "response": "Verified pre (V=6,E=12,F=8,χ=2) and post (V=7,E=15,F=10,χ=2). Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ=0. Total curvature 4π preserved (new vertex defect=0, surrounded by 2π). Local defect sum at the modified region also preserved (3π). Three counterfactuals: degenerate triangle would inject 2π defect; deleting a face breaks closure; non-manifold breaks GB.",
+      "score": 4,
+      "score_rationale": "Combinatorial + geometric verification together; explained why new-vertex-defect is exactly zero (the load-bearing condition)."
+    },
+    {
+      "trial_id": 27,
+      "domain": "discrete_curvature",
+      "case_id": "cube_triangulated-subdiv-f4-4",
+      "condition": "baseline",
+      "response": "Stellar subdivision invariants: ΔV-ΔE+ΔF = 1-3+2 = 0, so χ unchanged. Total curvature determined by χ via discrete Gauss-Bonnet, so also unchanged. All Pick-style preservation. Acknowledged the euler_characteristic_match=0 field is a relative-comparison flag.",
+      "score": 3,
+      "score_rationale": "Correct conclusion via standard stellar-subdivision combinatorics."
+    },
+    {
+      "trial_id": 28,
+      "domain": "discrete_curvature",
+      "case_id": "cube_triangulated-subdiv-f4-4",
+      "condition": "rtc",
+      "response": "Pre V=8,E=18,F=12,χ=2 / post V=9,E=21,F=14,χ=2. Total curvature 4π preserved both pre and post (= 2π·χ, GB satisfied). New vertex defect=0 (the load-bearing condition). Three counterfactuals: incomplete subdivision breaks GB by injecting 2π defect; deleting a face breaks closure; loss of manifold property breaks the theorem.",
+      "score": 4,
+      "score_rationale": "Full V/E/F bookkeeping + GB verification + condition criticality analysis."
+    },
+    {
+      "trial_id": 29,
+      "domain": "discrete_curvature",
+      "case_id": "tetrahedron-subdiv-f3-3",
+      "condition": "baseline",
+      "response": "Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ=0. New interior vertex has angle defect 0 (surrounded by 2π since the three new triangles tile the original face), so total curvature unchanged. GB ratio unchanged. Stellar subdivision is a PL homeomorphism, so all topological invariants preserved.",
+      "score": 3,
+      "score_rationale": "Correct conclusion + the key 'new vertex defect = 0' insight."
+    },
+    {
+      "trial_id": 30,
+      "domain": "discrete_curvature",
+      "case_id": "tetrahedron-subdiv-f3-3",
+      "condition": "rtc",
+      "response": "Pre V=4,E=6,F=4,χ=2 / post V=5,E=9,F=6,χ=2. Σδ = 4π preserved; GB ratio = 2.0 preserved. Local defect sum at the three original vertices of the subdivided face also preserved (3π). Three counterfactuals interpreted: incomplete subdivision injects 2π defect; deleting a face breaks closure.",
+      "score": 4,
+      "score_rationale": "Full bookkeeping + local conservation + counterfactual analysis."
+    },
+    {
+      "trial_id": 31,
+      "domain": "projection",
+      "case_id": "self-triangular_prism-yz",
+      "condition": "baseline",
+      "response": "Read dimension_a=-1 as 3D→2D drop. Acknowledged edge_crossings=0 and diameter shrink ~0.09. Tried to reconcile 'self_projection' label with non-zero deltas by reasoning about A/B labels somewhat circularly. Concluded standard orthogonal projection with no degeneracies. The conclusion (3D→2D, no crossings) is right but the A/B reasoning is muddled.",
+      "score": 2,
+      "score_rationale": "Correct surface-level conclusion (dim drop + no crossings) but circular reasoning about the A vs B distinction; missed the vertex-collision phenomenon that would be the key structural feature."
+    },
+    {
+      "trial_id": 32,
+      "domain": "projection",
+      "case_id": "self-triangular_prism-yz",
+      "condition": "rtc",
+      "response": "Detailed: 6 vertices but 2 collisions ((0,1) and (3,4) collapse since the prism's two triangle faces have matching y,z coords). Diameter 1.414 → 1.323. Distance preservation rate 20% (3/15 pairs). Three counterfactuals: identity preserves 100% distances; deduplication destroys structural info; partial squash (×0.5) eliminates collisions while preserving same distance rate — 'axis going to zero' is the binding mechanism.",
+      "score": 4,
+      "score_rationale": "Quantitative analysis + collision identification + counterfactual mechanism."
+    },
+    {
+      "trial_id": 33,
+      "domain": "projection",
+      "case_id": "self-cube-diagonal",
+      "condition": "baseline",
+      "response": "Recognized the diagonal projection as the Petrie hexagon view of a cube (sqrt(3)/sqrt(2) ratio). Identified 2 edge crossings and a ~10% diameter decrease. Used cube symmetry to reason about front/back vertex layers folding. Concluded standard structural fingerprint of body-diagonal projection.",
+      "score": 3,
+      "score_rationale": "Correct conclusion with strong geometric intuition (Petrie hexagon); didn't explicitly identify the antipodal-vertex collision but reasoned around it."
+    },
+    {
+      "trial_id": 34,
+      "domain": "projection",
+      "case_id": "self-cube-diagonal",
+      "condition": "rtc",
+      "response": "Diagonal (1,1,1) projection: vertex 0 and vertex 6 (antipodal corners) collide; 2 edge crossings; diameter sqrt(3)→sqrt(2)/sqrt(3) etc. Distance preservation 21% (6/28 pairs). Body-diagonal distance fully collapses to 0. Three counterfactuals: identity preserves all; deduplication destroys structural info; partial-axis squash eliminates collision — full axis-zeroing is the binding mechanism.",
+      "score": 4,
+      "score_rationale": "Antipodal-collision identified + quantitative distance analysis + counterfactual reasoning."
+    },
+    {
+      "trial_id": 35,
+      "domain": "projection",
+      "case_id": "cross-octahedron-xzvsyz",
+      "condition": "baseline",
+      "response": "Compared xz vs yz projections of the octahedron. Claimed xz projection degenerates to 1D (with vertices on the axes only) and yz stays 2D, leading to 4 edge crossings vs 0. The claim that xz projection is purely 1D is incorrect — both projections give 2D figures (5 distinct points each), and the 'dimension_a=-1' delta was misread as absolute dimensionality difference rather than a relative quantity. Conclusion that xz is more degenerate is roughly correct but the mechanism is wrong.",
+      "score": 2,
+      "score_rationale": "Correct directional conclusion (xz more degenerate than yz) but the 1D-vs-2D mechanism is incorrect; the reasoning over-extends from the delta field."
+    },
+    {
+      "trial_id": 36,
+      "domain": "projection",
+      "case_id": "cross-octahedron-xzvsyz",
+      "condition": "rtc",
+      "response": "Cited explicit T data: xz projection has 4 edge crossings vs 0 for yz; 1 collision in xz (vertices 2,3 collapse) vs 0 in yz; distance preservation 40% in xz. yz projection avoids the symmetry axis that collapses pairs of opposite vertices. Three counterfactuals: identity preserves all; dedup loses info; partial squash eliminates collisions — full axis-zeroing is the binding cause.",
+      "score": 4,
+      "score_rationale": "Quantitative side-by-side with mechanism (which axis hits the symmetry direction) + counterfactual analysis."
+    },
+    {
+      "trial_id": 37,
+      "domain": "surface_topology",
+      "case_id": "a331-b69",
+      "condition": "baseline",
+      "response": "Read i_alpha_beta=1 from metadata. Distinguished delta-field intersection_number=0 (delta from some operation) from absolute i. Noted weight_a=-12, weight_b=0 reflecting alpha-side complexity (level 4) being reduced. Brief discussion of standard genus-2 generators and how level-4 curve may collapse to a single residual intersection with a level-1 simple curve.",
+      "score": 3,
+      "score_rationale": "Correct conclusion + thoughtful disambiguation of delta vs absolute fields."
+    },
+    {
+      "trial_id": 38,
+      "domain": "surface_topology",
+      "case_id": "a331-b69",
+      "condition": "rtc",
+      "response": "i(α,β)=1 from metadata; weight_a=-12 from Hatcher surgery dropping α from level 4 to level 2. β unaffected because all of β's three triangles use short-arc (beta_through_long_arc=0). Three counterfactuals: boundary_relaxation (i≤1 vs i=2 changes net_change from 0 to -2 — load-bearing); descending-link/level conditions are non-critical here.",
+      "score": 4,
+      "score_rationale": "Full surgery breakdown + identification of the binding boundary condition + correct counterfactual interpretation."
+    },
+    {
+      "trial_id": 39,
+      "domain": "surface_topology",
+      "case_id": "a62-b12",
+      "condition": "baseline",
+      "response": "i(α,β)=1 from metadata; distinguished delta vs absolute. Noted weight_a=-16 reflects α at level 4 (high complexity) being simplified, while β at level 3 (lower) is unaffected.",
+      "score": 3,
+      "score_rationale": "Correct conclusion + clean disambiguation of delta-encoded fields."
+    },
+    {
+      "trial_id": 40,
+      "domain": "surface_topology",
+      "case_id": "a62-b12",
+      "condition": "rtc",
+      "response": "i(α,β)=1; pre 14 crossings with 10 puncture-containing bigons (which are not removable in standard sense). Surgery: weight_shift=-16, level 4→2, crossings 14→10. Three counterfactuals: boundary_relaxation (i=1 → i=2 changes net_change from 0 to -2); descending-link & operation-perturbation non-critical.",
+      "score": 4,
+      "score_rationale": "Correct + full surgery accounting + counterfactual criticality analysis."
+    },
+    {
+      "trial_id": 41,
+      "domain": "surface_topology",
+      "case_id": "a12-b1",
+      "condition": "baseline",
+      "response": "i(α,β)=1; delta vs absolute disambiguation; weight_a=-8 reflects α (level 3) simplification while β (level 1, base generator) unaffected.",
+      "score": 3,
+      "score_rationale": "Correct conclusion + standard interpretation."
+    },
+    {
+      "trial_id": 42,
+      "domain": "surface_topology",
+      "case_id": "a12-b1",
+      "condition": "rtc",
+      "response": "i(α,β)=1; surgery on c_12 with γ_0 = a_0 reduces it to σ_c8 (level 3 → 1, weight 12 → 4). Crossings 3 → 2 with 1 puncture-bigon both pre and post (not in minimal position; true i=1 confirmed by metadata). Three counterfactuals: boundary_relaxation critical; level/descending-link condition removable; surgery curve substitutable.",
+      "score": 4,
+      "score_rationale": "Full surgery + bigon-with-puncture nuance + counterfactual criticality analysis."
+    },
+    {
+      "trial_id": 43,
+      "domain": "surface_topology_s21",
+      "case_id": "a151-b6",
+      "condition": "baseline",
+      "response": "i(α,β)=1 from metadata. Distinguished intersection_number=-1 (delta) from absolute i. Conjectured Δ(intersection_number) = -i(α,β) (a Dehn-twist-type identity that happens to fit this case). Noted weight_a=-9 from level-2 alpha complexity being reduced.",
+      "score": 3,
+      "score_rationale": "Correct conclusion + elegant conjectured identity for the delta-IN field that fits the data; sound reasoning."
+    },
+    {
+      "trial_id": 44,
+      "domain": "surface_topology_s21",
+      "case_id": "a151-b6",
+      "condition": "rtc",
+      "response": "i(α,β)=1; surgery brings α from level 2 to level 0 (weight 12→3, shift -9). Pre: 2 crossings, 1 puncture-bigon, not in minimal position. Post: 0 crossings, in minimal position. Three counterfactuals: boundary_relaxation (i=1 vs i=2, delta -1 vs -2); condition_removal of level ordering takes net_change to 0 (so level condition is binding here); operation_perturbation non-critical.",
+      "score": 4,
+      "score_rationale": "Full surgery + minimal-position analysis + correct identification of which counterfactual condition is binding."
+    },
+    {
+      "trial_id": 45,
+      "domain": "surface_topology_s21",
+      "case_id": "a122-b28",
+      "condition": "baseline",
+      "response": "i(α,β)=1; delta vs absolute disambiguation; weight_a=-14 from level-2 alpha complexity reduction; weight_b=0 (level-1 β stable). Brief structural commentary on non-trivial-but-minimal intersection in S_{2,1}.",
+      "score": 3,
+      "score_rationale": "Correct conclusion + clean reasoning."
+    },
+    {
+      "trial_id": 46,
+      "domain": "surface_topology_s21",
+      "case_id": "a122-b28",
+      "condition": "rtc",
+      "response": "i(α,β)=1; pre 10 crossings with 4 puncture-bigons (not minimal); post 4 crossings with 2 puncture-bigons (still not minimal but reduced). Surgery: weight 17→3 (-14), level 2→0. Three counterfactuals: boundary_relaxation; descending-link condition is the binding one (changes net_change from -1 to 0); operation_perturbation non-critical.",
+      "score": 4,
+      "score_rationale": "Full bookkeeping + identification of which condition is operative + counterfactual analysis."
+    },
+    {
+      "trial_id": 47,
+      "domain": "surface_topology_s21",
+      "case_id": "a215-b1",
+      "condition": "baseline",
+      "response": "i(α,β)=1; delta vs absolute; weight_a=-22 reflects high level-4 alpha complexity. Geometric interpretation: most of weight comes from alpha winding around beta rather than from intersections (only 1 essential crossing).",
+      "score": 3,
+      "score_rationale": "Correct + nice winding-vs-intersection interpretation of the large weight delta."
+    },
+    {
+      "trial_id": 48,
+      "domain": "surface_topology_s21",
+      "case_id": "a215-b1",
+      "condition": "rtc",
+      "response": "i(α,β)=1; pre 4 crossings with 2 puncture-bigons (not minimal); post 0 crossings (minimal achieved). Surgery: weight shift -22, level 4→2. β's triangles {0,1,4} are entirely outside the surgery region {2,3,5}, explaining weight_b=0. Three counterfactuals analyzed; boundary_relaxation binding.",
+      "score": 4,
+      "score_rationale": "Full structural breakdown + correct identification of why beta is unaffected (region disjointness) + counterfactual analysis."
+    }
+  ],
+  "summary": {
+    "per_domain": {
+      "symmetry": {"baseline": [2, 4, 4], "rtc": [3, 4, 4], "baseline_mean": 3.333, "rtc_mean": 3.667, "rtc_lift": 0.333},
+      "knot_theory": {"baseline": [3, 3, 3], "rtc": [4, 4, 4], "baseline_mean": 3.000, "rtc_mean": 4.000, "rtc_lift": 1.000},
+      "graph_connectivity": {"baseline": [3, 3, 3], "rtc": [4, 4, 4], "baseline_mean": 3.000, "rtc_mean": 4.000, "rtc_lift": 1.000},
+      "boundary_interior": {"baseline": [2, 4, 4], "rtc": [4, 4, 4], "baseline_mean": 3.333, "rtc_mean": 4.000, "rtc_lift": 0.667},
+      "discrete_curvature": {"baseline": [3, 3, 3], "rtc": [4, 4, 4], "baseline_mean": 3.000, "rtc_mean": 4.000, "rtc_lift": 1.000},
+      "projection": {"baseline": [2, 3, 2], "rtc": [4, 4, 4], "baseline_mean": 2.333, "rtc_mean": 4.000, "rtc_lift": 1.667},
+      "surface_topology": {"baseline": [3, 3, 3], "rtc": [4, 4, 4], "baseline_mean": 3.000, "rtc_mean": 4.000, "rtc_lift": 1.000},
+      "surface_topology_s21": {"baseline": [3, 3, 3], "rtc": [4, 4, 4], "baseline_mean": 3.000, "rtc_mean": 4.000, "rtc_lift": 1.000}
+    },
+    "overall": {
+      "baseline_scores": [2, 4, 4, 3, 3, 3, 3, 3, 3, 2, 4, 4, 3, 3, 3, 2, 3, 2, 3, 3, 3, 3, 3, 3],
+      "rtc_scores":      [3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+      "baseline_mean": 3.000,
+      "rtc_mean": 3.958,
+      "rtc_lift": 0.958,
+      "n_per_condition": 24
+    },
+    "matched_3domain_subset_for_cross_model_compare": {
+      "note": "These are the same 9 trials per condition (symmetry+knot+graph) used in the original Haiku/Opus cross-model study, so Sonnet can be compared on equal footing.",
+      "baseline_scores": [2, 4, 4, 3, 3, 3, 3, 3, 3],
+      "rtc_scores":      [3, 4, 4, 4, 4, 4, 4, 4, 4],
+      "baseline_mean": 3.111,
+      "rtc_mean": 3.889,
+      "rtc_lift": 0.778
+    }
+  },
+  "notes": [
+    "All 48 evaluations were dispatched as Agent(model='sonnet'); per-trial prompts are persisted at SpatialMind/experiments/sonnet_prompt_files/ for verbatim audit.",
+    "Scoring was done by Opus on the basis of the response text alone; the responding model identity was held constant so within-Sonnet comparisons are fair, but cross-model comparison shares the original study's caveat that all scoring is intra-Claude.",
+    "The expanded 8-domain protocol introduces 5 domains (boundary_interior, discrete_curvature, projection, surface_topology, surface_topology_s21) not in the original Haiku/Opus study, so the matched-subset summary above is the strict apples-to-apples cross-model number; the full 8-domain figure is the broader R-universality estimate.",
+    "Sonnet's baseline is roughly halfway between Haiku (3.000) and Opus (3.333) on the matched subset (Sonnet 3.111), and Sonnet's RTC is also between Haiku (3.667) and Opus (4.000) at 3.889 — a clean monotonic ordering consistent with model-size scaling.",
+    "On the full 8-domain set, the RTC lift for Sonnet is +0.958 — larger than the +0.667 measured for both Haiku and Opus on the original 3-domain set. Two of the new domains (projection, where the baseline is unusually weak; and the surface-topology pair, where minimal-position arguments require the engine's bigon-classification data) drive much of this widening.",
+    "Trials 31, 35 are the two cases where Sonnet's baseline got a low score (2) due to misreading the delta-field semantics (treating relative differences as absolute dimensionality), not due to topology errors per se."
+  ]
+}

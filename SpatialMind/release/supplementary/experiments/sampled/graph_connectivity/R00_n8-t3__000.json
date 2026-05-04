@@ -1,0 +1,36 @@
+{
+ "domain": "graph_connectivity",
+ "condition": "000",
+ "primitives": {
+  "relation": false,
+  "transform": false,
+  "contrastive": false
+ },
+ "case_id": "R00_n8-t3",
+ "case_data": {
+  "case_id": "R00_n8-t3",
+  "summary_delta": {
+   "n_vertices_b": 0,
+   "n_components_b": 0,
+   "is_connected_a": {
+    "pre": true,
+    "post": false
+   },
+   "n_vertices_a": 0,
+   "n_edges_b": 0,
+   "is_connected_b": 0,
+   "n_edges_a": -1,
+   "n_components_a": 1
+  },
+  "metadata": {
+   "graph_idx": 0,
+   "n_vertices": 8,
+   "n_edges_before": 9,
+   "deleted_edge": [
+    4,
+    7
+   ],
+   "trial": 3
+  }
+ }
+}

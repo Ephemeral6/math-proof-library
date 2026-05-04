@@ -1,0 +1,192 @@
+% references.bib for "The Extended Mathematical Mind: Spatial Cognition Through
+% Architecture, Not Training" — initial draft, 2026-05-01.
+%
+% Format note: each entry has a final `note = {Used in: <paper section>. <one-line
+% relevance>.}` field — drop this field before final submission, or convert to
+% in-text citation context if the venue requires.
+
+% ============================================================================
+% Cognitive science foundations — extended mind, distributed cognition,
+% cognitive offloading
+% ============================================================================
+
+@article{clark1998extended,
+  author  = {Clark, Andy and Chalmers, David},
+  title   = {The Extended Mind},
+  journal = {Analysis},
+  volume  = {58},
+  number  = {1},
+  pages   = {7--19},
+  year    = {1998},
+  doi     = {10.1093/analys/58.1.7}
+}
+
+% ============================================================================
+% Mathematical cognition specific
+% ============================================================================
+
+@article{thurston1994proof,
+  author  = {Thurston, William P.},
+  title   = {On Proof and Progress in Mathematics},
+  journal = {Bulletin of the American Mathematical Society},
+  volume  = {30},
+  number  = {2},
+  pages   = {161--177},
+  year    = {1994},
+  doi     = {10.1090/S0273-0979-1994-00502-6}
+}
+
+% ============================================================================
+% LLM spatial-reasoning probing
+% ============================================================================
+
+@misc{an2026humancog,
+  title        = {From Human Cognition to Neural Activations: Probing the
+                  Computational Primitives of Spatial Reasoning in {LLMs}},
+  author       = {An, Jiyuan and Yang, Liner and Wang, Mengyan and Lu, Luming and An, Weihua and Yang, Erhong},
+  year         = {2026},
+  eprint       = {2603.26323},
+  archivePrefix= {arXiv},
+  primaryClass = {cs.AI},
+  howpublished = {arXiv preprint arXiv:2603.26323},
+  note         = {Concurrent work}
+}
+
+% ============================================================================
+% Math libraries we wrap (cite for reproducibility, not narrative)
+% ============================================================================
+
+@misc{bell2016curver,
+  author       = {Bell, Mark C.},
+  title        = {curver: A Python Package for Computing with Curves on Surfaces},
+  year         = {2016},
+  howpublished = {\url{https://curver.readthedocs.io}}
+}
+
+@misc{snappy,
+  author       = {Culler, Marc and Dunfield, Nathan M. and Goerner, Matthias
+                  and Weeks, Jeffrey R.},
+  title        = {{SnapPy}, a Computer Program for Studying the Geometry and
+                  Topology of 3-Manifolds},
+  year         = {2024},
+  howpublished = {\url{https://snappy.computop.org}}
+}
+
+% ============================================================================
+% Tool-augmented LLMs for math
+% ============================================================================
+
+@inproceedings{gou2024tora,
+  author    = {Gou, Zhibin and Shao, Zhihong and Gong, Yeyun and Shen, Yelong
+              and Yang, Yujiu and Huang, Minlie and Duan, Nan and Chen, Weizhu},
+  title     = {{ToRA}: A Tool-Integrated Reasoning Agent for Mathematical Problem Solving},
+  booktitle = {ICLR},
+  year      = {2024},
+  eprint    = {2309.17452},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+@inproceedings{das2024mathsensei,
+  author    = {Das, Debrup and Banerjee, Debopriyo and Aditya, Somak
+               and Kulkarni, Ashish},
+  title     = {{MATHSENSEI}: A Tool-Augmented Large Language Model for
+               Mathematical Reasoning},
+  booktitle = {Proceedings of NAACL},
+  year      = {2024}
+}
+
+@inproceedings{luo2025agentmath,
+  author        = {Luo, Haipeng and Feng, Huawen and Sun, Qingfeng and Xu, Can and Zheng, Kai and Wang, Yufei and Yang, Tao and Hu, Han and Tang, Yansong},
+  title         = {{AgentMath}: Empowering Mathematical Reasoning for Large
+                   Language Models via Tool-Augmented Agent},
+  booktitle     = {ICLR},
+  year          = {2026},
+  eprint        = {2512.20745},
+  archivePrefix = {arXiv}
+}
+
+% ============================================================================
+% Geometry-specific AI: AlphaGeometry line
+% ============================================================================
+
+@article{trinh2024alphageometry,
+  author  = {Trinh, Trieu H. and Wu, Yuhuai and Le, Quoc V. and He, He
+             and Luong, Thang},
+  title   = {Solving Olympiad Geometry Without Human Demonstrations},
+  journal = {Nature},
+  volume  = {625},
+  number  = {7995},
+  pages   = {476--482},
+  year    = {2024},
+  doi     = {10.1038/s41586-023-06747-5}
+}
+
+@misc{trinh2025alphageometry2,
+  author       = {Chervonyi, Yuri and Trinh, Trieu H. and Ol{\v{s}}{\'a}k, Miroslav and Yang, Xiaomeng and Nguyen, Hoang and Menegali, Marcelo and Jung, Junehyuk and Kim, Junsu and Verma, Vikas and Le, Quoc V. and Luong, Thang},
+  title        = {{AlphaGeometry 2}: Olympiad-Level Plane Geometry via
+                  Tree Search and Synthetic Data},
+  year         = {2025},
+  eprint       = {2502.03544},
+  archivePrefix= {arXiv},
+  primaryClass = {cs.AI},
+  howpublished = {arXiv preprint arXiv:2502.03544}
+}
+
+% ============================================================================
+% Cognitive architectures and frameworks for LLM agents
+% ============================================================================
+
+@article{sumers2023coala,
+  author  = {Sumers, Theodore R. and Yao, Shunyu and Narasimhan,
+             Karthik and Griffiths, Thomas L.},
+  title   = {Cognitive Architectures for Language Agents},
+  journal = {Transactions on Machine Learning Research},
+  year    = {2024}
+}
+
+@inproceedings{ebouky2025cogtools,
+  author       = {Ebouky, Brown and Bartezzaghi, Andrea and Rigotti, Mattia},
+  title        = {Eliciting Reasoning in Language Models with Cognitive Tools},
+  booktitle    = {NeurIPS},
+  year         = {2025}
+}
+
+@inproceedings{olivier2025embodied,
+  author    = {Olivier, Fran\c{c}ois and Bouraoui, Zied},
+  title     = {Grounding Agent Reasoning in Image Schemas: A Neurosymbolic Approach to Embodied Cognition},
+  booktitle = {Proceedings of the 24th International Conference on Autonomous Agents and Multiagent Systems (AAMAS), Blue Sky Ideas Track},
+  year      = {2025}
+}
+
+% ============================================================================
+% Cognitive science and history of mathematics
+% ============================================================================
+
+@book{lakoff2000mathematics,
+  author    = {Lakoff, George and N{\'u}{\~n}ez, Rafael E.},
+  title     = {Where Mathematics Comes From: How the Embodied Mind
+               Brings Mathematics into Being},
+  publisher = {Basic Books},
+  year      = {2000}
+}
+
+% ============================================================================
+% Experimental design
+% ============================================================================
+
+@book{montgomery2017doe,
+  author    = {Montgomery, Douglas C.},
+  title     = {Design and Analysis of Experiments},
+  edition   = {9},
+  publisher = {Wiley},
+  year      = {2017},
+  isbn      = {978-1-119-11347-8}
+}
+
+@inproceedings{yang2025rlvr,
+  author    = {Yue, Yang and Chen, Zhiqi and Lu, Rui and Zhao, Andrew and Wang, Zhaokai and Yue, Yang and Song, Shiji and Huang, Gao},
+  title     = {Does Reinforcement Learning Really Incentivize Reasoning Capacity in {LLMs} Beyond the Base Model?},
+  booktitle = {NeurIPS},
+  year      = {2025}
+}

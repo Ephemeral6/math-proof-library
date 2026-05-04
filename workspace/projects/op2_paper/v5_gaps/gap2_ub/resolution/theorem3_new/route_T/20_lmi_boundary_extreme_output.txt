@@ -1,0 +1,28 @@
+β grid: [0.85, 0.86, 0.87, 0.88, 0.89, 0.9, 0.91, 0.92, 0.93, 0.94, 0.95, 0.96, 0.97, 0.98, 0.99]
+η grid: [0.005, 0.01, 0.02, 0.03, 0.05, 0.08, 0.1, 0.15, 0.2]
+
+    β  η_opt          W      C_Lya  #feas
+--------------------------------------------------
+C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap2_ub\resolution\theorem3_new\route_T\16_clarabel_test.py:144: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  prob.solve(solver=cp.CLARABEL, verbose=False)
+0.850  0.080     7.1187     3.9968      4
+C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap2_ub\resolution\theorem3_new\route_T\16_clarabel_test.py:147: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  prob.solve(solver=cp.SCS, verbose=False, eps=1e-9, max_iters=200000)
+0.860  0.100     9.2353     4.8176      3
+0.870  0.080     9.2097     4.9174      4
+0.880  0.080    10.6025     5.5512      3
+0.890  0.080    12.4102     6.3926      4
+0.900  0.080    14.7755     7.5128      2
+0.910  0.020     9.3876     6.4438      2
+0.920  0.020    11.4016     7.2008      2
+0.930  0.020    14.0239     8.2619      3
+0.940  0.020    17.6148     9.8074      3
+0.950  0.030    26.6581    13.6624      2
+0.960: INFEASIBLE
+0.970: INFEASIBLE
+0.980: INFEASIBLE
+0.990: INFEASIBLE
+
+Saved: C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap2_ub\resolution\theorem3_new\route_T\20_lmi_boundary_extreme_results.json
+
+LMI β*: last_feasible=0.95, first_infeasible=0.96

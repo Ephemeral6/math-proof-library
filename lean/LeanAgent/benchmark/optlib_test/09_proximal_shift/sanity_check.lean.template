@@ -1,0 +1,14 @@
+-- Sanity check: do the agent's signature and optlib's signature match?
+-- HOW TO USE: Copy this file to sanity_check.lean.
+-- Replace <PASTE AGENT SIGNATURE> with the EXACT theorem signature from
+-- benchmark/optlib_test/09_proximal_shift/agent_output.lean.
+-- Replace <ORIG ARGS> with the right hypotheses to match optlib's lemma type.
+-- Then run:
+--   export PATH="$HOME/.elan/bin:$PATH" && cd ~/Desktop/Math/LeanAgent && lake env lean benchmark/optlib_test/09_proximal_shift/sanity_check.lean
+-- Success → CERTIFIED signature equivalence.
+-- Type-mismatch → record the diff in evaluation.md, mark as PARTIAL.
+
+import Optlib.Function.Proximal
+
+-- <PASTE AGENT SIGNATURE — same name, same hypothesis order, same conclusion>
+-- := proximal_shift <ORIG ARGS>

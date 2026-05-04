@@ -1,0 +1,173 @@
+[
+  {
+    "beta": 0.9,
+    "eta_L": 3.038,
+    "kappa": 0.4489,
+    "classification_T100000": "quasi_periodic",
+    "final_norm": 1.0530791026472237,
+    "period": null,
+    "period_residual": 0.04570108695552252
+  },
+  {
+    "beta": 0.9,
+    "eta_L": 3.1277,
+    "kappa": 0.4406,
+    "classification_T100000": "period_4",
+    "final_norm": 0.9791197244057914,
+    "period": 4,
+    "period_residual": 1.1056183132505512e-70
+  },
+  {
+    "beta": 0.9,
+    "eta_L": 3.2173,
+    "kappa": 0.4302,
+    "classification_T100000": "period_4",
+    "final_norm": 0.985292615506625,
+    "period": 4,
+    "period_residual": 1.4510736770409727e-70
+  },
+  {
+    "beta": 0.9,
+    "eta_L": 3.307,
+    "kappa": 0.4196,
+    "classification_T100000": "period_4",
+    "final_norm": 0.9889299070343209,
+    "period": 4,
+    "period_residual": 3.961859596986687e-71
+  },
+  {
+    "beta": 0.9,
+    "eta_L": 3.3966,
+    "kappa": 0.4092,
+    "classification_T100000": "period_4",
+    "final_norm": 0.9912717073835035,
+    "period": 4,
+    "period_residual": 7.819540868450528e-71
+  },
+  {
+    "beta": 0.9,
+    "eta_L": 3.4863,
+    "kappa": 0.3991,
+    "classification_T100000": "period_4",
+    "final_norm": 0.9928133654930383,
+    "period": 4,
+    "period_residual": 1.812019943626528e-70
+  },
+  {
+    "beta": 0.9,
+    "eta_L": 3.5759,
+    "kappa": 0.3894,
+    "classification_T100000": "period_4",
+    "final_norm": 0.9939219059420265,
+    "period": 4,
+    "period_residual": 2.1799854666267265e-70
+  },
+  {
+    "beta": 0.9,
+    "eta_L": 3.6655,
+    "kappa": 0.3802,
+    "classification_T100000": "period_4",
+    "final_norm": 0.9951289111960746,
+    "period": 4,
+    "period_residual": 9.156988771382247e-71
+  },
+  {
+    "beta": 0.9,
+    "eta_L": 3.7552,
+    "kappa": 0.3713,
+    "classification_T100000": "period_4",
+    "final_norm": 0.9958349866401037,
+    "period": 4,
+    "period_residual": 2.150723781221344e-71
+  },
+  {
+    "beta": 0.95,
+    "eta_L": 2.9983,
+    "kappa": 0.475,
+    "classification_T100000": "slow_decay",
+    "final_norm": 0.0,
+    "period": null,
+    "period_residual": null
+  },
+  {
+    "beta": 0.95,
+    "eta_L": 3.0932,
+    "kappa": 0.4659,
+    "classification_T100000": "period_4",
+    "final_norm": 1.199641630965826,
+    "period": 4,
+    "period_residual": 3.9618595969866867e-72
+  },
+  {
+    "beta": 0.95,
+    "eta_L": 3.1881,
+    "kappa": 0.4532,
+    "classification_T100000": "period_4",
+    "final_norm": 1.205952570791245,
+    "period": 4,
+    "period_residual": 0.0
+  },
+  {
+    "beta": 0.95,
+    "eta_L": 3.2831,
+    "kappa": 0.4405,
+    "classification_T100000": "period_4",
+    "final_norm": 1.2082695304051156,
+    "period": 4,
+    "period_residual": 7.415849251769183e-71
+  },
+  {
+    "beta": 0.95,
+    "eta_L": 3.378,
+    "kappa": 0.4284,
+    "classification_T100000": "period_4",
+    "final_norm": 1.2098596457509856,
+    "period": 4,
+    "period_residual": 1.481970683050639e-70
+  },
+  {
+    "beta": 0.95,
+    "eta_L": 3.4729,
+    "kappa": 0.4168,
+    "classification_T100000": "period_4",
+    "final_norm": 1.2104927601913409,
+    "period": 4,
+    "period_residual": 1.4692058773033178e-70
+  },
+  {
+    "beta": 0.95,
+    "eta_L": 3.5678,
+    "kappa": 0.4058,
+    "classification_T100000": "period_4",
+    "final_norm": 1.2110218285856962,
+    "period": 4,
+    "period_residual": 1.841662554111722e-70
+  },
+  {
+    "beta": 0.95,
+    "eta_L": 3.6627,
+    "kappa": 0.3954,
+    "classification_T100000": "period_4",
+    "final_norm": 1.211739904199427,
+    "period": 4,
+    "period_residual": 1.0925612071378195e-70
+  },
+  {
+    "beta": 0.95,
+    "eta_L": 3.7576,
+    "kappa": 0.3855,
+    "classification_T100000": "period_4",
+    "final_norm": 1.2122952455313734,
+    "period": 4,
+    "period_residual": 7.862844649314532e-71
+  },
+  {
+    "beta": 0.95,
+    "eta_L": 3.8525,
+    "kappa": 0.376,
+    "classification_T100000": "period_4",
+    "final_norm": 1.2122698066109487,
+    "period": 4,
+    "period_residual": 2.8182448240993512e-70
+  }
+]

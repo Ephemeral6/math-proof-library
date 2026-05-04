@@ -1,0 +1,21 @@
+{
+  "domain": "graph_connectivity",
+  "subject": "claude-as-test-subject",
+  "n_questions": 34,
+  "conditions": {
+    "Baseline": {
+      "label": "Baseline",
+      "accuracy": 0.38235294117647056,
+      "n_correct": 13,
+      "n": 34,
+      "n_error": 0
+    },
+    "RTC": {
+      "label": "CoE-CTR",
+      "accuracy": 1.0,
+      "n_correct": 34,
+      "n": 34,
+      "n_error": 0
+    }
+  }
+}

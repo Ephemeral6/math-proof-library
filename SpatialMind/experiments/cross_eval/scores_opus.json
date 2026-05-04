@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "score": 4,
+    "rationale": "Explicit witness search + multiset invariant verification — full proof from delta+metadata."
+  },
+  {
+    "id": 2,
+    "score": 4,
+    "rationale": "T witness + R orbit-stabilizer + C boundary analysis — full proof."
+  },
+  {
+    "id": 3,
+    "score": 4,
+    "rationale": "Multiset-invariant proof — single-line decisive argument."
+  },
+  {
+    "id": 4,
+    "score": 4,
+    "rationale": "T failure + R connecting=0 + invariant — three-front proof."
+  },
+  {
+    "id": 5,
+    "score": 4,
+    "rationale": "Explicit witness search + multiset invariant verification — full proof from delta+metadata."
+  },
+  {
+    "id": 6,
+    "score": 4,
+    "rationale": "T witness + R orbit-stabilizer + C boundary analysis — full proof."
+  },
+  {
+    "id": 7,
+    "score": 3,
+    "rationale": "Sound R-move theory + correct conclusion; cannot verify specific signs without R-data."
+  },
+  {
+    "id": 8,
+    "score": 4,
+    "rationale": "Full T sign-trace + R invariant verification + C boundary analysis."
+  },
+  {
+    "id": 9,
+    "score": 3,
+    "rationale": "Sound R-move theory + correct conclusion; cannot verify specific signs without R-data."
+  },
+  {
+    "id": 10,
+    "score": 4,
+    "rationale": "Full T sign-trace + R invariant verification + C boundary analysis."
+  },
+  {
+    "id": 11,
+    "score": 3,
+    "rationale": "Sound R-move theory + correct conclusion; cannot verify specific signs without R-data."
+  },
+  {
+    "id": 12,
+    "score": 4,
+    "rationale": "Full T sign-trace + R invariant verification + C boundary analysis."
+  },
+  {
+    "id": 13,
+    "score": 3,
+    "rationale": "Bridge inference + cycle rank analysis from delta+metadata."
+  },
+  {
+    "id": 14,
+    "score": 4,
+    "rationale": "Full T endpoint-degree + R structural data + C asymmetry: PROOF level."
+  },
+  {
+    "id": 15,
+    "score": 3,
+    "rationale": "Cycle-rank decrement → non-bridge inference."
+  },
+  {
+    "id": 16,
+    "score": 4,
+    "rationale": "Full T endpoint-degree + R structural data + C asymmetry: PROOF level."
+  },
+  {
+    "id": 17,
+    "score": 3,
+    "rationale": "Cycle-rank decrement → non-bridge inference."
+  },
+  {
+    "id": 18,
+    "score": 4,
+    "rationale": "Full T endpoint-degree + R structural data + C asymmetry: PROOF level."
+  },
+  {
+    "id": 19,
+    "score": 2,
+    "rationale": "PATTERN — correct conclusion via translation-invariance principle; no Pick verification per se."
+  },
+  {
+    "id": 20,
+    "score": 4,
+    "rationale": "Full Pick chain + det mechanism + counterfactual demarcation. PROOF."
+  },
+  {
+    "id": 21,
+    "score": 1,
+    "rationale": "NOTICE — flags Pick prerequisites but cannot extract values from delta-only data."
+  },
+  {
+    "id": 22,
+    "score": 4,
+    "rationale": "Full Pick chain + det mechanism + counterfactual demarcation. PROOF."
+  },
+  {
+    "id": 23,
+    "score": 2,
+    "rationale": "PATTERN — correct conclusion via translation-invariance principle; no Pick verification per se."
+  },
+  {
+    "id": 24,
+    "score": 4,
+    "rationale": "Full Pick chain + det mechanism + counterfactual demarcation. PROOF."
+  },
+  {
+    "id": 25,
+    "score": 2,
+    "rationale": "PATTERN — invokes Gauss-Bonnet correctly but no numerical verification from delta-only."
+  },
+  {
+    "id": 26,
+    "score": 4,
+    "rationale": "T new-vertex-defect + R GB identity + C topology counterfactual: PROOF."
+  },
+  {
+    "id": 27,
+    "score": 2,
+    "rationale": "PATTERN — invokes Gauss-Bonnet correctly but no numerical verification from delta-only."
+  },
+  {
+    "id": 28,
+    "score": 4,
+    "rationale": "T new-vertex-defect + R GB identity + C topology counterfactual: PROOF."
+  },
+  {
+    "id": 29,
+    "score": 2,
+    "rationale": "PATTERN — invokes Gauss-Bonnet correctly but no numerical verification from delta-only."
+  },
+  {
+    "id": 30,
+    "score": 4,
+    "rationale": "T new-vertex-defect + R GB identity + C topology counterfactual: PROOF."
+  },
+  {
+    "id": 31,
+    "score": 2,
+    "rationale": "PATTERN — extracts crossings_post from delta, applies projection theory."
+  },
+  {
+    "id": 32,
+    "score": 4,
+    "rationale": "Full T projection trace + R metrics + C plane-choice counterfactual: PROOF."
+  },
+  {
+    "id": 33,
+    "score": 2,
+    "rationale": "PATTERN — extracts crossings_post from delta, applies projection theory."
+  },
+  {
+    "id": 34,
+    "score": 4,
+    "rationale": "Full T projection trace + R metrics + C plane-choice counterfactual: PROOF."
+  },
+  {
+    "id": 35,
+    "score": 2,
+    "rationale": "PATTERN — extracts crossings_post from delta, applies projection theory."
+  },
+  {
+    "id": 36,
+    "score": 4,
+    "rationale": "Full T projection trace + R metrics + C plane-choice counterfactual: PROOF."
+  },
+  {
+    "id": 37,
+    "score": 0,
+    "rationale": "NO_SIGNAL — tautological appeal to theorem; no engagement with case data (which is sparse without combinatorial structure)."
+  },
+  {
+    "id": 38,
+    "score": 3,
+    "rationale": "ARGUMENT — T homotopy + R bigon decomposition + C obstruction; lacks full curve-coordinate verification."
+  },
+  {
+    "id": 39,
+    "score": 0,
+    "rationale": "NO_SIGNAL — tautological appeal to theorem; no engagement with case data (which is sparse without combinatorial structure)."
+  },
+  {
+    "id": 40,
+    "score": 3,
+    "rationale": "ARGUMENT — T homotopy + R bigon decomposition + C obstruction; lacks full curve-coordinate verification."
+  },
+  {
+    "id": 41,
+    "score": 0,
+    "rationale": "NO_SIGNAL — tautological appeal to theorem; no engagement with case data (which is sparse without combinatorial structure)."
+  },
+  {
+    "id": 42,
+    "score": 3,
+    "rationale": "ARGUMENT — T homotopy + R bigon decomposition + C obstruction; lacks full curve-coordinate verification."
+  },
+  {
+    "id": 43,
+    "score": 0,
+    "rationale": "NO_SIGNAL — tautological appeal to theorem; no engagement with case data (which is sparse without combinatorial structure)."
+  },
+  {
+    "id": 44,
+    "score": 3,
+    "rationale": "ARGUMENT — T homotopy + R bigon decomposition + C obstruction; lacks full curve-coordinate verification."
+  },
+  {
+    "id": 45,
+    "score": 0,
+    "rationale": "NO_SIGNAL — tautological appeal to theorem; no engagement with case data (which is sparse without combinatorial structure)."
+  },
+  {
+    "id": 46,
+    "score": 3,
+    "rationale": "ARGUMENT — T homotopy + R bigon decomposition + C obstruction; lacks full curve-coordinate verification."
+  },
+  {
+    "id": 47,
+    "score": 0,
+    "rationale": "NO_SIGNAL — tautological appeal to theorem; no engagement with case data (which is sparse without combinatorial structure)."
+  },
+  {
+    "id": 48,
+    "score": 3,
+    "rationale": "ARGUMENT — T homotopy + R bigon decomposition + C obstruction; lacks full curve-coordinate verification."
+  }
+]

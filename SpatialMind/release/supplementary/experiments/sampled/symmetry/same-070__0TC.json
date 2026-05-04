@@ -1,0 +1,228 @@
+{
+ "domain": "symmetry_combinatorics",
+ "condition": "0TC",
+ "primitives": {
+  "relation": false,
+  "transform": true,
+  "contrastive": true
+ },
+ "case_id": "same-070",
+ "case_data": {
+  "case_id": "same-070",
+  "summary_delta": {
+   "orbit_size_b": 0,
+   "hamming_distance": 0,
+   "same_orbit": 0,
+   "orbit_size_a": 0
+  },
+  "metadata": {
+   "label": "same",
+   "same_orbit": true,
+   "g_idx": 2,
+   "g_perm": [
+    2,
+    3,
+    4,
+    5,
+    0,
+    1
+   ],
+   "a_coloring": [
+    1,
+    2,
+    1,
+    2,
+    2,
+    0
+   ],
+   "b_coloring": [
+    2,
+    1,
+    2,
+    2,
+    0,
+    1
+   ],
+   "orbit_size_a": 6,
+   "orbit_size_b": 6,
+   "n_distinct_a": 3,
+   "n_distinct_b": 3
+  },
+  "transform_trace": {
+   "operation_name": "group_action",
+   "operation_params": {
+    "element_index": 2,
+    "permutation": [
+     2,
+     3,
+     4,
+     5,
+     0,
+     1
+    ],
+    "is_rotation": true,
+    "order": 3
+   },
+   "before_state": {
+    "coloring": [
+     1,
+     2,
+     1,
+     2,
+     2,
+     0
+    ]
+   },
+   "after_state": {
+    "coloring": [
+     1,
+     2,
+     2,
+     0,
+     1,
+     2
+    ]
+   },
+   "delta": {
+    "vertices_changed": 4,
+    "is_fixed_point": false
+   },
+   "region_affected": {
+    "moved_vertices": [
+     2,
+     3,
+     4,
+     5
+    ],
+    "fixed_vertices": [
+     0,
+     1
+    ],
+    "n_moved": 4,
+    "n_fixed": 2
+   },
+   "sub_steps": []
+  },
+  "reference_in_transform_region": {
+   "moved_vertices": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "fixed_vertices": [
+    0,
+    1
+   ],
+   "b_colors_at_moved": [
+    2,
+    2,
+    0,
+    1
+   ],
+   "b_colors_at_fixed": [
+    2,
+    1
+   ]
+  }
+ },
+ "counterfactual": [
+  {
+   "strategy": "boundary_relaxation",
+   "original_condition": {
+    "group": "Z_6",
+    "group_order": 6,
+    "total_orbits": 130
+   },
+   "modified_condition": {
+    "group": "D_6",
+    "group_order": 12,
+    "total_orbits": 92
+   },
+   "original_result": {
+    "same_orbit": true
+   },
+   "counterfactual_result": {
+    "same_orbit": true
+   },
+   "delta": {
+    "same_orbit_changed": 0,
+    "orbit_count_change": -38
+   },
+   "condition_is_critical": false,
+   "explanation": "Enlarged group Z_6 -> D_6 (added 6 reflections). Original same_orbit=True, modified=True. Orbit count: 130 -> 92. Not critical: relation unchanged under enlarged group."
+  },
+  {
+   "strategy": "condition_removal",
+   "original_condition": {
+    "group": "Z_6",
+    "group_order": 6,
+    "total_orbits": 130
+   },
+   "modified_condition": {
+    "group": "{e}",
+    "group_order": 1,
+    "total_orbits": 729
+   },
+   "original_result": {
+    "same_orbit": true
+   },
+   "counterfactual_result": {
+    "same_orbit": false
+   },
+   "delta": {
+    "same_orbit_changed": 1,
+    "orbit_count_change": 599
+   },
+   "condition_is_critical": true,
+   "explanation": "Removed all symmetry: G = Z_6 -> G' = {e}. Original same_orbit=True, modified=False. Critical: a and b are equivalent only because of rotational symmetry."
+  },
+  {
+   "strategy": "operation_perturbation",
+   "original_condition": {
+    "operation": "group_action",
+    "permutation_in_group": true,
+    "element_index": 1
+   },
+   "modified_condition": {
+    "operation": "swap(0,1)",
+    "permutation_in_group": false,
+    "permutation": [
+     1,
+     0,
+     2,
+     3,
+     4,
+     5
+    ]
+   },
+   "original_result": {
+    "same_orbit_a_sigma_a": true,
+    "sigma_a_coloring": [
+     2,
+     1,
+     2,
+     0,
+     0,
+     0
+    ]
+   },
+   "counterfactual_result": {
+    "same_orbit_a_sigma_a": false,
+    "sigma_a_coloring": [
+     2,
+     0,
+     1,
+     2,
+     0,
+     0
+    ]
+   },
+   "delta": {
+    "same_orbit_changed": 1
+   },
+   "condition_is_critical": true,
+   "explanation": "Replaced group element with a non-group transposition (swap 0,1). Original same_orbit(a, g·a)=True, modified same_orbit(a, swap·a)=False. Critical: non-group permutations break orbit equivalence."
+  }
+ ]
+}

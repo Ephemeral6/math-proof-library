@@ -1,0 +1,93 @@
+{
+ "domain": "graph_connectivity",
+ "condition": "R00",
+ "primitives": {
+  "relation": true,
+  "transform": false,
+  "contrastive": false
+ },
+ "case_id": "R02_n12-t4",
+ "case_data": {
+  "case_id": "R02_n12-t4",
+  "summary_delta": {
+   "n_vertices_b": 0,
+   "n_components_b": 0,
+   "is_connected_a": 0,
+   "n_vertices_a": 0,
+   "n_edges_b": 0,
+   "is_connected_b": 0,
+   "n_edges_a": -1,
+   "n_components_a": 0
+  },
+  "metadata": {
+   "graph_idx": 2,
+   "n_vertices": 12,
+   "n_edges_before": 14,
+   "deleted_edge": [
+    6,
+    7
+   ],
+   "trial": 4
+  },
+  "detailed_comparison": {
+   "n_edges_pre": 14,
+   "n_edges_post": 13,
+   "n_bridges_pre": 5,
+   "n_bridges_post": 7,
+   "deleted_edge_was_bridge": false,
+   "connectivity_lost": false,
+   "n_components_pre": 1,
+   "n_components_post": 1
+  },
+  "structural_comparison": {
+   "components_pre": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ]
+   ],
+   "components_post": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ]
+   ],
+   "articulation_points_pre": [
+    6,
+    7,
+    8,
+    11
+   ],
+   "articulation_points_post": [
+    6,
+    7,
+    8,
+    11
+   ],
+   "is_connected_pre": true,
+   "is_connected_post": true,
+   "is_connected_preserved": true,
+   "n_components_preserved": true
+  }
+ }
+}

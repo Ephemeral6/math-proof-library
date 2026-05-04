@@ -1,0 +1,36 @@
+2-step state Lyapunov LMI: maximize c_descent.
+
+ beta   eta         status    c_desc      a0      a1      a2     c01     c02     c12      w0      w1  λ_skip2
+-------------------------------------------------------------------------------------------------------------
+ 0.00  0.50        optimal    0.0000    (zero or fail)
+ 0.00  0.70        optimal    0.0000    (zero or fail)
+ 0.00  1.00        optimal    0.0000    (zero or fail)
+ 0.00  1.20        optimal    0.0000    (zero or fail)
+ 0.00  1.50        optimal    0.0000    (zero or fail)
+ 0.00  1.70        optimal    0.0000    (zero or fail)
+ 0.00  2.00        optimal    0.0000    (zero or fail)
+ 0.10  0.50        optimal    0.0000    (zero or fail)
+ 0.10  0.70        optimal    0.0000    (zero or fail)
+ 0.10  1.00        optimal    0.0000    (zero or fail)
+ 0.10  1.20        optimal    0.0000    (zero or fail)
+ 0.10  1.50        optimal    0.0000    (zero or fail)
+ 0.10  1.70        optimal    0.0000    (zero or fail)
+ 0.10  2.00        optimal    0.0000    (zero or fail)
+ 0.30  0.50        optimal    0.0000    (zero or fail)
+ 0.30  0.70        optimal    0.0000    (zero or fail)
+ 0.30  1.00        optimal    0.0000    (zero or fail)
+ 0.30  1.20        optimal    0.0000    (zero or fail)
+ 0.30  1.50        optimal    0.0000    (zero or fail)
+ 0.30  1.70        optimal    0.0000    (zero or fail)
+ 0.30  2.00        optimal    0.0000    (zero or fail)
+ 0.50  0.50        optimal    0.0000    (zero or fail)
+ 0.50  0.70        optimal    0.0000    (zero or fail)
+C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap2_ub\resolution\theorem3_new\route_T\08_two_step_lmi.py:261: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  prob.solve(solver=cp.SCS, verbose=False, max_iters=20000)
+ 0.50  1.00 optimal_inaccurate   0.00010 123.126 187.341  21.407 -289.094  42.715 -85.495 407.386   0.000   0.000
+ 0.50  1.20        optimal    0.0000    (zero or fail)
+ 0.50  1.50        optimal    0.0000    (zero or fail)
+ 0.50  1.70        optimal    0.0000    (zero or fail)
+ 0.50  2.00        optimal    0.0000    (zero or fail)
+
+Results: C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap2_ub\resolution\theorem3_new\route_T\08_two_step_lmi_results.json

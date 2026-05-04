@@ -1,0 +1,44 @@
+{
+ "domain": "boundary_interior",
+ "condition": "000",
+ "primitives": {
+  "relation": false,
+  "transform": false,
+  "contrastive": false
+ },
+ "case_id": "unit_square-shear-0",
+ "case_data": {
+  "case_id": "unit_square-shear-0",
+  "summary_delta": {
+   "area_b": 0.0,
+   "n_vertices_a": 0,
+   "pick_holds_a": 0,
+   "area_a": 0.0,
+   "pick_holds_b": 0,
+   "I_b": 0,
+   "perimeter_b": 0.0,
+   "perimeter_a": 0.8284269999999996,
+   "B_a": 0,
+   "B_b": 0,
+   "I_a": 0,
+   "n_vertices_b": 0
+  },
+  "metadata": {
+   "preset": "unit_square",
+   "operation": "shear",
+   "matrix": [
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "determinant": 1,
+   "n_vertices_pre": 4,
+   "n_vertices_post": 4
+  }
+ }
+}

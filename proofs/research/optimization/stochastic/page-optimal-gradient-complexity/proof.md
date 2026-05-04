@@ -6,7 +6,7 @@ $f = \frac{1}{n}\sum_{i=1}^n f_i$, each $f_i$ $L$-smooth, $f^* = \inf f > -\inft
 
 **PAGE:** $g_0 = \nabla f(x_0)$; for $t \geq 0$: $x_{t+1} = x_t - \eta g_t$; with prob $p$ reset $g_{t+1} = \nabla f(x_{t+1})$, with prob $1-p$ correct $g_{t+1} = g_t + \frac{1}{b'}\sum_{i \in \mathcal{B}'_t}[\nabla f_i(x_{t+1}) - \nabla f_i(x_t)]$.
 
-**Parameters:** $p = 1/\sqrt{n}$, $b' = \sqrt{n}$, $\eta = 1/(2L\sqrt{n})$.
+**Parameters:** $p = 1/\sqrt{n}$, $b' = \sqrt{n}$, $\eta = 1/(2L)$.
 
 **Notation:** $e_t = g_t - \nabla f(x_t)$, $V_t = \mathbb{E}[\|e_t\|^2]$, $\mathcal{G} = \sum_t \mathbb{E}[\|\nabla f(x_t)\|^2]$, $\mathcal{H} = \sum_t \mathbb{E}[\|g_t\|^2]$, $\mathcal{V} = \sum_t V_t$.
 
@@ -66,17 +66,17 @@ Each past gradient norm contributes with exponentially decaying weight — the B
 
 $$\mathcal{V} \leq \frac{L^2\eta^2}{pb'}\mathcal{H}$$
 
-Substituting parameters: $\frac{L^2\eta^2}{pb'} = \frac{L^2 \cdot \frac{1}{4L^2n}}{\frac{1}{\sqrt{n}} \cdot \sqrt{n}} = \frac{1}{4n}$. So $\mathcal{V} \leq \frac{1}{4n}\mathcal{H}$.
+Substituting parameters: $\frac{L^2\eta^2}{pb'} = \frac{L^2 \cdot \frac{1}{4L^2}}{\frac{1}{\sqrt{n}} \cdot \sqrt{n}} = \frac{1}{4}$. So $\mathcal{V} \leq \frac{1}{4}\mathcal{H}$.
 
 **Step 3 (Combine).** Sum Lemma 3 over $t$, take expectations, use $f(x_T) \geq f^*$:
 
-$$\frac{\eta}{2}\mathcal{G} + \frac{\eta}{2}\left(1 - L\eta - \frac{1}{4n}\right)\mathcal{H} \leq \Delta_0$$
+$$\frac{\eta}{2}\mathcal{G} + \frac{\eta}{2}\left(1 - L\eta - \frac{1}{4}\right)\mathcal{H} \leq \Delta_0$$
 
-**Coefficient check:** $1 - \frac{1}{2\sqrt{n}} - \frac{1}{4n} \geq \frac{1}{4} > 0$ for all $n \geq 1$ (tight at $n=1$).
+**Coefficient check:** $1 - \frac{1}{2} - \frac{1}{4} = \frac{1}{4} > 0$ for all $n \geq 1$.
 
 Drop the non-negative $\mathcal{H}$ term:
 
-$$\frac{1}{T}\sum_{t=0}^{T-1}\mathbb{E}[\|\nabla f(x_t)\|^2] \leq \frac{2\Delta_0}{\eta T} = \frac{4L\sqrt{n}\Delta_0}{T} \qquad \blacksquare$$
+$$\frac{1}{T}\sum_{t=0}^{T-1}\mathbb{E}[\|\nabla f(x_t)\|^2] \leq \frac{2\Delta_0}{\eta T} = \frac{4L\Delta_0}{T} \qquad \blacksquare$$
 
 ---
 
@@ -84,6 +84,6 @@ $$\frac{1}{T}\sum_{t=0}^{T-1}\mathbb{E}[\|\nabla f(x_t)\|^2] \leq \frac{2\Delta_
 
 Per step cost: $p \cdot n + (1-p) \cdot b' = 2\sqrt{n} - 1 = O(\sqrt{n})$.
 
-Total SFO calls: $n + T \cdot O(\sqrt{n}) = O\left(n + \frac{\sqrt{n} \cdot L\sqrt{n}\Delta_0}{\varepsilon^2}\right) = O\left(n + \frac{nL\Delta_0}{\varepsilon^2}\right)$.
+Total SFO calls: $n + T \cdot O(\sqrt{n}) = O\!\left(n + \frac{\sqrt{n} \cdot L\Delta_0}{\varepsilon^2}\right)$.
 
-This matches the lower bound $\Omega(n + \sqrt{n}/\varepsilon^2)$ (Fang et al. 2018).
+This matches the lower bound $\Omega(n + \sqrt{n}/\varepsilon^2)$ (Fang et al. 2018) up to the $L\Delta_0$ factor absorbed in the big-O.

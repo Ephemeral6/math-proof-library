@@ -1,0 +1,21 @@
+﻿================================================================================
+3-step lookahead LMI: anchors at {t+3, t+2, t+1, t, t-1, t-2}.
+================================================================================
+
+Sanity: β=0 (expect C ≈ 0.333)
+  status=optimal, W=1.0000000013522015, C=0.33263274250585245
+
+β=0.5: 2-step lookahead gives C=0.833
+  status=optimal, W=1.0000000011474623, C=0.8325692622697999
+
+Boundary push: β ∈ [0.99, 0.999]
+python : C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap2_ub\resolution\theorem3_new\route_T\30_lookahead3
+_lmi.py:166: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with 
+verbose=True for more information.
+At line:1 char:104
++ ... on\theorem3_new\route_T"; python -u 30_lookahead3_lmi.py 2>&1 | Out-F ...
++                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\12729\...re information.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  prob.solve(solver=cp.SCS, verbose=False, eps=1e-8, max_iters=200000)

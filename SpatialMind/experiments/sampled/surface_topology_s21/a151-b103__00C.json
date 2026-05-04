@@ -1,0 +1,99 @@
+{
+ "domain": "surface_topology_s21",
+ "condition": "00C",
+ "primitives": {
+  "relation": false,
+  "transform": false,
+  "contrastive": true
+ },
+ "case_id": "a151-b103",
+ "case_data": {
+  "case_id": "a151-b103",
+  "summary_delta": {
+   "weight_a": -9,
+   "intersection_number": 0,
+   "weight_b": 0
+  },
+  "metadata": {
+   "surface": [
+    2,
+    1
+   ],
+   "alpha_index": 151,
+   "beta_index": 103,
+   "alpha_level": 2,
+   "beta_level": 0,
+   "i_alpha_beta": 1
+  }
+ },
+ "counterfactual": [
+  {
+   "strategy": "boundary_relaxation",
+   "original_condition": {
+    "intersection_bound": 1,
+    "beta_id": "c2",
+    "i(alpha, beta)": 1
+   },
+   "modified_condition": {
+    "intersection_bound": 2,
+    "beta_id": "a_0",
+    "i(alpha, beta)": 2
+   },
+   "original_result": {
+    "net_change": -1
+   },
+   "counterfactual_result": {
+    "net_change": -2
+   },
+   "delta": {
+    "net_change": -1
+   },
+   "condition_is_critical": false,
+   "explanation": "Relaxed i(α, β) ≤ 1 to i(α, β) = 2. Original net_change=-1, counterfactual net_change=-2. Bound may not be tight here."
+  },
+  {
+   "strategy": "condition_removal",
+   "original_condition": {
+    "descending_link_required": true,
+    "level_beta_lt_level_alpha": true,
+    "beta_id": "c2"
+   },
+   "modified_condition": {
+    "descending_link_required": false,
+    "level_beta_lt_level_alpha": false,
+    "beta_id": "c209"
+   },
+   "original_result": {
+    "net_change": -1
+   },
+   "counterfactual_result": {
+    "net_change": 0
+   },
+   "delta": {
+    "net_change": 1
+   },
+   "condition_is_critical": false,
+   "explanation": "Dropped 'β in descending link' constraint. Original net_change=-1, counterfactual=0."
+  },
+  {
+   "strategy": "operation_perturbation",
+   "original_condition": {
+    "surgery_curve": "a_0"
+   },
+   "modified_condition": {
+    "surgery_curve": "c0"
+   },
+   "original_result": {
+    "net_change": -1
+   },
+   "counterfactual_result": {
+    "net_change": -1
+   },
+   "delta": {
+    "net_change": 0
+   },
+   "condition_is_critical": false,
+   "explanation": "Replaced γ_0 with c0. Original net_change=-1, counterfactual=-1."
+  }
+ ]
+}

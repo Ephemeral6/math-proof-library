@@ -1,0 +1,35 @@
+C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap2_ub\resolution\theorem3_new\route_T\11_two_step_lmi_corrected.py:255: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  prob.solve(solver=cp.SCS, verbose=False, max_iters=50000)
+β grid: 21 points in [0.5, 0.9]
+η grid: [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1.0, 1.2, 1.5, 1.8]
+    β    η*       W    C_Lya   #feasible
+----------------------------------------
+ 0.50  1.50  1.0816   0.1871           9
+ 0.52  0.70  1.0041   0.2667           9
+ 0.54  1.20  1.0019   0.1459           8
+ 0.56  0.60  1.0042   0.2805           8
+ 0.58  1.00  1.0044   0.1897           8
+ 0.60  0.80  1.0021   0.1895           8
+ 0.62  0.70  1.0049   0.1785           8
+ 0.64  0.80  1.0048   0.1829           8
+ 0.66  0.70  1.0052   0.1618           8
+ 0.68  0.30  0.9141   0.0723           7
+ 0.70  0.70  1.0033   0.1100           7
+ 0.72  1.00  1.0047   0.1373           7
+ 0.74  0.80  1.0021   0.1240           7
+ 0.76  0.80  1.0029   0.1316           6
+ 0.78  0.30  0.6714  -0.1444           6
+ 0.80  0.70  1.0010   0.1327           6
+ 0.82  0.60  1.0010   0.1311           6
+ 0.84  0.70  1.0003   0.1335           5
+ 0.86  0.30  0.9915  -0.0010           6
+ 0.88  0.50  0.8162   0.1000           5
+ 0.90  0.40  0.9953   0.0766           6
+
+Written: C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap2_ub\resolution\theorem3_new\route_T\14_lmi_boundary_scan_results.json
+
+============================================================
+LMI boundary summary
+============================================================
+Last feasible β: 0.9
+First infeasible β: None

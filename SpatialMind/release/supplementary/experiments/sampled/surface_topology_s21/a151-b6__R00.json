@@ -1,0 +1,74 @@
+{
+ "domain": "surface_topology_s21",
+ "condition": "R00",
+ "primitives": {
+  "relation": true,
+  "transform": false,
+  "contrastive": false
+ },
+ "case_id": "a151-b6",
+ "case_data": {
+  "case_id": "a151-b6",
+  "summary_delta": {
+   "weight_a": -9,
+   "intersection_number": -1,
+   "weight_b": 0
+  },
+  "metadata": {
+   "surface": [
+    2,
+    1
+   ],
+   "alpha_index": 151,
+   "beta_index": 6,
+   "alpha_level": 2,
+   "beta_level": 1,
+   "i_alpha_beta": 1
+  },
+  "detailed_comparison": {
+   "crossings_pre_count": 2,
+   "crossings_post_count": 0,
+   "crossings_pre_candidate_total": 2,
+   "crossings_post_candidate_total": 0,
+   "crossings_in_transform_region_pre": 2,
+   "crossings_in_transform_region_post": 0,
+   "crossings_outside_region_pre": 0,
+   "crossings_outside_region_post": 0,
+   "crossings_pre_locations": [
+    {
+     "triangle": 2,
+     "shared_edge": 3
+    },
+    {
+     "triangle": 3,
+     "shared_edge": 3
+    }
+   ],
+   "crossings_post_locations": []
+  },
+  "structural_comparison": {
+   "bigons_pre": 1,
+   "bigons_post": 0,
+   "bigons_with_puncture_pre": 1,
+   "bigons_with_puncture_post": 0,
+   "bigons_without_puncture_pre": 0,
+   "bigons_without_puncture_post": 0,
+   "all_bigons_contain_puncture_pre": true,
+   "all_bigons_contain_puncture_post": false,
+   "minimal_position_pre": false,
+   "minimal_position_post": true,
+   "bigon_puncture_classification_pre": [
+    {
+     "triangle_a": 2,
+     "triangle_b": 3,
+     "shared_edge": 3,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    }
+   ],
+   "bigon_puncture_classification_post": []
+  }
+ }
+}

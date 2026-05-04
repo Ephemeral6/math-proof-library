@@ -1,0 +1,78 @@
+{
+ "domain": "boundary_interior",
+ "condition": "0T0",
+ "primitives": {
+  "relation": false,
+  "transform": true,
+  "contrastive": false
+ },
+ "case_id": "crosspair-4-L_shape-vs-staircase",
+ "case_data": {
+  "case_id": "crosspair-4-L_shape-vs-staircase",
+  "summary_delta": {
+   "area_b": 0.0,
+   "n_vertices_a": 0,
+   "pick_holds_a": 0,
+   "area_a": 0.0,
+   "pick_holds_b": 0,
+   "I_b": 0,
+   "perimeter_b": 0.0,
+   "perimeter_a": 0.0,
+   "B_a": 0,
+   "B_b": 0,
+   "I_a": 0,
+   "n_vertices_b": 0
+  },
+  "metadata": {
+   "preset_a": "L_shape",
+   "preset_b": "staircase",
+   "operation": "identity_compare",
+   "n_vertices_pre": 6,
+   "n_vertices_post": 6
+  },
+  "transform_trace": {
+   "operation_name": "translate",
+   "operation_params": {
+    "type": "translate",
+    "delta": [
+     0,
+     0
+    ]
+   },
+   "before_state": {
+    "area": 12.0,
+    "B": 16,
+    "I": 5,
+    "pick_holds": true,
+    "n_vertices": 6
+   },
+   "after_state": {
+    "area": 12.0,
+    "B": 16,
+    "I": 5,
+    "pick_holds": true,
+    "n_vertices": 6
+   },
+   "delta": {
+    "area_change": 0.0,
+    "B_change": 0,
+    "I_change": 0,
+    "pick_preserved": true,
+    "area_preserved": true
+   },
+   "region_affected": {
+    "operation": "translate",
+    "vertices_before": 6,
+    "vertices_after": 6,
+    "vertex_diff": 0
+   },
+   "sub_steps": []
+  },
+  "reference_in_transform_region": {
+   "operation": "translate",
+   "vertices_before": 6,
+   "vertices_after": 6,
+   "vertex_diff": 0
+  }
+ }
+}

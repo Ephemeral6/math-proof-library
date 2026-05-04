@@ -1,0 +1,32 @@
+{
+ "domain": "projection",
+ "condition": "000",
+ "primitives": {
+  "relation": false,
+  "transform": false,
+  "contrastive": false
+ },
+ "case_id": "self-triangular_prism-yz",
+ "case_data": {
+  "case_id": "self-triangular_prism-yz",
+  "summary_delta": {
+   "dimension_a": -1,
+   "edge_crossings_a": {
+    "pre": null,
+    "post": 0
+   },
+   "diameter_a": -0.09135500000000008,
+   "diameter_b": 0.0,
+   "n_points_b": 0,
+   "n_points_a": 0,
+   "dimension_b": 0
+  },
+  "metadata": {
+   "case_type": "self_projection",
+   "object": "triangular_prism",
+   "plane": "yz",
+   "n_points": 6,
+   "n_edges": 9
+  }
+ }
+}

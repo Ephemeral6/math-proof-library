@@ -1,0 +1,338 @@
+[
+  {
+    "idx": 0,
+    "file": "00_symmetry__same-006__baseline.md",
+    "domain": "symmetry",
+    "case_id": "same-006",
+    "condition": "baseline"
+  },
+  {
+    "idx": 1,
+    "file": "01_symmetry__same-006__rtc.md",
+    "domain": "symmetry",
+    "case_id": "same-006",
+    "condition": "rtc"
+  },
+  {
+    "idx": 2,
+    "file": "02_symmetry__diff-163__baseline.md",
+    "domain": "symmetry",
+    "case_id": "diff-163",
+    "condition": "baseline"
+  },
+  {
+    "idx": 3,
+    "file": "03_symmetry__diff-163__rtc.md",
+    "domain": "symmetry",
+    "case_id": "diff-163",
+    "condition": "rtc"
+  },
+  {
+    "idx": 4,
+    "file": "04_symmetry__same-028__baseline.md",
+    "domain": "symmetry",
+    "case_id": "same-028",
+    "condition": "baseline"
+  },
+  {
+    "idx": 5,
+    "file": "05_symmetry__same-028__rtc.md",
+    "domain": "symmetry",
+    "case_id": "same-028",
+    "condition": "rtc"
+  },
+  {
+    "idx": 6,
+    "file": "06_knot_theory__7_2-r2-1__baseline.md",
+    "domain": "knot_theory",
+    "case_id": "7_2-r2-1",
+    "condition": "baseline"
+  },
+  {
+    "idx": 7,
+    "file": "07_knot_theory__7_2-r2-1__rtc.md",
+    "domain": "knot_theory",
+    "case_id": "7_2-r2-1",
+    "condition": "rtc"
+  },
+  {
+    "idx": 8,
+    "file": "08_knot_theory__4_1-r2-4__baseline.md",
+    "domain": "knot_theory",
+    "case_id": "4_1-r2-4",
+    "condition": "baseline"
+  },
+  {
+    "idx": 9,
+    "file": "09_knot_theory__4_1-r2-4__rtc.md",
+    "domain": "knot_theory",
+    "case_id": "4_1-r2-4",
+    "condition": "rtc"
+  },
+  {
+    "idx": 10,
+    "file": "10_knot_theory__3_1-r2-3__baseline.md",
+    "domain": "knot_theory",
+    "case_id": "3_1-r2-3",
+    "condition": "baseline"
+  },
+  {
+    "idx": 11,
+    "file": "11_knot_theory__3_1-r2-3__rtc.md",
+    "domain": "knot_theory",
+    "case_id": "3_1-r2-3",
+    "condition": "rtc"
+  },
+  {
+    "idx": 12,
+    "file": "12_graph_connectivity__R16_n12-t1__baseline.md",
+    "domain": "graph_connectivity",
+    "case_id": "R16_n12-t1",
+    "condition": "baseline"
+  },
+  {
+    "idx": 13,
+    "file": "13_graph_connectivity__R16_n12-t1__rtc.md",
+    "domain": "graph_connectivity",
+    "case_id": "R16_n12-t1",
+    "condition": "rtc"
+  },
+  {
+    "idx": 14,
+    "file": "14_graph_connectivity__R02_n12-t4__baseline.md",
+    "domain": "graph_connectivity",
+    "case_id": "R02_n12-t4",
+    "condition": "baseline"
+  },
+  {
+    "idx": 15,
+    "file": "15_graph_connectivity__R02_n12-t4__rtc.md",
+    "domain": "graph_connectivity",
+    "case_id": "R02_n12-t4",
+    "condition": "rtc"
+  },
+  {
+    "idx": 16,
+    "file": "16_graph_connectivity__R00_n8-t3__baseline.md",
+    "domain": "graph_connectivity",
+    "case_id": "R00_n8-t3",
+    "condition": "baseline"
+  },
+  {
+    "idx": 17,
+    "file": "17_graph_connectivity__R00_n8-t3__rtc.md",
+    "domain": "graph_connectivity",
+    "case_id": "R00_n8-t3",
+    "condition": "rtc"
+  },
+  {
+    "idx": 18,
+    "file": "18_boundary_interior__crosspair-4-L_shape-vs-staircase__baseline.md",
+    "domain": "boundary_interior",
+    "case_id": "crosspair-4-L_shape-vs-staircase",
+    "condition": "baseline"
+  },
+  {
+    "idx": 19,
+    "file": "19_boundary_interior__crosspair-4-L_shape-vs-staircase__rtc.md",
+    "domain": "boundary_interior",
+    "case_id": "crosspair-4-L_shape-vs-staircase",
+    "condition": "rtc"
+  },
+  {
+    "idx": 20,
+    "file": "20_boundary_interior__rectangle_4x3-shear-1__baseline.md",
+    "domain": "boundary_interior",
+    "case_id": "rectangle_4x3-shear-1",
+    "condition": "baseline"
+  },
+  {
+    "idx": 21,
+    "file": "21_boundary_interior__rectangle_4x3-shear-1__rtc.md",
+    "domain": "boundary_interior",
+    "case_id": "rectangle_4x3-shear-1",
+    "condition": "rtc"
+  },
+  {
+    "idx": 22,
+    "file": "22_boundary_interior__unit_square-shear-0__baseline.md",
+    "domain": "boundary_interior",
+    "case_id": "unit_square-shear-0",
+    "condition": "baseline"
+  },
+  {
+    "idx": 23,
+    "file": "23_boundary_interior__unit_square-shear-0__rtc.md",
+    "domain": "boundary_interior",
+    "case_id": "unit_square-shear-0",
+    "condition": "rtc"
+  },
+  {
+    "idx": 24,
+    "file": "24_discrete_curvature__cross-octahedron-vs-icosahedron-f1-1__baseline.md",
+    "domain": "discrete_curvature",
+    "case_id": "cross-octahedron-vs-icosahedron-f1-1",
+    "condition": "baseline"
+  },
+  {
+    "idx": 25,
+    "file": "25_discrete_curvature__cross-octahedron-vs-icosahedron-f1-1__rtc.md",
+    "domain": "discrete_curvature",
+    "case_id": "cross-octahedron-vs-icosahedron-f1-1",
+    "condition": "rtc"
+  },
+  {
+    "idx": 26,
+    "file": "26_discrete_curvature__cube_triangulated-subdiv-f4-4__baseline.md",
+    "domain": "discrete_curvature",
+    "case_id": "cube_triangulated-subdiv-f4-4",
+    "condition": "baseline"
+  },
+  {
+    "idx": 27,
+    "file": "27_discrete_curvature__cube_triangulated-subdiv-f4-4__rtc.md",
+    "domain": "discrete_curvature",
+    "case_id": "cube_triangulated-subdiv-f4-4",
+    "condition": "rtc"
+  },
+  {
+    "idx": 28,
+    "file": "28_discrete_curvature__tetrahedron-subdiv-f3-3__baseline.md",
+    "domain": "discrete_curvature",
+    "case_id": "tetrahedron-subdiv-f3-3",
+    "condition": "baseline"
+  },
+  {
+    "idx": 29,
+    "file": "29_discrete_curvature__tetrahedron-subdiv-f3-3__rtc.md",
+    "domain": "discrete_curvature",
+    "case_id": "tetrahedron-subdiv-f3-3",
+    "condition": "rtc"
+  },
+  {
+    "idx": 30,
+    "file": "30_projection__self-triangular_prism-yz__baseline.md",
+    "domain": "projection",
+    "case_id": "self-triangular_prism-yz",
+    "condition": "baseline"
+  },
+  {
+    "idx": 31,
+    "file": "31_projection__self-triangular_prism-yz__rtc.md",
+    "domain": "projection",
+    "case_id": "self-triangular_prism-yz",
+    "condition": "rtc"
+  },
+  {
+    "idx": 32,
+    "file": "32_projection__self-cube-diagonal__baseline.md",
+    "domain": "projection",
+    "case_id": "self-cube-diagonal",
+    "condition": "baseline"
+  },
+  {
+    "idx": 33,
+    "file": "33_projection__self-cube-diagonal__rtc.md",
+    "domain": "projection",
+    "case_id": "self-cube-diagonal",
+    "condition": "rtc"
+  },
+  {
+    "idx": 34,
+    "file": "34_projection__cross-octahedron-xzvsyz__baseline.md",
+    "domain": "projection",
+    "case_id": "cross-octahedron-xzvsyz",
+    "condition": "baseline"
+  },
+  {
+    "idx": 35,
+    "file": "35_projection__cross-octahedron-xzvsyz__rtc.md",
+    "domain": "projection",
+    "case_id": "cross-octahedron-xzvsyz",
+    "condition": "rtc"
+  },
+  {
+    "idx": 36,
+    "file": "36_surface_topology__a331-b69__baseline.md",
+    "domain": "surface_topology",
+    "case_id": "a331-b69",
+    "condition": "baseline"
+  },
+  {
+    "idx": 37,
+    "file": "37_surface_topology__a331-b69__rtc.md",
+    "domain": "surface_topology",
+    "case_id": "a331-b69",
+    "condition": "rtc"
+  },
+  {
+    "idx": 38,
+    "file": "38_surface_topology__a62-b12__baseline.md",
+    "domain": "surface_topology",
+    "case_id": "a62-b12",
+    "condition": "baseline"
+  },
+  {
+    "idx": 39,
+    "file": "39_surface_topology__a62-b12__rtc.md",
+    "domain": "surface_topology",
+    "case_id": "a62-b12",
+    "condition": "rtc"
+  },
+  {
+    "idx": 40,
+    "file": "40_surface_topology__a12-b1__baseline.md",
+    "domain": "surface_topology",
+    "case_id": "a12-b1",
+    "condition": "baseline"
+  },
+  {
+    "idx": 41,
+    "file": "41_surface_topology__a12-b1__rtc.md",
+    "domain": "surface_topology",
+    "case_id": "a12-b1",
+    "condition": "rtc"
+  },
+  {
+    "idx": 42,
+    "file": "42_surface_topology_s21__a151-b6__baseline.md",
+    "domain": "surface_topology_s21",
+    "case_id": "a151-b6",
+    "condition": "baseline"
+  },
+  {
+    "idx": 43,
+    "file": "43_surface_topology_s21__a151-b6__rtc.md",
+    "domain": "surface_topology_s21",
+    "case_id": "a151-b6",
+    "condition": "rtc"
+  },
+  {
+    "idx": 44,
+    "file": "44_surface_topology_s21__a122-b28__baseline.md",
+    "domain": "surface_topology_s21",
+    "case_id": "a122-b28",
+    "condition": "baseline"
+  },
+  {
+    "idx": 45,
+    "file": "45_surface_topology_s21__a122-b28__rtc.md",
+    "domain": "surface_topology_s21",
+    "case_id": "a122-b28",
+    "condition": "rtc"
+  },
+  {
+    "idx": 46,
+    "file": "46_surface_topology_s21__a215-b1__baseline.md",
+    "domain": "surface_topology_s21",
+    "case_id": "a215-b1",
+    "condition": "baseline"
+  },
+  {
+    "idx": 47,
+    "file": "47_surface_topology_s21__a215-b1__rtc.md",
+    "domain": "surface_topology_s21",
+    "case_id": "a215-b1",
+    "condition": "rtc"
+  }
+]

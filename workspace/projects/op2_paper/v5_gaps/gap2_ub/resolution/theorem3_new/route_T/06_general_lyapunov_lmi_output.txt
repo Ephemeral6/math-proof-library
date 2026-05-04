@@ -1,0 +1,48 @@
+Solving general parametric Lyapunov one-step descent LMI:
+(constant Lyapunov; max c)
+
+  beta    eta         status          c          a          b          d          w     lam_IV     lam_C2
+  0.00  0.500        optimal     0.0000      0.000      2.014      0.000      3.670      0.000      0.000
+  0.00  0.700        optimal     0.0000  (infeas or c<=0)
+  0.00  1.000        optimal     0.0000  (infeas or c<=0)
+  0.00  1.200        optimal     0.0000  (infeas or c<=0)
+  0.00  1.500        optimal     0.0000     -0.000      0.395      0.000      4.382      0.000      0.000
+  0.00  1.700        optimal     0.0000     -0.000      0.211      0.000      4.507      0.000      0.000
+  0.00  2.000        optimal     0.0000  (infeas or c<=0)
+  0.10  0.500        optimal     0.0000  (infeas or c<=0)
+  0.10  0.700        optimal     0.0000  (infeas or c<=0)
+  0.10  1.000        optimal     0.0000  (infeas or c<=0)
+  0.10  1.200        optimal     0.0000  (infeas or c<=0)
+  0.10  1.500        optimal     0.0000  (infeas or c<=0)
+  0.10  1.700        optimal     0.0000  (infeas or c<=0)
+  0.10  2.000        optimal     0.0000  (infeas or c<=0)
+  0.20  0.500        optimal     0.0000  (infeas or c<=0)
+  0.20  0.700        optimal     0.0000  (infeas or c<=0)
+  0.20  1.000        optimal     0.0000  (infeas or c<=0)
+  0.20  1.200        optimal     0.0000  (infeas or c<=0)
+  0.20  1.500        optimal     0.0000  (infeas or c<=0)
+  0.20  1.700        optimal     0.0000  (infeas or c<=0)
+  0.20  2.000        optimal     0.0000  (infeas or c<=0)
+  0.30  0.500        optimal     0.0000  (infeas or c<=0)
+  0.30  0.700        optimal     0.0000  (infeas or c<=0)
+  0.30  1.000        optimal     0.0000  (infeas or c<=0)
+  0.30  1.200        optimal     0.0000  (infeas or c<=0)
+  0.30  1.500        optimal     0.0000  (infeas or c<=0)
+  0.30  1.700        optimal     0.0000      0.000     -0.000      0.000      0.000      0.000      0.000
+  0.30  2.000        optimal     0.0000  (infeas or c<=0)
+  0.40  0.500        optimal     0.0000      0.000      1.761      0.000      2.556      0.000      0.000
+  0.40  0.700        optimal     0.0000  (infeas or c<=0)
+  0.40  1.000        optimal     0.0000  (infeas or c<=0)
+  0.40  1.200        optimal     0.0000  (infeas or c<=0)
+  0.40  1.500        optimal     0.0000  (infeas or c<=0)
+  0.40  1.700        optimal     0.0000  (infeas or c<=0)
+  0.40  2.000        optimal     0.0000  (infeas or c<=0)
+  0.50  0.500        optimal     0.0000     -0.000      1.516     -0.000      3.102      0.000      0.000
+  0.50  0.700        optimal     0.0000     -0.000      1.044     -0.000      2.877      0.000      0.000
+  0.50  1.000        optimal     0.0000     -0.000      0.666     -0.000      2.664      0.000      0.000
+  0.50  1.200        optimal     0.0000     -0.000      0.000     -0.000      0.000      0.000      0.000
+  0.50  1.500        optimal     0.0000  (infeas or c<=0)
+  0.50  1.700        optimal     0.0000  (infeas or c<=0)
+  0.50  2.000        optimal     0.0000  (infeas or c<=0)
+
+Results: C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap2_ub\resolution\theorem3_new\route_T\06_general_lyapunov_lmi_results.json

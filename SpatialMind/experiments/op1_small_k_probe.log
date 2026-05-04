@@ -1,0 +1,39 @@
+=== Phase 1: relaxed σ-search per level ===
+
+  k=2: total=64, σ-strict-success=31, σ-relaxed-only=0, σ-neither=33
+  k=3: total=63, σ-strict-success=46, σ-relaxed-only=17, σ-neither=0
+  k=4: total=49, σ-strict-success=44, σ-relaxed-only=5, σ-neither=0
+
+=== Phase 2: K_4+4leaves uniqueness ===
+
+  α=25 k=2: signature = (nv=8, ne=18, degs=(6, 6, 6, 6, 3, 3, 3, 3))
+  α=72 k=2: signature = (nv=8, ne=18, degs=(6, 6, 6, 6, 3, 3, 3, 3))
+  α=149 k=2: signature = (nv=8, ne=18, degs=(6, 6, 6, 6, 3, 3, 3, 3))
+  α=189 k=5: signature = (nv=9, ne=22, degs=(7, 7, 7, 6, 5, 4, 3, 3, 2))
+  α=208 k=2: signature = (nv=8, ne=18, degs=(6, 6, 6, 6, 3, 3, 3, 3))
+  α=217 k=2: signature = (nv=8, ne=18, degs=(6, 6, 6, 6, 3, 3, 3, 3))
+  α=218 k=2: signature = (nv=8, ne=18, degs=(6, 6, 6, 6, 3, 3, 3, 3))
+
+  Distinct signatures: 2
+  Set: {(8, 18, (6, 6, 6, 6, 3, 3, 3, 3)), (9, 22, (7, 7, 7, 6, 5, 4, 3, 3, 2))}
+
+=== Phase 3: k=2 σ-fail cone vertex topology ===
+
+  k=2 σ-fail cone cases: 27
+  cone level distribution: [(1, 27)]
+  i(α, cone) distribution: [(1, 27)]
+
+=== Phase 4: cone vertex geometric type ===
+
+  α=13: cone=1 f=1 i(α, cone)=1 weights total=2
+  α=40: cone=1 f=1 i(α, cone)=1 weights total=2
+  α=42: cone=6 f=1 i(α, cone)=1 weights total=6
+  α=68: cone=1 f=1 i(α, cone)=1 weights total=2
+  α=74: cone=6 f=1 i(α, cone)=1 weights total=6
+  α=113: cone=8 f=1 i(α, cone)=1 weights total=4
+  α=121: cone=5 f=1 i(α, cone)=1 weights total=6
+  α=122: cone=6 f=1 i(α, cone)=1 weights total=6
+  α=126: cone=18 f=1 i(α, cone)=1 weights total=10
+  α=127: cone=15 f=1 i(α, cone)=1 weights total=10
+
+Wrote C:\Users\12729\Desktop\Math\SpatialMind\experiments\op1_small_k_probe.json

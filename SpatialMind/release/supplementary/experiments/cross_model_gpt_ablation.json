@@ -1,0 +1,386 @@
+[
+  {
+    "domain": "symmetry",
+    "case_id": "same-000",
+    "condition": "baseline",
+    "response": "Using only metadata: a=[0,2,1,2,0,0] and b=[2,0,0,0,2,1]. Applying the listed cyclic permutation [3,4,5,0,1,2] as new[i]=a[g(i)] gives [2,0,0,0,2,1], exactly b. The color multisets also agree, so the rotation is an explicit witness that the two colorings are in the same orbit.",
+    "score": 4,
+    "rationale": "The response gives a concrete witness and verifies the necessary invariant."
+  },
+  {
+    "domain": "symmetry",
+    "case_id": "same-000",
+    "condition": "rtc",
+    "response": "Using R+T+C: T traces the group action g_3 with permutation [3,4,5,0,1,2], sending the before coloring [0,2,1,2,0,0] to [2,0,0,0,2,1]. R reports one connecting group element, same_orbit true, stabilizer size 1, and orbit-stabilizer consistency. C says all six vertices are moved and the moved-region colors match b. Therefore g_3 is a fully checked orbit witness.",
+    "score": 4,
+    "rationale": "The transform trace, relation data, and region data jointly prove the orbit equivalence."
+  },
+  {
+    "domain": "symmetry",
+    "case_id": "same-001",
+    "condition": "baseline",
+    "response": "Using only metadata: a=[1,2,1,1,2,2] and b=[1,1,2,2,1,2]. The listed g_1 sends a to [2,1,1,2,2,1], not b, but a direct rotation search gives shift 2: [a2,a3,a4,a5,a0,a1]=[1,1,2,2,1,2]=b. The color counts agree, so a and b are in the same orbit.",
+    "score": 4,
+    "rationale": "It notices that the listed transform is not the witness and supplies a correct alternate witness."
+  },
+  {
+    "domain": "symmetry",
+    "case_id": "same-001",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows g_1 moves a to another coloring in the orbit, not directly to b, while R reports connecting=1 and same_orbit true with orbit-stabilizer consistency. Combining that with the metadata colorings, the actual witness is rotation by two positions, which maps [1,2,1,1,2,2] to [1,1,2,2,1,2]. C localizes the vertices changed by g_1 but does not make g_1 the b-witness. Conclusion: same orbit, witness rho^2.",
+    "score": 4,
+    "rationale": "The response correctly reconciles a non-witness transform trace with the relation data and supplies the missing witness."
+  },
+  {
+    "domain": "symmetry",
+    "case_id": "same-002",
+    "condition": "baseline",
+    "response": "Using only metadata: applying g_4=[4,5,0,1,2,3] to a=[2,2,2,2,1,0] gives [1,0,2,2,2,2], exactly b. The multiset of colors is unchanged, with four 2s, one 1, and one 0. Thus the two colorings are in the same orbit.",
+    "score": 4,
+    "rationale": "An explicit group element maps a to b and the invariant check is consistent."
+  },
+  {
+    "domain": "symmetry",
+    "case_id": "same-002",
+    "condition": "rtc",
+    "response": "Using R+T+C: T records g_4, order 3, with before [2,2,2,2,1,0] and after [1,0,2,2,2,2], exactly b. R reports connecting=1, same_orbit true, stabilizer size 1, and orbit-stabilizer consistency. C shows only vertices 0,1,4,5 move and that their b-colors match the transformed values. This is a complete orbit proof.",
+    "score": 4,
+    "rationale": "All three RTC components directly verify the same orbit witness."
+  },
+  {
+    "domain": "knot_theory",
+    "case_id": "3_1-r2-0",
+    "condition": "baseline",
+    "response": "Using only metadata: the move is R2 on knot 3_1, crossing count changes from 3 to 5, and writhe stays -3. An R2 move should add a cancelling pair of crossings, so the unchanged writhe is consistent with a valid Reidemeister II move and the knot type should remain 3_1. The metadata does not expose the added signs or topological invariants, so this is an argument rather than a full verification.",
+    "score": 3,
+    "rationale": "The reasoning has the correct R2 mechanism but lacks instance-level sign and invariant checks."
+  },
+  {
+    "domain": "knot_theory",
+    "case_id": "3_1-r2-0",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows an R2 operation adding two crossings, with signs [-1,1], so the crossing count goes 3 to 5 while writhe remains -3. R verifies signature -2, determinant 3, normalized Alexander polynomial [1,-1,1], and writhe are all preserved. C identifies the three persistent crossings and the two added crossings. Therefore this is a valid R2 insertion preserving knot 3_1.",
+    "score": 4,
+    "rationale": "The sign trace and preserved knot invariants make the conclusion fully verifiable."
+  },
+  {
+    "domain": "knot_theory",
+    "case_id": "3_1-r2-1",
+    "condition": "baseline",
+    "response": "Using only metadata: the recorded operation is an R2 move on 3_1, with crossings increasing from 3 to 5 and writhe unchanged at -3. Since R2 adds a cancelling pair, this supports preservation of the knot type. Without the actual signs or invariant comparison, I can justify the expected pattern but not fully certify the diagram.",
+    "score": 3,
+    "rationale": "It correctly connects R2, crossing increase, and writhe preservation but cannot verify the concrete move."
+  },
+  {
+    "domain": "knot_theory",
+    "case_id": "3_1-r2-1",
+    "condition": "rtc",
+    "response": "Using R+T+C: the transform trace adds two crossings with signs [-1,1], giving delta crossings=2 and delta writhe=0. The relation data keeps signature -2, determinant 3, Alexander [1,-1,1], and writhe fixed. The reference region separates the persistent crossings 0,1,2 from the two new crossings. Thus the R2 move is explicitly verified and preserves 3_1.",
+    "score": 4,
+    "rationale": "It checks the local R2 signs and the global invariants."
+  },
+  {
+    "domain": "knot_theory",
+    "case_id": "3_1-r2-2",
+    "condition": "baseline",
+    "response": "Using only metadata: this is again an R2 move on 3_1, with n_crossings 3 to 5 and writhe -3 to -3. That is exactly the structural footprint of adding one positive and one negative crossing, so the knot should be unchanged. However the metadata alone does not show the crossing signs or polynomial invariants.",
+    "score": 3,
+    "rationale": "The response gives a sound theorem-based chain but stops short of proof-level verification."
+  },
+  {
+    "domain": "knot_theory",
+    "case_id": "3_1-r2-2",
+    "condition": "rtc",
+    "response": "Using R+T+C: T shows an R2 insertion with added signs [-1,1], crossing count 3 to 5, and writhe unchanged at -3. R verifies preservation of signature, determinant, normalized Alexander polynomial, and writhe. C confirms only two new crossings are introduced while the original three persist. Hence this is a fully checked R2-preserving transformation.",
+    "score": 4,
+    "rationale": "The response combines local move data and global invariants into a full proof."
+  },
+  {
+    "domain": "graph_connectivity",
+    "case_id": "R00_n8-t0",
+    "condition": "baseline",
+    "response": "Using only metadata: the graph has 8 vertices and 9 edges, and edge [3,6] is deleted. The bridge criterion says deletion disconnects the graph exactly when the deleted edge is not contained in any cycle. The metadata does not include adjacency, components, or paths, so I cannot determine whether [3,6] is a bridge in this specific graph.",
+    "score": 2,
+    "rationale": "It states the correct structural criterion but cannot justify the case-specific conclusion from metadata alone."
+  },
+  {
+    "domain": "graph_connectivity",
+    "case_id": "R00_n8-t0",
+    "condition": "rtc",
+    "response": "Using R+T+C: T deletes edge [3,6] and records components unchanged, connected true before and after, and is_bridge=false. R confirms components stay as the full vertex set, connectivity is preserved, and path lengths merely increase, with diameter 4 to 5. C shows endpoint degrees [2,3] to [1,2], so no endpoint is isolated. Therefore [3,6] was a non-bridge cycle edge.",
+    "score": 4,
+    "rationale": "The trace and component data directly verify that deletion does not disconnect the graph."
+  },
+  {
+    "domain": "graph_connectivity",
+    "case_id": "R00_n8-t1",
+    "condition": "baseline",
+    "response": "Using only metadata: edge [0,5] is deleted from graph_idx 0, but the metadata gives no adjacency list or alternate paths. The relevant test is whether [0,5] lies on a cycle; if yes connectivity is preserved, and if no it is a bridge. Since that property is absent, the case is underdetermined.",
+    "score": 2,
+    "rationale": "The answer identifies the bridge pattern but cannot prove a specific outcome."
+  },
+  {
+    "domain": "graph_connectivity",
+    "case_id": "R00_n8-t1",
+    "condition": "rtc",
+    "response": "Using R+T+C: deleting [0,5] lowers edge count 9 to 8 but leaves the graph connected with one component. T explicitly marks is_bridge=false and connectivity_lost=false. R keeps all vertices in one component and shows diameter remains 4 while average path length increases. C has endpoint degrees [2,2] to [1,1], so both endpoints remain attached. Thus [0,5] is not a bridge.",
+    "score": 4,
+    "rationale": "The response verifies non-bridge status through connectivity, trace, and endpoint data."
+  },
+  {
+    "domain": "graph_connectivity",
+    "case_id": "R00_n8-t2",
+    "condition": "baseline",
+    "response": "Using only metadata: deleting edge [2,6] from an 8-vertex, 9-edge connected graph may or may not break connectivity. The deciding property is whether an alternate path connects 2 and 6 after the edge is removed. Metadata gives no paths or edge list, so the correct conclusion is that bridge status cannot be determined.",
+    "score": 2,
+    "rationale": "It gives the right decision rule but no case-level evidence is available."
+  },
+  {
+    "domain": "graph_connectivity",
+    "case_id": "R00_n8-t2",
+    "condition": "rtc",
+    "response": "Using R+T+C: T deletes [2,6] and records components_change=0, connectivity_lost=false, and is_bridge=false. R shows the component remains all eight vertices, articulation points remain [7], and diameter stays 4. C shows endpoint degrees [3,3] to [2,2], consistent with an edge on a cycle rather than a bridge. Therefore deletion preserves connectivity.",
+    "score": 4,
+    "rationale": "All relevant RTC fields support the non-bridge conclusion."
+  },
+  {
+    "domain": "boundary_interior",
+    "case_id": "unit_square-trans-0",
+    "condition": "baseline",
+    "response": "Using only metadata: the preset is a unit square and the operation is integer translation by [5,0]. Translation preserves lattice points, side vectors, area, boundary lattice count, interior lattice count, simplicity, and vertex count. The unit square has A=1, B=4, I=0, so Pick gives 1=0+4/2-1; the same equality holds after translation.",
+    "score": 4,
+    "rationale": "The metadata is enough for a direct Pick-theorem preservation proof."
+  },
+  {
+    "domain": "boundary_interior",
+    "case_id": "unit_square-trans-0",
+    "condition": "rtc",
+    "response": "Using R+T+C: T records translation by [5,0] with area 1.0, B=4, I=0, pick_holds=true, and four vertices both before and after. R checks area_from_pick=area_from_shoelace=1.0 pre and post, with lattice and simplicity preserved. C confirms the operation changes no vertex count. Thus Pick's theorem is preserved exactly.",
+    "score": 4,
+    "rationale": "The numerical and structural checks fully verify preservation."
+  },
+  {
+    "domain": "boundary_interior",
+    "case_id": "unit_square-trans-1",
+    "condition": "baseline",
+    "response": "Using only metadata: a unit square translated by [0,7] remains a unit square on the integer lattice. Area, B, I, simplicity, and the four vertices are preserved by translation. Since the original unit square satisfies Pick's formula A=I+B/2-1 as 1=0+4/2-1, the translated polygon satisfies it too.",
+    "score": 4,
+    "rationale": "It proves the invariant preservation directly from the operation and preset."
+  },
+  {
+    "domain": "boundary_interior",
+    "case_id": "unit_square-trans-1",
+    "condition": "rtc",
+    "response": "Using R+T+C: T gives translate [0,7] and unchanged state area=1.0, B=4, I=0, pick_holds=true, n_vertices=4. R independently confirms Pick and shoelace area both equal 1.0 before and after, and lattice/simple prerequisites remain true. C reports the same four-vertex operation. Therefore the Pick relation is fully preserved.",
+    "score": 4,
+    "rationale": "The trace and cross-checks give a complete verification."
+  },
+  {
+    "domain": "boundary_interior",
+    "case_id": "unit_square-trans-2",
+    "condition": "baseline",
+    "response": "Using only metadata: translation by [3,4] maps the unit square bijectively to another lattice unit square. It preserves all edge vectors, area 1, B=4, I=0, and simplicity. Hence Pick's theorem remains 1=0+4/2-1 after the move.",
+    "score": 4,
+    "rationale": "The response supplies a complete invariant proof from metadata."
+  },
+  {
+    "domain": "boundary_interior",
+    "case_id": "unit_square-trans-2",
+    "condition": "rtc",
+    "response": "Using R+T+C: T records translate [3,4] and no change to area, B, I, Pick truth, or vertex count. R verifies pick_holds_pre=true and pick_holds_post=true, with both Pick and shoelace areas equal to 1.0 and lattice/simple conditions preserved. C confirms no vertex-count change. Thus translation preserves the Pick identity in this case.",
+    "score": 4,
+    "rationale": "Every necessary numerical and structural condition is explicitly checked."
+  },
+  {
+    "domain": "discrete_curvature",
+    "case_id": "tetrahedron-subdiv-f0-0",
+    "condition": "baseline",
+    "response": "Using only metadata: a stellar subdivision of one triangular face of a tetrahedron inserts one vertex, three edges, and two net faces, so (V,E,F) changes from (4,6,4) to (5,9,6) and Euler characteristic stays 2. The operation is local and does not change genus. For a spherical polyhedral surface, total discrete curvature remains 2*pi*chi=4*pi; the new vertex inside a flat face contributes zero defect.",
+    "score": 4,
+    "rationale": "The response derives the topology and curvature preservation from the named operation."
+  },
+  {
+    "domain": "discrete_curvature",
+    "case_id": "tetrahedron-subdiv-f0-0",
+    "condition": "rtc",
+    "response": "Using R+T+C: T subdivides face [0,1,2], changing V,E,F from 4,6,4 to 5,9,6 with Euler change 0 and curvature change 0. R reports genus 0 to 0, Euler 2 to 2, total curvature 12.566371 preserved, and Gauss-Bonnet ratio 2.0 both times. C shows new vertex 4 has defect -0.0 and local defect sum 9.424778 is preserved. Thus Gauss-Bonnet is fully verified.",
+    "score": 4,
+    "rationale": "The local and global curvature checks are explicit and complete."
+  },
+  {
+    "domain": "discrete_curvature",
+    "case_id": "tetrahedron-subdiv-f1-1",
+    "condition": "baseline",
+    "response": "Using only metadata: subdividing face 1 of a tetrahedron is still a stellar subdivision of a triangular face. It adds one vertex, three edges, and two faces, preserving Euler characteristic 4-6+4=5-9+6=2 and preserving spherical topology. Therefore the total curvature remains 2*pi*2, with the inserted face-center vertex flat.",
+    "score": 4,
+    "rationale": "The argument gives a concrete Euler and Gauss-Bonnet preservation proof."
+  },
+  {
+    "domain": "discrete_curvature",
+    "case_id": "tetrahedron-subdiv-f1-1",
+    "condition": "rtc",
+    "response": "Using R+T+C: T subdivides face [0,1,3], adding 1 vertex, 3 edges, and 2 faces while Euler and total curvature are unchanged. R verifies Euler 2 pre and post, genus 0 pre and post, total curvature 12.566371 pre and post, and all global invariants preserved. C records new vertex 4 with defect -0.0 and unchanged local defect sum. This proves curvature preservation.",
+    "score": 4,
+    "rationale": "The response explicitly verifies the subdivision effect and Gauss-Bonnet invariants."
+  },
+  {
+    "domain": "discrete_curvature",
+    "case_id": "tetrahedron-subdiv-f2-2",
+    "condition": "baseline",
+    "response": "Using only metadata: face 2 of the tetrahedron is triangular, and stellar subdivision replaces it by three smaller triangles. The count change is V+1, E+3, F+2, leaving Euler characteristic unchanged at 2. Since the topology is still a sphere and the added central vertex is flat within the subdivided face, total discrete curvature is unchanged.",
+    "score": 4,
+    "rationale": "It is a full operation-level proof from the available metadata."
+  },
+  {
+    "domain": "discrete_curvature",
+    "case_id": "tetrahedron-subdiv-f2-2",
+    "condition": "rtc",
+    "response": "Using R+T+C: T records subdivision of face [0,2,3] with vertices_added=1, edges_added=3, faces_added=2, euler_change=0, and curvature_change=0. R confirms genus, Euler, total curvature, and Gauss-Bonnet ratio are all preserved. C gives new vertex defect -0.0 and preserved local defect sum 9.424778. Thus the stellar subdivision preserves Gauss-Bonnet exactly.",
+    "score": 4,
+    "rationale": "The RTC data supplies a fully verifiable local-to-global proof."
+  },
+  {
+    "domain": "projection",
+    "case_id": "self-cube-xy",
+    "condition": "baseline",
+    "response": "Using only metadata: this is a self-projection of a cube to the xy-plane, so the z-coordinate is discarded and dimension drops from 3 to 2 while the labeled point count remains 8. For a standard cube, vertices differing only in z collide in four pairs and distances involving z shrink; the 3D object cannot be uniquely recovered from this projection alone. Exact crossing and distortion counts require the coordinate/edge data that metadata omits.",
+    "score": 3,
+    "rationale": "It gives a correct projection argument but lacks full case-level verification from metadata alone."
+  },
+  {
+    "domain": "projection",
+    "case_id": "self-cube-xy",
+    "condition": "rtc",
+    "response": "Using R+T+C: T projects the cube to xy by dropping z, changing dimension 3 to 2, diameter 1.732051 to 1.414214, and introducing 4 point collisions and 8 edge crossings. R quantifies 12 of 28 distances preserved and 0.5714 distance distortion, with n_points preserved but dimension and diameter not preserved. C lists collision pairs [0,4], [1,5], [2,6], [3,7]. Therefore the projection is explicitly a contraction-plus-collision loss of 3D information.",
+    "score": 4,
+    "rationale": "The response verifies all major projection losses with concrete RTC counts."
+  },
+  {
+    "domain": "projection",
+    "case_id": "self-cube-xz",
+    "condition": "baseline",
+    "response": "Using only metadata: projection of the cube to xz discards y, so it cannot preserve all 3D distances and cannot be inverted uniquely. Labeled points may remain eight, but vertices that differ only along y should collide in four pairs for the standard cube. The metadata supports the information-loss mechanism but not exact edge-crossing or distance-preservation counts.",
+    "score": 3,
+    "rationale": "It forms a sound argument from the projection direction but lacks complete numerical evidence."
+  },
+  {
+    "domain": "projection",
+    "case_id": "self-cube-xz",
+    "condition": "rtc",
+    "response": "Using R+T+C: T drops the y-axis, taking dimension 3 to 2 and diameter 1.732051 to 1.414214. It reports 4 point collisions, 2 edge crossings, and 12/28 distances preserved. R agrees that n_points is preserved but dimension and diameter are not, with distortion 0.5714. C lists collision pairs [0,3], [1,2], [4,7], [5,6]. This fully explains the information lost by the xz projection.",
+    "score": 4,
+    "rationale": "The projection effects are directly traced and quantified."
+  },
+  {
+    "domain": "projection",
+    "case_id": "self-cube-yz",
+    "condition": "baseline",
+    "response": "Using only metadata: projecting the cube to yz drops x, so one coordinate of 3D information is erased. A standard cube then has four pairs of vertices that differ only in x and become coincident, while many distances shrink. This gives the correct non-invertibility pattern, but exact collisions, crossings, and distance counts are not derivable from metadata alone.",
+    "score": 3,
+    "rationale": "The response is an explicit argument but not a full verification."
+  },
+  {
+    "domain": "projection",
+    "case_id": "self-cube-yz",
+    "condition": "rtc",
+    "response": "Using R+T+C: T drops x, reducing dimension from 3 to 2 and diameter from 1.732051 to 1.414214, with 4 point collisions, 2 edge crossings, and 12 of 28 distances preserved. R records the same invariant changes and distance distortion 0.5714. C identifies the collision pairs [0,1], [2,3], [4,5], [6,7]. Therefore the yz projection loses exactly the x-coordinate information and is not invertible.",
+    "score": 4,
+    "rationale": "The detailed collision and metric data prove the projection-loss claim."
+  },
+  {
+    "domain": "surface_topology",
+    "case_id": "a3-b1",
+    "condition": "baseline",
+    "response": "Using only metadata: on S_{1,2}, alpha has level 2, beta has lower level 1, and i(alpha,beta)=1. The Hatcher-surgery heuristic is that beta lies in the descending link and surgery to sigma should not increase intersection with beta when the original intersection is one. This supports i(sigma,beta)=i(alpha,beta)=1, but the metadata has no crossing or bigon data to verify the local move.",
+    "score": 3,
+    "rationale": "It gives the intended theorem-based chain but lacks instance-level topological verification."
+  },
+  {
+    "domain": "surface_topology",
+    "case_id": "a3-b1",
+    "condition": "rtc",
+    "response": "Using R+T+C: T performs Hatcher surgery c3 to sigma_c2 with level shift -2 and weight shift -6, and beta lies entirely in the surgery region. R shows candidate crossings drop from 3 to 2 and the summary intersection number is preserved; the only pre/post bigons contain punctures and there are no unpunctured bigons. C records beta using only the short-arc region. Thus the raw crossing representation changes, but the intersection number is preserved for this i=1 case.",
+    "score": 4,
+    "rationale": "The response uses the trace, crossing data, and bigon classification to verify the case."
+  },
+  {
+    "domain": "surface_topology",
+    "case_id": "a3-b4",
+    "condition": "baseline",
+    "response": "Using only metadata: alpha level 2, beta level 1, and i(alpha,beta)=1 put beta below alpha in the descending-link setup. The expected Hatcher-surgery conclusion is preservation of the one essential intersection. Without crossing locations or bigon classifications, this remains a theorem invocation rather than a checked proof.",
+    "score": 3,
+    "rationale": "It has the correct hypothesis-to-conclusion structure but no local evidence."
+  },
+  {
+    "domain": "surface_topology",
+    "case_id": "a3-b4",
+    "condition": "rtc",
+    "response": "Using R+T+C: T again sends c3 to sigma_c2 with level shift -2, and C shows beta's four triangles all lie in the short-arc surgery region. R reports crossings drop from 5 to 4 while summary intersection number is unchanged; all bigons before and after contain punctures and no unpunctured bigons appear. Therefore the surgery changes the representative but preserves the essential intersection with beta.",
+    "score": 4,
+    "rationale": "The data give a concrete mechanism for preservation in this case."
+  },
+  {
+    "domain": "surface_topology",
+    "case_id": "a3-b6",
+    "condition": "baseline",
+    "response": "Using only metadata: this is another S_{1,2} pair with beta_level 1 below alpha_level 2 and i(alpha,beta)=1. The natural conclusion from Hatcher surgery is that sigma should keep the same essential intersection number with beta. Since no region, crossing, or bigon data is available, the reasoning is an argument from the stated theorem pattern only.",
+    "score": 3,
+    "rationale": "It is a coherent theorem-level argument but not a full proof."
+  },
+  {
+    "domain": "surface_topology",
+    "case_id": "a3-b6",
+    "condition": "rtc",
+    "response": "Using R+T+C: T gives the same Hatcher surgery with level shift -2 and weight shift -6; C shows beta intersects the short-arc region and not the long arc. R records raw crossings dropping from 8 to 2, summary intersection number unchanged, and all remaining bigons containing punctures with no unpunctured bigons. Hence the surgery removes representational crossings while preserving the essential i=1 intersection.",
+    "score": 4,
+    "rationale": "The RTC fields directly explain why the case preserves intersection number."
+  },
+  {
+    "domain": "surface_topology_s21",
+    "case_id": "a122-b2",
+    "condition": "baseline",
+    "response": "Using only metadata: on S_{2,1}, alpha level 2 and beta level 1 with i(alpha,beta)=1 resemble the descending-link setup, so one might hypothesize that Hatcher surgery preserves the single intersection. But metadata alone has no information about the surgery region, post crossings, or bigons, so it cannot distinguish stable cases from counterexamples.",
+    "score": 3,
+    "rationale": "The response gives a plausible theorem-pattern argument while acknowledging missing decisive data."
+  },
+  {
+    "domain": "surface_topology_s21",
+    "case_id": "a122-b2",
+    "condition": "rtc",
+    "response": "Using R+T+C: T applies Hatcher surgery c122 to sigma_c1 with level shift -2 and weight shift -14. R shows crossings drop from 4 to 0, post bigons drop to 0, minimal_position_post=true, and summary intersection_number changes by -1 from the original i=1. C says beta's three triangles all lie in the surgery region. Therefore this is a concrete S_{2,1} counterexample: surgery removes the only essential intersection.",
+    "score": 4,
+    "rationale": "The response uses full RTC evidence to prove the failure of preservation in this case."
+  },
+  {
+    "domain": "surface_topology_s21",
+    "case_id": "a122-b6",
+    "condition": "baseline",
+    "response": "Using only metadata: alpha level 2, beta level 1, and i(alpha,beta)=1 suggest the same possible preservation pattern under Hatcher surgery. However no crossing counts or bigon data are present, so metadata alone cannot decide whether this S_{2,1} case preserves the intersection or collapses it.",
+    "score": 3,
+    "rationale": "It identifies the relevant structure but cannot verify the true outcome."
+  },
+  {
+    "domain": "surface_topology_s21",
+    "case_id": "a122-b6",
+    "condition": "rtc",
+    "response": "Using R+T+C: T again sends c122 to sigma_c1 and lowers level by 2. R reports crossings 3 to 0, no post bigons, minimal_position_post=true, and summary intersection_number=-1 relative to the original i=1. C shows beta lies inside the short-arc surgery region. Thus the surgery eliminates the intersection with beta rather than preserving it.",
+    "score": 4,
+    "rationale": "The zero post-crossing, minimal-position, and summary-delta data give a complete case-level proof."
+  },
+  {
+    "domain": "surface_topology_s21",
+    "case_id": "a122-b9",
+    "condition": "baseline",
+    "response": "Using only metadata: alpha level 2, beta level 1, and i(alpha,beta)=1 again provide only the generic descending-link hypothesis. That suggests possible preservation, but S_{2,1} behavior depends on how beta crosses the surgery region. Since metadata lacks that region data, no definitive case conclusion follows.",
+    "score": 3,
+    "rationale": "It states the right dependency but remains underdetermined."
+  },
+  {
+    "domain": "surface_topology_s21",
+    "case_id": "a122-b9",
+    "condition": "rtc",
+    "response": "Using R+T+C: T performs the same surgery with level shift -2 and weight shift -14. R shows raw crossings fall from 11 to 2, all 9 in-region crossings are removed, 2 outside-region crossings remain, post bigons are 0, and the summary intersection_number still changes by -1 from i=1. C shows beta spans all six triangles but only three are in the surgery region. The RTC data therefore identify a counterexample where raw crossings remain but the essential intersection number drops.",
+    "score": 4,
+    "rationale": "The response reconciles the raw crossing data with the recorded intersection-number drop using the RTC fields."
+  }
+]

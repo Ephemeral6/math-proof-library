@@ -1,0 +1,1514 @@
+[
+  {
+    "beta": 0.0,
+    "eta": 0.5,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 0.5,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 0.5,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 0.5,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 0.5,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 0.5,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 0.8,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 0.8,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 0.8,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 0.8,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 0.8,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 0.8,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.0,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.0,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.0,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.0,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.0,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.0,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.2,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.2,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.2,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.2,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.2,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.2,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.5,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.5,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.5,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.5,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.5,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.5,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.8,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.8,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.8,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.8,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.8,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 1.8,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 2.0,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 2.0,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 2.0,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 2.0,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 2.0,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.0,
+    "eta": 2.0,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 0.5,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 0.5,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 0.5,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 0.5,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 0.5,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 0.5,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 0.8,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 0.8,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 0.8,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 0.8,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 0.8,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 0.8,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.0,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.0,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.0,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.0,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.0,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.0,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.2,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.2,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.2,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.2,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.2,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.2,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.5,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.5,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.5,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.5,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.5,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.5,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.8,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.8,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.8,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.8,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.8,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 1.8,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 2.0,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 2.0,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 2.0,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 2.0,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 2.0,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.1,
+    "eta": 2.0,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 0.5,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 0.5,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 0.5,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 0.5,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 0.5,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 0.5,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 0.8,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 0.8,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 0.8,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 0.8,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 0.8,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 0.8,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.0,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.0,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.0,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.0,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.0,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.0,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.2,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.2,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.2,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.2,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.2,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.2,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.5,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.5,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.5,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.5,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.5,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.5,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.8,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.8,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.8,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.8,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.8,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 1.8,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 2.0,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 2.0,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 2.0,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 2.0,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 2.0,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.3,
+    "eta": 2.0,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 0.5,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 0.5,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 0.5,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 0.5,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 0.5,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 0.5,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 0.8,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 0.8,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 0.8,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 0.8,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 0.8,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 0.8,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.0,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.0,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.0,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.0,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.0,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.0,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.2,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.2,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.2,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.2,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.2,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.2,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.5,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.5,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.5,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.5,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.5,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.5,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.8,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.8,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.8,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.8,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.8,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 1.8,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 2.0,
+    "c": 0.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 2.0,
+    "c": 0.1,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 2.0,
+    "c": 0.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 2.0,
+    "c": 1.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 2.0,
+    "c": 1.5,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  },
+  {
+    "beta": 0.5,
+    "eta": 2.0,
+    "c": 2.0,
+    "result": {
+      "feasible": false,
+      "status": "infeasible"
+    }
+  }
+]

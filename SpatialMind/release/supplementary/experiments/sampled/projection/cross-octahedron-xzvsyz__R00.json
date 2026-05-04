@@ -1,0 +1,61 @@
+{
+ "domain": "projection",
+ "condition": "R00",
+ "primitives": {
+  "relation": true,
+  "transform": false,
+  "contrastive": false
+ },
+ "case_id": "cross-octahedron-xzvsyz",
+ "case_data": {
+  "case_id": "cross-octahedron-xzvsyz",
+  "summary_delta": {
+   "dimension_a": -1,
+   "edge_crossings_a": {
+    "pre": null,
+    "post": 4
+   },
+   "edge_crossings_b": 0,
+   "diameter_a": 0.0,
+   "diameter_b": 0.0,
+   "n_points_b": 0,
+   "n_points_a": 0,
+   "dimension_b": 0
+  },
+  "metadata": {
+   "case_type": "cross_projection",
+   "object": "octahedron",
+   "plane_a": "xz",
+   "plane_b": "yz",
+   "n_points": 6,
+   "n_edges": 12
+  },
+  "detailed_comparison": {
+   "collisions_introduced": 1,
+   "crossings_introduced": 4,
+   "fraction_distances_preserved": 0.4,
+   "diameter_change": 0.0
+  },
+  "structural_comparison": {
+   "distances_preserved_count": 6,
+   "distances_total": 15,
+   "dimension_before": 3,
+   "dimension_after": 2,
+   "information_loss_summary": {
+    "collisions": 1,
+    "crossings": 4,
+    "distance_distortion": 0.6
+   },
+   "invariants_preserved": {
+    "n_points": true,
+    "dimension": false,
+    "diameter": true
+   },
+   "invariants_delta": {
+    "n_points": 0,
+    "dimension": -1,
+    "diameter": 0.0
+   }
+  }
+ }
+}

@@ -1,0 +1,122 @@
+========================================================================
+AUDIT 2: cycling threshold sensitivity
+========================================================================
+
+Original M3 criterion (gap1_verify.py, line 446):
+  rel_diff = |||x_T|| - lam| / lam  with threshold 0.01 (1%)
+  decay: ||x_T|| < 1e-4
+Tightened criterion (this audit):
+  must satisfy rel_diff < eps AND ||x_T - x_{T-3}|| / lam < eps
+
+       eps      cycle (both<eps)       cycle (rel<eps)        cycle (p3<eps)
+     1e-02    15/  54 ( 27.8%)    16/  54 ( 29.6%)    42/  54 ( 77.8%)
+     1e-06    15/  54 ( 27.8%)    15/  54 ( 27.8%)    42/  54 ( 77.8%)
+     1e-08    15/  54 ( 27.8%)    15/  54 ( 27.8%)    42/  54 ( 77.8%)
+     1e-10    15/  54 ( 27.8%)    15/  54 ( 27.8%)    42/  54 ( 77.8%)
+     1e-20    15/  54 ( 27.8%)    15/  54 ( 27.8%)    42/  54 ( 77.8%)
+     1e-30    15/  54 ( 27.8%)    15/  54 ( 27.8%)    42/  54 ( 77.8%)
+     1e-40    15/  54 ( 27.8%)    15/  54 ( 27.8%)    42/  54 ( 77.8%)
+
+Original M3 'cycle' count (rel<0.01, no p3 check): 16
+
+Per-point details (first 5 cycle-classified points under original 0.01):
+  beta=0.700 etaL=3.3448 kappa=0.3379: rel_diff=0.00e+00  p3_err_rel=2.67e-51
+  beta=0.750 etaL=2.9562 kappa=0.3716: rel_diff=1.89e-51  p3_err_rel=1.89e-51
+  beta=0.750 etaL=3.0771 kappa=0.3752: rel_diff=3.78e-51  p3_err_rel=0.00e+00
+  beta=0.750 etaL=3.1979 kappa=0.3691: rel_diff=1.89e-51  p3_err_rel=1.89e-51
+  beta=0.750 etaL=3.3188 kappa=0.3601: rel_diff=1.89e-51  p3_err_rel=3.78e-51
+
+========================================================================
+AUDIT 3 + 4: stochastic robustness + transient vulnerability
+========================================================================
+
+Anchor: (beta, etaL, kappa) = (0.8, 3.247, 0.387)
+Stochastic update: x_{t+1} = x_t - eta (grad f + xi_t) + beta (x_t - x_{t-1})
+  xi_t ~ N(0, sigma^2 I_2), fresh per step
+
+--- Audit 4 part 1: deterministic ||x_4|| at anchor (mpmath dps=50) ---
+  ||x_t|| for t=0..10 (mpmath dps=50):
+    t= 0: 0.707106781186547524400844362105
+    t= 1: 1.20830459735945720682828392668
+    t= 2: 0.705098860334641855134547845256
+    t= 3: 1.10001862775941827342217353196
+    t= 4: 0.147834702945025329833245552431
+    t= 5: 1.07993791438181243498682732983
+    t= 6: 0.24000276419973464448102293787
+    t= 7: 1.11148971759136820171977063576
+    t= 8: 0.350937784970908177712269920358
+    t= 9: 0.65166941680271170941689157289
+    t=10: 0.605723831604505817463381776451
+  ||x_4|| (deterministic) = 0.14783470294502532
+  lam = 0.7071067811865476
+  ||x_4|| / lam = 0.2091
+
+--- sigma = 0.01 ---
+  200 samples x T=10000, elapsed 22.8s
+  E[||x_T||]              = 0.65554   (lam = 0.70711)
+  E[||grad f_0(x_T)||^2]  = 3.17930e-01
+  P(||x_T|| > 0.5 lam)    = 0.905  (181/200)
+  P(||x_T|| < 0.01)       = 0.000  (decayed-to-0 fraction)
+  median min ||x_t|| over t in [0,100] = 0.14238
+  mean ||x_t|| at snapshots:
+    t=    0: 0.00000
+    t=    5: 1.08810
+    t=   10: 0.51279
+    t=  100: 0.63563
+    t= 1000: 0.64234
+    t= 5000: 0.63764
+    t=10000: 0.65554
+
+--- sigma = 0.1 ---
+  200 samples x T=10000, elapsed 22.0s
+  E[||x_T||]              = 0.86791   (lam = 0.70711)
+  E[||grad f_0(x_T)||^2]  = 3.75911e-01
+  P(||x_T|| > 0.5 lam)    = 0.865  (173/200)
+  P(||x_T|| < 0.01)       = 0.000  (decayed-to-0 fraction)
+  median min ||x_t|| over t in [0,100] = 0.08783
+  mean ||x_t|| at snapshots:
+    t=    0: 0.00000
+    t=    5: 1.16466
+    t=   10: 0.84694
+    t=  100: 0.85764
+    t= 1000: 0.92155
+    t= 5000: 0.91098
+    t=10000: 0.86791
+
+--- sigma = 0.5 ---
+  200 samples x T=10000, elapsed 23.4s
+  E[||x_T||]              = 3.71676   (lam = 0.70711)
+  E[||grad f_0(x_T)||^2]  = 3.40634e+00
+  P(||x_T|| > 0.5 lam)    = 0.995  (199/200)
+  P(||x_T|| < 0.01)       = 0.000  (decayed-to-0 fraction)
+  median min ||x_t|| over t in [0,100] = 0.35668
+  mean ||x_t|| at snapshots:
+    t=    0: 0.00000
+    t=    5: 2.78197
+    t=   10: 3.24474
+    t=  100: 3.65915
+    t= 1000: 3.53110
+    t= 5000: 3.56356
+    t=10000: 3.71676
+
+--- sigma = 1.0 ---
+  200 samples x T=10000, elapsed 23.2s
+  E[||x_T||]              = 6.98886   (lam = 0.70711)
+  E[||grad f_0(x_T)||^2]  = 1.09856e+01
+  P(||x_T|| > 0.5 lam)    = 0.990  (198/200)
+  P(||x_T|| < 0.01)       = 0.000  (decayed-to-0 fraction)
+  median min ||x_t|| over t in [0,100] = 0.62136
+  mean ||x_t|| at snapshots:
+    t=    0: 0.00000
+    t=    5: 5.72104
+    t=   10: 6.56723
+    t=  100: 7.01616
+    t= 1000: 7.25356
+    t= 5000: 7.14661
+    t=10000: 6.98886
+
+========================================================================
+AUDIT FINAL JSON SAVED
+========================================================================
+Saved: C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap1_init\audit\gap1_audit_results.json
+Total wall time: 153.3s

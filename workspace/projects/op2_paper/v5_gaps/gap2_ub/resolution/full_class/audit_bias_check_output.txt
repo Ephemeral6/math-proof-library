@@ -1,0 +1,36 @@
+================================================================================
+Critical Audit 2 check: bias contribution to SGD-on-w UB
+================================================================================
+
+Empirical question: at horizon-tuned eta_T = D(1-beta)/(sigma*sqrt(T)),
+does the cumulative bias R_bias = sum_t 2 nu <b_t, w_t-x*> remain bounded
+(i.e., O(sigma*D/sqrt(T)))? Or does it grow with T (refuting the rate)?
+
+
+=== beta = 0.5 ===
+       T        eta      <b,w>_abs   <b,w>_signed     R_bias/T  sigma*D/sqrt(T)      ratio
+     100    0.05000        0.24643       -0.02017     0.002464          0.10000     2.4643
+     300    0.02887        0.18020       -0.00700     0.000601          0.05774     3.1211
+    1000    0.01581        0.12632       -0.00212     0.000126          0.03162     3.9945
+    3000    0.00913        0.09110       -0.00072     0.000030          0.01826     4.9896
+   10000    0.00500        0.06378       -0.00021     0.000006          0.01000     6.3775
+  R_bias_abs scaling: T^(-0.294)
+  Compare to: sigma*D/sqrt(T) ~ T^(-0.5), LD^2/T ~ T^(-1)
+
+=== beta = 0.9 ===
+       T        eta      <b,w>_abs   <b,w>_signed     R_bias/T  sigma*D/sqrt(T)      ratio
+     100    0.01000        1.46006       -0.81109     0.014601          0.10000    14.6006
+     300    0.00577        0.88518       -0.28331     0.002951          0.05774    15.3317
+    1000    0.00316        0.58807       -0.08786     0.000588          0.03162    18.5963
+    3000    0.00183        0.41446       -0.03000     0.000138          0.01826    22.7008
+   10000    0.00100        0.27960       -0.00899     0.000028          0.01000    27.9601
+  R_bias_abs scaling: T^(-0.353)
+  Compare to: sigma*D/sqrt(T) ~ T^(-0.5), LD^2/T ~ T^(-1)
+
+================================================================================
+CONCLUSION:
+================================================================================
+If R_bias_abs ~ sigma*D/sqrt(T) (or smaller), the bias is absorbed in the rate
+  -> proof can in principle be completed, Theorem 3 holds.
+If R_bias_abs ~ constant (T-independent or slow-growing), the bias dominates
+  -> proof in Step 2-3 has a fundamental gap.

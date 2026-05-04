@@ -1,0 +1,18 @@
+{
+  "lemma_name": "SHB.Foundations.Descent",
+  "kind": "lemma_bundle",
+  "nl_statement": "Layer-2 single-step sufficient-decrease inequalities for SHB on an L-smooth function f. (i) shb_step_descent : f(x_{t+1}) ≤ f(x_t) + ⟨f'(x_t), x_{t+1}-x_t⟩ + (l/2)‖x_{t+1}-x_t‖²; (ii) shb_step_descent_expanded : same with the recurrence step β•(x_t - x_{t-1}) - η•f'(x_t) substituted; (iii) gd_step_descent : the analogous inequality for plain GD; (iv) shb_step_descent_at_beta_zero : at β = 0, the SHB descent inequality coincides with the GD descent inequality applied to the gradient-descent iterates from x₀.",
+  "lean_signature": "namespace SHB.Foundations\nvariable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]\ntheorem shb_step_descent : ∀ x_t x_{t+1} ∈ SHB orbit, f(x_{t+1}) ≤ f(x_t) + ⟨f'(x_t), x_{t+1}-x_t⟩ + (l/2)‖x_{t+1}-x_t‖²\ntheorem shb_step_descent_expanded : same with step substituted\ntheorem gd_step_descent : analogous bound for gdIter\ntheorem shb_step_descent_at_beta_zero : SHB(β=0) descent = GD descent on gdIter iterates",
+  "lean_file": "LeanAgent/Generated/SHB/Descent.lean",
+  "imports": ["LeanAgent.Generated.SHB.Defs", "LeanAgent.Generated.SHB.Basic", "LeanAgent.Generated.descent_lemma_v3"],
+  "depends_on": ["SHB.Foundations.Defs", "SHB.Foundations.Basic", "LeanAgent.Generated.descent_lemma_gradient_form"],
+  "assumptions": ["E Hilbert (NormedAddCommGroup + InnerProductSpace ℝ + CompleteSpace)", "f : E → ℝ has gradient f' pointwise", "f' is l-Lipschitz with l : NNReal"],
+  "verdict": "CERTIFIED",
+  "n_stuck": 0,
+  "pr_ready": true,
+  "abstraction_level": "InnerProductSpace ℝ E + CompleteSpace E (generic)",
+  "reuse_potential": "high",
+  "reuse_reason": "this is the core inequality every Layer-3 SHB convergence proof builds on (telescoping, Lyapunov, etc.)",
+  "synthesized": false,
+  "ts": "2026-04-28T23:20:00+08:00"
+}

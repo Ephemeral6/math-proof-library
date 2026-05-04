@@ -1,0 +1,2116 @@
+{
+ "condition": "00C",
+ "domain": "knot_theory",
+ "primitives": {
+  "relation": false,
+  "transform": false,
+  "contrastive": true
+ },
+ "n_cases": 100,
+ "cases": [
+  {
+   "case_id": "3_1-r2-0",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "3_1",
+    "move": "R2",
+    "trial": 0,
+    "writhe_pre": -3,
+    "writhe_post": -3,
+    "n_crossings_pre": 3,
+    "n_crossings_post": 5
+   }
+  },
+  {
+   "case_id": "3_1-r2-1",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "3_1",
+    "move": "R2",
+    "trial": 1,
+    "writhe_pre": -3,
+    "writhe_post": -3,
+    "n_crossings_pre": 3,
+    "n_crossings_post": 5
+   }
+  },
+  {
+   "case_id": "3_1-r2-2",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "3_1",
+    "move": "R2",
+    "trial": 2,
+    "writhe_pre": -3,
+    "writhe_post": -3,
+    "n_crossings_pre": 3,
+    "n_crossings_post": 5
+   }
+  },
+  {
+   "case_id": "3_1-r2-3",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "3_1",
+    "move": "R2",
+    "trial": 3,
+    "writhe_pre": -3,
+    "writhe_post": -3,
+    "n_crossings_pre": 3,
+    "n_crossings_post": 5
+   }
+  },
+  {
+   "case_id": "3_1-r2-4",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "3_1",
+    "move": "R2",
+    "trial": 4,
+    "writhe_pre": -3,
+    "writhe_post": -3,
+    "n_crossings_pre": 3,
+    "n_crossings_post": 5
+   }
+  },
+  {
+   "case_id": "3_1-r2-5",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "3_1",
+    "move": "R2",
+    "trial": 5,
+    "writhe_pre": -3,
+    "writhe_post": -3,
+    "n_crossings_pre": 3,
+    "n_crossings_post": 5
+   }
+  },
+  {
+   "case_id": "3_1-r2-6",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "3_1",
+    "move": "R2",
+    "trial": 6,
+    "writhe_pre": -3,
+    "writhe_post": -3,
+    "n_crossings_pre": 3,
+    "n_crossings_post": 5
+   }
+  },
+  {
+   "case_id": "3_1-r2-7",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "3_1",
+    "move": "R2",
+    "trial": 7,
+    "writhe_pre": -3,
+    "writhe_post": -3,
+    "n_crossings_pre": 3,
+    "n_crossings_post": 5
+   }
+  },
+  {
+   "case_id": "3_1-r2-8",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "3_1",
+    "move": "R2",
+    "trial": 8,
+    "writhe_pre": -3,
+    "writhe_post": -3,
+    "n_crossings_pre": 3,
+    "n_crossings_post": 5
+   }
+  },
+  {
+   "case_id": "3_1-r2-9",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "3_1",
+    "move": "R2",
+    "trial": 9,
+    "writhe_pre": -3,
+    "writhe_post": -3,
+    "n_crossings_pre": 3,
+    "n_crossings_post": 5
+   }
+  },
+  {
+   "case_id": "4_1-r2-0",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "4_1",
+    "move": "R2",
+    "trial": 0,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 4,
+    "n_crossings_post": 6
+   }
+  },
+  {
+   "case_id": "4_1-r2-1",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "4_1",
+    "move": "R2",
+    "trial": 1,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 4,
+    "n_crossings_post": 6
+   }
+  },
+  {
+   "case_id": "4_1-r2-2",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "4_1",
+    "move": "R2",
+    "trial": 2,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 4,
+    "n_crossings_post": 6
+   }
+  },
+  {
+   "case_id": "4_1-r2-3",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "4_1",
+    "move": "R2",
+    "trial": 3,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 4,
+    "n_crossings_post": 6
+   }
+  },
+  {
+   "case_id": "4_1-r2-4",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "4_1",
+    "move": "R2",
+    "trial": 4,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 4,
+    "n_crossings_post": 6
+   }
+  },
+  {
+   "case_id": "4_1-r2-5",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "4_1",
+    "move": "R2",
+    "trial": 5,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 4,
+    "n_crossings_post": 6
+   }
+  },
+  {
+   "case_id": "4_1-r2-6",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "4_1",
+    "move": "R2",
+    "trial": 6,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 4,
+    "n_crossings_post": 6
+   }
+  },
+  {
+   "case_id": "4_1-r2-7",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "4_1",
+    "move": "R2",
+    "trial": 7,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 4,
+    "n_crossings_post": 6
+   }
+  },
+  {
+   "case_id": "4_1-r2-8",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "4_1",
+    "move": "R2",
+    "trial": 8,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 4,
+    "n_crossings_post": 6
+   }
+  },
+  {
+   "case_id": "4_1-r2-9",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "4_1",
+    "move": "R2",
+    "trial": 9,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 4,
+    "n_crossings_post": 6
+   }
+  },
+  {
+   "case_id": "5_1-r2-0",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_1",
+    "move": "R2",
+    "trial": 0,
+    "writhe_pre": -5,
+    "writhe_post": -5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_1-r2-1",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_1",
+    "move": "R2",
+    "trial": 1,
+    "writhe_pre": -5,
+    "writhe_post": -5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_1-r2-2",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_1",
+    "move": "R2",
+    "trial": 2,
+    "writhe_pre": -5,
+    "writhe_post": -5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_1-r2-3",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_1",
+    "move": "R2",
+    "trial": 3,
+    "writhe_pre": -5,
+    "writhe_post": -5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_1-r2-4",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_1",
+    "move": "R2",
+    "trial": 4,
+    "writhe_pre": -5,
+    "writhe_post": -5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_1-r2-5",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_1",
+    "move": "R2",
+    "trial": 5,
+    "writhe_pre": -5,
+    "writhe_post": -5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_1-r2-6",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_1",
+    "move": "R2",
+    "trial": 6,
+    "writhe_pre": -5,
+    "writhe_post": -5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_1-r2-7",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_1",
+    "move": "R2",
+    "trial": 7,
+    "writhe_pre": -5,
+    "writhe_post": -5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_1-r2-8",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_1",
+    "move": "R2",
+    "trial": 8,
+    "writhe_pre": -5,
+    "writhe_post": -5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_1-r2-9",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_1",
+    "move": "R2",
+    "trial": 9,
+    "writhe_pre": -5,
+    "writhe_post": -5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_2-r2-0",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_2",
+    "move": "R2",
+    "trial": 0,
+    "writhe_pre": 5,
+    "writhe_post": 5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_2-r2-1",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_2",
+    "move": "R2",
+    "trial": 1,
+    "writhe_pre": 5,
+    "writhe_post": 5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_2-r2-2",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_2",
+    "move": "R2",
+    "trial": 2,
+    "writhe_pre": 5,
+    "writhe_post": 5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_2-r2-3",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_2",
+    "move": "R2",
+    "trial": 3,
+    "writhe_pre": 5,
+    "writhe_post": 5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_2-r2-4",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_2",
+    "move": "R2",
+    "trial": 4,
+    "writhe_pre": 5,
+    "writhe_post": 5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_2-r2-5",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_2",
+    "move": "R2",
+    "trial": 5,
+    "writhe_pre": 5,
+    "writhe_post": 5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_2-r2-6",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_2",
+    "move": "R2",
+    "trial": 6,
+    "writhe_pre": 5,
+    "writhe_post": 5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_2-r2-7",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_2",
+    "move": "R2",
+    "trial": 7,
+    "writhe_pre": 5,
+    "writhe_post": 5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_2-r2-8",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_2",
+    "move": "R2",
+    "trial": 8,
+    "writhe_pre": 5,
+    "writhe_post": 5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "5_2-r2-9",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "5_2",
+    "move": "R2",
+    "trial": 9,
+    "writhe_pre": 5,
+    "writhe_post": 5,
+    "n_crossings_pre": 5,
+    "n_crossings_post": 7
+   }
+  },
+  {
+   "case_id": "6_1-r2-0",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_1",
+    "move": "R2",
+    "trial": 0,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_1-r2-1",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_1",
+    "move": "R2",
+    "trial": 1,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_1-r2-2",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_1",
+    "move": "R2",
+    "trial": 2,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_1-r2-3",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_1",
+    "move": "R2",
+    "trial": 3,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_1-r2-4",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_1",
+    "move": "R2",
+    "trial": 4,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_1-r2-5",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_1",
+    "move": "R2",
+    "trial": 5,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_1-r2-6",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_1",
+    "move": "R2",
+    "trial": 6,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_1-r2-7",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_1",
+    "move": "R2",
+    "trial": 7,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_1-r2-8",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_1",
+    "move": "R2",
+    "trial": 8,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_1-r2-9",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_1",
+    "move": "R2",
+    "trial": 9,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_2-r2-0",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_2",
+    "move": "R2",
+    "trial": 0,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_2-r2-1",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_2",
+    "move": "R2",
+    "trial": 1,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_2-r2-2",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_2",
+    "move": "R2",
+    "trial": 2,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_2-r2-3",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_2",
+    "move": "R2",
+    "trial": 3,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_2-r2-4",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_2",
+    "move": "R2",
+    "trial": 4,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_2-r2-5",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_2",
+    "move": "R2",
+    "trial": 5,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_2-r2-6",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_2",
+    "move": "R2",
+    "trial": 6,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_2-r2-7",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_2",
+    "move": "R2",
+    "trial": 7,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_2-r2-8",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_2",
+    "move": "R2",
+    "trial": 8,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_2-r2-9",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_2",
+    "move": "R2",
+    "trial": 9,
+    "writhe_pre": 2,
+    "writhe_post": 2,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_3-r2-0",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_3",
+    "move": "R2",
+    "trial": 0,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_3-r2-1",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_3",
+    "move": "R2",
+    "trial": 1,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_3-r2-2",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_3",
+    "move": "R2",
+    "trial": 2,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_3-r2-3",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_3",
+    "move": "R2",
+    "trial": 3,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_3-r2-4",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_3",
+    "move": "R2",
+    "trial": 4,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_3-r2-5",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_3",
+    "move": "R2",
+    "trial": 5,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_3-r2-6",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_3",
+    "move": "R2",
+    "trial": 6,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_3-r2-7",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_3",
+    "move": "R2",
+    "trial": 7,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_3-r2-8",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_3",
+    "move": "R2",
+    "trial": 8,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "6_3-r2-9",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "6_3",
+    "move": "R2",
+    "trial": 9,
+    "writhe_pre": 0,
+    "writhe_post": 0,
+    "n_crossings_pre": 6,
+    "n_crossings_post": 8
+   }
+  },
+  {
+   "case_id": "7_1-r2-0",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_1",
+    "move": "R2",
+    "trial": 0,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_1-r2-1",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_1",
+    "move": "R2",
+    "trial": 1,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_1-r2-2",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_1",
+    "move": "R2",
+    "trial": 2,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_1-r2-3",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_1",
+    "move": "R2",
+    "trial": 3,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_1-r2-4",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_1",
+    "move": "R2",
+    "trial": 4,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_1-r2-5",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_1",
+    "move": "R2",
+    "trial": 5,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_1-r2-6",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_1",
+    "move": "R2",
+    "trial": 6,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_1-r2-7",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_1",
+    "move": "R2",
+    "trial": 7,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_1-r2-8",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_1",
+    "move": "R2",
+    "trial": 8,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_1-r2-9",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_1",
+    "move": "R2",
+    "trial": 9,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_2-r2-0",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_2",
+    "move": "R2",
+    "trial": 0,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_2-r2-1",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_2",
+    "move": "R2",
+    "trial": 1,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_2-r2-2",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_2",
+    "move": "R2",
+    "trial": 2,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_2-r2-3",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_2",
+    "move": "R2",
+    "trial": 3,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_2-r2-4",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_2",
+    "move": "R2",
+    "trial": 4,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_2-r2-5",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_2",
+    "move": "R2",
+    "trial": 5,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_2-r2-6",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_2",
+    "move": "R2",
+    "trial": 6,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_2-r2-7",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_2",
+    "move": "R2",
+    "trial": 7,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_2-r2-8",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_2",
+    "move": "R2",
+    "trial": 8,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_2-r2-9",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_2",
+    "move": "R2",
+    "trial": 9,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_3-r2-0",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_3",
+    "move": "R2",
+    "trial": 0,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_3-r2-1",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_3",
+    "move": "R2",
+    "trial": 1,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_3-r2-2",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_3",
+    "move": "R2",
+    "trial": 2,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_3-r2-3",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_3",
+    "move": "R2",
+    "trial": 3,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_3-r2-4",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_3",
+    "move": "R2",
+    "trial": 4,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_3-r2-5",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_3",
+    "move": "R2",
+    "trial": 5,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_3-r2-6",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_3",
+    "move": "R2",
+    "trial": 6,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_3-r2-7",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_3",
+    "move": "R2",
+    "trial": 7,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_3-r2-8",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_3",
+    "move": "R2",
+    "trial": 8,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  },
+  {
+   "case_id": "7_3-r2-9",
+   "summary_delta": {
+    "writhe_delta": 0,
+    "linking_number": 0.0,
+    "crossing_count_b": 0,
+    "writhe_b": 0,
+    "crossing_count_a": 2,
+    "writhe_a": 0
+   },
+   "metadata": {
+    "knot": "7_3",
+    "move": "R2",
+    "trial": 9,
+    "writhe_pre": -7,
+    "writhe_post": -7,
+    "n_crossings_pre": 7,
+    "n_crossings_post": 9
+   }
+  }
+ ],
+ "counterfactual": [
+  {
+   "strategy": "boundary_relaxation",
+   "original_condition": {
+    "r2_added_signs_pair": [
+     -1,
+     1
+    ],
+    "writhe_change_required": 0
+   },
+   "modified_condition": {
+    "r2_added_signs_pair": [
+     -1,
+     -1
+    ],
+    "writhe_change_observed": -2
+   },
+   "original_result": {
+    "signature": -2,
+    "determinant": 3,
+    "alexander_normalized": [
+     1,
+     -1,
+     1
+    ]
+   },
+   "counterfactual_result": {
+    "signature": -2,
+    "determinant": 7,
+    "alexander_normalized": [
+     2,
+     -3,
+     2
+    ]
+   },
+   "delta": {
+    "signature_delta": 0,
+    "determinant_delta": 4,
+    "writhe_delta": -2,
+    "alexander_changed": true
+   },
+   "condition_is_critical": true,
+   "explanation": "Real R2 inserts a (+1, -1) crossing pair so writhe is preserved. Forcing same-sign pair gives a 'pseudo R2' that changes writhe by ±2 and breaks topological invariants."
+  },
+  {
+   "strategy": "operation_perturbation",
+   "original_condition": {
+    "flipped_crossing_index": null
+   },
+   "modified_condition": {
+    "flipped_crossing_index": 0
+   },
+   "original_result": {
+    "signature": -2,
+    "determinant": 3,
+    "alexander_normalized": [
+     1,
+     -1,
+     1
+    ]
+   },
+   "counterfactual_result": {
+    "signature": 0,
+    "determinant": 1,
+    "alexander_normalized": [
+     1
+    ]
+   },
+   "delta": {
+    "signature_delta": 2,
+    "determinant_delta": -2,
+    "writhe_delta": 2,
+    "alexander_changed": true
+   },
+   "condition_is_critical": true,
+   "explanation": "Flipping one crossing's over/under is not a Reidemeister move; it changes the knot type, so signature / determinant / Alexander all generally change."
+  },
+  {
+   "strategy": "condition_removal",
+   "original_condition": {
+    "planarity_check": true
+   },
+   "modified_condition": {
+    "planarity_check": false,
+    "swap_strands": [
+     0,
+     1
+    ]
+   },
+   "original_result": {
+    "valid_diagram": true
+   },
+   "counterfactual_result": {
+    "valid_diagram": true,
+    "signature": -1,
+    "determinant": 2
+   },
+   "delta": {
+    "signature_delta": 1
+   },
+   "condition_is_critical": true,
+   "explanation": "Dropping planarity (swapping strand labels at random) yields an inconsistent diagram. This shows the planarity constraint is structurally required for any topological reasoning."
+  }
+ ]
+}

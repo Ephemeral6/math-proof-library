@@ -1,0 +1,85 @@
+\section*{NeurIPS Paper Checklist}
+
+\begin{enumerate}
+
+\item {\bf Claims}
+    \item[] Question: Do the main claims made in the abstract and introduction accurately reflect the paper's contributions and scope?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: The abstract and \S\ref{sec:intro} state two claims: (i) Cognition-on-Engine (CoE) reaches \textsc{Argument}-or-better reasoning across eight low-dimensional topology / discrete-geometry domains without retraining; (ii) the R / T / C primitive decomposition is sufficient, and R is necessary in every domain we tested. Both claims correspond directly to the $2^3$ ablation results reported in \S\ref{sec:results} and Table~\ref{tab:full-results}; we explicitly limit generalisation to the eight domains and the underlying LLM (Claude Opus 4.7) tested.
+
+\item {\bf Limitations}
+    \item[] Question: Does the paper discuss the limitations of the work performed by the authors?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: \S\ref{sec:discussion} discusses four limitations: (L1) single-evaluator self-rating bias, addressed by the cross-family scoring validation in \S\ref{sec:cross-family}; (L2) cross-model coverage previously restricted to the Claude family, partially addressed by the cross-family RTC ablation on GPT-5.5 and Gemini~3 reported in the supplementary material; (L3) the argument-quality rubric is single-rater; (L4) the R/T/C decomposition is sufficient but not unique. The per-case replication (\S4.4) provides an additional reliability check (320-cell, 98.8\% agreement with the aggregate single-rating).
+
+\item {\bf Theory assumptions and proofs}
+    \item[] Question: For each theoretical result, does the paper provide the full set of assumptions and a complete (and correct) proof?
+    \item[] Answer: \answerNA{}
+    \item[] Justification: The paper is empirical. It reports no formal theorems requiring proof; the only quantitative claims are the ablation scores and main-effect / interaction estimates derived from a $2^3$ factorial design, which are fully described in \S\ref{sec:results}.
+
+\item {\bf Experimental result reproducibility}
+    \item[] Question: Does the paper fully disclose all the information needed to reproduce the main experimental results of the paper to the extent that it affects the main claims and/or conclusions of the paper (regardless of whether the code and data are provided or not)?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: \S\ref{sec:framework}--\S\ref{sec:results} specify (a) the eight domain engines and the libraries they wrap (curver, SnapPy); (b) the eight ablation conditions and how each restricts engine output; (c) the 0--4 scoring rubric; (d) the underlying LLM (Claude Opus 4.7) and its session-isolation protocol; (e) the per-case replication procedure. Prompts and benchmark generators are provided in the supplementary code release.
+
+\item {\bf Open access to data and code}
+    \item[] Question: Does the paper provide open access to the data and code, with sufficient instructions to faithfully reproduce the main experimental results, as described in supplemental material?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: We will release the eight engines, all benchmark generators, all $2^3$ ablation prompts, the per-case sampling scripts, and the scoring rubric as supplementary material under a permissive license. Random seeds are fixed (seed=42 for the per-case sampler).
+
+\item {\bf Experimental setting/details}
+    \item[] Question: Does the paper specify all the training and test details (e.g., data splits, hyperparameters, how they were chosen, type of optimizer) necessary to understand the results?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: There is no model training; the LLM is used inference-only with no fine-tuning. \S\ref{sec:exp} specifies number of cases per domain (87--1563), the eight conditions, the evaluator model, and the rubric. The per-case replication uses 5 cases per cell sampled with seed=42 from level\_4 of each benchmark (\S4.4).
+
+\item {\bf Experiment statistical significance}
+    \item[] Question: Does the paper report error bars suitably and correctly defined or other appropriate information about the statistical significance of the experiments?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: The main table reports aggregate single-rating scores. To assess reliability we replicated on 5 cases per cell and report (a) per-cell mean$\pm$std, (b) paired Wilcoxon signed-rank tests for R/T/C main effects, (c) exact agreement with the aggregate baseline (98.8\%, 316/320 cells). We explicitly note that with $n{=}5$ the smallest two-sided Wilcoxon $p$ achievable is $0.0625$, so the test direction is reproducible but power is limited.
+
+\item {\bf Experiments compute resources}
+    \item[] Question: For each experiment, does the paper provide sufficient information on the computer resources (type of compute workers, memory, time of execution) needed to reproduce the experiments?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: The eight engines run on a single CPU (no GPU required). The LLM evaluations use Claude Opus 4.7 via API; total $\sim 1.5$M input tokens and $\sim 0.4$M output tokens across all $8 \times 8$ ablation cells plus the 320-cell replication. End-to-end wall-clock for a full replication is under 8~hours on a laptop.
+
+\item {\bf Code of ethics}
+    \item[] Question: Does the research conducted in the paper conform, in every respect, with the NeurIPS Code of Ethics?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: The work studies the architecture of mathematical reasoning agents on synthetic mathematical objects (knots, polygons, polyhedra, surfaces). No human subjects, no scraped data, no privacy- or fairness-sensitive content.
+
+\item {\bf Broader impacts}
+    \item[] Question: Does the paper discuss both potential positive societal impacts and negative societal impacts of the work performed?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: \S\ref{sec:discussion} notes that CoE is a recipe for offloading specialised reasoning to externally verifiable engines; the positive impact is reducing reliance on expensive domain-specific training. We see no foreseeable direct negative societal impact from a method that delegates structural mathematical reasoning to a deterministic, auditable engine.
+
+\item {\bf Safeguards}
+    \item[] Question: Does the paper describe safeguards that have been put in place for responsible release of data or models that have a high risk for misuse (e.g., pre-trained language models, image generators, or scraped datasets)?
+    \item[] Answer: \answerNA{}
+    \item[] Justification: We release no pre-trained models, image generators, or scraped data. The released artefacts are mathematical engines, benchmark generators, and prompts, none of which carry high misuse risk.
+
+\item {\bf Licenses for existing assets}
+    \item[] Question: Are the creators or original owners of assets (e.g., code, data, models), used in the paper, properly credited and are the license and terms of use explicitly mentioned and properly respected?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: External libraries used (curver~\citep{bell2016curver}, SnapPy~\citep{snappy}) are cited with their official URLs. Both are open-source under permissive licenses; we use them within their stated terms and report the version used.
+
+\item {\bf New assets}
+    \item[] Question: Are new assets introduced in the paper well documented and is the documentation provided alongside the assets?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: The eight engines, benchmark generators, ablation prompts, and scoring scripts are released with README files, function-level docstrings, and example invocations. Each domain has a corresponding \texttt{ablation\_results.md} that documents the data fields exposed at each ablation condition.
+
+\item {\bf Crowdsourcing and research with human subjects}
+    \item[] Question: For crowdsourcing experiments and research with human subjects, does the paper include the full text of instructions given to participants and screenshots, if applicable, as well as details about compensation (if any)?
+    \item[] Answer: \answerNA{}
+    \item[] Justification: No human subjects or crowdworkers were involved.
+
+\item {\bf Institutional review board (IRB) approvals or equivalent for research with human subjects}
+    \item[] Question: Does the paper describe potential risks incurred by study participants, whether such risks were disclosed to the subjects, and whether Institutional Review Board (IRB) approvals (or an equivalent approval/review based on the requirements of your country or institution) were obtained?
+    \item[] Answer: \answerNA{}
+    \item[] Justification: No human subjects research; IRB approval is not applicable.
+
+\item {\bf Declaration of LLM usage}
+    \item[] Question: Does the paper describe the usage of LLMs if it is an important, original, or non-standard component of the core methods in this research? Note that if the LLM is used only for writing, editing, or formatting purposes and does \emph{not} impact the core methodology, scientific rigor, or originality of the research, declaration is not required.
+    \item[] Answer: \answerYes{}
+    \item[] Justification: An LLM (Claude Opus 4.7) is the central agent in CoE: it both consumes the engine outputs at each ablation condition and produces the rubric-graded reasoning trace. This usage is core to the methodology and is fully disclosed in \S\ref{sec:framework} (architecture) and \S\ref{sec:exp} (evaluation protocol), including the session-isolation discipline, the 0--4 rubric, and the per-case replication design.
+
+\end{enumerate}

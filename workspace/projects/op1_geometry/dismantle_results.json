@@ -1,0 +1,83 @@
+{
+  "S_1_2": {
+    "2": {
+      "total": 64,
+      "dismantlable": 64,
+      "non_dismantlable": []
+    },
+    "3": {
+      "total": 63,
+      "dismantlable": 63,
+      "non_dismantlable": []
+    },
+    "4": {
+      "total": 49,
+      "dismantlable": 49,
+      "non_dismantlable": []
+    },
+    "5": {
+      "total": 33,
+      "dismantlable": 33,
+      "non_dismantlable": []
+    },
+    "6": {
+      "total": 24,
+      "dismantlable": 24,
+      "non_dismantlable": []
+    },
+    "7": {
+      "total": 18,
+      "dismantlable": 18,
+      "non_dismantlable": []
+    },
+    "8": {
+      "total": 20,
+      "dismantlable": 20,
+      "non_dismantlable": []
+    }
+  },
+  "S_2_1": {
+    "2": {
+      "total": 32,
+      "dismantlable": 32,
+      "non_dismantlable": []
+    },
+    "3": {
+      "total": 12,
+      "dismantlable": 12,
+      "non_dismantlable": []
+    },
+    "4": {
+      "total": 3,
+      "dismantlable": 3,
+      "non_dismantlable": []
+    }
+  },
+  "S_1_1": {
+    "1": {
+      "total": 13,
+      "dismantlable": 0,
+      "non_dismantlable": []
+    },
+    "2": {
+      "total": 10,
+      "dismantlable": 10,
+      "non_dismantlable": []
+    },
+    "3": {
+      "total": 13,
+      "dismantlable": 13,
+      "non_dismantlable": []
+    },
+    "4": {
+      "total": 10,
+      "dismantlable": 10,
+      "non_dismantlable": []
+    },
+    "5": {
+      "total": 14,
+      "dismantlable": 14,
+      "non_dismantlable": []
+    }
+  }
+}

@@ -1,0 +1,5875 @@
+{
+  "rows": [
+    {
+      "alpha": 3,
+      "level": 2,
+      "DL_size": 15,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        15,
+        44,
+        52,
+        27,
+        5
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 9,
+      "level": 4,
+      "DL_size": 14,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        14,
+        39,
+        44,
+        22,
+        4
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 10,
+      "level": 2,
+      "DL_size": 12,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        12,
+        34,
+        40,
+        21,
+        4
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 11,
+      "level": 2,
+      "DL_size": 14,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        14,
+        41,
+        49,
+        26,
+        5
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 12,
+      "level": 3,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        22,
+        23,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 13,
+      "level": 2,
+      "DL_size": 12,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        12,
+        30,
+        28,
+        9,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 20,
+      "level": 4,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        23,
+        25,
+        12,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 25,
+      "level": 2,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        18,
+        16,
+        5,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 26,
+      "level": 6,
+      "DL_size": 12,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        12,
+        32,
+        35,
+        17,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 27,
+      "level": 4,
+      "DL_size": 10,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        10,
+        25,
+        26,
+        12,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 28,
+      "level": 4,
+      "DL_size": 10,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        10,
+        25,
+        26,
+        12,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 29,
+      "level": 5,
+      "DL_size": 10,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        10,
+        25,
+        26,
+        12,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 30,
+      "level": 6,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 31,
+      "level": 2,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 32,
+      "level": 2,
+      "DL_size": 12,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        12,
+        34,
+        40,
+        21,
+        4
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 33,
+      "level": 3,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 34,
+      "level": 2,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 35,
+      "level": 2,
+      "DL_size": 13,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        13,
+        38,
+        46,
+        25,
+        5
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 37,
+      "level": 3,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 38,
+      "level": 4,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        25,
+        30,
+        16,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 39,
+      "level": 3,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        22,
+        23,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 40,
+      "level": 2,
+      "DL_size": 11,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        11,
+        26,
+        23,
+        7,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 41,
+      "level": 3,
+      "DL_size": 11,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        11,
+        27,
+        25,
+        8,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 42,
+      "level": 2,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        21,
+        19,
+        6,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 43,
+      "level": 3,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        22,
+        23,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 46,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        16,
+        16,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 53,
+      "level": 3,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 58,
+      "level": 8,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 59,
+      "level": 4,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 60,
+      "level": 4,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 61,
+      "level": 5,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 62,
+      "level": 4,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        23,
+        25,
+        12,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 63,
+      "level": 8,
+      "DL_size": 10,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        10,
+        25,
+        26,
+        12,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 68,
+      "level": 2,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        13,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 72,
+      "level": 2,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        18,
+        16,
+        5,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 73,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        13,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 74,
+      "level": 2,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        13,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 75,
+      "level": 8,
+      "DL_size": 11,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        11,
+        27,
+        27,
+        12,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 76,
+      "level": 6,
+      "DL_size": 10,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        10,
+        25,
+        26,
+        12,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 77,
+      "level": 6,
+      "DL_size": 10,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        10,
+        25,
+        26,
+        12,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 78,
+      "level": 7,
+      "DL_size": 10,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        10,
+        25,
+        26,
+        12,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 79,
+      "level": 12,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 80,
+      "level": 4,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 81,
+      "level": 4,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        23,
+        25,
+        12,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 82,
+      "level": 5,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 83,
+      "level": 4,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 84,
+      "level": 2,
+      "DL_size": 13,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        13,
+        37,
+        43,
+        22,
+        4
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 85,
+      "level": 4,
+      "DL_size": 11,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        11,
+        30,
+        34,
+        17,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 87,
+      "level": 5,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 88,
+      "level": 6,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        25,
+        30,
+        16,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 89,
+      "level": 5,
+      "DL_size": 11,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        11,
+        26,
+        25,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 90,
+      "level": 12,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 91,
+      "level": 6,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 92,
+      "level": 6,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 93,
+      "level": 7,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 94,
+      "level": 6,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 95,
+      "level": 14,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 96,
+      "level": 2,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 97,
+      "level": 2,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        24,
+        28,
+        15,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 98,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 99,
+      "level": 2,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 100,
+      "level": 8,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 101,
+      "level": 2,
+      "DL_size": 10,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        10,
+        27,
+        31,
+        16,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 103,
+      "level": 2,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        24,
+        28,
+        15,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 104,
+      "level": 3,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 105,
+      "level": 4,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        22,
+        27,
+        15,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 106,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 108,
+      "level": 2,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 109,
+      "level": 4,
+      "DL_size": 13,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        13,
+        36,
+        41,
+        21,
+        4
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 110,
+      "level": 2,
+      "DL_size": 12,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        12,
+        32,
+        35,
+        17,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 113,
+      "level": 2,
+      "DL_size": 11,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        11,
+        27,
+        25,
+        8,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 115,
+      "level": 3,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 116,
+      "level": 3,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        22,
+        23,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 117,
+      "level": 4,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        22,
+        27,
+        15,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 118,
+      "level": 5,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        22,
+        27,
+        15,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 119,
+      "level": 4,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        22,
+        27,
+        15,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 120,
+      "level": 3,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        22,
+        23,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 121,
+      "level": 2,
+      "DL_size": 10,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        10,
+        24,
+        22,
+        7,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 122,
+      "level": 2,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        18,
+        16,
+        5,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 123,
+      "level": 3,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        20,
+        17,
+        5,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 124,
+      "level": 4,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        19,
+        15,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 125,
+      "level": 3,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        18,
+        16,
+        5,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 126,
+      "level": 2,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        21,
+        19,
+        6,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 127,
+      "level": 2,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        13,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 128,
+      "level": 5,
+      "DL_size": 10,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        10,
+        24,
+        24,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 129,
+      "level": 3,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        18,
+        17,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 130,
+      "level": 3,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        18,
+        17,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 131,
+      "level": 3,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        18,
+        17,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 132,
+      "level": 5,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 136,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 138,
+      "level": 7,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 139,
+      "level": 3,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 140,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        16,
+        16,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 141,
+      "level": 5,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        19,
+        20,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 142,
+      "level": 3,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 143,
+      "level": 5,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        16,
+        17,
+        9,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 145,
+      "level": 2,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        19,
+        15,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 147,
+      "level": 3,
+      "DL_size": 11,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        11,
+        27,
+        25,
+        8,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 149,
+      "level": 2,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        18,
+        16,
+        5,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 151,
+      "level": 5,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 154,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        13,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 156,
+      "level": 2,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        19,
+        15,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 158,
+      "level": 7,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        16,
+        16,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 159,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        16,
+        16,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 160,
+      "level": 3,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 161,
+      "level": 7,
+      "DL_size": 10,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        10,
+        25,
+        26,
+        12,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 164,
+      "level": 7,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 168,
+      "level": 3,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        12,
+        10,
+        3,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 170,
+      "level": 2,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        9,
+        7,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 172,
+      "level": 12,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 173,
+      "level": 8,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 174,
+      "level": 8,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 175,
+      "level": 9,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 176,
+      "level": 8,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 177,
+      "level": 8,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 178,
+      "level": 4,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 179,
+      "level": 4,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 180,
+      "level": 5,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 181,
+      "level": 4,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 182,
+      "level": 4,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        16,
+        16,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 184,
+      "level": 4,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 185,
+      "level": 5,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 186,
+      "level": 6,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        22,
+        27,
+        15,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 187,
+      "level": 5,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 188,
+      "level": 4,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 189,
+      "level": 5,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        22,
+        23,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 190,
+      "level": 4,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 191,
+      "level": 16,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        10,
+        6,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 192,
+      "level": 8,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        10,
+        6,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 193,
+      "level": 8,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        10,
+        6,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 194,
+      "level": 9,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 195,
+      "level": 8,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        13,
+        9,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 196,
+      "level": 12,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        15,
+        10,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 201,
+      "level": 2,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        13,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 204,
+      "level": 3,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        18,
+        17,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 206,
+      "level": 5,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        22,
+        23,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 208,
+      "level": 2,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        18,
+        16,
+        5,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 209,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        13,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 210,
+      "level": 2,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        13,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 212,
+      "level": 2,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        13,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 214,
+      "level": 3,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        22,
+        23,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 216,
+      "level": 2,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        12,
+        10,
+        3,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 217,
+      "level": 2,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        18,
+        16,
+        5,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 218,
+      "level": 2,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        18,
+        16,
+        5,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 219,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        13,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 220,
+      "level": 4,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        17,
+        14,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 221,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        13,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 222,
+      "level": 2,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        13,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 223,
+      "level": 10,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        17,
+        11,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 224,
+      "level": 8,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        15,
+        10,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 225,
+      "level": 8,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        15,
+        10,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 226,
+      "level": 9,
+      "DL_size": 10,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        10,
+        25,
+        26,
+        12,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 227,
+      "level": 18,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        10,
+        6,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 228,
+      "level": 6,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        10,
+        6,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 229,
+      "level": 6,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        13,
+        9,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 230,
+      "level": 7,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 231,
+      "level": 6,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        10,
+        6,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 232,
+      "level": 4,
+      "DL_size": 10,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        10,
+        22,
+        19,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 233,
+      "level": 6,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        15,
+        10,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 235,
+      "level": 7,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 236,
+      "level": 8,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        25,
+        30,
+        16,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 237,
+      "level": 7,
+      "DL_size": 11,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        11,
+        26,
+        25,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 238,
+      "level": 26,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        8,
+        5,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 239,
+      "level": 12,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        8,
+        5,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 240,
+      "level": 12,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        8,
+        5,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 241,
+      "level": 13,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 242,
+      "level": 12,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        8,
+        5,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 243,
+      "level": 28,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        8,
+        5,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 244,
+      "level": 4,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        8,
+        5,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 245,
+      "level": 4,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        11,
+        8,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 246,
+      "level": 5,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 247,
+      "level": 4,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        8,
+        5,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 248,
+      "level": 18,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        11,
+        8,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 249,
+      "level": 4,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        11,
+        8,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 251,
+      "level": 4,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        11,
+        8,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 252,
+      "level": 5,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 253,
+      "level": 6,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        22,
+        27,
+        15,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 254,
+      "level": 5,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 255,
+      "level": 3,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        8,
+        5,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 256,
+      "level": 4,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        8,
+        5,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 257,
+      "level": 8,
+      "DL_size": 10,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        10,
+        25,
+        26,
+        12,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 258,
+      "level": 2,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        22,
+        23,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 259,
+      "level": 5,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        22,
+        23,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 260,
+      "level": 10,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        13,
+        9,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 261,
+      "level": 4,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        12,
+        8,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 262,
+      "level": 3,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        11,
+        8,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 264,
+      "level": 4,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        11,
+        8,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 265,
+      "level": 3,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        22,
+        23,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 266,
+      "level": 5,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 267,
+      "level": 5,
+      "DL_size": 10,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        10,
+        24,
+        24,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 268,
+      "level": 6,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        22,
+        27,
+        15,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 269,
+      "level": 7,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        22,
+        27,
+        15,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 270,
+      "level": 6,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        22,
+        27,
+        15,
+        3
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 271,
+      "level": 5,
+      "DL_size": 10,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        10,
+        24,
+        24,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 272,
+      "level": 18,
+      "DL_size": 4,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        4,
+        6,
+        4,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 273,
+      "level": 12,
+      "DL_size": 4,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        4,
+        6,
+        4,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 274,
+      "level": 12,
+      "DL_size": 4,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        4,
+        6,
+        4,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 275,
+      "level": 13,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 276,
+      "level": 12,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        9,
+        7,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 277,
+      "level": 10,
+      "DL_size": 4,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        4,
+        6,
+        4,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 278,
+      "level": 6,
+      "DL_size": 4,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        4,
+        6,
+        4,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 279,
+      "level": 6,
+      "DL_size": 4,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        4,
+        6,
+        4,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 280,
+      "level": 7,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 281,
+      "level": 6,
+      "DL_size": 4,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        4,
+        6,
+        4,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 282,
+      "level": 2,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        9,
+        7,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 283,
+      "level": 6,
+      "DL_size": 4,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        4,
+        6,
+        4,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 285,
+      "level": 6,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        9,
+        7,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 286,
+      "level": 7,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 287,
+      "level": 8,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 288,
+      "level": 7,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 289,
+      "level": 6,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        9,
+        7,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 290,
+      "level": 7,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 291,
+      "level": 6,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        9,
+        7,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 292,
+      "level": 28,
+      "DL_size": 3,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        3,
+        3,
+        1,
+        0,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 293,
+      "level": 14,
+      "DL_size": 3,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        3,
+        3,
+        1,
+        0,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 294,
+      "level": 14,
+      "DL_size": 3,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        3,
+        3,
+        1,
+        0,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 295,
+      "level": 15,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 296,
+      "level": 14,
+      "DL_size": 3,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        3,
+        3,
+        1,
+        0,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 297,
+      "level": 22,
+      "DL_size": 3,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        3,
+        3,
+        1,
+        0,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 298,
+      "level": 2,
+      "DL_size": 3,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        3,
+        3,
+        1,
+        0,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 299,
+      "level": 2,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        8,
+        5,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 300,
+      "level": 3,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 301,
+      "level": 2,
+      "DL_size": 3,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        3,
+        3,
+        1,
+        0,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 302,
+      "level": 16,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        8,
+        5,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 303,
+      "level": 2,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        14,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 305,
+      "level": 2,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        8,
+        5,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 306,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        16,
+        16,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 307,
+      "level": 4,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 308,
+      "level": 3,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 309,
+      "level": 2,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 310,
+      "level": 5,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        10,
+        10,
+        5,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 311,
+      "level": 2,
+      "DL_size": 3,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        3,
+        3,
+        1,
+        0,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 312,
+      "level": 18,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        8,
+        5,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 313,
+      "level": 8,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        8,
+        5,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 314,
+      "level": 8,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        8,
+        5,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 315,
+      "level": 9,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 316,
+      "level": 8,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        11,
+        8,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 317,
+      "level": 12,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        14,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 318,
+      "level": 2,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        14,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 320,
+      "level": 2,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        18,
+        17,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 322,
+      "level": 2,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        17,
+        14,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 324,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        16,
+        16,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 325,
+      "level": 2,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        11,
+        8,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 326,
+      "level": 9,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 327,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        16,
+        16,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 328,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        16,
+        16,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 329,
+      "level": 4,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 330,
+      "level": 5,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 331,
+      "level": 4,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 332,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        16,
+        16,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 334,
+      "level": 3,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 335,
+      "level": 4,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 336,
+      "level": 2,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        9,
+        7,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 337,
+      "level": 5,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        9,
+        7,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 338,
+      "level": 2,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        9,
+        7,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 339,
+      "level": 10,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        19,
+        16,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 340,
+      "level": 4,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        17,
+        15,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 341,
+      "level": 4,
+      "DL_size": 10,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        10,
+        22,
+        19,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 342,
+      "level": 7,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        17,
+        15,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 343,
+      "level": 8,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        17,
+        15,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 344,
+      "level": 2,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        16,
+        14,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 345,
+      "level": 3,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 347,
+      "level": 4,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        14,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 349,
+      "level": 3,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        22,
+        23,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 351,
+      "level": 3,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        12,
+        10,
+        3,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 352,
+      "level": 5,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        20,
+        22,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 354,
+      "level": 7,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        16,
+        16,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 355,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        16,
+        16,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 356,
+      "level": 2,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        16,
+        16,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 357,
+      "level": 3,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        18,
+        17,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 358,
+      "level": 3,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        22,
+        23,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 359,
+      "level": 2,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        14,
+        11,
+        3,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 360,
+      "level": 4,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 361,
+      "level": 4,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 362,
+      "level": 5,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 363,
+      "level": 6,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        19,
+        20,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 364,
+      "level": 5,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 365,
+      "level": 4,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 366,
+      "level": 4,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        17,
+        19,
+        10,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 367,
+      "level": 7,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        22,
+        23,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 368,
+      "level": 3,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        22,
+        23,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 369,
+      "level": 3,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        22,
+        23,
+        11,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 370,
+      "level": 4,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        9,
+        7,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 371,
+      "level": 2,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        21,
+        19,
+        6,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 373,
+      "level": 2,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        13,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 374,
+      "level": 2,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        13,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 376,
+      "level": 2,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        12,
+        10,
+        3,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 377,
+      "level": 3,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        12,
+        10,
+        3,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 378,
+      "level": 3,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        17,
+        14,
+        4,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 379,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        14,
+        11,
+        3,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 380,
+      "level": 4,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        13,
+        9,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 381,
+      "level": 5,
+      "DL_size": 8,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        8,
+        15,
+        10,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 382,
+      "level": 4,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        14,
+        11,
+        3,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 383,
+      "level": 3,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        11,
+        8,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 384,
+      "level": 3,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        9,
+        7,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 385,
+      "level": 4,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        14,
+        16,
+        9,
+        2
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 386,
+      "level": 2,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        12,
+        10,
+        3,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 387,
+      "level": 2,
+      "DL_size": 5,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        5,
+        9,
+        7,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 388,
+      "level": 3,
+      "DL_size": 4,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        4,
+        6,
+        4,
+        1,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 389,
+      "level": 2,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        12,
+        10,
+        3,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 390,
+      "level": 7,
+      "DL_size": 9,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        9,
+        20,
+        18,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 391,
+      "level": 5,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        11,
+        8,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 392,
+      "level": 5,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        11,
+        8,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 393,
+      "level": 5,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        11,
+        8,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 394,
+      "level": 11,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        16,
+        16,
+        7,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 395,
+      "level": 3,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        11,
+        8,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 396,
+      "level": 3,
+      "DL_size": 7,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        7,
+        15,
+        14,
+        6,
+        1
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 397,
+      "level": 3,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        11,
+        8,
+        2,
+        0
+      ],
+      "contractible": true
+    },
+    {
+      "alpha": 399,
+      "level": 3,
+      "DL_size": 6,
+      "bettis": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "n_simplices": [
+        6,
+        13,
+        13,
+        6,
+        1
+      ],
+      "contractible": true
+    }
+  ]
+}

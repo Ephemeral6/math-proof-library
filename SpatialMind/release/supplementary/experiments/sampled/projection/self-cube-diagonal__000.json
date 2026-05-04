@@ -1,0 +1,32 @@
+{
+ "domain": "projection",
+ "condition": "000",
+ "primitives": {
+  "relation": false,
+  "transform": false,
+  "contrastive": false
+ },
+ "case_id": "self-cube-diagonal",
+ "case_data": {
+  "case_id": "self-cube-diagonal",
+  "summary_delta": {
+   "dimension_a": -1,
+   "edge_crossings_a": {
+    "pre": null,
+    "post": 2
+   },
+   "diameter_a": -0.09905699999999995,
+   "diameter_b": 0.0,
+   "n_points_b": 0,
+   "n_points_a": 0,
+   "dimension_b": 0
+  },
+  "metadata": {
+   "case_type": "self_projection",
+   "object": "cube",
+   "plane": "diagonal",
+   "n_points": 8,
+   "n_edges": 12
+  }
+ }
+}

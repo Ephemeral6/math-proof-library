@@ -1,0 +1,259 @@
+{
+ "domain": "projection",
+ "condition": "0TC",
+ "primitives": {
+  "relation": false,
+  "transform": true,
+  "contrastive": true
+ },
+ "case_id": "cross-tetrahedron-yzvsdiagonal",
+ "case_data": {
+  "case_id": "cross-tetrahedron-yzvsdiagonal",
+  "summary_delta": {
+   "dimension_a": -1,
+   "edge_crossings_a": {
+    "pre": null,
+    "post": 1
+   },
+   "edge_crossings_b": 0,
+   "diameter_a": 0.0,
+   "diameter_b": 0.0,
+   "n_points_b": 0,
+   "n_points_a": 0,
+   "dimension_b": 0
+  },
+  "metadata": {
+   "case_type": "cross_projection",
+   "object": "tetrahedron",
+   "plane_a": "yz",
+   "plane_b": "diagonal",
+   "n_points": 4,
+   "n_edges": 6
+  },
+  "transform_trace": {
+   "operation_name": "projection",
+   "operation_params": {
+    "plane": "yz",
+    "dropped_axis": "x"
+   },
+   "before_state": {
+    "dimension": 3,
+    "n_points": 4,
+    "diameter": 2.828427
+   },
+   "after_state": {
+    "dimension": 2,
+    "n_points": 4,
+    "diameter": 2.828427,
+    "edge_crossings": 1
+   },
+   "delta": {
+    "dimension_lost": 1,
+    "n_point_collisions": 0,
+    "n_edge_crossings_introduced": 1,
+    "fraction_distances_preserved": 0.3333,
+    "distances_total": 6,
+    "distances_preserved": 2,
+    "diameter_change": 0.0
+   },
+   "region_affected": {
+    "collided_point_pairs": [],
+    "most_distorted_pairs": [
+     {
+      "pair": [
+       1,
+       2
+      ],
+      "dist_3d": 2.828427,
+      "dist_2d": 2.828427,
+      "ratio": 1.0,
+      "preserved": true
+     },
+     {
+      "pair": [
+       0,
+       1
+      ],
+      "dist_3d": 2.828427,
+      "dist_2d": 2.0,
+      "ratio": 0.7071,
+      "preserved": false
+     },
+     {
+      "pair": [
+       0,
+       2
+      ],
+      "dist_3d": 2.828427,
+      "dist_2d": 2.0,
+      "ratio": 0.7071,
+      "preserved": false
+     },
+     {
+      "pair": [
+       1,
+       3
+      ],
+      "dist_3d": 2.828427,
+      "dist_2d": 2.0,
+      "ratio": 0.7071,
+      "preserved": false
+     },
+     {
+      "pair": [
+       2,
+       3
+      ],
+      "dist_3d": 2.828427,
+      "dist_2d": 2.0,
+      "ratio": 0.7071,
+      "preserved": false
+     }
+    ],
+    "n_collisions": 0,
+    "n_crossings": 1
+   },
+   "sub_steps": []
+  },
+  "reference_in_transform_region": {
+   "collided_point_pairs": [],
+   "most_distorted_pairs": [
+    {
+     "pair": [
+      1,
+      2
+     ],
+     "dist_3d": 2.828427,
+     "dist_2d": 2.828427,
+     "ratio": 1.0,
+     "preserved": true
+    },
+    {
+     "pair": [
+      0,
+      1
+     ],
+     "dist_3d": 2.828427,
+     "dist_2d": 2.0,
+     "ratio": 0.7071,
+     "preserved": false
+    },
+    {
+     "pair": [
+      0,
+      2
+     ],
+     "dist_3d": 2.828427,
+     "dist_2d": 2.0,
+     "ratio": 0.7071,
+     "preserved": false
+    },
+    {
+     "pair": [
+      1,
+      3
+     ],
+     "dist_3d": 2.828427,
+     "dist_2d": 2.0,
+     "ratio": 0.7071,
+     "preserved": false
+    },
+    {
+     "pair": [
+      2,
+      3
+     ],
+     "dist_3d": 2.828427,
+     "dist_2d": 2.0,
+     "ratio": 0.7071,
+     "preserved": false
+    }
+   ],
+   "n_collisions": 0,
+   "n_crossings": 1
+  }
+ },
+ "counterfactual": [
+  {
+   "strategy": "boundary_relaxation",
+   "original_condition": {
+    "drop_axis": true,
+    "target_dimension": 2,
+    "plane": "xy"
+   },
+   "modified_condition": {
+    "drop_axis": false,
+    "target_dimension": 3,
+    "plane": "identity"
+   },
+   "original_result": {
+    "fraction_distances_preserved": 0.4286,
+    "n_point_collisions": 4
+   },
+   "counterfactual_result": {
+    "fraction_distances_preserved": 1.0,
+    "n_point_collisions": 0
+   },
+   "delta": {
+    "fraction_change": 0.5714,
+    "collision_change": -4
+   },
+   "condition_is_critical": true,
+   "explanation": "No-projection identity preserves 100% of distances vs projection's 43%. Critical: dimension reduction is the cause of information loss."
+  },
+  {
+   "strategy": "condition_removal",
+   "original_condition": {
+    "preserve_n_points": true,
+    "n_points": 8,
+    "edge_crossings": 8
+   },
+   "modified_condition": {
+    "preserve_n_points": false,
+    "n_points": 4,
+    "edge_crossings": 0
+   },
+   "original_result": {
+    "n_points": 8,
+    "edge_crossings": 8
+   },
+   "counterfactual_result": {
+    "n_points": 4,
+    "edge_crossings": 0
+   },
+   "delta": {
+    "n_points_change": -4,
+    "edge_crossings_change": -8
+   },
+   "condition_is_critical": true,
+   "explanation": "Deduping collided points: 8 -> 4 points, crossings 8 -> 0. Critical: collisions encode 3D structure that dedupe destroys."
+  },
+  {
+   "strategy": "operation_perturbation",
+   "original_condition": {
+    "operation": "orthogonal_projection",
+    "axis_scale": 0.0,
+    "plane": "xy"
+   },
+   "modified_condition": {
+    "operation": "squash",
+    "axis_scale": 0.5,
+    "plane": "xy"
+   },
+   "original_result": {
+    "fraction_distances_preserved": 0.4286,
+    "n_point_collisions": 4
+   },
+   "counterfactual_result": {
+    "fraction_distances_preserved": 0.4286,
+    "n_point_collisions": 0
+   },
+   "delta": {
+    "fraction_change": 0.0,
+    "collision_change": -4
+   },
+   "condition_is_critical": true,
+   "explanation": "Partial squash (×0.5) preserves 43% vs full projection's 43%; collisions 4 -> 0. Critical: zeroing the axis is strictly more lossy than scaling."
+  }
+ ]
+}

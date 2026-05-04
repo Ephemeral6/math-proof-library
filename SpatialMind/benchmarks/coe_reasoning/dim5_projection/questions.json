@@ -1,0 +1,2539 @@
+{
+  "benchmark": "coe_reasoning",
+  "dimension": 5,
+  "dimension_name": "projection",
+  "n_questions": 16,
+  "conditions": [
+    "baseline",
+    "cot",
+    "coe_r",
+    "coe_ctr"
+  ],
+  "scoring": "0-4 per question via grade_coe_reasoning.py",
+  "questions": [
+    {
+      "question_id": "dim5_q01",
+      "type": "projection_loss",
+      "stem": "在三维空间中给定一个由 8 个顶点和 12 条棱组成的对象（preset='cube'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？",
+          "answer_type": "integer",
+          "answer": 4
+        },
+        {
+          "label": "(b)",
+          "text": "投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？",
+          "answer_type": "integer",
+          "answer": 8
+        },
+        {
+          "label": "(c)",
+          "text": "在共 28 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？",
+          "answer_type": "integer",
+          "answer": 12
+        }
+      ],
+      "ground_truth": {
+        "preset": "cube",
+        "plane": "xy",
+        "n_collisions": 4,
+        "n_crossings": 8,
+        "n_pairs_total": 28,
+        "n_pairs_preserved": 12,
+        "fraction_preserved": 0.4286
+      },
+      "coe_data": {
+        "R": {
+          "n_points": 8,
+          "dimension": 3,
+          "points_3d": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              7
+            ]
+          ],
+          "note": "Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself."
+        },
+        "T": {
+          "operation": "projection",
+          "plane": "xy",
+          "dropped_axis": "z",
+          "before": {
+            "dimension": 3,
+            "n_points": 8,
+            "diameter": 1.732051
+          },
+          "after": {
+            "dimension": 2,
+            "n_points": 8,
+            "diameter": 1.414214
+          },
+          "delta": {
+            "n_point_collisions": 4,
+            "n_edge_crossings_introduced": 8,
+            "diameter_change": -0.317837
+          },
+          "note": "Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D."
+        },
+        "C": {
+          "alternative_projection": {
+            "plane": "diagonal",
+            "n_collisions": 1,
+            "n_crossings": 2,
+            "diameter_after": 1.632994
+          },
+          "no_projection_baseline": {
+            "description": "Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear."
+          },
+          "note": "Compare info loss across projections to gauge which plane is least lossy for this object."
+        }
+      },
+      "prompts": {
+        "baseline": "在三维空间中给定一个由 8 个顶点和 12 条棱组成的对象（preset='cube'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n请回答以下子问题：\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 28 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "在三维空间中给定一个由 8 个顶点和 12 条棱组成的对象（preset='cube'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 28 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "在三维空间中给定一个由 8 个顶点和 12 条棱组成的对象（preset='cube'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_points\": 8,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      0,\n      0,\n      0\n    ],\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      1,\n      1,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      1,\n      0,\n      1\n    ],\n    [\n      1,\n      1,\n      1\n    ],\n    [\n      0,\n      1,\n      1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      0\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      7,\n      4\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      6\n    ],\n    [\n      3,\n      7\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 28 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "在三维空间中给定一个由 8 个顶点和 12 条棱组成的对象（preset='cube'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_points\": 8,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      0,\n      0,\n      0\n    ],\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      1,\n      1,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      1,\n      0,\n      1\n    ],\n    [\n      1,\n      1,\n      1\n    ],\n    [\n      0,\n      1,\n      1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      0\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      7,\n      4\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      6\n    ],\n    [\n      3,\n      7\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"projection\",\n  \"plane\": \"xy\",\n  \"dropped_axis\": \"z\",\n  \"before\": {\n    \"dimension\": 3,\n    \"n_points\": 8,\n    \"diameter\": 1.732051\n  },\n  \"after\": {\n    \"dimension\": 2,\n    \"n_points\": 8,\n    \"diameter\": 1.414214\n  },\n  \"delta\": {\n    \"n_point_collisions\": 4,\n    \"n_edge_crossings_introduced\": 8,\n    \"diameter_change\": -0.317837\n  },\n  \"note\": \"Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_projection\": {\n    \"plane\": \"diagonal\",\n    \"n_collisions\": 1,\n    \"n_crossings\": 2,\n    \"diameter_after\": 1.632994\n  },\n  \"no_projection_baseline\": {\n    \"description\": \"Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear.\"\n  },\n  \"note\": \"Compare info loss across projections to gauge which plane is least lossy for this object.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 28 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim5_q02",
+      "type": "projection_loss",
+      "stem": "在三维空间中给定一个由 8 个顶点和 12 条棱组成的对象（preset='cube'）。现在把它沿 diagonal 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "投影到 diagonal 平面后，多少对不同的 3D 顶点在 2D 中重合？",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "投影到 diagonal 平面后，多少对原本不相交的棱在 2D 中产生交叉？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(c)",
+          "text": "在共 28 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？",
+          "answer_type": "integer",
+          "answer": 6
+        }
+      ],
+      "ground_truth": {
+        "preset": "cube",
+        "plane": "diagonal",
+        "n_collisions": 1,
+        "n_crossings": 2,
+        "n_pairs_total": 28,
+        "n_pairs_preserved": 6,
+        "fraction_preserved": 0.2143
+      },
+      "coe_data": {
+        "R": {
+          "n_points": 8,
+          "dimension": 3,
+          "points_3d": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              7
+            ]
+          ],
+          "note": "Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself."
+        },
+        "T": {
+          "operation": "projection",
+          "plane": "diagonal",
+          "dropped_axis": "(1,1,1)",
+          "before": {
+            "dimension": 3,
+            "n_points": 8,
+            "diameter": 1.732051
+          },
+          "after": {
+            "dimension": 2,
+            "n_points": 8,
+            "diameter": 1.632994
+          },
+          "delta": {
+            "n_point_collisions": 1,
+            "n_edge_crossings_introduced": 2,
+            "diameter_change": -0.099057
+          },
+          "note": "Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D."
+        },
+        "C": {
+          "alternative_projection": {
+            "plane": "xy",
+            "n_collisions": 4,
+            "n_crossings": 8,
+            "diameter_after": 1.414214
+          },
+          "no_projection_baseline": {
+            "description": "Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear."
+          },
+          "note": "Compare info loss across projections to gauge which plane is least lossy for this object."
+        }
+      },
+      "prompts": {
+        "baseline": "在三维空间中给定一个由 8 个顶点和 12 条棱组成的对象（preset='cube'）。现在把它沿 diagonal 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n请回答以下子问题：\n  (a) 投影到 diagonal 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 diagonal 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 28 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "在三维空间中给定一个由 8 个顶点和 12 条棱组成的对象（preset='cube'）。现在把它沿 diagonal 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 投影到 diagonal 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 diagonal 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 28 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "在三维空间中给定一个由 8 个顶点和 12 条棱组成的对象（preset='cube'）。现在把它沿 diagonal 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_points\": 8,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      0,\n      0,\n      0\n    ],\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      1,\n      1,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      1,\n      0,\n      1\n    ],\n    [\n      1,\n      1,\n      1\n    ],\n    [\n      0,\n      1,\n      1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      0\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      7,\n      4\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      6\n    ],\n    [\n      3,\n      7\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 投影到 diagonal 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 diagonal 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 28 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "在三维空间中给定一个由 8 个顶点和 12 条棱组成的对象（preset='cube'）。现在把它沿 diagonal 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_points\": 8,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      0,\n      0,\n      0\n    ],\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      1,\n      1,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      1,\n      0,\n      1\n    ],\n    [\n      1,\n      1,\n      1\n    ],\n    [\n      0,\n      1,\n      1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      0\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      7,\n      4\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      6\n    ],\n    [\n      3,\n      7\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"projection\",\n  \"plane\": \"diagonal\",\n  \"dropped_axis\": \"(1,1,1)\",\n  \"before\": {\n    \"dimension\": 3,\n    \"n_points\": 8,\n    \"diameter\": 1.732051\n  },\n  \"after\": {\n    \"dimension\": 2,\n    \"n_points\": 8,\n    \"diameter\": 1.632994\n  },\n  \"delta\": {\n    \"n_point_collisions\": 1,\n    \"n_edge_crossings_introduced\": 2,\n    \"diameter_change\": -0.099057\n  },\n  \"note\": \"Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_projection\": {\n    \"plane\": \"xy\",\n    \"n_collisions\": 4,\n    \"n_crossings\": 8,\n    \"diameter_after\": 1.414214\n  },\n  \"no_projection_baseline\": {\n    \"description\": \"Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear.\"\n  },\n  \"note\": \"Compare info loss across projections to gauge which plane is least lossy for this object.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 投影到 diagonal 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 diagonal 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 28 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim5_q03",
+      "type": "projection_loss",
+      "stem": "在三维空间中给定一个由 4 个顶点和 6 条棱组成的对象（preset='tetrahedron'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "在共 6 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？",
+          "answer_type": "integer",
+          "answer": 2
+        }
+      ],
+      "ground_truth": {
+        "preset": "tetrahedron",
+        "plane": "xy",
+        "n_collisions": 0,
+        "n_crossings": 1,
+        "n_pairs_total": 6,
+        "n_pairs_preserved": 2,
+        "fraction_preserved": 0.3333
+      },
+      "coe_data": {
+        "R": {
+          "n_points": 4,
+          "dimension": 3,
+          "points_3d": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              -1,
+              -1,
+              1
+            ],
+            [
+              -1,
+              1,
+              -1
+            ],
+            [
+              1,
+              -1,
+              -1
+            ]
+          ],
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "note": "Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself."
+        },
+        "T": {
+          "operation": "projection",
+          "plane": "xy",
+          "dropped_axis": "z",
+          "before": {
+            "dimension": 3,
+            "n_points": 4,
+            "diameter": 2.828427
+          },
+          "after": {
+            "dimension": 2,
+            "n_points": 4,
+            "diameter": 2.828427
+          },
+          "delta": {
+            "n_point_collisions": 0,
+            "n_edge_crossings_introduced": 1,
+            "diameter_change": 0.0
+          },
+          "note": "Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D."
+        },
+        "C": {
+          "alternative_projection": {
+            "plane": "xz",
+            "n_collisions": 0,
+            "n_crossings": 1,
+            "diameter_after": 2.828427
+          },
+          "no_projection_baseline": {
+            "description": "Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear."
+          },
+          "note": "Compare info loss across projections to gauge which plane is least lossy for this object."
+        }
+      },
+      "prompts": {
+        "baseline": "在三维空间中给定一个由 4 个顶点和 6 条棱组成的对象（preset='tetrahedron'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n请回答以下子问题：\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 6 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "在三维空间中给定一个由 4 个顶点和 6 条棱组成的对象（preset='tetrahedron'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 6 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "在三维空间中给定一个由 4 个顶点和 6 条棱组成的对象（preset='tetrahedron'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_points\": 4,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      1,\n      1\n    ],\n    [\n      -1,\n      -1,\n      1\n    ],\n    [\n      -1,\n      1,\n      -1\n    ],\n    [\n      1,\n      -1,\n      -1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      2,\n      3\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 6 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "在三维空间中给定一个由 4 个顶点和 6 条棱组成的对象（preset='tetrahedron'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_points\": 4,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      1,\n      1\n    ],\n    [\n      -1,\n      -1,\n      1\n    ],\n    [\n      -1,\n      1,\n      -1\n    ],\n    [\n      1,\n      -1,\n      -1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      2,\n      3\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"projection\",\n  \"plane\": \"xy\",\n  \"dropped_axis\": \"z\",\n  \"before\": {\n    \"dimension\": 3,\n    \"n_points\": 4,\n    \"diameter\": 2.828427\n  },\n  \"after\": {\n    \"dimension\": 2,\n    \"n_points\": 4,\n    \"diameter\": 2.828427\n  },\n  \"delta\": {\n    \"n_point_collisions\": 0,\n    \"n_edge_crossings_introduced\": 1,\n    \"diameter_change\": 0.0\n  },\n  \"note\": \"Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_projection\": {\n    \"plane\": \"xz\",\n    \"n_collisions\": 0,\n    \"n_crossings\": 1,\n    \"diameter_after\": 2.828427\n  },\n  \"no_projection_baseline\": {\n    \"description\": \"Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear.\"\n  },\n  \"note\": \"Compare info loss across projections to gauge which plane is least lossy for this object.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 6 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim5_q04",
+      "type": "projection_loss",
+      "stem": "在三维空间中给定一个由 4 个顶点和 6 条棱组成的对象（preset='tetrahedron'）。现在把它沿 xz 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "投影到 xz 平面后，多少对不同的 3D 顶点在 2D 中重合？",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "投影到 xz 平面后，多少对原本不相交的棱在 2D 中产生交叉？",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "在共 6 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？",
+          "answer_type": "integer",
+          "answer": 2
+        }
+      ],
+      "ground_truth": {
+        "preset": "tetrahedron",
+        "plane": "xz",
+        "n_collisions": 0,
+        "n_crossings": 1,
+        "n_pairs_total": 6,
+        "n_pairs_preserved": 2,
+        "fraction_preserved": 0.3333
+      },
+      "coe_data": {
+        "R": {
+          "n_points": 4,
+          "dimension": 3,
+          "points_3d": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              -1,
+              -1,
+              1
+            ],
+            [
+              -1,
+              1,
+              -1
+            ],
+            [
+              1,
+              -1,
+              -1
+            ]
+          ],
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "note": "Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself."
+        },
+        "T": {
+          "operation": "projection",
+          "plane": "xz",
+          "dropped_axis": "y",
+          "before": {
+            "dimension": 3,
+            "n_points": 4,
+            "diameter": 2.828427
+          },
+          "after": {
+            "dimension": 2,
+            "n_points": 4,
+            "diameter": 2.828427
+          },
+          "delta": {
+            "n_point_collisions": 0,
+            "n_edge_crossings_introduced": 1,
+            "diameter_change": 0.0
+          },
+          "note": "Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D."
+        },
+        "C": {
+          "alternative_projection": {
+            "plane": "diagonal",
+            "n_collisions": 0,
+            "n_crossings": 0,
+            "diameter_after": 2.828428
+          },
+          "no_projection_baseline": {
+            "description": "Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear."
+          },
+          "note": "Compare info loss across projections to gauge which plane is least lossy for this object."
+        }
+      },
+      "prompts": {
+        "baseline": "在三维空间中给定一个由 4 个顶点和 6 条棱组成的对象（preset='tetrahedron'）。现在把它沿 xz 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n请回答以下子问题：\n  (a) 投影到 xz 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xz 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 6 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "在三维空间中给定一个由 4 个顶点和 6 条棱组成的对象（preset='tetrahedron'）。现在把它沿 xz 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 投影到 xz 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xz 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 6 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "在三维空间中给定一个由 4 个顶点和 6 条棱组成的对象（preset='tetrahedron'）。现在把它沿 xz 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_points\": 4,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      1,\n      1\n    ],\n    [\n      -1,\n      -1,\n      1\n    ],\n    [\n      -1,\n      1,\n      -1\n    ],\n    [\n      1,\n      -1,\n      -1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      2,\n      3\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 投影到 xz 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xz 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 6 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "在三维空间中给定一个由 4 个顶点和 6 条棱组成的对象（preset='tetrahedron'）。现在把它沿 xz 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_points\": 4,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      1,\n      1\n    ],\n    [\n      -1,\n      -1,\n      1\n    ],\n    [\n      -1,\n      1,\n      -1\n    ],\n    [\n      1,\n      -1,\n      -1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      2,\n      3\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"projection\",\n  \"plane\": \"xz\",\n  \"dropped_axis\": \"y\",\n  \"before\": {\n    \"dimension\": 3,\n    \"n_points\": 4,\n    \"diameter\": 2.828427\n  },\n  \"after\": {\n    \"dimension\": 2,\n    \"n_points\": 4,\n    \"diameter\": 2.828427\n  },\n  \"delta\": {\n    \"n_point_collisions\": 0,\n    \"n_edge_crossings_introduced\": 1,\n    \"diameter_change\": 0.0\n  },\n  \"note\": \"Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_projection\": {\n    \"plane\": \"diagonal\",\n    \"n_collisions\": 0,\n    \"n_crossings\": 0,\n    \"diameter_after\": 2.828428\n  },\n  \"no_projection_baseline\": {\n    \"description\": \"Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear.\"\n  },\n  \"note\": \"Compare info loss across projections to gauge which plane is least lossy for this object.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 投影到 xz 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xz 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 6 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim5_q05",
+      "type": "projection_loss",
+      "stem": "在三维空间中给定一个由 6 个顶点和 12 条棱组成的对象（preset='octahedron'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "在共 15 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？",
+          "answer_type": "integer",
+          "answer": 6
+        }
+      ],
+      "ground_truth": {
+        "preset": "octahedron",
+        "plane": "xy",
+        "n_collisions": 1,
+        "n_crossings": 0,
+        "n_pairs_total": 15,
+        "n_pairs_preserved": 6,
+        "fraction_preserved": 0.4
+      },
+      "coe_data": {
+        "R": {
+          "n_points": 6,
+          "dimension": 3,
+          "points_3d": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              -1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              -1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              -1
+            ]
+          ],
+          "edges": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "note": "Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself."
+        },
+        "T": {
+          "operation": "projection",
+          "plane": "xy",
+          "dropped_axis": "z",
+          "before": {
+            "dimension": 3,
+            "n_points": 6,
+            "diameter": 2.0
+          },
+          "after": {
+            "dimension": 2,
+            "n_points": 6,
+            "diameter": 2.0
+          },
+          "delta": {
+            "n_point_collisions": 1,
+            "n_edge_crossings_introduced": 0,
+            "diameter_change": 0.0
+          },
+          "note": "Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D."
+        },
+        "C": {
+          "alternative_projection": {
+            "plane": "diagonal",
+            "n_collisions": 0,
+            "n_crossings": 6,
+            "diameter_after": 1.632994
+          },
+          "no_projection_baseline": {
+            "description": "Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear."
+          },
+          "note": "Compare info loss across projections to gauge which plane is least lossy for this object."
+        }
+      },
+      "prompts": {
+        "baseline": "在三维空间中给定一个由 6 个顶点和 12 条棱组成的对象（preset='octahedron'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n请回答以下子问题：\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 15 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "在三维空间中给定一个由 6 个顶点和 12 条棱组成的对象（preset='octahedron'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 15 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "在三维空间中给定一个由 6 个顶点和 12 条棱组成的对象（preset='octahedron'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_points\": 6,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      -1,\n      0,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      0,\n      -1,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      0,\n      0,\n      -1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      0,\n      5\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      4\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      5\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 15 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "在三维空间中给定一个由 6 个顶点和 12 条棱组成的对象（preset='octahedron'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_points\": 6,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      -1,\n      0,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      0,\n      -1,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      0,\n      0,\n      -1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      0,\n      5\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      4\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      5\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"projection\",\n  \"plane\": \"xy\",\n  \"dropped_axis\": \"z\",\n  \"before\": {\n    \"dimension\": 3,\n    \"n_points\": 6,\n    \"diameter\": 2.0\n  },\n  \"after\": {\n    \"dimension\": 2,\n    \"n_points\": 6,\n    \"diameter\": 2.0\n  },\n  \"delta\": {\n    \"n_point_collisions\": 1,\n    \"n_edge_crossings_introduced\": 0,\n    \"diameter_change\": 0.0\n  },\n  \"note\": \"Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_projection\": {\n    \"plane\": \"diagonal\",\n    \"n_collisions\": 0,\n    \"n_crossings\": 6,\n    \"diameter_after\": 1.632994\n  },\n  \"no_projection_baseline\": {\n    \"description\": \"Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear.\"\n  },\n  \"note\": \"Compare info loss across projections to gauge which plane is least lossy for this object.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 15 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim5_q06",
+      "type": "projection_loss",
+      "stem": "在三维空间中给定一个由 6 个顶点和 12 条棱组成的对象（preset='octahedron'）。现在把它沿 diagonal 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "投影到 diagonal 平面后，多少对不同的 3D 顶点在 2D 中重合？",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "投影到 diagonal 平面后，多少对原本不相交的棱在 2D 中产生交叉？",
+          "answer_type": "integer",
+          "answer": 6
+        },
+        {
+          "label": "(c)",
+          "text": "在共 15 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？",
+          "answer_type": "integer",
+          "answer": 6
+        }
+      ],
+      "ground_truth": {
+        "preset": "octahedron",
+        "plane": "diagonal",
+        "n_collisions": 0,
+        "n_crossings": 6,
+        "n_pairs_total": 15,
+        "n_pairs_preserved": 6,
+        "fraction_preserved": 0.4
+      },
+      "coe_data": {
+        "R": {
+          "n_points": 6,
+          "dimension": 3,
+          "points_3d": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              -1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              -1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              -1
+            ]
+          ],
+          "edges": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "note": "Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself."
+        },
+        "T": {
+          "operation": "projection",
+          "plane": "diagonal",
+          "dropped_axis": "(1,1,1)",
+          "before": {
+            "dimension": 3,
+            "n_points": 6,
+            "diameter": 2.0
+          },
+          "after": {
+            "dimension": 2,
+            "n_points": 6,
+            "diameter": 1.632994
+          },
+          "delta": {
+            "n_point_collisions": 0,
+            "n_edge_crossings_introduced": 6,
+            "diameter_change": -0.367006
+          },
+          "note": "Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D."
+        },
+        "C": {
+          "alternative_projection": {
+            "plane": "xy",
+            "n_collisions": 1,
+            "n_crossings": 0,
+            "diameter_after": 2.0
+          },
+          "no_projection_baseline": {
+            "description": "Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear."
+          },
+          "note": "Compare info loss across projections to gauge which plane is least lossy for this object."
+        }
+      },
+      "prompts": {
+        "baseline": "在三维空间中给定一个由 6 个顶点和 12 条棱组成的对象（preset='octahedron'）。现在把它沿 diagonal 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n请回答以下子问题：\n  (a) 投影到 diagonal 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 diagonal 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 15 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "在三维空间中给定一个由 6 个顶点和 12 条棱组成的对象（preset='octahedron'）。现在把它沿 diagonal 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 投影到 diagonal 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 diagonal 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 15 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "在三维空间中给定一个由 6 个顶点和 12 条棱组成的对象（preset='octahedron'）。现在把它沿 diagonal 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_points\": 6,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      -1,\n      0,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      0,\n      -1,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      0,\n      0,\n      -1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      0,\n      5\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      4\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      5\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 投影到 diagonal 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 diagonal 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 15 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "在三维空间中给定一个由 6 个顶点和 12 条棱组成的对象（preset='octahedron'）。现在把它沿 diagonal 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_points\": 6,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      -1,\n      0,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      0,\n      -1,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      0,\n      0,\n      -1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      0,\n      5\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      4\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      5\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"projection\",\n  \"plane\": \"diagonal\",\n  \"dropped_axis\": \"(1,1,1)\",\n  \"before\": {\n    \"dimension\": 3,\n    \"n_points\": 6,\n    \"diameter\": 2.0\n  },\n  \"after\": {\n    \"dimension\": 2,\n    \"n_points\": 6,\n    \"diameter\": 1.632994\n  },\n  \"delta\": {\n    \"n_point_collisions\": 0,\n    \"n_edge_crossings_introduced\": 6,\n    \"diameter_change\": -0.367006\n  },\n  \"note\": \"Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_projection\": {\n    \"plane\": \"xy\",\n    \"n_collisions\": 1,\n    \"n_crossings\": 0,\n    \"diameter_after\": 2.0\n  },\n  \"no_projection_baseline\": {\n    \"description\": \"Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear.\"\n  },\n  \"note\": \"Compare info loss across projections to gauge which plane is least lossy for this object.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 投影到 diagonal 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 diagonal 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 15 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim5_q07",
+      "type": "projection_loss",
+      "stem": "在三维空间中给定一个由 6 个顶点和 9 条棱组成的对象（preset='triangular_prism'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？",
+          "answer_type": "integer",
+          "answer": 3
+        },
+        {
+          "label": "(b)",
+          "text": "投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？",
+          "answer_type": "integer",
+          "answer": 6
+        },
+        {
+          "label": "(c)",
+          "text": "在共 15 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？",
+          "answer_type": "integer",
+          "answer": 6
+        }
+      ],
+      "ground_truth": {
+        "preset": "triangular_prism",
+        "plane": "xy",
+        "n_collisions": 3,
+        "n_crossings": 6,
+        "n_pairs_total": 15,
+        "n_pairs_preserved": 6,
+        "fraction_preserved": 0.4
+      },
+      "coe_data": {
+        "R": {
+          "n_points": 6,
+          "dimension": 3,
+          "points_3d": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0.5,
+              0.866,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              0.5,
+              0.866,
+              1
+            ]
+          ],
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              5
+            ]
+          ],
+          "note": "Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself."
+        },
+        "T": {
+          "operation": "projection",
+          "plane": "xy",
+          "dropped_axis": "z",
+          "before": {
+            "dimension": 3,
+            "n_points": 6,
+            "diameter": 1.414214
+          },
+          "after": {
+            "dimension": 2,
+            "n_points": 6,
+            "diameter": 1.0
+          },
+          "delta": {
+            "n_point_collisions": 3,
+            "n_edge_crossings_introduced": 6,
+            "diameter_change": -0.414214
+          },
+          "note": "Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D."
+        },
+        "C": {
+          "alternative_projection": {
+            "plane": "xz",
+            "n_collisions": 0,
+            "n_crossings": 1,
+            "diameter_after": 1.414214
+          },
+          "no_projection_baseline": {
+            "description": "Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear."
+          },
+          "note": "Compare info loss across projections to gauge which plane is least lossy for this object."
+        }
+      },
+      "prompts": {
+        "baseline": "在三维空间中给定一个由 6 个顶点和 9 条棱组成的对象（preset='triangular_prism'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n请回答以下子问题：\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 15 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "在三维空间中给定一个由 6 个顶点和 9 条棱组成的对象（preset='triangular_prism'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 15 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "在三维空间中给定一个由 6 个顶点和 9 条棱组成的对象（preset='triangular_prism'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_points\": 6,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      0,\n      0,\n      0\n    ],\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      0.5,\n      0.866,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      1,\n      0,\n      1\n    ],\n    [\n      0.5,\n      0.866,\n      1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      0\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      3\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      2,\n      5\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 15 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "在三维空间中给定一个由 6 个顶点和 9 条棱组成的对象（preset='triangular_prism'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_points\": 6,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      0,\n      0,\n      0\n    ],\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      0.5,\n      0.866,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      1,\n      0,\n      1\n    ],\n    [\n      0.5,\n      0.866,\n      1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      0\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      3\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      2,\n      5\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"projection\",\n  \"plane\": \"xy\",\n  \"dropped_axis\": \"z\",\n  \"before\": {\n    \"dimension\": 3,\n    \"n_points\": 6,\n    \"diameter\": 1.414214\n  },\n  \"after\": {\n    \"dimension\": 2,\n    \"n_points\": 6,\n    \"diameter\": 1.0\n  },\n  \"delta\": {\n    \"n_point_collisions\": 3,\n    \"n_edge_crossings_introduced\": 6,\n    \"diameter_change\": -0.414214\n  },\n  \"note\": \"Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_projection\": {\n    \"plane\": \"xz\",\n    \"n_collisions\": 0,\n    \"n_crossings\": 1,\n    \"diameter_after\": 1.414214\n  },\n  \"no_projection_baseline\": {\n    \"description\": \"Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear.\"\n  },\n  \"note\": \"Compare info loss across projections to gauge which plane is least lossy for this object.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 15 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim5_q08",
+      "type": "projection_loss",
+      "stem": "在三维空间中给定一个由 8 个顶点和 16 条棱组成的对象（preset='square_antiprism'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(b)",
+          "text": "投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？",
+          "answer_type": "integer",
+          "answer": 8
+        },
+        {
+          "label": "(c)",
+          "text": "在共 28 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？",
+          "answer_type": "integer",
+          "answer": 12
+        }
+      ],
+      "ground_truth": {
+        "preset": "square_antiprism",
+        "plane": "xy",
+        "n_collisions": 0,
+        "n_crossings": 8,
+        "n_pairs_total": 28,
+        "n_pairs_preserved": 12,
+        "fraction_preserved": 0.4286
+      },
+      "coe_data": {
+        "R": {
+          "n_points": 8,
+          "dimension": 3,
+          "points_3d": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              -1,
+              0,
+              0
+            ],
+            [
+              0,
+              -1,
+              0
+            ],
+            [
+              0.707,
+              0.707,
+              1
+            ],
+            [
+              -0.707,
+              0.707,
+              1
+            ],
+            [
+              -0.707,
+              -0.707,
+              1
+            ],
+            [
+              0.707,
+              -0.707,
+              1
+            ]
+          ],
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              3,
+              7
+            ]
+          ],
+          "note": "Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself."
+        },
+        "T": {
+          "operation": "projection",
+          "plane": "xy",
+          "dropped_axis": "z",
+          "before": {
+            "dimension": 3,
+            "n_points": 8,
+            "diameter": 2.10088
+          },
+          "after": {
+            "dimension": 2,
+            "n_points": 8,
+            "diameter": 2.0
+          },
+          "delta": {
+            "n_point_collisions": 0,
+            "n_edge_crossings_introduced": 8,
+            "diameter_change": -0.10088
+          },
+          "note": "Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D."
+        },
+        "C": {
+          "alternative_projection": {
+            "plane": "diagonal",
+            "n_collisions": 0,
+            "n_crossings": 4,
+            "diameter_after": 2.100881
+          },
+          "no_projection_baseline": {
+            "description": "Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear."
+          },
+          "note": "Compare info loss across projections to gauge which plane is least lossy for this object."
+        }
+      },
+      "prompts": {
+        "baseline": "在三维空间中给定一个由 8 个顶点和 16 条棱组成的对象（preset='square_antiprism'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n请回答以下子问题：\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 28 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "在三维空间中给定一个由 8 个顶点和 16 条棱组成的对象（preset='square_antiprism'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 28 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "在三维空间中给定一个由 8 个顶点和 16 条棱组成的对象（preset='square_antiprism'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_points\": 8,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      -1,\n      0,\n      0\n    ],\n    [\n      0,\n      -1,\n      0\n    ],\n    [\n      0.707,\n      0.707,\n      1\n    ],\n    [\n      -0.707,\n      0.707,\n      1\n    ],\n    [\n      -0.707,\n      -0.707,\n      1\n    ],\n    [\n      0.707,\n      -0.707,\n      1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      0\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      7,\n      4\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      0,\n      7\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      2,\n      6\n    ],\n    [\n      3,\n      6\n    ],\n    [\n      3,\n      7\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 28 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "在三维空间中给定一个由 8 个顶点和 16 条棱组成的对象（preset='square_antiprism'）。现在把它沿 xy 平面做正交投影（丢弃 { 'xy':'z','xz':'y','yz':'x','diagonal':'(1,1,1)方向' }[plane] 轴的坐标）。 投影后：(i) 两个不同的 3D 顶点可能在 2D 重合（collision），(ii) 原本不相交的两条棱可能在 2D 相交（edge crossing），(iii) 部分距离会被保留（差小于 1%）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_points\": 8,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      -1,\n      0,\n      0\n    ],\n    [\n      0,\n      -1,\n      0\n    ],\n    [\n      0.707,\n      0.707,\n      1\n    ],\n    [\n      -0.707,\n      0.707,\n      1\n    ],\n    [\n      -0.707,\n      -0.707,\n      1\n    ],\n    [\n      0.707,\n      -0.707,\n      1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      0\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      7,\n      4\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      0,\n      7\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      2,\n      6\n    ],\n    [\n      3,\n      6\n    ],\n    [\n      3,\n      7\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"projection\",\n  \"plane\": \"xy\",\n  \"dropped_axis\": \"z\",\n  \"before\": {\n    \"dimension\": 3,\n    \"n_points\": 8,\n    \"diameter\": 2.10088\n  },\n  \"after\": {\n    \"dimension\": 2,\n    \"n_points\": 8,\n    \"diameter\": 2.0\n  },\n  \"delta\": {\n    \"n_point_collisions\": 0,\n    \"n_edge_crossings_introduced\": 8,\n    \"diameter_change\": -0.10088\n  },\n  \"note\": \"Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_projection\": {\n    \"plane\": \"diagonal\",\n    \"n_collisions\": 0,\n    \"n_crossings\": 4,\n    \"diameter_after\": 2.100881\n  },\n  \"no_projection_baseline\": {\n    \"description\": \"Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear.\"\n  },\n  \"note\": \"Compare info loss across projections to gauge which plane is least lossy for this object.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 投影到 xy 平面后，多少对不同的 3D 顶点在 2D 中重合？\n  (b) 投影到 xy 平面后，多少对原本不相交的棱在 2D 中产生交叉？\n  (c) 在共 28 对顶点距离中，有多少对距离在投影后被保留（差距小于 1%）？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim5_q09",
+      "type": "diameter_compare",
+      "stem": "考虑三维 preset='cube' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(b)",
+          "text": "Plane A = xy 投影后，多少对顶点重合？",
+          "answer_type": "integer",
+          "answer": 4
+        },
+        {
+          "label": "(c)",
+          "text": "Plane B = diagonal 投影后，多少对顶点重合？",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "preset": "cube",
+        "plane_main": "xy",
+        "plane_alt": "diagonal",
+        "diameter_3d": 1.732051,
+        "n_collisions_main": 4,
+        "n_collisions_alt": 1,
+        "less_lossy_plane": "diagonal"
+      },
+      "coe_data": {
+        "R": {
+          "n_points": 8,
+          "dimension": 3,
+          "points_3d": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              7
+            ]
+          ],
+          "note": "Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself."
+        },
+        "T": {
+          "operation": "projection",
+          "plane": "xy",
+          "dropped_axis": "z",
+          "before": {
+            "dimension": 3,
+            "n_points": 8,
+            "diameter": 1.732051
+          },
+          "after": {
+            "dimension": 2,
+            "n_points": 8,
+            "diameter": 1.414214
+          },
+          "delta": {
+            "n_point_collisions": 4,
+            "n_edge_crossings_introduced": 8,
+            "diameter_change": -0.317837
+          },
+          "note": "Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D."
+        },
+        "C": {
+          "alternative_projection": {
+            "plane": "diagonal",
+            "n_collisions": 1,
+            "n_crossings": 2,
+            "diameter_after": 1.632994
+          },
+          "no_projection_baseline": {
+            "description": "Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear."
+          },
+          "note": "Compare info loss across projections to gauge which plane is least lossy for this object."
+        }
+      },
+      "prompts": {
+        "baseline": "考虑三维 preset='cube' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n请回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑三维 preset='cube' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑三维 preset='cube' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_points\": 8,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      0,\n      0,\n      0\n    ],\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      1,\n      1,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      1,\n      0,\n      1\n    ],\n    [\n      1,\n      1,\n      1\n    ],\n    [\n      0,\n      1,\n      1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      0\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      7,\n      4\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      6\n    ],\n    [\n      3,\n      7\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑三维 preset='cube' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_points\": 8,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      0,\n      0,\n      0\n    ],\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      1,\n      1,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      1,\n      0,\n      1\n    ],\n    [\n      1,\n      1,\n      1\n    ],\n    [\n      0,\n      1,\n      1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      0\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      7,\n      4\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      6\n    ],\n    [\n      3,\n      7\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"projection\",\n  \"plane\": \"xy\",\n  \"dropped_axis\": \"z\",\n  \"before\": {\n    \"dimension\": 3,\n    \"n_points\": 8,\n    \"diameter\": 1.732051\n  },\n  \"after\": {\n    \"dimension\": 2,\n    \"n_points\": 8,\n    \"diameter\": 1.414214\n  },\n  \"delta\": {\n    \"n_point_collisions\": 4,\n    \"n_edge_crossings_introduced\": 8,\n    \"diameter_change\": -0.317837\n  },\n  \"note\": \"Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_projection\": {\n    \"plane\": \"diagonal\",\n    \"n_collisions\": 1,\n    \"n_crossings\": 2,\n    \"diameter_after\": 1.632994\n  },\n  \"no_projection_baseline\": {\n    \"description\": \"Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear.\"\n  },\n  \"note\": \"Compare info loss across projections to gauge which plane is least lossy for this object.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim5_q10",
+      "type": "diameter_compare",
+      "stem": "考虑三维 preset='cube' 对象。比较两种正交投影：\n  Plane A = xz\n  Plane B = yz\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(b)",
+          "text": "Plane A = xz 投影后，多少对顶点重合？",
+          "answer_type": "integer",
+          "answer": 4
+        },
+        {
+          "label": "(c)",
+          "text": "Plane B = yz 投影后，多少对顶点重合？",
+          "answer_type": "integer",
+          "answer": 4
+        }
+      ],
+      "ground_truth": {
+        "preset": "cube",
+        "plane_main": "xz",
+        "plane_alt": "yz",
+        "diameter_3d": 1.732051,
+        "n_collisions_main": 4,
+        "n_collisions_alt": 4,
+        "less_lossy_plane": "tie"
+      },
+      "coe_data": {
+        "R": {
+          "n_points": 8,
+          "dimension": 3,
+          "points_3d": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              7
+            ]
+          ],
+          "note": "Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself."
+        },
+        "T": {
+          "operation": "projection",
+          "plane": "xz",
+          "dropped_axis": "y",
+          "before": {
+            "dimension": 3,
+            "n_points": 8,
+            "diameter": 1.732051
+          },
+          "after": {
+            "dimension": 2,
+            "n_points": 8,
+            "diameter": 1.414214
+          },
+          "delta": {
+            "n_point_collisions": 4,
+            "n_edge_crossings_introduced": 2,
+            "diameter_change": -0.317837
+          },
+          "note": "Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D."
+        },
+        "C": {
+          "alternative_projection": {
+            "plane": "yz",
+            "n_collisions": 4,
+            "n_crossings": 2,
+            "diameter_after": 1.414214
+          },
+          "no_projection_baseline": {
+            "description": "Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear."
+          },
+          "note": "Compare info loss across projections to gauge which plane is least lossy for this object."
+        }
+      },
+      "prompts": {
+        "baseline": "考虑三维 preset='cube' 对象。比较两种正交投影：\n  Plane A = xz\n  Plane B = yz\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n请回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xz 投影后，多少对顶点重合？\n  (c) Plane B = yz 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑三维 preset='cube' 对象。比较两种正交投影：\n  Plane A = xz\n  Plane B = yz\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xz 投影后，多少对顶点重合？\n  (c) Plane B = yz 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑三维 preset='cube' 对象。比较两种正交投影：\n  Plane A = xz\n  Plane B = yz\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_points\": 8,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      0,\n      0,\n      0\n    ],\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      1,\n      1,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      1,\n      0,\n      1\n    ],\n    [\n      1,\n      1,\n      1\n    ],\n    [\n      0,\n      1,\n      1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      0\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      7,\n      4\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      6\n    ],\n    [\n      3,\n      7\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xz 投影后，多少对顶点重合？\n  (c) Plane B = yz 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑三维 preset='cube' 对象。比较两种正交投影：\n  Plane A = xz\n  Plane B = yz\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_points\": 8,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      0,\n      0,\n      0\n    ],\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      1,\n      1,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      1,\n      0,\n      1\n    ],\n    [\n      1,\n      1,\n      1\n    ],\n    [\n      0,\n      1,\n      1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      0\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      7,\n      4\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      6\n    ],\n    [\n      3,\n      7\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"projection\",\n  \"plane\": \"xz\",\n  \"dropped_axis\": \"y\",\n  \"before\": {\n    \"dimension\": 3,\n    \"n_points\": 8,\n    \"diameter\": 1.732051\n  },\n  \"after\": {\n    \"dimension\": 2,\n    \"n_points\": 8,\n    \"diameter\": 1.414214\n  },\n  \"delta\": {\n    \"n_point_collisions\": 4,\n    \"n_edge_crossings_introduced\": 2,\n    \"diameter_change\": -0.317837\n  },\n  \"note\": \"Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_projection\": {\n    \"plane\": \"yz\",\n    \"n_collisions\": 4,\n    \"n_crossings\": 2,\n    \"diameter_after\": 1.414214\n  },\n  \"no_projection_baseline\": {\n    \"description\": \"Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear.\"\n  },\n  \"note\": \"Compare info loss across projections to gauge which plane is least lossy for this object.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xz 投影后，多少对顶点重合？\n  (c) Plane B = yz 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim5_q11",
+      "type": "diameter_compare",
+      "stem": "考虑三维 preset='tetrahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。",
+          "answer_type": "integer",
+          "answer": 3
+        },
+        {
+          "label": "(b)",
+          "text": "Plane A = xy 投影后，多少对顶点重合？",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "Plane B = diagonal 投影后，多少对顶点重合？",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "preset": "tetrahedron",
+        "plane_main": "xy",
+        "plane_alt": "diagonal",
+        "diameter_3d": 2.828427,
+        "n_collisions_main": 0,
+        "n_collisions_alt": 0,
+        "less_lossy_plane": "diagonal"
+      },
+      "coe_data": {
+        "R": {
+          "n_points": 4,
+          "dimension": 3,
+          "points_3d": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              -1,
+              -1,
+              1
+            ],
+            [
+              -1,
+              1,
+              -1
+            ],
+            [
+              1,
+              -1,
+              -1
+            ]
+          ],
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "note": "Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself."
+        },
+        "T": {
+          "operation": "projection",
+          "plane": "xy",
+          "dropped_axis": "z",
+          "before": {
+            "dimension": 3,
+            "n_points": 4,
+            "diameter": 2.828427
+          },
+          "after": {
+            "dimension": 2,
+            "n_points": 4,
+            "diameter": 2.828427
+          },
+          "delta": {
+            "n_point_collisions": 0,
+            "n_edge_crossings_introduced": 1,
+            "diameter_change": 0.0
+          },
+          "note": "Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D."
+        },
+        "C": {
+          "alternative_projection": {
+            "plane": "diagonal",
+            "n_collisions": 0,
+            "n_crossings": 0,
+            "diameter_after": 2.828428
+          },
+          "no_projection_baseline": {
+            "description": "Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear."
+          },
+          "note": "Compare info loss across projections to gauge which plane is least lossy for this object."
+        }
+      },
+      "prompts": {
+        "baseline": "考虑三维 preset='tetrahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n请回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑三维 preset='tetrahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑三维 preset='tetrahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_points\": 4,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      1,\n      1\n    ],\n    [\n      -1,\n      -1,\n      1\n    ],\n    [\n      -1,\n      1,\n      -1\n    ],\n    [\n      1,\n      -1,\n      -1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      2,\n      3\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑三维 preset='tetrahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_points\": 4,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      1,\n      1\n    ],\n    [\n      -1,\n      -1,\n      1\n    ],\n    [\n      -1,\n      1,\n      -1\n    ],\n    [\n      1,\n      -1,\n      -1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      2,\n      3\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"projection\",\n  \"plane\": \"xy\",\n  \"dropped_axis\": \"z\",\n  \"before\": {\n    \"dimension\": 3,\n    \"n_points\": 4,\n    \"diameter\": 2.828427\n  },\n  \"after\": {\n    \"dimension\": 2,\n    \"n_points\": 4,\n    \"diameter\": 2.828427\n  },\n  \"delta\": {\n    \"n_point_collisions\": 0,\n    \"n_edge_crossings_introduced\": 1,\n    \"diameter_change\": 0.0\n  },\n  \"note\": \"Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_projection\": {\n    \"plane\": \"diagonal\",\n    \"n_collisions\": 0,\n    \"n_crossings\": 0,\n    \"diameter_after\": 2.828428\n  },\n  \"no_projection_baseline\": {\n    \"description\": \"Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear.\"\n  },\n  \"note\": \"Compare info loss across projections to gauge which plane is least lossy for this object.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim5_q12",
+      "type": "diameter_compare",
+      "stem": "考虑三维 preset='tetrahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = yz\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。",
+          "answer_type": "integer",
+          "answer": 3
+        },
+        {
+          "label": "(b)",
+          "text": "Plane A = xy 投影后，多少对顶点重合？",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "Plane B = yz 投影后，多少对顶点重合？",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "preset": "tetrahedron",
+        "plane_main": "xy",
+        "plane_alt": "yz",
+        "diameter_3d": 2.828427,
+        "n_collisions_main": 0,
+        "n_collisions_alt": 0,
+        "less_lossy_plane": "tie"
+      },
+      "coe_data": {
+        "R": {
+          "n_points": 4,
+          "dimension": 3,
+          "points_3d": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              -1,
+              -1,
+              1
+            ],
+            [
+              -1,
+              1,
+              -1
+            ],
+            [
+              1,
+              -1,
+              -1
+            ]
+          ],
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "note": "Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself."
+        },
+        "T": {
+          "operation": "projection",
+          "plane": "xy",
+          "dropped_axis": "z",
+          "before": {
+            "dimension": 3,
+            "n_points": 4,
+            "diameter": 2.828427
+          },
+          "after": {
+            "dimension": 2,
+            "n_points": 4,
+            "diameter": 2.828427
+          },
+          "delta": {
+            "n_point_collisions": 0,
+            "n_edge_crossings_introduced": 1,
+            "diameter_change": 0.0
+          },
+          "note": "Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D."
+        },
+        "C": {
+          "alternative_projection": {
+            "plane": "yz",
+            "n_collisions": 0,
+            "n_crossings": 1,
+            "diameter_after": 2.828427
+          },
+          "no_projection_baseline": {
+            "description": "Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear."
+          },
+          "note": "Compare info loss across projections to gauge which plane is least lossy for this object."
+        }
+      },
+      "prompts": {
+        "baseline": "考虑三维 preset='tetrahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = yz\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n请回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = yz 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑三维 preset='tetrahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = yz\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = yz 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑三维 preset='tetrahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = yz\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_points\": 4,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      1,\n      1\n    ],\n    [\n      -1,\n      -1,\n      1\n    ],\n    [\n      -1,\n      1,\n      -1\n    ],\n    [\n      1,\n      -1,\n      -1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      2,\n      3\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = yz 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑三维 preset='tetrahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = yz\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_points\": 4,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      1,\n      1\n    ],\n    [\n      -1,\n      -1,\n      1\n    ],\n    [\n      -1,\n      1,\n      -1\n    ],\n    [\n      1,\n      -1,\n      -1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      2,\n      3\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"projection\",\n  \"plane\": \"xy\",\n  \"dropped_axis\": \"z\",\n  \"before\": {\n    \"dimension\": 3,\n    \"n_points\": 4,\n    \"diameter\": 2.828427\n  },\n  \"after\": {\n    \"dimension\": 2,\n    \"n_points\": 4,\n    \"diameter\": 2.828427\n  },\n  \"delta\": {\n    \"n_point_collisions\": 0,\n    \"n_edge_crossings_introduced\": 1,\n    \"diameter_change\": 0.0\n  },\n  \"note\": \"Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_projection\": {\n    \"plane\": \"yz\",\n    \"n_collisions\": 0,\n    \"n_crossings\": 1,\n    \"diameter_after\": 2.828427\n  },\n  \"no_projection_baseline\": {\n    \"description\": \"Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear.\"\n  },\n  \"note\": \"Compare info loss across projections to gauge which plane is least lossy for this object.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = yz 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim5_q13",
+      "type": "diameter_compare",
+      "stem": "考虑三维 preset='octahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(b)",
+          "text": "Plane A = xy 投影后，多少对顶点重合？",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "Plane B = diagonal 投影后，多少对顶点重合？",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "preset": "octahedron",
+        "plane_main": "xy",
+        "plane_alt": "diagonal",
+        "diameter_3d": 2.0,
+        "n_collisions_main": 1,
+        "n_collisions_alt": 0,
+        "less_lossy_plane": "xy"
+      },
+      "coe_data": {
+        "R": {
+          "n_points": 6,
+          "dimension": 3,
+          "points_3d": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              -1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              -1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              -1
+            ]
+          ],
+          "edges": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "note": "Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself."
+        },
+        "T": {
+          "operation": "projection",
+          "plane": "xy",
+          "dropped_axis": "z",
+          "before": {
+            "dimension": 3,
+            "n_points": 6,
+            "diameter": 2.0
+          },
+          "after": {
+            "dimension": 2,
+            "n_points": 6,
+            "diameter": 2.0
+          },
+          "delta": {
+            "n_point_collisions": 1,
+            "n_edge_crossings_introduced": 0,
+            "diameter_change": 0.0
+          },
+          "note": "Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D."
+        },
+        "C": {
+          "alternative_projection": {
+            "plane": "diagonal",
+            "n_collisions": 0,
+            "n_crossings": 6,
+            "diameter_after": 1.632994
+          },
+          "no_projection_baseline": {
+            "description": "Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear."
+          },
+          "note": "Compare info loss across projections to gauge which plane is least lossy for this object."
+        }
+      },
+      "prompts": {
+        "baseline": "考虑三维 preset='octahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n请回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑三维 preset='octahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑三维 preset='octahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_points\": 6,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      -1,\n      0,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      0,\n      -1,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      0,\n      0,\n      -1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      0,\n      5\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      4\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      5\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑三维 preset='octahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_points\": 6,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      -1,\n      0,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      0,\n      -1,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      0,\n      0,\n      -1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      0,\n      5\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      4\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      5\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"projection\",\n  \"plane\": \"xy\",\n  \"dropped_axis\": \"z\",\n  \"before\": {\n    \"dimension\": 3,\n    \"n_points\": 6,\n    \"diameter\": 2.0\n  },\n  \"after\": {\n    \"dimension\": 2,\n    \"n_points\": 6,\n    \"diameter\": 2.0\n  },\n  \"delta\": {\n    \"n_point_collisions\": 1,\n    \"n_edge_crossings_introduced\": 0,\n    \"diameter_change\": 0.0\n  },\n  \"note\": \"Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_projection\": {\n    \"plane\": \"diagonal\",\n    \"n_collisions\": 0,\n    \"n_crossings\": 6,\n    \"diameter_after\": 1.632994\n  },\n  \"no_projection_baseline\": {\n    \"description\": \"Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear.\"\n  },\n  \"note\": \"Compare info loss across projections to gauge which plane is least lossy for this object.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim5_q14",
+      "type": "diameter_compare",
+      "stem": "考虑三维 preset='octahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = xz\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(b)",
+          "text": "Plane A = xy 投影后，多少对顶点重合？",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "Plane B = xz 投影后，多少对顶点重合？",
+          "answer_type": "integer",
+          "answer": 1
+        }
+      ],
+      "ground_truth": {
+        "preset": "octahedron",
+        "plane_main": "xy",
+        "plane_alt": "xz",
+        "diameter_3d": 2.0,
+        "n_collisions_main": 1,
+        "n_collisions_alt": 1,
+        "less_lossy_plane": "xy"
+      },
+      "coe_data": {
+        "R": {
+          "n_points": 6,
+          "dimension": 3,
+          "points_3d": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              -1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              -1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              -1
+            ]
+          ],
+          "edges": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "note": "Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself."
+        },
+        "T": {
+          "operation": "projection",
+          "plane": "xy",
+          "dropped_axis": "z",
+          "before": {
+            "dimension": 3,
+            "n_points": 6,
+            "diameter": 2.0
+          },
+          "after": {
+            "dimension": 2,
+            "n_points": 6,
+            "diameter": 2.0
+          },
+          "delta": {
+            "n_point_collisions": 1,
+            "n_edge_crossings_introduced": 0,
+            "diameter_change": 0.0
+          },
+          "note": "Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D."
+        },
+        "C": {
+          "alternative_projection": {
+            "plane": "xz",
+            "n_collisions": 1,
+            "n_crossings": 4,
+            "diameter_after": 2.0
+          },
+          "no_projection_baseline": {
+            "description": "Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear."
+          },
+          "note": "Compare info loss across projections to gauge which plane is least lossy for this object."
+        }
+      },
+      "prompts": {
+        "baseline": "考虑三维 preset='octahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = xz\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n请回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = xz 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑三维 preset='octahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = xz\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = xz 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑三维 preset='octahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = xz\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_points\": 6,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      -1,\n      0,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      0,\n      -1,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      0,\n      0,\n      -1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      0,\n      5\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      4\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      5\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = xz 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑三维 preset='octahedron' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = xz\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_points\": 6,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      -1,\n      0,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      0,\n      -1,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      0,\n      0,\n      -1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      2\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      0,\n      5\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      1,\n      3\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      4\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      5\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"projection\",\n  \"plane\": \"xy\",\n  \"dropped_axis\": \"z\",\n  \"before\": {\n    \"dimension\": 3,\n    \"n_points\": 6,\n    \"diameter\": 2.0\n  },\n  \"after\": {\n    \"dimension\": 2,\n    \"n_points\": 6,\n    \"diameter\": 2.0\n  },\n  \"delta\": {\n    \"n_point_collisions\": 1,\n    \"n_edge_crossings_introduced\": 0,\n    \"diameter_change\": 0.0\n  },\n  \"note\": \"Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_projection\": {\n    \"plane\": \"xz\",\n    \"n_collisions\": 1,\n    \"n_crossings\": 4,\n    \"diameter_after\": 2.0\n  },\n  \"no_projection_baseline\": {\n    \"description\": \"Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear.\"\n  },\n  \"note\": \"Compare info loss across projections to gauge which plane is least lossy for this object.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = xz 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim5_q15",
+      "type": "diameter_compare",
+      "stem": "考虑三维 preset='triangular_prism' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "Plane A = xy 投影后，多少对顶点重合？",
+          "answer_type": "integer",
+          "answer": 3
+        },
+        {
+          "label": "(c)",
+          "text": "Plane B = diagonal 投影后，多少对顶点重合？",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "preset": "triangular_prism",
+        "plane_main": "xy",
+        "plane_alt": "diagonal",
+        "diameter_3d": 1.414214,
+        "n_collisions_main": 3,
+        "n_collisions_alt": 0,
+        "less_lossy_plane": "diagonal"
+      },
+      "coe_data": {
+        "R": {
+          "n_points": 6,
+          "dimension": 3,
+          "points_3d": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0.5,
+              0.866,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              0.5,
+              0.866,
+              1
+            ]
+          ],
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              5
+            ]
+          ],
+          "note": "Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself."
+        },
+        "T": {
+          "operation": "projection",
+          "plane": "xy",
+          "dropped_axis": "z",
+          "before": {
+            "dimension": 3,
+            "n_points": 6,
+            "diameter": 1.414214
+          },
+          "after": {
+            "dimension": 2,
+            "n_points": 6,
+            "diameter": 1.0
+          },
+          "delta": {
+            "n_point_collisions": 3,
+            "n_edge_crossings_introduced": 6,
+            "diameter_change": -0.414214
+          },
+          "note": "Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D."
+        },
+        "C": {
+          "alternative_projection": {
+            "plane": "diagonal",
+            "n_collisions": 0,
+            "n_crossings": 1,
+            "diameter_after": 1.414214
+          },
+          "no_projection_baseline": {
+            "description": "Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear."
+          },
+          "note": "Compare info loss across projections to gauge which plane is least lossy for this object."
+        }
+      },
+      "prompts": {
+        "baseline": "考虑三维 preset='triangular_prism' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n请回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑三维 preset='triangular_prism' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑三维 preset='triangular_prism' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_points\": 6,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      0,\n      0,\n      0\n    ],\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      0.5,\n      0.866,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      1,\n      0,\n      1\n    ],\n    [\n      0.5,\n      0.866,\n      1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      0\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      3\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      2,\n      5\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑三维 preset='triangular_prism' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_points\": 6,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      0,\n      0,\n      0\n    ],\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      0.5,\n      0.866,\n      0\n    ],\n    [\n      0,\n      0,\n      1\n    ],\n    [\n      1,\n      0,\n      1\n    ],\n    [\n      0.5,\n      0.866,\n      1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      0\n    ],\n    [\n      3,\n      4\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      3\n    ],\n    [\n      0,\n      3\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      2,\n      5\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"projection\",\n  \"plane\": \"xy\",\n  \"dropped_axis\": \"z\",\n  \"before\": {\n    \"dimension\": 3,\n    \"n_points\": 6,\n    \"diameter\": 1.414214\n  },\n  \"after\": {\n    \"dimension\": 2,\n    \"n_points\": 6,\n    \"diameter\": 1.0\n  },\n  \"delta\": {\n    \"n_point_collisions\": 3,\n    \"n_edge_crossings_introduced\": 6,\n    \"diameter_change\": -0.414214\n  },\n  \"note\": \"Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_projection\": {\n    \"plane\": \"diagonal\",\n    \"n_collisions\": 0,\n    \"n_crossings\": 1,\n    \"diameter_after\": 1.414214\n  },\n  \"no_projection_baseline\": {\n    \"description\": \"Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear.\"\n  },\n  \"note\": \"Compare info loss across projections to gauge which plane is least lossy for this object.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim5_q16",
+      "type": "diameter_compare",
+      "stem": "考虑三维 preset='square_antiprism' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(b)",
+          "text": "Plane A = xy 投影后，多少对顶点重合？",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "Plane B = diagonal 投影后，多少对顶点重合？",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "preset": "square_antiprism",
+        "plane_main": "xy",
+        "plane_alt": "diagonal",
+        "diameter_3d": 2.10088,
+        "n_collisions_main": 0,
+        "n_collisions_alt": 0,
+        "less_lossy_plane": "diagonal"
+      },
+      "coe_data": {
+        "R": {
+          "n_points": 8,
+          "dimension": 3,
+          "points_3d": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              -1,
+              0,
+              0
+            ],
+            [
+              0,
+              -1,
+              0
+            ],
+            [
+              0.707,
+              0.707,
+              1
+            ],
+            [
+              -0.707,
+              0.707,
+              1
+            ],
+            [
+              -0.707,
+              -0.707,
+              1
+            ],
+            [
+              0.707,
+              -0.707,
+              1
+            ]
+          ],
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              3,
+              7
+            ]
+          ],
+          "note": "Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself."
+        },
+        "T": {
+          "operation": "projection",
+          "plane": "xy",
+          "dropped_axis": "z",
+          "before": {
+            "dimension": 3,
+            "n_points": 8,
+            "diameter": 2.10088
+          },
+          "after": {
+            "dimension": 2,
+            "n_points": 8,
+            "diameter": 2.0
+          },
+          "delta": {
+            "n_point_collisions": 0,
+            "n_edge_crossings_introduced": 8,
+            "diameter_change": -0.10088
+          },
+          "note": "Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D."
+        },
+        "C": {
+          "alternative_projection": {
+            "plane": "diagonal",
+            "n_collisions": 0,
+            "n_crossings": 4,
+            "diameter_after": 2.100881
+          },
+          "no_projection_baseline": {
+            "description": "Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear."
+          },
+          "note": "Compare info loss across projections to gauge which plane is least lossy for this object."
+        }
+      },
+      "prompts": {
+        "baseline": "考虑三维 preset='square_antiprism' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n请回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "考虑三维 preset='square_antiprism' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "考虑三维 preset='square_antiprism' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_points\": 8,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      -1,\n      0,\n      0\n    ],\n    [\n      0,\n      -1,\n      0\n    ],\n    [\n      0.707,\n      0.707,\n      1\n    ],\n    [\n      -0.707,\n      0.707,\n      1\n    ],\n    [\n      -0.707,\n      -0.707,\n      1\n    ],\n    [\n      0.707,\n      -0.707,\n      1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      0\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      7,\n      4\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      0,\n      7\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      2,\n      6\n    ],\n    [\n      3,\n      6\n    ],\n    [\n      3,\n      7\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "考虑三维 preset='square_antiprism' 对象。比较两种正交投影：\n  Plane A = xy\n  Plane B = diagonal\n投影前对象的 3D 直径（最远两点距离）等多少；投影后两种平面中各自的 2D 直径如何变化；哪个投影信息损失更小（碰撞 + 边交叉之和最少）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_points\": 8,\n  \"dimension\": 3,\n  \"points_3d\": [\n    [\n      1,\n      0,\n      0\n    ],\n    [\n      0,\n      1,\n      0\n    ],\n    [\n      -1,\n      0,\n      0\n    ],\n    [\n      0,\n      -1,\n      0\n    ],\n    [\n      0.707,\n      0.707,\n      1\n    ],\n    [\n      -0.707,\n      0.707,\n      1\n    ],\n    [\n      -0.707,\n      -0.707,\n      1\n    ],\n    [\n      0.707,\n      -0.707,\n      1\n    ]\n  ],\n  \"edges\": [\n    [\n      0,\n      1\n    ],\n    [\n      1,\n      2\n    ],\n    [\n      2,\n      3\n    ],\n    [\n      3,\n      0\n    ],\n    [\n      4,\n      5\n    ],\n    [\n      5,\n      6\n    ],\n    [\n      6,\n      7\n    ],\n    [\n      7,\n      4\n    ],\n    [\n      0,\n      4\n    ],\n    [\n      0,\n      7\n    ],\n    [\n      1,\n      4\n    ],\n    [\n      1,\n      5\n    ],\n    [\n      2,\n      5\n    ],\n    [\n      2,\n      6\n    ],\n    [\n      3,\n      6\n    ],\n    [\n      3,\n      7\n    ]\n  ],\n  \"note\": \"Raw 3D coordinates and edges are given. Compute projections / collisions / crossings yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"projection\",\n  \"plane\": \"xy\",\n  \"dropped_axis\": \"z\",\n  \"before\": {\n    \"dimension\": 3,\n    \"n_points\": 8,\n    \"diameter\": 2.10088\n  },\n  \"after\": {\n    \"dimension\": 2,\n    \"n_points\": 8,\n    \"diameter\": 2.0\n  },\n  \"delta\": {\n    \"n_point_collisions\": 0,\n    \"n_edge_crossings_introduced\": 8,\n    \"diameter_change\": -0.10088\n  },\n  \"note\": \"Projecting drops one axis. Two distinct 3D points may collide in 2D; two non-adjacent edges may cross in 2D when they didn't in 3D.\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"alternative_projection\": {\n    \"plane\": \"diagonal\",\n    \"n_collisions\": 0,\n    \"n_crossings\": 4,\n    \"diameter_after\": 2.100881\n  },\n  \"no_projection_baseline\": {\n    \"description\": \"Without projection (kept in 3D) all distinct points remain distinct and no spurious edge crossings appear.\"\n  },\n  \"note\": \"Compare info loss across projections to gauge which plane is least lossy for this object.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 3D 直径是多少？保留 4 位小数后的整数部分（即四舍五入到整数）即可。\n  (b) Plane A = xy 投影后，多少对顶点重合？\n  (c) Plane B = diagonal 投影后，多少对顶点重合？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    }
+  ]
+}

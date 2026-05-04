@@ -1,0 +1,117 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand*\HyPL@Entry[1]{}
+\HyPL@Entry{0<</S/D>>}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{yang2025rlvr}
+\citation{thurston1994proof}
+\citation{lakoff2000mathematics}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {paragraph}{Cognition-on-Engine.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why CoE matters.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Motivation}{2}{section.2}\protected@file@percent }
+\newlabel{sec:background}{{2}{2}{Background and Motivation}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Thurston's facilities for mathematical thought.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Three steps of human geometric cognition.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why these three steps cannot live inside the LLM.}{2}{section*.6}\protected@file@percent }
+\citation{clark1998extended}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The CoE framework. \textbf  {Left, top:} concrete walk-through on hexagon $3$-colourings under $\mathbb  {Z}_6$---the engine emits R (group order, fixed-point counts), T (cycle representations), C (counterfactual subgroups), and the LLM assembles the Burnside sum to $130$. \textbf  {Left, bottom:} abstract architecture---an unmodified LLM exchanges structured messages with a domain-specific engine, which returns R / T / C streams but no verbal argument or proof. \textbf  {Right:} headline result on the symmetry domain---the score jumps from \textsc  {Pattern} ($000$) to \textsc  {Proof} once R is supplied; markers along each bar indicate which primitives are active.}}{3}{figure.1}\protected@file@percent }
+\newlabel{fig:framework}{{1}{3}{The CoE framework. \textbf {Left, top:} concrete walk-through on hexagon $3$-colourings under $\mathbb {Z}_6$---the engine emits R (group order, fixed-point counts), T (cycle representations), C (counterfactual subgroups), and the LLM assembles the Burnside sum to $130$. \textbf {Left, bottom:} abstract architecture---an unmodified LLM exchanges structured messages with a domain-specific engine, which returns R / T / C streams but no verbal argument or proof. \textbf {Right:} headline result on the symmetry domain---the score jumps from \textsc {Pattern} ($000$) to \textsc {Proof} once R is supplied; markers along each bar indicate which primitives are active}{figure.1}{}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {paragraph}{From cognitive science to system design.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}The CoE Framework}{3}{section.3}\protected@file@percent }
+\newlabel{sec:framework}{{3}{3}{The CoE Framework}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Architecture}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}The three interface signals}{3}{subsection.3.2}\protected@file@percent }
+\citation{montgomery2017doe}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {paragraph}{R (Relation).}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{T (Transform).}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{C (Contrastive).}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}CTR: the geometric instantiation}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:ctr}{{3.3}{4}{CTR: the geometric instantiation}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Design principle.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\newlabel{sec:exp}{{4}{4}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}$2^3$ factorial ablation}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Reasoning-depth scale}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Domain coverage}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Summary of the eight evaluation domains.}}{5}{table.1}\protected@file@percent }
+\newlabel{tab:domains}{{1}{5}{Summary of the eight evaluation domains}{table.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Example objects from each of the eight evaluation domains, spanning six axes of geometric intuition.}}{5}{figure.2}\protected@file@percent }
+\newlabel{fig:domain-examples}{{2}{5}{Example objects from each of the eight evaluation domains, spanning six axes of geometric intuition}{figure.2}{}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Evaluation protocol}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results and Analysis}{5}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{5}{Results and Analysis}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main results}{5}{subsection.5.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Reasoning-depth heatmap across all eight domains $\times $ eight conditions. Each cell is a 0--4 score. The full-CoE column ($RTC$) reaches \textsc  {Argument} or better in every domain; the baseline column ($000$) is at \textsc  {Pattern} or below in every domain.}}{6}{figure.3}\protected@file@percent }
+\newlabel{fig:heatmap}{{3}{6}{Reasoning-depth heatmap across all eight domains $\times $ eight conditions. Each cell is a 0--4 score. The full-CoE column ($RTC$) reaches \textsc {Argument} or better in every domain; the baseline column ($000$) is at \textsc {Pattern} or below in every domain}{figure.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Full $2^3$ ablation results across eight low-dimensional topology and discrete-geometry domains. Columns 2--9 give raw scores (0--4) for each condition ($000{=}$baseline, $RTC{=}$full CoE). The next three columns are main effects of R, T, C, followed by the three two-way interactions. The last column lists the minimal primitive subset that reaches \textsc  {Argument} ($\ge 3$). Two-way interactions are conditional on the third factor being off: e.g., $R \times C = \mathrm  {R0C} - \mathrm  {R00} - \mathrm  {00C} + \mathrm  {000}$, not marginalized over the third factor.}}{6}{table.2}\protected@file@percent }
+\newlabel{tab:full-results}{{2}{6}{Full $2^3$ ablation results across eight low-dimensional topology and discrete-geometry domains. Columns 2--9 give raw scores (0--4) for each condition ($000{=}$baseline, $RTC{=}$full CoE). The next three columns are main effects of R, T, C, followed by the three two-way interactions. The last column lists the minimal primitive subset that reaches \textsc {Argument} ($\ge 3$). Two-way interactions are conditional on the third factor being off: e.g., $R \times C = \mathrm {R0C} - \mathrm {R00} - \mathrm {00C} + \mathrm {000}$, not marginalized over the third factor}{table.2}{}}
+\def\@LN@column{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Per-domain profiles across the 8 ablation conditions, ordered as a Hasse diagram (baseline; one primitive on; two primitives on; full RTC). The \textsc  {Argument} threshold is marked at $y{=}3$. Domains differ sharply in where on the lattice they cross threshold---some need only R ($\mathrm  {Sym}$, $\mathrm  {Graph}$), others need a pair (e.g.~$\mathrm  {Knot}$ at R0C), and $\mathrm  {Surf}_{1,2}$ requires the full RTC.}}{7}{figure.4}\protected@file@percent }
+\newlabel{fig:profile}{{4}{7}{Per-domain profiles across the 8 ablation conditions, ordered as a Hasse diagram (baseline; one primitive on; two primitives on; full RTC). The \textsc {Argument} threshold is marked at $y{=}3$. Domains differ sharply in where on the lattice they cross threshold---some need only R ($\mathrm {Sym}$, $\mathrm {Graph}$), others need a pair (e.g.~$\mathrm {Knot}$ at R0C), and $\mathrm {Surf}_{1,2}$ requires the full RTC}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Case study: Knot domain. Left: baseline ($000$) produces a wrong hypothesis from PD code alone. Right: RTC supplies R (invariants), T (crossing locality), C (same-sign counterfactual), enabling a correct argument.}}{7}{figure.5}\protected@file@percent }
+\newlabel{fig:case-study}{{5}{7}{Case study: Knot domain. Left: baseline ($000$) produces a wrong hypothesis from PD code alone. Right: RTC supplies R (invariants), T (crossing locality), C (same-sign counterfactual), enabling a correct argument}{figure.5}{}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Case study: knot R2-invariance}{7}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:case-study}{{5.2}{7}{Case study: knot R2-invariance}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Main effects: R is universally positive}{7}{subsection.5.3}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Interactions and minimal subsets}{8}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Cross-model validation: architecture vs.\ parameters}{8}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:cross-model}{{5.5}{8}{Cross-model validation: architecture vs.\ parameters}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Mean reasoning-depth score (0--4) by model and condition ($n{=}9$ cases per cell, matched 3-domain subset). The R/T/C scaffold lift is nearly constant across model sizes.}}{8}{table.3}\protected@file@percent }
+\newlabel{tab:cross-model}{{3}{8}{Mean reasoning-depth score (0--4) by model and condition ($n{=}9$ cases per cell, matched 3-domain subset). The R/T/C scaffold lift is nearly constant across model sizes}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Comparison with existing methods}{8}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:comparison}{{5.6}{8}{Comparison with existing methods}{subsection.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Mean reasoning-depth score (0--4) across 8 domains under six method conditions ($n{=}10$ per cell). CoT+Code is the ToRA/PAL/PoT family; CoT+Code+Hint augments CoT+Code with explicit library hints (\texttt  {curver}, \texttt  {snappy}, \texttt  {networkx}) and usage examples; ReAct+Eng uses the same engine as CoE but lets the LLM choose when to query. Mean$\pm $std reported; per-cell standard deviations are $\le 0.49$ for all conditions.}}{9}{table.4}\protected@file@percent }
+\newlabel{tab:methods}{{4}{9}{Mean reasoning-depth score (0--4) across 8 domains under six method conditions ($n{=}10$ per cell). CoT+Code is the ToRA/PAL/PoT family; CoT+Code+Hint augments CoT+Code with explicit library hints (\texttt {curver}, \texttt {snappy}, \texttt {networkx}) and usage examples; ReAct+Eng uses the same engine as CoE but lets the LLM choose when to query. Mean$\pm $std reported; per-cell standard deviations are $\le 0.49$ for all conditions}{table.4}{}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Control: scrambled R}{9}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:scrambled}{{5.7}{9}{Control: scrambled R}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Cross-family scoring validation}{9}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:cross-family}{{5.8}{9}{Cross-family scoring validation}{subsection.5.8}{}}
+\newlabel{tab:cross-family}{{5.8}{9}{Cross-family scoring validation}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{9}{Conclusion}{section.6}{}}
+\newlabel{sec:discussion}{{6}{9}{Conclusion}{section.6}{}}
+\newlabel{sec:related}{{6}{9}{Conclusion}{section.6}{}}
+\bibstyle{plainnat}
+\bibdata{../references}
+\bibcite{an2026humancog}{{1}{2026}{{An et~al.}}{{An, Yang, Wang, Lu, An, and Yang}}}
+\bibcite{bell2016curver}{{2}{2016}{{Bell}}{{}}}
+\bibcite{trinh2025alphageometry2}{{3}{2025}{{Chervonyi et~al.}}{{Chervonyi, Trinh, Ol{\v {s}}{\'a}k, Yang, Nguyen, Menegali, Jung, Kim, Verma, Le, and Luong}}}
+\bibcite{clark1998extended}{{4}{1998}{{Clark and Chalmers}}{{}}}
+\bibcite{snappy}{{5}{2024}{{Culler et~al.}}{{Culler, Dunfield, Goerner, and Weeks}}}
+\bibcite{das2024mathsensei}{{6}{2024}{{Das et~al.}}{{Das, Banerjee, Aditya, and Kulkarni}}}
+\bibcite{ebouky2025cogtools}{{7}{2025}{{Ebouky et~al.}}{{Ebouky, Bartezzaghi, and Rigotti}}}
+\bibcite{gou2024tora}{{8}{2024}{{Gou et~al.}}{{Gou, Shao, Gong, Shen, Yang, Huang, Duan, and Chen}}}
+\bibcite{lakoff2000mathematics}{{9}{2000}{{Lakoff and N{\'u}{\~n}ez}}{{}}}
+\bibcite{luo2025agentmath}{{10}{2026}{{Luo et~al.}}{{Luo, Feng, Sun, Xu, Zheng, Wang, Yang, Hu, and Tang}}}
+\bibcite{montgomery2017doe}{{11}{2017}{{Montgomery}}{{}}}
+\bibcite{olivier2025embodied}{{12}{2025}{{Olivier and Bouraoui}}{{}}}
+\bibcite{sumers2023coala}{{13}{2024}{{Sumers et~al.}}{{Sumers, Yao, Narasimhan, and Griffiths}}}
+\bibcite{thurston1994proof}{{14}{1994}{{Thurston}}{{}}}
+\bibcite{trinh2024alphageometry}{{15}{2024}{{Trinh et~al.}}{{Trinh, Wu, Le, He, and Luong}}}
+\bibcite{yang2025rlvr}{{16}{2025}{{Yue et~al.}}{{Yue, Chen, Lu, Zhao, Wang, Yue, Song, and Huang}}}
+\def\@LN@column{1}
+\citation{gou2024tora}
+\citation{das2024mathsensei}
+\citation{luo2025agentmath}
+\citation{trinh2024alphageometry,trinh2025alphageometry2}
+\citation{sumers2023coala}
+\citation{ebouky2025cogtools}
+\citation{olivier2025embodied}
+\citation{an2026humancog}
+\citation{yang2025rlvr}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Related Work}{11}{appendix.A}\protected@file@percent }
+\def\@LN@column{1}
+\citation{bell2016curver}
+\citation{snappy}
+\def\@LN@column{1}
+\gdef \@abspage@last{13}

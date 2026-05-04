@@ -1,0 +1,319 @@
+{
+ "domain": "boundary_interior",
+ "condition": "RT0",
+ "primitives": {
+  "relation": true,
+  "transform": true,
+  "contrastive": false
+ },
+ "case_id": "L_shape-trans-1",
+ "case_data": {
+  "case_id": "L_shape-trans-1",
+  "summary_delta": {
+   "area_b": 0.0,
+   "n_vertices_a": 0,
+   "pick_holds_a": 0,
+   "area_a": 0.0,
+   "pick_holds_b": 0,
+   "I_b": 0,
+   "perimeter_b": 0.0,
+   "perimeter_a": 0.0,
+   "B_a": 0,
+   "B_b": 0,
+   "I_a": 0,
+   "n_vertices_b": 0
+  },
+  "metadata": {
+   "preset": "L_shape",
+   "operation": "translate",
+   "delta": [
+    0,
+    7
+   ],
+   "n_vertices_pre": 6,
+   "n_vertices_post": 6
+  },
+  "detailed_comparison": {
+   "area_preserved": true,
+   "B_change": 0,
+   "I_change": 0,
+   "edges_pre": [
+    {
+     "from": [
+      0,
+      0
+     ],
+     "to": [
+      4,
+      0
+     ],
+     "direction": [
+      4,
+      0
+     ],
+     "length": 4.0,
+     "gcd": 4,
+     "lattice_points_on_edge": 5,
+     "lattice_points_interior_to_edge": 3
+    },
+    {
+     "from": [
+      4,
+      0
+     ],
+     "to": [
+      4,
+      2
+     ],
+     "direction": [
+      0,
+      2
+     ],
+     "length": 2.0,
+     "gcd": 2,
+     "lattice_points_on_edge": 3,
+     "lattice_points_interior_to_edge": 1
+    },
+    {
+     "from": [
+      4,
+      2
+     ],
+     "to": [
+      2,
+      2
+     ],
+     "direction": [
+      -2,
+      0
+     ],
+     "length": 2.0,
+     "gcd": 2,
+     "lattice_points_on_edge": 3,
+     "lattice_points_interior_to_edge": 1
+    },
+    {
+     "from": [
+      2,
+      2
+     ],
+     "to": [
+      2,
+      4
+     ],
+     "direction": [
+      0,
+      2
+     ],
+     "length": 2.0,
+     "gcd": 2,
+     "lattice_points_on_edge": 3,
+     "lattice_points_interior_to_edge": 1
+    },
+    {
+     "from": [
+      2,
+      4
+     ],
+     "to": [
+      0,
+      4
+     ],
+     "direction": [
+      -2,
+      0
+     ],
+     "length": 2.0,
+     "gcd": 2,
+     "lattice_points_on_edge": 3,
+     "lattice_points_interior_to_edge": 1
+    },
+    {
+     "from": [
+      0,
+      4
+     ],
+     "to": [
+      0,
+      0
+     ],
+     "direction": [
+      0,
+      -4
+     ],
+     "length": 4.0,
+     "gcd": 4,
+     "lattice_points_on_edge": 5,
+     "lattice_points_interior_to_edge": 3
+    }
+   ],
+   "edges_post": [
+    {
+     "from": [
+      0,
+      7
+     ],
+     "to": [
+      4,
+      7
+     ],
+     "direction": [
+      4,
+      0
+     ],
+     "length": 4.0,
+     "gcd": 4,
+     "lattice_points_on_edge": 5,
+     "lattice_points_interior_to_edge": 3
+    },
+    {
+     "from": [
+      4,
+      7
+     ],
+     "to": [
+      4,
+      9
+     ],
+     "direction": [
+      0,
+      2
+     ],
+     "length": 2.0,
+     "gcd": 2,
+     "lattice_points_on_edge": 3,
+     "lattice_points_interior_to_edge": 1
+    },
+    {
+     "from": [
+      4,
+      9
+     ],
+     "to": [
+      2,
+      9
+     ],
+     "direction": [
+      -2,
+      0
+     ],
+     "length": 2.0,
+     "gcd": 2,
+     "lattice_points_on_edge": 3,
+     "lattice_points_interior_to_edge": 1
+    },
+    {
+     "from": [
+      2,
+      9
+     ],
+     "to": [
+      2,
+      11
+     ],
+     "direction": [
+      0,
+      2
+     ],
+     "length": 2.0,
+     "gcd": 2,
+     "lattice_points_on_edge": 3,
+     "lattice_points_interior_to_edge": 1
+    },
+    {
+     "from": [
+      2,
+      11
+     ],
+     "to": [
+      0,
+      11
+     ],
+     "direction": [
+      -2,
+      0
+     ],
+     "length": 2.0,
+     "gcd": 2,
+     "lattice_points_on_edge": 3,
+     "lattice_points_interior_to_edge": 1
+    },
+    {
+     "from": [
+      0,
+      11
+     ],
+     "to": [
+      0,
+      7
+     ],
+     "direction": [
+      0,
+      -4
+     ],
+     "length": 4.0,
+     "gcd": 4,
+     "lattice_points_on_edge": 5,
+     "lattice_points_interior_to_edge": 3
+    }
+   ]
+  },
+  "structural_comparison": {
+   "pick_holds_pre": true,
+   "pick_holds_post": true,
+   "pick_preserved": true,
+   "area_from_pick_pre": 12.0,
+   "area_from_pick_post": 12.0,
+   "area_from_shoelace_pre": 12.0,
+   "area_from_shoelace_post": 12.0,
+   "is_lattice_pre": true,
+   "is_lattice_post": true,
+   "is_simple_pre": true,
+   "is_simple_post": true
+  },
+  "transform_trace": {
+   "operation_name": "translate",
+   "operation_params": {
+    "type": "translate",
+    "delta": [
+     0,
+     7
+    ]
+   },
+   "before_state": {
+    "area": 12.0,
+    "B": 16,
+    "I": 5,
+    "pick_holds": true,
+    "n_vertices": 6
+   },
+   "after_state": {
+    "area": 12.0,
+    "B": 16,
+    "I": 5,
+    "pick_holds": true,
+    "n_vertices": 6
+   },
+   "delta": {
+    "area_change": 0.0,
+    "B_change": 0,
+    "I_change": 0,
+    "pick_preserved": true,
+    "area_preserved": true
+   },
+   "region_affected": {
+    "operation": "translate",
+    "vertices_before": 6,
+    "vertices_after": 6,
+    "vertex_diff": 0
+   },
+   "sub_steps": []
+  },
+  "reference_in_transform_region": {
+   "operation": "translate",
+   "vertices_before": 6,
+   "vertices_after": 6,
+   "vertex_diff": 0
+  }
+ }
+}

@@ -1,0 +1,23 @@
+Joint-expansion candidate audit (mpmath dps=100, T=10000)
+Workers: 19
+
+R*                   β:[0.78, 0.82] ηL:[3.2, 3.32] κ:[0.375, 0.4]  vol=1.2000e-04 (1.00x)  9-cycle: 9/9  PASS  (7.7s)
+R*_mod_a             β:[0.77, 0.82] ηL:[3.15, 3.4] κ:[0.35, 0.42]  vol=8.7500e-04 (7.29x)  9-cycle: 7/9  FAIL  (7.9s)
+      FAIL: R*_mod_a_corner_101 b=0.82 etaL=3.15 kap=0.42  |x_T|=1.149693901553  decay
+      FAIL: R*_mod_a_corner_011 b=0.77 etaL=3.4 kap=0.42  |x_T|=1.773579436205  decay
+R*_mod_b             β:[0.77, 0.82] ηL:[3.18, 3.36] κ:[0.3, 0.42]  vol=1.0800e-03 (9.00x)  9-cycle: 9/9  PASS  (7.8s)
+R*_mod_c             β:[0.78, 0.82] ηL:[3.15, 3.4] κ:[0.3, 0.42]  vol=1.2000e-03 (10.00x)  9-cycle: 8/9  FAIL  (7.6s)
+      FAIL: R*_mod_c_corner_101 b=0.82 etaL=3.15 kap=0.42  |x_T|=1.149693901553  decay
+R*_mod_d_beta        β:[0.76, 0.82] ηL:[3.2, 3.32] κ:[0.375, 0.4]  vol=1.8000e-04 (1.50x)  9-cycle: 9/9  PASS  (7.5s)
+R*_mod_e_etaL        β:[0.78, 0.82] ηL:[3.15, 3.45] κ:[0.375, 0.4]  vol=3.0000e-04 (2.50x)  9-cycle: 9/9  PASS  (7.7s)
+R*_mod_f_kappa       β:[0.78, 0.82] ηL:[3.2, 3.32] κ:[0.3, 0.42]  vol=5.7600e-04 (4.80x)  9-cycle: 9/9  PASS  (7.9s)
+R*_mod_g             β:[0.77, 0.82] ηL:[3.18, 3.4] κ:[0.35, 0.42]  vol=7.7000e-04 (6.42x)  9-cycle: 8/9  FAIL  (3.8s)
+      FAIL: R*_mod_g_corner_011 b=0.77 etaL=3.4 kap=0.42  |x_T|=1.773579436205  decay
+R*_mod_h             β:[0.77, 0.82] ηL:[3.18, 3.36] κ:[0.35, 0.41]  vol=5.4000e-04 (4.50x)  9-cycle: 9/9  PASS  (2.8s)
+R*_mod_i_etaLk       β:[0.78, 0.82] ηL:[3.15, 3.45] κ:[0.3, 0.42]  vol=1.4400e-03 (12.00x)  9-cycle: 8/9  FAIL  (2.7s)
+      FAIL: R*_mod_i_etaLk_corner_101 b=0.82 etaL=3.15 kap=0.42  |x_T|=1.149693901553  decay
+
+BEST passing joint box: R*_mod_b  vol=1.0800e-03  (9.00x R*)
+  [[0.77, 0.82], [3.18, 3.36], [0.3, 0.42]]
+
+Saved results to C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap1_init\detailed_verification\gap1_audit_extra_results.json

@@ -1,0 +1,68 @@
+{
+  "theorem_name": "descent_lemma",
+  "theorem_nl": "若 f : E → ℝ 可微且梯度是 L-Lipschitz 的，则对所有 x, y ∈ E，f(y) ≤ f(x) + ⟨∇f(x), y-x⟩ + (L/2)‖y-x‖²",
+  "assumptions": [
+    "E 是实内积空间",
+    "f : E → ℝ 可微",
+    "gradient f 是 L-Lipschitz 的（L : NNReal）"
+  ],
+  "conclusion": "f(y) ≤ f(x) + ⟨∇f(x), y-x⟩ + (L/2)‖y-x‖²",
+  "steps": [
+    {
+      "id": 1,
+      "description": "定义路径 γ(t) = x + t(y - x)，t ∈ [0,1]",
+      "method": "direct_compute",
+      "uses": [],
+      "external_theorem": null
+    },
+    {
+      "id": 2,
+      "description": "由微积分基本定理，f(y) - f(x) = ∫₀¹ ⟨∇f(γ(t)), y-x⟩ dt",
+      "method": "apply_theorem",
+      "uses": [1],
+      "external_theorem": "Fundamental Theorem of Calculus for line integrals"
+    },
+    {
+      "id": 3,
+      "description": "将被积函数拆分：⟨∇f(γ(t)), y-x⟩ = ⟨∇f(x), y-x⟩ + ⟨∇f(γ(t)) - ∇f(x), y-x⟩",
+      "method": "direct_compute",
+      "uses": [2],
+      "external_theorem": null
+    },
+    {
+      "id": 4,
+      "description": "第一项积分 ∫₀¹ ⟨∇f(x), y-x⟩ dt = ⟨∇f(x), y-x⟩（常数积分）",
+      "method": "direct_compute",
+      "uses": [3],
+      "external_theorem": null
+    },
+    {
+      "id": 5,
+      "description": "第二项用 Cauchy-Schwarz：|⟨∇f(γ(t)) - ∇f(x), y-x⟩| ≤ ‖∇f(γ(t)) - ∇f(x)‖ · ‖y-x‖",
+      "method": "apply_theorem",
+      "uses": [3],
+      "external_theorem": "Cauchy-Schwarz inequality"
+    },
+    {
+      "id": 6,
+      "description": "由梯度的 L-Lipschitz 性：‖∇f(γ(t)) - ∇f(x)‖ ≤ L · ‖γ(t) - x‖ = Lt‖y-x‖",
+      "method": "apply_theorem",
+      "uses": [1, 5],
+      "external_theorem": "Lipschitz condition on gradient"
+    },
+    {
+      "id": 7,
+      "description": "合并：第二项积分 ≤ ∫₀¹ Lt‖y-x‖² dt = (L/2)‖y-x‖²",
+      "method": "direct_compute",
+      "uses": [5, 6],
+      "external_theorem": null
+    },
+    {
+      "id": 8,
+      "description": "综合 step 2, 4, 7 得 f(y) - f(x) ≤ ⟨∇f(x), y-x⟩ + (L/2)‖y-x‖²",
+      "method": "direct_compute",
+      "uses": [2, 4, 7],
+      "external_theorem": null
+    }
+  ]
+}

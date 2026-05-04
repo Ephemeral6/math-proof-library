@@ -1,0 +1,54 @@
+========================================================================
+Caveat 2 verification: rigorous stochastic gradient-floor theorem
+========================================================================
+
+--- (V1) PL inequality sanity check ---
+  μ = 0.387, μ² = 0.149769
+  Goujaud f_0 should satisfy ‖∇f_0(x)‖² ≥ μ² ‖x‖² for all x.
+  min over 20000 samples of ‖∇f_0(x)‖² / ‖x‖² = 0.184132
+  μ² target                                  = 0.149769
+  PL holds: True
+  min over 20000 non-trivial samples of (1/2)‖∇f_0‖² / (f_0 - f_0*) = 0.393270
+  μ target                                                  = 0.387000
+  PL form (μ-PL) holds: True
+  Strong convexity check: min over 20000 samples of (f_0 - f_0*) / ((1/2)‖x‖²) = 0.467138
+  μ target                                                          = 0.387000
+
+--- (V2, V3) Monte Carlo: rigorous bounds vs measured ---
+  Anchor: μ = 0.387, η = 3.247, β = 0.8
+  Theoretical: E[‖x_T‖²] ≥ 2η²σ² = 21.0860 σ²
+               E[‖∇f₀‖²] ≥ 2μ²η²σ² = 3.1580 σ²
+
+       σ    2η²σ² LB  E[‖x_T‖²] meas   2μ²η²σ² LB  E[‖∇f‖²] meas   V2 OK   V3 OK
+   0.010      0.0021          0.4522       0.0003         0.3106       ✓       ✓
+   0.100      0.2109          0.9005       0.0316         0.3595       ✓       ✓
+   0.500      5.2715         16.8099       0.7895         3.3549       ✓       ✓
+   1.000     21.0860         60.6953       3.1580        10.5678       ✓       ✓
+
+--- (V4) σ → 0 limit (deterministic) ---
+  σ = 0 (deterministic):
+    Rigorous LB E[‖x‖²] = 2·0² = 0 (vacuous)
+    Measured ‖x_T‖²       = 0.5000  (= λ² = 0.5000 on cycle)
+    Rigorous LB E[‖∇f‖²] = 0 (vacuous)
+    Measured ‖∇f(x_T)‖²  = 0.3471
+
+  → Theorem 1 (2μ²η²σ²) is loose at σ=0. Cycling content (Gap 1)
+    is needed to close the gap, captured by the conditional theorem.
+
+========================================================================
+Summary
+========================================================================
+  V1 (PL inequality on Goujaud f_0): PASS
+  V2 (E[‖x_T‖²] ≥ 2η²σ²):           PASS  (4 σ tested)
+  V3 (E[‖∇f‖²] ≥ 2μ²η²σ²):          PASS
+  V4 (σ→0 limit ↔ Gap 1 cycling):    deterministic ‖∇f‖² = 0.3471
+
+  Tightness ratios (measured / theoretical) at each σ:
+         σ   E[‖x‖²] tightness    E[‖∇f‖²] tightness
+     0.010               214.5×                 983.4×
+     0.100                 4.3×                  11.4×
+     0.500                 3.2×                   4.2×
+     1.000                 2.9×                   3.3×
+
+  Wall time: 167.4s
+  Saved to C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap1_init\caveat_fix\caveat2_results.json

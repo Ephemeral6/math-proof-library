@@ -1,0 +1,54 @@
+
+--- rank-1 quadratic, beta=0.3 | beta=0.3, eta=0.0500, T=200, L=10.000 ---
+f(y_0)-f* = 1.1727e-01, f(y_T)-f* = 2.4074e-33
+slope log f(y_t)-f* (t>=2) = -13.5434
+  ✗ T-A1 twist, w=1, gamma=0                  V_0=9.862e+01  V_T=9.619e+01  max_inc=+3.74e-01  slope=-0.000
+  ✗ T-A2 twist, w=1, gamma=1                  V_0=9.862e+01  V_T=9.619e+01  max_inc=+3.74e-01  slope=-0.000
+  ✗ T-A3 twist, w=1, gamma=1/eta              V_0=1.081e+02  V_T=1.055e+02  max_inc=+3.21e-01  slope=-0.000
+  ✗ T-B1 twist, w=t+1, gamma=0                V_0=9.812e+01  V_T=9.570e+01  max_inc=+3.50e-01  slope=-0.000
+  ✗ T-B2 twist, w=t+1, gamma=1                V_0=9.862e+01  V_T=9.619e+01  max_inc=+3.47e-01  slope=-0.000
+  ✗ T-B3 twist, w=t+1, gamma=1/eta            V_0=1.081e+02  V_T=1.055e+02  max_inc=+2.94e-01  slope=-0.000
+  ✗ T-C  twist, w=sqrt(t+1), gamma=1          V_0=9.862e+01  V_T=9.619e+01  max_inc=+3.63e-01  slope=-0.000
+  ✗ T-D1 NAIVE, w=1, gamma=0                  V_0=6.173e-01  V_T=4.883e-01  max_inc=+1.08e+00  slope=-0.006
+  ✗ T-D2 NAIVE, w=t+1, gamma=0                V_0=6.173e-01  V_T=4.883e-01  max_inc=+1.11e+00  slope=-0.006
+
+--- rank-1 quadratic, beta=0.5 | beta=0.5, eta=0.0500, T=200, L=10.000 ---
+f(y_0)-f* = 1.1727e-01, f(y_T)-f* = 9.6296e-35
+slope log f(y_t)-f* (t>=2) = -11.5341
+  ✗ T-A1 twist, w=1, gamma=0                  V_0=5.062e+01  V_T=4.932e+01  max_inc=+8.47e-01  slope=-0.000
+  ✗ T-A2 twist, w=1, gamma=1                  V_0=5.062e+01  V_T=4.932e+01  max_inc=+8.47e-01  slope=-0.000
+  ✗ T-A3 twist, w=1, gamma=1/eta              V_0=6.012e+01  V_T=5.859e+01  max_inc=+7.92e-01  slope=-0.000
+  ✗ T-B1 twist, w=t+1, gamma=0                V_0=5.012e+01  V_T=4.883e+01  max_inc=+8.21e-01  slope=-0.000
+  ✗ T-B2 twist, w=t+1, gamma=1                V_0=5.062e+01  V_T=4.932e+01  max_inc=+8.18e-01  slope=-0.000
+  ✗ T-B3 twist, w=t+1, gamma=1/eta            V_0=6.012e+01  V_T=5.859e+01  max_inc=+7.62e-01  slope=-0.000
+  ✗ T-C  twist, w=sqrt(t+1), gamma=1          V_0=5.062e+01  V_T=4.932e+01  max_inc=+8.35e-01  slope=-0.000
+  ✗ T-D1 NAIVE, w=1, gamma=0                  V_0=6.173e-01  V_T=4.883e-01  max_inc=+1.08e+00  slope=-0.017
+  ✗ T-D2 NAIVE, w=t+1, gamma=0                V_0=6.173e-01  V_T=4.883e-01  max_inc=+1.11e+00  slope=-0.019
+
+--- DT-worst Laplacian, beta=0.3 | beta=0.3, eta=0.1281, T=200, L=3.902 ---
+f(y_0)-f* = 8.7555e-01, f(y_T)-f* = 8.9510e-08
+slope log f(y_t)-f* (t>=2) = -3.9521
+  ✓ T-A1 twist, w=1, gamma=0                  V_0=1.630e+01  V_T=2.490e-01  max_inc=-9.98e-07  slope=-0.466
+  ✓ T-A2 twist, w=1, gamma=1                  V_0=1.630e+01  V_T=2.490e-01  max_inc=-9.98e-07  slope=-0.466
+  ✓ T-A3 twist, w=1, gamma=1/eta              V_0=1.970e+01  V_T=3.040e-01  max_inc=-1.23e-06  slope=-0.476
+  ✓ T-B1 twist, w=t+1, gamma=0                V_0=1.580e+01  V_T=2.410e-01  max_inc=-1.54e-06  slope=-0.504
+  ✓ T-B2 twist, w=t+1, gamma=1                V_0=1.630e+01  V_T=2.491e-01  max_inc=-1.57e-06  slope=-0.505
+  ✓ T-B3 twist, w=t+1, gamma=1/eta            V_0=1.970e+01  V_T=3.040e-01  max_inc=-1.80e-06  slope=-0.507
+  ✓ T-C  twist, w=sqrt(t+1), gamma=1          V_0=1.630e+01  V_T=2.490e-01  max_inc=-1.04e-06  slope=-0.474
+  ✗ T-D1 NAIVE, w=1, gamma=0                  V_0=1.376e+00  V_T=8.074e-03  max_inc=+1.84e+00  slope=-0.713
+  ✗ T-D2 NAIVE, w=t+1, gamma=0                V_0=1.376e+00  V_T=8.092e-03  max_inc=+2.21e+00  slope=-1.106
+
+--- DT-worst Laplacian, beta=0.5 | beta=0.5, eta=0.1281, T=200, L=3.902 ---
+f(y_0)-f* = 8.7555e-01, f(y_T)-f* = 3.9868e-09
+slope log f(y_t)-f* (t>=2) = -4.5186
+  ✗ T-A1 twist, w=1, gamma=0                  V_0=8.989e+00  V_T=1.310e-01  max_inc=+4.98e-01  slope=-0.328
+  ✗ T-A2 twist, w=1, gamma=1                  V_0=8.989e+00  V_T=1.310e-01  max_inc=+4.98e-01  slope=-0.328
+  ✓ T-A3 twist, w=1, gamma=1/eta              V_0=1.239e+01  V_T=1.859e-01  max_inc=-4.71e-08  slope=-0.347
+  ✗ T-B1 twist, w=t+1, gamma=0                V_0=8.489e+00  V_T=1.229e-01  max_inc=+4.83e-01  slope=-0.376
+  ✗ T-B2 twist, w=t+1, gamma=1                V_0=8.989e+00  V_T=1.310e-01  max_inc=+3.67e-01  slope=-0.377
+  ✓ T-B3 twist, w=t+1, gamma=1/eta            V_0=1.239e+01  V_T=1.859e-01  max_inc=-8.56e-08  slope=-0.379
+  ✗ T-C  twist, w=sqrt(t+1), gamma=1          V_0=8.989e+00  V_T=1.310e-01  max_inc=+4.32e-01  slope=-0.340
+  ✗ T-D1 NAIVE, w=1, gamma=0                  V_0=1.376e+00  V_T=8.073e-03  max_inc=+1.84e+00  slope=-0.637
+  ✗ T-D2 NAIVE, w=t+1, gamma=0                V_0=1.376e+00  V_T=8.074e-03  max_inc=+2.21e+00  slope=-0.860
+
+Results written to C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap2_ub\resolution\theorem3_new\route_T\02_numerical_Vt_nonSC_results.json

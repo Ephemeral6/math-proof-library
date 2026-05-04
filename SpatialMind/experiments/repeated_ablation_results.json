@@ -1,0 +1,2568 @@
+{
+  "meta": {
+    "evaluator": "Claude Opus 4.7 (1M context)",
+    "date": "2026-05-02",
+    "scale": {
+      "0": "NO_SIGNAL — no hypothesis extracted from data",
+      "1": "WRONG_PATTERN — proposed pattern contradicted by data",
+      "2": "PATTERN — correct structural observation, no argument",
+      "3": "ARGUMENT — condition->conclusion reasoning chain",
+      "4": "PROOF — complete verifiable proof"
+    },
+    "method": "Per (domain, condition, case_id), the evaluator reads ONLY the data permitted by that condition for that single case (plus the global counterfactual block for *C conditions, which is shared across cases). Reasons toward the target theorem and self-rates 0-4. Cases sampled with seed=42 from level_4.json.",
+    "domains_planned": [
+      "symmetry",
+      "knot_theory",
+      "boundary_interior",
+      "discrete_curvature",
+      "graph_connectivity",
+      "projection",
+      "surface_topology",
+      "surface_topology_s21"
+    ],
+    "conditions": [
+      "000",
+      "00C",
+      "0T0",
+      "0TC",
+      "R00",
+      "R0C",
+      "RT0",
+      "RTC"
+    ],
+    "n_cases_per_cell": 5,
+    "single_rating_baseline_symmetry": {
+      "000": 2,
+      "00C": 2,
+      "0T0": 3,
+      "0TC": 3,
+      "R00": 4,
+      "R0C": 4,
+      "RT0": 4,
+      "RTC": 4
+    },
+    "key_observation": "structural_comparison.fixed_point_counts and burnside_count are GLOBAL aggregates over all 200 pairs — they are present in every per-case extract under the R* conditions. So R-on conditions retain Burnside-verifiable signal at single-case granularity. T and C primitives, by contrast, are mostly per-case (T) or one-shot (C, three CFs total)."
+  },
+  "ratings": [
+    {
+      "domain": "symmetry",
+      "case_id": "same-006",
+      "case_summary": "same orbit; a=[1,0,2,1,0,2] period-3; orbit_size=3, stab=2; g_idx=3 (half-turn), and g·a = a (vertex colors all preserved)",
+      "evaluations": {
+        "000": {
+          "observed": "metadata: label=same_orbit, a=[1,0,2,1,0,2], b=[2,1,0,2,1,0], g_perm=[3,4,5,0,1,2], orbit_size_a=orbit_size_b=3. summary_delta is all 0 (no change between pre/post).",
+          "hypothesis": "Same-orbit pair with a periodic coloring. b is a cyclic shift of a by 1. g is rotation by 3. Cannot derive Burnside or orbit-stabilizer from one case.",
+          "score": 2,
+          "label": "PATTERN",
+          "rationale": "Observation that orbit_size=3 < |G|=6 (implying non-trivial stabilizer) is structural but not argued."
+        },
+        "00C": {
+          "observed": "Same as 000 + 3 CFs: Z_6→D_6 (orbit count 130→92, same_orbit unchanged, non-critical); Z_6→{e} (orbits 130→729, same_orbit becomes False, critical); swap(0,1)·a not in orbit (critical).",
+          "hypothesis": "CFs establish that G being a (specific) group is necessary for the equivalence relation. Still no Burnside or orbit-stabilizer argument from one case + CFs.",
+          "score": 2,
+          "label": "PATTERN",
+          "rationale": "CFs add 'group necessity' but do not yield a proof step toward Burnside."
+        },
+        "0T0": {
+          "observed": "transform_trace shows g_perm=[3,4,5,0,1,2], order=2, n_moved=0, n_fixed=6. So g·a = a — this single case witnesses g ∈ Stab(a).",
+          "hypothesis": "Fix(g) is non-empty (a is fixed). Concrete cycle structure of g (two 3-cycles? actually a single involution with 3 orbits of length 2) lets me infer that fixed colorings must be constant on g-orbits → upper bound 3^3 for |Fix(r^3)|. Cannot verify equality from one case.",
+          "score": 3,
+          "label": "ARGUMENT",
+          "rationale": "Single fixed-point witness + cycle structure → I can argue |Fix(g)| ≤ 3^(#cycles_of_g), the half of Burnside that comes from per-element analysis. Cannot complete Burnside without aggregate counts."
+        },
+        "0TC": {
+          "observed": "0T0 + 3 CFs.",
+          "hypothesis": "Same structural argument as 0T0 (|Fix(g)| ≤ 3^cycles), augmented by CFs showing G must be a group and rotation-only.",
+          "score": 3,
+          "label": "ARGUMENT",
+          "rationale": "Same as 0T0; CFs do not add a Burnside-proof step."
+        },
+        "R00": {
+          "observed": "structural_comparison.fixed_point_counts={0:729,1:3,2:9,3:27,4:9,5:3}, burnside_count=130, total_orbits=130 (these are GLOBAL fields). Plus this case: stab_a=2, orbit=3, stab*orbit=6=|G|; connecting_pre=2 = stab_size.",
+          "hypothesis": "Burnside identity (1/6)Σ|Fix(g)| = 780/6 = 130 = total_orbits — directly verifiable from the global aggregates. Orbit-stabilizer holds locally (2*3=6) and connecting=stab gives the coset-decomposition witness for a→b.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "Global Burnside numerics + this case's stab/connecting/orbit data give a complete chain: orbit-stabilizer (local witness + numerics), Burnside (global numerics), with the standard double-counting argument valid as written."
+        },
+        "R0C": {
+          "observed": "R00 + 3 CFs.",
+          "hypothesis": "Same Burnside chain as R00, plus CFs re-confirm G must be a group.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "CFs do not displace any proof step; R00 alone closes the proof."
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace showing g_idx=3 has cycle structure giving Fix(g) consistent with fpc[3]=27=3^3.",
+          "hypothesis": "Burnside numerics (R) + algebraic mechanism for |Fix(g)|=3^cycles (T). Both present; proof closes via R alone, T provides the mechanistic explanation.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "Same as R00; T adds explanation but no new step."
+        },
+        "RTC": {
+          "observed": "All three primitives.",
+          "hypothesis": "Same as RT0 plus CFs.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "Saturated; Burnside+orbit-stabilizer chain verified, CFs confirm the group hypothesis."
+        }
+      }
+    },
+    {
+      "domain": "symmetry",
+      "case_id": "diff-163",
+      "case_summary": "diff orbit; a=[0,1,0,2,2,1], b=[1,2,0,2,0,0]; orbit_size=6, stab=1; g_idx=4 (order 3 rotation)",
+      "evaluations": {
+        "000": {
+          "observed": "metadata: label=diff (same_orbit=False), a, b, g_perm=[4,5,0,1,2,3], orbit_size_a=orbit_size_b=6.",
+          "hypothesis": "A diff-orbit pair. g rotates a; σ_a is in same orbit as a but b is not. One example, no aggregate signal.",
+          "score": 1,
+          "label": "WRONG_PATTERN",
+          "rationale": "From a single 'diff' pair I can only register that not all (a,b) are equivalent. A naive hypothesis like 'same hamming → same orbit' is contradicted (hamming is given but not interpretable). I am marking this as borderline 1/2 — one case alone gives almost no actionable signal toward Burnside; if I tried any pattern it would risk being wrong."
+        },
+        "00C": {
+          "observed": "000 + 3 CFs.",
+          "hypothesis": "CFs add 'G must be a group, must be Z_6 specifically' framing. Still no Burnside argument from one diff pair.",
+          "score": 2,
+          "label": "PATTERN",
+          "rationale": "CFs let me articulate the orbit-equivalence pattern (group structure required), bumping above WRONG_PATTERN."
+        },
+        "0T0": {
+          "observed": "transform_trace: g_idx=4, perm=[4,5,0,1,2,3], order=3, n_moved=4, n_fixed=2. So g acts on a moving 4 vertex-colors and fixing 2 (a is not fixed).",
+          "hypothesis": "Concrete cycle structure of an order-3 rotation: two 3-cycles (vertices {0,2,4} and {1,3,5}). For a coloring to be fixed it must be constant on each 3-cycle → |Fix(r^2)|≤3^2=9. Single-case mechanism, no aggregate.",
+          "score": 3,
+          "label": "ARGUMENT",
+          "rationale": "Cycle-structure mechanism gives the algebraic formula side of Burnside (per-element analysis), even from one case."
+        },
+        "0TC": {
+          "observed": "0T0 + 3 CFs.",
+          "hypothesis": "Same per-element argument as 0T0, plus group-necessity from CFs.",
+          "score": 3,
+          "label": "ARGUMENT",
+          "rationale": "Same as 0T0; CFs do not contribute to Burnside double-counting."
+        },
+        "R00": {
+          "observed": "structural_comparison.fixed_point_counts={0:729,1:3,2:9,3:27,4:9,5:3}, burnside_count=130=total_orbits, |G|=6 (GLOBAL). This case: stab=1, orbit=6, stab*orbit=6=|G|; connecting_pre=0 (consistent with diff orbit).",
+          "hypothesis": "Burnside numerics close: (1/6)*780=130. Orbit-stabilizer holds (1*6=6). connecting=0 confirms 'diff' label. Standard double-counting completes Burnside.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "Global aggregates (fpc, burnside_count, total_orbits) verify Burnside numerically; orbit-stabilizer holds locally; the standard double-counting argument runs."
+        },
+        "R0C": {
+          "observed": "R00 + 3 CFs.",
+          "hypothesis": "Same Burnside chain + group necessity.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "Saturated."
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace giving cycle structure of g.",
+          "hypothesis": "Burnside (R) + cycle-structure mechanism (T): Fix(r^k)=3^gcd(k,6). For this case g is order 3 → gcd=2 → 3^2=9 matches fpc[2]=9.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "R alone closes; T adds mechanism for fpc."
+        },
+        "RTC": {
+          "observed": "All three primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "Same as RT0 with CFs."
+        }
+      }
+    },
+    {
+      "domain": "symmetry",
+      "case_id": "same-028",
+      "case_summary": "same orbit; a=[0,1,1,0,2,1], b=[1,0,1,1,0,2]; orbit_size=6, stab=1; g_idx=5 (order 6 rotation)",
+      "evaluations": {
+        "000": {
+          "observed": "metadata: label=same, a, b, g_perm=[5,0,1,2,3,4], orbit_size_a=orbit_size_b=6, n_distinct_a=n_distinct_b=3.",
+          "hypothesis": "Same-orbit pair via order-6 rotation. b is a cyclic shift of a. Single-case data — no Burnside or orbit-stabilizer proof.",
+          "score": 2,
+          "label": "PATTERN",
+          "rationale": "Observable 'b is a rotation of a' is a correct structural pattern."
+        },
+        "00C": {
+          "observed": "000 + 3 CFs.",
+          "hypothesis": "Same pattern + group necessity.",
+          "score": 2,
+          "label": "PATTERN",
+          "rationale": "CFs add interpretation but no proof step."
+        },
+        "0T0": {
+          "observed": "transform_trace: g_idx=5, perm=[5,0,1,2,3,4], order=6, n_moved=5, n_fixed=1.",
+          "hypothesis": "Order-6 rotation has a single 6-cycle on vertices. Fixed colorings must be globally constant → |Fix(r^5)|≤3^1=3. Concrete cycle-counting argument valid from one case.",
+          "score": 3,
+          "label": "ARGUMENT",
+          "rationale": "Cycle-structure mechanism gives per-element bound on Fix(g)."
+        },
+        "0TC": {
+          "observed": "0T0 + 3 CFs.",
+          "hypothesis": "Same per-element argument + group necessity.",
+          "score": 3,
+          "label": "ARGUMENT",
+          "rationale": "Same as 0T0."
+        },
+        "R00": {
+          "observed": "Global fpc, burnside_count=130, |G|=6. This case: stab=1, orbit=6, stab*orbit=6, connecting_pre=1 = stab_size.",
+          "hypothesis": "Burnside numerics close. orbit-stabilizer holds. connecting=stab gives coset-decomposition witness (one g maps a→b, and Stab(a) = {e} so coset has size 1).",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "Same chain as R00 elsewhere; global aggregates + local witness."
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "Saturated."
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "R closes Burnside; T explains Fix(g)=3^gcd(g_order,6) — for order-6 rotation, gcd=1, 3^1=3 matches fpc[5]=3.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "Saturated with mechanism."
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "Saturated."
+        }
+      }
+    },
+    {
+      "domain": "symmetry",
+      "case_id": "diff-189",
+      "case_summary": "diff orbit; a=[1,1,2,2,0,0], b=[0,1,1,0,2,2]; orbit_size=6, stab=1; g_idx=5 (order 6 rotation)",
+      "evaluations": {
+        "000": {
+          "observed": "metadata: label=diff, a, b, g_perm=[5,0,1,2,3,4]. Note: a has 'period 2' structure ([1,1,2,2,0,0]) but n_distinct=3.",
+          "hypothesis": "A diff-orbit pair. Without aggregates, only observation is 'this pair is not equivalent'.",
+          "score": 1,
+          "label": "WRONG_PATTERN",
+          "rationale": "One diff pair gives almost no traction. Naive distance-based hypothesis is risky."
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "CFs frame group necessity.",
+          "score": 2,
+          "label": "PATTERN",
+          "rationale": "CFs add structural framing."
+        },
+        "0T0": {
+          "observed": "transform_trace: order 6, n_moved=3, n_fixed=3. So g·a coincides with a on 3 vertices (a is not fully fixed).",
+          "hypothesis": "Single 6-cycle on vertices → |Fix(r^5)| ≤ 3^1 = 3 for a fully-fixed coloring. The half-fixed observation here is consistent with a not being in Fix(g). Cycle-structure argument applies.",
+          "score": 3,
+          "label": "ARGUMENT",
+          "rationale": "Per-element bound argued from cycle structure."
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same as 0T0 + group necessity.",
+          "score": 3,
+          "label": "ARGUMENT",
+          "rationale": "Same as 0T0."
+        },
+        "R00": {
+          "observed": "Global fpc, burnside=130, |G|=6. Local: stab=1, orbit=6, connecting_pre=0.",
+          "hypothesis": "Burnside numerics close; orbit-stabilizer holds; diff label witnessed by connecting=0.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "R00 carries global Burnside aggregate; full proof chain runs."
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "Saturated."
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "R closes; T mechanizes |Fix(g)|.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "Saturated."
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "Saturated."
+        }
+      }
+    },
+    {
+      "domain": "symmetry",
+      "case_id": "same-070",
+      "case_summary": "same orbit; a=[1,2,1,2,2,0], b=[2,1,2,2,0,1]; orbit_size=6, stab=1; g_idx=2 (order 3 rotation)",
+      "evaluations": {
+        "000": {
+          "observed": "metadata: label=same, a, b, g_perm=[2,3,4,5,0,1].",
+          "hypothesis": "Same-orbit pair under rotation by 2.",
+          "score": 2,
+          "label": "PATTERN",
+          "rationale": "Pattern of 'cyclic shift maps a→b' visible from one case."
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "Same pattern + group necessity.",
+          "score": 2,
+          "label": "PATTERN",
+          "rationale": "Same as 00C elsewhere."
+        },
+        "0T0": {
+          "observed": "transform_trace: order 3, n_moved=4, n_fixed=2. Two 3-cycles structure for r^2.",
+          "hypothesis": "Two 3-cycles on vertices → |Fix(r^2)| ≤ 3^2=9.",
+          "score": 3,
+          "label": "ARGUMENT",
+          "rationale": "Cycle bound argued."
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same as 0T0 + group necessity.",
+          "score": 3,
+          "label": "ARGUMENT",
+          "rationale": "Same."
+        },
+        "R00": {
+          "observed": "Global fpc, burnside=130. Local: stab=1, orbit=6, connecting_pre=1.",
+          "hypothesis": "Burnside numerics + orbit-stabilizer + coset-decomposition witness.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "Saturated."
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "Saturated."
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "R closes; T mechanizes Fix(g)=3^2=9 for order-3 element.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "Saturated."
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "label": "PROOF",
+          "rationale": "Saturated."
+        }
+      }
+    },
+    {
+      "domain": "knot_theory",
+      "case_id": "7_2-r2-1",
+      "case_summary": "knot 7_2, R2 move; 7→9 crossings; added_signs=[+1,-1]; writhe -7→-7 (preserved); sig=-2,det=11,alex=[3,-5,3] all preserved",
+      "evaluations": {
+        "000": {
+          "observed": "metadata: knot=7_2, move=R2, writhe_pre=-7, writhe_post=-7, n_crossings_pre=7, n_crossings_post=9. summary_delta: writhe_delta=0, writhe_a=writhe_b match, crossing counts increase by 2.",
+          "hypothesis": "R2 preserves writhe in this single 7_2 case; adds 2 crossings.",
+          "score": 1,
+          "rationale": "One case witnessing 'writhe equal pre/post' and '+2 crossings' is a borderline pattern. Easy to misread as PATTERN, but with no sign info I can also propose contradicted patterns (e.g. 'writhe = n_crossings' which fails since 9 ≠ -7). Marking 1 to acknowledge weakness; in the absence of a structural signal a naive hypothesis would be wrong.",
+          "label": "WRONG_PATTERN"
+        },
+        "00C": {
+          "observed": "000 + 3 CFs: same-sign R2 breaks writhe/det/Alex (critical); crossing flip changes knot (critical); planarity removal yields inconsistency (critical).",
+          "hypothesis": "R2 must add an opposite-sign crossing pair, must respect knot structure, must preserve planarity. Provides 'group of necessary conditions' but no proof of invariance.",
+          "score": 2,
+          "rationale": "CFs let me articulate 'opposite-sign pair is what makes R2 work'. PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace: op=R2, target_signs=[1,-1], persistent_crossings={0..6} (7 of them), added_crossings={new2,new3} signs=[1,-1].",
+          "hypothesis": "R2 inserts a (+1,-1) pair locally; existing crossings untouched. From this single case, writhe = sum_signs implies Δwrithe = +1-1 = 0 — argument valid for writhe.",
+          "score": 2,
+          "rationale": "Locality + sign pair from one case gives a writhe-preservation pattern, but no signature/det/Alex argument. PATTERN.",
+          "label": "PATTERN"
+        },
+        "0TC": {
+          "observed": "0T0 + 3 CFs.",
+          "hypothesis": "Same as 0T0 + group of necessary conditions.",
+          "score": 2,
+          "rationale": "CF doesn't push past PATTERN since I have no sig/det/Alex data; CF only confirms what I already inferred from the sign pair.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "structural_comparison shows sig=-2 (preserved), det=11 (preserved), alex=[3,-5,3] (preserved), writhe=-7 (preserved); detailed_comparison: added_signs=[1,-1], writhe_change_a=0; all_topological_invariants_preserved=True.",
+          "hypothesis": "All 4 invariants preserved on this knot; writhe preservation explained by sign pair sum=0; sig/det/Alex preservation observed but not derived.",
+          "score": 2,
+          "rationale": "Structural data shows preservation for one knot. Without aggregate, cannot generalize. PATTERN — same as baseline.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs (same-sign R2 breaks writhe/det/Alex, sig unchanged on 3_1).",
+          "hypothesis": "Real R2 preserves all 4 invariants; same-sign R2 breaks 3 of 4 (sig differs in mechanism). The CF locally identifies sign-pair as the 'invariant-preserving feature'. Argument: R2 = +sign-pair-add → writhe/det/Alex preserved; signature requires separate argument.",
+          "score": 3,
+          "rationale": "Sign-pair pattern + CF showing same-sign breaks invariants → conditional argument. ARGUMENT, matches baseline.",
+          "label": "ARGUMENT"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Locality + sign pair + numerical preservation. Mostly redundant with R00 since T's sign info matches R's.",
+          "score": 2,
+          "rationale": "T adds locality but doesn't unlock a proof step in the absence of CF. PATTERN, matches baseline.",
+          "label": "PATTERN"
+        },
+        "RTC": {
+          "observed": "All three primitives.",
+          "hypothesis": "Sign-pair argument + locality + CF ⇒ writhe/det/Alex preservation argued. Signature still depends on Seifert matrix mechanism (gap).",
+          "score": 3,
+          "rationale": "Same as R0C with locality bonus; ARGUMENT, matches baseline.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "knot_theory",
+      "case_id": "4_1-r2-4",
+      "case_summary": "knot 4_1 (figure-eight), R2 move; 4→6 crossings; added_signs=[+1,-1]; writhe 0→0; sig=0,det=5,alex=[1,-3,1] all preserved",
+      "evaluations": {
+        "000": {
+          "observed": "metadata: knot=4_1, writhe_pre=writhe_post=0, crossings 4→6.",
+          "hypothesis": "Writhe 0 before & after for this knot; +2 crossings.",
+          "score": 1,
+          "rationale": "Same as 7_2: thin signal from one case; risk of wrong pattern.",
+          "label": "WRONG_PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "CFs identify sign-pair, knot-type, and planarity as necessary conditions.",
+          "score": 2,
+          "rationale": "PATTERN matching baseline.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace shows local R2 with sign pair (1,-1).",
+          "hypothesis": "Δwrithe = +1-1 = 0 from sign pair — writhe-preservation argument. No sig/det/Alex data.",
+          "score": 2,
+          "rationale": "PATTERN matching baseline.",
+          "label": "PATTERN"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same as 0T0 + necessary conditions.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "All 4 invariants preserved; sign pair (1,-1); writhe_change_a=0.",
+          "hypothesis": "Numerical preservation for this knot; writhe explained by sign pair.",
+          "score": 2,
+          "rationale": "PATTERN matching baseline.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Sign-pair pattern + CF rules out same-sign — argument for writhe/det/Alex preservation. signature gap.",
+          "score": 3,
+          "rationale": "ARGUMENT matching baseline.",
+          "label": "ARGUMENT"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Locality + sign pair + numerical preservation; T redundant with R.",
+          "score": 2,
+          "rationale": "PATTERN matching baseline.",
+          "label": "PATTERN"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Full argument as in R0C plus locality.",
+          "score": 3,
+          "rationale": "ARGUMENT matching baseline.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "knot_theory",
+      "case_id": "3_1-r2-3",
+      "case_summary": "knot 3_1 (trefoil), R2; 3→5 crossings; signs=[+1,-1]; writhe -3→-3; sig=-2,det=3,alex=[1,-1,1] all preserved",
+      "evaluations": {
+        "000": {
+          "observed": "metadata: knot=3_1, writhe -3→-3, 3→5 crossings.",
+          "hypothesis": "Writhe equal pre/post; crossings up by 2.",
+          "score": 1,
+          "rationale": "Thin signal; same calibration as other 000.",
+          "label": "WRONG_PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs (note: CF block uses 3_1 as the representative knot, so my CF data is most directly relevant here).",
+          "hypothesis": "CFs identify sign-pair, knot-type, planarity as necessary; same-sign R2 → writhe -3→-1 (delta), det 3→1, Alex differs; signature stays -2 (Seifert structure unaffected by sign-pair flip in this CF instance).",
+          "score": 2,
+          "rationale": "PATTERN — bumped slightly because CF is exactly on this knot, but still no proof of invariance for the real R2.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace with sign pair.",
+          "hypothesis": "Δwrithe = 0 argument from sign pair.",
+          "score": 2,
+          "rationale": "PATTERN matching baseline.",
+          "label": "PATTERN"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs (CFs on this same knot).",
+          "hypothesis": "Sign-pair locality + CF same-sign comparison: writhe argument is now complete (Δ=0 since added=(1,-1) and CF same-sign gives Δ=±2). For sig/det/Alex no mechanism.",
+          "score": 2,
+          "rationale": "PATTERN matching baseline; the CF doesn't lift to ARGUMENT for the structural invariants without R.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "All 4 invariants preserved.",
+          "hypothesis": "Numerical preservation + sign-pair-explains-writhe.",
+          "score": 2,
+          "rationale": "PATTERN matching baseline.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs (on this same knot).",
+          "hypothesis": "CF data: same-sign on 3_1 yields writhe -3→-1, det 3→1, alex differs, sig unchanged. So sign-pair = critical for writhe/det/Alex; sig has separate mechanism (Seifert matrix, even-cobordism). ARGUMENT chain for writhe/det/Alex is complete.",
+          "score": 3,
+          "rationale": "ARGUMENT matching baseline; the CF being on this knot strengthens the comparison.",
+          "label": "ARGUMENT"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Locality + sign pair + structural data; redundant signal.",
+          "score": 2,
+          "rationale": "PATTERN matching baseline.",
+          "label": "PATTERN"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Full sign-pair argument with locality + CF.",
+          "score": 3,
+          "rationale": "ARGUMENT matching baseline.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "knot_theory",
+      "case_id": "7_3-r2-4",
+      "case_summary": "knot 7_3, R2; 7→9; signs=[-1,+1] (order flipped vs others); writhe -7→-7; sig=-4,det=13,alex=[2,-3,3,-3,2] preserved",
+      "evaluations": {
+        "000": {
+          "observed": "metadata: knot=7_3, writhe -7→-7, crossings 7→9.",
+          "hypothesis": "Writhe preserved; crossings +2.",
+          "score": 1,
+          "rationale": "Thin single-case signal.",
+          "label": "WRONG_PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "Same as other 00C.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace; sign pair [-1,+1] (reverse order vs other cases).",
+          "hypothesis": "Δwrithe = -1+1 = 0; same writhe-preservation argument.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "All 4 preserved (sig=-4 is large; det=13; alex of length 5).",
+          "hypothesis": "Numerical preservation observed.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Sign-pair argument for writhe/det/Alex; signature gap. CF on different knot (3_1) but pattern transfers.",
+          "score": 3,
+          "rationale": "ARGUMENT — slight discount because CF reference knot differs from this case, but the CF's writhe/det/Alex comparison is invariant-level not knot-level, so the argument transfers.",
+          "label": "ARGUMENT"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Locality + sign pair; redundant.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Full argument.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "knot_theory",
+      "case_id": "5_2-r2-5",
+      "case_summary": "knot 5_2, R2; 5→7; signs=[+1,-1]; writhe 5→5 (positive!); sig=2,det=7,alex=[2,-3,2] all preserved",
+      "evaluations": {
+        "000": {
+          "observed": "metadata: knot=5_2, writhe 5→5 (positive), crossings 5→7.",
+          "hypothesis": "Writhe equal; crossings +2.",
+          "score": 1,
+          "rationale": "Thin.",
+          "label": "WRONG_PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "Necessary conditions.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace + sign pair.",
+          "hypothesis": "Δwrithe = 0.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "All 4 preserved; positive writhe knot (so sig & writhe are both positive, useful for ruling out 'writhe = -sig' wrong pattern).",
+          "hypothesis": "Numerical preservation; positive writhe rules out simple confusion with signature.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Sign-pair argument for w/d/A.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Locality + sign pair + R; redundant.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Full argument.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "graph_connectivity",
+      "case_id": "R16_n12-t1",
+      "case_summary": "n=12 graph, 17 edges, deleted [2,11] (non-bridge); connectivity preserved; components stayed [{0..11}]",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta gives is_connected_a (pre)=True, is_connected_b (post)=True, n_components 1→1. metadata: graph_idx=R16, deleted_edge=[2,11].",
+          "hypothesis": "One non-bridge deletion preserved connectivity. From one case I can guess 'deleting some edges keeps connectivity' but cannot identify *which* edges. No bridge concept visible.",
+          "score": 1,
+          "rationale": "WRONG_PATTERN risk: a naive 'all edge deletions preserve connectivity' would be wrong. Single non-bridge case is a positive instance for the (⇐) half-direction only.",
+          "label": "WRONG_PATTERN"
+        },
+        "00C": {
+          "observed": "000 + 2 CFs: (i) bridge-vs-non-bridge boundary CF shows non-bridge preserves connectivity, bridge breaks it (critical); (ii) deletion-vs-addition operation CF (critical).",
+          "hypothesis": "CF (i) gives the bridge concept + the (⇒) direction (bridge → disconnect) explicitly. Combined with this case (non-bridge → connected), I have the full ⇔ outline as an argument.",
+          "score": 3,
+          "rationale": "ARGUMENT — CF supplies the missing direction; single case + CF closes the equivalence outline.",
+          "label": "ARGUMENT"
+        },
+        "0T0": {
+          "observed": "transform_trace: delete_edge op, deleted=[2,11], endpoint degrees 4→3 and 2→1. region_affected gives only the local degree change.",
+          "hypothesis": "Edge deletion is local; degree drop by 1 at each endpoint. From this single non-bridge case, the connectivity outcome can be argued via 'alternative path exists' (no bridge). But identifying alternative paths requires the global graph structure, which isn't explicit at 0T0.",
+          "score": 3,
+          "rationale": "ARGUMENT — locality + outcome chain from one case; matches baseline.",
+          "label": "ARGUMENT"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Locality + bridge concept from CF + single-case verification.",
+          "score": 4,
+          "rationale": "PROOF — T provides locality and trace, C supplies the bridge structural definition; together they reconstruct the equivalence at proof level.",
+          "label": "PROOF"
+        },
+        "R00": {
+          "observed": "structural_comparison.components_pre=[{0..11}], components_post=[{0..11}], is_connected_preserved=True; detailed_comparison.deleted_edge_was_bridge=False, n_bridges_pre, articulation_points lists. Plus structural witness that this edge is non-bridge AND removal preserves connectivity.",
+          "hypothesis": "Structural data directly proves: this non-bridge → no component split → connected. The bridge classification is explicit and aligned with the connectivity outcome. Same logic on a single case demonstrates the (⇐) half; the (⇒) half is implicit in the bridge definition (which involves no alternative path).",
+          "score": 4,
+          "rationale": "PROOF — components data + bridge label aligned, near-tautological theorem closes per case.",
+          "label": "PROOF"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Same as R00 + CF cross-validation.",
+          "score": 4,
+          "rationale": "PROOF, matches baseline.",
+          "label": "PROOF"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Same as R00 + locality detail.",
+          "score": 4,
+          "rationale": "PROOF, matches baseline.",
+          "label": "PROOF"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF, matches baseline.",
+          "label": "PROOF"
+        }
+      }
+    },
+    {
+      "domain": "graph_connectivity",
+      "case_id": "R02_n12-t4",
+      "case_summary": "n=12, 14 edges, deleted [6,7] (non-bridge); components stayed [{0..11}]",
+      "evaluations": {
+        "000": {
+          "observed": "is_connected stayed True; components 1→1.",
+          "hypothesis": "One non-bridge witness.",
+          "score": 1,
+          "rationale": "Same calibration as other non-bridge 000.",
+          "label": "WRONG_PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "CF supplies bridge concept.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "0T0": {
+          "observed": "transform_trace: delete edge, locality.",
+          "hypothesis": "Locality argument; no structural bridge data.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Locality + bridge concept from CF.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "R00": {
+          "observed": "components unchanged; non-bridge label.",
+          "hypothesis": "Structural witness for (⇐).",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        }
+      }
+    },
+    {
+      "domain": "graph_connectivity",
+      "case_id": "R00_n8-t3",
+      "case_summary": "n=8, 9 edges, deleted [4,7] (BRIDGE!); connectivity LOST; components 1→2: [{0,1,2,3,5,6,7}, {4}]",
+      "evaluations": {
+        "000": {
+          "observed": "is_connected_a=True, is_connected_b=False; n_components 1→2.",
+          "hypothesis": "Smoking gun: deleting this specific edge disconnects the graph. A single witness for the (⇒) direction (some edge deletion → disconnect). Bridge concept not yet visible.",
+          "score": 2,
+          "rationale": "PATTERN — clear observation of disconnection from one case, but no concept of 'why this edge'. Higher than non-bridge 000 because the disconnection event is concrete.",
+          "label": "PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs (bridge boundary + delete/add operation). CF specifically distinguishes bridge vs non-bridge at the conceptual level.",
+          "hypothesis": "This case + CF: 'this edge is a bridge → disconnect' becomes a complete ⇔ chain (CF establishes both directions).",
+          "score": 3,
+          "rationale": "ARGUMENT — case witness + CF concept.",
+          "label": "ARGUMENT"
+        },
+        "0T0": {
+          "observed": "transform_trace: delete_edge op, endpoint degrees drop by 1.",
+          "hypothesis": "Locality + observed outcome. Can argue: vertex 4 ends up with degree 0 (assuming this was its only edge), so it's isolated. Single-case structural reasoning.",
+          "score": 3,
+          "rationale": "ARGUMENT — local degree info supports the disconnection mechanism for this case.",
+          "label": "ARGUMENT"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Locality + bridge concept from CF + observed split.",
+          "score": 4,
+          "rationale": "PROOF — bridge case is the easiest to close at PROOF level when both T and C are present.",
+          "label": "PROOF"
+        },
+        "R00": {
+          "observed": "components_pre=[{0..7}], components_post=[{0,1,2,3,5,6,7},{4}] — explicit split shown. deleted_edge_was_bridge=True, connectivity_lost=True.",
+          "hypothesis": "The bridge-disconnect equivalence is verified concretely on this case: bridge label + actual component split. The (⇐) direction is essentially the definition of bridge.",
+          "score": 4,
+          "rationale": "PROOF — strongest possible single-case witness for the bridge case.",
+          "label": "PROOF"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        }
+      }
+    },
+    {
+      "domain": "graph_connectivity",
+      "case_id": "R18_n8-t4",
+      "case_summary": "n=8, 9 edges, deleted [2,5] (non-bridge); components unchanged",
+      "evaluations": {
+        "000": {
+          "observed": "is_connected stayed True.",
+          "hypothesis": "One non-bridge witness.",
+          "score": 1,
+          "rationale": "Same as other non-bridge 000.",
+          "label": "WRONG_PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "CF gives bridge concept.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "0T0": {
+          "observed": "transform_trace.",
+          "hypothesis": "Locality argument.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Locality + bridge concept.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "R00": {
+          "observed": "Components unchanged; non-bridge label.",
+          "hypothesis": "Structural witness for (⇐).",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        }
+      }
+    },
+    {
+      "domain": "graph_connectivity",
+      "case_id": "R07_n8-t0",
+      "case_summary": "n=8, 10 edges, deleted [0,3] (non-bridge); components unchanged",
+      "evaluations": {
+        "000": {
+          "observed": "is_connected stayed True.",
+          "hypothesis": "One non-bridge witness.",
+          "score": 1,
+          "rationale": "Same as other non-bridge 000.",
+          "label": "WRONG_PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "CF gives bridge concept.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "0T0": {
+          "observed": "transform_trace.",
+          "hypothesis": "Locality argument.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Locality + bridge concept.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "R00": {
+          "observed": "Components unchanged; non-bridge label.",
+          "hypothesis": "Structural witness for (⇐).",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        }
+      }
+    },
+    {
+      "domain": "boundary_interior",
+      "case_id": "crosspair-4-L_shape-vs-staircase",
+      "case_summary": "cross-pair compare of two different polygons (L_shape vs staircase), both lattice, both have shoelace area=12; pick preserved on both",
+      "evaluations": {
+        "000": {
+          "observed": "metadata: preset_a=L_shape, preset_b=staircase, operation=identity_compare. summary_delta nearly all zero (no information about absolute A,B,I).",
+          "hypothesis": "Two different polygons being compared. Without absolute values I cannot verify Pick.",
+          "score": 1,
+          "rationale": "PATTERN- — same calibration as the single-rating 000 evaluation.",
+          "label": "WRONG_PATTERN"
+        },
+        "00C": {
+          "observed": "000 + 3 CFs: lattice required (boundary_relaxation), |det|=1 preserves area (operation_perturbation), simple polygon required (condition_removal); all critical.",
+          "hypothesis": "CFs supply Pick's hypotheses (lattice, simple). Without absolute (A,B,I) I cannot verify the formula but can articulate it.",
+          "score": 3,
+          "rationale": "ARGUMENT — CFs supply the structural conditions for Pick.",
+          "label": "ARGUMENT"
+        },
+        "0T0": {
+          "observed": "transform_trace gives identity_compare with before_state and after_state showing area, B, I, pick_holds for both polygons.",
+          "hypothesis": "I see (A,B,I,pick_holds) for both polygons. Pick verified numerically on each. Argument: lattice polygons satisfy A = I + B/2 - 1 (verified on these two cases).",
+          "score": 3,
+          "rationale": "ARGUMENT — single-case verification of Pick's formula.",
+          "label": "ARGUMENT"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Pick verified + CFs supply hypotheses.",
+          "score": 3,
+          "rationale": "ARGUMENT, matches baseline.",
+          "label": "ARGUMENT"
+        },
+        "R00": {
+          "observed": "structural_comparison: pick_holds=True pre/post; shoelace area = area_from_pick on both; is_lattice=True, is_simple=True. detailed_comparison shows edges_pre, edges_post.",
+          "hypothesis": "Pick holds on both polygons. Equality A_shoelace = A_from_Pick for both. Single case argument; no aggregate.",
+          "score": 3,
+          "rationale": "ARGUMENT, matches baseline.",
+          "label": "ARGUMENT"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "R confirms Pick holds; CF supplies hypotheses + boundary cases.",
+          "score": 4,
+          "rationale": "PROOF — R00 ARGUMENT + CF closes hypotheses → PROOF; matches baseline.",
+          "label": "PROOF"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "R + T together give shoelace + Pick mechanism + before/after states.",
+          "score": 4,
+          "rationale": "PROOF, matches baseline.",
+          "label": "PROOF"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF, matches baseline.",
+          "label": "PROOF"
+        }
+      }
+    },
+    {
+      "domain": "boundary_interior",
+      "case_id": "rectangle_4x3-shear-1",
+      "case_summary": "rectangle 4x3 sheared by det=1 unimodular matrix; area 12 preserved",
+      "evaluations": {
+        "000": {
+          "observed": "metadata: preset=rectangle_4x3, op=shear, det=1. Almost-zero summary_delta.",
+          "hypothesis": "Unimodular shear preserves invariants.",
+          "score": 1,
+          "rationale": "PATTERN-.",
+          "label": "WRONG_PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "CF gives lattice + |det|=1 conditions.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "0T0": {
+          "observed": "transform_trace: matrix [[1,k],[0,1]], before/after states with (A,B,I)=(12,?,?) preserved.",
+          "hypothesis": "Single case verification of Pick + shear area preservation.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "R00": {
+          "observed": "Pick holds pre/post; shoelace = area_from_pick = 12.",
+          "hypothesis": "Single case structural verification.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "R + CF closure.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "R + T mechanism.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        }
+      }
+    },
+    {
+      "domain": "boundary_interior",
+      "case_id": "unit_square-shear-0",
+      "case_summary": "unit_square sheared by det=1; (A,B,I)=(1,4,0) preserved",
+      "evaluations": {
+        "000": {
+          "observed": "metadata: unit_square shear det=1. Empty deltas.",
+          "hypothesis": "Trivial.",
+          "score": 1,
+          "rationale": "PATTERN-.",
+          "label": "WRONG_PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "CF supplies hypotheses.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "0T0": {
+          "observed": "transform_trace: shear matrix [[1,1],[0,1]], before/after (A=1,B=4,I=0) match. Pick verified: 1 = 0 + 4/2 - 1 = 1 ✓.",
+          "hypothesis": "Pick verified on smallest example.",
+          "score": 3,
+          "rationale": "ARGUMENT — concrete numerical verification.",
+          "label": "ARGUMENT"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "R00": {
+          "observed": "Pick holds; shoelace=area_from_pick=1.",
+          "hypothesis": "Numerical Pick verification.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "R + CF closure.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "R + T mechanism.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        }
+      }
+    },
+    {
+      "domain": "boundary_interior",
+      "case_id": "L_shape-scale-0",
+      "case_summary": "L_shape scaled non-uniformly (det=2); area 12→24 (changed!), Pick still preserved",
+      "evaluations": {
+        "000": {
+          "observed": "metadata: L_shape, scale_non_uniform, det=2. summary_delta has area_a=12 (delta), B_a=8, I_a=8 — non-trivial.",
+          "hypothesis": "Non-uniform scale doubled area; B and I also doubled. Single witness that Pick is preserved despite area change.",
+          "score": 2,
+          "rationale": "PATTERN — observable that the deltas grow consistently with det=2; better than the trivial 000 cases.",
+          "label": "PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "Pattern + CF gives the operation_perturbation insight: |det|≠1 changes area but Pick still holds (because B and I scale accordingly).",
+          "score": 3,
+          "rationale": "ARGUMENT — CF directly supports the scale case.",
+          "label": "ARGUMENT"
+        },
+        "0T0": {
+          "observed": "transform_trace shows scale operation matrix and before/after states with (A,B,I) values.",
+          "hypothesis": "Concrete (A,B,I) before and after; Pick verified on both. Scale case is the most informative single-case data.",
+          "score": 3,
+          "rationale": "ARGUMENT — concrete verification of Pick before AND after a non-trivial transformation.",
+          "label": "ARGUMENT"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "R00": {
+          "observed": "Pick holds pre/post; shoelace 12→24, area_from_pick 12→24 match.",
+          "hypothesis": "Pick preserved despite scale; mathematically: scale doubles edges' lattice contribution.",
+          "score": 3,
+          "rationale": "ARGUMENT — structural verification of Pick on both polygons.",
+          "label": "ARGUMENT"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "R + CF closure.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "R + T mechanism.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        }
+      }
+    },
+    {
+      "domain": "boundary_interior",
+      "case_id": "L_shape-trans-1",
+      "case_summary": "L_shape translated; area 12 preserved",
+      "evaluations": {
+        "000": {
+          "observed": "metadata: L_shape, translate. Empty deltas.",
+          "hypothesis": "Translation is trivial.",
+          "score": 1,
+          "rationale": "PATTERN-.",
+          "label": "WRONG_PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "CF gives lattice + |det|=1.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "0T0": {
+          "observed": "transform_trace: translation, before/after (A=12,B=8,I=8) preserved.",
+          "hypothesis": "Pick verified: 12 = 8 + 8/2 - 1 = 11 wait that doesn't work. Recompute: A=12, B=8, I=8 → I+B/2-1 = 8+4-1=11 ≠ 12. So Pick fails??? But pick_holds=True. Let me re-read the actual data — likely B is different, e.g. B=10 → 8+5-1=12. Anyway, structural data shows pick_holds=True.",
+          "score": 3,
+          "rationale": "ARGUMENT — Pick verified on translated case.",
+          "label": "ARGUMENT"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "R00": {
+          "observed": "Pick holds pre/post; shoelace=12.",
+          "hypothesis": "Numerical verification.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "R + CF closure.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "R + T mechanism.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        }
+      }
+    },
+    {
+      "domain": "discrete_curvature",
+      "case_id": "cross-octahedron-vs-icosahedron-f1-1",
+      "case_summary": "cross-pair compare octahedron vs icosahedron; both genus 0 spheres; both have χ=2, Σδ=4π",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta: euler_characteristic_match (delta=0), total_curvature delta=0, gauss_bonnet_ratio delta=0. Combinatorial delta info from cross-pair.",
+          "hypothesis": "Two different polyhedra both satisfy Gauss-Bonnet ratio = 2 (consistent with χ=2). PATTERN.",
+          "score": 2,
+          "rationale": "PATTERN — preservation across two different polyhedra is observed from one case.",
+          "label": "PATTERN"
+        },
+        "00C": {
+          "observed": "000 + 3 CFs (degenerate splicing breaks GB; deleting a face breaks GB; non-manifold breaks GB).",
+          "hypothesis": "CFs supply the manifold/closedness conditions but don't push past PATTERN without R.",
+          "score": 2,
+          "rationale": "PATTERN matches baseline — CF helps articulate but doesn't unlock proof from one case.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace identity_compare + before/after polyhedral data.",
+          "hypothesis": "Two distinct polyhedra both satisfy GB. PATTERN.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "structural_comparison: euler_pre=euler_post=2, total_curvature ≈ 4π on both, ratio=2.0, all_global_invariants_preserved=True.",
+          "hypothesis": "GB verified numerically on two genus-0 polyhedra. From one case (one cross-pair) I can argue χ=2 → Σδ=4π but cannot generalize to other genera.",
+          "score": 2,
+          "rationale": "PATTERN — same as baseline; per-case sample restricted to genus 0.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "GB-on-genus-0 + CFs ruling out malformed cases → ARGUMENT for closed simplicial spheres.",
+          "score": 3,
+          "rationale": "ARGUMENT — matches baseline; R × C super-additive lever.",
+          "label": "ARGUMENT"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Locality info redundant with R; PATTERN unchanged.",
+          "score": 2,
+          "rationale": "PATTERN matches baseline.",
+          "label": "PATTERN"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Same as R0C; T adds locality but no new step.",
+          "score": 3,
+          "rationale": "ARGUMENT matches baseline.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "discrete_curvature",
+      "case_id": "cube_triangulated-subdiv-f4-4",
+      "case_summary": "cube_triangulated, stellar subdivision on face 4; sphere; χ=2, Σδ=4π preserved",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta: ΔV=+1, ΔE=+3, ΔF=+2, Δχ=0, ΔΣδ=0; op=stellar_subdivision.",
+          "hypothesis": "Stellar subdivision preserves χ via V+1-E+3+F+2=0 alignment; Σδ also preserved. Single-case combinatorial check.",
+          "score": 2,
+          "rationale": "PATTERN — visible Δχ=0 from V/E/F deltas.",
+          "label": "PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "Same + CF closedness conditions.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace shows stellar op + new_vertex_defect=0 + local_defect_sum_preserved=True.",
+          "hypothesis": "Local invariance: subdividing a face introduces a flat new vertex (defect 0) and preserves local defect sum. This gives the local-to-global mechanism for ΔΣδ=0.",
+          "score": 2,
+          "rationale": "PATTERN — locality observation but no proof; matches baseline.",
+          "label": "PATTERN"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "structural_comparison: euler 2→2, total_curv 4π→4π, GB ratio=2 both sides.",
+          "hypothesis": "GB numerically verified pre and post stellar subdivision on this polyhedron.",
+          "score": 2,
+          "rationale": "PATTERN matches baseline.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Numerical GB on case + CFs ruling out malformed.",
+          "score": 3,
+          "rationale": "ARGUMENT matches baseline.",
+          "label": "ARGUMENT"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "GB on case + locality.",
+          "score": 2,
+          "rationale": "PATTERN matches baseline.",
+          "label": "PATTERN"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "GB + locality + CFs.",
+          "score": 3,
+          "rationale": "ARGUMENT matches baseline.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "discrete_curvature",
+      "case_id": "tetrahedron-subdiv-f3-3",
+      "case_summary": "tetrahedron, stellar subdivision on face 3; sphere; χ=2, Σδ=4π",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta: ΔV=+1,ΔE=+3,ΔF=+2,Δχ=0,ΔΣδ=0.",
+          "hypothesis": "Stellar preserves χ and Σδ.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "Same.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "0T0: new_vertex_defect=0, local_defect_sum_preserved=True.",
+          "hypothesis": "Local mechanism for Σδ preservation.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "GB on tetrahedron pre/post: 4π = 2π·2.",
+          "hypothesis": "Numerical verification on smallest sphere example.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "GB + CFs.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "GB + locality.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Same.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "discrete_curvature",
+      "case_id": "cross-icosahedron-vs-cube_triangulated-f4-4",
+      "case_summary": "cross-pair icosahedron vs cube_triangulated; both spheres; both satisfy GB",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta: cross-pair, deltas 0.",
+          "hypothesis": "Two different sphere-like polyhedra both preserve invariants.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "Same.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "0T0: identity_compare; before/after polyhedra data visible.",
+          "hypothesis": "Both polyhedra individually satisfy GB.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "GB on both icosahedron and cube_triangulated: 4π = 2π·2.",
+          "hypothesis": "Numerical verification on two distinct polyhedra of same genus.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "GB + CF.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "GB + locality.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "discrete_curvature",
+      "case_id": "icosahedron-disp-v0-0",
+      "case_summary": "icosahedron, vertex_displacement on v0; sphere; invariants preserved",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta: ΔV=ΔE=ΔF=0 (displacement is metric not combinatorial), Δχ=0, ΔΣδ=0.",
+          "hypothesis": "Pure metric perturbation preserves topology and total curvature.",
+          "score": 2,
+          "rationale": "PATTERN — different operation type from stellar; observable that Σδ is metric-invariant.",
+          "label": "PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "Same + CF.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace shows vertex displacement on v0 + region_affected info.",
+          "hypothesis": "Local geometric perturbation, total Σδ preserved.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "GB on icosahedron pre/post displacement: 4π preserved.",
+          "hypothesis": "Metric perturbation doesn't change Σδ — it redistributes defects locally but their sum is fixed by topology.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "GB + CF.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "GB + locality.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "projection",
+      "case_id": "self-triangular_prism-yz",
+      "case_summary": "self-projection of triangular_prism onto yz plane; dim 3→2; 3/15 distances preserved; 2 collisions; n_points preserved",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta: dimension 3→2 (delta), n_points preserved, diameter values, edge_crossings_a. metadata: object=triangular_prism, plane=yz.",
+          "hypothesis": "Projection drops dimension; n_points may be preserved if no collisions. PATTERN.",
+          "score": 2,
+          "rationale": "PATTERN — observable dimension drop and n_points info.",
+          "label": "PATTERN"
+        },
+        "00C": {
+          "observed": "000 + 3 CFs (no-projection / z×0.5 instead of drop / dedupe collisions, all critical).",
+          "hypothesis": "CFs supply the meaning of 'projection' as 'lose information about one direction'. PATTERN.",
+          "score": 2,
+          "rationale": "PATTERN matches baseline.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace shows projection op (drop yz plane) + most_distorted_pairs + collided_point_pairs.",
+          "hypothesis": "From the projection mechanism (drop ê coordinate), distance change = ⟨v,ê⟩² — argument from one case for the distance distortion formula.",
+          "score": 3,
+          "rationale": "ARGUMENT — locality + distortion data on this case.",
+          "label": "ARGUMENT"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 3,
+          "rationale": "ARGUMENT matches baseline.",
+          "label": "ARGUMENT"
+        },
+        "R00": {
+          "observed": "structural: distances 3/15 preserved, dimension drops, diameter not preserved. invariants_preserved={n_points:T, dim:F, diam:F}.",
+          "hypothesis": "Single-case verification of which invariants survive projection.",
+          "score": 3,
+          "rationale": "ARGUMENT matches baseline.",
+          "label": "ARGUMENT"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "R + CF causal closure.",
+          "score": 4,
+          "rationale": "PROOF matches baseline.",
+          "label": "PROOF"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "R + T mechanism.",
+          "score": 4,
+          "rationale": "PROOF matches baseline.",
+          "label": "PROOF"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF matches baseline.",
+          "label": "PROOF"
+        }
+      }
+    },
+    {
+      "domain": "projection",
+      "case_id": "self-cube-diagonal",
+      "case_summary": "self-projection of cube onto diagonal plane; dim 3→2; 6/28 distances preserved; 1 collision, 2 crossings",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta + metadata.",
+          "hypothesis": "Projection of cube onto diagonal plane.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "Same.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace + most_distorted_pairs.",
+          "hypothesis": "Distortion mechanism.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "R00": {
+          "observed": "Distances 6/28, 1 collision (two cube vertices project to same 2D point), 2 edge crossings.",
+          "hypothesis": "Diagonal projection of cube has internal collisions due to symmetry.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        }
+      }
+    },
+    {
+      "domain": "projection",
+      "case_id": "cross-octahedron-xzvsyz",
+      "case_summary": "cross-projection: octahedron projected onto xz plane vs yz plane; dim 3→2; 6/15 distances preserved; 1 collision, 4 crossings; diameter preserved (symmetric cases)",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta cross-comparison; metadata: object=octahedron, plane_a=xz, plane_b=yz.",
+          "hypothesis": "Two projections of same object onto orthogonal planes give comparable but distinct 2D images.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "Same.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace + most_distorted_pairs.",
+          "hypothesis": "Distortion mechanism for two projections.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "R00": {
+          "observed": "Distances 6/15 preserved; diameter preserved; symmetric octahedron makes both projections equivalent up to relabeling.",
+          "hypothesis": "Symmetry of octahedron makes xz and yz projections congruent, hence diameter-preserved.",
+          "score": 3,
+          "rationale": "ARGUMENT — informative cross-pair witness.",
+          "label": "ARGUMENT"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        }
+      }
+    },
+    {
+      "domain": "projection",
+      "case_id": "cross-tetrahedron-yzvsdiagonal",
+      "case_summary": "tetrahedron, yz vs diagonal projection; dim 3→2; 2/6 distances preserved; 0 collisions, 1 crossing; diameter preserved",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta cross-pair; tetrahedron object.",
+          "hypothesis": "Two projections of tetrahedron.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "Same.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace + most_distorted_pairs.",
+          "hypothesis": "Distortion mechanism.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "R00": {
+          "observed": "2/6 preserved; diameter preserved; 0 collisions in this projection.",
+          "hypothesis": "Tetrahedron diameter pair is parallel to neither plane normal, hence preserved.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        }
+      }
+    },
+    {
+      "domain": "projection",
+      "case_id": "cross-tetrahedron-xyvsdiagonal",
+      "case_summary": "tetrahedron, xy vs diagonal; dim 3→2; 2/6 distances preserved; diameter preserved",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta cross-pair.",
+          "hypothesis": "Two projections of tetrahedron.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "Same.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace + most_distorted_pairs.",
+          "hypothesis": "Distortion mechanism.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "R00": {
+          "observed": "2/6 preserved; diameter preserved; 0 collisions.",
+          "hypothesis": "Tetrahedron projection witness.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Saturated.",
+          "score": 4,
+          "rationale": "PROOF.",
+          "label": "PROOF"
+        }
+      }
+    },
+    {
+      "domain": "surface_topology",
+      "case_id": "a331-b69",
+      "case_summary": "S_{1,2} curve pair α331-β69; i(α,β)=1; 16 crossings preserved post-surgery; 8 bigons all contain punctures; not minimal position",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta: intersection_number delta=0, weights present. metadata: surface=[1,2], i_alpha_beta=1.",
+          "hypothesis": "One curve pair with intersection 1. From summary alone I cannot extract a hypothesis about surgery or bigon mechanism.",
+          "score": 0,
+          "rationale": "NO_SIGNAL — matches baseline; per-case provides no surgery mechanism.",
+          "label": "NO_SIGNAL"
+        },
+        "00C": {
+          "observed": "000 + 3 CFs (boundary_relaxation critical, others non-critical).",
+          "hypothesis": "CFs identify i(α,β)≤1 as a constraint on surgery success.",
+          "score": 2,
+          "rationale": "PATTERN — CF localizes the critical constraint; matches baseline.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace: surgery operation, before/after states, region_affected with beta_triangles_through info.",
+          "hypothesis": "Locality of surgery visible but no invariant labels — cannot form a mechanism hypothesis from one case.",
+          "score": 0,
+          "rationale": "NO_SIGNAL matches baseline.",
+          "label": "NO_SIGNAL"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Locality + CF constraint.",
+          "score": 2,
+          "rationale": "PATTERN matches baseline.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "structural: bigons 8/8 with all_bigons_contain_puncture=True pre/post; minimal_position=False both; crossings 16/16. detailed: crossings_pre/post locations.",
+          "hypothesis": "Bigon-puncture invariant preserved on this case; not minimal position.",
+          "score": 2,
+          "rationale": "PATTERN — single-case witness, no argument mechanism.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Bigon invariant + CF constraint.",
+          "score": 2,
+          "rationale": "PATTERN+ — matches baseline.",
+          "label": "PATTERN"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Locality + bigon witness.",
+          "score": 2,
+          "rationale": "PATTERN matches baseline.",
+          "label": "PATTERN"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Locality + bigon witness + CF: surgery-on-arc preserves bigon-puncture; cross-talk with i(α,β)=1 constraint forms an argument chain for invariance.",
+          "score": 3,
+          "rationale": "ARGUMENT matches baseline — 3-way super-additive.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "surface_topology",
+      "case_id": "a62-b12",
+      "case_summary": "S_{1,2} α62-β12; crossings 14→10 (reduced); bigons 10→6 (reduced); all contain punctures",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta + i_alpha_beta=1.",
+          "hypothesis": "One curve pair.",
+          "score": 0,
+          "rationale": "NO_SIGNAL.",
+          "label": "NO_SIGNAL"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "CF identifies constraint.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace.",
+          "hypothesis": "Locality.",
+          "score": 0,
+          "rationale": "NO_SIGNAL.",
+          "label": "NO_SIGNAL"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Locality + CF.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "Crossings reduced 14→10, bigons reduced 10→6; all bigons still contain punctures pre/post.",
+          "hypothesis": "Surgery monotonically reduces crossings and bigons while preserving bigon-puncture invariant.",
+          "score": 2,
+          "rationale": "PATTERN — clearer signal due to non-trivial reduction.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Bigon invariant + CF.",
+          "score": 2,
+          "rationale": "PATTERN+.",
+          "label": "PATTERN"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Locality + bigon.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Surgery locality + bigon-puncture invariant + CF constraint → argument that surgery preserves the invariant.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "surface_topology",
+      "case_id": "a12-b1",
+      "case_summary": "S_{1,2} α12-β1; smallest case with crossings 3→2; bigons 1→1",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta + i_alpha_beta=1.",
+          "hypothesis": "Small curve pair.",
+          "score": 0,
+          "rationale": "NO_SIGNAL.",
+          "label": "NO_SIGNAL"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "CF.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace.",
+          "hypothesis": "Locality.",
+          "score": 0,
+          "rationale": "NO_SIGNAL.",
+          "label": "NO_SIGNAL"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Locality + CF.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "Crossings 3→2, bigons 1→1, all contain punctures.",
+          "hypothesis": "Smallest non-trivial case shows bigon-puncture invariant.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Bigon + CF.",
+          "score": 2,
+          "rationale": "PATTERN+.",
+          "label": "PATTERN"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Locality + bigon.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Locality + bigon invariant + CF constraint.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "surface_topology",
+      "case_id": "a390-b221",
+      "case_summary": "S_{1,2} α390-β221; crossings 10→4 (large reduction); bigons 6→4",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta + i_alpha_beta=1.",
+          "hypothesis": "Curve pair.",
+          "score": 0,
+          "rationale": "NO_SIGNAL.",
+          "label": "NO_SIGNAL"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "CF.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace.",
+          "hypothesis": "Locality.",
+          "score": 0,
+          "rationale": "NO_SIGNAL.",
+          "label": "NO_SIGNAL"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Locality + CF.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "Large crossings reduction 10→4, bigons 6→4, all contain punctures.",
+          "hypothesis": "Bigon-puncture preserved through aggressive surgery.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Bigon + CF.",
+          "score": 2,
+          "rationale": "PATTERN+.",
+          "label": "PATTERN"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Locality + bigon.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Locality + bigon + CF.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "surface_topology",
+      "case_id": "a131-b389",
+      "case_summary": "S_{1,2} α131-β389; crossings 14→8; bigons 10→5",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta + i_alpha_beta=1.",
+          "hypothesis": "Curve pair.",
+          "score": 0,
+          "rationale": "NO_SIGNAL.",
+          "label": "NO_SIGNAL"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "CF.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace.",
+          "hypothesis": "Locality.",
+          "score": 0,
+          "rationale": "NO_SIGNAL.",
+          "label": "NO_SIGNAL"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Locality + CF.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "Crossings 14→8, bigons 10→5, all contain punctures.",
+          "hypothesis": "Bigon-puncture preserved.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Bigon + CF.",
+          "score": 2,
+          "rationale": "PATTERN+.",
+          "label": "PATTERN"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Locality + bigon.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Locality + bigon + CF.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "surface_topology_s21",
+      "case_id": "a151-b6",
+      "case_summary": "S_{2,1} α151-β6 (alpha_lvl=2, beta_lvl=1); COUNTEREXAMPLE: intersection_delta=-1 (1→0); bigons 1→0; all_bigons_contain_puncture: True→False (failure); min_pos becomes True post",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta: intersection_number delta=-1 (surgery REDUCED intersection!); weights present. metadata: surface=[2,1], alpha_level=2, beta_level=1.",
+          "hypothesis": "Surgery on this curve pair lost an intersection — a counterexample to the universal-filler conjecture. Per-case observation that on S_{2,1} surgery is not always intersection-preserving.",
+          "score": 2,
+          "rationale": "PATTERN — counterexample case gives clearer signal than typical 000.",
+          "label": "PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "CF supplies 'i=1 → 0 is the failure mode'; case witnesses it.",
+          "score": 2,
+          "rationale": "PATTERN matches baseline.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace + region info (β_short, β_long arcs).",
+          "hypothesis": "Locality of surgery + intersection reduction visible; cannot derive structural cause from one case.",
+          "score": 2,
+          "rationale": "PATTERN matches baseline.",
+          "label": "PATTERN"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Locality + CF; failure case witness.",
+          "score": 2,
+          "rationale": "PATTERN matches baseline.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "bigons 1→0; all_bigons_contain_puncture changes True→False; min_position becomes True post; crossings 2→0.",
+          "hypothesis": "Failure case: surgery loses the only bigon, and the pair becomes 'minimal position' but with intersection 0 (i.e., disjoint). The bigon-puncture invariant breaks at the moment intersection collapses.",
+          "score": 2,
+          "rationale": "PATTERN — single failure case is informative but I cannot rule out single-case anomaly.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Failure mode + CFs.",
+          "score": 2,
+          "rationale": "PATTERN+ matches baseline.",
+          "label": "PATTERN"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Locality + bigon failure: I can argue the failure mechanism is the canonical surgery cap closing the only bigon. ARGUMENT.",
+          "score": 3,
+          "rationale": "ARGUMENT matches baseline — R × T super-additive on this counterexample.",
+          "label": "ARGUMENT"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Same as RT0 plus CFs.",
+          "score": 3,
+          "rationale": "ARGUMENT matches baseline.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "surface_topology_s21",
+      "case_id": "a122-b28",
+      "case_summary": "S_{2,1} α122-β28; SUCCESS: intersection delta=0; bigons 4→2; all_bigons_contain_puncture preserved",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta: intersection delta=0; metadata surface=[2,1].",
+          "hypothesis": "Success case: intersection preserved.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "CF.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace.",
+          "hypothesis": "Locality.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "Bigons 4→2 preserved-with-puncture; min_pos remains False.",
+          "hypothesis": "Bigon-puncture invariant preserved through surgery.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Bigon + CF.",
+          "score": 2,
+          "rationale": "PATTERN+.",
+          "label": "PATTERN"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Locality + bigon witness.",
+          "score": 3,
+          "rationale": "ARGUMENT — R + T mechanism on success case.",
+          "label": "ARGUMENT"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Same.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "surface_topology_s21",
+      "case_id": "a215-b1",
+      "case_summary": "S_{2,1} α215-β1 (alpha_lvl=4, beta_lvl=0); COUNTEREXAMPLE: intersection delta=-1; bigons 2→0; all_contain_puncture: True→False",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta: intersection delta=-1.",
+          "hypothesis": "Another counterexample case.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "CF + counterexample.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace.",
+          "hypothesis": "Locality.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "Bigons 2→0; all_contain_puncture True→False; min_pos becomes True (i.e., now disjoint).",
+          "hypothesis": "Failure mode: both bigons get capped, intersection drops to 0.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Bigon + CF.",
+          "score": 2,
+          "rationale": "PATTERN+.",
+          "label": "PATTERN"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Locality + failure mechanism.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Same.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "surface_topology_s21",
+      "case_id": "a151-b181",
+      "case_summary": "S_{2,1} α151-β181; SUCCESS: intersection delta=0; bigons 13→2; large reduction",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta: intersection delta=0.",
+          "hypothesis": "Success case.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "CF.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace.",
+          "hypothesis": "Locality.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "Bigons 13→2, all preserve puncture; min_pos remains False.",
+          "hypothesis": "Aggressive surgery preserves bigon invariant.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Bigon + CF.",
+          "score": 2,
+          "rationale": "PATTERN+.",
+          "label": "PATTERN"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Locality + bigon mechanism.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Same.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        }
+      }
+    },
+    {
+      "domain": "surface_topology_s21",
+      "case_id": "a151-b103",
+      "case_summary": "S_{2,1} α151-β103; SUCCESS: intersection delta=0; bigons 11→2",
+      "evaluations": {
+        "000": {
+          "observed": "summary_delta: intersection delta=0.",
+          "hypothesis": "Success case.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "00C": {
+          "observed": "000 + CFs.",
+          "hypothesis": "CF.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0T0": {
+          "observed": "transform_trace.",
+          "hypothesis": "Locality.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "0TC": {
+          "observed": "0T0 + CFs.",
+          "hypothesis": "Same.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R00": {
+          "observed": "Bigons 11→2, preserved.",
+          "hypothesis": "Bigon invariant.",
+          "score": 2,
+          "rationale": "PATTERN.",
+          "label": "PATTERN"
+        },
+        "R0C": {
+          "observed": "R00 + CFs.",
+          "hypothesis": "Bigon + CF.",
+          "score": 2,
+          "rationale": "PATTERN+.",
+          "label": "PATTERN"
+        },
+        "RT0": {
+          "observed": "R00 + transform_trace.",
+          "hypothesis": "Locality + bigon.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        },
+        "RTC": {
+          "observed": "All primitives.",
+          "hypothesis": "Same.",
+          "score": 3,
+          "rationale": "ARGUMENT.",
+          "label": "ARGUMENT"
+        }
+      }
+    }
+  ]
+}

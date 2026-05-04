@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  NeurIPS Figure 1 — CoE Framework
+  Figure size: 180mm x 75mm  (viewBox uses mm; all font-size values are explicit pt)
+
+  Panel boundaries (mm):
+    a (Concrete instance):   x_start =   0, x_end =  70
+    b (Architecture):        x_start =  70, x_end = 120
+    c (Headline result):     x_start = 120, x_end = 180
+
+  Type scale (pt; minimum 6pt):
+    Panel labels (a/b/c):                7pt bold
+    Panel subtitles:                     8pt
+    Block labels (ENGINE / LLM):         7pt bold
+    Block sub-captions (gray):           6pt
+    Sub-block headers (R/T/C colour):    6pt bold
+    Sub-block code lines (mono):         6pt
+    Burnside formula lines (mono):       6pt   (final "= 130": 8pt bold)
+    Box titles inside panel b:          10pt bold
+    R/T/C key in panel b:                6pt bold
+    Bar value labels (panel c):          7pt bold
+    Bar y-axis category labels (mono):   6pt
+    Axis ticks / titles / legend / threshold: 6pt
+
+  Palette:
+    #1A1A1A  black ink
+    #2C5282  R blue           (accent only)
+    #C05621  T orange         (accent only)
+    #2F855A  C green          (accent only)
+    #F0F0F0  panel infill (LIGHT — no dark backgrounds anywhere)
+    #CBD5E0  separators / threshold dash
+    #4A5568  hexagon vertex (dark)   — neutral gray, distinct from accents
+    #A0AEC0  hexagon vertex (mid)
+    #E2E8F0  hexagon vertex (light)
+    #666666  muted caption gray
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="180mm" height="75mm" viewBox="0 0 180 75"
+     font-family="Helvetica, Arial, 'Liberation Sans', 'DejaVu Sans', 'Segoe UI Symbol', sans-serif"
+     fill="#1A1A1A">
+
+  <defs>
+    <marker id="arK" viewBox="0 0 10 10" refX="9" refY="5"
+            markerUnits="strokeWidth" markerWidth="6" markerHeight="6"
+            orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#1A1A1A"/>
+    </marker>
+    <marker id="arB" viewBox="0 0 10 10" refX="9" refY="5"
+            markerUnits="strokeWidth" markerWidth="6" markerHeight="6"
+            orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2C5282"/>
+    </marker>
+    <marker id="arO" viewBox="0 0 10 10" refX="9" refY="5"
+            markerUnits="strokeWidth" markerWidth="6" markerHeight="6"
+            orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#C05621"/>
+    </marker>
+    <marker id="arG" viewBox="0 0 10 10" refX="9" refY="5"
+            markerUnits="strokeWidth" markerWidth="6" markerHeight="6"
+            orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2F855A"/>
+    </marker>
+  </defs>
+
+  <!-- panel separators -->
+  <line x1="70"  y1="3" x2="70"  y2="72" stroke="#CBD5E0" stroke-width="0.353"/>
+  <line x1="120" y1="3" x2="120" y2="72" stroke="#CBD5E0" stroke-width="0.353"/>
+
+  <!-- ====================================================== -->
+  <!-- PANEL A   Concrete instance     (x = 0 .. 70)          -->
+  <!-- ====================================================== -->
+
+  <text x="3" y="5.8" font-size="7pt" font-weight="bold">a</text>
+  <text x="6" y="5.8" font-size="8pt">Concrete instance</text>
+
+  <!-- a1 . question text + hexagon -->
+  <text x="3" y="10.8" font-size="6pt">How many distinct 3-colourings</text>
+  <text x="3" y="13.3" font-size="6pt">of a regular hexagon under the</text>
+  <text x="3" y="15.8" font-size="6pt">ℤ<tspan baseline-shift="sub" font-size="70%">6</tspan> rotation action?</text>
+
+  <!-- Hexagon centred at (60, 13), radius 4 mm.
+       Vertex grays [dark, mid, light, dark, mid, light] sit deliberately
+       OUTSIDE the R/T/C accent palette so vertex colours cannot be misread
+       as encoding R, T, or C signals. -->
+  <polygon points="64,13 62,9.536 58,9.536 56,13 58,16.464 62,16.464"
+           fill="none" stroke="#1A1A1A" stroke-width="0.212"/>
+  <circle cx="64" cy="13"     r="0.95" fill="#4A5568" stroke="#1A1A1A" stroke-width="0.1"/>
+  <circle cx="62" cy="9.536"  r="0.95" fill="#A0AEC0" stroke="#1A1A1A" stroke-width="0.1"/>
+  <circle cx="58" cy="9.536"  r="0.95" fill="#E2E8F0" stroke="#1A1A1A" stroke-width="0.1"/>
+  <circle cx="56" cy="13"     r="0.95" fill="#4A5568" stroke="#1A1A1A" stroke-width="0.1"/>
+  <circle cx="58" cy="16.464" r="0.95" fill="#A0AEC0" stroke="#1A1A1A" stroke-width="0.1"/>
+  <circle cx="62" cy="16.464" r="0.95" fill="#E2E8F0" stroke="#1A1A1A" stroke-width="0.1"/>
+
+  <!-- a2 . engine block.
+       The three R/T/C colour bars are y=24..44 (height 20mm — equals R's
+       full content height, which is the longest column).  Content for all
+       three sub-blocks is top-aligned at y=29. -->
+  <rect x="2" y="18" width="66" height="28" fill="#F0F0F0"/>
+  <text x="4" y="21"   font-size="7pt" font-weight="bold">ENGINE</text>
+  <text x="4" y="23.6" font-size="6pt" fill="#666666">computes R / T / C from the construction</text>
+
+  <!-- R sub-block: x = 3 .. 25 -->
+  <rect x="3" y="24" width="0.706" height="20" fill="#2C5282"/>
+  <text x="4.5" y="26.5" font-size="6pt" font-weight="bold" fill="#2C5282">R (Relation)</text>
+  <g font-family="'Courier New', Courier, 'Liberation Mono', 'DejaVu Sans Mono', Consolas, monospace"
+     font-size="6pt" fill="#1A1A1A">
+    <text x="4.5" y="29.0">|G|=6</text>
+    <text x="4.5" y="31.5">fix(r<tspan baseline-shift="super" font-size="70%">0</tspan>)=729</text>
+    <text x="4.5" y="34.0">fix(r<tspan baseline-shift="super" font-size="70%">1</tspan>)=3</text>
+    <text x="4.5" y="36.5">fix(r<tspan baseline-shift="super" font-size="70%">2</tspan>)=9</text>
+    <text x="4.5" y="39.0">fix(r<tspan baseline-shift="super" font-size="70%">3</tspan>)=27</text>
+    <text x="4.5" y="41.5">fix(r<tspan baseline-shift="super" font-size="70%">4</tspan>)=9</text>
+    <text x="4.5" y="44.0">fix(r<tspan baseline-shift="super" font-size="70%">5</tspan>)=3</text>
+  </g>
+
+  <!-- T sub-block: x = 25 .. 47 -->
+  <rect x="25" y="24" width="0.706" height="20" fill="#C05621"/>
+  <text x="26.5" y="26.5" font-size="6pt" font-weight="bold" fill="#C05621">T (Transform)</text>
+  <g font-family="'Courier New', Courier, 'Liberation Mono', 'DejaVu Sans Mono', Consolas, monospace"
+     font-size="6pt" fill="#1A1A1A">
+    <text x="26.5" y="29.0">r<tspan baseline-shift="super" font-size="70%">1</tspan>: (012345)</text>
+    <text x="26.5" y="31.5">r<tspan baseline-shift="super" font-size="70%">2</tspan>: (024)(135)</text>
+    <text x="26.5" y="34.0">r<tspan baseline-shift="super" font-size="70%">3</tspan>: (03)(14)(25)</text>
+  </g>
+
+  <!-- C sub-block: x = 47 .. 68 -->
+  <rect x="47" y="24" width="0.706" height="20" fill="#2F855A"/>
+  <text x="48.5" y="26.5" font-size="6pt" font-weight="bold" fill="#2F855A">C (Contrastive)</text>
+  <g font-family="'Courier New', Courier, 'Liberation Mono', 'DejaVu Sans Mono', Consolas, monospace"
+     font-size="6pt" fill="#1A1A1A">
+    <text x="48.5" y="29.0">ℤ<tspan baseline-shift="sub" font-size="70%">6</tspan>→D<tspan baseline-shift="sub" font-size="70%">6</tspan>: 130→92</text>
+    <text x="48.5" y="31.5">ℤ<tspan baseline-shift="sub" font-size="70%">6</tspan>→{e}: 130→729</text>
+  </g>
+
+  <!-- a3 . narrow black down-arrow centred on panel a (x = 35) -->
+  <line x1="35" y1="46.5" x2="35" y2="48.7"
+        stroke="#1A1A1A" stroke-width="0.282" marker-end="url(#arK)"/>
+
+  <!-- a4 . LLM reasoning block -->
+  <rect x="2" y="49" width="66" height="22" fill="#F0F0F0"/>
+  <text x="4" y="51.7" font-size="7pt" font-weight="bold">LLM</text>
+  <text x="4" y="54.2" font-size="6pt" fill="#666666">assembles Burnside sum</text>
+
+  <g font-family="'Courier New', Courier, 'Liberation Mono', 'DejaVu Sans Mono', Consolas, monospace"
+     font-size="6pt" fill="#1A1A1A">
+    <text x="4"     y="58.0">|X/G| = (1/|G|) · Σ |fix(g)|</text>
+    <text x="11.62" y="60.7">= (<tspan fill="#2C5282">729</tspan> + <tspan fill="#2C5282">3</tspan> + <tspan fill="#2C5282">9</tspan> + <tspan fill="#2C5282">27</tspan> + <tspan fill="#2C5282">9</tspan> + <tspan fill="#2C5282">3</tspan>) / 6</text>
+    <text x="11.62" y="63.4">= 780 / 6</text>
+  </g>
+  <text x="11.62" y="68.0"
+        font-family="'Courier New', Courier, 'Liberation Mono', 'DejaVu Sans Mono', Consolas, monospace"
+        font-size="8pt" font-weight="bold" fill="#1A1A1A">= 130</text>
+
+  <!-- ====================================================== -->
+  <!-- PANEL B   Architecture          (x = 70 .. 120)        -->
+  <!--                                                         -->
+  <!-- Layout: LLM (top) ←──↑──↑──↑── Engine (bottom)         -->
+  <!-- Three vertical R/T/C arrows point UP from Engine to LLM. -->
+  <!-- Both boxes are light gray with black border (no dark fill). -->
+  <!-- ====================================================== -->
+
+  <text x="73" y="5.8" font-size="7pt" font-weight="bold">b</text>
+  <text x="76" y="5.8" font-size="8pt">Architecture</text>
+
+  <!-- LLM box (top), centred at x = 95 -->
+  <rect x="77" y="8" width="36" height="11" rx="1.2" ry="1.2"
+        fill="#F0F0F0" stroke="#1A1A1A" stroke-width="0.176"/>
+  <text x="95" y="14"   font-size="10pt" font-weight="bold" text-anchor="middle">LLM</text>
+  <text x="95" y="17.5" font-size="6pt"  fill="#666666"      text-anchor="middle">language reasoning</text>
+
+  <!-- Three vertical arrows R / T / C (engine-source dot at the bottom,
+       arrowhead at the top, so the eye reads engine → LLM as "data flows up"). -->
+
+  <!-- R blue at x = 82 -->
+  <circle cx="82" cy="42.5" r="0.7" fill="#2C5282"/>
+  <line x1="82" y1="41.8" x2="82" y2="20.0"
+        stroke="#2C5282" stroke-width="0.282" marker-end="url(#arB)"/>
+
+  <!-- T orange at x = 95 -->
+  <circle cx="95" cy="42.5" r="0.7" fill="#C05621"/>
+  <line x1="95" y1="41.8" x2="95" y2="20.0"
+        stroke="#C05621" stroke-width="0.282" marker-end="url(#arO)"/>
+
+  <!-- C green at x = 108 -->
+  <circle cx="108" cy="42.5" r="0.7" fill="#2F855A"/>
+  <line x1="108" y1="41.8" x2="108" y2="20.0"
+        stroke="#2F855A" stroke-width="0.282" marker-end="url(#arG)"/>
+
+  <!-- Engine box (bottom), centred at x = 95.  No dark fill. -->
+  <rect x="77" y="43" width="36" height="11" rx="1.2" ry="1.2"
+        fill="#F0F0F0" stroke="#1A1A1A" stroke-width="0.176"/>
+  <text x="95" y="49"   font-size="10pt" font-weight="bold" text-anchor="middle">Domain Engine</text>
+  <text x="95" y="52.5" font-size="6pt"  fill="#666666"      text-anchor="middle">deterministic, domain-specific</text>
+
+  <!-- R/T/C key below the diagram -->
+  <circle cx="74" cy="58.7" r="0.85" fill="#2C5282"/>
+  <text x="76" y="59.0" font-size="6pt" font-weight="bold" fill="#2C5282">R: structural data</text>
+  <circle cx="74" cy="61.7" r="0.85" fill="#C05621"/>
+  <text x="76" y="62.0" font-size="6pt" font-weight="bold" fill="#C05621">T: operation traces</text>
+  <circle cx="74" cy="64.7" r="0.85" fill="#2F855A"/>
+  <text x="76" y="65.0" font-size="6pt" font-weight="bold" fill="#2F855A">C: counterfactual variants</text>
+
+  <!-- Footer -->
+  <text x="95" y="69.0" font-size="6pt" text-anchor="middle">LLM never executes geometric primitives;</text>
+  <text x="95" y="71.5" font-size="6pt" text-anchor="middle">engine never composes verbal arguments.</text>
+
+  <!-- ====================================================== -->
+  <!-- PANEL C   Headline result       (x = 120 .. 180)       -->
+  <!-- ====================================================== -->
+
+  <text x="123" y="5.8" font-size="7pt" font-weight="bold">c</text>
+  <text x="126" y="5.8" font-size="8pt">Headline: symmetry domain</text>
+
+  <!-- Bar centres:  000 → 17.5,  R00 → 25.5,  RT0 → 33.5,  RTC → 41.5
+       Bar height 5 mm, gap 3 mm.
+       y-axis at x = 134; 10 mm per reasoning-depth unit;
+       value 0 → x = 134, value 4 → x = 174.
+       Right margin: panel ends at x = 180 (3 mm clearance to x = 177);
+       value-4 bars end at x = 174, with their "4" label at x = 175.6
+       (text-anchor "middle"), well clear of the panel edge. -->
+
+  <!-- y-axis category labels -->
+  <g font-family="'Courier New', Courier, 'Liberation Mono', 'DejaVu Sans Mono', Consolas, monospace"
+     font-size="6pt" text-anchor="end">
+    <text x="126" y="18.4">000</text>
+    <text x="126" y="26.4">R00</text>
+    <text x="126" y="34.4">RT0</text>
+    <text x="126" y="42.4">RTC</text>
+  </g>
+
+  <!-- Activation dots:  R blue at x=128, T orange at x=130.5, C green at x=133 -->
+  <circle cx="128"   cy="25.5" r="0.75" fill="#2C5282"/>
+  <circle cx="128"   cy="33.5" r="0.75" fill="#2C5282"/>
+  <circle cx="130.5" cy="33.5" r="0.75" fill="#C05621"/>
+  <circle cx="128"   cy="41.5" r="0.75" fill="#2C5282"/>
+  <circle cx="130.5" cy="41.5" r="0.75" fill="#C05621"/>
+  <circle cx="133"   cy="41.5" r="0.75" fill="#2F855A"/>
+
+  <!-- Bars: values 2, 4, 4, 4 -->
+  <rect x="134" y="15" width="20" height="5" fill="#CBD5E0"/>
+  <rect x="134" y="23" width="40" height="5" fill="#2C5282"/>
+  <rect x="134" y="31" width="40" height="5" fill="#2C5282"/>
+  <rect x="134" y="39" width="40" height="5" fill="#2C5282"/>
+
+  <!-- Numeric value labels (centred 1.6 mm right of each bar end, comfortably inside x=177 right margin) -->
+  <text x="155.6" y="18.7" font-size="7pt" font-weight="bold" text-anchor="middle">2</text>
+  <text x="175.6" y="26.7" font-size="7pt" font-weight="bold" text-anchor="middle">4</text>
+  <text x="175.6" y="34.7" font-size="7pt" font-weight="bold" text-anchor="middle">4</text>
+  <text x="175.6" y="42.7" font-size="7pt" font-weight="bold" text-anchor="middle">4</text>
+
+  <!-- Threshold dashed line at value = 3 → x = 164 -->
+  <line x1="164" y1="13" x2="164" y2="44"
+        stroke="#CBD5E0" stroke-width="0.282" stroke-dasharray="0.7,0.7"/>
+  <text x="164" y="11.8" font-size="6pt" font-style="italic"
+        fill="#666666" text-anchor="middle">argument threshold</text>
+
+  <!-- Axes -->
+  <line x1="134" y1="14" x2="134" y2="44" stroke="#1A1A1A" stroke-width="0.176"/>
+  <line x1="134" y1="44" x2="174" y2="44" stroke="#1A1A1A" stroke-width="0.176"/>
+  <g stroke="#1A1A1A" stroke-width="0.176">
+    <line x1="134" y1="44" x2="134" y2="44.7"/>
+    <line x1="144" y1="44" x2="144" y2="44.7"/>
+    <line x1="154" y1="44" x2="154" y2="44.7"/>
+    <line x1="164" y1="44" x2="164" y2="44.7"/>
+    <line x1="174" y1="44" x2="174" y2="44.7"/>
+  </g>
+  <g font-size="6pt" fill="#666666" text-anchor="middle">
+    <text x="134" y="46.9">0</text>
+    <text x="144" y="46.9">1</text>
+    <text x="154" y="46.9">2</text>
+    <text x="164" y="46.9">3</text>
+    <text x="174" y="46.9">4</text>
+  </g>
+
+  <!-- x-axis title -->
+  <text x="154" y="50.5" font-size="6pt" fill="#666666" text-anchor="middle">reasoning depth (0–4)</text>
+
+  <!-- Legend -->
+  <g font-size="6pt" fill="#1A1A1A">
+    <circle cx="142" cy="58" r="0.7" fill="#2C5282"/>
+    <text   x="143.5" y="58.7">R</text>
+    <circle cx="151" cy="58" r="0.7" fill="#C05621"/>
+    <text   x="152.5" y="58.7">T</text>
+    <circle cx="160" cy="58" r="0.7" fill="#2F855A"/>
+    <text   x="161.5" y="58.7">C</text>
+  </g>
+
+</svg>

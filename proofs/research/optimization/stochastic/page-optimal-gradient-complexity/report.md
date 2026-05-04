@@ -6,10 +6,10 @@ Consider the finite-sum optimization problem $\min_{x \in \mathbb{R}^d} f(x) = \
 
 The PAGE algorithm uses a probabilistic gradient estimator that, with probability $p$, computes a full gradient (reset), and with probability $1-p$, applies a SPIDER-style variance-reduced correction.
 
-**Theorem:** With $b' = \sqrt{n}$, $p = 1/\sqrt{n}$, $\eta = 1/(2L\sqrt{n})$:
-$$\frac{1}{T}\sum_{t=0}^{T-1} \mathbb{E}[\|\nabla f(x_t)\|^2] \leq \frac{4L\sqrt{n} \cdot \Delta_0}{T}$$
+**Theorem:** With $b' = \sqrt{n}$, $p = 1/\sqrt{n}$, $\eta = 1/(2L)$:
+$$\frac{1}{T}\sum_{t=0}^{T-1} \mathbb{E}[\|\nabla f(x_t)\|^2] \leq \frac{4L \cdot \Delta_0}{T}$$
 
-This gives optimal gradient complexity $O(n + \sqrt{n}/\varepsilon^2)$, matching the lower bound.
+This gives optimal gradient complexity $O(n + \sqrt{n} L\Delta_0/\varepsilon^2)$, matching the lower bound $\Omega(n + \sqrt{n}/\varepsilon^2)$ up to the $L\Delta_0$ factor.
 
 ## 2. Phase Summary
 
@@ -45,7 +45,7 @@ This gives optimal gradient complexity $O(n + \sqrt{n}/\varepsilon^2)$, matching
   - With probability $1-p$: $g_{t+1} = g_t + \frac{1}{b'}\sum_{i \in \mathcal{B}'_t}[\nabla f_i(x_{t+1}) - \nabla f_i(x_t)]$ (SPIDER correction, $|\mathcal{B}'_t| = b'$)
 
 ### Parameters
-$$p = \frac{1}{\sqrt{n}}, \quad b' = \sqrt{n}, \quad \eta = \frac{1}{2L\sqrt{n}}$$
+$$p = \frac{1}{\sqrt{n}}, \quad b' = \sqrt{n}, \quad \eta = \frac{1}{2L}$$
 
 ### Notation
 - $e_t = g_t - \nabla f(x_t)$ (estimation error)
@@ -78,17 +78,17 @@ Combining: $\mathbb{E}[\|e_{t+1}\|^2|\mathcal{F}_t] = p \cdot 0 + (1-p)(\|e_t\|^
 
 **Step 1 (Unroll variance).** From $V_0 = 0$: $V_t \leq \frac{L^2\eta^2}{b'}\sum_{s=0}^{t-1}(1-p)^{t-1-s}\mathbb{E}[\|g_s\|^2]$.
 
-**Step 2 (Sum and swap).** $\mathcal{V} \leq \frac{L^2\eta^2}{b'}\sum_s \mathbb{E}[\|g_s\|^2] \cdot \frac{1}{p} = \frac{L^2\eta^2}{pb'}\mathcal{H} = \frac{1}{4n}\mathcal{H}$.
+**Step 2 (Sum and swap).** $\mathcal{V} \leq \frac{L^2\eta^2}{b'}\sum_s \mathbb{E}[\|g_s\|^2] \cdot \frac{1}{p} = \frac{L^2\eta^2}{pb'}\mathcal{H} = \frac{1}{4}\mathcal{H}$.
 
 **Step 3 (Combine).** Sum Lemma 3 over $t$, take expectations:
-$$\frac{\eta}{2}\mathcal{G} + \frac{\eta}{2}\underbrace{\left(1 - L\eta - \frac{1}{4n}\right)}_{\geq 1/4 > 0}\mathcal{H} \leq \Delta_0$$
+$$\frac{\eta}{2}\mathcal{G} + \frac{\eta}{2}\underbrace{\left(1 - L\eta - \frac{1}{4}\right)}_{= 1/4 > 0}\mathcal{H} \leq \Delta_0$$
 
 Drop the non-negative $\mathcal{H}$ term:
-$$\frac{1}{T}\sum_{t=0}^{T-1}\mathbb{E}[\|\nabla f(x_t)\|^2] \leq \frac{2\Delta_0}{\eta T} = \frac{4L\sqrt{n}\Delta_0}{T} \qquad \blacksquare$$
+$$\frac{1}{T}\sum_{t=0}^{T-1}\mathbb{E}[\|\nabla f(x_t)\|^2] \leq \frac{2\Delta_0}{\eta T} = \frac{4L\Delta_0}{T} \qquad \blacksquare$$
 
 ---
 
-**Gradient Complexity.** Per step: $p \cdot n + (1-p) \cdot b' = 2\sqrt{n} - 1 = O(\sqrt{n})$. Total: $n + O(\sqrt{n} \cdot T) = O(n + \sqrt{n} \cdot L\sqrt{n}\Delta_0/\varepsilon^2) = O(n + nL\Delta_0/\varepsilon^2)$. This matches the SFO lower bound $\Omega(n + \sqrt{n}/\varepsilon^2)$ (with $L\Delta_0$ absorbed into big-O).
+**Gradient Complexity.** Per step: $p \cdot n + (1-p) \cdot b' = 2\sqrt{n} - 1 = O(\sqrt{n})$. Total: $n + O(\sqrt{n} \cdot T) = O(n + \sqrt{n} \cdot L\Delta_0/\varepsilon^2)$. This matches the SFO lower bound $\Omega(n + \sqrt{n}/\varepsilon^2)$ (Fang et al. 2018), with $L\Delta_0$ absorbed into big-O.
 
 ## 5. Audit Result
 
@@ -97,7 +97,7 @@ $$\frac{1}{T}\sum_{t=0}^{T-1}\mathbb{E}[\|\nabla f(x_t)\|^2] \leq \frac{2\Delta_
 Key audit findings:
 - Full gradient resets (cost $n$) amortize to $O(\sqrt{n})$ per step since reset probability $p = 1/\sqrt{n}$.
 - Conditional independence structure in Lemma 2 is correct: $x_{t+1}$ is $\mathcal{F}_t$-measurable.
-- Coefficient positivity $1 - 1/(2\sqrt{n}) - 1/(4n) \geq 1/4$ is tight at $n=1$.
+- Coefficient positivity $1 - L\eta - L^2\eta^2/(pb') = 1 - 1/2 - 1/4 = 1/4 > 0$.
 
 ## 6. Fix History
 

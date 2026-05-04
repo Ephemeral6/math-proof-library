@@ -1,0 +1,87 @@
+{
+ "domain": "graph_connectivity",
+ "condition": "0T0",
+ "primitives": {
+  "relation": false,
+  "transform": true,
+  "contrastive": false
+ },
+ "case_id": "R18_n8-t4",
+ "case_data": {
+  "case_id": "R18_n8-t4",
+  "summary_delta": {
+   "n_vertices_b": 0,
+   "n_components_b": 0,
+   "is_connected_a": 0,
+   "n_vertices_a": 0,
+   "n_edges_b": 0,
+   "is_connected_b": 0,
+   "n_edges_a": -1,
+   "n_components_a": 0
+  },
+  "metadata": {
+   "graph_idx": 18,
+   "n_vertices": 8,
+   "n_edges_before": 9,
+   "deleted_edge": [
+    2,
+    5
+   ],
+   "trial": 4
+  },
+  "transform_trace": {
+   "operation_name": "delete_edge",
+   "operation_params": {
+    "edge": [
+     2,
+     5
+    ]
+   },
+   "before_state": {
+    "n_edges": 9,
+    "n_components": 1,
+    "is_connected": true
+   },
+   "after_state": {
+    "n_edges": 8,
+    "n_components": 1,
+    "is_connected": true
+   },
+   "delta": {
+    "n_edges_delta": -1,
+    "components_change": 0,
+    "is_bridge": false,
+    "connectivity_lost": false
+   },
+   "region_affected": {
+    "deleted_edge": [
+     2,
+     5
+    ],
+    "endpoint_degrees_before": [
+     2,
+     2
+    ],
+    "endpoint_degrees_after": [
+     1,
+     1
+    ]
+   },
+   "sub_steps": []
+  },
+  "reference_in_transform_region": {
+   "deleted_edge": [
+    2,
+    5
+   ],
+   "endpoint_degrees_before": [
+    2,
+    2
+   ],
+   "endpoint_degrees_after": [
+    1,
+    1
+   ]
+  }
+ }
+}

@@ -1,0 +1,505 @@
+你是一个数学推理助手。以下是一个几何/拓扑问题。一个领域引擎已经计算了结构数据 (R)、变换轨迹 (T) 和反事实对比 (C)。请基于这些数据进行推理并给出结论。
+
+### 问题背景
+给定一个网格多边形（顶点为整点）。基于 Pick 定理 A = I + B/2 - 1，判断给定的多边形（或一对多边形）的面积、边界格点数 B、内部格点数 I 是否一致，Pick 关系是否成立。
+
+### 案例 crosspair-4-L_shape-vs-staircase 的引擎结构数据 (R + T)
+```json
+{
+  "case_id": "crosspair-4-L_shape-vs-staircase",
+  "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+  },
+  "metadata": {
+    "preset_a": "L_shape",
+    "preset_b": "staircase",
+    "operation": "identity_compare",
+    "n_vertices_pre": 6,
+    "n_vertices_post": 6
+  },
+  "detailed_comparison": {
+    "area_preserved": true,
+    "B_change": 0,
+    "I_change": 0,
+    "edges_pre": [
+      {
+        "from": [
+          0,
+          0
+        ],
+        "to": [
+          4,
+          0
+        ],
+        "direction": [
+          4,
+          0
+        ],
+        "length": 4.0,
+        "gcd": 4,
+        "lattice_points_on_edge": 5,
+        "lattice_points_interior_to_edge": 3
+      },
+      {
+        "from": [
+          4,
+          0
+        ],
+        "to": [
+          4,
+          2
+        ],
+        "direction": [
+          0,
+          2
+        ],
+        "length": 2.0,
+        "gcd": 2,
+        "lattice_points_on_edge": 3,
+        "lattice_points_interior_to_edge": 1
+      },
+      {
+        "from": [
+          4,
+          2
+        ],
+        "to": [
+          2,
+          2
+        ],
+        "direction": [
+          -2,
+          0
+        ],
+        "length": 2.0,
+        "gcd": 2,
+        "lattice_points_on_edge": 3,
+        "lattice_points_interior_to_edge": 1
+      },
+      {
+        "from": [
+          2,
+          2
+        ],
+        "to": [
+          2,
+          4
+        ],
+        "direction": [
+          0,
+          2
+        ],
+        "length": 2.0,
+        "gcd": 2,
+        "lattice_points_on_edge": 3,
+        "lattice_points_interior_to_edge": 1
+      },
+      {
+        "from": [
+          2,
+          4
+        ],
+        "to": [
+          0,
+          4
+        ],
+        "direction": [
+          -2,
+          0
+        ],
+        "length": 2.0,
+        "gcd": 2,
+        "lattice_points_on_edge": 3,
+        "lattice_points_interior_to_edge": 1
+      },
+      {
+        "from": [
+          0,
+          4
+        ],
+        "to": [
+          0,
+          0
+        ],
+        "direction": [
+          0,
+          -4
+        ],
+        "length": 4.0,
+        "gcd": 4,
+        "lattice_points_on_edge": 5,
+        "lattice_points_interior_to_edge": 3
+      }
+    ],
+    "edges_post": [
+      {
+        "from": [
+          0,
+          0
+        ],
+        "to": [
+          4,
+          0
+        ],
+        "direction": [
+          4,
+          0
+        ],
+        "length": 4.0,
+        "gcd": 4,
+        "lattice_points_on_edge": 5,
+        "lattice_points_interior_to_edge": 3
+      },
+      {
+        "from": [
+          4,
+          0
+        ],
+        "to": [
+          4,
+          2
+        ],
+        "direction": [
+          0,
+          2
+        ],
+        "length": 2.0,
+        "gcd": 2,
+        "lattice_points_on_edge": 3,
+        "lattice_points_interior_to_edge": 1
+      },
+      {
+        "from": [
+          4,
+          2
+        ],
+        "to": [
+          2,
+          2
+        ],
+        "direction": [
+          -2,
+          0
+        ],
+        "length": 2.0,
+        "gcd": 2,
+        "lattice_points_on_edge": 3,
+        "lattice_points_interior_to_edge": 1
+      },
+      {
+        "from": [
+          2,
+          2
+        ],
+        "to": [
+          2,
+          4
+        ],
+        "direction": [
+          0,
+          2
+        ],
+        "length": 2.0,
+        "gcd": 2,
+        "lattice_points_on_edge": 3,
+        "lattice_points_interior_to_edge": 1
+      },
+      {
+        "from": [
+          2,
+          4
+        ],
+        "to": [
+          0,
+          4
+        ],
+        "direction": [
+          -2,
+          0
+        ],
+        "length": 2.0,
+        "gcd": 2,
+        "lattice_points_on_edge": 3,
+        "lattice_points_interior_to_edge": 1
+      },
+      {
+        "from": [
+          0,
+          4
+        ],
+        "to": [
+          0,
+          0
+        ],
+        "direction": [
+          0,
+          -4
+        ],
+        "length": 4.0,
+        "gcd": 4,
+        "lattice_points_on_edge": 5,
+        "lattice_points_interior_to_edge": 3
+      }
+    ]
+  },
+  "structural_comparison": {
+    "pick_holds_pre": true,
+    "pick_holds_post": true,
+    "pick_preserved": true,
+    "area_from_pick_pre": 12.0,
+    "area_from_pick_post": 12.0,
+    "area_from_shoelace_pre": 12.0,
+    "area_from_shoelace_post": 12.0,
+    "is_lattice_pre": true,
+    "is_lattice_post": true,
+    "is_simple_pre": true,
+    "is_simple_post": true
+  },
+  "transform_trace": {
+    "operation_name": "translate",
+    "operation_params": {
+      "type": "translate",
+      "delta": [
+        0,
+        0
+      ]
+    },
+    "before_state": {
+      "area": 12.0,
+      "B": 16,
+      "I": 5,
+      "pick_holds": true,
+      "n_vertices": 6
+    },
+    "after_state": {
+      "area": 12.0,
+      "B": 16,
+      "I": 5,
+      "pick_holds": true,
+      "n_vertices": 6
+    },
+    "delta": {
+      "area_change": 0.0,
+      "B_change": 0,
+      "I_change": 0,
+      "pick_preserved": true,
+      "area_preserved": true
+    },
+    "region_affected": {
+      "operation": "translate",
+      "vertices_before": 6,
+      "vertices_after": 6,
+      "vertex_diff": 0
+    },
+    "sub_steps": []
+  },
+  "reference_in_transform_region": {
+    "operation": "translate",
+    "vertices_before": 6,
+    "vertices_after": 6,
+    "vertex_diff": 0
+  }
+}
+```
+
+### 反事实对比 (C)
+```json
+[
+  {
+    "strategy": "boundary_relaxation",
+    "original_condition": {
+      "is_lattice": true,
+      "vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          0,
+          3
+        ]
+      ]
+    },
+    "modified_condition": {
+      "is_lattice": false,
+      "displaced_vertex_index": 0,
+      "displacement": [
+        0.5,
+        0
+      ],
+      "vertices": [
+        [
+          0.5,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          0,
+          3
+        ]
+      ]
+    },
+    "original_result": {
+      "area": 12.0,
+      "B": 14,
+      "I": 6,
+      "pick_holds": true
+    },
+    "counterfactual_result": {
+      "area": 11.25,
+      "B": -1,
+      "I": -1,
+      "pick_holds": false
+    },
+    "delta": {
+      "area_change": -0.75,
+      "B_change_meaning": "undefined (not a lattice polygon)",
+      "pick_applicability_lost": true
+    },
+    "condition_is_critical": true,
+    "explanation": "Pick's theorem requires lattice (integer) vertices. Moving one vertex by 0.5 makes B and I (counts of integer points on/in the polygon) ambiguous — Pick's formula no longer applies. The shoelace area is still defined but cannot be recovered from B + I."
+  },
+  {
+    "strategy": "operation_perturbation",
+    "original_condition": {
+      "operation": "shear",
+      "matrix": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "determinant": 1
+    },
+    "modified_condition": {
+      "operation": "scale_non_uniform",
+      "scale": [
+        2,
+        1
+      ],
+      "determinant": 2
+    },
+    "original_result": {
+      "area_after": 12.0,
+      "B_after": 14,
+      "I_after": 6,
+      "pick_holds_after": true
+    },
+    "counterfactual_result": {
+      "area_after": 24.0,
+      "B_after": 22,
+      "I_after": 14,
+      "pick_holds_after": true
+    },
+    "delta": {
+      "area_change_positive": 0.0,
+      "area_change_counterfactual": 12.0,
+      "pick_holds_both": true,
+      "ratio_area_change": 2.0
+    },
+    "condition_is_critical": true,
+    "explanation": "Linear maps with |det|=1 (unimodular) preserve both area AND lattice structure. Maps with |det|!=1 still send lattice polygons to lattice polygons (if entries are integers), so Pick continues to apply, but the area scales by the determinant. Shear preserves area; non-uniform scale does not."
+  },
+  {
+    "strategy": "condition_removal",
+    "original_condition": {
+      "is_simple": true,
+      "vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          0,
+          3
+        ]
+      ]
+    },
+    "modified_condition": {
+      "is_simple": false,
+      "vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "swap": [
+        1,
+        2
+      ]
+    },
+    "original_result": {
+      "area": 12.0,
+      "B": 14,
+      "I": 6,
+      "pick_holds": true
+    },
+    "counterfactual_result": {
+      "area": 0.0,
+      "B": 8,
+      "I": -1,
+      "pick_holds": false
+    },
+    "delta": {
+      "is_simple_lost": true,
+      "pick_applicability_lost": true,
+      "area_shoelace_changed": true
+    },
+    "condition_is_critical": true,
+    "explanation": "Pick's theorem assumes the polygon is *simple* (no edge self-intersections). For a self-intersecting polygon, 'interior' is ambiguous (e.g. bowtie has two lobes) and the I count is meaningless. The shoelace formula computes a *signed* area that no longer matches I + B/2 - 1."
+  }
+]
+```
+
+### 任务
+请基于以上 R/T/C 数据回答问题，结合不变量、变换轨迹与反事实给出结论与推理。

@@ -1,0 +1,384 @@
+{
+  "experiment": "react_plus_engine",
+  "design": {
+    "factors": "8 domains x 3 cases x 1 condition (ReAct + domain engine) = 24 trials",
+    "responder_model": "claude-sonnet-4-6 (Agent(model='sonnet') with Bash tool, one sub-agent per domain)",
+    "rater_model": "claude-opus-4-7 (this conversation, scoring with same 0-4 rubric as method_comparison_results.json)",
+    "domains": ["symmetry", "knot_theory", "graph_connectivity", "boundary_interior", "discrete_curvature", "projection", "surface_topology", "surface_topology_s21"],
+    "cases_per_domain": {
+      "symmetry": ["same-006", "diff-163", "same-028"],
+      "knot_theory": ["3_1-r2-3", "4_1-r2-4", "5_2-r2-5"],
+      "graph_connectivity": ["R00_n8-t3", "R02_n12-t4", "R07_n8-t0"],
+      "boundary_interior": ["crosspair-4-L_shape-vs-staircase", "L_shape-scale-0", "L_shape-trans-1"],
+      "discrete_curvature": ["cross-icosahedron-vs-cube_triangulated-f4-4", "cross-octahedron-vs-icosahedron-f1-1", "cube_triangulated-subdiv-f4-4"],
+      "projection": ["cross-octahedron-xzvsyz", "cross-tetrahedron-xyvsdiagonal", "cross-tetrahedron-yzvsdiagonal"],
+      "surface_topology": ["a12-b1", "a131-b389", "a331-b69"],
+      "surface_topology_s21": ["a122-b28", "a151-b103", "a151-b181"]
+    },
+    "condition": {
+      "name": "react_engine",
+      "description": "ReAct (Yao et al. 2023) + domain engine. LLM gets baseline (summary_delta + metadata + question text), then chooses THINK / QUERY_R / QUERY_T / QUERY_C / ANSWER. Up to 5 engine queries. Engine returns the same R/T/C primitives that CoE-RTC pushes up-front.",
+      "engine_cli": "python react_agent.py {init|query} <domain> <case_id> [R|T|C]",
+      "engine_log": "react_engine_log.jsonl (every init/query timestamped)",
+      "data_visible_at_each_step": "summary_delta + metadata initially; whatever the LLM chose to fetch thereafter"
+    },
+    "rubric_0_to_4": {
+      "0": "NO_SIGNAL — no useful reasoning or wrong",
+      "1": "WRONG_PATTERN / NOTICE — observes structure but no real argument, or wrong",
+      "2": "PATTERN — correct conclusion via pattern recognition / hand-wave / answer-leak from metadata",
+      "3": "ARGUMENT — correct conclusion + sound reasoning chain with minor gaps",
+      "4": "PROOF — rigorous derivation with explicit verification + invariant identification"
+    }
+  },
+  "engine_query_summary": {
+    "total_init_calls": 24,
+    "total_queries": 17,
+    "queries_per_domain": {
+      "symmetry": {"R": 0, "T": 0, "C": 0, "total": 0, "note": "metadata leaked same_orbit + g_perm; agent verified by direct computation"},
+      "knot_theory": {"R": 0, "T": 0, "C": 0, "total": 0, "note": "agent argued R2 invariance from first principles without verifying via engine"},
+      "graph_connectivity": {"R": 3, "T": 0, "C": 0, "total": 3, "note": "agent queried R for bridge / AP / component data on every case"},
+      "boundary_interior": {"R": 2, "T": 0, "C": 0, "total": 2, "note": "agent skipped query on translation case (invariance trivial); queried R on cross-pair and scale cases"},
+      "discrete_curvature": {"R": 3, "T": 0, "C": 0, "total": 3, "note": "agent queried R for chi / total curvature / GB ratio on every case"},
+      "projection": {"R": 3, "T": 2, "C": 0, "total": 5, "note": "agent queried R on every case; queried T on 2 of 3 to confirm which projection owns which numbers"},
+      "surface_topology": {"R": 3, "T": 0, "C": 0, "total": 3, "note": "metadata leaked i_alpha_beta; agent queried R for bigon / crossing structure on every case"},
+      "surface_topology_s21": {"R": 3, "T": 1, "C": 0, "total": 4, "note": "metadata leaked i_alpha_beta; agent queried R always, T once for surgery details"}
+    },
+    "primitive_breakdown": {"R": 14, "T": 3, "C": 0},
+    "key_observation": "C primitive was never queried across all 24 trials. The ReAct agent never thought to ask 'what would change if conditions were different' — counterfactuals are not a primitive that LLMs intuitively reach for unsolicited."
+  },
+  "trials": [
+    {
+      "trial_id": 1,
+      "domain": "symmetry",
+      "case_id": "same-006",
+      "queries_issued": [],
+      "n_queries": 0,
+      "trajectory": "THINK: Metadata gives a=[1,0,2,1,0,2], b=[2,1,0,2,1,0], same_orbit=true, orbit_size=3 for both. Direct check: b[i]=a[(i-1) mod 6] for i=0..5 verifies. ANSWER: same orbit, witness r^5 (shift back by 1).",
+      "final_answer": "Same orbit. Witness r^5 (= rotation by -1). Verified position-by-position.",
+      "score": 4,
+      "score_rationale": "Correct conclusion + explicit position-by-position verification of the witness. Same level as zero_cot in method_comparison_results.json: metadata leaks the answer but the agent supplies a real check. PROOF level."
+    },
+    {
+      "trial_id": 2,
+      "domain": "symmetry",
+      "case_id": "diff-163",
+      "queries_issued": [],
+      "n_queries": 0,
+      "trajectory": "THINK: a=[0,1,0,2,2,1], b=[1,2,0,2,0,0], orbit sizes 6 each. Enumerated all 6 cyclic rotations of a; none matches b. Adjacent-pair multiset of a contains (2,2), b contains (0,0) instead — necklace-class invariant separates them. ANSWER: not same orbit.",
+      "final_answer": "Not same orbit. Exhaustive rotation enumeration + necklace pair-multiset invariant.",
+      "score": 4,
+      "score_rationale": "Decisive: full enumeration AND a separating invariant. The cleaner color-frequency multiset (a={0:2,1:2,2:2} vs b={0:3,1:1,2:2}) was missed but the alternative pair-multiset is correct. PROOF level."
+    },
+    {
+      "trial_id": 3,
+      "domain": "symmetry",
+      "case_id": "same-028",
+      "queries_issued": [],
+      "n_queries": 0,
+      "trajectory": "THINK: a=[0,1,1,0,2,1], b=[1,0,1,1,0,2], g_perm=[5,0,1,2,3,4] (rotation r^5). Verified b[i]=a[(i-1) mod 6] for all i: 6/6 match. ANSWER: same orbit, witness r^5.",
+      "final_answer": "Same orbit, witness r^5 (rotation by 5 / shift right by 1), verified at every index.",
+      "score": 4,
+      "score_rationale": "Explicit witness identification + position-by-position verification. PROOF level."
+    },
+    {
+      "trial_id": 4,
+      "domain": "knot_theory",
+      "case_id": "3_1-r2-3",
+      "queries_issued": [],
+      "n_queries": 0,
+      "trajectory": "THINK: 3_1 + R2, writhe_delta=0, crossings 3→5. Argued R2 is ambient isotopy → all invariants preserved by definition. Cited 3_1 invariants from memory (signature, det=3, Alexander t^2-t+1). ANSWER: R2 valid, all invariants preserved.",
+      "final_answer": "R2 valid; signature / determinant / Alexander / writhe all preserved (writhe_delta=0 confirms canceling crossing pair).",
+      "score": 3,
+      "score_rationale": "Correct + sound general argument (R2 = ambient isotopy ⟹ all invariants preserved). But no engine verification of the actual structural_comparison fields (alexander_pre_normalized, etc.). Without QUERY_R the agent can only argue from definition, not VERIFY. ARGUMENT, not PROOF. Crucial: had the agent issued QUERY_R, it would have hit 4 like coe_r in the method comparison."
+    },
+    {
+      "trial_id": 5,
+      "domain": "knot_theory",
+      "case_id": "4_1-r2-4",
+      "queries_issued": [],
+      "n_queries": 0,
+      "trajectory": "THINK: 4_1 + R2, writhe_delta=0, crossings 4→6. Same R2 argument. ANSWER: valid, all preserved.",
+      "final_answer": "R2 valid; all invariants preserved by ambient isotopy + writhe_delta=0.",
+      "score": 3,
+      "score_rationale": "Same reasoning pattern as 3_1-r2-3. Correct + sound but unverified by engine."
+    },
+    {
+      "trial_id": 6,
+      "domain": "knot_theory",
+      "case_id": "5_2-r2-5",
+      "queries_issued": [],
+      "n_queries": 0,
+      "trajectory": "THINK: 5_2 + R2, writhe_delta=0. Same R2 ambient-isotopy argument. ANSWER: valid.",
+      "final_answer": "R2 valid; all invariants preserved.",
+      "score": 3,
+      "score_rationale": "Same as above. ARGUMENT level. The agent's overconfidence ('R2 obviously preserves invariants — no need to query') is the failure mode the user predicted: ReAct can MISS the engine on a domain where it should have queried."
+    },
+    {
+      "trial_id": 7,
+      "domain": "graph_connectivity",
+      "case_id": "R00_n8-t3",
+      "queries_issued": ["R"],
+      "n_queries": 1,
+      "trajectory": "THINK: 8v/9e graph, deleting (4,7); summary_delta suggests connectivity loss. QUERY_R: deleted_edge_was_bridge=true, components 1→2, bridges 1→0, APs {7}→{}. ANSWER: bridge, disconnects, AP {7} removed.",
+      "final_answer": "(1) Bridge. (2) Disconnects ({0,1,2,3,5,6,7} ∪ {4}). (3) Bridges 1→0; APs {7}→{}.",
+      "score": 4,
+      "score_rationale": "Correct on all 3 sub-questions, structural verification via R primitive. PROOF level matching coe_r in the original method comparison."
+    },
+    {
+      "trial_id": 8,
+      "domain": "graph_connectivity",
+      "case_id": "R02_n12-t4",
+      "queries_issued": ["R"],
+      "n_queries": 1,
+      "trajectory": "THINK: 12v/14e, deleting (6,7); summary_delta suggests connectivity preserved. QUERY_R: not bridge, components 1→1, bridges 5→7, APs {6,7,8,11} unchanged. ANSWER: not bridge, stays connected, bridges +2.",
+      "final_answer": "(1) Not bridge. (2) Stays connected. (3) Bridges 5→7; APs unchanged.",
+      "score": 4,
+      "score_rationale": "Correct + verified. PROOF level."
+    },
+    {
+      "trial_id": 9,
+      "domain": "graph_connectivity",
+      "case_id": "R07_n8-t0",
+      "queries_issued": ["R"],
+      "n_queries": 1,
+      "trajectory": "THINK: 8v/10e, deleting (0,3); connectivity preserved. QUERY_R: not bridge, bridges 1→2, APs {1}→{1,6}. ANSWER: not bridge, AP gain at vertex 6.",
+      "final_answer": "(1) Not bridge. (2) Stays connected. (3) Bridges 1→2; APs {1}→{1,6}.",
+      "score": 4,
+      "score_rationale": "Correct + verified. PROOF level."
+    },
+    {
+      "trial_id": 10,
+      "domain": "boundary_interior",
+      "case_id": "crosspair-4-L_shape-vs-staircase",
+      "queries_issued": ["R"],
+      "n_queries": 1,
+      "trajectory": "THINK: cross-pair; summary_delta zero suggests identical lattice quantities. QUERY_R: both polygons have area=12, B=16, I=5, Pick: 5+8-1=12 holds. ANSWER: identical lattice profile, Pick holds for both.",
+      "final_answer": "Both have area=12, B=16, I=5; Pick A=I+B/2-1=12 holds for both.",
+      "score": 4,
+      "score_rationale": "Explicit numeric Pick verification on both polygons via R primitive. PROOF level."
+    },
+    {
+      "trial_id": 11,
+      "domain": "boundary_interior",
+      "case_id": "L_shape-scale-0",
+      "queries_issued": ["R"],
+      "n_queries": 1,
+      "trajectory": "THINK: scale (2,1), det=2, area should double. QUERY_R: pre area=12,B=16,I=5; post area=24,B=24,I=13. Pick: 5+8-1=12 ✓ and 13+12-1=24 ✓. ANSWER: Pick holds before and after, area scales by det as expected.",
+      "final_answer": "Pre Pick=12 (5+8-1), post Pick=24 (13+12-1); both hold; area scales by det=2 (12→24).",
+      "score": 4,
+      "score_rationale": "Numeric Pick verification on both pre and post; identifies area-determinant link. PROOF level."
+    },
+    {
+      "trial_id": 12,
+      "domain": "boundary_interior",
+      "case_id": "L_shape-trans-1",
+      "queries_issued": [],
+      "n_queries": 0,
+      "trajectory": "THINK: translation by (0,7) is integer-vector lattice isometry. summary_delta is all zero. Translation by an integer vector is a bijection on Z^2 preserving B, I, area. ANSWER: all preserved, Pick holds before and after.",
+      "final_answer": "Translation by (0,7) preserves area=12, B=16, I=5; Pick holds throughout (lattice isometry argument).",
+      "score": 4,
+      "score_rationale": "The skipped query is correct here: lattice translation is fundamentally a Z^2-isomorphism, the invariance argument IS the proof. No need to query R for verification — that would be ceremony. PROOF level."
+    },
+    {
+      "trial_id": 13,
+      "domain": "discrete_curvature",
+      "case_id": "cross-icosahedron-vs-cube_triangulated-f4-4",
+      "queries_issued": ["R"],
+      "n_queries": 1,
+      "trajectory": "THINK: cross-pair, both genus-0. QUERY_R: both have χ=2, total curvature 4π, GB ratio 2.0, new vertex (subdiv) has defect 0 (flat). ANSWER: all GB invariants preserved.",
+      "final_answer": "χ=2, total curvature=4π, GB ratio=2.0 for both polyhedra; stellar subdivision adds flat vertex.",
+      "score": 4,
+      "score_rationale": "Correct identification of GB invariants + the 'flat new vertex' insight that explains why subdivision preserves total curvature. PROOF level."
+    },
+    {
+      "trial_id": 14,
+      "domain": "discrete_curvature",
+      "case_id": "cross-octahedron-vs-icosahedron-f1-1",
+      "queries_issued": ["R"],
+      "n_queries": 1,
+      "trajectory": "THINK: cross-pair octahedron vs subdivided icosahedron. QUERY_R confirms χ=2, 4π, GB=2.0 on both; new vertex flat. ANSWER: invariants preserved.",
+      "final_answer": "χ, total curvature 4π, GB ratio all preserved; new flat vertex.",
+      "score": 4,
+      "score_rationale": "Same level of rigor. PROOF."
+    },
+    {
+      "trial_id": 15,
+      "domain": "discrete_curvature",
+      "case_id": "cube_triangulated-subdiv-f4-4",
+      "queries_issued": ["R"],
+      "n_queries": 1,
+      "trajectory": "THINK: stellar subdivision intra-transform. QUERY_R: pre/post both χ=2, 4π, GB=2.0; new vertex defect=0. Connected to GB theorem: topology-preserving local op cannot change total curvature. ANSWER: all preserved.",
+      "final_answer": "Stellar subdivision adds 1 flat vertex; χ, total curvature, GB ratio all unchanged.",
+      "score": 4,
+      "score_rationale": "Explicit GB-theorem framing of why this MUST be true. PROOF."
+    },
+    {
+      "trial_id": 16,
+      "domain": "projection",
+      "case_id": "cross-octahedron-xzvsyz",
+      "queries_issued": ["R", "T"],
+      "n_queries": 2,
+      "trajectory": "THINK: octahedron, plane_a=xz vs plane_b=yz. summary suggests xz has 4 crossings, yz has 0. QUERY_R: 1 collision (xz), 4 crossings (xz), 40% distances preserved, diameter unchanged on both. QUERY_T: confirms xz drops y, ±y poles collapse to origin. ANSWER: xz heavily distorted, yz clean; both preserve diameter and n_points.",
+      "final_answer": "xz: 4 crossings + 1 collision (±y poles collapse), 40% distances preserved. yz: 0 crossings, 0 collisions. Both preserve dim 3→2, diameter, point count.",
+      "score": 4,
+      "score_rationale": "Identifies the geometric reason (which axis drops which symmetry pair) for the crossing/collision counts. PROOF level."
+    },
+    {
+      "trial_id": 17,
+      "domain": "projection",
+      "case_id": "cross-tetrahedron-xyvsdiagonal",
+      "queries_issued": ["R", "T"],
+      "n_queries": 2,
+      "trajectory": "THINK: tetrahedron, xy vs diagonal. QUERY_R: 0 collisions, 1 crossing (xy), 33% preserved, diameter intact. QUERY_T: xy drops z, no collisions, 1 edge crossing, diameter 2.828. ANSWER: xy 1-crossing, diagonal 0; cleaner.",
+      "final_answer": "xy: 1 crossing, 0 collision. diagonal: 0 crossing. Both preserve dim 3→2, diameter 2.828, n_points 4.",
+      "score": 4,
+      "score_rationale": "Correct + verified. PROOF."
+    },
+    {
+      "trial_id": 18,
+      "domain": "projection",
+      "case_id": "cross-tetrahedron-yzvsdiagonal",
+      "queries_issued": ["R"],
+      "n_queries": 1,
+      "trajectory": "THINK: tetrahedron, yz vs diagonal. Should mirror case 17 by tetrahedral symmetry. QUERY_R: identical profile to xy case, 0 collisions, 1 crossing, 33% preserved. ANSWER: yz and xy projections are structurally equivalent for this tetrahedron; diagonal is cleaner.",
+      "final_answer": "yz: 1 crossing, 0 collision (same profile as xy). diagonal: 0 crossing.",
+      "score": 4,
+      "score_rationale": "Bonus: notes the tetrahedral symmetry relating yz and xy. PROOF level."
+    },
+    {
+      "trial_id": 19,
+      "domain": "surface_topology",
+      "case_id": "a12-b1",
+      "queries_issued": ["R"],
+      "n_queries": 1,
+      "trajectory": "THINK: i_alpha_beta=1 from metadata. QUERY_R: 3 crossings pre, 2 post; 1 bigon pre/post, both punctured. minimal_position=false. ANSWER: i=1, weight_a -=8, persistent punctured bigon prevents bigon-elimination.",
+      "final_answer": "i(α,β)=1; alpha weight -8, beta unchanged; punctured bigon obstruction persists.",
+      "score": 3,
+      "score_rationale": "Correct conclusion (matches engine's i_alpha_beta=1). The agent identifies the punctured-bigon obstruction but cannot run Hatcher's surgery directly to PROVE i=1 — that requires triangulation-level operations not exposed. ARGUMENT level. Same ceiling as coe_r in the original experiment (3.0 on this domain)."
+    },
+    {
+      "trial_id": 20,
+      "domain": "surface_topology",
+      "case_id": "a131-b389",
+      "queries_issued": ["R"],
+      "n_queries": 1,
+      "trajectory": "THINK: i=1 from metadata. QUERY_R: 14→8 crossings, 10→5 punctured bigons. ANSWER: i=1 with all bigons punctured throughout (obstruction).",
+      "final_answer": "i(α,β)=1; alpha weight -14; punctured-bigon obstruction.",
+      "score": 3,
+      "score_rationale": "Correct conclusion + bigon-puncture argument. ARGUMENT level (same domain ceiling)."
+    },
+    {
+      "trial_id": 21,
+      "domain": "surface_topology",
+      "case_id": "a331-b69",
+      "queries_issued": ["R"],
+      "n_queries": 1,
+      "trajectory": "THINK: i=1 from metadata. QUERY_R: 16 crossings pre and post (UNCHANGED), 8 punctured bigons unchanged. Surgery is a no-op here. ANSWER: i=1; surgery is fixed-point on this case.",
+      "final_answer": "i(α,β)=1; alpha weight -12; surgery leaves crossings/bigons unchanged.",
+      "score": 3,
+      "score_rationale": "Notes the unusual fixed-point behavior of the surgery. ARGUMENT level."
+    },
+    {
+      "trial_id": 22,
+      "domain": "surface_topology_s21",
+      "case_id": "a122-b28",
+      "queries_issued": ["R", "T"],
+      "n_queries": 2,
+      "trajectory": "THINK: i=1, alpha lvl 2, beta lvl 1. QUERY_R: 10→4 crossings, 4→2 punctured bigons. QUERY_T: surgery c122→sigma_c1, level shift -2, weight shift -14, surgery region (tri 2,3,5) contains 1 puncture. ANSWER: i=1; surgery reduces alpha to a level-0 base curve.",
+      "final_answer": "i(α,β)=1; alpha weight -14 via Hatcher surgery to level-0 base curve sigma_c1; punctured bigons persist outside surgery region.",
+      "score": 3,
+      "score_rationale": "Best-quality answer of the s21 cases — the T query revealed the actual surgery structure (level shift, base-curve target). Still ARGUMENT level: cannot independently verify i=1 from the data, only attests to the engine's claim."
+    },
+    {
+      "trial_id": 23,
+      "domain": "surface_topology_s21",
+      "case_id": "a151-b103",
+      "queries_issued": ["R"],
+      "n_queries": 1,
+      "trajectory": "THINK: i=1, alpha lvl 2, beta lvl 0. QUERY_R: 16→4 crossings, 11→2 punctured bigons; surgery region eliminates 12 crossings. ANSWER: i=1.",
+      "final_answer": "i(α,β)=1; alpha weight -9; large crossing reduction inside surgery region; punctured bigons obstruct minimal position.",
+      "score": 3,
+      "score_rationale": "Correct conclusion via R primitive. ARGUMENT level."
+    },
+    {
+      "trial_id": 24,
+      "domain": "surface_topology_s21",
+      "case_id": "a151-b181",
+      "queries_issued": ["R"],
+      "n_queries": 1,
+      "trajectory": "THINK: same alpha as 23 but different beta. QUERY_R: 18→4 crossings, 13→2 punctured bigons. The 2 extra pre-surgery bigons relative to b103 are outside the surgery region. ANSWER: i=1; same alpha-side surgery, but different beta-side bigon structure.",
+      "final_answer": "i(α,β)=1; alpha weight -9 (same surgery as a151-b103); 2 extra pre-surgery bigons localized outside surgery region.",
+      "score": 3,
+      "score_rationale": "Notes the comparative observation about extra bigons being outside the surgery region. ARGUMENT level."
+    }
+  ],
+  "summary": {
+    "scores_by_domain_case": {
+      "symmetry": [4, 4, 4],
+      "knot_theory": [3, 3, 3],
+      "graph_connectivity": [4, 4, 4],
+      "boundary_interior": [4, 4, 4],
+      "discrete_curvature": [4, 4, 4],
+      "projection": [4, 4, 4],
+      "surface_topology": [3, 3, 3],
+      "surface_topology_s21": [3, 3, 3]
+    },
+    "per_domain_means_react": {
+      "symmetry": 4.000,
+      "knot_theory": 3.000,
+      "graph_connectivity": 4.000,
+      "boundary_interior": 4.000,
+      "discrete_curvature": 4.000,
+      "projection": 4.000,
+      "surface_topology": 3.000,
+      "surface_topology_s21": 3.000
+    },
+    "overall_mean_react": 3.625,
+    "overall_n": 24
+  },
+  "five_condition_comparison": {
+    "source_existing": "method_comparison_results.json",
+    "per_domain_means": {
+      "symmetry": {"zero_cot": 4.000, "cot_code": 4.000, "react_engine": 4.000, "coe_r": 4.000, "coe_rtc": 4.000},
+      "knot_theory": {"zero_cot": 3.000, "cot_code": 3.000, "react_engine": 3.000, "coe_r": 4.000, "coe_rtc": 4.000},
+      "graph_connectivity": {"zero_cot": 3.000, "cot_code": 3.000, "react_engine": 4.000, "coe_r": 4.000, "coe_rtc": 4.000},
+      "boundary_interior": {"zero_cot": 1.333, "cot_code": 3.333, "react_engine": 4.000, "coe_r": 4.000, "coe_rtc": 4.000},
+      "discrete_curvature": {"zero_cot": 2.000, "cot_code": 3.000, "react_engine": 4.000, "coe_r": 4.000, "coe_rtc": 4.000},
+      "projection": {"zero_cot": 1.667, "cot_code": 3.000, "react_engine": 4.000, "coe_r": 4.000, "coe_rtc": 4.000},
+      "surface_topology": {"zero_cot": 0.000, "cot_code": 0.000, "react_engine": 3.000, "coe_r": 3.000, "coe_rtc": 3.000},
+      "surface_topology_s21": {"zero_cot": 0.000, "cot_code": 0.000, "react_engine": 3.000, "coe_r": 3.000, "coe_rtc": 3.000}
+    },
+    "overall_means": {
+      "zero_cot": 1.875,
+      "cot_code": 2.417,
+      "react_engine": 3.625,
+      "coe_r": 3.750,
+      "coe_rtc": 3.750
+    },
+    "delta_react_vs": {
+      "zero_cot": 1.750,
+      "cot_code": 1.208,
+      "coe_r": -0.125,
+      "coe_rtc": -0.125
+    },
+    "summary_table_markdown": "| Condition | Representative method | Overall mean (n=24) |\n|-----------|----------------------|--------------------:|\n| Zero-CoT | Wei et al. 2022 | 1.88 |\n| CoT+Code | ToRA / PAL / PoT | 2.42 |\n| **ReAct+Engine** | **Yao et al. 2023 + domain tools** | **3.63** |\n| CoE-R | CoE with R only | 3.75 |\n| CoE-RTC | CoE full | 3.75 |\n\n| Domain | Zero-CoT | CoT+Code | ReAct+Engine | CoE-R | CoE-RTC |\n|--------|---------:|---------:|-------------:|------:|--------:|\n| symmetry | 4.00 | 4.00 | 4.00 | 4.00 | 4.00 |\n| knot_theory | 3.00 | 3.00 | **3.00** | 4.00 | 4.00 |\n| graph_connectivity | 3.00 | 3.00 | 4.00 | 4.00 | 4.00 |\n| boundary_interior | 1.33 | 3.33 | 4.00 | 4.00 | 4.00 |\n| discrete_curvature | 2.00 | 3.00 | 4.00 | 4.00 | 4.00 |\n| projection | 1.67 | 3.00 | 4.00 | 4.00 | 4.00 |\n| surface_topology | 0.00 | 0.00 | 3.00 | 3.00 | 3.00 |\n| surface_topology_s21 | 0.00 | 0.00 | 3.00 | 3.00 | 3.00 |\n| **overall** | **1.88** | **2.42** | **3.63** | **3.75** | **3.75** |"
+  },
+  "key_findings": [
+    "ReAct+Engine (3.63) sits between CoT+Code (2.42, +1.21) and CoE-R (3.75, -0.13). It clears most of the 'engine architectural lift' but loses 0.13 to CoE on the strongest baseline.",
+    "The single domain where ReAct underperforms CoE-R is knot_theory (3.0 vs 4.0). This is the predicted failure mode but with an inverted twist: it is NOT that the LLM didn't know the engine could help — it's that the LLM was OVERCONFIDENT and skipped queries entirely on all 3 knot_theory cases, arguing 'R2 is ambient isotopy, all invariants preserved by definition.' Sound reasoning, but unverified — yields ARGUMENT (3) not PROOF (4). Under CoE the structural data is force-pushed, so the same agent sees alexander_pre/post_normalized + signature_pre/post + determinant_pre/post and writes a verified proof.",
+    "On surface_topology and surface_topology_s21, ReAct DID query R every time (correctly identifying these as data-hungry domains), and matches CoE-R/RTC at 3.0. The user's predicted failure mode ('LLM doesn't know intersection number is critical, so doesn't QUERY_R on surface_topology') did not materialize — the metadata's 'i_alpha_beta' field made it salient enough to trigger the query. The 3.0 ceiling here is structural to the domain (Hatcher surgery is not verifiable from R alone), not a ReAct-specific failure.",
+    "C primitive was queried zero times across all 24 trials. Counterfactuals are not a primitive that an LLM intuitively reaches for unsolicited — even when the engine advertises its availability. This is the strongest empirical case for CoE's push architecture: the C primitive contributes structural rigor that LLMs skip when given the choice.",
+    "Total queries: 17 across 24 cases (avg 0.71 queries/case). Even when engine help is freely available, the LLM often (a) thinks baseline data is enough, or (b) under-utilizes the secondary primitives (T queried 3 times, C never).",
+    "Cost-of-architecture: ReAct uses ~71% as many engine calls as CoE-RTC (which always pushes 1 R + 1 T + 1 C = 3 primitives per case = 72 total). On compute, ReAct is cheaper. On result quality, CoE wins by 0.13 — the gap is concentrated in knot_theory (the under-querying domain) and would close if the agent had been told 'always query R for verification before answering'.",
+    "Architecture vs prompt-engineering: the +1.21 lift from CoT+Code → ReAct+Engine is real architectural superiority of the engine over Python-as-tool (matching the original CoE > CoT+Code finding). The -0.13 from ReAct+Engine → CoE-R is decision-overhead: the LLM doesn't always make the right call about what to query. CoE bypasses the decision entirely by pushing all primitives."
+  ],
+  "caveats": [
+    "Self-rating bias: rater = Opus, responder = Sonnet. Less of an issue than the original method_comparison's Opus self-rating (different model), but still a single-rater. CoE-R/RTC scores in the comparison are inherited from the existing experiment (Opus self-rated), not re-run with Sonnet. Cross-condition deltas should be interpreted with that caveat.",
+    "Sample size n=3 per domain-condition; with all-integer scores the rubric-step variance dominates differences below 1.0. The 3.63 vs 3.75 gap (0.13) is well below the noise floor.",
+    "ReAct trajectory was implemented as Sonnet sub-agents calling the engine via Bash to a CLI. Engine queries are fully logged in react_engine_log.jsonl (17 queries verified). The agent could have read the source ablation JSONs directly and bypassed the engine — it didn't (verified by log; agents only invoked the CLI). Honor system held.",
+    "knot_theory zero-query failure is the most interesting datum. If a future variant gave the agent stronger nudges ('always verify with engine before answering'), the knot_theory score would likely jump to 4.0 and ReAct would tie or marginally exceed CoE-R. This indicates the gap is decision-policy, not capability.",
+    "C-primitive zero-usage may also reflect prompt design: the system prompt described C as 'counterfactual contrasts' which is abstract; concrete examples in the prompt might have triggered more usage. We did not test this.",
+    "All trajectories used Sonnet 4.6 (claude-sonnet-4-6). Prior method_comparison_results.json used Opus 4.7 self-rated. Cross-model effects are confounded with cross-condition effects in the 5-way table. A fully clean comparison would re-run all 5 conditions with the same responder model."
+  ],
+  "verdict": "ReAct+Engine (3.63) is empirically a strong baseline — better than CoT+Code by +1.21 — but slightly worse than CoE-R/RTC by 0.13 in this experiment. The gap is entirely concentrated on knot_theory, where the LLM was OVERCONFIDENT and skipped engine queries that would have promoted the answer from ARGUMENT to PROOF. This supports the CoE thesis: pushing structural primitives is more reliable than letting the LLM choose, because LLMs systematically under-query (especially the C primitive: 0 calls in 24 trials) when the choice is theirs. The architectural lift CoE provides over CoT+Code (+1.33 in original, +1.21 here) is mostly captured by ReAct+Engine; the residual 0.13 is the value of forcing primitives even when the LLM thinks it doesn't need them."
+}

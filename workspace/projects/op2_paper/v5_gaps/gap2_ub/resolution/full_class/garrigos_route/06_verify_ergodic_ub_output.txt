@@ -1,0 +1,18 @@
+L_max=0.0806, sigma^2=0.0022
+  beta=0.0 T=  100 eta=0.17617: min_t E[r_t]=0.0931 (t*=99), E[r_{T-1}]=0.0931±0.0012, UB=0.5903, min/UB=0.158, last/UB=0.158
+  beta=0.0 T=  400 eta=0.08808: min_t E[r_t]=0.0917 (t*=399), E[r_{T-1}]=0.0917±0.0014, UB=0.2888, min/UB=0.318, last/UB=0.318
+  beta=0.0 T= 1600 eta=0.04404: min_t E[r_t]=0.0781 (t*=1599), E[r_{T-1}]=0.0781±0.0013, UB=0.1431, min/UB=0.545, last/UB=0.545
+  beta=0.5 T=  100 eta=0.08808: min_t E[r_t]=0.0963 (t*=99), E[r_{T-1}]=0.0963±0.0014, UB=0.5955, min/UB=0.162, last/UB=0.162
+  beta=0.5 T=  400 eta=0.04404: min_t E[r_t]=0.0879 (t*=399), E[r_{T-1}]=0.0879±0.0014, UB=0.2901, min/UB=0.303, last/UB=0.303
+  beta=0.5 T= 1600 eta=0.02202: min_t E[r_t]=0.0755 (t*=1599), E[r_{T-1}]=0.0755±0.0014, UB=0.1434, min/UB=0.526, last/UB=0.526
+  beta=0.9 T=  100 eta=0.01762: min_t E[r_t]=0.0953 (t*=99), E[r_{T-1}]=0.0953±0.0013, UB=0.6371, min/UB=0.150, last/UB=0.150
+  beta=0.9 T=  400 eta=0.00881: min_t E[r_t]=0.0893 (t*=399), E[r_{T-1}]=0.0893±0.0012, UB=0.3002, min/UB=0.297, last/UB=0.297
+  beta=0.9 T= 1600 eta=0.00440: min_t E[r_t]=0.0745 (t*=1599), E[r_{T-1}]=0.0745±0.0014, UB=0.1459, min/UB=0.510, last/UB=0.510
+
+=== Verification ===
+  ✅ All min_t E[r_t] <= predicted ergodic UB across all (beta, T) settings.
+
+=== Empirical last-iterate scaling ===
+  beta=0.0: log-log slope of E[r_{T-1}] vs T = -0.063 (predict -0.5 for last-iterate $T^{-1/2}$ conjecture)
+  beta=0.5: log-log slope of E[r_{T-1}] vs T = -0.088 (predict -0.5 for last-iterate $T^{-1/2}$ conjecture)
+  beta=0.9: log-log slope of E[r_{T-1}] vs T = -0.089 (predict -0.5 for last-iterate $T^{-1/2}$ conjecture)

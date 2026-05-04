@@ -1,0 +1,32 @@
+{
+  "theorem_name": "gd_sufficient_decrease",
+  "layer": 2,
+  "natural_language_statement": "Suppose f : E → ℝ has Lipschitz gradient f' with constant l > 0, and pick step a > 0 with l ≤ 1/a (i.e., a ≤ 1/l). Then for every x, the gradient step y = x - a · f'(x) yields the sufficient decrease bound f(y) ≤ f(x) - (a/2) * ‖f'(x)‖^2.",
+  "assumptions": [
+    "E is a complete real inner product space",
+    "f : E → ℝ with gradient f'",
+    "h₁ : ∀ x, HasGradientAt f (f' x) x",
+    "h₂ : l > 0",
+    "ha₁ : l ≤ 1 / a",
+    "ha₂ : a > 0",
+    "h₃ : LipschitzWith l f'"
+  ],
+  "conclusion": "∀ x : E, f (x - a • (f' x)) ≤ f x - (a / 2) * ‖f' x‖ ^ 2",
+  "proof_sketch": [
+    "Apply the descent lemma (lipschitz_continuos_upper_bound') at x and y = x - a · f'(x): f(y) ≤ f(x) + ⟨f'(x), y - x⟩ + (l/2) * ‖y - x‖^2.",
+    "Note y - x = -a · f'(x), so ⟨f'(x), y - x⟩ = -a * ‖f'(x)‖^2 and ‖y - x‖^2 = a^2 * ‖f'(x)‖^2.",
+    "The bound becomes f(y) ≤ f(x) + (l/2 * a^2 - a) * ‖f'(x)‖^2 = f(x) + (l*a/2 - 1) * a * ‖f'(x)‖^2.",
+    "From a ≤ 1/l we get l*a ≤ 1, so l*a/2 - 1 ≤ -1/2, hence the coefficient ≤ -a/2.",
+    "Conclude f(y) ≤ f(x) - (a/2) * ‖f'(x)‖^2."
+  ],
+  "key_mathlib_lemmas": [
+    "real_inner_smul_right",
+    "real_inner_self_eq_norm_sq",
+    "norm_smul",
+    "abs_of_pos",
+    "sq_nonneg"
+  ],
+  "registry_dependencies": [
+    "lipschitz_continuos_upper_bound' (descent lemma)"
+  ]
+}

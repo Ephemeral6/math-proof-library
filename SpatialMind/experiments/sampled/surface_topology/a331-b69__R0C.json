@@ -1,0 +1,409 @@
+{
+ "domain": "surface_topology",
+ "condition": "R0C",
+ "primitives": {
+  "relation": true,
+  "transform": false,
+  "contrastive": true
+ },
+ "case_id": "a331-b69",
+ "case_data": {
+  "case_id": "a331-b69",
+  "summary_delta": {
+   "weight_a": -12,
+   "weight_b": 0,
+   "intersection_number": 0
+  },
+  "metadata": {
+   "surface": [
+    1,
+    2
+   ],
+   "alpha_index": 331,
+   "beta_index": 69,
+   "alpha_level": 4,
+   "beta_level": 1,
+   "i_alpha_beta": 1
+  },
+  "detailed_comparison": {
+   "crossings_pre_count": 16,
+   "crossings_post_count": 16,
+   "crossings_pre_candidate_total": 24,
+   "crossings_post_candidate_total": 24,
+   "crossings_in_transform_region_pre": 16,
+   "crossings_in_transform_region_post": 16,
+   "crossings_outside_region_pre": 0,
+   "crossings_outside_region_post": 0,
+   "crossings_pre_locations": [
+    {
+     "triangle": 0,
+     "shared_edge": 2
+    },
+    {
+     "triangle": 0,
+     "shared_edge": 5
+    },
+    {
+     "triangle": 0,
+     "shared_edge": 2
+    },
+    {
+     "triangle": 0,
+     "shared_edge": 0
+    },
+    {
+     "triangle": 0,
+     "shared_edge": 5
+    },
+    {
+     "triangle": 0,
+     "shared_edge": 0
+    },
+    {
+     "triangle": 1,
+     "shared_edge": 5
+    },
+    {
+     "triangle": 1,
+     "shared_edge": 5
+    },
+    {
+     "triangle": 2,
+     "shared_edge": 3
+    },
+    {
+     "triangle": 2,
+     "shared_edge": 1
+    },
+    {
+     "triangle": 2,
+     "shared_edge": 3
+    },
+    {
+     "triangle": 2,
+     "shared_edge": 4
+    },
+    {
+     "triangle": 2,
+     "shared_edge": 1
+    },
+    {
+     "triangle": 2,
+     "shared_edge": 4
+    },
+    {
+     "triangle": 3,
+     "shared_edge": 0
+    },
+    {
+     "triangle": 3,
+     "shared_edge": 0
+    }
+   ],
+   "crossings_post_locations": [
+    {
+     "triangle": 0,
+     "shared_edge": 2
+    },
+    {
+     "triangle": 0,
+     "shared_edge": 5
+    },
+    {
+     "triangle": 0,
+     "shared_edge": 2
+    },
+    {
+     "triangle": 0,
+     "shared_edge": 0
+    },
+    {
+     "triangle": 0,
+     "shared_edge": 5
+    },
+    {
+     "triangle": 0,
+     "shared_edge": 0
+    },
+    {
+     "triangle": 1,
+     "shared_edge": 5
+    },
+    {
+     "triangle": 1,
+     "shared_edge": 5
+    },
+    {
+     "triangle": 2,
+     "shared_edge": 3
+    },
+    {
+     "triangle": 2,
+     "shared_edge": 1
+    },
+    {
+     "triangle": 2,
+     "shared_edge": 3
+    },
+    {
+     "triangle": 2,
+     "shared_edge": 4
+    },
+    {
+     "triangle": 2,
+     "shared_edge": 1
+    },
+    {
+     "triangle": 2,
+     "shared_edge": 4
+    },
+    {
+     "triangle": 3,
+     "shared_edge": 0
+    },
+    {
+     "triangle": 3,
+     "shared_edge": 0
+    }
+   ]
+  },
+  "structural_comparison": {
+   "bigons_pre": 8,
+   "bigons_post": 8,
+   "bigons_with_puncture_pre": 8,
+   "bigons_with_puncture_post": 8,
+   "bigons_without_puncture_pre": 0,
+   "bigons_without_puncture_post": 0,
+   "all_bigons_contain_puncture_pre": true,
+   "all_bigons_contain_puncture_post": true,
+   "minimal_position_pre": false,
+   "minimal_position_post": false,
+   "bigon_puncture_classification_pre": [
+    {
+     "triangle_a": 0,
+     "triangle_b": 1,
+     "shared_edge": 5,
+     "tip_punctures": [
+      0,
+      1
+     ],
+     "puncture_count": 2
+    },
+    {
+     "triangle_a": 0,
+     "triangle_b": 1,
+     "shared_edge": 5,
+     "tip_punctures": [
+      0,
+      1
+     ],
+     "puncture_count": 2
+    },
+    {
+     "triangle_a": 0,
+     "triangle_b": 3,
+     "shared_edge": 0,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 0,
+     "triangle_b": 3,
+     "shared_edge": 0,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 0,
+     "triangle_b": 1,
+     "shared_edge": 5,
+     "tip_punctures": [
+      0,
+      1
+     ],
+     "puncture_count": 2
+    },
+    {
+     "triangle_a": 0,
+     "triangle_b": 1,
+     "shared_edge": 5,
+     "tip_punctures": [
+      0,
+      1
+     ],
+     "puncture_count": 2
+    },
+    {
+     "triangle_a": 0,
+     "triangle_b": 3,
+     "shared_edge": 0,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 0,
+     "triangle_b": 3,
+     "shared_edge": 0,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    }
+   ],
+   "bigon_puncture_classification_post": [
+    {
+     "triangle_a": 0,
+     "triangle_b": 1,
+     "shared_edge": 5,
+     "tip_punctures": [
+      0,
+      1
+     ],
+     "puncture_count": 2
+    },
+    {
+     "triangle_a": 0,
+     "triangle_b": 1,
+     "shared_edge": 5,
+     "tip_punctures": [
+      0,
+      1
+     ],
+     "puncture_count": 2
+    },
+    {
+     "triangle_a": 0,
+     "triangle_b": 3,
+     "shared_edge": 0,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 0,
+     "triangle_b": 3,
+     "shared_edge": 0,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 0,
+     "triangle_b": 1,
+     "shared_edge": 5,
+     "tip_punctures": [
+      0,
+      1
+     ],
+     "puncture_count": 2
+    },
+    {
+     "triangle_a": 0,
+     "triangle_b": 1,
+     "shared_edge": 5,
+     "tip_punctures": [
+      0,
+      1
+     ],
+     "puncture_count": 2
+    },
+    {
+     "triangle_a": 0,
+     "triangle_b": 3,
+     "shared_edge": 0,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    },
+    {
+     "triangle_a": 0,
+     "triangle_b": 3,
+     "shared_edge": 0,
+     "tip_punctures": [
+      0
+     ],
+     "puncture_count": 1
+    }
+   ]
+  }
+ },
+ "counterfactual": [
+  {
+   "strategy": "boundary_relaxation",
+   "original_condition": {
+    "intersection_bound": 1,
+    "beta_id": "c1",
+    "i(alpha, beta)": 1
+   },
+   "modified_condition": {
+    "intersection_bound": 2,
+    "beta_id": "a_0",
+    "i(alpha, beta)": 2
+   },
+   "original_result": {
+    "net_change": 0
+   },
+   "counterfactual_result": {
+    "net_change": -2
+   },
+   "delta": {
+    "net_change": -2
+   },
+   "condition_is_critical": true,
+   "explanation": "Relaxed i(α, β) ≤ 1 to i(α, β) = 2. Original net_change=0, counterfactual net_change=-2. Critical: bound is load-bearing."
+  },
+  {
+   "strategy": "condition_removal",
+   "original_condition": {
+    "descending_link_required": true,
+    "level_beta_lt_level_alpha": true,
+    "beta_id": "c1"
+   },
+   "modified_condition": {
+    "descending_link_required": false,
+    "level_beta_lt_level_alpha": false,
+    "beta_id": "c12"
+   },
+   "original_result": {
+    "net_change": 0
+   },
+   "counterfactual_result": {
+    "net_change": 0
+   },
+   "delta": {
+    "net_change": 0
+   },
+   "condition_is_critical": false,
+   "explanation": "Dropped 'β in descending link' constraint. Original net_change=0, counterfactual=0."
+  },
+  {
+   "strategy": "operation_perturbation",
+   "original_condition": {
+    "surgery_curve": "a_0"
+   },
+   "modified_condition": {
+    "surgery_curve": "c0"
+   },
+   "original_result": {
+    "net_change": 0
+   },
+   "counterfactual_result": {
+    "net_change": 0
+   },
+   "delta": {
+    "net_change": 0
+   },
+   "condition_is_critical": false,
+   "explanation": "Replaced γ_0 with c0. Original net_change=0, counterfactual=0."
+  }
+ ]
+}

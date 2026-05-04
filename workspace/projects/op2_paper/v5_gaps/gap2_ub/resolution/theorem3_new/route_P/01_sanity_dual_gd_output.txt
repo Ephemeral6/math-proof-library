@@ -1,0 +1,35 @@
+
+=== Sanity (β=0=GD): T=5, eta=1.0, L=1.0 ===
+(PEPit) Setting up the problem: performance measure is the minimum of 1 element(s)
+(PEPit) Setting up the problem: Adding initial conditions and general constraints ...
+(PEPit) Setting up the problem: initial conditions and general constraints (1 constraint(s) added)
+(PEPit) Setting up the problem: interpolation conditions for 1 function(s)
+			Function 1 : Adding 42 scalar constraint(s) ...
+			Function 1 : 42 scalar constraint(s) added
+(PEPit) Setting up the problem: additional constraints for 0 function(s)
+(PEPit) Setting up the problem: size of the Gram matrix: 8x8
+(PEPit) Compiling SDP
+(PEPit) Calling SDP solver
+(PEPit) Solver status: optimal (wrapper:cvxpy, solver: SCS); optimal value: 0.045458217268796966
+[96m(PEPit) Postprocessing: solver's output is not entirely feasible (smallest eigenvalue of the Gram matrix is: -3.13e-06 < 0).
+ Small deviation from 0 may simply be due to numerical error. Big ones should be deeply investigated.
+ In any case, from now the provided values of parameters are based on the projection of the Gram matrix onto the cone of symmetric semi-definite matrix.[0m
+(PEPit) Primal feasibility check:
+		The solver found a Gram matrix that is positive semi-definite up to an error of 3.126665721240499e-06
+		All the primal scalar constraints are verified up to an error of 4.60994404420656e-06
+(PEPit) Dual feasibility check:
+		The solver found a residual matrix that is positive semi-definite up to an error of 2.236359008053246e-16
+		All the dual scalar values associated with inequality constraints are nonnegative
+(PEPit) The worst-case guarantee proof is perfectly reconstituted up to an error of 8.935849596616863e-06
+(PEPit) Final upper bound (dual): 0.045455061083192264 and lower bound (primal example): 0.045458217268796966 
+(PEPit) Duality gap: absolute: -3.156185604702433e-06 and relative: -6.943047471570941e-05
+PEP τ              = 4.54550611e-02
+L/(4T+2) predicted = 4.54545455e-02
+ratio              = 1.000011
+OK: GD sanity passed.
+
+=== Interpolation-constraint duals on `func` ===
+Found attributes: ['list_of_class_constraints', 'list_of_constraints']
+Total non-trivial duals: 0
+
+Outer problem constraints with duals: 0

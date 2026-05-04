@@ -1,0 +1,16 @@
+{
+  "lemma_name": "descent_lemma_v2",
+  "nl_statement": "If f : E → ℝ is differentiable and ∇f is L-Lipschitz, then for all x, y ∈ E, f(y) ≤ f(x) + ⟨∇f(x), y-x⟩ + (L/2)‖y-x‖².",
+  "lean_signature": "theorem descent_lemma_v2 {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E] {f : E → ℝ} {L : NNReal} (hf : Differentiable ℝ f) (hL : LipschitzWith L (fun z => gradient f z)) (x y : E) : f y ≤ f x + ⟪gradient f x, y - x⟫_ℝ + (L : ℝ) / 2 * ‖y - x‖^2",
+  "lean_file": "LeanAgent/Generated/descent_lemma_v2.lean",
+  "imports": ["Mathlib"],
+  "depends_on": [],
+  "assumptions": ["E real inner product space (complete)", "f differentiable", "gradient f L-Lipschitz"],
+  "verdict": "PARTIAL",
+  "n_stuck": 4,
+  "pr_ready": false,
+  "abstraction_level": "InnerProductSpace ℝ E + CompleteSpace E (generic)",
+  "reuse_potential": "high",
+  "reuse_reason": "core inequality used by every first-order optimization convergence proof",
+  "ts": "2026-04-28T13:52:00Z"
+}

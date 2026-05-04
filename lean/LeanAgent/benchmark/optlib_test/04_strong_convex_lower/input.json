@@ -1,0 +1,25 @@
+{
+  "theorem_name": "strong_convex_gradient_lower_bound",
+  "layer": 1,
+  "natural_language_statement": "If f is strongly convex on a set s with parameter m and has gradient f'(x) at every point of s, then the gradient is m-strongly monotone: for all x, y ∈ s, ⟨f'(x) - f'(y), x - y⟩ ≥ m * ‖x - y‖^2.",
+  "assumptions": [
+    "E is a complete real inner product space",
+    "s : Set E, f : E → ℝ, m : ℝ, f' : E → E",
+    "hsc : StrongConvexOn s m f",
+    "hf : ∀ x ∈ s, HasGradientAt f (f' x) x"
+  ],
+  "conclusion": "∀ x ∈ s, ∀ y ∈ s, inner (f' x - f' y) (x - y) ≥ m * ‖x - y‖ ^ 2",
+  "proof_sketch": [
+    "Convert StrongConvexOn s m f to ConvexOn for the function g(x) = f(x) - (m/2)*‖x‖^2 via strongConvexOn_iff_convex.",
+    "Compute the gradient of g: g'(x) = f'(x) - m·x via sub_normsquare_gradient.",
+    "Apply Convex_monotone_gradient' to g, g': for x, y ∈ s, ⟨g'(x) - g'(y), x - y⟩ ≥ 0.",
+    "Substitute g' and rearrange: ⟨f'(x) - f'(y) - m·(x - y), x - y⟩ ≥ 0.",
+    "Use inner_smul_left and inner_self = ‖x-y‖^2 to obtain the required lower bound."
+  ],
+  "key_mathlib_lemmas": [
+    "strongConvexOn_iff_convex",
+    "real_inner_smul_left",
+    "real_inner_self_eq_norm_sq",
+    "inner_sub_left"
+  ]
+}

@@ -1,0 +1,32 @@
+Database: 400 curves on S_{1,2}
+
+=== Path A: Bonahon monotonicity test ===
+
+For each (a, d) with d ≤ a componentwise (a, d in DB), test if i(d, b) ≤ i(a, b) for all b.
+
+Found 200 monotone pairs (d ≤ a) to test
+
+Tests: 48, failures: 10
+Failures:
+  a=3, d=0, b=9: i(a,b)=2, i(d,b)=4
+  a=3, d=0, b=12: i(a,b)=1, i(d,b)=3
+  a=3, d=0, b=20: i(a,b)=0, i(d,b)=4
+  a=3, d=0, b=26: i(a,b)=4, i(d,b)=6
+  a=3, d=0, b=29: i(a,b)=3, i(d,b)=5
+
+=== Path B: G* α — check no level-1 δ ≤ α exists ===
+
+α=25: |α|=6, level-1 curves c ≤ α: 2 (= [1, 8])
+α=72: |α|=12, level-1 curves c ≤ α: 7 (= [1, 4, 5, 6, 8, 18, 24])
+α=149: |α|=12, level-1 curves c ≤ α: 7 (= [1, 4, 8, 14, 24, 48, 51])
+α=208: |α|=22, level-1 curves c ≤ α: 22 (= [1, 4, 5, 6, 8, 14, 16, 17]...)
+α=217: |α|=20, level-1 curves c ≤ α: 18 (= [1, 4, 5, 6, 8, 14, 16, 17]...)
+α=218: |α|=16, level-1 curves c ≤ α: 14 (= [1, 4, 5, 6, 8, 14, 16, 17]...)
+
+=== Path C: cone ≤ α universally? ===
+
+Total α with f≥2: 309
+  α with cone vertex: 302
+  α where cone ≤ α componentwise: 302
+  rate cone ≤ α (overall): 100.0%
+  α at k=2 with cone ≤ α: 58

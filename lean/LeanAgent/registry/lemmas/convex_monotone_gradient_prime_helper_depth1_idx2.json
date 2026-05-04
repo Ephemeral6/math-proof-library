@@ -1,0 +1,19 @@
+{
+  "lemma_name": "convex_monotone_gradient_prime_helper_depth1_idx2",
+  "nl_statement": "If f is convex on s and has gradient f'(x) at every x ∈ s, then ⟨f'(x) - f'(y), x - y⟩ ≥ 0 for all x, y ∈ s.",
+  "lean_signature": "theorem convex_monotone_gradient_prime_helper_depth1_idx2 {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E] {s : Set E} {f : E → ℝ} {f' : E → E} (hfun : ConvexOn ℝ s f) (h : ∀ x ∈ s, HasGradientAt f (f' x) x) : ∀ x ∈ s, ∀ y ∈ s, inner ℝ (f' x - f' y) (x - y) ≥ (0 : ℝ)",
+  "lean_file": "LeanAgent/Generated/convex_monotone_gradient_prime_helper_depth1_idx2.lean",
+  "imports": ["Mathlib", "LeanAgent.Generated.convex_first_order_condition_grad_depth2_idx1"],
+  "depends_on": ["convex_first_order_condition_grad_depth2_idx1"],
+  "assumptions": ["E real inner product space (complete)", "f convex on s", "f has gradient f' on s"],
+  "verdict": "CERTIFIED",
+  "n_stuck": 0,
+  "pr_ready": true,
+  "abstraction_level": "InnerProductSpace ℝ E + CompleteSpace E (generic)",
+  "reuse_potential": "high",
+  "reuse_reason": "monotone-gradient characterization of convexity (gradient form)",
+  "synthesized": true,
+  "parent_lemma": "strong_convex_gradient_lower_bound",
+  "depth": 1,
+  "ts": "2026-04-28T21:00:00+08:00"
+}

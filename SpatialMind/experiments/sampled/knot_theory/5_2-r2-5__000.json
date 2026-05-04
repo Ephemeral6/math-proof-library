@@ -1,0 +1,30 @@
+{
+ "domain": "knot_theory",
+ "condition": "000",
+ "primitives": {
+  "relation": false,
+  "transform": false,
+  "contrastive": false
+ },
+ "case_id": "5_2-r2-5",
+ "case_data": {
+  "case_id": "5_2-r2-5",
+  "summary_delta": {
+   "writhe_delta": 0,
+   "linking_number": 0.0,
+   "crossing_count_b": 0,
+   "writhe_b": 0,
+   "crossing_count_a": 2,
+   "writhe_a": 0
+  },
+  "metadata": {
+   "knot": "5_2",
+   "move": "R2",
+   "trial": 5,
+   "writhe_pre": 5,
+   "writhe_post": 5,
+   "n_crossings_pre": 5,
+   "n_crossings_post": 7
+  }
+ }
+}

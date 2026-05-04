@@ -1,0 +1,50 @@
+\contentsline {section}{\numberline {1}Theorem statement}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Notation and standing conventions}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Algorithm class}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Stability region}{3}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Goujaud cycling feasibility region}{3}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Main theorem}{3}{subsection.1.5}%
+\contentsline {paragraph}{Tightness of the bound.}{4}{section*.6}%
+\contentsline {paragraph}{Positive-measure region.}{4}{section*.7}%
+\contentsline {subsection}{\numberline {1.6}Scope --- what the theorem does NOT claim}{4}{subsection.1.6}%
+\contentsline {subsection}{\numberline {1.7}Remark on the regime condition (RGM)}{5}{subsection.1.7}%
+\contentsline {section}{\numberline {2}Prerequisite results}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Convex analysis: Moreau identity}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Strong-convexity gap identity}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Goujaud--Pedregosa--Taylor cycling theorem}{6}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Le Cam two-point method for stochastic mean estimation}{7}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Lan 2012 AC-SA upper bound (for comparison)}{7}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Ghadimi--Feyzmahdavian--Johansson 2015 upper bound (deterministic, for tightness)}{8}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Positive homogeneity of Euclidean projection}{8}{subsection.2.7}%
+\contentsline {section}{\numberline {3}Complete proof}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Construction of the hard instance $f_{\beta ,\eta }^{(T)}$}{9}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}The 2-D base function $f_0$ (rescaled Goujaud)}{9}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}The wall function and 3-D hard instance}{9}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Stochastic oracle}{10}{subsubsection.3.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.4}Initialization}{11}{subsubsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.2}Decoupling of SHB dynamics}{11}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Bias-term lower bound (the $x$-coordinate)}{11}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Amplitude preservation}{11}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Bias gap}{12}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Converting to the $LD^2/T$ rate}{12}{subsubsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.4}Variance-term lower bound (the $y$-coordinate)}{12}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Le Cam gap on the $y$-coordinate}{12}{subsubsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.5}Combining bias and variance}{15}{subsection.3.5}%
+\contentsline {paragraph}{Conclusion of the Main Theorem.}{16}{section*.27}%
+\contentsline {subsection}{\numberline {3.6}Verification: $f_{\beta ,\eta }^{(T)}$ is globally 0-SC (non-SC)}{16}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Verification: $\mathcal {F}$ has positive 2-D Lebesgue measure}{17}{subsection.3.7}%
+\contentsline {section}{\numberline {4}Numerical verification}{18}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Sublemma projection identity (verification of Lemma~\ref {lem:gpt23}(iii))}{18}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Feasibility classification (characterization of $\mathcal {F}$)}{18}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Positive control: SHB locks on the cycle for $(\beta ,\eta ) \in \mathcal {F}$}{19}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Negative control: geometric decay on $\mathcal {F}^c$}{19}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Threshold $\beta ^\star $ verification}{19}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Relationship to prior work}{20}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Goujaud--Pedregosa--Taylor 2023 (GPT23)}{20}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Ghadimi--Feyzmahdavian--Johansson 2015 (GFJ15)}{21}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Li--Liu--Orabona 2022 (last-iterate SGDM in the non-smooth setting)}{21}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Agarwal--Bartlett--Ravikumar--Wainwright 2012 (minimax LB)}{23}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Lan 2012 AC-SA (for comparison)}{23}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Open: $\mathcal {S}\setminus \mathcal {F}$}{23}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}Summary of novelty}{23}{subsection.5.7}%
+\contentsline {section}{\numberline {A}Empirical scripts (file list)}{24}{appendix.A}%

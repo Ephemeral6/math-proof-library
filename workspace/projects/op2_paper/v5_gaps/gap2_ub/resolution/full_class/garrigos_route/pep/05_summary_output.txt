@@ -1,0 +1,19 @@
+    β  data points       slope    τ·T at max T    τ·√T at max T  rate
+--------------------------------------------------------------------------------
+  0.0            5      -0.949          0.1630           0.0421  O(1/T)
+  0.1            5      -0.970          0.1481           0.0382  O(1/T)
+  0.3            5      -1.144          0.1361           0.0351  O(1/T)
+  0.5            5      -1.166          0.1770           0.0457  O(1/T)
+  0.7            5      -0.859          0.3445           0.0890  O(T^-2/3) or so
+  0.8            3      -0.404          0.5548           0.2097  O(T^-1/2)
+  0.9            5      -0.328          1.3941           0.2545  O(T^-1/3)
+
+=== Critical observations ===
+1. β = 0 (GD): slope ≈ -1, τ·T constant ≈ 0.16 → O(LD²/T) confirms DT2014.
+2. β ∈ {0.1, 0.3, 0.5}: slope ≈ -1, τ·T STABLE 0.13-0.22 → O(LD²/T) holds.
+3. β ≈ 0.7: slope ≈ -0.87, τ·T increasing then decreasing → BORDERLINE.
+4. β ≥ 0.9: slope ≈ -0.33, τ·T GROWING → O(T^{-1/3}), NOT O(1/T).
+
+=> Phase transition between β = 0.5 and β = 0.9 (around β* ≈ 0.7).
+=> For β ≤ β*: Theorem 3 follows from deterministic O(1/T) + standard noise composition.
+=> For β > β*: Worst-case last-iterate is at most T^{-1/3} (matches Hudiani 2025).

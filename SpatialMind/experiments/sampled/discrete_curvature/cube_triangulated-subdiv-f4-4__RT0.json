@@ -1,0 +1,139 @@
+{
+ "domain": "discrete_curvature",
+ "condition": "RT0",
+ "primitives": {
+  "relation": true,
+  "transform": true,
+  "contrastive": false
+ },
+ "case_id": "cube_triangulated-subdiv-f4-4",
+ "case_data": {
+  "case_id": "cube_triangulated-subdiv-f4-4",
+  "summary_delta": {
+   "n_vertices_a": 1,
+   "euler_characteristic_match": 0,
+   "euler_characteristic_a": 0,
+   "euler_characteristic_b": 0,
+   "n_edges_a": 3,
+   "gauss_bonnet_ratio_b": 0.0,
+   "total_curvature_b": 0.0,
+   "n_vertices_b": 0,
+   "n_faces_b": 0,
+   "total_curvature_a": 0.0,
+   "n_edges_b": 0,
+   "gauss_bonnet_ratio_a": 0.0,
+   "n_faces_a": 2
+  },
+  "metadata": {
+   "preset": "cube_triangulated",
+   "operation": "stellar_subdivision",
+   "face_index": 4,
+   "ref_preset": "octahedron",
+   "kind": "intra_transform"
+  },
+  "detailed_comparison": {
+   "n_vertices_pre": 8,
+   "n_vertices_post": 9,
+   "n_faces_pre": 12,
+   "n_faces_post": 14,
+   "n_edges_pre": 18,
+   "n_edges_post": 21,
+   "vertex_defects_changed": {},
+   "n_vertices_with_changed_defect": 0,
+   "new_vertex_defects": {
+    "8": 0.0
+   },
+   "sum_of_vertex_changes": 0,
+   "sum_of_new_vertex_defects": 0.0,
+   "total_curvature_pre": 12.566371,
+   "total_curvature_post": 12.566371,
+   "total_curvature_preserved": true
+  },
+  "structural_comparison": {
+   "curvature_types_pre": {
+    "positive": 8
+   },
+   "curvature_types_post": {
+    "positive": 8,
+    "flat": 1
+   },
+   "genus_pre": 0,
+   "genus_post": 0,
+   "euler_pre": 2,
+   "euler_post": 2,
+   "euler_preserved": true,
+   "total_curvature_pre": 12.566371,
+   "total_curvature_post": 12.566371,
+   "total_curvature_preserved": true,
+   "gauss_bonnet_ratio_pre": 2.0,
+   "gauss_bonnet_ratio_post": 2.0,
+   "all_global_invariants_preserved": true
+  },
+  "transform_trace": {
+   "operation_name": "stellar_subdivision",
+   "operation_params": {
+    "face_index": 4,
+    "face_vertices": [
+     0,
+     5,
+     1
+    ]
+   },
+   "before_state": {
+    "n_vertices": 8,
+    "n_edges": 18,
+    "n_faces": 12,
+    "euler_characteristic": 2,
+    "total_curvature": 12.566371,
+    "gauss_bonnet_ratio": 2.0
+   },
+   "after_state": {
+    "n_vertices": 9,
+    "n_edges": 21,
+    "n_faces": 14,
+    "euler_characteristic": 2,
+    "total_curvature": 12.566371,
+    "gauss_bonnet_ratio": 2.0
+   },
+   "delta": {
+    "vertices_added": 1,
+    "edges_added": 3,
+    "faces_added": 2,
+    "euler_change": 0,
+    "curvature_change": 0.0
+   },
+   "region_affected": {
+    "subdivided_face": [
+     0,
+     5,
+     1
+    ],
+    "new_vertex_index": 8,
+    "affected_vertices": [
+     8
+    ],
+    "new_vertex_defect": 0.0,
+    "local_defect_sum_before": 4.712389,
+    "local_defect_sum_after": 4.712389,
+    "local_defect_sum_preserved": true
+   },
+   "sub_steps": []
+  },
+  "reference_in_transform_region": {
+   "subdivided_face": [
+    0,
+    5,
+    1
+   ],
+   "new_vertex_index": 8,
+   "affected_vertices": [
+    8
+   ],
+   "new_vertex_defect": 0.0,
+   "local_defect_sum_before": 4.712389,
+   "local_defect_sum_after": 4.712389,
+   "local_defect_sum_preserved": true,
+   "operation_name": "stellar_subdivision"
+  }
+ }
+}

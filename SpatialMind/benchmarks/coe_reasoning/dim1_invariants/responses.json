@@ -1,0 +1,98 @@
+{
+  "dim1_q01": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR2 is a Reidemeister move (ambient isotopy), so signature, determinant, and Alexander are all preserved.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR2 is a Reidemeister move (ambient isotopy), so signature, determinant, and Alexander are all preserved.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR2 is a Reidemeister move (ambient isotopy), so signature, determinant, and Alexander are all preserved.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR2 is a Reidemeister move (ambient isotopy), so signature, determinant, and Alexander are all preserved.\n[/REASONING]"
+  },
+  "dim1_q02": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR2 is a Reidemeister move (ambient isotopy), so signature, determinant, and Alexander are all preserved.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR2 is a Reidemeister move (ambient isotopy), so signature, determinant, and Alexander are all preserved.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR2 is a Reidemeister move (ambient isotopy), so signature, determinant, and Alexander are all preserved.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR2 is a Reidemeister move (ambient isotopy), so signature, determinant, and Alexander are all preserved.\n[/REASONING]"
+  },
+  "dim1_q03": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR2 is a Reidemeister move (ambient isotopy), so signature, determinant, and Alexander are all preserved.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR2 is a Reidemeister move (ambient isotopy), so signature, determinant, and Alexander are all preserved.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR2 is a Reidemeister move (ambient isotopy), so signature, determinant, and Alexander are all preserved.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR2 is a Reidemeister move (ambient isotopy), so signature, determinant, and Alexander are all preserved.\n[/REASONING]"
+  },
+  "dim1_q04": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR2 is a Reidemeister move (ambient isotopy), so signature, determinant, and Alexander are all preserved.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR2 is a Reidemeister move (ambient isotopy), so signature, determinant, and Alexander are all preserved.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR2 is a Reidemeister move (ambient isotopy), so signature, determinant, and Alexander are all preserved.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR2 is a Reidemeister move (ambient isotopy), so signature, determinant, and Alexander are all preserved.\n[/REASONING]"
+  },
+  "dim1_q05": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR1 is a Reidemeister move; topological invariants (signature, determinant, Alexander) are unchanged.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR1 is a Reidemeister move; topological invariants (signature, determinant, Alexander) are unchanged.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR1 is a Reidemeister move; topological invariants (signature, determinant, Alexander) are unchanged.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR1 is a Reidemeister move; topological invariants (signature, determinant, Alexander) are unchanged.\n[/REASONING]"
+  },
+  "dim1_q06": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR1 is a Reidemeister move; topological invariants (signature, determinant, Alexander) are unchanged.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR1 is a Reidemeister move; topological invariants (signature, determinant, Alexander) are unchanged.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR1 is a Reidemeister move; topological invariants (signature, determinant, Alexander) are unchanged.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR1 is a Reidemeister move; topological invariants (signature, determinant, Alexander) are unchanged.\n[/REASONING]"
+  },
+  "dim1_q07": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR1 is a Reidemeister move; topological invariants (signature, determinant, Alexander) are unchanged.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR1 is a Reidemeister move; topological invariants (signature, determinant, Alexander) are unchanged.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR1 is a Reidemeister move; topological invariants (signature, determinant, Alexander) are unchanged.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR1 is a Reidemeister move; topological invariants (signature, determinant, Alexander) are unchanged.\n[/REASONING]"
+  },
+  "dim1_q08": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR1 is a Reidemeister move; topological invariants (signature, determinant, Alexander) are unchanged.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR1 is a Reidemeister move; topological invariants (signature, determinant, Alexander) are unchanged.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR1 is a Reidemeister move; topological invariants (signature, determinant, Alexander) are unchanged.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\nR1 is a Reidemeister move; topological invariants (signature, determinant, Alexander) are unchanged.\n[/REASONING]"
+  },
+  "dim1_q09": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\n3_1 has σ=-2, mirror flips it to +2 ⇒ signature changes. |det|=3 is preserved by mirror; Alexander coeffs match (under standard normalization).\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\n3_1 has σ=-2, mirror flips it to +2 ⇒ signature changes. |det|=3 is preserved by mirror; Alexander coeffs match (under standard normalization).\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\n3_1 has σ=-2, mirror flips it to +2 ⇒ signature changes. |det|=3 is preserved by mirror; Alexander coeffs match (under standard normalization).\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\n3_1 has σ=-2, mirror flips it to +2 ⇒ signature changes. |det|=3 is preserved by mirror; Alexander coeffs match (under standard normalization).\n[/REASONING]"
+  },
+  "dim1_q10": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\n5_1 (T(2,5)) has σ=-4 ⇒ mirror gives +4. Det=5 same; Alexander same.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\n5_1 (T(2,5)) has σ=-4 ⇒ mirror gives +4. Det=5 same; Alexander same.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\n5_1 (T(2,5)) has σ=-4 ⇒ mirror gives +4. Det=5 same; Alexander same.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\n5_1 (T(2,5)) has σ=-4 ⇒ mirror gives +4. Det=5 same; Alexander same.\n[/REASONING]"
+  },
+  "dim1_q11": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\n5_2 has σ=2, mirror gives -2. Det=7 same; Alexander same.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\n5_2 has σ=2, mirror gives -2. Det=7 same; Alexander same.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\n5_2 has σ=2, mirror gives -2. Det=7 same; Alexander same.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\n5_2 has σ=2, mirror gives -2. Det=7 same; Alexander same.\n[/REASONING]"
+  },
+  "dim1_q12": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\n6_2 has σ=-2 (not amphichiral), mirror flips it. Det=11 same; alex same.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\n6_2 has σ=-2 (not amphichiral), mirror flips it. Det=11 same; alex same.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\n6_2 has σ=-2 (not amphichiral), mirror flips it. Det=11 same; alex same.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 0\n(c) 0\n[/ANSWER]\n\n[REASONING]\n6_2 has σ=-2 (not amphichiral), mirror flips it. Det=11 same; alex same.\n[/REASONING]"
+  },
+  "dim1_q13": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nConnected sum: σ adds (−2 + −2 = −4), |det| multiplies (3·3=9), Alexander multiplies. All three change.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nConnected sum: σ adds (−2 + −2 = −4), |det| multiplies (3·3=9), Alexander multiplies. All three change.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nConnected sum: σ adds (−2 + −2 = −4), |det| multiplies (3·3=9), Alexander multiplies. All three change.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nConnected sum: σ adds (−2 + −2 = −4), |det| multiplies (3·3=9), Alexander multiplies. All three change.\n[/REASONING]"
+  },
+  "dim1_q14": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\n4_1 is amphichiral with σ=0, so σ(3_1#4_1) = σ(3_1) ⇒ unchanged. Det=15 (was 3) ⇒ change. Alexander multiplies ⇒ change.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\n4_1 is amphichiral with σ=0, so σ(3_1#4_1) = σ(3_1) ⇒ unchanged. Det=15 (was 3) ⇒ change. Alexander multiplies ⇒ change.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\n4_1 is amphichiral with σ=0, so σ(3_1#4_1) = σ(3_1) ⇒ unchanged. Det=15 (was 3) ⇒ change. Alexander multiplies ⇒ change.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\n4_1 is amphichiral with σ=0, so σ(3_1#4_1) = σ(3_1) ⇒ unchanged. Det=15 (was 3) ⇒ change. Alexander multiplies ⇒ change.\n[/REASONING]"
+  },
+  "dim1_q15": {
+    "baseline": "[ANSWER]\n(a) 0\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nBoth are amphichiral with σ=0; sum σ=0 ⇒ no change. Det 5·5=25 changes; Alexander multiplies ⇒ changes.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 0\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nBoth are amphichiral with σ=0; sum σ=0 ⇒ no change. Det 5·5=25 changes; Alexander multiplies ⇒ changes.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 0\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nBoth are amphichiral with σ=0; sum σ=0 ⇒ no change. Det 5·5=25 changes; Alexander multiplies ⇒ changes.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 0\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nBoth are amphichiral with σ=0; sum σ=0 ⇒ no change. Det 5·5=25 changes; Alexander multiplies ⇒ changes.\n[/REASONING]"
+  },
+  "dim1_q16": {
+    "baseline": "[ANSWER]\n(a) 1\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nσ adds: -4 + -2 = -6 ⇒ change. Det 5·3=15 ⇒ change. Alex multiplies.\n[/REASONING]",
+    "cot": "[ANSWER]\n(a) 1\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nσ adds: -4 + -2 = -6 ⇒ change. Det 5·3=15 ⇒ change. Alex multiplies.\n[/REASONING]",
+    "coe_r": "[ANSWER]\n(a) 1\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nσ adds: -4 + -2 = -6 ⇒ change. Det 5·3=15 ⇒ change. Alex multiplies.\n[/REASONING]",
+    "coe_ctr": "[ANSWER]\n(a) 1\n(b) 1\n(c) 1\n[/ANSWER]\n\n[REASONING]\nσ adds: -4 + -2 = -6 ⇒ change. Det 5·3=15 ⇒ change. Alex multiplies.\n[/REASONING]"
+  }
+}

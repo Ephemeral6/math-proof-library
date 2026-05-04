@@ -1,0 +1,51 @@
+
+=== Phase 1: S_{2,1} closure ===
+  total α (f≥2): 47
+  (5,1) covers 45/47; uncovered α: [117, 132]
+  uncovered α dominators: {117: {'alpha': 117, 'level': 2, 'u_star': 2, 'v_star': 23, 'f_v': 1, 'f_u': 1}, 132: {'alpha': 132, 'level': 2, 'u_star': 3, 'v_star': 28, 'f_v': 1, 'f_u': 0}}
+  trying extra pairs: {(28, 3), (23, 2)}
+  + (28,3): adds 1 new α; cumul=46
+  + (23,2): adds 1 new α; cumul=47
+
+=== Phase 2: S_{1,2} comprehensive sweep ===
+  total α (f≥2): 309
+  low-level candidate vertices (f ≤ 2): 155
+  candidate (v, u) pairs: 2248
+  testing pairs (this may take a while)...
+    0/2248, elapsed 0.0s
+    500/2248, elapsed 30.3s
+    1000/2248, elapsed 32.2s
+    1500/2248, elapsed 32.9s
+    2000/2248, elapsed 33.9s
+  pairs with non-empty coverage: 1092, 34.6s
+
+  greedy set-cover menu (top 25):
+    (v=1, u=14): covers 23 α  [f(v)=1, f(u)=1, i(v,u)=0]
+    (v=6, u=5): covers 20 α  [f(v)=1, f(u)=1, i(v,u)=0]
+    (v=3, u=2): covers 17 α  [f(v)=2, f(u)=0, i(v,u)=0]
+    (v=5, u=18): covers 14 α  [f(v)=1, f(u)=1, i(v,u)=0]
+    (v=1, u=24): covers 20 α  [f(v)=1, f(u)=1, i(v,u)=0]
+    (v=1, u=65): covers 12 α  [f(v)=1, f(u)=1, i(v,u)=1]
+    (v=8, u=56): covers 13 α  [f(v)=1, f(u)=1, i(v,u)=1]
+    (v=15, u=6): covers 13 α  [f(v)=1, f(u)=1, i(v,u)=0]
+    (v=18, u=44): covers 11 α  [f(v)=1, f(u)=1, i(v,u)=0]
+    (v=16, u=17): covers 11 α  [f(v)=1, f(u)=1, i(v,u)=0]
+    (v=17, u=19): covers 12 α  [f(v)=1, f(u)=1, i(v,u)=0]
+    (v=6, u=74): covers 14 α  [f(v)=1, f(u)=2, i(v,u)=1]
+    (v=4, u=8): covers 10 α  [f(v)=1, f(u)=1, i(v,u)=0]
+    (v=5, u=72): covers 11 α  [f(v)=1, f(u)=2, i(v,u)=1]
+    (v=7, u=166): covers 8 α  [f(v)=0, f(u)=1, i(v,u)=1]
+    (v=19, u=45): covers 10 α  [f(v)=1, f(u)=1, i(v,u)=0]
+    (v=67, u=102): covers 7 α  [f(v)=1, f(u)=1, i(v,u)=1]
+    (v=1, u=64): covers 4 α  [f(v)=1, f(u)=0, i(v,u)=1]
+    (v=2, u=14): covers 5 α  [f(v)=0, f(u)=1, i(v,u)=1]
+    (v=2, u=16): covers 5 α  [f(v)=0, f(u)=1, i(v,u)=1]
+    (v=2, u=52): covers 6 α  [f(v)=0, f(u)=1, i(v,u)=1]
+    (v=6, u=66): covers 4 α  [f(v)=1, f(u)=0, i(v,u)=1]
+    (v=6, u=69): covers 12 α  [f(v)=1, f(u)=1, i(v,u)=1]
+    (v=8, u=346): covers 5 α  [f(v)=1, f(u)=1, i(v,u)=1]
+    (v=54, u=321): covers 5 α  [f(v)=1, f(u)=1, i(v,u)=1]
+  total covered: 206/309
+  uncovered after menu: 103
+
+Wrote C:\Users\12729\Desktop\Math\SpatialMind\experiments\op1_step3_sweep.json

@@ -1,0 +1,1060 @@
+                                          Last-Iterate Complexity of SGD for Convex and Smooth Stochastic
+                                                                             Problems
+
+arXiv:2507.14122v1 [math.OC] 18 Jul 2025     Guillaume Garrigos1, Daniel Cortild2, Lucas Ketels1,2, Juan Peypouquet2
+
+                                                         1Universit´e Paris Cit´e and Sorbonne Universit´e, CNRS,
+                                          Laboratoire de Probabilit´es, Statistique et Mod´elisation, F-75013 Paris, France
+
+                                                         2University of Groningen, Groningen, The Netherlands
+
+                                           {d.cortild, l.ketels, j.g.peypouquet}@rug.nl, garrigos@lpsm.paris
+
+                                                                                         July 21, 2025
+
+                                                                                                      Abstract
+
+                                              Most results on Stochastic Gradient Descent (SGD) in the convex and smooth setting are presented
+                                          under the form of bounds on the ergodic function value gap. It is an open question whether bounds can
+                                          be derived directly on the last iterate of SGD in this context. Recent advances suggest that it should
+                                          be possible. For instance, it can be achieved by making the additional, yet unverifiable, assumption
+                                          that the variance of the stochastic gradients is uniformly bounded. In this paper, we show that there
+                                          is no need of such an assumption, and that SGD enjoys a O~ T -1/2 last-iterate complexity rate for
+                                          convex smooth stochastic problems.
+
+                                          1 Introduction
+
+                                          We consider the stochastic optimization problem given by
+
+                                                                             min f (x), where f (x) = EiD[fi(x)],
+
+                                                                             xH
+
+                                          where D is a distribution over the data. For instance, when D has finite support we recover the finite-sum
+
+                                          minimization  problem  with  f  =  1  m    fi(x).  In  this  paper,  we  focus  on  convex  and  smooth  stochastic
+                                                                             m  i=1
+
+                                          problems, where each function fi : H  R is convex and L-smooth, for some L  (0, +). Our objective
+
+                                          is to provide complexity guarantees for the Stochastic Gradient Descent (SGD) algorithm (Robbins and
+
+                                          Monro, 1951), a widely used method for solving large-scale optimization problems. The iterative update
+
+                                          rule of SGD is defined as
+
+                                                                                     xt+1 = xt - fit (xt),                                         (SGD)
+
+                                          where it  D is sampled i.i.d. at each iteration, and  > 0 is the step-size.
+
+                                          Ergodic complexity rates. Standard analyses for SGD in the convex and smooth setting provide upper
+                                          bounds on the expected ergodic function value gap E[f (x¯T ) - inf f ], where x¯T represents an average of
+                                          the first T iterates of the algorithm. These upper bounds usually decompose into two components: a bias
+                                          term, which typically tends to zero, and a variance term, which is often bounded and can be kept small
+                                          by choosing a small enough step-size. For example, as established in earlier works on SGD (Nemirovski
+
+                                                                                                 1
+et al., 2009; Bach and Moulines, 2011), this algorithm enjoys bounds of the form
+
+E[f (x¯T ) - inf f ] = O   1  + O 2 .                                             (1)
+                          T
+
+Those foundational studies relied on making an additional assumption on the stochastic gradients. Such
+assumption could be a uniform bound on the variance of the gradients, given by
+
+sup E fi(x) - f (x)2  2,                                                          (2)
+
+xH
+
+or a uniform bound on the (expected) square norm of the gradients, described by
+
+    sup E fi(x)2  2.                                                              (3)
+
+    xH
+
+This framework has received continuous improvements, culminating in the recent contributions in Taylor
+and Bach (2019), which provide sharp upper bounds, which are optimal in a certain sense. Let us also
+mention that significant efforts have been dedicated to extending bounds in expectation to high-probability
+guarantees. Namely, in Liu et al. (2023), the authors introduced a generic technique to establish high-
+probability convergence rates for the average optimality gap, under again quite restrictive variance related
+assumptions.
+
+Assumptions (2) and (3) were historically natural to make. In its original formulation, the SGD algorithm
+was written as xt+1 = xt - (f (xt) + t), where t represented random noise. Assuming finite variance
+for t was therefore a reasonable prerequisite. However, the particular form of (SGD) implies that t is
+not any random vector, but precisely fit(xt) - f (xt). While the bound of the gradient variance (2)
+holds true in the deterministic case, it is unclear how such property can be verified in practice for a true
+stochastic problem (Bottou et al., 2018; Nguyen et al., 2018). The bound on the gradient norm (3) presents
+even greater difficulty. In the deterministic setting, this is equivalent to assuming the function f to be
+Lipschitz continuous, and the class of convex Lipschitz and smooth functions is quite narrow. Although,
+one does not need such bound to hold on the whole space but only at the generated iterates, this merely
+shifts the problem to verifying the boundedness of these iterates. However, this is equally hard to verify
+apriori, in particular when the step-size is constant. This issue persists unless additional requirements,
+such as projections onto a compact domain, are enforced. Of course, assumptions (2) and (3) got relaxed
+with time. These extensions typically aim to control the gradient or the variance with an upper bound
+depending on x, through linear combinations of x2 and/or f (x)2 (Blum, 1954; Gladyshev, 1965),
+(Khaled and Richta´rik, 2023, Assumption 2), (Bottou et al., 2018, Assumption 4.3). We redirect the
+reader to Alacaoglu et al. (2025) and the references therein for a more exhausting description of those
+inequalities. However, the problem remains that these relaxations are impractical or impossible to verify
+for most problems.
+
+Beyond variance assumptions. An interesting and recent line of research has been able to get rid of
+those assumptions. This was initiated in Bach and Moulines (2011), followed by the more recent works
+Needell et al. (2016); Nguyen et al. (2018); Gower et al. (2019); Khaled and Richta´rik (2023); Gower
+et al. (2021). The core to their analyses hinge on the convexity and smoothness of the functions fi, or
+equivalently the cocoercivity of their gradients fi. This enables the derivation of a variance transfer
+inequality of the form
+
+E fi(x)2  O(E fi(x)2 + f (x) - inf f ), for any x  argmin f.                      (4)
+
+        2
+This inequality is particularly useful as it allows us to bound all the variance terms by the constant
+2 := E fi(x)2 , at the price of obtaining an additional f (x) - inf f terms. This is generally not
+problematic as our objective is to derive bounds for this quantity.
+
+This approach allowed to obtain bounds of the form (1) where 2 is replaced by 2, with no extra
+assumption than convexity and smoothness. Those ideas extended to other variants of SGD, such as
+mini-batch SGD or non-uniform SGD (Gower et al., 2019). The results progressively improved, up to
+Cortild et al. (2025) which provided bounds that are optimal in a certain sense, and allowing the step-sizes
+to cover the full range L  (0, 2). Inequality (4) itself received some attention and got generalized into the
+ABC property (Khaled and Richta´rik, 2023), which combines the features of (4) and of previous variance
+assumptions. Even when relaxing the convexity assumption, it was shown that this ABC property is
+enough for standard complexity results for SGD to remain true.
+
+Last iterates. The above only discusses complexity rates for the ergodic function value gap, and not the
+last iterates function value gap E[f (xT ) - inf f ]. Obtaining guarantees for the last iterates is significant
+in practice, since it is the quantity the practitioner will consider.
+
+The first result on the last iterate in the convex and smooth setting was established by Bach and Moulines
+(2011), with improved bounds presented more recently in (Taylor and Bach, 2019, Theorem 5) and (Liu
+and Zhou, 2023, Theorem 3.1). While the former relies on a Lyapunov analysis guided by standard
+tools from the performance estimation problem framework, the latter builds on a proof from Zamani
+and Glineur (2023), which was originally developed to establish last-iterate convergence guarantees in
+deterministic non-smooth settings. Notably, all those works rely on assumptions of uniformly bounded
+gradients or gradient variance.
+
+It is also worth mentioning existing results for convex Lipschitz stochastic problems. In this framework,
+numerous results have established last-iterate convergence, both in expectation and with high-probability
+(Harvey et al., 2018; Jain et al., 2019). Those studies required a bounded domain onto which the iterates
+of SGD are projected. However, it was shown in Orabona (2020) that this bounded domain assumption
+could be lifted. Note nevertheless that this framework is quite different from ours, and in particular that
+the Lipschitz assumption implies that the uniform bound on the gradients (3) holds.
+
+Whether making a variance assumption is necessary remained an open question up to this day. It was
+believed that an advantage of Momentum SGD over SGD is that the former naturally provides last-iterate
+results (Sebbouh et al., 2021; Gower et al., 2025). Regularized SGD also enjoyed this advantage (Kassing
+et al., 2025). It seemed to be necessary to modify the algorithm to achieve such results, and that plain
+SGD cannot achieve last-iterate bounds without making a variance assumption.
+
+In this paper, we answer this question, and show that SGD enjoys last-iterate guarantees without variance
+assumptions. Following a similar line as Liu and Zhou (2023), our work adopts the techniques from Zamani
+and Glineur (2023), which we combine with a variance transfer inequality to remove the previously made
+variance assumption. We show that for step-sizes L  (0, 1), one can guarantee that
+
+E[f (xT ) - inf f ]  O   1  +  ln(T )2                                             T 2L.
+                        T
+
+As a consequence, the classical choice   1 guarantees that
+
+                                                                                T
+
+                                                                               ln(T )
+                                                E[f (xT ) - inf f ]  O  .
+
+                                                                                  T
+The rest of the paper is devoted to present this main result, its corollaries, and its proofs.
+
+                        3
+Note on a concurrent work. During the preparation of this manuscript, we became aware of the
+preprint (Attia et al., 2025), which independently presents results very similar to those derived herein.
+In particular, (Attia et al., 2025, Theorem 2) is analogous to our main result Theorem 3.1, with the
+additional improvement that they allow for L = 1. We acknowledge that their work was made publicly
+available prior to ours.
+
+2 Problem setting and main assumptions
+
+Let H be a real Hilbert space with associated inner product ·, · and induced norm  · . Let {fi}iI be
+a family of real-valued differentiable functions fi : H  R, where I is a (possibly infinite) set of indices.
+We consider the problem of minimizing f := E[fi], where the expectation is taken over the indices i  I,
+with respect to some probability distribution D over I. The following set of assumptions will be made
+
+throughout this paper:
+
+Assumption 2.1 (Convex and smooth problem). With the notation introduced above, we impose the
+following:
+
+   1. The problem is well-defined, in the sense that, for every x  H, the function i  fi(x) is D-
+       measurable, and E[fi(x)] is finite.
+
+   2. The problem is well-posed, in the sense that argmin f = .
+
+   3. The problem is convex, in the sense that each fi is convex.
+
+   4. The problem is L-smooth for some L  (0, +), in the sense that each gradient fi : H  H is
+       L-Lipschitz continuous.
+
+The key quantity which will appear in our bounds is the variance of the gradient fi at the minimizers.
+
+Assumption 2.2 (Solution Gradient Variance). We assume that the variance at the solution exists,
+
+meaning that
+
+                                     E fi(x)2 < +                 (GV)
+
+for some x  argmin f . We will note
+
+              2                      := inf         E  fi(x)2  .
+
+                                          xargmin  f
+
+Even though 2 is defined above as an infimum, we recall from (Garrigos and Gower, 2024, Lemma 4.17)
+that under Assumption 2.1, we have 2 = V[fi(x)] for every x  argmin f .
+
+The constant 2 is very important for our stochastic problem because it encodes partially how hard it
+is. Indeed, 2  0 is a so-called interpolation constant (Garrigos and Gower, 2024, Section 4.3) which
+is zero if, and only if, interpolation holds, in the sense that all function fi share a common minimizer.
+If interpolation holds, it is clear that our problem is easy, and that sampling one function or the other
+should not make much difference when running (SGD). Inversely, if 2 is large then the functions fi are
+likely to be very different from each other, meaning that the problem is harder, and this will be reflected
+in the complexity rates through this constant.
+
+One could sense a contradiction between Assumption 2.2 and our claim that we do not require a variance
+assumption. But we stress here that this is not a variance assumption in the sense of controlling how
+the variance varies with x, as is done for instance in (3) or (2). Instead, here we only assume that the
+
+                                                   4
+variance is defined at a single point. Moreover, using Assumption 2.1, it can be verified in practice, under
+very mild assumptions, which cover most practical situations:
+
+    · If D has finite support, then Assumption 2.2 is trivially true.
+
+    · If the all the functions fi are nonnegative, then Assumption 2.2 is true. This is more generally true
+       if E[inf fi] > -, see Lemma (Cortild et al., 2025, Lemma A.10).
+
+    · If the variance V [fi(x)] exists at any point x  H, then it exists at every point, see e.g. Lemma A.5.
+       In particular, Assumption 2.2 is true.
+
+3 Main results
+
+We will now present our main last-iterate results for (SGD).
+
+Theorem 3.1 (Generic step-size). Let Assumptions 2.1 and 2.2 hold. Let T  3 be fixed, and let (xt)tT=0
+be generated by (SGD) with step size verifying L  (0, 1). Then
+
+                              E[f (xT ) - inf f ]  T                     2D2             +  8 ln(T + 1)           · 2   .
+                                                                     (1 - L)T                (1 - L)2
+
+where D2 = E x0 - x2                  and        =    2L         (0, 1).
+                                                     1+L
+
+We note that this yields the wanted bound of the order O(T -1 + ln(T )), but with an additional multi-
+plicative factor of T . But fortunately  depends on the step-size itself, and it is quite easy to see that if
+the step-size has a mere dependency in T then T  = O(1) (see Lemma A.4 in the appendix).
+
+Lemma     3.2      (T   is  not   so  scary).    Let      =   2L      and     T        2.  If        K   )  ,  then    T     e2LK .
+                                                             1+L                                   ln(T
+
+By   taking    a  step-size   of  the  order      1  ,  we   obtain      the  following        consequence        of   Theorem   3.1,  whose  proof
+                                                 T
+
+is given in Section 4.4.
+
+Corollary 3.3 (Polynomial step-size). Let Assumptions 2.1 and 2.2 hold. Let T  3 be fixed, and let
+
+(xt)tT=0  be   generated      by  (SGD)        with  step-size        =       1    ,  where    C    2  and             (0, 1).  Then
+                                                                           C LT
+
+                                       E[f (xT ) - inf f ]  O               D2        +    ln(T + 1)   · 2        ,
+                                                                           T 1-                T
+
+where D2 = E x0 - x2 . The explicit constants hidden in the O can be found in (12).
+
+The bound in the above corollary is quite standard, and matches (up to the logarithmic factor) results
+
+which were previously obtained for ergodic bounds (Gower et al., 2021). As usual, the optimal choice for
+
+the  exponent      is  given  by      =  1  .  This  statement        follows      in  the  same   line     as    the  previous  corollary,  and  its
+                                         2
+
+proof may also be found in Section 4.4.
+
+Corollary 3.4 (Best polynomial step-size). Let Assumptions 2.1 and 2.2 hold. Let T  3 be fixed, and
+
+let  (xt)Tt=0  be  generated      by   (SGD)     with     step-size        =    1 ,        where   C    2.        Then
+
+                                                                              CL T
+
+                                      E[f (xT )     -   inf  f]    9  ·  C LD2     +   67   · ln(T +   1)      ·  2,
+                                                                                            CL T
+
+                                                                           T
+
+where D2 = E x0 - x2 .
+
+                                                                           5
+As a final direct consequence, we can provide complexity rates on the last iterates:
+
+Corollary 3.5 (Complexity rate). Let Assumptions 2.1 and 2.2 hold. Let (xt)tT=0 be generated by (SGD).
+For every  > 0, we can guarantee that
+
+                                        E[f (xT ) - inf f ]  
+
+provided that we take
+
+                       1                                           T  K2
+                        =  , for some ,        and        (1 + ln(T + 1))2  2 ,
+                             2L T
+
+where K = max  18LE    x0 - x2  ,  672  . In particular, the above bound on T is true if
+                                    2L
+
+                                                     K
+                                               T   ,
+
+where K =  3K   and for any  > 2.
+           e
+
+Let us now provide some comments on those results.
+
+Remark 3.6 (About the tightness of the bound). As far as we know, it is not knownwhether the best
+possible last-iterate bound for (SGD) under Assumption 2.1 is O(1/ T ) or O(ln(T )/ T ). Therefore, it
+is worth looking at what has been done for convex and Lipschitz problems, which enjoys a rich literature
+with connections to online learning.For instance, Harvey et al. (2018) show that if (SGD) is run with a
+vanishing step-size schedule t = 1/ t, then it is not possible to obtain a better bound than ln(T )/ T .
+However, Jain et al. (2019) proved that with a non-standard choice of step-size the logarithmic dependency
+could be removed. We can then only conjecture that for convex smooth problems it is also possible to
+eliminate the ln(T ) term.
+
+Remark 3.7 (About (non-)adaptivity to smoothness). The results we obtained are not adaptive to the
+smoothness of the problem, in the sense that it is necessary to know the Lipschitz constant L to set
+the step-size . Rules for defining the step-size which are adaptive to L already exist for (SGD), such
+as Adagrad (Streeter and McMahan, 2010) or Polyak step-sizes (Loizou et al., 2021; Gower et al., 2025;
+Orabona and D'Orazio, 2025). It would be interesting to know if those methods benefit from last-iterate
+guarantees.
+
+Remark 3.8 (About (non-)adaptivity to interpolation). Our results cannot lead to bounds which are
+
+optimal and adaptive with respect to interpolation. The presented bounds are trivially adaptive to 2
+because we do not need to know it. But they are not optimal with respect to interpolation. Indeed, an
+
+ideal bound would be                       D2
+                                           T
+                                        O      +  ln(T )  ·  2  .                         (5)
+                                                   
+
+                                                     T
+Such bound would mean that if 2 > 0 then the bound becomes O~(1/T ) as usual. But if interpolation
+
+holds then the complexity switches to the O(1/T ) rate which is optimal for this scenario. As far as we
+
+know, there is no known result for SGD which is able to achieve (5) while at the same time being adaptive
+to interpolation. The only known way to obtain (5) is by knowing (an estimate of) 2 and using this
+constant to define the step-size. With such knowledge, one could for instance set
+
+                                   =          1       if 2 > 0
+                                           4L T       if 2 = 0,
+
+                                                1
+                                           4L ln(T )
+
+                                                  6
+which will provide a O~  1  +  2    bound as a consequence of Theorem 3.1 and Corollary 3.4. Another
+                         T       T
+
+standard choice (see e.g. (Gower et al., 2025, Section D.2)) could be
+
+                                                            1
+                                           =
+
+                                                 4L ln(T ) 1 + 2T
+
+which can also generate such a bound, using for instance (Gower et al., 2025, Theorem D.1) together with
+Theorem 3.1 and Lemma 3.2. As discussed in (Gower et al., 2025, Section D.2), the constant 2 could be
+replaced with 2L, if  := inf f - E[inf fi] itself can be computed. But that remains a challenge which
+
+could be as hard as minimizing f .
+
+Remark 3.9 (Extensions to mini-batch SGD). All our results could be extended to mini-batch version
+
+of (SGD). Indeed, as described in (Gower et al., 2019, Section G), such mini-batch version can be seen as
+
+an instance of (SGD) itself, but applied to a different yet equivalent problem. The only consequence of
+this change would be that the constants defining the problem, namely L and 2, will be updated through
+explicit formulas depending on the batch size.
+
+For instance, assume that support of D is finite and equal to I = {1, . . . , n}, and pick a batch size
+
+1  b  n. At each iteration, the mini-batch SGD algorithm computes
+
+                                                         
+                                       xt+1 = xt - b             fi(xt),                                     (SGDb)
+
+                                                            iBt
+
+where Bt is sampled independently, and uniformly among the subsets of I of size b. This algorithm is
+precisely (SGD) applied to
+
+                         min   f (x) = EB  f^B (x)  ,  where f^B(x) :=       1        fi(x),
+                                                                             b
+                           x                                                    iB
+
+and where the expectation is taken with respect to the uniform law B over the set batchb, which consists
+                                                                             n
+of all the subsets of I of size b. If each fi is Li-smooth, and f =          i=1  fi  is  Lf  -smooth,  the  problem  above
+
+satisfies Assumption 2.1 with
+
+                                    L  =   n-b              n(b - 1)
+                                                  1) Lf  +              max Li
+                                          b(n  -            b(n  -  1)
+                                                                           i
+
+and                                                                     n
+
+                            2 = EB fB(x)2                    n-b             fi(x)2.
+                                                       =
+                                                                        i=1
+                                                          nb(n - 1)
+
+Further details can also be found in (Cortild et al., 2025, Appendix G), which also contains the tools to
+
+extend such results to non-uniform sampling, such as importance sampling.
+
+4 Proofs of the main results
+
+In our proofs, we will consider iterates (xt)Tt=0 generated by (SGD). We will denote F (x0, . . . , xt). the
+-algebra generated by {x0, . . . , xt}. We will also note Et[Z] the conditional expectation of a random
+variable Z with respect to F (x0, . . . , xt).
+
+Our first main technical contribution is to obtain a bound of the form (6) without uniform variance
+assumption. This will be the subject of Lemma 4.2. Once such a bound is obtained, we can obtain
+bounds on the last-iterate function gap. This will be presented in the subsequent Lemma 4.3. Using these
+two results we prove Theorem 3.1 in Section 4.3, and derive the remaining corollaries in Sections 4.4 and
+4.5. Before moving the proof itself, let us state our main tool:
+
+                                                         7
+Lemma 4.1 (Variance Transfer). Let Assumptions 2.1 and 2.2 hold true. Let x  argmin f and x  H.
+For every  > 0, we have
+
+                  E fi(x)2  2L(1 + )(f (x) - inf f ) +                             1  E fi(x)2 .
+                                                                              1+
+
+                                                                                   
+
+Proof. This can be found for instance (Garrigos and Gower, 2024, Lemma 4.20). Simply use a Fenchel-
+Young inequality
+
+                   E fi(x)2  (1 + )E fi(x) - fi(x)2 + (1 + -1)E fi(x)2 ,
+
+and conclude after combining it with an expected smoothness inequality, which is a consequence of the
+convexity and smoothness of the functions fi (see e.g. (Garrigos and Gower, 2024, Lemma 4.8)):
+
+                                   1      fi(x)         -  fi(x)2         f (x) - inf f.
+                                  2L E
+
+4.1 Lemma: Bounding a linear combination of function values
+
+Lemma 4.2. Let fi be convex and L-smooth, and let (xt)Tt=0 be generated by SGD with constant step-size
+ for T  1. Then, for all t = 0, . . . , T and zt  F (x0, . . . , xt), it holds that
+
+                  E [af (xt)  +  bf (zt)  +  c inf  f]     1          -  zt2  -  1         -    zt2    +  v,               (6)
+                                                           2 Ext                 2 Ext+1
+
+where
+
+       a = 1 - L(1 + ),           b = -1,    c = L(1 + ),             v = (1 + -1)2             and    =      1 - L  .
+
+                                                                                 2                            1 + L
+
+Proof. Let zt  F (x0, . . . , xt). For any t  0 we write
+
+xt+1 - zt2 - xt - zt2 = xt+1 - xt2 + 2xt+1 - xt, xt - zt = 2fit (xt)2 + 2fit (xt), zt - xt.
+
+Since each fi is convex, we can write
+
+                  xt+1 - zt2 - xt - zt2  2fit (xt)2 + 2 (fit (zt) - fit (xt)) .
+
+Taking the expectation conditioned to xt and exploiting the fact that zt is independent from xt we obtain
+
+                  Etxt+1 - zt2 - xt - zt2  2Etfit (xt)2 + 2 (f (zt) - f (xt)) .                                            (7)
+
+The variance transfer Lemma 4.1 states that
+
+                          Efit(xt)2  2(1 + )L(f (xt) - inf f ) + (1 + -1)2,
+
+for every  > 0. After dividing by 2, our bound (7) becomes
+
+1      Etxt+1  -  zt2  -  1   xt  -  zt2     f (zt)     -  f (xt)  +  (1  +  )L(f (xt)  -  inf  f)  +  (1     + -1)2    .
+2                         2                                                                                     2
+
+                                                           8
+Reorganizing terms, the above can be rewritten as
+
+                  Et[af (xt) + bf (zt) + c inf f ]          1     xt - zt2    -  1     xt+1 - zt2        + v,
+                                                            2 Et                 2 Et
+
+where             a = 1 - L(1 + ), b = -1, c = L(1 + ) and v = (1 + -1)2 .
+                                                                                                      2
+
+It is immediate from their definition that a + b + c = 0. On the other hand, we can make a > 0 if L < 1,
+
+and  is taken small enough. A suitable choice is
+
+            1 - L                    a = 1 - L(1 + ) = 1 -            2L         1 - L       and  v=         2 .
+       =                                                                      =
+                  1 + L                                               1 + L 1 + L                        1 - L
+
+4.2 Lemma: From bounds on function values to last-iterate results
+
+The following result summarizes the technique used by Zamani and Glineur (2023) and Liu and Zhou
+(2023) in a slightly more general framework. The proof is heavily inspired by their original arguments.
+
+Lemma 4.3. Let fi be convex and L-smooth, and let (xt)tT=0 be generated by SGD with constant step-size
+ for T  1. Suppose there exist a, b, c  R with -a < b  0 and a + b + c = 0 and v  R0, such that it
+
+holds that for t = 0, . . . , T and for all zt  H contained in F (x0, . . . , xt),
+
+                  E [af (xt)  +  bf (zt)   +    c inf   f]     1      -  zt2  -  1           -   zt2  +  v.          (8)
+                                                               2 Ext             2 Ext+1
+
+Then it holds true that
+
+                            E[f (xT )      -  inf   f]      x0 - x2   +  v T -1 +      T -1  t ,
+                                                             2aT -1                    t=0
+
+                                                                                 aT -1
+
+where (t) is defined as -1 = 1 and
+
+                              t      =     T -t+1              · t-1  for t = 1, . . . , T - 1.
+
+                                        T  -t+1+            a
+                                                            b
+
+Proof. We first wish to sum Inequality (8) over t = 0, . . . , T - 1 in a way that the right-hand side terms
+
+cancel each other. To this end, assume first that zt  [xt, zt-1]. Indeed, if zt = (1 - pt)xt + ptzt-1, with
+
+pt  [0, 1], then
+
+                  xt - zt2 = ptxt - ptzt-12 = p2t xt - zt-12  ptxt - zt-12.
+
+After multiplication by t  0, Inequality (8) gives
+
+       tE [af (xt)       +  bf (zt)  +  c inf   f]      1   tptEtxt   -  zt-12   -  1             -   zt2    +  tv.
+                                                        2                           2 tEtxt+1
+
+Note that in order for this to hold for all t  0, we must define z-1, which we take to be z-1 := x. Assume
+that the sequence (t) is defined recursively starting from -1 := 1, while verifying the relationship
+tpt = t-1 for t  1. Since pt  [0, 1], the sequence t is positive and nondecreasing. Such choice of t
+leads to
+
+       tE [af (xt)       +  bf (zt)  +  c  inf  f]      1   t-1Etxt   -  zt-12   -  1             -   zt2    +  tv,
+                                                        2                           2 tEtxt+1
+
+                                                                  9
+which may now be summed from 0 to T to obtain
+
+         T                                                   1                           1                                T
+                                                             2 -1Ex0                     2 T ExT +1
+             tE [af (xt)  +    bf (zt)   +  c inf    f]                     -  z-12   -                    -  zT 2  +  v       t.
+
+        t=0                                                                                                               t=0
+
+Drop the negative term on the right-hand side, and recall that -1 = 1 and z-1 = x. We are lead to
+
+                          T                                                    1                        T
+                                                                               2 Ex0
+                               tE [af (xt)        +  bf (zt)  +  c inf  f]               -  x2  +  v       t.                      (9)
+
+                         t=0                                                                          t=0
+
+We previously assumed that zt = (1 - pt)xt + ptzt-1 for some pt  [0, 1]. Unrolling this relationship yields
+
+                               zt = (1 - pt)xt + ptzt-1
+
+                               = (1 - pt)xt + pt(1 - pt-1)xt-1 + ptpt-1zt-2
+
+                                    ...
+
+                                               t
+
+                               =                     pt . . . ps+1(1 - ps)xs + (ptpt-1 . . . p0)z-1.
+
+                                            s=0
+
+Now  we  will  use  the  fact  that      pt =  t-1       to  write
+                                                t
+
+                    zt =         t   s   - s-1       xs      +  -1     z-1  =      t  s  - s-1  xs          1
+                               s=0        t                      t               s=0      t             + t x.
+
+Since (t) is nondecreasing and
+
+                               1         t     s - s-1 = 1                          t
+                                  +
+                               t s=0                 t              t      1 + (s - s-1)        = 1,
+
+                                                                                  s=0
+
+so that zt is a convex combination of x0, . . . , xt and x.
+
+As such, we may upper bound f (zt) using Jensen's inequality as
+
+               f (zt)       t  s    - s-1         f  (xs)        1                 t  s  - s-1  f (xs)         1
+                          s=0        t                       + t f (x) =         s=0      t                + inf f.
+
+                                                                                                              t
+
+We now recall that b  0, that a + b + c = 0, and introduce the notation rt := f (xt) - inf f , so that
+
+     T                                               T                             t  s  - s-1                  1
+                                                                                 s=0      t                + b inf f + c inf f
+        t [af (xt) + bf (zt) + c inf f ]  t af (xt) + b                                         f (xs)
+                                                                                                               t
+t=0                                                  t=0
+
+                                                     T                           t
+
+                                               =             taf (xt) + b             (s - s-1)f (xs) + b inf f + tc inf f
+
+                                                     t=0                         s=0
+
+                                                     T                      t
+
+                                               =             atrt + b            (s - s-1)rs
+
+                                                     t=0                    s=0
+
+                                                     T                  T
+
+                                               = atrt + b (t - t-1)(T - t + 1)rt
+
+                                                     t=0               t=0
+
+                                                     T
+
+                                               = rt at + b(t - t-1)(T - t + 1) .
+
+                                                     t=0
+
+                                                                       10
+In the last sum, we wish to make the coefficient in front of rT positive and all the remaining zero.
+
+Specifically,  we  assume       T -1     >   a+b    T  and,      for  all   t = 0, . . . , T  - 1:
+                                               b
+
+                                                    at = -b(t - t-1)(T - t + 1).                                                (10)
+
+Once we do this, and in view of Inequality (9), we will have proved that
+
+                                                                                x0    - x2             T
+                                                                                      2
+                                        ((a + b)T      - bT -1) rT                              +v         t.
+
+                                                                                                      t=0
+
+Setting T = T -1, we get
+
+                                              rT       x0 - x2              + v T -1 +        T     t  .
+                                                        2aT -1                                t=0
+
+                                                                                        aT -1
+
+The relation for t in Equation (10) can be rewritten as
+
+                                                       t      =       T -t+1            · t-1.
+
+                                                                 T    -t+1+        a
+                                                                                   b
+
+Note  that  since     a     0,  t   is   increasing,      which      is  consistent     with  the   previous    requirements.
+                      b
+
+4.3 Proof of Theorem 3.1: Last iterates for generic step-size
+
+Applying Lemmas 4.2 and 4.3, we obtain
+
+                                    E[f (xT ) -     inf f ]    E     x0 - x2          + v T -1 +          T -1  t     ,
+                                                                     2aT -1                               t=0
+
+                                                                                                    aT -1
+
+where    =  1  +   a        [0, 1]  and  (t)    is  defined      as  -1     =   1  and
+                   b
+
+                                                       t      =       T -t+1            · t-1.
+
+                                                                 T    -t+1+        a
+                                                                                   b
+
+Combining Lemma A.3 and Lemma A.1, we obtain
+
+               (T + 1)1- T 1-                                T +         T -1  t              T -1         + T  4T  ln(T + 1),
+T -1                                            and                      t=0          2  1+                   T -1
+                                          2
+                         2                                        T -1                              
+
+such that                           E[f (xT )   -    inf  f]     E       x0 - x2         +    4vT  ln(T + 1)       ,
+where                                                                     aT 1-
+Since                                                                                               a
+we obtain the bound
+                                                                     a 2L
+                                                     =1+ =                             (0, 1).
+                                                                     b 1 + L
+
+                                                    1 - L 1 - L                    and   v=         2 ,
+                                             a=                
+                                                    1 + L                2                      1 - L
+
+                                E[f (xT )    -  inf  f]       2E x0 - x2              +  8T  ln(T +        1)   ·  2.
+                                                              (1 - L)T 1-                   (1 - L)2
+
+                                                                            11
+4.4 Proof of Corollaries 3.3 and 3.4: Last-iterate for polynomial step-size
+
+We adopt the notation from the proof of Theorem 3.1 and, for now, assume that L  1/2. Recalling
+that   2L, the bound from Theorem 3.1 gives
+
+                                E[f (xT )    -   inf    f]         4D2        +  32T 2L   ln(T  +     1)  ·  2.                           (11)
+                                                                 T 1-2L
+
+Suppose   now  that       =  C   1     ,  with  C       2    (so    that  L      1  ).  Since  e ln(T )      T,     we  have
+                                LT                                               2
+
+                                                                                2
+                                                               2L ln T  ,
+
+                                                                              eC
+
+whence                                    T 2L = exp(2L ln T )  exp 2 =: B.
+As a consequence,                                                                 eC
+On the other hand,
+Inequality (11) then implies                                 1            T 2L BCL
+                                                        T 1-2L = T  T 1- .
+
+                                                                T 2L            B
+                                                                              CLT  .
+
+                                    E[f (xT )   -    inf  f]        4B C LD2     +  32B ln(T +     1)  ·  2,                              (12)
+                                                                      T 1-               CLT 
+
+which  proves  Corollary     3.3.      Finally,  if       =   1  ,  we  conclude    that
+                                                              2
+
+                                    E[f (xT )   -    inf  f]        4B C LD2     +  32B ln(T +     1)  ·  2,
+                                                                                        CL T
+                                                                          T
+
+where  B  =  exp(   4  )     exp(   2  )  <  2.09,   whence
+                   eC               e
+
+                                       E[f (xT )     -  inf  f]       9C LD2     +  67 ln(T+   1)  ·   2,
+                                                                                       CL T
+                                                                           T
+
+proving Corollary 3.4. For C = 2, we can write
+
+                                          E[f (xT )  -  inf   f]      17LD2      +  34 ln(T +  1)  ·  2.
+                                                                                          
+                                                                          T
+                                                                                        LT
+
+4.5 Proof of Corollary 3.5: Complexity bounds
+
+For any T  1, we have
+
+1                                            T                                                                   T
+2  max                                                                                                                                2,
+                                       x2],     672       2  (1 + ln(T + 1))2                             x2]       672
+                                                 2L                                                                  2L
+                   18LE[x0      -                                                       18LE[x0       -          +       ln(T  +  1)
+
+                                                                          12
+or, equivalently,
+
+                                     18LE        x0  -  x  2    +   672  ln(T  + 1)       .
+                                                                     2L
+
+                                                              T
+
+From Corollary 3.4, it holds that E[f (xT ) - inf f ]  , as wanted. Moving on to the second point, we are
+                             K
+going  to  prove  that  T       is   enough      to  reach  an      precision,   for  some    K,  where        > 2.  Since     > 2,
+
+there  exists  some        (0, 1/2)  such  that      =  2/(1 - 2).  If      T      K  ,  and  defining  P   =  (K  )1-2 ,  we  have
+                                                                                   
+
+                                           P 1/(1-2)                P          T 1-2.
+                                           2/(1-2)  T               2
+
+But we can write, using the fact that T  3 :
+
+                                1 + ln(T + 1)  1 + 2 ln(T )  3 ln(T )  3 T .
+                                                                                     e
+
+Therefore                                                                                                  32
+
+                   T 2  (1 + ln(T + 1))2         e      2                1                 1
+                                                 3
+                                                            and     T 2  (1 + ln(T + 1))2 e .
+
+So we now have that                                                            3 21
+
+                                              1             T
+                                           2  (1 + ln(T + 1))2 e                      .
+                                                                                    P
+
+Let us now assume that P is such that                   3 21 1
+                                                        e P = K2 .
+
+In that case
+
+                        1       1          T                                    T                       2,
+                        2
+                             K2 (1+ln(T +1))2              18LE[x0  -    x2]     +    672  ln(T  +  1)
+                                                                                       2L
+
+or, equivalently,
+
+                                     18LE        x0  -  x  2    +   672  ln(T  + 1)       ,
+                                                                     2L
+
+                                                              T
+
+and we conclude as previously. So all we needed was to take
+
+                                             3K 2           and     K =          3K      
+                                     P=
+                                                 e                                 e       .
+
+5 Conclusion
+
+In this paper, we provide the first last-iterate bounds for SGD without making a uniform variance assump-
+
+tion, and achieve a near-optimal complexity bound of O( ln T ) with a step-size   1 . We acknowledge
+                                                                            T                               T
+
+the parallel work by Attia et al. (2025), who study the same problem and obtain similar results, and was
+
+made publicly available a few days prior to ours.
+
+This new result creates opportunities for interesting possible extensions. For instance, it is yet unknown
+if it is possible to obtain high-probability last-iterate bounds with no uniform gradient assumption, im-
+proving on the recent results in Harvey et al. (2018); Jain et al. (2019); Liu et al. (2023). Moreover, it
+is not clear if the logarithmic dependency of our bounds is optimal. More generally, a promising avenue
+could be to apply the performance estimation framework to characterize the worst-case bound, as was
+initiated in Taylor and Bach (2019) and Cortild et al. (2025).
+
+                                                                13
+References
+
+Alacaoglu, A., Malitsky, Y., and Wright, S. J. (2025). Towards Weaker Variance Assumptions for Stochastic
+   Optimization. arXiv preprint arXiv:2504.09951.
+
+Attia, A., Schliserman, M., Sherman, U., and Koren, T. (2025). Fast Last-Iterate Convergence of SGD in the
+   Smooth Interpolation Regime. arXiv preprint arXiv:2507.11274.
+
+Bach, F. and Moulines, E. (2011). Non-Asymptotic Analysis of Stochastic Approximation Algorithms for Machine
+   Learning. In Advances in Neural Information Processing Systems, volume 24. Curran Associates, Inc.
+
+Blum, J. R. (1954). Approximation Methods which Converge with Probability one. The Annals of Mathematical
+   Statistics, 25(2):382­386.
+
+Bottou, L., Curtis, F. E., and Nocedal, J. (2018). Optimization Methods for Large-Scale Machine Learning. SIAM
+   Review, 60(2):223­311.
+
+Cortild, D., Ketels, L., Peypouquet, J., and Garrigos, G. (2025). New Tight Bounds for SGD without Variance
+   Assumption: A Computer-Aided Lyapunov Analysis. arXiv preprint arXiv:2505.17965.
+
+Garrigos, G. and Gower, R. M. (2024). Handbook of Convergence Theorems for (Stochastic) Gradient Methods.
+   arXiv preprint arXiv:2301.11235.
+
+Gautschi, W. (1959). Some Elementary Inequalities Relating to the Gamma and Incomplete Gamma Function.
+   Journal of Mathematics and Physics, 38(1-4):77­81.
+
+Gladyshev, E. G. (1965). On Stochastic Approximation. Theory of Probability & Its Applications, 10(2):275­278.
+
+Gower, R., Sebbouh, O., and Loizou, N. (2021). SGD for Structured Nonconvex Functions: Learning Rates,
+   Minibatching and Interpolation. In Proceedings of the 24th International Conference on Artificial Intelligence
+   and Statistics, pages 1315­1323. PMLR.
+
+Gower, R. M., Garrigos, G., Loizou, N., Oikonomou, D., Mishchenko, K., and Schaipp, F. (2025). Analysis
+   of an idealized stochastic Polyak method and its application to black-box model distillation. arXiv preprint
+   arXiv:2504.01898.
+
+Gower, R. M., Loizou, N., Qian, X., Sailanbayev, A., Shulgin, E., and Richta´rik, P. (2019). SGD: General Analysis
+   and Improved Rates. In Proceedings of the 36th International Conference on Machine Learning, pages 5200­5209.
+   PMLR.
+
+Harvey, N. J. A., Liaw, C., Plan, Y., and Randhawa, S. (2018). Tight Analyses for Non-Smooth Stochastic Gradient
+   Descent. arXiv preprint arXiv:1812.05217.
+
+Jain, P., Nagaraj, D., and Netrapalli, P. (2019). Making the Last Iterate of SGD Information Theoretically Optimal.
+   arXiv preprint arXiv:1904.12443.
+
+Kassing, S., Weissmann, S., and D¨oring, L. (2025). Controlling the Flow: Stability and Convergence for Stochastic
+   Gradient Descent with Decaying Regularization. arXiv preprint arXiv:2505.11434.
+
+Khaled, A. and Richt´arik, P. (2023). Better Theory for SGD in the Nonconvex World. Transactions on Machine
+   Learning Research.
+
+Liu, Z., Nguyen, T. D., Nguyen, T. H., Ene, A., and Nguyen, H. (2023). High Probability Convergence of Stochastic
+   Gradient Methods. In Proceedings of the 40th International Conference on Machine Learning. PMLR.
+
+Liu, Z. and Zhou, Z. (2023). Revisiting the Last-Iterate Convergence of Stochastic Gradient Methods. In Proceedings
+   of The Twelfth International Conference on Learning Representations.
+
+                                                                   14
+Loizou, N., Vaswani, S., Laradji, I. H., and Lacoste-Julien, S. (2021). Stochastic Polyak Step-size for SGD: An Adap-
+   tive Learning Rate for Fast Convergence. In International Conference on Artificial Intelligence and Statistics,
+   pages 1306­1314. PMLR.
+
+Mathematics Stack Exchange (2017). How do you prove Gautschi's inequality for the gamma function? https:
+   //math.stackexchange.com/q/98348.
+
+Needell, D., Srebro, N., and Ward, R. (2016). Stochastic gradient descent, weighted sampling, and the randomized
+   Kaczmarz algorithm. Mathematical Programming, 155(1):549­573.
+
+Nemirovski, A., Juditsky, A., Lan, G., and Shapiro, A. (2009). Robust Stochastic Approximation Approach to
+   Stochastic Programming. SIAM Journal on Optimization, 19(4):1574­1609.
+
+Nguyen, L., Nguyen, P. H., Dijk, M., Richtarik, P., Scheinberg, K., and Takac, M. (2018). SGD and Hogwild!
+   Convergence Without the Bounded Gradients Assumption. In Proceedings of the 35th International Conference
+   on Machine Learning, pages 3750­3758. PMLR.
+
+Orabona, F. (2020). Last Iterate of SGD Converges (Even in Unbounded Domains). https://parameterfree.
+   com/2020/08/07/last-iterate-of-sgd-converges-even-in-unbounded-domains/.
+
+Orabona, F. and D'Orazio, R. (2025). New Perspectives on the Polyak Stepsize: Surrogate Functions and Negative
+   Results. arXiv preprint arXiv:2505.20219.
+
+Robbins, H. and Monro, S. (1951). A Stochastic Approximation Method. The Annals of Mathematical Statistics,
+   22(3):400­407.
+
+Sebbouh, O., Gower, R. M., and Defazio, A. (2021). Almost sure convergence rates for stochastic gradient descent
+   and stochastic heavy ball. In Conference on Learning Theory, pages 3935­3971. PMLR.
+
+Streeter, M. and McMahan, H. B. (2010). Less regret via online conditioning. arXiv preprint arXiv:1002.4862.
+Taylor, A. and Bach, F. (2019). Stochastic first-order methods: non-asymptotic and computer-aided analyses via
+
+   potential functions. In Proceedings of the 32nd Conference on Learning Theory, pages 2934­2992. PMLR.
+Zamani, M. and Glineur, F. (2023). Exact convergence rate of the last iterate in subgradient methods. arXiv
+
+   preprint arXiv:2307.11134.
+
+                                                                   15
+A Appendix: Technical inequalities
+
+Most of our bounds involve complicated expressions that we want to simplify. Here are small tools that
+we need.
+
+Lemma A.1 (Simplifying inequalities). For every t  1 and  > 0, we have
+                                                 3 + 2 t - 1  4t ln(t + 1).
+                                                             
+
+Proof. Define (t) = 3 + 2  t -1  - 4t ln(t + 1), so that
+                             
+
+                    (t) = 2t-1 - 4t-1 ln(t + 1) - 4t  t                2        4  0
+                                                                         -
+                                                          t+1          t t+1
+
+for every t  1. Since (1) = 3 - 4 ln(2) < 0, this implies (t) < 0 for every t  1, as claimed.
+
+Lemma A.2. If x  [0, a], where a > 0, then it holds that
+
+                                       exp(x)  x ·  exp(a) - 1   + 1.
+
+                                                          a
+
+Proof. From convexity of exp between points 0 and a, we have for any   [0, 1]
+
+                                 exp(a)   exp(a) + (1 - ) exp(0)
+
+Set x = a, such that
+
+                                 x                  x                 exp(a) - 1   + 1.
+                      exp(x)  exp(a) + (1 - ) exp(0) = x
+                                 a                  a                        a
+
+Since this is true for any   [0, 1], this is true for any x  [0, a].
+
+Lemma A.3. For a fixed T  2 and   (0, 1], define (t)Tt=-01 through -1 = 1 and, for t = 0, . . . , T ,
+                                                              T -t+1
+
+                                                      t = T - t +  · t-1.
+
+Then it holds that                                      T -1
+                                                        t=0
+                      T -1   (T + 1)1-        and             t     2       T -1         .
+                                                                       1+
+                                    2                   T -1                    
+
+Proof. Note that we may rewrite
+
+                                    t  =  (T + 1 + 1) (T - t + )
+                                                                          ,
+                                          (T  +  1  +  )  (T  -  t  +  1)
+
+where (·) represents the Gamma function. By Gautschi's Inequality1 (Gautschi, 1959), we have that
+
+                              (x > 0)(c  [0, 1]) x1-c  (x + 1)  (x + 1)1-c.
+                                                                      (x + c)
+
+1We initially found that bound thanks to (Mathematics Stack Exchange, 2017).
+
+                                                    16
+We can use this with c =   1 and x = T + 1 or x = T - t to obtain
+
+                                                (T + 1)1-                      (T + 2)1-
+                                              (T - t + 1)1-  t  (T - t)1- .
+
+Now we can proceed with the inequalities we need in our main bound. The simplest one is a lower bound
+
+for T -1:
+
+                                                                 (T + 1)1-
+                                                      T -1  21- .
+
+The second bound we need is an upper bound on the sum of t. This arrives from
+
+           T -1       T -1 (T     + 2)1-                          T                                    T
+                                  - t)1-
+                t                            =  (T  + 2)1-             s-1  (T + 2)1-           1+       s-1ds         ,
+                           (T
+           t=0        t=0                                         s=1                                 1
+
+where the last inequality is a sum-integrand bound, see for instance Garrigos and Gower (2024).
+
+                                             T -1                                 T -1       .
+                                                                             1+
+                                                  t  (T + 2)1-
+                                                                                      
+                                              t=0
+
+Specifically,  since  2  T  +2    3  and  1  -        1,  the  wanted        bound  follows.
+                         T  +1
+
+Lemma      A.4  (T    is    not  so  scary).  Let     =    2L     and     T    1.  For  all  K    0,  if       K    ,  then  T    e2LK .
+                                                          1+L                                                 ln T
+
+Proof.  From    our   assumptions,     2L             2LK      ,  so  T   = exp( ln T )  exp(2LK).
+                                                      ln(T )
+
+Finally, we prove a claim made earlier in the paper:
+
+Lemma A.5 (Variance everywhere or nowhere). Let Assumptions 2.1 and 2.2 hold true. Then
+
+                             x  H, E fi(x)2 < +  x  H, E fi(x)2 .
+
+Proof. It suffices to prove that if there is x  H such that E fi(x)2 < , then E fi(y)2 < 
+for every y  H. Indeed, suppose E fi(x)2 <  for some x  H, and take y  H. Since
+
+                                     fi(y)2  2fi(x)2 + 2fi(y) - fi(x)2,
+
+the result is obtained by taking expectation and using an expected smoothness inequality, see e.g. (Gar-
+rigos and Gower, 2024, Lemma 4.7).
+
+                                                                      17
+

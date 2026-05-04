@@ -1,0 +1,11 @@
+
+=== S_1_2 ===
+  tested 71 α in 12.4s; with-dominator=71, v*=min-level=21, i(α,v*)=1: 17; σ-succeeds=67, σ=cone=41, σ=v*: 54
+
+=== S_1_1 ===
+  tested 40 α in 0.7s; with-dominator=40, v*=min-level=8, i(α,v*)=1: 40; σ-succeeds=0, σ=cone=0, σ=v*: 0
+
+=== S_2_1 ===
+  tested 30 α in 10.1s; with-dominator=30, v*=min-level=19, i(α,v*)=1: 16; σ-succeeds=2, σ=cone=2, σ=v*: 0
+
+Wrote C:\Users\12729\Desktop\Math\SpatialMind\experiments\op1_proof_probe.json

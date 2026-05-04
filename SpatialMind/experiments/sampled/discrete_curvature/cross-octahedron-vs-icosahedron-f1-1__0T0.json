@@ -1,0 +1,101 @@
+{
+ "domain": "discrete_curvature",
+ "condition": "0T0",
+ "primitives": {
+  "relation": false,
+  "transform": true,
+  "contrastive": false
+ },
+ "case_id": "cross-octahedron-vs-icosahedron-f1-1",
+ "case_data": {
+  "case_id": "cross-octahedron-vs-icosahedron-f1-1",
+  "summary_delta": {
+   "n_vertices_a": 1,
+   "euler_characteristic_match": 0,
+   "euler_characteristic_a": 0,
+   "euler_characteristic_b": 0,
+   "n_edges_a": 3,
+   "gauss_bonnet_ratio_b": 0.0,
+   "total_curvature_b": 0.0,
+   "n_vertices_b": 0,
+   "n_faces_b": 0,
+   "total_curvature_a": 0.0,
+   "n_edges_b": 0,
+   "gauss_bonnet_ratio_a": 0.0,
+   "n_faces_a": 2
+  },
+  "metadata": {
+   "preset_a": "octahedron",
+   "preset_b": "icosahedron",
+   "operation": "stellar_subdivision",
+   "face_index": 1,
+   "kind": "cross_pair"
+  },
+  "transform_trace": {
+   "operation_name": "stellar_subdivision",
+   "operation_params": {
+    "face_index": 1,
+    "face_vertices": [
+     2,
+     1,
+     4
+    ]
+   },
+   "before_state": {
+    "n_vertices": 6,
+    "n_edges": 12,
+    "n_faces": 8,
+    "euler_characteristic": 2,
+    "total_curvature": 12.566371,
+    "gauss_bonnet_ratio": 2.0
+   },
+   "after_state": {
+    "n_vertices": 7,
+    "n_edges": 15,
+    "n_faces": 10,
+    "euler_characteristic": 2,
+    "total_curvature": 12.566371,
+    "gauss_bonnet_ratio": 2.0
+   },
+   "delta": {
+    "vertices_added": 1,
+    "edges_added": 3,
+    "faces_added": 2,
+    "euler_change": 0,
+    "curvature_change": 0.0
+   },
+   "region_affected": {
+    "subdivided_face": [
+     2,
+     1,
+     4
+    ],
+    "new_vertex_index": 6,
+    "affected_vertices": [
+     6
+    ],
+    "new_vertex_defect": -0.0,
+    "local_defect_sum_before": 6.283185,
+    "local_defect_sum_after": 6.283185,
+    "local_defect_sum_preserved": true
+   },
+   "sub_steps": []
+  },
+  "reference_in_transform_region": {
+   "subdivided_face": [
+    2,
+    1,
+    4
+   ],
+   "new_vertex_index": 6,
+   "affected_vertices": [
+    6
+   ],
+   "new_vertex_defect": -0.0,
+   "local_defect_sum_before": 6.283185,
+   "local_defect_sum_after": 6.283185,
+   "local_defect_sum_preserved": true,
+   "operation_name": "stellar_subdivision"
+  }
+ }
+}

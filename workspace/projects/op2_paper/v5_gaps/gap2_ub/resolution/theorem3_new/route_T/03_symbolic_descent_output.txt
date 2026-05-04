@@ -1,0 +1,54 @@
+=== Raw V_{t+1} - V_t ===
+beta**4*y**2/(2*eta**2) - beta**4*y*y_prev/eta**2 + beta**4*y_prev**2/(2*eta**2) - beta**3*y**2/eta**2 + 3*beta**3*y*y_prev/eta**2 - beta**3*y*y_star/eta**2 - 2*beta**3*y_prev**2/eta**2 + beta**3*y_prev*y_star/eta**2 + beta**2*gamma*y**2/2 - beta**2*gamma*y*y_prev + beta**2*gamma*y_prev**2/2 - beta**2*y**2/eta**2 - beta**2*y*y_prev/eta**2 + 3*beta**2*y*y_star/eta**2 + 2*beta**2*y_prev**2/eta**2 - 3*beta**2*y_prev*y_star/eta**2 + beta*gamma*y**2 - beta*gamma*y*y_prev - beta*gamma*y*y_star + beta*gamma*y_prev*y_star + 3*beta*y**2/eta**2 - 3*beta*y*y_prev/eta**2 - 3*beta*y*y_star/eta**2 + 3*beta*y_prev*y_star/eta**2 + f_next - f_val + g**2*(beta**2/2 - 2*beta + eta**2*gamma/2 + 2) + g*(-beta**3*y/eta + beta**3*y_prev/eta + 3*beta**2*y/eta - 4*beta**2*y_prev/eta + beta**2*y_star/eta - beta*eta*gamma*y + beta*eta*gamma*y_prev - beta*y/eta + 4*beta*y_prev/eta - 3*beta*y_star/eta - eta*gamma*y + eta*gamma*y_star - 2*y/eta + 2*y_star/eta) - 3*y**2/(2*eta**2) + 2*y*y_prev/eta**2 + y*y_star/eta**2 - y_prev**2/(2*eta**2) - y_prev*y_star/eta**2
+
+=== After applying L-smoothness on (f_next - f_val) ===
+L*beta**2*y**2/2 - L*beta**2*y*y_prev + L*beta**2*y_prev**2/2 + beta**4*y**2/(2*eta**2) - beta**4*y*y_prev/eta**2 + beta**4*y_prev**2/(2*eta**2) - beta**3*y**2/eta**2 + 3*beta**3*y*y_prev/eta**2 - beta**3*y*y_star/eta**2 - 2*beta**3*y_prev**2/eta**2 + beta**3*y_prev*y_star/eta**2 + beta**2*gamma*y**2/2 - beta**2*gamma*y*y_prev + beta**2*gamma*y_prev**2/2 - beta**2*y**2/eta**2 - beta**2*y*y_prev/eta**2 + 3*beta**2*y*y_star/eta**2 + 2*beta**2*y_prev**2/eta**2 - 3*beta**2*y_prev*y_star/eta**2 + beta*gamma*y**2 - beta*gamma*y*y_prev - beta*gamma*y*y_star + beta*gamma*y_prev*y_star + 3*beta*y**2/eta**2 - 3*beta*y*y_prev/eta**2 - 3*beta*y*y_star/eta**2 + 3*beta*y_prev*y_star/eta**2 + g**2*(L*eta**2/2 + beta**2/2 - 2*beta + eta**2*gamma/2 - eta + 2) + g*(-L*beta*eta*y + L*beta*eta*y_prev - beta**3*y/eta + beta**3*y_prev/eta + 3*beta**2*y/eta - 4*beta**2*y_prev/eta + beta**2*y_star/eta - beta*eta*gamma*y + beta*eta*gamma*y_prev + beta*y - beta*y_prev - beta*y/eta + 4*beta*y_prev/eta - 3*beta*y_star/eta - eta*gamma*y + eta*gamma*y_star - 2*y/eta + 2*y_star/eta) - 3*y**2/(2*eta**2) + 2*y*y_prev/eta**2 + y*y_star/eta**2 - y_prev**2/(2*eta**2) - y_prev*y_star/eta**2
+
+Sanity y_next - y = 0
+
+=== Collected ===
+L*beta**2*y**2/2 - L*beta**2*y*y_prev + L*beta**2*y_prev**2/2 + beta**4*y**2/(2*eta**2) - beta**4*y*y_prev/eta**2 + beta**4*y_prev**2/(2*eta**2) - beta**3*y**2/eta**2 + 3*beta**3*y*y_prev/eta**2 - beta**3*y*y_star/eta**2 - 2*beta**3*y_prev**2/eta**2 + beta**3*y_prev*y_star/eta**2 + beta**2*gamma*y**2/2 - beta**2*gamma*y*y_prev + beta**2*gamma*y_prev**2/2 - beta**2*y**2/eta**2 - beta**2*y*y_prev/eta**2 + 3*beta**2*y*y_star/eta**2 + 2*beta**2*y_prev**2/eta**2 - 3*beta**2*y_prev*y_star/eta**2 + beta*gamma*y**2 - beta*gamma*y*y_prev - beta*gamma*y*y_star + beta*gamma*y_prev*y_star + 3*beta*y**2/eta**2 - 3*beta*y*y_prev/eta**2 - 3*beta*y*y_star/eta**2 + 3*beta*y_prev*y_star/eta**2 + g**2*(L*eta**2/2 + beta**2/2 - 2*beta + eta**2*gamma/2 - eta + 2) + g*(-L*beta*eta*y + L*beta*eta*y_prev - beta**3*y/eta + beta**3*y_prev/eta + 3*beta**2*y/eta - 4*beta**2*y_prev/eta + beta**2*y_star/eta - beta*eta*gamma*y + beta*eta*gamma*y_prev + beta*y - beta*y_prev - beta*y/eta + 4*beta*y_prev/eta - 3*beta*y_star/eta - eta*gamma*y + eta*gamma*y_star - 2*y/eta + 2*y_star/eta) - 3*y**2/(2*eta**2) + 2*y*y_prev/eta**2 + y*y_star/eta**2 - y_prev**2/(2*eta**2) - y_prev*y_star/eta**2
+
+=== Test the convexity substitution by direct coefficient extraction ===
+
+=== Symbolic V_{t+1} - V_t after L-smoothness bound ===
+G**2*(L*eta**2/2 + beta**2/2 - 2*beta + eta**2*gamma/2 - eta + 2) + G*W*(-L*beta*eta - beta**3/eta + 4*beta**2/eta - beta*eta*gamma + beta - 4*beta/eta) + G*X*(-beta**2/eta + 3*beta/eta - eta*gamma - 2/eta) + W**2*(L*beta**2/2 + beta**4/(2*eta**2) - 2*beta**3/eta**2 + beta**2*gamma/2 + 2*beta**2/eta**2 - 1/(2*eta**2)) + W*X*(beta**3/eta**2 - 3*beta**2/eta**2 + beta*gamma + 3*beta/eta**2 - 1/eta**2)
+
+=== After applying G*X >= FE (convexity at y wrt y*) ===
+FE*(-beta**2/eta + 3*beta/eta - eta*gamma - 2/eta) + G**2*(L*eta**2/2 + beta**2/2 - 2*beta + eta**2*gamma/2 - eta + 2) + G*W*(-L*beta*eta - beta**3/eta + 4*beta**2/eta - beta*eta*gamma + beta - 4*beta/eta) + W**2*(L*beta**2/2 + beta**4/(2*eta**2) - 2*beta**3/eta**2 + beta**2*gamma/2 + 2*beta**2/eta**2 - 1/(2*eta**2)) + W*X*(beta**3/eta**2 - 3*beta**2/eta**2 + beta*gamma + 3*beta/eta**2 - 1/eta**2) + s_C*(-beta**2/eta + 3*beta/eta - eta*gamma - 2/eta)
+
+=== Coefficients in (G, W, GW, FE, X*W, X^2) ===
+coeff[s_C]  = (-beta**2 + 3*beta - eta**2*gamma - 2)/eta
+coeff[FE]   = (-beta**2 + 3*beta - eta**2*gamma - 2)/eta
+coeff[G^2]  = L*eta**2/2 + beta**2/2 - 2*beta + eta**2*gamma/2 - eta + 2
+coeff[W^2]  = (beta**4 - 4*beta**3 + beta**2*eta**2*(L + gamma) + 4*beta**2 - 1)/(2*eta**2)
+coeff[GW]   = beta*(-beta**2 + 4*beta + eta*(-L*eta - eta*gamma + 1) - 4)/eta
+coeff[X^2]  = 0
+coeff[XW]   = (beta**3 - 3*beta**2 + beta*eta**2*gamma + 3*beta - 1)/eta**2
+
+=== Specialize gamma = 0 ===
+   coeff[s_C] @ gamma=0 = (-beta**2 + 3*beta - 2)/eta
+   coeff[FE] @ gamma=0 = (-beta**2 + 3*beta - 2)/eta
+   coeff[G^2] @ gamma=0 = L*eta**2/2 + beta**2/2 - 2*beta - eta + 2
+   coeff[W^2] @ gamma=0 = (L*beta**2*eta**2 + beta**4 - 4*beta**3 + 4*beta**2 - 1)/(2*eta**2)
+   coeff[GW] @ gamma=0 = beta*(-beta**2 + 4*beta + eta*(-L*eta + 1) - 4)/eta
+   coeff[X^2] @ gamma=0 = 0
+   coeff[XW] @ gamma=0 = (beta**3 - 3*beta**2 + 3*beta - 1)/eta**2
+
+=== Specialize gamma = 1/eta ===
+   coeff[s_C] @ gamma=1/eta = (-beta**2 + 3*beta - eta - 2)/eta
+   coeff[FE] @ gamma=1/eta = (-beta**2 + 3*beta - eta - 2)/eta
+   coeff[G^2] @ gamma=1/eta = L*eta**2/2 + beta**2/2 - 2*beta - eta/2 + 2
+   coeff[W^2] @ gamma=1/eta = (L*beta**2*eta**2 + beta**4 - 4*beta**3 + beta**2*eta + 4*beta**2 - 1)/(2*eta**2)
+   coeff[GW] @ gamma=1/eta = beta*(-L*eta**2 - beta**2 + 4*beta - 4)/eta
+   coeff[X^2] @ gamma=1/eta = 0
+   coeff[XW] @ gamma=1/eta = (beta**3 - 3*beta**2 + beta*eta + 3*beta - 1)/eta**2
+
+=== Specialize beta = 0, gamma = 0 (plain GD) ===
+   coeff[s_C] @ beta=0,gamma=0 = -2/eta
+   coeff[FE] @ beta=0,gamma=0 = -2/eta
+   coeff[G^2] @ beta=0,gamma=0 = L*eta**2/2 - eta + 2
+   coeff[W^2] @ beta=0,gamma=0 = -1/(2*eta**2)
+   coeff[GW] @ beta=0,gamma=0 = 0
+   coeff[X^2] @ beta=0,gamma=0 = 0
+   coeff[XW] @ beta=0,gamma=0 = -1/eta**2

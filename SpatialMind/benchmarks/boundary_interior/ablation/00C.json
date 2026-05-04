@@ -1,0 +1,2664 @@
+{
+ "condition": "00C",
+ "domain": "boundary_interior",
+ "primitives": {
+  "relation": false,
+  "transform": false,
+  "contrastive": true
+ },
+ "n_cases": 87,
+ "cases": [
+  {
+   "case_id": "unit_square-trans-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "unit_square",
+    "operation": "translate",
+    "delta": [
+     5,
+     0
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "unit_square-trans-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "unit_square",
+    "operation": "translate",
+    "delta": [
+     0,
+     7
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "unit_square-trans-2",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "unit_square",
+    "operation": "translate",
+    "delta": [
+     3,
+     4
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "unit_square-shear-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.8284269999999996,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "unit_square",
+    "operation": "shear",
+    "matrix": [
+     [
+      1,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    "determinant": 1,
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "unit_square-shear-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.8284269999999996,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "unit_square",
+    "operation": "shear",
+    "matrix": [
+     [
+      1,
+      0
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "determinant": 1,
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "unit_square-scale-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 1.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 2.0,
+    "B_a": 2,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "unit_square",
+    "operation": "scale_non_uniform",
+    "scale": [
+     2,
+     1
+    ],
+    "determinant": 2,
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "unit_square-scale-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 2.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 4.0,
+    "B_a": 4,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "unit_square",
+    "operation": "scale_non_uniform",
+    "scale": [
+     1,
+     3
+    ],
+    "determinant": 3,
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "rectangle_4x3-addv-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "rectangle_4x3",
+    "operation": "add_vertex",
+    "after_index": 0,
+    "position": [
+     1,
+     0
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 5
+   }
+  },
+  {
+   "case_id": "rectangle_4x3-addv-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "rectangle_4x3",
+    "operation": "add_vertex",
+    "after_index": 0,
+    "position": [
+     2,
+     0
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 5
+   }
+  },
+  {
+   "case_id": "rectangle_4x3-addv-2",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "rectangle_4x3",
+    "operation": "add_vertex",
+    "after_index": 0,
+    "position": [
+     3,
+     0
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 5
+   }
+  },
+  {
+   "case_id": "rectangle_4x3-trans-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "rectangle_4x3",
+    "operation": "translate",
+    "delta": [
+     5,
+     0
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "rectangle_4x3-trans-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "rectangle_4x3",
+    "operation": "translate",
+    "delta": [
+     0,
+     7
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "rectangle_4x3-trans-2",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "rectangle_4x3",
+    "operation": "translate",
+    "delta": [
+     3,
+     4
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "rectangle_4x3-shear-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 2.4852810000000005,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "rectangle_4x3",
+    "operation": "shear",
+    "matrix": [
+     [
+      1,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    "determinant": 1,
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "rectangle_4x3-shear-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 3.3137079999999983,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "rectangle_4x3",
+    "operation": "shear",
+    "matrix": [
+     [
+      1,
+      0
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "determinant": 1,
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "rectangle_4x3-scale-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 12.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 8.0,
+    "B_a": 8,
+    "B_b": 0,
+    "I_a": 8,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "rectangle_4x3",
+    "operation": "scale_non_uniform",
+    "scale": [
+     2,
+     1
+    ],
+    "determinant": 2,
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "rectangle_4x3-scale-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 24.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 12.0,
+    "B_a": 12,
+    "B_b": 0,
+    "I_a": 18,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "rectangle_4x3",
+    "operation": "scale_non_uniform",
+    "scale": [
+     1,
+     3
+    ],
+    "determinant": 3,
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "right_triangle-addv-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "right_triangle",
+    "operation": "add_vertex",
+    "after_index": 0,
+    "position": [
+     1,
+     0
+    ],
+    "n_vertices_pre": 3,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "right_triangle-addv-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "right_triangle",
+    "operation": "add_vertex",
+    "after_index": 0,
+    "position": [
+     2,
+     0
+    ],
+    "n_vertices_pre": 3,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "right_triangle-addv-2",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "right_triangle",
+    "operation": "add_vertex",
+    "after_index": 0,
+    "position": [
+     3,
+     0
+    ],
+    "n_vertices_pre": 3,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "right_triangle-trans-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "right_triangle",
+    "operation": "translate",
+    "delta": [
+     5,
+     0
+    ],
+    "n_vertices_pre": 3,
+    "n_vertices_post": 3
+   }
+  },
+  {
+   "case_id": "right_triangle-trans-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "right_triangle",
+    "operation": "translate",
+    "delta": [
+     0,
+     7
+    ],
+    "n_vertices_pre": 3,
+    "n_vertices_post": 3
+   }
+  },
+  {
+   "case_id": "right_triangle-trans-2",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "right_triangle",
+    "operation": "translate",
+    "delta": [
+     3,
+     4
+    ],
+    "n_vertices_pre": 3,
+    "n_vertices_post": 3
+   }
+  },
+  {
+   "case_id": "right_triangle-shear-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": -1.0821129999999997,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "right_triangle",
+    "operation": "shear",
+    "matrix": [
+     [
+      1,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    "determinant": 1,
+    "n_vertices_pre": 3,
+    "n_vertices_post": 3
+   }
+  },
+  {
+   "case_id": "right_triangle-shear-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 1.5987340000000003,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "right_triangle",
+    "operation": "shear",
+    "matrix": [
+     [
+      1,
+      0
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "determinant": 1,
+    "n_vertices_pre": 3,
+    "n_vertices_post": 3
+   }
+  },
+  {
+   "case_id": "right_triangle-scale-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 12.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 11.438008,
+    "B_a": 8,
+    "B_b": 0,
+    "I_a": 8,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "right_triangle",
+    "operation": "scale_non_uniform",
+    "scale": [
+     2,
+     1
+    ],
+    "determinant": 2,
+    "n_vertices_pre": 3,
+    "n_vertices_post": 3
+   }
+  },
+  {
+   "case_id": "right_triangle-scale-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 24.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 14.205305,
+    "B_a": 12,
+    "B_b": 0,
+    "I_a": 18,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "right_triangle",
+    "operation": "scale_non_uniform",
+    "scale": [
+     1,
+     3
+    ],
+    "determinant": 3,
+    "n_vertices_pre": 3,
+    "n_vertices_post": 3
+   }
+  },
+  {
+   "case_id": "L_shape-addv-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "L_shape",
+    "operation": "add_vertex",
+    "after_index": 0,
+    "position": [
+     1,
+     0
+    ],
+    "n_vertices_pre": 6,
+    "n_vertices_post": 7
+   }
+  },
+  {
+   "case_id": "L_shape-addv-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "L_shape",
+    "operation": "add_vertex",
+    "after_index": 0,
+    "position": [
+     2,
+     0
+    ],
+    "n_vertices_pre": 6,
+    "n_vertices_post": 7
+   }
+  },
+  {
+   "case_id": "L_shape-addv-2",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "L_shape",
+    "operation": "add_vertex",
+    "after_index": 0,
+    "position": [
+     3,
+     0
+    ],
+    "n_vertices_pre": 6,
+    "n_vertices_post": 7
+   }
+  },
+  {
+   "case_id": "L_shape-trans-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "L_shape",
+    "operation": "translate",
+    "delta": [
+     5,
+     0
+    ],
+    "n_vertices_pre": 6,
+    "n_vertices_post": 6
+   }
+  },
+  {
+   "case_id": "L_shape-trans-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "L_shape",
+    "operation": "translate",
+    "delta": [
+     0,
+     7
+    ],
+    "n_vertices_pre": 6,
+    "n_vertices_post": 6
+   }
+  },
+  {
+   "case_id": "L_shape-trans-2",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "L_shape",
+    "operation": "translate",
+    "delta": [
+     3,
+     4
+    ],
+    "n_vertices_pre": 6,
+    "n_vertices_post": 6
+   }
+  },
+  {
+   "case_id": "L_shape-shear-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 3.3137079999999983,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "L_shape",
+    "operation": "shear",
+    "matrix": [
+     [
+      1,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    "determinant": 1,
+    "n_vertices_pre": 6,
+    "n_vertices_post": 6
+   }
+  },
+  {
+   "case_id": "L_shape-shear-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 3.3137079999999983,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "L_shape",
+    "operation": "shear",
+    "matrix": [
+     [
+      1,
+      0
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "determinant": 1,
+    "n_vertices_pre": 6,
+    "n_vertices_post": 6
+   }
+  },
+  {
+   "case_id": "L_shape-scale-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 12.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 8.0,
+    "B_a": 8,
+    "B_b": 0,
+    "I_a": 8,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "L_shape",
+    "operation": "scale_non_uniform",
+    "scale": [
+     2,
+     1
+    ],
+    "determinant": 2,
+    "n_vertices_pre": 6,
+    "n_vertices_post": 6
+   }
+  },
+  {
+   "case_id": "L_shape-scale-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 24.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 16.0,
+    "B_a": 16,
+    "B_b": 0,
+    "I_a": 16,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "L_shape",
+    "operation": "scale_non_uniform",
+    "scale": [
+     1,
+     3
+    ],
+    "determinant": 3,
+    "n_vertices_pre": 6,
+    "n_vertices_post": 6
+   }
+  },
+  {
+   "case_id": "diamond-addv-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "diamond",
+    "operation": "add_vertex",
+    "after_index": 0,
+    "position": [
+     4,
+     1
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 5
+   }
+  },
+  {
+   "case_id": "diamond-addv-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "diamond",
+    "operation": "add_vertex",
+    "after_index": 0,
+    "position": [
+     5,
+     2
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 5
+   }
+  },
+  {
+   "case_id": "diamond-addv-2",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "diamond",
+    "operation": "add_vertex",
+    "after_index": 1,
+    "position": [
+     5,
+     4
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 5
+   }
+  },
+  {
+   "case_id": "diamond-trans-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "diamond",
+    "operation": "translate",
+    "delta": [
+     5,
+     0
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "diamond-trans-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "diamond",
+    "operation": "translate",
+    "delta": [
+     0,
+     7
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "diamond-trans-2",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "diamond",
+    "operation": "translate",
+    "delta": [
+     3,
+     4
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "diamond-shear-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 2.445845000000002,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "diamond",
+    "operation": "shear",
+    "matrix": [
+     [
+      1,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    "determinant": 1,
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "diamond-shear-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 2.445845000000002,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "diamond",
+    "operation": "shear",
+    "matrix": [
+     [
+      1,
+      0
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "determinant": 1,
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "diamond-scale-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 18.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 9.862253000000003,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 18,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "diamond",
+    "operation": "scale_non_uniform",
+    "scale": [
+     2,
+     1
+    ],
+    "determinant": 2,
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "diamond-scale-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 36.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 20.976769000000004,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 36,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "diamond",
+    "operation": "scale_non_uniform",
+    "scale": [
+     1,
+     3
+    ],
+    "determinant": 3,
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "staircase-addv-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "staircase",
+    "operation": "add_vertex",
+    "after_index": 6,
+    "position": [
+     2,
+     3
+    ],
+    "n_vertices_pre": 8,
+    "n_vertices_post": 9
+   }
+  },
+  {
+   "case_id": "staircase-addv-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "staircase",
+    "operation": "add_vertex",
+    "after_index": 6,
+    "position": [
+     1,
+     3
+    ],
+    "n_vertices_pre": 8,
+    "n_vertices_post": 9
+   }
+  },
+  {
+   "case_id": "staircase-addv-2",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "staircase",
+    "operation": "add_vertex",
+    "after_index": 7,
+    "position": [
+     0,
+     2
+    ],
+    "n_vertices_pre": 8,
+    "n_vertices_post": 9
+   }
+  },
+  {
+   "case_id": "staircase-trans-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "staircase",
+    "operation": "translate",
+    "delta": [
+     5,
+     0
+    ],
+    "n_vertices_pre": 8,
+    "n_vertices_post": 8
+   }
+  },
+  {
+   "case_id": "staircase-trans-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "staircase",
+    "operation": "translate",
+    "delta": [
+     0,
+     7
+    ],
+    "n_vertices_pre": 8,
+    "n_vertices_post": 8
+   }
+  },
+  {
+   "case_id": "staircase-trans-2",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "staircase",
+    "operation": "translate",
+    "delta": [
+     3,
+     4
+    ],
+    "n_vertices_pre": 8,
+    "n_vertices_post": 8
+   }
+  },
+  {
+   "case_id": "staircase-shear-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 2.4852810000000005,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "staircase",
+    "operation": "shear",
+    "matrix": [
+     [
+      1,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    "determinant": 1,
+    "n_vertices_pre": 8,
+    "n_vertices_post": 8
+   }
+  },
+  {
+   "case_id": "staircase-shear-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 2.4852810000000005,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "staircase",
+    "operation": "shear",
+    "matrix": [
+     [
+      1,
+      0
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "determinant": 1,
+    "n_vertices_pre": 8,
+    "n_vertices_post": 8
+   }
+  },
+  {
+   "case_id": "staircase-scale-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 6.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 6.0,
+    "B_a": 6,
+    "B_b": 0,
+    "I_a": 3,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "staircase",
+    "operation": "scale_non_uniform",
+    "scale": [
+     2,
+     1
+    ],
+    "determinant": 2,
+    "n_vertices_pre": 8,
+    "n_vertices_post": 8
+   }
+  },
+  {
+   "case_id": "staircase-scale-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 12.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 12.0,
+    "B_a": 12,
+    "B_b": 0,
+    "I_a": 6,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "staircase",
+    "operation": "scale_non_uniform",
+    "scale": [
+     1,
+     3
+    ],
+    "determinant": 3,
+    "n_vertices_pre": 8,
+    "n_vertices_post": 8
+   }
+  },
+  {
+   "case_id": "thin_triangle-addv-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "thin_triangle",
+    "operation": "add_vertex",
+    "after_index": 0,
+    "position": [
+     1,
+     0
+    ],
+    "n_vertices_pre": 3,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "thin_triangle-addv-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "thin_triangle",
+    "operation": "add_vertex",
+    "after_index": 0,
+    "position": [
+     2,
+     0
+    ],
+    "n_vertices_pre": 3,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "thin_triangle-addv-2",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "thin_triangle",
+    "operation": "add_vertex",
+    "after_index": 0,
+    "position": [
+     3,
+     0
+    ],
+    "n_vertices_pre": 3,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "thin_triangle-trans-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "thin_triangle",
+    "operation": "translate",
+    "delta": [
+     5,
+     0
+    ],
+    "n_vertices_pre": 3,
+    "n_vertices_post": 3
+   }
+  },
+  {
+   "case_id": "thin_triangle-trans-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "thin_triangle",
+    "operation": "translate",
+    "delta": [
+     0,
+     7
+    ],
+    "n_vertices_pre": 3,
+    "n_vertices_post": 3
+   }
+  },
+  {
+   "case_id": "thin_triangle-trans-2",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "thin_triangle",
+    "operation": "translate",
+    "delta": [
+     3,
+     4
+    ],
+    "n_vertices_pre": 3,
+    "n_vertices_post": 3
+   }
+  },
+  {
+   "case_id": "thin_triangle-shear-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": -0.5802770000000024,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "thin_triangle",
+    "operation": "shear",
+    "matrix": [
+     [
+      1,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    "determinant": 1,
+    "n_vertices_pre": 3,
+    "n_vertices_post": 3
+   }
+  },
+  {
+   "case_id": "thin_triangle-shear-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 7.545883999999997,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "thin_triangle",
+    "operation": "shear",
+    "matrix": [
+     [
+      1,
+      0
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "determinant": 1,
+    "n_vertices_pre": 3,
+    "n_vertices_post": 3
+   }
+  },
+  {
+   "case_id": "thin_triangle-scale-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 5.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 19.975108000000002,
+    "B_a": 10,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "thin_triangle",
+    "operation": "scale_non_uniform",
+    "scale": [
+     2,
+     1
+    ],
+    "determinant": 2,
+    "n_vertices_pre": 3,
+    "n_vertices_post": 3
+   }
+  },
+  {
+   "case_id": "thin_triangle-scale-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 10.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 2.3904309999999995,
+    "B_a": 2,
+    "B_b": 0,
+    "I_a": 9,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "thin_triangle",
+    "operation": "scale_non_uniform",
+    "scale": [
+     1,
+     3
+    ],
+    "determinant": 3,
+    "n_vertices_pre": 3,
+    "n_vertices_post": 3
+   }
+  },
+  {
+   "case_id": "big_square-addv-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "big_square",
+    "operation": "add_vertex",
+    "after_index": 0,
+    "position": [
+     1,
+     0
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 5
+   }
+  },
+  {
+   "case_id": "big_square-addv-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "big_square",
+    "operation": "add_vertex",
+    "after_index": 0,
+    "position": [
+     2,
+     0
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 5
+   }
+  },
+  {
+   "case_id": "big_square-addv-2",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 1,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "big_square",
+    "operation": "add_vertex",
+    "after_index": 0,
+    "position": [
+     3,
+     0
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 5
+   }
+  },
+  {
+   "case_id": "big_square-trans-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "big_square",
+    "operation": "translate",
+    "delta": [
+     5,
+     0
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "big_square-trans-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "big_square",
+    "operation": "translate",
+    "delta": [
+     0,
+     7
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "big_square-trans-2",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "big_square",
+    "operation": "translate",
+    "delta": [
+     3,
+     4
+    ],
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "big_square-shear-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 4.142136000000001,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "big_square",
+    "operation": "shear",
+    "matrix": [
+     [
+      1,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    "determinant": 1,
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "big_square-shear-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 4.142136000000001,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "big_square",
+    "operation": "shear",
+    "matrix": [
+     [
+      1,
+      0
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "determinant": 1,
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "big_square-scale-0",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 25.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 10.0,
+    "B_a": 10,
+    "B_b": 0,
+    "I_a": 20,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "big_square",
+    "operation": "scale_non_uniform",
+    "scale": [
+     2,
+     1
+    ],
+    "determinant": 2,
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "big_square-scale-1",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 50.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 20.0,
+    "B_a": 20,
+    "B_b": 0,
+    "I_a": 40,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset": "big_square",
+    "operation": "scale_non_uniform",
+    "scale": [
+     1,
+     3
+    ],
+    "determinant": 3,
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "crosspair-0-rectangle_4x3-vs-L_shape",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset_a": "rectangle_4x3",
+    "preset_b": "L_shape",
+    "operation": "identity_compare",
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "crosspair-1-right_triangle-vs-diamond",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset_a": "right_triangle",
+    "preset_b": "diamond",
+    "operation": "identity_compare",
+    "n_vertices_pre": 3,
+    "n_vertices_post": 3
+   }
+  },
+  {
+   "case_id": "crosspair-2-staircase-vs-thin_triangle",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset_a": "staircase",
+    "preset_b": "thin_triangle",
+    "operation": "identity_compare",
+    "n_vertices_pre": 8,
+    "n_vertices_post": 8
+   }
+  },
+  {
+   "case_id": "crosspair-3-unit_square-vs-big_square",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset_a": "unit_square",
+    "preset_b": "big_square",
+    "operation": "identity_compare",
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "crosspair-4-L_shape-vs-staircase",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset_a": "L_shape",
+    "preset_b": "staircase",
+    "operation": "identity_compare",
+    "n_vertices_pre": 6,
+    "n_vertices_post": 6
+   }
+  },
+  {
+   "case_id": "crosspair-5-big_square-vs-diamond",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset_a": "big_square",
+    "preset_b": "diamond",
+    "operation": "identity_compare",
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "crosspair-6-rectangle_4x3-vs-right_triangle",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset_a": "rectangle_4x3",
+    "preset_b": "right_triangle",
+    "operation": "identity_compare",
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  },
+  {
+   "case_id": "crosspair-7-L_shape-vs-diamond",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset_a": "L_shape",
+    "preset_b": "diamond",
+    "operation": "identity_compare",
+    "n_vertices_pre": 6,
+    "n_vertices_post": 6
+   }
+  },
+  {
+   "case_id": "crosspair-8-thin_triangle-vs-rectangle_4x3",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset_a": "thin_triangle",
+    "preset_b": "rectangle_4x3",
+    "operation": "identity_compare",
+    "n_vertices_pre": 3,
+    "n_vertices_post": 3
+   }
+  },
+  {
+   "case_id": "crosspair-9-big_square-vs-L_shape",
+   "summary_delta": {
+    "area_b": 0.0,
+    "n_vertices_a": 0,
+    "pick_holds_a": 0,
+    "area_a": 0.0,
+    "pick_holds_b": 0,
+    "I_b": 0,
+    "perimeter_b": 0.0,
+    "perimeter_a": 0.0,
+    "B_a": 0,
+    "B_b": 0,
+    "I_a": 0,
+    "n_vertices_b": 0
+   },
+   "metadata": {
+    "preset_a": "big_square",
+    "preset_b": "L_shape",
+    "operation": "identity_compare",
+    "n_vertices_pre": 4,
+    "n_vertices_post": 4
+   }
+  }
+ ],
+ "counterfactual": [
+  {
+   "strategy": "boundary_relaxation",
+   "original_condition": {
+    "is_lattice": true,
+    "vertices": [
+     [
+      0,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      3
+     ],
+     [
+      0,
+      3
+     ]
+    ]
+   },
+   "modified_condition": {
+    "is_lattice": false,
+    "displaced_vertex_index": 0,
+    "displacement": [
+     0.5,
+     0
+    ],
+    "vertices": [
+     [
+      0.5,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      3
+     ],
+     [
+      0,
+      3
+     ]
+    ]
+   },
+   "original_result": {
+    "area": 12.0,
+    "B": 14,
+    "I": 6,
+    "pick_holds": true
+   },
+   "counterfactual_result": {
+    "area": 11.25,
+    "B": -1,
+    "I": -1,
+    "pick_holds": false
+   },
+   "delta": {
+    "area_change": -0.75,
+    "B_change_meaning": "undefined (not a lattice polygon)",
+    "pick_applicability_lost": true
+   },
+   "condition_is_critical": true,
+   "explanation": "Pick's theorem requires lattice (integer) vertices. Moving one vertex by 0.5 makes B and I (counts of integer points on/in the polygon) ambiguous — Pick's formula no longer applies. The shoelace area is still defined but cannot be recovered from B + I."
+  },
+  {
+   "strategy": "operation_perturbation",
+   "original_condition": {
+    "operation": "shear",
+    "matrix": [
+     [
+      1,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    "determinant": 1
+   },
+   "modified_condition": {
+    "operation": "scale_non_uniform",
+    "scale": [
+     2,
+     1
+    ],
+    "determinant": 2
+   },
+   "original_result": {
+    "area_after": 12.0,
+    "B_after": 14,
+    "I_after": 6,
+    "pick_holds_after": true
+   },
+   "counterfactual_result": {
+    "area_after": 24.0,
+    "B_after": 22,
+    "I_after": 14,
+    "pick_holds_after": true
+   },
+   "delta": {
+    "area_change_positive": 0.0,
+    "area_change_counterfactual": 12.0,
+    "pick_holds_both": true,
+    "ratio_area_change": 2.0
+   },
+   "condition_is_critical": true,
+   "explanation": "Linear maps with |det|=1 (unimodular) preserve both area AND lattice structure. Maps with |det|!=1 still send lattice polygons to lattice polygons (if entries are integers), so Pick continues to apply, but the area scales by the determinant. Shear preserves area; non-uniform scale does not."
+  },
+  {
+   "strategy": "condition_removal",
+   "original_condition": {
+    "is_simple": true,
+    "vertices": [
+     [
+      0,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      3
+     ],
+     [
+      0,
+      3
+     ]
+    ]
+   },
+   "modified_condition": {
+    "is_simple": false,
+    "vertices": [
+     [
+      0,
+      0
+     ],
+     [
+      4,
+      3
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      0,
+      3
+     ]
+    ],
+    "swap": [
+     1,
+     2
+    ]
+   },
+   "original_result": {
+    "area": 12.0,
+    "B": 14,
+    "I": 6,
+    "pick_holds": true
+   },
+   "counterfactual_result": {
+    "area": 0.0,
+    "B": 8,
+    "I": -1,
+    "pick_holds": false
+   },
+   "delta": {
+    "is_simple_lost": true,
+    "pick_applicability_lost": true,
+    "area_shoelace_changed": true
+   },
+   "condition_is_critical": true,
+   "explanation": "Pick's theorem assumes the polygon is *simple* (no edge self-intersections). For a self-intersecting polygon, 'interior' is ambiguous (e.g. bowtie has two lobes) and the I count is meaningless. The shoelace formula computes a *signed* area that no longer matches I + B/2 - 1."
+  }
+ ]
+}

@@ -1,0 +1,65 @@
+[
+  {
+    "beta": 0.0,
+    "n_points": 5,
+    "slope": -0.9486335135208324,
+    "intercept": -1.9452759859968782,
+    "rate": "O(1/T)",
+    "tau_max_Tmax": 0.163044,
+    "tau_max_sqrtTmax": 0.04209777977993614
+  },
+  {
+    "beta": 0.1,
+    "n_points": 5,
+    "slope": -0.9700919534510698,
+    "intercept": -1.986129496486162,
+    "rate": "O(1/T)",
+    "tau_max_Tmax": 0.148136835,
+    "tau_max_sqrtTmax": 0.0382487663276584
+  },
+  {
+    "beta": 0.3,
+    "n_points": 5,
+    "slope": -1.1440732175058097,
+    "intercept": -1.645188735414195,
+    "rate": "O(1/T)",
+    "tau_max_Tmax": 0.1360602,
+    "tau_max_sqrtTmax": 0.03513059257877669
+  },
+  {
+    "beta": 0.5,
+    "n_points": 5,
+    "slope": -1.1664230432619505,
+    "intercept": -1.2597485149040133,
+    "rate": "O(1/T)",
+    "tau_max_Tmax": 0.17702820000000002,
+    "tau_max_sqrtTmax": 0.045708484693938393
+  },
+  {
+    "beta": 0.7,
+    "n_points": 5,
+    "slope": -0.859219008161598,
+    "intercept": -1.249971263843608,
+    "rate": "O(T^-2/3) or so",
+    "tau_max_Tmax": 0.34453455,
+    "tau_max_sqrtTmax": 0.08895843828953777
+  },
+  {
+    "beta": 0.8,
+    "n_points": 3,
+    "slope": -0.40366146736855457,
+    "intercept": -1.757328435285942,
+    "rate": "O(T^-1/2)",
+    "tau_max_Tmax": 0.5547527999999999,
+    "tau_max_sqrtTmax": 0.20967684970239323
+  },
+  {
+    "beta": 0.9,
+    "n_points": 5,
+    "slope": -0.32848841420840424,
+    "intercept": -1.7711570791949107,
+    "rate": "O(T^-1/3)",
+    "tau_max_Tmax": 1.3940598,
+    "tau_max_sqrtTmax": 0.25451933299038015
+  }
+]

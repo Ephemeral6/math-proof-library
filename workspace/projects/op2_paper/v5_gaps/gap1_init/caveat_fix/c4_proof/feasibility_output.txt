@@ -1,0 +1,49 @@
+Caveat 1 C4 — Route feasibility checks
+mpmath dps = 50
+
+============================================================
+Route A — Hessian Lipschitz check
+============================================================
+  cycle vertex λe_0: Hessian ~ diag 0.3870 (μ=0.387, L=1.000)
+      eigvals: (0.3870, 0.3870)
+  inside C̃ at origin: Hessian ~ diag 1.0000 (μ=0.387, L=1.000)
+      eigvals: (1.0000, 1.0000)
+  inside C̃ small: Hessian ~ diag 1.0000 (μ=0.387, L=1.000)
+      eigvals: (1.0000, 1.0000)
+  just outside polytope: Hessian ~ diag 0.6935 (μ=0.387, L=1.000)
+      eigvals: (1.0000, 0.3870)
+  → Goujaud f_0 has piecewise-constant Hessian (μI outside, ~LI inside).
+  → NOT C², so standard Floquet basin theorem doesn't directly apply.
+  → Route A: NOT VIABLE without modification.
+
+============================================================
+Route C — interval arithmetic feasibility
+============================================================
+  ERROR: unsupported format string passed to ivmpf.__format__
+  → Route C: NOT VIABLE without significant infrastructure.
+
+============================================================
+Route D — relative-to-cycle coordinate ξ_t = x_t - cycle_vertex
+============================================================
+  T_0 = 30
+  Center orbit x_T: (-0.121580, 0.714663), ‖x_T‖=0.724931
+  Center ξ (vs polytope vertex): ‖ξ_polytope‖ = 9.9977e-01
+  Center ξ (vs OP-2 cycle λe_T): ‖ξ_op2‖     = 1.0943e+00
+
+  Comparison across 8 corners:
+  corner                               ‖ξ_op2‖   ‖x - x_center‖  ‖ξ_op2 - ξ_op2_center‖
+  (0.78,3.20,0.375)                 1.0860e+00       5.3586e-02              5.3586e-02
+  (0.78,3.20,0.400)                 1.1083e+00       5.5044e-02              5.5044e-02
+  (0.78,3.32,0.375)                 1.1090e+00       8.3096e-02              8.3096e-02
+  (0.78,3.32,0.400)                 1.1198e+00       3.9838e-02              3.9838e-02
+  (0.82,3.20,0.375)                 1.4765e+00       5.0293e-01              5.0293e-01
+  (0.82,3.20,0.400)                 1.2073e+00       1.5440e-01              1.5440e-01
+  (0.82,3.32,0.375)                 1.1691e+00       1.6640e-01              1.6640e-01
+  (0.82,3.32,0.400)                 1.2560e+00       3.0348e-01              3.0348e-01
+
+  Max ‖ξ_op2‖ over corners = 1.4765e+00
+  Max ‖x - x_center‖     = 5.0293e-01
+  Max ‖ξ_op2 - ξ_op2_center‖ = 5.0293e-01
+
+  → Route D: ξ-Lipschitz NOT tighter than x-Lipschitz.
+Total wall time: 0.1s

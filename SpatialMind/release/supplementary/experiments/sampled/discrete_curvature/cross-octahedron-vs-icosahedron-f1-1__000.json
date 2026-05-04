@@ -1,0 +1,35 @@
+{
+ "domain": "discrete_curvature",
+ "condition": "000",
+ "primitives": {
+  "relation": false,
+  "transform": false,
+  "contrastive": false
+ },
+ "case_id": "cross-octahedron-vs-icosahedron-f1-1",
+ "case_data": {
+  "case_id": "cross-octahedron-vs-icosahedron-f1-1",
+  "summary_delta": {
+   "n_vertices_a": 1,
+   "euler_characteristic_match": 0,
+   "euler_characteristic_a": 0,
+   "euler_characteristic_b": 0,
+   "n_edges_a": 3,
+   "gauss_bonnet_ratio_b": 0.0,
+   "total_curvature_b": 0.0,
+   "n_vertices_b": 0,
+   "n_faces_b": 0,
+   "total_curvature_a": 0.0,
+   "n_edges_b": 0,
+   "gauss_bonnet_ratio_a": 0.0,
+   "n_faces_a": 2
+  },
+  "metadata": {
+   "preset_a": "octahedron",
+   "preset_b": "icosahedron",
+   "operation": "stellar_subdivision",
+   "face_index": 1,
+   "kind": "cross_pair"
+  }
+ }
+}

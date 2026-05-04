@@ -1,0 +1,18 @@
+{
+  "lemma_name": "SHB.Foundations.Defs",
+  "kind": "definition_bundle",
+  "nl_statement": "Definitions for the Stochastic Heavy Ball iteration: shbStep, shbState, shbIter (deterministic); shbStochStep, shbStochState, shbStochIter (with explicit noise sequence ξ : ℕ → E); plus the stability region S(L) = {(β,η) : 0 ≤ β < 1, 0 < η ≤ 2(1+β)/L} and the Goujaud feasibility region F(L) characterised by η·L·(1+β+β²) ≤ 2(1-β²).",
+  "lean_signature": "namespace SHB.Foundations\ndef shbStep (β η : ℝ) (f' : E → E) : E × E → E × E\ndef shbState : ℕ → E × E\ndef shbIter (β η : ℝ) (f' : E → E) (x₀ xPrev : E) (t : ℕ) : E\ndef shbStochStep / shbStochState / shbStochIter (with noise ξ : ℕ → E)\ndef stabilityRegion (L : ℝ) : Set (ℝ × ℝ)\ndef goujaudFeasible (L : ℝ) : Set (ℝ × ℝ)",
+  "lean_file": "LeanAgent/Generated/SHB/Defs.lean",
+  "imports": ["Mathlib"],
+  "depends_on": [],
+  "assumptions": ["E real vector space (AddCommGroup E + Module ℝ E) for iterations; pure ℝ for regions"],
+  "verdict": "CERTIFIED",
+  "n_stuck": 0,
+  "pr_ready": true,
+  "abstraction_level": "AddCommGroup E + Module ℝ E (generic)",
+  "reuse_potential": "high",
+  "reuse_reason": "every SHB convergence proof needs these definitions",
+  "synthesized": false,
+  "ts": "2026-04-28T23:20:00+08:00"
+}

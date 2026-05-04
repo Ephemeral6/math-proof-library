@@ -1,7 +1,7 @@
 # SAM Convergence to Flat Minima
 
 ## Source
-- Paper: Foret et al. 2021 (ICLR) — "Sharpness-Aware Minimization for Efficiently Improving Generalization"
+- Paper: Andriushchenko & Flammarion 2022 (ICML) — "Towards Understanding Sharpness-Aware Minimization" (theoretical convergence analysis used here); original SAM proposed by Foret et al. 2021 (ICLR) — "Sharpness-Aware Minimization for Efficiently Improving Generalization" (empirical / PAC-Bayes)
 - Context: Convergence analysis of SAM in the non-convex setting; proves that SAM finds approximate stationary points of the worst-case (sharpness-aware) objective
 
 ## Statement

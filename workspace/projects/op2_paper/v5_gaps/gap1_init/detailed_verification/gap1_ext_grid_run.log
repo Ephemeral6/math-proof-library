@@ -1,0 +1,91 @@
+========================================================================
+R*_ext 1000-grid verification — mpmath dps=100, T=10000
+R*_ext = (0.77, 0.82) x (3.18, 3.36) x (0.3, 0.42)
+Volume = 1.0800e-03
+Wall start: 2026-04-29 22:15:55
+CPU count: 20
+========================================================================
+
+Running 8 corner + 1000 grid = 1008 points
+Using 19 worker processes
+
+  [  50/1008]  elapsed=   14.3s  eta=  273.1s  last=ext_corner_101  verdict=cycle
+  [ 100/1008]  elapsed=   27.7s  eta=  251.3s  last=ext_grid_000803  verdict=cycle
+  [ 150/1008]  elapsed=   28.2s  eta=  161.5s  last=ext_grid_010209  verdict=cycle
+  [ 200/1008]  elapsed=   44.7s  eta=  180.8s  last=ext_grid_010901  verdict=cycle
+  [ 250/1008]  elapsed=   66.3s  eta=  200.9s  last=ext_grid_020401  verdict=cycle
+  [ 300/1008]  elapsed=   67.6s  eta=  159.5s  last=ext_grid_020709  verdict=cycle
+  [ 350/1008]  elapsed=   90.2s  eta=  169.6s  last=ext_grid_030103  verdict=cycle
+  [ 400/1008]  elapsed=  111.1s  eta=  168.9s  last=ext_grid_030709  verdict=cycle
+  [ 450/1008]  elapsed=  114.1s  eta=  141.4s  last=ext_grid_040009  verdict=cycle
+  [ 500/1008]  elapsed=  136.2s  eta=  138.4s  last=ext_grid_040807  verdict=cycle
+  [ 550/1008]  elapsed=  154.6s  eta=  128.7s  last=ext_grid_050307  verdict=cycle
+  [ 600/1008]  elapsed=  159.6s  eta=  108.5s  last=ext_grid_050807  verdict=cycle
+  [ 650/1008]  elapsed=  181.2s  eta=   99.8s  last=ext_grid_060307  verdict=cycle
+  [ 700/1008]  elapsed=  199.8s  eta=   87.9s  last=ext_grid_060807  verdict=cycle
+  [ 750/1008]  elapsed=  205.2s  eta=   70.6s  last=ext_grid_070405  verdict=cycle
+  [ 800/1008]  elapsed=  226.5s  eta=   58.9s  last=ext_grid_070901  verdict=cycle
+  [ 850/1008]  elapsed=  246.3s  eta=   45.8s  last=ext_grid_080307  verdict=cycle
+  [ 900/1008]  elapsed=  251.5s  eta=   30.2s  last=ext_grid_080807  verdict=cycle
+  [ 950/1008]  elapsed=  271.6s  eta=   16.6s  last=ext_grid_090401  verdict=decay
+  [1000/1008]  elapsed=  288.2s  eta=    2.3s  last=ext_grid_090807  verdict=cycle
+  [1008/1008]  elapsed=  294.3s  eta=    0.0s  last=ext_grid_090909  verdict=cycle
+
+========================================================================
+SUMMARY
+========================================================================
+  Corners: 8/8 cycle
+  Grid:    967/1000 cycle  (33 decay, 0 other)
+
+  GRID FAILURES (33 points):
+    ext_grid_030501  b=0.7866666666666666 etaL=3.28 kap=0.3133333333333333  |x_T|=2.4981056210519765070972044045  decay
+    ext_grid_030601  b=0.7866666666666666 etaL=3.3 kap=0.3133333333333333  |x_T|=1.1331902000663628523167740967  decay
+    ext_grid_030701  b=0.7866666666666666 etaL=3.32 kap=0.3133333333333333  |x_T|=1.0806505811007087197223677990  decay
+    ext_grid_030800  b=0.7866666666666666 etaL=3.34 kap=0.3  |x_T|=2.4822570493073591156553586046  decay
+    ext_grid_030801  b=0.7866666666666666 etaL=3.34 kap=0.3133333333333333  |x_T|=6.1290898924192192151577899121  decay
+    ext_grid_030802  b=0.7866666666666666 etaL=3.34 kap=0.32666666666666666  |x_T|=2.2293989740173144655327034882  decay
+    ext_grid_030900  b=0.7866666666666666 etaL=3.36 kap=0.3  |x_T|=1.2159280072238437646716779565  decay
+    ext_grid_030901  b=0.7866666666666666 etaL=3.36 kap=0.3133333333333333  |x_T|=6.9080495790405926706667692472  decay
+    ext_grid_030902  b=0.7866666666666666 etaL=3.36 kap=0.32666666666666666  |x_T|=9.0569647192141089486484683466  decay
+    ext_grid_040400  b=0.7922222222222222 etaL=3.2600000000000002 kap=0.3  |x_T|=5.8344388885021306641527343427  decay
+    ext_grid_040600  b=0.7922222222222222 etaL=3.3 kap=0.3  |x_T|=2.4625091053048525438990179098  decay
+    ext_grid_040700  b=0.7922222222222222 etaL=3.32 kap=0.3  |x_T|=3.8994144394533242608543952182  decay
+    ext_grid_040800  b=0.7922222222222222 etaL=3.34 kap=0.3  |x_T|=2.6848126306470438158200752084  decay
+    ext_grid_040900  b=0.7922222222222222 etaL=3.36 kap=0.3  |x_T|=2.5971391104634785736543916482  decay
+    ext_grid_040901  b=0.7922222222222222 etaL=3.36 kap=0.3133333333333333  |x_T|=5.6733258091016017891489077112  decay
+    ext_grid_050501  b=0.7977777777777778 etaL=3.28 kap=0.3133333333333333  |x_T|=1.4136948599455197800472359148  decay
+    ext_grid_050900  b=0.7977777777777778 etaL=3.36 kap=0.3  |x_T|=7.4817359788474845827753719002  decay
+    ext_grid_060400  b=0.8033333333333333 etaL=3.2600000000000002 kap=0.3  |x_T|=1.3601404065668809644962316390  decay
+    ext_grid_090102  b=0.82 etaL=3.2 kap=0.32666666666666666  |x_T|=3.2866030760725685554092392289  decay
+    ext_grid_090202  b=0.82 etaL=3.22 kap=0.32666666666666666  |x_T|=2.1494956277027634958976606513  decay
+    ext_grid_090204  b=0.82 etaL=3.22 kap=0.35333333333333333  |x_T|=1.7643841177227445297719363101  decay
+    ext_grid_090302  b=0.82 etaL=3.24 kap=0.32666666666666666  |x_T|=1.3909566704027840025423973236  decay
+    ext_grid_090303  b=0.82 etaL=3.24 kap=0.33999999999999997  |x_T|=7.9826398190756987567392288372  decay
+    ext_grid_090304  b=0.82 etaL=3.24 kap=0.35333333333333333  |x_T|=6.9784805060831333778091882180  decay
+    ext_grid_090401  b=0.82 etaL=3.2600000000000002 kap=0.3133333333333333  |x_T|=3.6623280982122150258751298854  decay
+    ext_grid_090404  b=0.82 etaL=3.2600000000000002 kap=0.35333333333333333  |x_T|=1.2465134409392809917282707142  decay
+    ext_grid_090504  b=0.82 etaL=3.28 kap=0.35333333333333333  |x_T|=2.0995067092994124594656125229  decay
+    ext_grid_090604  b=0.82 etaL=3.3 kap=0.35333333333333333  |x_T|=4.6840123112843998588336473454  decay
+    ext_grid_090704  b=0.82 etaL=3.32 kap=0.35333333333333333  |x_T|=2.4853501887360880070419833772  decay
+    ext_grid_090802  b=0.82 etaL=3.34 kap=0.32666666666666666  |x_T|=2.9318126288570910983624154959  decay
+    ext_grid_090804  b=0.82 etaL=3.34 kap=0.35333333333333333  |x_T|=7.7997182525173208847074513446  decay
+    ext_grid_090902  b=0.82 etaL=3.36 kap=0.32666666666666666  |x_T|=2.6947952119179889644711123030  decay
+    ext_grid_090904  b=0.82 etaL=3.36 kap=0.35333333333333333  |x_T|=2.5608879304318336160661002066  decay
+
+  Grid period-3 residual: min=0.000e+00 max=1.666e-100 mean=3.861e-101 median=3.195e-101
+  Grid rel norm dev:      min=0.000e+00 max=1.000e+00 mean=3.300e-02 median=1.010e-101
+  Grid cone distribution: {0: 515, 2: 410, -1: 33, 1: 42}
+
+--- Corner detail (8 corners) ---
+  id                  beta   etaL   kap     norm_T         p3_res         cone v
+  ext_corner_000      0.77   3.18   0.3     0.70710678118  5.15137455809   0  cycle
+  ext_corner_001      0.77   3.18   0.42    0.70710678118  3.19474688041   0  cycle
+  ext_corner_010      0.77   3.36   0.3     0.70710678118  3.19474688041   0  cycle
+  ext_corner_011      0.77   3.36   0.42    0.70710678118  3.19474688041   0  cycle
+  ext_corner_100      0.82   3.18   0.3     0.70710678118  1.01026766898   2  cycle
+  ext_corner_101      0.82   3.18   0.42    0.70710678118  7.14367119551   2  cycle
+  ext_corner_110      0.82   3.36   0.3     0.70710678118  7.35485964778   2  cycle
+  ext_corner_111      0.82   3.36   0.42    0.70710678118  5.15137455809   0  cycle
+
+Total wall time: 294.3 s
+Saved JSON to C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap1_init\detailed_verification\gap1_ext_grid_results.json

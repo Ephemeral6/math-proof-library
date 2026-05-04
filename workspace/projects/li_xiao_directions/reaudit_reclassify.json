@@ -1,0 +1,205 @@
+{
+  "counts": {
+    "period-2": 0,
+    "period-3": 0,
+    "period-6": 0,
+    "decay": 1,
+    "other-bounded": 18
+  },
+  "detail": [
+    {
+      "beta": 0.9,
+      "eta_L": 3.0380357142857144,
+      "kappa": 0.4489010724543723,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.933492767747632,
+      "min_tail": 1.035531873446291,
+      "final_norm": 1.0903705116867763
+    },
+    {
+      "beta": 0.9,
+      "eta_L": 3.1276785714285715,
+      "kappa": 0.44059489625139237,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.9111191632039533,
+      "min_tail": 0.979093718639437,
+      "final_norm": 0.979093718639437
+    },
+    {
+      "beta": 0.9,
+      "eta_L": 3.2173214285714287,
+      "kappa": 0.43024706641563965,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.9247416465991198,
+      "min_tail": 0.9854577405261973,
+      "final_norm": 0.9854577405261973
+    },
+    {
+      "beta": 0.9,
+      "eta_L": 3.306964285714286,
+      "kappa": 0.41963377578773564,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.9325339800939936,
+      "min_tail": 0.9890295395575845,
+      "final_norm": 0.9890295395575845
+    },
+    {
+      "beta": 0.9,
+      "eta_L": 3.396607142857143,
+      "kappa": 0.4092117871726817,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.93757881928577,
+      "min_tail": 0.9913160283612726,
+      "final_norm": 0.9913160283612726
+    },
+    {
+      "beta": 0.9,
+      "eta_L": 3.48625,
+      "kappa": 0.3991312198929544,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.9411113819030155,
+      "min_tail": 0.9929051557086708,
+      "final_norm": 0.9929051557086708
+    },
+    {
+      "beta": 0.9,
+      "eta_L": 3.575892857142857,
+      "kappa": 0.38944186345667653,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.9437229909219274,
+      "min_tail": 0.9940737290898533,
+      "final_norm": 0.9940737290898533
+    },
+    {
+      "beta": 0.9,
+      "eta_L": 3.6655357142857143,
+      "kappa": 0.3801541533610133,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.9457322434266608,
+      "min_tail": 0.9949691796696555,
+      "final_norm": 0.9949691796696555
+    },
+    {
+      "beta": 0.9,
+      "eta_L": 3.7551785714285715,
+      "kappa": 0.3712615103082151,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.947325980664046,
+      "min_tail": 0.9956772385007853,
+      "final_norm": 0.9956772385007853
+    },
+    {
+      "beta": 0.95,
+      "eta_L": 2.9983189655172415,
+      "kappa": 0.47497623075959194,
+      "category": "decay",
+      "period": 1,
+      "max_tail": 1.0670674783317368e-77,
+      "min_tail": 1.374723233252264e-79,
+      "final_norm": 8.349354219090569e-79
+    },
+    {
+      "beta": 0.95,
+      "eta_L": 3.09323275862069,
+      "kappa": 0.4659439035475926,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.865278260874417,
+      "min_tail": 1.199896389917988,
+      "final_norm": 1.199896389917988
+    },
+    {
+      "beta": 0.95,
+      "eta_L": 3.188146551724138,
+      "kappa": 0.4531633373128357,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.8728504198376243,
+      "min_tail": 1.205789524039667,
+      "final_norm": 1.205789524039667
+    },
+    {
+      "beta": 0.95,
+      "eta_L": 3.2830603448275864,
+      "kappa": 0.44051792366249004,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.8761456809585997,
+      "min_tail": 1.208340220605993,
+      "final_norm": 1.208340220605993
+    },
+    {
+      "beta": 0.95,
+      "eta_L": 3.3779741379310346,
+      "kappa": 0.42838672046552534,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.877989566180144,
+      "min_tail": 1.209763859252655,
+      "final_norm": 1.209763859252655
+    },
+    {
+      "beta": 0.95,
+      "eta_L": 3.472887931034483,
+      "kappa": 0.4168315992718369,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.8791678898036455,
+      "min_tail": 1.2106722760002213,
+      "final_norm": 1.2106722760002213
+    },
+    {
+      "beta": 0.95,
+      "eta_L": 3.567801724137931,
+      "kappa": 0.4058456184199413,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.8799859148138935,
+      "min_tail": 1.2113023073684719,
+      "final_norm": 1.2113023073684719
+    },
+    {
+      "beta": 0.95,
+      "eta_L": 3.6627155172413794,
+      "kappa": 0.39540230130475595,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.880586980117058,
+      "min_tail": 1.2117649182080241,
+      "final_norm": 1.2117649182080241
+    },
+    {
+      "beta": 0.95,
+      "eta_L": 3.7576293103448277,
+      "kappa": 0.3854697045943687,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.8810472937312865,
+      "min_tail": 1.2121190156964312,
+      "final_norm": 1.2121190156964312
+    },
+    {
+      "beta": 0.95,
+      "eta_L": 3.852543103448276,
+      "kappa": 0.37601526723961853,
+      "category": "other-bounded",
+      "period": null,
+      "max_tail": 1.8814111134431342,
+      "min_tail": 1.2123987724968799,
+      "final_norm": 1.2123987724968799
+    }
+  ],
+  "T_long": 8000,
+  "n_total": 100,
+  "period2_count": 0,
+  "period2_pct": 0.0
+}

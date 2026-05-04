@@ -1,0 +1,29 @@
+{
+ "domain": "surface_topology",
+ "condition": "000",
+ "primitives": {
+  "relation": false,
+  "transform": false,
+  "contrastive": false
+ },
+ "case_id": "a12-b1",
+ "case_data": {
+  "case_id": "a12-b1",
+  "summary_delta": {
+   "weight_a": -8,
+   "weight_b": 0,
+   "intersection_number": 0
+  },
+  "metadata": {
+   "surface": [
+    1,
+    2
+   ],
+   "alpha_index": 12,
+   "beta_index": 1,
+   "alpha_level": 3,
+   "beta_level": 1,
+   "i_alpha_beta": 1
+  }
+ }
+}

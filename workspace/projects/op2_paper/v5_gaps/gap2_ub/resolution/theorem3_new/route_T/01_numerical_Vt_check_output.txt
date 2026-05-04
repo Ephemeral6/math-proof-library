@@ -1,0 +1,39 @@
+L (actual) = 10.0000
+
+T-A1 twist, w=1, gamma=0
+  V_0=1.0090e+02  V_T=8.1717e-07  max_increase=-1.370e-07  monotone=True
+  loglog slope V_t = -4.8914   slope f(y_t)-f* = -5.1252
+
+T-A2 twist, w=1, gamma=1
+  V_0=1.0090e+02  V_T=8.1717e-07  max_increase=-1.370e-07  monotone=True
+  loglog slope V_t = -4.8914   slope f(y_t)-f* = -5.1252
+
+T-A3 twist, w=1, gamma=1/eta
+  V_0=1.1040e+02  V_T=9.1703e-07  max_increase=-1.537e-07  monotone=True
+  loglog slope V_t = -4.8971   slope f(y_t)-f* = -5.1252
+
+T-B1 twist, w=t+1, gamma=0
+  V_0=1.0040e+02  V_T=1.3417e-06  max_increase=-2.190e-07  monotone=True
+  loglog slope V_t = -4.7568   slope f(y_t)-f* = -5.1252
+
+T-B2 twist, w=t+1, gamma=1
+  V_0=1.0090e+02  V_T=1.3470e-06  max_increase=-2.199e-07  monotone=True
+  loglog slope V_t = -4.7578   slope f(y_t)-f* = -5.1252
+
+T-B3 twist, w=t+1, gamma=1/eta
+  V_0=1.1040e+02  V_T=1.4468e-06  max_increase=-2.366e-07  monotone=True
+  loglog slope V_t = -4.7748   slope f(y_t)-f* = -5.1252
+
+T-C  twist, w=sqrt(t+1), gamma=1
+  V_0=1.0090e+02  V_T=8.6511e-07  max_increase=-1.447e-07  monotone=True
+  loglog slope V_t = -4.8792   slope f(y_t)-f* = -5.1252
+
+T-D1 NAIVE, w=1, gamma=0
+  V_0=2.8955e+00  V_T=2.4257e-08  max_increase=+1.595e+01  monotone=False
+  loglog slope V_t = -5.4017   slope f(y_t)-f* = -5.1252
+
+T-D2 NAIVE, w=t+1, gamma=0
+  V_0=2.8955e+00  V_T=5.5405e-07  max_increase=+1.698e+01  monotone=False
+  loglog slope V_t = -4.5531   slope f(y_t)-f* = -5.1252
+
+Results written to C:\Users\12729\Desktop\Math\workspace\active\op2_v5_gaps\gap2_ub\resolution\theorem3_new\route_T\01_numerical_Vt_results.json

@@ -1,0 +1,129 @@
+{
+ "domain": "symmetry_combinatorics",
+ "condition": "0T0",
+ "primitives": {
+  "relation": false,
+  "transform": true,
+  "contrastive": false
+ },
+ "case_id": "same-070",
+ "case_data": {
+  "case_id": "same-070",
+  "summary_delta": {
+   "orbit_size_b": 0,
+   "hamming_distance": 0,
+   "same_orbit": 0,
+   "orbit_size_a": 0
+  },
+  "metadata": {
+   "label": "same",
+   "same_orbit": true,
+   "g_idx": 2,
+   "g_perm": [
+    2,
+    3,
+    4,
+    5,
+    0,
+    1
+   ],
+   "a_coloring": [
+    1,
+    2,
+    1,
+    2,
+    2,
+    0
+   ],
+   "b_coloring": [
+    2,
+    1,
+    2,
+    2,
+    0,
+    1
+   ],
+   "orbit_size_a": 6,
+   "orbit_size_b": 6,
+   "n_distinct_a": 3,
+   "n_distinct_b": 3
+  },
+  "transform_trace": {
+   "operation_name": "group_action",
+   "operation_params": {
+    "element_index": 2,
+    "permutation": [
+     2,
+     3,
+     4,
+     5,
+     0,
+     1
+    ],
+    "is_rotation": true,
+    "order": 3
+   },
+   "before_state": {
+    "coloring": [
+     1,
+     2,
+     1,
+     2,
+     2,
+     0
+    ]
+   },
+   "after_state": {
+    "coloring": [
+     1,
+     2,
+     2,
+     0,
+     1,
+     2
+    ]
+   },
+   "delta": {
+    "vertices_changed": 4,
+    "is_fixed_point": false
+   },
+   "region_affected": {
+    "moved_vertices": [
+     2,
+     3,
+     4,
+     5
+    ],
+    "fixed_vertices": [
+     0,
+     1
+    ],
+    "n_moved": 4,
+    "n_fixed": 2
+   },
+   "sub_steps": []
+  },
+  "reference_in_transform_region": {
+   "moved_vertices": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "fixed_vertices": [
+    0,
+    1
+   ],
+   "b_colors_at_moved": [
+    2,
+    2,
+    0,
+    1
+   ],
+   "b_colors_at_fixed": [
+    2,
+    1
+   ]
+  }
+ }
+}

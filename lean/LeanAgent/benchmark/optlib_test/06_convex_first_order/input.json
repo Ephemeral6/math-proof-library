@@ -1,0 +1,24 @@
+{
+  "theorem_name": "convex_first_order_condition_gradient",
+  "layer": 2,
+  "natural_language_statement": "Let f : E → ℝ be convex on s ⊆ E and have gradient f'(x) at the point x ∈ s. Then for every y ∈ s, f(x) + ⟨f'(x), y - x⟩ ≤ f(y) (the first-order characterization of convexity).",
+  "assumptions": [
+    "E is a complete real inner product space",
+    "f : E → ℝ, f' : E → E",
+    "h : HasGradientAt f (f' x) x",
+    "hf : ConvexOn ℝ s f",
+    "xs : x ∈ s"
+  ],
+  "conclusion": "∀ (y : E), y ∈ s → f x + inner (f' x) (y - x) ≤ f y",
+  "proof_sketch": [
+    "Convert the gradient form (HasGradientAt) to the Frechet form (HasFDerivAt) via toDual ℝ E.",
+    "Apply Convex_first_order_condition (Frechet form) which states f(x) + (f'(x))(y - x) ≤ f(y).",
+    "Identify (toDual ℝ E)(f'(x))(y - x) with inner (f'(x)) (y - x) by the Riesz representation."
+  ],
+  "key_mathlib_lemmas": [
+    "InnerProductSpace.toDual_apply"
+  ],
+  "registry_dependencies": [
+    "Convex_first_order_condition (Frechet form, optlib)"
+  ]
+}

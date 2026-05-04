@@ -1,0 +1,18 @@
+{
+  "lemma_name": "SHB.Foundations.Basic",
+  "kind": "lemma_bundle",
+  "nl_statement": "Layer-1 structural properties of the SHB iteration: (i) shbPrev accessor with its zero/succ simp lemmas; (ii) closed-form recurrence shbIter_succ : x_{t+1} = x_t - η•f'(x_t) + β•(x_t - x_{t-1}); (iii) shbStochIter_succ for the noisy variant; (iv) plain GD iteration gdIter and the equivalence shbIter_beta_zero : shbIter 0 η f' x₀ xPrev t = gdIter η f' x₀ t (independent of xPrev); (v) the defining inequality of the stability region cuts out a closed set in ℝ × ℝ, with stabilityRegion = {ineq} ∩ ([0,1) × (0,∞)).",
+  "lean_signature": "namespace SHB.Foundations\ndef shbPrev (β η : ℝ) (f' : E → E) (x₀ xPrev : E) (t : ℕ) : E\ntheorem shbIter_succ : shbIter β η f' x₀ xPrev (t+1) = shbIter ... t - η•f'(shbIter ... t) + β•(shbIter ... t - shbPrev ... t)\ntheorem shbStochIter_succ : ...\ndef gdIter (η : ℝ) (f' : E → E) (x₀ : E) : ℕ → E\ntheorem shbIter_beta_zero : shbIter 0 η f' x₀ xPrev t = gdIter η f' x₀ t\ntheorem isClosed_stabilityRegion_ineq (L : ℝ) : IsClosed {p : ℝ × ℝ | p.2 ≤ 2*(1+p.1)/L}\ntheorem stabilityRegion_eq_inter (L : ℝ) : stabilityRegion L = {ineq} ∩ (Ico 0 1 ×ˢ Ioi 0)",
+  "lean_file": "LeanAgent/Generated/SHB/Basic.lean",
+  "imports": ["LeanAgent.Generated.SHB.Defs"],
+  "depends_on": ["SHB.Foundations.Defs"],
+  "assumptions": ["E real vector space (AddCommGroup E + Module ℝ E) for iter facts; pure ℝ for region facts"],
+  "verdict": "CERTIFIED",
+  "n_stuck": 0,
+  "pr_ready": true,
+  "abstraction_level": "AddCommGroup E + Module ℝ E (generic)",
+  "reuse_potential": "high",
+  "reuse_reason": "bridges SHB-side reasoning to existing GD lemmas in optlib; closedness underlies any continuity-based stability argument on (β,η)",
+  "synthesized": false,
+  "ts": "2026-04-28T23:20:00+08:00"
+}

@@ -1,0 +1,52 @@
+{
+ "domain": "symmetry_combinatorics",
+ "condition": "000",
+ "primitives": {
+  "relation": false,
+  "transform": false,
+  "contrastive": false
+ },
+ "case_id": "same-006",
+ "case_data": {
+  "case_id": "same-006",
+  "summary_delta": {
+   "orbit_size_b": 0,
+   "hamming_distance": 0,
+   "same_orbit": 0,
+   "orbit_size_a": 0
+  },
+  "metadata": {
+   "label": "same",
+   "same_orbit": true,
+   "g_idx": 3,
+   "g_perm": [
+    3,
+    4,
+    5,
+    0,
+    1,
+    2
+   ],
+   "a_coloring": [
+    1,
+    0,
+    2,
+    1,
+    0,
+    2
+   ],
+   "b_coloring": [
+    2,
+    1,
+    0,
+    2,
+    1,
+    0
+   ],
+   "orbit_size_a": 3,
+   "orbit_size_b": 3,
+   "n_distinct_a": 3,
+   "n_distinct_b": 3
+  }
+ }
+}

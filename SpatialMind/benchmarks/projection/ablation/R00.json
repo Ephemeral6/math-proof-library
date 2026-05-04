@@ -1,0 +1,3322 @@
+{
+ "condition": "R00",
+ "domain": "projection",
+ "primitives": {
+  "relation": true,
+  "transform": false,
+  "contrastive": false
+ },
+ "n_cases": 66,
+ "cases": [
+  {
+   "case_id": "self-cube-xy",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 8
+    },
+    "diameter_a": -0.3178369999999999,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "cube",
+    "plane": "xy",
+    "n_points": 8,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 4,
+    "crossings_introduced": 8,
+    "fraction_distances_preserved": 0.4286,
+    "diameter_change": -0.317837
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 12,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 4,
+     "crossings": 8,
+     "distance_distortion": 0.5714
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.317837
+    }
+   }
+  },
+  {
+   "case_id": "self-cube-xz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 2
+    },
+    "diameter_a": -0.3178369999999999,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "cube",
+    "plane": "xz",
+    "n_points": 8,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 4,
+    "crossings_introduced": 2,
+    "fraction_distances_preserved": 0.4286,
+    "diameter_change": -0.317837
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 12,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 4,
+     "crossings": 2,
+     "distance_distortion": 0.5714
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.317837
+    }
+   }
+  },
+  {
+   "case_id": "self-cube-yz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 2
+    },
+    "diameter_a": -0.3178369999999999,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "cube",
+    "plane": "yz",
+    "n_points": 8,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 4,
+    "crossings_introduced": 2,
+    "fraction_distances_preserved": 0.4286,
+    "diameter_change": -0.317837
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 12,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 4,
+     "crossings": 2,
+     "distance_distortion": 0.5714
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.317837
+    }
+   }
+  },
+  {
+   "case_id": "self-cube-diagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 2
+    },
+    "diameter_a": -0.09905699999999995,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "cube",
+    "plane": "diagonal",
+    "n_points": 8,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 1,
+    "crossings_introduced": 2,
+    "fraction_distances_preserved": 0.2143,
+    "diameter_change": -0.099057
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 1,
+     "crossings": 2,
+     "distance_distortion": 0.7857
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.099057
+    }
+   }
+  },
+  {
+   "case_id": "self-tetrahedron-xy",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 1
+    },
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "tetrahedron",
+    "plane": "xy",
+    "n_points": 4,
+    "n_edges": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 1,
+    "fraction_distances_preserved": 0.3333,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 2,
+    "distances_total": 6,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 1,
+     "distance_distortion": 0.6667
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "self-tetrahedron-xz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 1
+    },
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "tetrahedron",
+    "plane": "xz",
+    "n_points": 4,
+    "n_edges": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 1,
+    "fraction_distances_preserved": 0.3333,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 2,
+    "distances_total": 6,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 1,
+     "distance_distortion": 0.6667
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "self-tetrahedron-yz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 1
+    },
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "tetrahedron",
+    "plane": "yz",
+    "n_points": 4,
+    "n_edges": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 1,
+    "fraction_distances_preserved": 0.3333,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 2,
+    "distances_total": 6,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 1,
+     "distance_distortion": 0.6667
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "self-tetrahedron-diagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 0
+    },
+    "diameter_a": 1.000000000139778e-06,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "tetrahedron",
+    "plane": "diagonal",
+    "n_points": 4,
+    "n_edges": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 0,
+    "fraction_distances_preserved": 0.5,
+    "diameter_change": 1e-06
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 3,
+    "distances_total": 6,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 0,
+     "distance_distortion": 0.5
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 1e-06
+    }
+   }
+  },
+  {
+   "case_id": "self-octahedron-xy",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 0
+    },
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "octahedron",
+    "plane": "xy",
+    "n_points": 6,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 1,
+    "crossings_introduced": 0,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 1,
+     "crossings": 0,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "self-octahedron-xz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 4
+    },
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "octahedron",
+    "plane": "xz",
+    "n_points": 6,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 1,
+    "crossings_introduced": 4,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 1,
+     "crossings": 4,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "self-octahedron-yz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 0
+    },
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "octahedron",
+    "plane": "yz",
+    "n_points": 6,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 1,
+    "crossings_introduced": 0,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 1,
+     "crossings": 0,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "self-octahedron-diagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 6
+    },
+    "diameter_a": -0.36700599999999994,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "octahedron",
+    "plane": "diagonal",
+    "n_points": 6,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 6,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": -0.367006
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 6,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.367006
+    }
+   }
+  },
+  {
+   "case_id": "self-triangular_prism-xy",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 6
+    },
+    "diameter_a": -0.4142140000000001,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "triangular_prism",
+    "plane": "xy",
+    "n_points": 6,
+    "n_edges": 9
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 3,
+    "crossings_introduced": 6,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": -0.414214
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 3,
+     "crossings": 6,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.414214
+    }
+   }
+  },
+  {
+   "case_id": "self-triangular_prism-xz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 1
+    },
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "triangular_prism",
+    "plane": "xz",
+    "n_points": 6,
+    "n_edges": 9
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 1,
+    "fraction_distances_preserved": 0.4667,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 7,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 1,
+     "distance_distortion": 0.5333
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "self-triangular_prism-yz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 0
+    },
+    "diameter_a": -0.09135500000000008,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "triangular_prism",
+    "plane": "yz",
+    "n_points": 6,
+    "n_edges": 9
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 2,
+    "crossings_introduced": 0,
+    "fraction_distances_preserved": 0.2,
+    "diameter_change": -0.091355
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 3,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 2,
+     "crossings": 0,
+     "distance_distortion": 0.8
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.091355
+    }
+   }
+  },
+  {
+   "case_id": "self-triangular_prism-diagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 1
+    },
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "triangular_prism",
+    "plane": "diagonal",
+    "n_points": 6,
+    "n_edges": 9
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 1,
+    "fraction_distances_preserved": 0.0667,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 1,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 1,
+     "distance_distortion": 0.9333
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "self-square_antiprism-xy",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 8
+    },
+    "diameter_a": -0.10088000000000008,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "square_antiprism",
+    "plane": "xy",
+    "n_points": 8,
+    "n_edges": 16
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 8,
+    "fraction_distances_preserved": 0.4286,
+    "diameter_change": -0.10088
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 12,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 8,
+     "distance_distortion": 0.5714
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.10088
+    }
+   }
+  },
+  {
+   "case_id": "self-square_antiprism-xz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 4
+    },
+    "diameter_a": -0.10088000000000008,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "square_antiprism",
+    "plane": "xz",
+    "n_points": 8,
+    "n_edges": 16
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 3,
+    "crossings_introduced": 4,
+    "fraction_distances_preserved": 0.1071,
+    "diameter_change": -0.10088
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 3,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 3,
+     "crossings": 4,
+     "distance_distortion": 0.8929
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.10088
+    }
+   }
+  },
+  {
+   "case_id": "self-square_antiprism-yz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 4
+    },
+    "diameter_a": -0.10088000000000008,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "square_antiprism",
+    "plane": "yz",
+    "n_points": 8,
+    "n_edges": 16
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 3,
+    "crossings_introduced": 4,
+    "fraction_distances_preserved": 0.1071,
+    "diameter_change": -0.10088
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 3,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 3,
+     "crossings": 4,
+     "distance_distortion": 0.8929
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.10088
+    }
+   }
+  },
+  {
+   "case_id": "self-square_antiprism-diagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 4
+    },
+    "diameter_a": 1.000000000139778e-06,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "self_projection",
+    "object": "square_antiprism",
+    "plane": "diagonal",
+    "n_points": 8,
+    "n_edges": 16
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 4,
+    "fraction_distances_preserved": 0.25,
+    "diameter_change": 1e-06
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 7,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 4,
+     "distance_distortion": 0.75
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 1e-06
+    }
+   }
+  },
+  {
+   "case_id": "cross-cube-xyvsxz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 8
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": -0.3178369999999999,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "cube",
+    "plane_a": "xy",
+    "plane_b": "xz",
+    "n_points": 8,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 4,
+    "crossings_introduced": 8,
+    "fraction_distances_preserved": 0.4286,
+    "diameter_change": -0.317837
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 12,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 4,
+     "crossings": 8,
+     "distance_distortion": 0.5714
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.317837
+    }
+   }
+  },
+  {
+   "case_id": "cross-cube-xyvsyz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 8
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": -0.3178369999999999,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "cube",
+    "plane_a": "xy",
+    "plane_b": "yz",
+    "n_points": 8,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 4,
+    "crossings_introduced": 8,
+    "fraction_distances_preserved": 0.4286,
+    "diameter_change": -0.317837
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 12,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 4,
+     "crossings": 8,
+     "distance_distortion": 0.5714
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.317837
+    }
+   }
+  },
+  {
+   "case_id": "cross-cube-xyvsdiagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 8
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": -0.3178369999999999,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "cube",
+    "plane_a": "xy",
+    "plane_b": "diagonal",
+    "n_points": 8,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 4,
+    "crossings_introduced": 8,
+    "fraction_distances_preserved": 0.4286,
+    "diameter_change": -0.317837
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 12,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 4,
+     "crossings": 8,
+     "distance_distortion": 0.5714
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.317837
+    }
+   }
+  },
+  {
+   "case_id": "cross-cube-xzvsyz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 2
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": -0.3178369999999999,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "cube",
+    "plane_a": "xz",
+    "plane_b": "yz",
+    "n_points": 8,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 4,
+    "crossings_introduced": 2,
+    "fraction_distances_preserved": 0.4286,
+    "diameter_change": -0.317837
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 12,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 4,
+     "crossings": 2,
+     "distance_distortion": 0.5714
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.317837
+    }
+   }
+  },
+  {
+   "case_id": "cross-cube-xzvsdiagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 2
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": -0.3178369999999999,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "cube",
+    "plane_a": "xz",
+    "plane_b": "diagonal",
+    "n_points": 8,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 4,
+    "crossings_introduced": 2,
+    "fraction_distances_preserved": 0.4286,
+    "diameter_change": -0.317837
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 12,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 4,
+     "crossings": 2,
+     "distance_distortion": 0.5714
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.317837
+    }
+   }
+  },
+  {
+   "case_id": "cross-cube-yzvsdiagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 2
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": -0.3178369999999999,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "cube",
+    "plane_a": "yz",
+    "plane_b": "diagonal",
+    "n_points": 8,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 4,
+    "crossings_introduced": 2,
+    "fraction_distances_preserved": 0.4286,
+    "diameter_change": -0.317837
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 12,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 4,
+     "crossings": 2,
+     "distance_distortion": 0.5714
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.317837
+    }
+   }
+  },
+  {
+   "case_id": "cross-tetrahedron-xyvsxz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 1
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "tetrahedron",
+    "plane_a": "xy",
+    "plane_b": "xz",
+    "n_points": 4,
+    "n_edges": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 1,
+    "fraction_distances_preserved": 0.3333,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 2,
+    "distances_total": 6,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 1,
+     "distance_distortion": 0.6667
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "cross-tetrahedron-xyvsyz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 1
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "tetrahedron",
+    "plane_a": "xy",
+    "plane_b": "yz",
+    "n_points": 4,
+    "n_edges": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 1,
+    "fraction_distances_preserved": 0.3333,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 2,
+    "distances_total": 6,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 1,
+     "distance_distortion": 0.6667
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "cross-tetrahedron-xyvsdiagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 1
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "tetrahedron",
+    "plane_a": "xy",
+    "plane_b": "diagonal",
+    "n_points": 4,
+    "n_edges": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 1,
+    "fraction_distances_preserved": 0.3333,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 2,
+    "distances_total": 6,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 1,
+     "distance_distortion": 0.6667
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "cross-tetrahedron-xzvsyz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 1
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "tetrahedron",
+    "plane_a": "xz",
+    "plane_b": "yz",
+    "n_points": 4,
+    "n_edges": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 1,
+    "fraction_distances_preserved": 0.3333,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 2,
+    "distances_total": 6,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 1,
+     "distance_distortion": 0.6667
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "cross-tetrahedron-xzvsdiagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 1
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "tetrahedron",
+    "plane_a": "xz",
+    "plane_b": "diagonal",
+    "n_points": 4,
+    "n_edges": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 1,
+    "fraction_distances_preserved": 0.3333,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 2,
+    "distances_total": 6,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 1,
+     "distance_distortion": 0.6667
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "cross-tetrahedron-yzvsdiagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 1
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "tetrahedron",
+    "plane_a": "yz",
+    "plane_b": "diagonal",
+    "n_points": 4,
+    "n_edges": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 1,
+    "fraction_distances_preserved": 0.3333,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 2,
+    "distances_total": 6,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 1,
+     "distance_distortion": 0.6667
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "cross-octahedron-xyvsxz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 0
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "octahedron",
+    "plane_a": "xy",
+    "plane_b": "xz",
+    "n_points": 6,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 1,
+    "crossings_introduced": 0,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 1,
+     "crossings": 0,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "cross-octahedron-xyvsyz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 0
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "octahedron",
+    "plane_a": "xy",
+    "plane_b": "yz",
+    "n_points": 6,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 1,
+    "crossings_introduced": 0,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 1,
+     "crossings": 0,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "cross-octahedron-xyvsdiagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 0
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "octahedron",
+    "plane_a": "xy",
+    "plane_b": "diagonal",
+    "n_points": 6,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 1,
+    "crossings_introduced": 0,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 1,
+     "crossings": 0,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "cross-octahedron-xzvsyz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 4
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "octahedron",
+    "plane_a": "xz",
+    "plane_b": "yz",
+    "n_points": 6,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 1,
+    "crossings_introduced": 4,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 1,
+     "crossings": 4,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "cross-octahedron-xzvsdiagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 4
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "octahedron",
+    "plane_a": "xz",
+    "plane_b": "diagonal",
+    "n_points": 6,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 1,
+    "crossings_introduced": 4,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 1,
+     "crossings": 4,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "cross-octahedron-yzvsdiagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 0
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "octahedron",
+    "plane_a": "yz",
+    "plane_b": "diagonal",
+    "n_points": 6,
+    "n_edges": 12
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 1,
+    "crossings_introduced": 0,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 1,
+     "crossings": 0,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "cross-triangular_prism-xyvsxz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 6
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": -0.4142140000000001,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "triangular_prism",
+    "plane_a": "xy",
+    "plane_b": "xz",
+    "n_points": 6,
+    "n_edges": 9
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 3,
+    "crossings_introduced": 6,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": -0.414214
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 3,
+     "crossings": 6,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.414214
+    }
+   }
+  },
+  {
+   "case_id": "cross-triangular_prism-xyvsyz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 6
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": -0.4142140000000001,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "triangular_prism",
+    "plane_a": "xy",
+    "plane_b": "yz",
+    "n_points": 6,
+    "n_edges": 9
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 3,
+    "crossings_introduced": 6,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": -0.414214
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 3,
+     "crossings": 6,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.414214
+    }
+   }
+  },
+  {
+   "case_id": "cross-triangular_prism-xyvsdiagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 6
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": -0.4142140000000001,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "triangular_prism",
+    "plane_a": "xy",
+    "plane_b": "diagonal",
+    "n_points": 6,
+    "n_edges": 9
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 3,
+    "crossings_introduced": 6,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": -0.414214
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 3,
+     "crossings": 6,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.414214
+    }
+   }
+  },
+  {
+   "case_id": "cross-triangular_prism-xzvsyz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 1
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "triangular_prism",
+    "plane_a": "xz",
+    "plane_b": "yz",
+    "n_points": 6,
+    "n_edges": 9
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 1,
+    "fraction_distances_preserved": 0.4667,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 7,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 1,
+     "distance_distortion": 0.5333
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "cross-triangular_prism-xzvsdiagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 1
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "triangular_prism",
+    "plane_a": "xz",
+    "plane_b": "diagonal",
+    "n_points": 6,
+    "n_edges": 9
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 1,
+    "fraction_distances_preserved": 0.4667,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 7,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 1,
+     "distance_distortion": 0.5333
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "cross-triangular_prism-yzvsdiagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 0
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": -0.09135500000000008,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "triangular_prism",
+    "plane_a": "yz",
+    "plane_b": "diagonal",
+    "n_points": 6,
+    "n_edges": 9
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 2,
+    "crossings_introduced": 0,
+    "fraction_distances_preserved": 0.2,
+    "diameter_change": -0.091355
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 3,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 2,
+     "crossings": 0,
+     "distance_distortion": 0.8
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.091355
+    }
+   }
+  },
+  {
+   "case_id": "cross-square_antiprism-xyvsxz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 8
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": -0.10088000000000008,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "square_antiprism",
+    "plane_a": "xy",
+    "plane_b": "xz",
+    "n_points": 8,
+    "n_edges": 16
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 8,
+    "fraction_distances_preserved": 0.4286,
+    "diameter_change": -0.10088
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 12,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 8,
+     "distance_distortion": 0.5714
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.10088
+    }
+   }
+  },
+  {
+   "case_id": "cross-square_antiprism-xyvsyz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 8
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": -0.10088000000000008,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "square_antiprism",
+    "plane_a": "xy",
+    "plane_b": "yz",
+    "n_points": 8,
+    "n_edges": 16
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 8,
+    "fraction_distances_preserved": 0.4286,
+    "diameter_change": -0.10088
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 12,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 8,
+     "distance_distortion": 0.5714
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.10088
+    }
+   }
+  },
+  {
+   "case_id": "cross-square_antiprism-xyvsdiagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 8
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": -0.10088000000000008,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "square_antiprism",
+    "plane_a": "xy",
+    "plane_b": "diagonal",
+    "n_points": 8,
+    "n_edges": 16
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 8,
+    "fraction_distances_preserved": 0.4286,
+    "diameter_change": -0.10088
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 12,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 8,
+     "distance_distortion": 0.5714
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.10088
+    }
+   }
+  },
+  {
+   "case_id": "cross-square_antiprism-xzvsyz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 4
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": -0.10088000000000008,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "square_antiprism",
+    "plane_a": "xz",
+    "plane_b": "yz",
+    "n_points": 8,
+    "n_edges": 16
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 3,
+    "crossings_introduced": 4,
+    "fraction_distances_preserved": 0.1071,
+    "diameter_change": -0.10088
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 3,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 3,
+     "crossings": 4,
+     "distance_distortion": 0.8929
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.10088
+    }
+   }
+  },
+  {
+   "case_id": "cross-square_antiprism-xzvsdiagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 4
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": -0.10088000000000008,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "square_antiprism",
+    "plane_a": "xz",
+    "plane_b": "diagonal",
+    "n_points": 8,
+    "n_edges": 16
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 3,
+    "crossings_introduced": 4,
+    "fraction_distances_preserved": 0.1071,
+    "diameter_change": -0.10088
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 3,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 3,
+     "crossings": 4,
+     "distance_distortion": 0.8929
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.10088
+    }
+   }
+  },
+  {
+   "case_id": "cross-square_antiprism-yzvsdiagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 4
+    },
+    "edge_crossings_b": 0,
+    "diameter_a": -0.10088000000000008,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_projection",
+    "object": "square_antiprism",
+    "plane_a": "yz",
+    "plane_b": "diagonal",
+    "n_points": 8,
+    "n_edges": 16
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 3,
+    "crossings_introduced": 4,
+    "fraction_distances_preserved": 0.1071,
+    "diameter_change": -0.10088
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 3,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 3,
+     "crossings": 4,
+     "distance_distortion": 0.8929
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.10088
+    }
+   }
+  },
+  {
+   "case_id": "diff-cubevssquare_antiprism-xy",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 8
+    },
+    "diameter_a": -0.3178369999999999,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_object",
+    "object_a": "cube",
+    "object_b": "square_antiprism",
+    "plane": "xy",
+    "n_points_a": 8,
+    "n_points_b": 8
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 4,
+    "crossings_introduced": 8,
+    "fraction_distances_preserved": 0.4286,
+    "diameter_change": -0.317837
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 12,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 4,
+     "crossings": 8,
+     "distance_distortion": 0.5714
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.317837
+    }
+   }
+  },
+  {
+   "case_id": "diff-cubevssquare_antiprism-xz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 2
+    },
+    "diameter_a": -0.3178369999999999,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_object",
+    "object_a": "cube",
+    "object_b": "square_antiprism",
+    "plane": "xz",
+    "n_points_a": 8,
+    "n_points_b": 8
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 4,
+    "crossings_introduced": 2,
+    "fraction_distances_preserved": 0.4286,
+    "diameter_change": -0.317837
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 12,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 4,
+     "crossings": 2,
+     "distance_distortion": 0.5714
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.317837
+    }
+   }
+  },
+  {
+   "case_id": "diff-cubevssquare_antiprism-yz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 2
+    },
+    "diameter_a": -0.3178369999999999,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_object",
+    "object_a": "cube",
+    "object_b": "square_antiprism",
+    "plane": "yz",
+    "n_points_a": 8,
+    "n_points_b": 8
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 4,
+    "crossings_introduced": 2,
+    "fraction_distances_preserved": 0.4286,
+    "diameter_change": -0.317837
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 12,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 4,
+     "crossings": 2,
+     "distance_distortion": 0.5714
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.317837
+    }
+   }
+  },
+  {
+   "case_id": "diff-cubevssquare_antiprism-diagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 2
+    },
+    "diameter_a": -0.09905699999999995,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_object",
+    "object_a": "cube",
+    "object_b": "square_antiprism",
+    "plane": "diagonal",
+    "n_points_a": 8,
+    "n_points_b": 8
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 1,
+    "crossings_introduced": 2,
+    "fraction_distances_preserved": 0.2143,
+    "diameter_change": -0.099057
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 1,
+     "crossings": 2,
+     "distance_distortion": 0.7857
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.099057
+    }
+   }
+  },
+  {
+   "case_id": "diff-square_antiprismvscube-xy",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 8
+    },
+    "diameter_a": -0.10088000000000008,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_object",
+    "object_a": "square_antiprism",
+    "object_b": "cube",
+    "plane": "xy",
+    "n_points_a": 8,
+    "n_points_b": 8
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 8,
+    "fraction_distances_preserved": 0.4286,
+    "diameter_change": -0.10088
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 12,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 8,
+     "distance_distortion": 0.5714
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.10088
+    }
+   }
+  },
+  {
+   "case_id": "diff-square_antiprismvscube-xz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 4
+    },
+    "diameter_a": -0.10088000000000008,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_object",
+    "object_a": "square_antiprism",
+    "object_b": "cube",
+    "plane": "xz",
+    "n_points_a": 8,
+    "n_points_b": 8
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 3,
+    "crossings_introduced": 4,
+    "fraction_distances_preserved": 0.1071,
+    "diameter_change": -0.10088
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 3,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 3,
+     "crossings": 4,
+     "distance_distortion": 0.8929
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.10088
+    }
+   }
+  },
+  {
+   "case_id": "diff-square_antiprismvscube-yz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 4
+    },
+    "diameter_a": -0.10088000000000008,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_object",
+    "object_a": "square_antiprism",
+    "object_b": "cube",
+    "plane": "yz",
+    "n_points_a": 8,
+    "n_points_b": 8
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 3,
+    "crossings_introduced": 4,
+    "fraction_distances_preserved": 0.1071,
+    "diameter_change": -0.10088
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 3,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 3,
+     "crossings": 4,
+     "distance_distortion": 0.8929
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.10088
+    }
+   }
+  },
+  {
+   "case_id": "diff-square_antiprismvscube-diagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 4
+    },
+    "diameter_a": 1.000000000139778e-06,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_object",
+    "object_a": "square_antiprism",
+    "object_b": "cube",
+    "plane": "diagonal",
+    "n_points_a": 8,
+    "n_points_b": 8
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 4,
+    "fraction_distances_preserved": 0.25,
+    "diameter_change": 1e-06
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 7,
+    "distances_total": 28,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 4,
+     "distance_distortion": 0.75
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 1e-06
+    }
+   }
+  },
+  {
+   "case_id": "diff-octahedronvstriangular_prism-xy",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 0
+    },
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_object",
+    "object_a": "octahedron",
+    "object_b": "triangular_prism",
+    "plane": "xy",
+    "n_points_a": 6,
+    "n_points_b": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 1,
+    "crossings_introduced": 0,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 1,
+     "crossings": 0,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "diff-octahedronvstriangular_prism-xz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 4
+    },
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_object",
+    "object_a": "octahedron",
+    "object_b": "triangular_prism",
+    "plane": "xz",
+    "n_points_a": 6,
+    "n_points_b": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 1,
+    "crossings_introduced": 4,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 1,
+     "crossings": 4,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "diff-octahedronvstriangular_prism-yz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 0
+    },
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_object",
+    "object_a": "octahedron",
+    "object_b": "triangular_prism",
+    "plane": "yz",
+    "n_points_a": 6,
+    "n_points_b": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 1,
+    "crossings_introduced": 0,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 1,
+     "crossings": 0,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "diff-octahedronvstriangular_prism-diagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 6
+    },
+    "diameter_a": -0.36700599999999994,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_object",
+    "object_a": "octahedron",
+    "object_b": "triangular_prism",
+    "plane": "diagonal",
+    "n_points_a": 6,
+    "n_points_b": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 6,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": -0.367006
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 6,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.367006
+    }
+   }
+  },
+  {
+   "case_id": "diff-triangular_prismvsoctahedron-xy",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 6
+    },
+    "diameter_a": -0.4142140000000001,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_object",
+    "object_a": "triangular_prism",
+    "object_b": "octahedron",
+    "plane": "xy",
+    "n_points_a": 6,
+    "n_points_b": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 3,
+    "crossings_introduced": 6,
+    "fraction_distances_preserved": 0.4,
+    "diameter_change": -0.414214
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 6,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 3,
+     "crossings": 6,
+     "distance_distortion": 0.6
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.414214
+    }
+   }
+  },
+  {
+   "case_id": "diff-triangular_prismvsoctahedron-xz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 1
+    },
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_object",
+    "object_a": "triangular_prism",
+    "object_b": "octahedron",
+    "plane": "xz",
+    "n_points_a": 6,
+    "n_points_b": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 1,
+    "fraction_distances_preserved": 0.4667,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 7,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 1,
+     "distance_distortion": 0.5333
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  },
+  {
+   "case_id": "diff-triangular_prismvsoctahedron-yz",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 0
+    },
+    "diameter_a": -0.09135500000000008,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_object",
+    "object_a": "triangular_prism",
+    "object_b": "octahedron",
+    "plane": "yz",
+    "n_points_a": 6,
+    "n_points_b": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 2,
+    "crossings_introduced": 0,
+    "fraction_distances_preserved": 0.2,
+    "diameter_change": -0.091355
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 3,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 2,
+     "crossings": 0,
+     "distance_distortion": 0.8
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": false
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": -0.091355
+    }
+   }
+  },
+  {
+   "case_id": "diff-triangular_prismvsoctahedron-diagonal",
+   "summary_delta": {
+    "dimension_a": -1,
+    "edge_crossings_a": {
+     "pre": null,
+     "post": 1
+    },
+    "diameter_a": 0.0,
+    "diameter_b": 0.0,
+    "n_points_b": 0,
+    "n_points_a": 0,
+    "dimension_b": 0
+   },
+   "metadata": {
+    "case_type": "cross_object",
+    "object_a": "triangular_prism",
+    "object_b": "octahedron",
+    "plane": "diagonal",
+    "n_points_a": 6,
+    "n_points_b": 6
+   },
+   "detailed_comparison": {
+    "collisions_introduced": 0,
+    "crossings_introduced": 1,
+    "fraction_distances_preserved": 0.0667,
+    "diameter_change": 0.0
+   },
+   "structural_comparison": {
+    "distances_preserved_count": 1,
+    "distances_total": 15,
+    "dimension_before": 3,
+    "dimension_after": 2,
+    "information_loss_summary": {
+     "collisions": 0,
+     "crossings": 1,
+     "distance_distortion": 0.9333
+    },
+    "invariants_preserved": {
+     "n_points": true,
+     "dimension": false,
+     "diameter": true
+    },
+    "invariants_delta": {
+     "n_points": 0,
+     "dimension": -1,
+     "diameter": 0.0
+    }
+   }
+  }
+ ]
+}

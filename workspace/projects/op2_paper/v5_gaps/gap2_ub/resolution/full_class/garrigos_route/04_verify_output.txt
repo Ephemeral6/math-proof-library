@@ -1,0 +1,21 @@
+L_max=1.7220, sigma^2=0.8794, finf=0.4915
+beta=0.5, eta=0.01, a=1.0000, eta'=0.0200, eps=0.9334, eta'L(1+eps)=0.0666
+A=0.07734, B=0.04000, C=0.04000, V=0.00073
+A-B=0.03734, A-B-C+c''=-3.90313e-18 (should be 0)
+
+
+Verified inequality on 12000 samples.
+  LHS - RHS:
+    mean = -7.396644e-03  (should be <= 0)
+    median = -3.793319e-03
+    max = 1.286245e-02
+    std  = 9.745028e-03
+  Fraction with LHS > RHS: 9.22%
+  z-score (mean/sem): -83.146
+  Result: E[LHS] <= E[RHS] holds (within MC error). ★ verified.
+
+--- Multi-parameter sweep ---
+  beta=0.30 eta=0.0050: LHS-RHS mean=-2.3884e-03, max=8.0870e-03, frac>0=23.6%
+  beta=0.70 eta=0.0050: LHS-RHS mean=-6.0277e-03, max=1.4698e-02, frac>0=13.6%
+  beta=0.50 eta=0.0200: LHS-RHS mean=-1.8172e-02, max=4.4412e-02, frac>0=5.2%
+  beta=0.90 eta=0.0010: LHS-RHS mean=-3.6937e-03, max=7.5040e-03, frac>0=17.8%

@@ -1,0 +1,134 @@
+{
+ "domain": "knot_theory",
+ "condition": "00C",
+ "primitives": {
+  "relation": false,
+  "transform": false,
+  "contrastive": true
+ },
+ "case_id": "5_2-r2-5",
+ "case_data": {
+  "case_id": "5_2-r2-5",
+  "summary_delta": {
+   "writhe_delta": 0,
+   "linking_number": 0.0,
+   "crossing_count_b": 0,
+   "writhe_b": 0,
+   "crossing_count_a": 2,
+   "writhe_a": 0
+  },
+  "metadata": {
+   "knot": "5_2",
+   "move": "R2",
+   "trial": 5,
+   "writhe_pre": 5,
+   "writhe_post": 5,
+   "n_crossings_pre": 5,
+   "n_crossings_post": 7
+  }
+ },
+ "counterfactual": [
+  {
+   "strategy": "boundary_relaxation",
+   "original_condition": {
+    "r2_added_signs_pair": [
+     -1,
+     1
+    ],
+    "writhe_change_required": 0
+   },
+   "modified_condition": {
+    "r2_added_signs_pair": [
+     -1,
+     -1
+    ],
+    "writhe_change_observed": -2
+   },
+   "original_result": {
+    "signature": -2,
+    "determinant": 3,
+    "alexander_normalized": [
+     1,
+     -1,
+     1
+    ]
+   },
+   "counterfactual_result": {
+    "signature": -2,
+    "determinant": 7,
+    "alexander_normalized": [
+     2,
+     -3,
+     2
+    ]
+   },
+   "delta": {
+    "signature_delta": 0,
+    "determinant_delta": 4,
+    "writhe_delta": -2,
+    "alexander_changed": true
+   },
+   "condition_is_critical": true,
+   "explanation": "Real R2 inserts a (+1, -1) crossing pair so writhe is preserved. Forcing same-sign pair gives a 'pseudo R2' that changes writhe by ±2 and breaks topological invariants."
+  },
+  {
+   "strategy": "operation_perturbation",
+   "original_condition": {
+    "flipped_crossing_index": null
+   },
+   "modified_condition": {
+    "flipped_crossing_index": 0
+   },
+   "original_result": {
+    "signature": -2,
+    "determinant": 3,
+    "alexander_normalized": [
+     1,
+     -1,
+     1
+    ]
+   },
+   "counterfactual_result": {
+    "signature": 0,
+    "determinant": 1,
+    "alexander_normalized": [
+     1
+    ]
+   },
+   "delta": {
+    "signature_delta": 2,
+    "determinant_delta": -2,
+    "writhe_delta": 2,
+    "alexander_changed": true
+   },
+   "condition_is_critical": true,
+   "explanation": "Flipping one crossing's over/under is not a Reidemeister move; it changes the knot type, so signature / determinant / Alexander all generally change."
+  },
+  {
+   "strategy": "condition_removal",
+   "original_condition": {
+    "planarity_check": true
+   },
+   "modified_condition": {
+    "planarity_check": false,
+    "swap_strands": [
+     0,
+     1
+    ]
+   },
+   "original_result": {
+    "valid_diagram": true
+   },
+   "counterfactual_result": {
+    "valid_diagram": true,
+    "signature": -1,
+    "determinant": 2
+   },
+   "delta": {
+    "signature_delta": 1
+   },
+   "condition_is_critical": true,
+   "explanation": "Dropping planarity (swapping strand labels at random) yields an inconsistent diagram. This shows the planarity constraint is structurally required for any topological reasoning."
+  }
+ ]
+}

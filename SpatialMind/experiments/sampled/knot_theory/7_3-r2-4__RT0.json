@@ -1,0 +1,260 @@
+{
+ "domain": "knot_theory",
+ "condition": "RT0",
+ "primitives": {
+  "relation": true,
+  "transform": true,
+  "contrastive": false
+ },
+ "case_id": "7_3-r2-4",
+ "case_data": {
+  "case_id": "7_3-r2-4",
+  "summary_delta": {
+   "writhe_delta": 0,
+   "linking_number": 0.0,
+   "crossing_count_b": 0,
+   "writhe_b": 0,
+   "crossing_count_a": 2,
+   "writhe_a": 0
+  },
+  "metadata": {
+   "knot": "7_3",
+   "move": "R2",
+   "trial": 4,
+   "writhe_pre": -7,
+   "writhe_post": -7,
+   "n_crossings_pre": 7,
+   "n_crossings_post": 9
+  },
+  "detailed_comparison": {
+   "crossings_a_before": 7,
+   "crossings_a_after": 9,
+   "added_crossing_count": 2,
+   "added_crossing_signs": [
+    -1,
+    1
+   ],
+   "added_crossing_signs_pair": [
+    -1,
+    1
+   ],
+   "writhe_change_a": 0,
+   "signs_count_pos_pre": 0,
+   "signs_count_neg_pre": 7,
+   "signs_count_pos_post": 1,
+   "signs_count_neg_post": 8
+  },
+  "structural_comparison": {
+   "signature_pre": -4,
+   "signature_post": -4,
+   "signature_preserved": true,
+   "determinant_pre": 13,
+   "determinant_post": 13,
+   "determinant_preserved": true,
+   "alexander_pre_raw": "2*t**6 - 3*t**5 + 3*t**4 - 3*t**3 + 2*t**2",
+   "alexander_post_raw": "2*t**7 - 3*t**6 + 3*t**5 - 3*t**4 + 2*t**3",
+   "alexander_pre_normalized": [
+    2,
+    -3,
+    3,
+    -3,
+    2
+   ],
+   "alexander_post_normalized": [
+    2,
+    -3,
+    3,
+    -3,
+    2
+   ],
+   "alexander_preserved": true,
+   "writhe_pre": -7,
+   "writhe_post": -7,
+   "writhe_preserved": true,
+   "all_topological_invariants_preserved": true
+  },
+  "transform_trace": {
+   "operation_name": "R2",
+   "operation_params": {
+    "target_signs": [
+     1,
+     -1
+    ]
+   },
+   "before_state": {
+    "pd_code": [
+     [
+      13,
+      8,
+      0,
+      9
+     ],
+     [
+      7,
+      0,
+      8,
+      1
+     ],
+     [
+      1,
+      6,
+      2,
+      7
+     ],
+     [
+      9,
+      2,
+      10,
+      3
+     ],
+     [
+      3,
+      10,
+      4,
+      11
+     ],
+     [
+      11,
+      4,
+      12,
+      5
+     ],
+     [
+      5,
+      12,
+      6,
+      13
+     ]
+    ],
+    "writhe": -7,
+    "n_crossings": 7,
+    "signs": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ]
+   },
+   "after_state": {
+    "pd_code": [
+     [
+      1,
+      8,
+      2,
+      9
+     ],
+     [
+      11,
+      0,
+      12,
+      1
+     ],
+     [
+      17,
+      12,
+      0,
+      13
+     ],
+     [
+      7,
+      16,
+      8,
+      17
+     ],
+     [
+      15,
+      6,
+      16,
+      7
+     ],
+     [
+      5,
+      14,
+      6,
+      15
+     ],
+     [
+      13,
+      4,
+      14,
+      5
+     ],
+     [
+      3,
+      10,
+      4,
+      11
+     ],
+     [
+      2,
+      10,
+      3,
+      9
+     ]
+    ],
+    "writhe": -7,
+    "n_crossings": 9,
+    "signs": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     1
+    ]
+   },
+   "delta": {
+    "crossing_count_delta": 2,
+    "writhe_delta": 0
+   },
+   "region_affected": {
+    "added_crossing_labels": [
+     "new2",
+     "new3"
+    ],
+    "added_crossing_signs": [
+     -1,
+     1
+    ],
+    "added_crossing_signs_pair": [
+     -1,
+     1
+    ],
+    "added_crossing_count": 2,
+    "persistent_crossing_labels": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6"
+    ],
+    "persistent_crossing_count": 7
+   },
+   "sub_steps": []
+  },
+  "reference_in_transform_region": {
+   "persistent_crossing_count": 7,
+   "persistent_crossing_labels": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "added_crossing_labels": [
+    "new2",
+    "new3"
+   ]
+  }
+ }
+}

@@ -1,0 +1,118 @@
+\begin{thebibliography}{16}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[An et~al.(2026)An, Yang, Wang, Lu, An, and Yang]{an2026humancog}
+Jiyuan An, Liner Yang, Mengyan Wang, Luming Lu, Weihua An, and Erhong Yang.
+\newblock From human cognition to neural activations: Probing the computational
+  primitives of spatial reasoning in {LLMs}.
+\newblock arXiv preprint arXiv:2603.26323, 2026.
+\newblock Concurrent work.
+
+\bibitem[Bell(2016)]{bell2016curver}
+Mark~C. Bell.
+\newblock curver: A python package for computing with curves on surfaces.
+\newblock \url{https://curver.readthedocs.io}, 2016.
+
+\bibitem[Chervonyi et~al.(2025)Chervonyi, Trinh, Ol{\v{s}}{\'a}k, Yang, Nguyen,
+  Menegali, Jung, Kim, Verma, Le, and Luong]{trinh2025alphageometry2}
+Yuri Chervonyi, Trieu~H. Trinh, Miroslav Ol{\v{s}}{\'a}k, Xiaomeng Yang, Hoang
+  Nguyen, Marcelo Menegali, Junehyuk Jung, Junsu Kim, Vikas Verma, Quoc~V. Le,
+  and Thang Luong.
+\newblock {AlphaGeometry 2}: Olympiad-level plane geometry via tree search and
+  synthetic data.
+\newblock arXiv preprint arXiv:2502.03544, 2025.
+
+\bibitem[Clark and Chalmers(1998)]{clark1998extended}
+Andy Clark and David Chalmers.
+\newblock The extended mind.
+\newblock \emph{Analysis}, 58\penalty0 (1):\penalty0 7--19, 1998.
+\newblock \doi{10.1093/analys/58.1.7}.
+
+\bibitem[Culler et~al.(2024)Culler, Dunfield, Goerner, and Weeks]{snappy}
+Marc Culler, Nathan~M. Dunfield, Matthias Goerner, and Jeffrey~R. Weeks.
+\newblock {SnapPy}, a computer program for studying the geometry and topology
+  of 3-manifolds.
+\newblock \url{https://snappy.computop.org}, 2024.
+
+\bibitem[Das et~al.(2024)Das, Banerjee, Aditya, and
+  Kulkarni]{das2024mathsensei}
+Debrup Das, Debopriyo Banerjee, Somak Aditya, and Ashish Kulkarni.
+\newblock {MATHSENSEI}: A tool-augmented large language model for mathematical
+  reasoning.
+\newblock In \emph{Proceedings of NAACL}, 2024.
+
+\bibitem[Ebouky et~al.(2025)Ebouky, Bartezzaghi, and
+  Rigotti]{ebouky2025cogtools}
+Brown Ebouky, Andrea Bartezzaghi, and Mattia Rigotti.
+\newblock Eliciting reasoning in language models with cognitive tools.
+\newblock In \emph{NeurIPS}, 2025.
+
+\bibitem[Gou et~al.(2024)Gou, Shao, Gong, Shen, Yang, Huang, Duan, and
+  Chen]{gou2024tora}
+Zhibin Gou, Zhihong Shao, Yeyun Gong, Yelong Shen, Yujiu Yang, Minlie Huang,
+  Nan Duan, and Weizhu Chen.
+\newblock {ToRA}: A tool-integrated reasoning agent for mathematical problem
+  solving.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Lakoff and N{\'u}{\~n}ez(2000)]{lakoff2000mathematics}
+George Lakoff and Rafael~E. N{\'u}{\~n}ez.
+\newblock \emph{Where Mathematics Comes From: How the Embodied Mind Brings
+  Mathematics into Being}.
+\newblock Basic Books, 2000.
+
+\bibitem[Luo et~al.(2026)Luo, Feng, Sun, Xu, Zheng, Wang, Yang, Hu, and
+  Tang]{luo2025agentmath}
+Haipeng Luo, Huawen Feng, Qingfeng Sun, Can Xu, Kai Zheng, Yufei Wang, Tao
+  Yang, Han Hu, and Yansong Tang.
+\newblock {AgentMath}: Empowering mathematical reasoning for large language
+  models via tool-augmented agent.
+\newblock In \emph{ICLR}, 2026.
+
+\bibitem[Montgomery(2017)]{montgomery2017doe}
+Douglas~C. Montgomery.
+\newblock \emph{Design and Analysis of Experiments}.
+\newblock Wiley, 9 edition, 2017.
+\newblock ISBN 978-1-119-11347-8.
+
+\bibitem[Olivier and Bouraoui(2025)]{olivier2025embodied}
+Fran\c{c}ois Olivier and Zied Bouraoui.
+\newblock Grounding agent reasoning in image schemas: A neurosymbolic approach
+  to embodied cognition.
+\newblock In \emph{Proceedings of the 24th International Conference on
+  Autonomous Agents and Multiagent Systems (AAMAS), Blue Sky Ideas Track},
+  2025.
+
+\bibitem[Sumers et~al.(2024)Sumers, Yao, Narasimhan, and
+  Griffiths]{sumers2023coala}
+Theodore~R. Sumers, Shunyu Yao, Karthik Narasimhan, and Thomas~L. Griffiths.
+\newblock Cognitive architectures for language agents.
+\newblock \emph{Transactions on Machine Learning Research}, 2024.
+
+\bibitem[Thurston(1994)]{thurston1994proof}
+William~P. Thurston.
+\newblock On proof and progress in mathematics.
+\newblock \emph{Bulletin of the American Mathematical Society}, 30\penalty0
+  (2):\penalty0 161--177, 1994.
+\newblock \doi{10.1090/S0273-0979-1994-00502-6}.
+
+\bibitem[Trinh et~al.(2024)Trinh, Wu, Le, He, and
+  Luong]{trinh2024alphageometry}
+Trieu~H. Trinh, Yuhuai Wu, Quoc~V. Le, He~He, and Thang Luong.
+\newblock Solving olympiad geometry without human demonstrations.
+\newblock \emph{Nature}, 625\penalty0 (7995):\penalty0 476--482, 2024.
+\newblock \doi{10.1038/s41586-023-06747-5}.
+
+\bibitem[Yue et~al.(2025)Yue, Chen, Lu, Zhao, Wang, Yue, Song, and
+  Huang]{yang2025rlvr}
+Yang Yue, Zhiqi Chen, Rui Lu, Andrew Zhao, Zhaokai Wang, Yang Yue, Shiji Song,
+  and Gao Huang.
+\newblock Does reinforcement learning really incentivize reasoning capacity in
+  {LLMs} beyond the base model?
+\newblock In \emph{NeurIPS}, 2025.
+
+\end{thebibliography}

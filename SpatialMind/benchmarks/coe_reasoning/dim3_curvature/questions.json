@@ -1,0 +1,3143 @@
+{
+  "benchmark": "coe_reasoning",
+  "dimension": 3,
+  "dimension_name": "discrete_curvature",
+  "n_questions": 16,
+  "conditions": [
+    "baseline",
+    "cot",
+    "coe_r",
+    "coe_ctr"
+  ],
+  "scoring": "0-4 per question via grade_coe_reasoning.py",
+  "questions": [
+    {
+      "question_id": "dim3_q01",
+      "type": "chi_genus",
+      "stem": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "Euler 特征数 χ = V − E + F 是多少？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(b)",
+          "text": "曲面的亏格 g 是多少？（对球面 g=0）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "n_vertices": 4,
+        "n_edges": 6,
+        "n_faces": 4,
+        "chi": 2,
+        "genus": 0,
+        "total_curvature": 12.5664,
+        "subdivision_new_vertex_defect": 0
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 4,
+          "n_edges": 6,
+          "n_faces": 4,
+          "vertices": [
+            [
+              1.0,
+              1.0,
+              1.0
+            ],
+            [
+              -1.0,
+              -1.0,
+              1.0
+            ],
+            [
+              -1.0,
+              1.0,
+              -1.0
+            ],
+            [
+              1.0,
+              -1.0,
+              -1.0
+            ]
+          ],
+          "faces": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              1,
+              3
+            ],
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "angle_defects_per_vertex": {
+            "0": 3.1416,
+            "1": 3.1416,
+            "2": 3.1416,
+            "3": 3.1416
+          },
+          "vertex_degrees": {
+            "0": 3,
+            "1": 3,
+            "2": 3,
+            "3": 3
+          },
+          "note": "δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself."
+        },
+        "T": {
+          "operation": "stellar_subdivision",
+          "subdivided_face_index": 0,
+          "before": {
+            "n_vertices": 4,
+            "n_edges": 6,
+            "n_faces": 4
+          },
+          "after": {
+            "n_vertices": 5,
+            "n_edges": 9,
+            "n_faces": 6
+          },
+          "delta": {
+            "vertices_added": 1,
+            "edges_added": 3,
+            "faces_added": 2
+          },
+          "new_vertex_defect": -0.0,
+          "local_defect_sum_before": 9.424778,
+          "local_defect_sum_after": 9.424778,
+          "note": "Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature)."
+        },
+        "C": {
+          "incomplete_subdivision": {
+            "description": "Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.",
+            "expected_defect_at_new_vertex": 6.283185,
+            "expected_chi_change": 1
+          },
+          "vertex_displacement": {
+            "description": "Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged)."
+          },
+          "note": "Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not."
+        }
+      },
+      "prompts": {
+        "baseline": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n请回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 4,\n  \"n_edges\": 6,\n  \"n_faces\": 4,\n  \"vertices\": [\n    [\n      1.0,\n      1.0,\n      1.0\n    ],\n    [\n      -1.0,\n      -1.0,\n      1.0\n    ],\n    [\n      -1.0,\n      1.0,\n      -1.0\n    ],\n    [\n      1.0,\n      -1.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      1,\n      2\n    ],\n    [\n      0,\n      1,\n      3\n    ],\n    [\n      0,\n      2,\n      3\n    ],\n    [\n      1,\n      2,\n      3\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 3.1416,\n    \"1\": 3.1416,\n    \"2\": 3.1416,\n    \"3\": 3.1416\n  },\n  \"vertex_degrees\": {\n    \"0\": 3,\n    \"1\": 3,\n    \"2\": 3,\n    \"3\": 3\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 4,\n  \"n_edges\": 6,\n  \"n_faces\": 4,\n  \"vertices\": [\n    [\n      1.0,\n      1.0,\n      1.0\n    ],\n    [\n      -1.0,\n      -1.0,\n      1.0\n    ],\n    [\n      -1.0,\n      1.0,\n      -1.0\n    ],\n    [\n      1.0,\n      -1.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      1,\n      2\n    ],\n    [\n      0,\n      1,\n      3\n    ],\n    [\n      0,\n      2,\n      3\n    ],\n    [\n      1,\n      2,\n      3\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 3.1416,\n    \"1\": 3.1416,\n    \"2\": 3.1416,\n    \"3\": 3.1416\n  },\n  \"vertex_degrees\": {\n    \"0\": 3,\n    \"1\": 3,\n    \"2\": 3,\n    \"3\": 3\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"stellar_subdivision\",\n  \"subdivided_face_index\": 0,\n  \"before\": {\n    \"n_vertices\": 4,\n    \"n_edges\": 6,\n    \"n_faces\": 4\n  },\n  \"after\": {\n    \"n_vertices\": 5,\n    \"n_edges\": 9,\n    \"n_faces\": 6\n  },\n  \"delta\": {\n    \"vertices_added\": 1,\n    \"edges_added\": 3,\n    \"faces_added\": 2\n  },\n  \"new_vertex_defect\": -0.0,\n  \"local_defect_sum_before\": 9.424778,\n  \"local_defect_sum_after\": 9.424778,\n  \"note\": \"Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature).\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"incomplete_subdivision\": {\n    \"description\": \"Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.\",\n    \"expected_defect_at_new_vertex\": 6.283185,\n    \"expected_chi_change\": 1\n  },\n  \"vertex_displacement\": {\n    \"description\": \"Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged).\"\n  },\n  \"note\": \"Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim3_q02",
+      "type": "chi_genus",
+      "stem": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "Euler 特征数 χ = V − E + F 是多少？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(b)",
+          "text": "曲面的亏格 g 是多少？（对球面 g=0）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "在面 face_index=2 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "n_vertices": 4,
+        "n_edges": 6,
+        "n_faces": 4,
+        "chi": 2,
+        "genus": 0,
+        "total_curvature": 12.5664,
+        "subdivision_new_vertex_defect": 0
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 4,
+          "n_edges": 6,
+          "n_faces": 4,
+          "vertices": [
+            [
+              1.0,
+              1.0,
+              1.0
+            ],
+            [
+              -1.0,
+              -1.0,
+              1.0
+            ],
+            [
+              -1.0,
+              1.0,
+              -1.0
+            ],
+            [
+              1.0,
+              -1.0,
+              -1.0
+            ]
+          ],
+          "faces": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              1,
+              3
+            ],
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "angle_defects_per_vertex": {
+            "0": 3.1416,
+            "1": 3.1416,
+            "2": 3.1416,
+            "3": 3.1416
+          },
+          "vertex_degrees": {
+            "0": 3,
+            "1": 3,
+            "2": 3,
+            "3": 3
+          },
+          "note": "δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself."
+        },
+        "T": {
+          "operation": "stellar_subdivision",
+          "subdivided_face_index": 2,
+          "before": {
+            "n_vertices": 4,
+            "n_edges": 6,
+            "n_faces": 4
+          },
+          "after": {
+            "n_vertices": 5,
+            "n_edges": 9,
+            "n_faces": 6
+          },
+          "delta": {
+            "vertices_added": 1,
+            "edges_added": 3,
+            "faces_added": 2
+          },
+          "new_vertex_defect": -0.0,
+          "local_defect_sum_before": 9.424778,
+          "local_defect_sum_after": 9.424778,
+          "note": "Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature)."
+        },
+        "C": {
+          "incomplete_subdivision": {
+            "description": "Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.",
+            "expected_defect_at_new_vertex": 6.283185,
+            "expected_chi_change": 1
+          },
+          "vertex_displacement": {
+            "description": "Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged)."
+          },
+          "note": "Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not."
+        }
+      },
+      "prompts": {
+        "baseline": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n请回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=2 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=2 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 4,\n  \"n_edges\": 6,\n  \"n_faces\": 4,\n  \"vertices\": [\n    [\n      1.0,\n      1.0,\n      1.0\n    ],\n    [\n      -1.0,\n      -1.0,\n      1.0\n    ],\n    [\n      -1.0,\n      1.0,\n      -1.0\n    ],\n    [\n      1.0,\n      -1.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      1,\n      2\n    ],\n    [\n      0,\n      1,\n      3\n    ],\n    [\n      0,\n      2,\n      3\n    ],\n    [\n      1,\n      2,\n      3\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 3.1416,\n    \"1\": 3.1416,\n    \"2\": 3.1416,\n    \"3\": 3.1416\n  },\n  \"vertex_degrees\": {\n    \"0\": 3,\n    \"1\": 3,\n    \"2\": 3,\n    \"3\": 3\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=2 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 4,\n  \"n_edges\": 6,\n  \"n_faces\": 4,\n  \"vertices\": [\n    [\n      1.0,\n      1.0,\n      1.0\n    ],\n    [\n      -1.0,\n      -1.0,\n      1.0\n    ],\n    [\n      -1.0,\n      1.0,\n      -1.0\n    ],\n    [\n      1.0,\n      -1.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      1,\n      2\n    ],\n    [\n      0,\n      1,\n      3\n    ],\n    [\n      0,\n      2,\n      3\n    ],\n    [\n      1,\n      2,\n      3\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 3.1416,\n    \"1\": 3.1416,\n    \"2\": 3.1416,\n    \"3\": 3.1416\n  },\n  \"vertex_degrees\": {\n    \"0\": 3,\n    \"1\": 3,\n    \"2\": 3,\n    \"3\": 3\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"stellar_subdivision\",\n  \"subdivided_face_index\": 2,\n  \"before\": {\n    \"n_vertices\": 4,\n    \"n_edges\": 6,\n    \"n_faces\": 4\n  },\n  \"after\": {\n    \"n_vertices\": 5,\n    \"n_edges\": 9,\n    \"n_faces\": 6\n  },\n  \"delta\": {\n    \"vertices_added\": 1,\n    \"edges_added\": 3,\n    \"faces_added\": 2\n  },\n  \"new_vertex_defect\": -0.0,\n  \"local_defect_sum_before\": 9.424778,\n  \"local_defect_sum_after\": 9.424778,\n  \"note\": \"Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature).\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"incomplete_subdivision\": {\n    \"description\": \"Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.\",\n    \"expected_defect_at_new_vertex\": 6.283185,\n    \"expected_chi_change\": 1\n  },\n  \"vertex_displacement\": {\n    \"description\": \"Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged).\"\n  },\n  \"note\": \"Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=2 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim3_q03",
+      "type": "chi_genus",
+      "stem": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "Euler 特征数 χ = V − E + F 是多少？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(b)",
+          "text": "曲面的亏格 g 是多少？（对球面 g=0）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "n_vertices": 8,
+        "n_edges": 18,
+        "n_faces": 12,
+        "chi": 2,
+        "genus": 0,
+        "total_curvature": 12.5664,
+        "subdivision_new_vertex_defect": 0
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 8,
+          "n_edges": 18,
+          "n_faces": 12,
+          "vertices": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              1.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0,
+              1.0
+            ]
+          ],
+          "faces": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              4,
+              6,
+              5
+            ],
+            [
+              4,
+              7,
+              6
+            ],
+            [
+              0,
+              5,
+              1
+            ],
+            [
+              0,
+              4,
+              5
+            ],
+            [
+              2,
+              7,
+              3
+            ],
+            [
+              2,
+              6,
+              7
+            ],
+            [
+              0,
+              3,
+              7
+            ],
+            [
+              0,
+              7,
+              4
+            ],
+            [
+              1,
+              6,
+              2
+            ],
+            [
+              1,
+              5,
+              6
+            ]
+          ],
+          "angle_defects_per_vertex": {
+            "0": 1.5708,
+            "1": 1.5708,
+            "2": 1.5708,
+            "3": 1.5708,
+            "4": 1.5708,
+            "5": 1.5708,
+            "6": 1.5708,
+            "7": 1.5708
+          },
+          "vertex_degrees": {
+            "0": 6,
+            "1": 4,
+            "2": 5,
+            "3": 3,
+            "4": 4,
+            "5": 4,
+            "6": 5,
+            "7": 5
+          },
+          "note": "δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself."
+        },
+        "T": {
+          "operation": "stellar_subdivision",
+          "subdivided_face_index": 0,
+          "before": {
+            "n_vertices": 8,
+            "n_edges": 18,
+            "n_faces": 12
+          },
+          "after": {
+            "n_vertices": 9,
+            "n_edges": 21,
+            "n_faces": 14
+          },
+          "delta": {
+            "vertices_added": 1,
+            "edges_added": 3,
+            "faces_added": 2
+          },
+          "new_vertex_defect": 0.0,
+          "local_defect_sum_before": 4.712389,
+          "local_defect_sum_after": 4.712389,
+          "note": "Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature)."
+        },
+        "C": {
+          "incomplete_subdivision": {
+            "description": "Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.",
+            "expected_defect_at_new_vertex": 6.283185,
+            "expected_chi_change": 1
+          },
+          "vertex_displacement": {
+            "description": "Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged)."
+          },
+          "note": "Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not."
+        }
+      },
+      "prompts": {
+        "baseline": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n请回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 8,\n  \"n_edges\": 18,\n  \"n_faces\": 12,\n  \"vertices\": [\n    [\n      0.0,\n      0.0,\n      0.0\n    ],\n    [\n      1.0,\n      0.0,\n      0.0\n    ],\n    [\n      1.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      0.0,\n      1.0\n    ],\n    [\n      1.0,\n      0.0,\n      1.0\n    ],\n    [\n      1.0,\n      1.0,\n      1.0\n    ],\n    [\n      0.0,\n      1.0,\n      1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      1,\n      2\n    ],\n    [\n      0,\n      2,\n      3\n    ],\n    [\n      4,\n      6,\n      5\n    ],\n    [\n      4,\n      7,\n      6\n    ],\n    [\n      0,\n      5,\n      1\n    ],\n    [\n      0,\n      4,\n      5\n    ],\n    [\n      2,\n      7,\n      3\n    ],\n    [\n      2,\n      6,\n      7\n    ],\n    [\n      0,\n      3,\n      7\n    ],\n    [\n      0,\n      7,\n      4\n    ],\n    [\n      1,\n      6,\n      2\n    ],\n    [\n      1,\n      5,\n      6\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 1.5708,\n    \"1\": 1.5708,\n    \"2\": 1.5708,\n    \"3\": 1.5708,\n    \"4\": 1.5708,\n    \"5\": 1.5708,\n    \"6\": 1.5708,\n    \"7\": 1.5708\n  },\n  \"vertex_degrees\": {\n    \"0\": 6,\n    \"1\": 4,\n    \"2\": 5,\n    \"3\": 3,\n    \"4\": 4,\n    \"5\": 4,\n    \"6\": 5,\n    \"7\": 5\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 8,\n  \"n_edges\": 18,\n  \"n_faces\": 12,\n  \"vertices\": [\n    [\n      0.0,\n      0.0,\n      0.0\n    ],\n    [\n      1.0,\n      0.0,\n      0.0\n    ],\n    [\n      1.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      0.0,\n      1.0\n    ],\n    [\n      1.0,\n      0.0,\n      1.0\n    ],\n    [\n      1.0,\n      1.0,\n      1.0\n    ],\n    [\n      0.0,\n      1.0,\n      1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      1,\n      2\n    ],\n    [\n      0,\n      2,\n      3\n    ],\n    [\n      4,\n      6,\n      5\n    ],\n    [\n      4,\n      7,\n      6\n    ],\n    [\n      0,\n      5,\n      1\n    ],\n    [\n      0,\n      4,\n      5\n    ],\n    [\n      2,\n      7,\n      3\n    ],\n    [\n      2,\n      6,\n      7\n    ],\n    [\n      0,\n      3,\n      7\n    ],\n    [\n      0,\n      7,\n      4\n    ],\n    [\n      1,\n      6,\n      2\n    ],\n    [\n      1,\n      5,\n      6\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 1.5708,\n    \"1\": 1.5708,\n    \"2\": 1.5708,\n    \"3\": 1.5708,\n    \"4\": 1.5708,\n    \"5\": 1.5708,\n    \"6\": 1.5708,\n    \"7\": 1.5708\n  },\n  \"vertex_degrees\": {\n    \"0\": 6,\n    \"1\": 4,\n    \"2\": 5,\n    \"3\": 3,\n    \"4\": 4,\n    \"5\": 4,\n    \"6\": 5,\n    \"7\": 5\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"stellar_subdivision\",\n  \"subdivided_face_index\": 0,\n  \"before\": {\n    \"n_vertices\": 8,\n    \"n_edges\": 18,\n    \"n_faces\": 12\n  },\n  \"after\": {\n    \"n_vertices\": 9,\n    \"n_edges\": 21,\n    \"n_faces\": 14\n  },\n  \"delta\": {\n    \"vertices_added\": 1,\n    \"edges_added\": 3,\n    \"faces_added\": 2\n  },\n  \"new_vertex_defect\": 0.0,\n  \"local_defect_sum_before\": 4.712389,\n  \"local_defect_sum_after\": 4.712389,\n  \"note\": \"Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature).\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"incomplete_subdivision\": {\n    \"description\": \"Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.\",\n    \"expected_defect_at_new_vertex\": 6.283185,\n    \"expected_chi_change\": 1\n  },\n  \"vertex_displacement\": {\n    \"description\": \"Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged).\"\n  },\n  \"note\": \"Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim3_q04",
+      "type": "chi_genus",
+      "stem": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "Euler 特征数 χ = V − E + F 是多少？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(b)",
+          "text": "曲面的亏格 g 是多少？（对球面 g=0）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "在面 face_index=5 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "n_vertices": 8,
+        "n_edges": 18,
+        "n_faces": 12,
+        "chi": 2,
+        "genus": 0,
+        "total_curvature": 12.5664,
+        "subdivision_new_vertex_defect": 0
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 8,
+          "n_edges": 18,
+          "n_faces": 12,
+          "vertices": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              1.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0,
+              1.0
+            ]
+          ],
+          "faces": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              4,
+              6,
+              5
+            ],
+            [
+              4,
+              7,
+              6
+            ],
+            [
+              0,
+              5,
+              1
+            ],
+            [
+              0,
+              4,
+              5
+            ],
+            [
+              2,
+              7,
+              3
+            ],
+            [
+              2,
+              6,
+              7
+            ],
+            [
+              0,
+              3,
+              7
+            ],
+            [
+              0,
+              7,
+              4
+            ],
+            [
+              1,
+              6,
+              2
+            ],
+            [
+              1,
+              5,
+              6
+            ]
+          ],
+          "angle_defects_per_vertex": {
+            "0": 1.5708,
+            "1": 1.5708,
+            "2": 1.5708,
+            "3": 1.5708,
+            "4": 1.5708,
+            "5": 1.5708,
+            "6": 1.5708,
+            "7": 1.5708
+          },
+          "vertex_degrees": {
+            "0": 6,
+            "1": 4,
+            "2": 5,
+            "3": 3,
+            "4": 4,
+            "5": 4,
+            "6": 5,
+            "7": 5
+          },
+          "note": "δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself."
+        },
+        "T": {
+          "operation": "stellar_subdivision",
+          "subdivided_face_index": 5,
+          "before": {
+            "n_vertices": 8,
+            "n_edges": 18,
+            "n_faces": 12
+          },
+          "after": {
+            "n_vertices": 9,
+            "n_edges": 21,
+            "n_faces": 14
+          },
+          "delta": {
+            "vertices_added": 1,
+            "edges_added": 3,
+            "faces_added": 2
+          },
+          "new_vertex_defect": 0.0,
+          "local_defect_sum_before": 4.712389,
+          "local_defect_sum_after": 4.712389,
+          "note": "Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature)."
+        },
+        "C": {
+          "incomplete_subdivision": {
+            "description": "Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.",
+            "expected_defect_at_new_vertex": 6.283185,
+            "expected_chi_change": 1
+          },
+          "vertex_displacement": {
+            "description": "Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged)."
+          },
+          "note": "Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not."
+        }
+      },
+      "prompts": {
+        "baseline": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n请回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=5 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=5 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 8,\n  \"n_edges\": 18,\n  \"n_faces\": 12,\n  \"vertices\": [\n    [\n      0.0,\n      0.0,\n      0.0\n    ],\n    [\n      1.0,\n      0.0,\n      0.0\n    ],\n    [\n      1.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      0.0,\n      1.0\n    ],\n    [\n      1.0,\n      0.0,\n      1.0\n    ],\n    [\n      1.0,\n      1.0,\n      1.0\n    ],\n    [\n      0.0,\n      1.0,\n      1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      1,\n      2\n    ],\n    [\n      0,\n      2,\n      3\n    ],\n    [\n      4,\n      6,\n      5\n    ],\n    [\n      4,\n      7,\n      6\n    ],\n    [\n      0,\n      5,\n      1\n    ],\n    [\n      0,\n      4,\n      5\n    ],\n    [\n      2,\n      7,\n      3\n    ],\n    [\n      2,\n      6,\n      7\n    ],\n    [\n      0,\n      3,\n      7\n    ],\n    [\n      0,\n      7,\n      4\n    ],\n    [\n      1,\n      6,\n      2\n    ],\n    [\n      1,\n      5,\n      6\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 1.5708,\n    \"1\": 1.5708,\n    \"2\": 1.5708,\n    \"3\": 1.5708,\n    \"4\": 1.5708,\n    \"5\": 1.5708,\n    \"6\": 1.5708,\n    \"7\": 1.5708\n  },\n  \"vertex_degrees\": {\n    \"0\": 6,\n    \"1\": 4,\n    \"2\": 5,\n    \"3\": 3,\n    \"4\": 4,\n    \"5\": 4,\n    \"6\": 5,\n    \"7\": 5\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=5 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 8,\n  \"n_edges\": 18,\n  \"n_faces\": 12,\n  \"vertices\": [\n    [\n      0.0,\n      0.0,\n      0.0\n    ],\n    [\n      1.0,\n      0.0,\n      0.0\n    ],\n    [\n      1.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      0.0,\n      1.0\n    ],\n    [\n      1.0,\n      0.0,\n      1.0\n    ],\n    [\n      1.0,\n      1.0,\n      1.0\n    ],\n    [\n      0.0,\n      1.0,\n      1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      1,\n      2\n    ],\n    [\n      0,\n      2,\n      3\n    ],\n    [\n      4,\n      6,\n      5\n    ],\n    [\n      4,\n      7,\n      6\n    ],\n    [\n      0,\n      5,\n      1\n    ],\n    [\n      0,\n      4,\n      5\n    ],\n    [\n      2,\n      7,\n      3\n    ],\n    [\n      2,\n      6,\n      7\n    ],\n    [\n      0,\n      3,\n      7\n    ],\n    [\n      0,\n      7,\n      4\n    ],\n    [\n      1,\n      6,\n      2\n    ],\n    [\n      1,\n      5,\n      6\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 1.5708,\n    \"1\": 1.5708,\n    \"2\": 1.5708,\n    \"3\": 1.5708,\n    \"4\": 1.5708,\n    \"5\": 1.5708,\n    \"6\": 1.5708,\n    \"7\": 1.5708\n  },\n  \"vertex_degrees\": {\n    \"0\": 6,\n    \"1\": 4,\n    \"2\": 5,\n    \"3\": 3,\n    \"4\": 4,\n    \"5\": 4,\n    \"6\": 5,\n    \"7\": 5\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"stellar_subdivision\",\n  \"subdivided_face_index\": 5,\n  \"before\": {\n    \"n_vertices\": 8,\n    \"n_edges\": 18,\n    \"n_faces\": 12\n  },\n  \"after\": {\n    \"n_vertices\": 9,\n    \"n_edges\": 21,\n    \"n_faces\": 14\n  },\n  \"delta\": {\n    \"vertices_added\": 1,\n    \"edges_added\": 3,\n    \"faces_added\": 2\n  },\n  \"new_vertex_defect\": 0.0,\n  \"local_defect_sum_before\": 4.712389,\n  \"local_defect_sum_after\": 4.712389,\n  \"note\": \"Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature).\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"incomplete_subdivision\": {\n    \"description\": \"Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.\",\n    \"expected_defect_at_new_vertex\": 6.283185,\n    \"expected_chi_change\": 1\n  },\n  \"vertex_displacement\": {\n    \"description\": \"Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged).\"\n  },\n  \"note\": \"Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=5 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim3_q05",
+      "type": "chi_genus",
+      "stem": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "Euler 特征数 χ = V − E + F 是多少？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(b)",
+          "text": "曲面的亏格 g 是多少？（对球面 g=0）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "n_vertices": 6,
+        "n_edges": 12,
+        "n_faces": 8,
+        "chi": 2,
+        "genus": 0,
+        "total_curvature": 12.5664,
+        "subdivision_new_vertex_defect": 0
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 6,
+          "n_edges": 12,
+          "n_faces": 8,
+          "vertices": [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0
+            ]
+          ],
+          "faces": [
+            [
+              0,
+              2,
+              4
+            ],
+            [
+              2,
+              1,
+              4
+            ],
+            [
+              1,
+              3,
+              4
+            ],
+            [
+              3,
+              0,
+              4
+            ],
+            [
+              2,
+              0,
+              5
+            ],
+            [
+              1,
+              2,
+              5
+            ],
+            [
+              3,
+              1,
+              5
+            ],
+            [
+              0,
+              3,
+              5
+            ]
+          ],
+          "angle_defects_per_vertex": {
+            "0": 2.0944,
+            "1": 2.0944,
+            "2": 2.0944,
+            "3": 2.0944,
+            "4": 2.0944,
+            "5": 2.0944
+          },
+          "vertex_degrees": {
+            "0": 4,
+            "1": 4,
+            "2": 4,
+            "3": 4,
+            "4": 4,
+            "5": 4
+          },
+          "note": "δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself."
+        },
+        "T": {
+          "operation": "stellar_subdivision",
+          "subdivided_face_index": 0,
+          "before": {
+            "n_vertices": 6,
+            "n_edges": 12,
+            "n_faces": 8
+          },
+          "after": {
+            "n_vertices": 7,
+            "n_edges": 15,
+            "n_faces": 10
+          },
+          "delta": {
+            "vertices_added": 1,
+            "edges_added": 3,
+            "faces_added": 2
+          },
+          "new_vertex_defect": -0.0,
+          "local_defect_sum_before": 6.283185,
+          "local_defect_sum_after": 6.283185,
+          "note": "Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature)."
+        },
+        "C": {
+          "incomplete_subdivision": {
+            "description": "Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.",
+            "expected_defect_at_new_vertex": 6.283185,
+            "expected_chi_change": 1
+          },
+          "vertex_displacement": {
+            "description": "Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged)."
+          },
+          "note": "Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not."
+        }
+      },
+      "prompts": {
+        "baseline": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n请回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 12,\n  \"n_faces\": 8,\n  \"vertices\": [\n    [\n      1.0,\n      0.0,\n      0.0\n    ],\n    [\n      -1.0,\n      0.0,\n      0.0\n    ],\n    [\n      0.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      -1.0,\n      0.0\n    ],\n    [\n      0.0,\n      0.0,\n      1.0\n    ],\n    [\n      0.0,\n      0.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      2,\n      4\n    ],\n    [\n      2,\n      1,\n      4\n    ],\n    [\n      1,\n      3,\n      4\n    ],\n    [\n      3,\n      0,\n      4\n    ],\n    [\n      2,\n      0,\n      5\n    ],\n    [\n      1,\n      2,\n      5\n    ],\n    [\n      3,\n      1,\n      5\n    ],\n    [\n      0,\n      3,\n      5\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 2.0944,\n    \"1\": 2.0944,\n    \"2\": 2.0944,\n    \"3\": 2.0944,\n    \"4\": 2.0944,\n    \"5\": 2.0944\n  },\n  \"vertex_degrees\": {\n    \"0\": 4,\n    \"1\": 4,\n    \"2\": 4,\n    \"3\": 4,\n    \"4\": 4,\n    \"5\": 4\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 12,\n  \"n_faces\": 8,\n  \"vertices\": [\n    [\n      1.0,\n      0.0,\n      0.0\n    ],\n    [\n      -1.0,\n      0.0,\n      0.0\n    ],\n    [\n      0.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      -1.0,\n      0.0\n    ],\n    [\n      0.0,\n      0.0,\n      1.0\n    ],\n    [\n      0.0,\n      0.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      2,\n      4\n    ],\n    [\n      2,\n      1,\n      4\n    ],\n    [\n      1,\n      3,\n      4\n    ],\n    [\n      3,\n      0,\n      4\n    ],\n    [\n      2,\n      0,\n      5\n    ],\n    [\n      1,\n      2,\n      5\n    ],\n    [\n      3,\n      1,\n      5\n    ],\n    [\n      0,\n      3,\n      5\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 2.0944,\n    \"1\": 2.0944,\n    \"2\": 2.0944,\n    \"3\": 2.0944,\n    \"4\": 2.0944,\n    \"5\": 2.0944\n  },\n  \"vertex_degrees\": {\n    \"0\": 4,\n    \"1\": 4,\n    \"2\": 4,\n    \"3\": 4,\n    \"4\": 4,\n    \"5\": 4\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"stellar_subdivision\",\n  \"subdivided_face_index\": 0,\n  \"before\": {\n    \"n_vertices\": 6,\n    \"n_edges\": 12,\n    \"n_faces\": 8\n  },\n  \"after\": {\n    \"n_vertices\": 7,\n    \"n_edges\": 15,\n    \"n_faces\": 10\n  },\n  \"delta\": {\n    \"vertices_added\": 1,\n    \"edges_added\": 3,\n    \"faces_added\": 2\n  },\n  \"new_vertex_defect\": -0.0,\n  \"local_defect_sum_before\": 6.283185,\n  \"local_defect_sum_after\": 6.283185,\n  \"note\": \"Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature).\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"incomplete_subdivision\": {\n    \"description\": \"Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.\",\n    \"expected_defect_at_new_vertex\": 6.283185,\n    \"expected_chi_change\": 1\n  },\n  \"vertex_displacement\": {\n    \"description\": \"Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged).\"\n  },\n  \"note\": \"Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim3_q06",
+      "type": "chi_genus",
+      "stem": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "Euler 特征数 χ = V − E + F 是多少？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(b)",
+          "text": "曲面的亏格 g 是多少？（对球面 g=0）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "在面 face_index=4 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "n_vertices": 6,
+        "n_edges": 12,
+        "n_faces": 8,
+        "chi": 2,
+        "genus": 0,
+        "total_curvature": 12.5664,
+        "subdivision_new_vertex_defect": 0
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 6,
+          "n_edges": 12,
+          "n_faces": 8,
+          "vertices": [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0
+            ]
+          ],
+          "faces": [
+            [
+              0,
+              2,
+              4
+            ],
+            [
+              2,
+              1,
+              4
+            ],
+            [
+              1,
+              3,
+              4
+            ],
+            [
+              3,
+              0,
+              4
+            ],
+            [
+              2,
+              0,
+              5
+            ],
+            [
+              1,
+              2,
+              5
+            ],
+            [
+              3,
+              1,
+              5
+            ],
+            [
+              0,
+              3,
+              5
+            ]
+          ],
+          "angle_defects_per_vertex": {
+            "0": 2.0944,
+            "1": 2.0944,
+            "2": 2.0944,
+            "3": 2.0944,
+            "4": 2.0944,
+            "5": 2.0944
+          },
+          "vertex_degrees": {
+            "0": 4,
+            "1": 4,
+            "2": 4,
+            "3": 4,
+            "4": 4,
+            "5": 4
+          },
+          "note": "δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself."
+        },
+        "T": {
+          "operation": "stellar_subdivision",
+          "subdivided_face_index": 4,
+          "before": {
+            "n_vertices": 6,
+            "n_edges": 12,
+            "n_faces": 8
+          },
+          "after": {
+            "n_vertices": 7,
+            "n_edges": 15,
+            "n_faces": 10
+          },
+          "delta": {
+            "vertices_added": 1,
+            "edges_added": 3,
+            "faces_added": 2
+          },
+          "new_vertex_defect": -0.0,
+          "local_defect_sum_before": 6.283185,
+          "local_defect_sum_after": 6.283185,
+          "note": "Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature)."
+        },
+        "C": {
+          "incomplete_subdivision": {
+            "description": "Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.",
+            "expected_defect_at_new_vertex": 6.283185,
+            "expected_chi_change": 1
+          },
+          "vertex_displacement": {
+            "description": "Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged)."
+          },
+          "note": "Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not."
+        }
+      },
+      "prompts": {
+        "baseline": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n请回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=4 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=4 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 12,\n  \"n_faces\": 8,\n  \"vertices\": [\n    [\n      1.0,\n      0.0,\n      0.0\n    ],\n    [\n      -1.0,\n      0.0,\n      0.0\n    ],\n    [\n      0.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      -1.0,\n      0.0\n    ],\n    [\n      0.0,\n      0.0,\n      1.0\n    ],\n    [\n      0.0,\n      0.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      2,\n      4\n    ],\n    [\n      2,\n      1,\n      4\n    ],\n    [\n      1,\n      3,\n      4\n    ],\n    [\n      3,\n      0,\n      4\n    ],\n    [\n      2,\n      0,\n      5\n    ],\n    [\n      1,\n      2,\n      5\n    ],\n    [\n      3,\n      1,\n      5\n    ],\n    [\n      0,\n      3,\n      5\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 2.0944,\n    \"1\": 2.0944,\n    \"2\": 2.0944,\n    \"3\": 2.0944,\n    \"4\": 2.0944,\n    \"5\": 2.0944\n  },\n  \"vertex_degrees\": {\n    \"0\": 4,\n    \"1\": 4,\n    \"2\": 4,\n    \"3\": 4,\n    \"4\": 4,\n    \"5\": 4\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=4 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 12,\n  \"n_faces\": 8,\n  \"vertices\": [\n    [\n      1.0,\n      0.0,\n      0.0\n    ],\n    [\n      -1.0,\n      0.0,\n      0.0\n    ],\n    [\n      0.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      -1.0,\n      0.0\n    ],\n    [\n      0.0,\n      0.0,\n      1.0\n    ],\n    [\n      0.0,\n      0.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      2,\n      4\n    ],\n    [\n      2,\n      1,\n      4\n    ],\n    [\n      1,\n      3,\n      4\n    ],\n    [\n      3,\n      0,\n      4\n    ],\n    [\n      2,\n      0,\n      5\n    ],\n    [\n      1,\n      2,\n      5\n    ],\n    [\n      3,\n      1,\n      5\n    ],\n    [\n      0,\n      3,\n      5\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 2.0944,\n    \"1\": 2.0944,\n    \"2\": 2.0944,\n    \"3\": 2.0944,\n    \"4\": 2.0944,\n    \"5\": 2.0944\n  },\n  \"vertex_degrees\": {\n    \"0\": 4,\n    \"1\": 4,\n    \"2\": 4,\n    \"3\": 4,\n    \"4\": 4,\n    \"5\": 4\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"stellar_subdivision\",\n  \"subdivided_face_index\": 4,\n  \"before\": {\n    \"n_vertices\": 6,\n    \"n_edges\": 12,\n    \"n_faces\": 8\n  },\n  \"after\": {\n    \"n_vertices\": 7,\n    \"n_edges\": 15,\n    \"n_faces\": 10\n  },\n  \"delta\": {\n    \"vertices_added\": 1,\n    \"edges_added\": 3,\n    \"faces_added\": 2\n  },\n  \"new_vertex_defect\": -0.0,\n  \"local_defect_sum_before\": 6.283185,\n  \"local_defect_sum_after\": 6.283185,\n  \"note\": \"Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature).\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"incomplete_subdivision\": {\n    \"description\": \"Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.\",\n    \"expected_defect_at_new_vertex\": 6.283185,\n    \"expected_chi_change\": 1\n  },\n  \"vertex_displacement\": {\n    \"description\": \"Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged).\"\n  },\n  \"note\": \"Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=4 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim3_q07",
+      "type": "chi_genus",
+      "stem": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "Euler 特征数 χ = V − E + F 是多少？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(b)",
+          "text": "曲面的亏格 g 是多少？（对球面 g=0）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "n_vertices": 12,
+        "n_edges": 30,
+        "n_faces": 20,
+        "chi": 2,
+        "genus": 0,
+        "total_curvature": 12.5664,
+        "subdivision_new_vertex_defect": 0
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 12,
+          "n_edges": 30,
+          "n_faces": 20,
+          "vertices": [
+            [
+              0.0,
+              1.0,
+              1.618
+            ],
+            [
+              0.0,
+              1.0,
+              -1.618
+            ],
+            [
+              0.0,
+              -1.0,
+              1.618
+            ],
+            [
+              0.0,
+              -1.0,
+              -1.618
+            ],
+            [
+              1.0,
+              1.618,
+              0.0
+            ],
+            [
+              -1.0,
+              1.618,
+              0.0
+            ],
+            [
+              1.0,
+              -1.618,
+              0.0
+            ],
+            [
+              -1.0,
+              -1.618,
+              0.0
+            ],
+            [
+              1.618,
+              0.0,
+              1.0
+            ],
+            [
+              -1.618,
+              0.0,
+              1.0
+            ],
+            [
+              1.618,
+              0.0,
+              -1.0
+            ],
+            [
+              -1.618,
+              0.0,
+              -1.0
+            ]
+          ],
+          "faces": [
+            [
+              0,
+              2,
+              8
+            ],
+            [
+              0,
+              8,
+              4
+            ],
+            [
+              0,
+              4,
+              5
+            ],
+            [
+              0,
+              5,
+              9
+            ],
+            [
+              0,
+              9,
+              2
+            ],
+            [
+              3,
+              6,
+              10
+            ],
+            [
+              3,
+              10,
+              1
+            ],
+            [
+              3,
+              1,
+              11
+            ],
+            [
+              3,
+              11,
+              7
+            ],
+            [
+              3,
+              7,
+              6
+            ],
+            [
+              2,
+              6,
+              8
+            ],
+            [
+              8,
+              10,
+              4
+            ],
+            [
+              4,
+              1,
+              5
+            ],
+            [
+              5,
+              11,
+              9
+            ],
+            [
+              9,
+              7,
+              2
+            ],
+            [
+              6,
+              2,
+              7
+            ],
+            [
+              10,
+              8,
+              6
+            ],
+            [
+              1,
+              4,
+              10
+            ],
+            [
+              11,
+              5,
+              1
+            ],
+            [
+              7,
+              9,
+              11
+            ]
+          ],
+          "angle_defects_per_vertex": {
+            "0": 1.0472,
+            "1": 1.0472,
+            "2": 1.0472,
+            "3": 1.0472,
+            "4": 1.0472,
+            "5": 1.0472,
+            "6": 1.0472,
+            "7": 1.0472,
+            "8": 1.0472,
+            "9": 1.0472,
+            "10": 1.0472,
+            "11": 1.0472
+          },
+          "vertex_degrees": {
+            "0": 5,
+            "1": 5,
+            "2": 5,
+            "3": 5,
+            "4": 5,
+            "5": 5,
+            "6": 5,
+            "7": 5,
+            "8": 5,
+            "9": 5,
+            "10": 5,
+            "11": 5
+          },
+          "note": "δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself."
+        },
+        "T": {
+          "operation": "stellar_subdivision",
+          "subdivided_face_index": 0,
+          "before": {
+            "n_vertices": 12,
+            "n_edges": 30,
+            "n_faces": 20
+          },
+          "after": {
+            "n_vertices": 13,
+            "n_edges": 33,
+            "n_faces": 22
+          },
+          "delta": {
+            "vertices_added": 1,
+            "edges_added": 3,
+            "faces_added": 2
+          },
+          "new_vertex_defect": 0.0,
+          "local_defect_sum_before": 3.141593,
+          "local_defect_sum_after": 3.141593,
+          "note": "Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature)."
+        },
+        "C": {
+          "incomplete_subdivision": {
+            "description": "Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.",
+            "expected_defect_at_new_vertex": 6.283185,
+            "expected_chi_change": 1
+          },
+          "vertex_displacement": {
+            "description": "Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged)."
+          },
+          "note": "Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not."
+        }
+      },
+      "prompts": {
+        "baseline": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n请回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 12,\n  \"n_edges\": 30,\n  \"n_faces\": 20,\n  \"vertices\": [\n    [\n      0.0,\n      1.0,\n      1.618\n    ],\n    [\n      0.0,\n      1.0,\n      -1.618\n    ],\n    [\n      0.0,\n      -1.0,\n      1.618\n    ],\n    [\n      0.0,\n      -1.0,\n      -1.618\n    ],\n    [\n      1.0,\n      1.618,\n      0.0\n    ],\n    [\n      -1.0,\n      1.618,\n      0.0\n    ],\n    [\n      1.0,\n      -1.618,\n      0.0\n    ],\n    [\n      -1.0,\n      -1.618,\n      0.0\n    ],\n    [\n      1.618,\n      0.0,\n      1.0\n    ],\n    [\n      -1.618,\n      0.0,\n      1.0\n    ],\n    [\n      1.618,\n      0.0,\n      -1.0\n    ],\n    [\n      -1.618,\n      0.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      2,\n      8\n    ],\n    [\n      0,\n      8,\n      4\n    ],\n    [\n      0,\n      4,\n      5\n    ],\n    [\n      0,\n      5,\n      9\n    ],\n    [\n      0,\n      9,\n      2\n    ],\n    [\n      3,\n      6,\n      10\n    ],\n    [\n      3,\n      10,\n      1\n    ],\n    [\n      3,\n      1,\n      11\n    ],\n    [\n      3,\n      11,\n      7\n    ],\n    [\n      3,\n      7,\n      6\n    ],\n    [\n      2,\n      6,\n      8\n    ],\n    [\n      8,\n      10,\n      4\n    ],\n    [\n      4,\n      1,\n      5\n    ],\n    [\n      5,\n      11,\n      9\n    ],\n    [\n      9,\n      7,\n      2\n    ],\n    [\n      6,\n      2,\n      7\n    ],\n    [\n      10,\n      8,\n      6\n    ],\n    [\n      1,\n      4,\n      10\n    ],\n    [\n      11,\n      5,\n      1\n    ],\n    [\n      7,\n      9,\n      11\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 1.0472,\n    \"1\": 1.0472,\n    \"2\": 1.0472,\n    \"3\": 1.0472,\n    \"4\": 1.0472,\n    \"5\": 1.0472,\n    \"6\": 1.0472,\n    \"7\": 1.0472,\n    \"8\": 1.0472,\n    \"9\": 1.0472,\n    \"10\": 1.0472,\n    \"11\": 1.0472\n  },\n  \"vertex_degrees\": {\n    \"0\": 5,\n    \"1\": 5,\n    \"2\": 5,\n    \"3\": 5,\n    \"4\": 5,\n    \"5\": 5,\n    \"6\": 5,\n    \"7\": 5,\n    \"8\": 5,\n    \"9\": 5,\n    \"10\": 5,\n    \"11\": 5\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 12,\n  \"n_edges\": 30,\n  \"n_faces\": 20,\n  \"vertices\": [\n    [\n      0.0,\n      1.0,\n      1.618\n    ],\n    [\n      0.0,\n      1.0,\n      -1.618\n    ],\n    [\n      0.0,\n      -1.0,\n      1.618\n    ],\n    [\n      0.0,\n      -1.0,\n      -1.618\n    ],\n    [\n      1.0,\n      1.618,\n      0.0\n    ],\n    [\n      -1.0,\n      1.618,\n      0.0\n    ],\n    [\n      1.0,\n      -1.618,\n      0.0\n    ],\n    [\n      -1.0,\n      -1.618,\n      0.0\n    ],\n    [\n      1.618,\n      0.0,\n      1.0\n    ],\n    [\n      -1.618,\n      0.0,\n      1.0\n    ],\n    [\n      1.618,\n      0.0,\n      -1.0\n    ],\n    [\n      -1.618,\n      0.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      2,\n      8\n    ],\n    [\n      0,\n      8,\n      4\n    ],\n    [\n      0,\n      4,\n      5\n    ],\n    [\n      0,\n      5,\n      9\n    ],\n    [\n      0,\n      9,\n      2\n    ],\n    [\n      3,\n      6,\n      10\n    ],\n    [\n      3,\n      10,\n      1\n    ],\n    [\n      3,\n      1,\n      11\n    ],\n    [\n      3,\n      11,\n      7\n    ],\n    [\n      3,\n      7,\n      6\n    ],\n    [\n      2,\n      6,\n      8\n    ],\n    [\n      8,\n      10,\n      4\n    ],\n    [\n      4,\n      1,\n      5\n    ],\n    [\n      5,\n      11,\n      9\n    ],\n    [\n      9,\n      7,\n      2\n    ],\n    [\n      6,\n      2,\n      7\n    ],\n    [\n      10,\n      8,\n      6\n    ],\n    [\n      1,\n      4,\n      10\n    ],\n    [\n      11,\n      5,\n      1\n    ],\n    [\n      7,\n      9,\n      11\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 1.0472,\n    \"1\": 1.0472,\n    \"2\": 1.0472,\n    \"3\": 1.0472,\n    \"4\": 1.0472,\n    \"5\": 1.0472,\n    \"6\": 1.0472,\n    \"7\": 1.0472,\n    \"8\": 1.0472,\n    \"9\": 1.0472,\n    \"10\": 1.0472,\n    \"11\": 1.0472\n  },\n  \"vertex_degrees\": {\n    \"0\": 5,\n    \"1\": 5,\n    \"2\": 5,\n    \"3\": 5,\n    \"4\": 5,\n    \"5\": 5,\n    \"6\": 5,\n    \"7\": 5,\n    \"8\": 5,\n    \"9\": 5,\n    \"10\": 5,\n    \"11\": 5\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"stellar_subdivision\",\n  \"subdivided_face_index\": 0,\n  \"before\": {\n    \"n_vertices\": 12,\n    \"n_edges\": 30,\n    \"n_faces\": 20\n  },\n  \"after\": {\n    \"n_vertices\": 13,\n    \"n_edges\": 33,\n    \"n_faces\": 22\n  },\n  \"delta\": {\n    \"vertices_added\": 1,\n    \"edges_added\": 3,\n    \"faces_added\": 2\n  },\n  \"new_vertex_defect\": 0.0,\n  \"local_defect_sum_before\": 3.141593,\n  \"local_defect_sum_after\": 3.141593,\n  \"note\": \"Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature).\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"incomplete_subdivision\": {\n    \"description\": \"Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.\",\n    \"expected_defect_at_new_vertex\": 6.283185,\n    \"expected_chi_change\": 1\n  },\n  \"vertex_displacement\": {\n    \"description\": \"Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged).\"\n  },\n  \"note\": \"Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=0 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim3_q08",
+      "type": "chi_genus",
+      "stem": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "Euler 特征数 χ = V − E + F 是多少？",
+          "answer_type": "integer",
+          "answer": 2
+        },
+        {
+          "label": "(b)",
+          "text": "曲面的亏格 g 是多少？（对球面 g=0）",
+          "answer_type": "integer",
+          "answer": 0
+        },
+        {
+          "label": "(c)",
+          "text": "在面 face_index=10 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。",
+          "answer_type": "integer",
+          "answer": 0
+        }
+      ],
+      "ground_truth": {
+        "n_vertices": 12,
+        "n_edges": 30,
+        "n_faces": 20,
+        "chi": 2,
+        "genus": 0,
+        "total_curvature": 12.5664,
+        "subdivision_new_vertex_defect": 0
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 12,
+          "n_edges": 30,
+          "n_faces": 20,
+          "vertices": [
+            [
+              0.0,
+              1.0,
+              1.618
+            ],
+            [
+              0.0,
+              1.0,
+              -1.618
+            ],
+            [
+              0.0,
+              -1.0,
+              1.618
+            ],
+            [
+              0.0,
+              -1.0,
+              -1.618
+            ],
+            [
+              1.0,
+              1.618,
+              0.0
+            ],
+            [
+              -1.0,
+              1.618,
+              0.0
+            ],
+            [
+              1.0,
+              -1.618,
+              0.0
+            ],
+            [
+              -1.0,
+              -1.618,
+              0.0
+            ],
+            [
+              1.618,
+              0.0,
+              1.0
+            ],
+            [
+              -1.618,
+              0.0,
+              1.0
+            ],
+            [
+              1.618,
+              0.0,
+              -1.0
+            ],
+            [
+              -1.618,
+              0.0,
+              -1.0
+            ]
+          ],
+          "faces": [
+            [
+              0,
+              2,
+              8
+            ],
+            [
+              0,
+              8,
+              4
+            ],
+            [
+              0,
+              4,
+              5
+            ],
+            [
+              0,
+              5,
+              9
+            ],
+            [
+              0,
+              9,
+              2
+            ],
+            [
+              3,
+              6,
+              10
+            ],
+            [
+              3,
+              10,
+              1
+            ],
+            [
+              3,
+              1,
+              11
+            ],
+            [
+              3,
+              11,
+              7
+            ],
+            [
+              3,
+              7,
+              6
+            ],
+            [
+              2,
+              6,
+              8
+            ],
+            [
+              8,
+              10,
+              4
+            ],
+            [
+              4,
+              1,
+              5
+            ],
+            [
+              5,
+              11,
+              9
+            ],
+            [
+              9,
+              7,
+              2
+            ],
+            [
+              6,
+              2,
+              7
+            ],
+            [
+              10,
+              8,
+              6
+            ],
+            [
+              1,
+              4,
+              10
+            ],
+            [
+              11,
+              5,
+              1
+            ],
+            [
+              7,
+              9,
+              11
+            ]
+          ],
+          "angle_defects_per_vertex": {
+            "0": 1.0472,
+            "1": 1.0472,
+            "2": 1.0472,
+            "3": 1.0472,
+            "4": 1.0472,
+            "5": 1.0472,
+            "6": 1.0472,
+            "7": 1.0472,
+            "8": 1.0472,
+            "9": 1.0472,
+            "10": 1.0472,
+            "11": 1.0472
+          },
+          "vertex_degrees": {
+            "0": 5,
+            "1": 5,
+            "2": 5,
+            "3": 5,
+            "4": 5,
+            "5": 5,
+            "6": 5,
+            "7": 5,
+            "8": 5,
+            "9": 5,
+            "10": 5,
+            "11": 5
+          },
+          "note": "δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself."
+        },
+        "T": {
+          "operation": "stellar_subdivision",
+          "subdivided_face_index": 10,
+          "before": {
+            "n_vertices": 12,
+            "n_edges": 30,
+            "n_faces": 20
+          },
+          "after": {
+            "n_vertices": 13,
+            "n_edges": 33,
+            "n_faces": 22
+          },
+          "delta": {
+            "vertices_added": 1,
+            "edges_added": 3,
+            "faces_added": 2
+          },
+          "new_vertex_defect": -0.0,
+          "local_defect_sum_before": 3.141593,
+          "local_defect_sum_after": 3.141593,
+          "note": "Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature)."
+        },
+        "C": {
+          "incomplete_subdivision": {
+            "description": "Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.",
+            "expected_defect_at_new_vertex": 6.283185,
+            "expected_chi_change": 1
+          },
+          "vertex_displacement": {
+            "description": "Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged)."
+          },
+          "note": "Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not."
+        }
+      },
+      "prompts": {
+        "baseline": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n请回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=10 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=10 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 12,\n  \"n_edges\": 30,\n  \"n_faces\": 20,\n  \"vertices\": [\n    [\n      0.0,\n      1.0,\n      1.618\n    ],\n    [\n      0.0,\n      1.0,\n      -1.618\n    ],\n    [\n      0.0,\n      -1.0,\n      1.618\n    ],\n    [\n      0.0,\n      -1.0,\n      -1.618\n    ],\n    [\n      1.0,\n      1.618,\n      0.0\n    ],\n    [\n      -1.0,\n      1.618,\n      0.0\n    ],\n    [\n      1.0,\n      -1.618,\n      0.0\n    ],\n    [\n      -1.0,\n      -1.618,\n      0.0\n    ],\n    [\n      1.618,\n      0.0,\n      1.0\n    ],\n    [\n      -1.618,\n      0.0,\n      1.0\n    ],\n    [\n      1.618,\n      0.0,\n      -1.0\n    ],\n    [\n      -1.618,\n      0.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      2,\n      8\n    ],\n    [\n      0,\n      8,\n      4\n    ],\n    [\n      0,\n      4,\n      5\n    ],\n    [\n      0,\n      5,\n      9\n    ],\n    [\n      0,\n      9,\n      2\n    ],\n    [\n      3,\n      6,\n      10\n    ],\n    [\n      3,\n      10,\n      1\n    ],\n    [\n      3,\n      1,\n      11\n    ],\n    [\n      3,\n      11,\n      7\n    ],\n    [\n      3,\n      7,\n      6\n    ],\n    [\n      2,\n      6,\n      8\n    ],\n    [\n      8,\n      10,\n      4\n    ],\n    [\n      4,\n      1,\n      5\n    ],\n    [\n      5,\n      11,\n      9\n    ],\n    [\n      9,\n      7,\n      2\n    ],\n    [\n      6,\n      2,\n      7\n    ],\n    [\n      10,\n      8,\n      6\n    ],\n    [\n      1,\n      4,\n      10\n    ],\n    [\n      11,\n      5,\n      1\n    ],\n    [\n      7,\n      9,\n      11\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 1.0472,\n    \"1\": 1.0472,\n    \"2\": 1.0472,\n    \"3\": 1.0472,\n    \"4\": 1.0472,\n    \"5\": 1.0472,\n    \"6\": 1.0472,\n    \"7\": 1.0472,\n    \"8\": 1.0472,\n    \"9\": 1.0472,\n    \"10\": 1.0472,\n    \"11\": 1.0472\n  },\n  \"vertex_degrees\": {\n    \"0\": 5,\n    \"1\": 5,\n    \"2\": 5,\n    \"3\": 5,\n    \"4\": 5,\n    \"5\": 5,\n    \"6\": 5,\n    \"7\": 5,\n    \"8\": 5,\n    \"9\": 5,\n    \"10\": 5,\n    \"11\": 5\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=10 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "在三维空间中考虑一个三角网格曲面。每个顶点 v 的角缺定义为\n  δ(v) = 2π − Σ(以 v 为顶角的所有三角面的内角)\nGauss-Bonnet 离散版本：Σ_v δ(v) = 2π·χ，其中 χ 是 Euler 特征数 V−E+F。对闭曲面有 χ = 2 − 2g（g 为亏格）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 12,\n  \"n_edges\": 30,\n  \"n_faces\": 20,\n  \"vertices\": [\n    [\n      0.0,\n      1.0,\n      1.618\n    ],\n    [\n      0.0,\n      1.0,\n      -1.618\n    ],\n    [\n      0.0,\n      -1.0,\n      1.618\n    ],\n    [\n      0.0,\n      -1.0,\n      -1.618\n    ],\n    [\n      1.0,\n      1.618,\n      0.0\n    ],\n    [\n      -1.0,\n      1.618,\n      0.0\n    ],\n    [\n      1.0,\n      -1.618,\n      0.0\n    ],\n    [\n      -1.0,\n      -1.618,\n      0.0\n    ],\n    [\n      1.618,\n      0.0,\n      1.0\n    ],\n    [\n      -1.618,\n      0.0,\n      1.0\n    ],\n    [\n      1.618,\n      0.0,\n      -1.0\n    ],\n    [\n      -1.618,\n      0.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      2,\n      8\n    ],\n    [\n      0,\n      8,\n      4\n    ],\n    [\n      0,\n      4,\n      5\n    ],\n    [\n      0,\n      5,\n      9\n    ],\n    [\n      0,\n      9,\n      2\n    ],\n    [\n      3,\n      6,\n      10\n    ],\n    [\n      3,\n      10,\n      1\n    ],\n    [\n      3,\n      1,\n      11\n    ],\n    [\n      3,\n      11,\n      7\n    ],\n    [\n      3,\n      7,\n      6\n    ],\n    [\n      2,\n      6,\n      8\n    ],\n    [\n      8,\n      10,\n      4\n    ],\n    [\n      4,\n      1,\n      5\n    ],\n    [\n      5,\n      11,\n      9\n    ],\n    [\n      9,\n      7,\n      2\n    ],\n    [\n      6,\n      2,\n      7\n    ],\n    [\n      10,\n      8,\n      6\n    ],\n    [\n      1,\n      4,\n      10\n    ],\n    [\n      11,\n      5,\n      1\n    ],\n    [\n      7,\n      9,\n      11\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 1.0472,\n    \"1\": 1.0472,\n    \"2\": 1.0472,\n    \"3\": 1.0472,\n    \"4\": 1.0472,\n    \"5\": 1.0472,\n    \"6\": 1.0472,\n    \"7\": 1.0472,\n    \"8\": 1.0472,\n    \"9\": 1.0472,\n    \"10\": 1.0472,\n    \"11\": 1.0472\n  },\n  \"vertex_degrees\": {\n    \"0\": 5,\n    \"1\": 5,\n    \"2\": 5,\n    \"3\": 5,\n    \"4\": 5,\n    \"5\": 5,\n    \"6\": 5,\n    \"7\": 5,\n    \"8\": 5,\n    \"9\": 5,\n    \"10\": 5,\n    \"11\": 5\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"stellar_subdivision\",\n  \"subdivided_face_index\": 10,\n  \"before\": {\n    \"n_vertices\": 12,\n    \"n_edges\": 30,\n    \"n_faces\": 20\n  },\n  \"after\": {\n    \"n_vertices\": 13,\n    \"n_edges\": 33,\n    \"n_faces\": 22\n  },\n  \"delta\": {\n    \"vertices_added\": 1,\n    \"edges_added\": 3,\n    \"faces_added\": 2\n  },\n  \"new_vertex_defect\": -0.0,\n  \"local_defect_sum_before\": 3.141593,\n  \"local_defect_sum_after\": 3.141593,\n  \"note\": \"Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature).\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"incomplete_subdivision\": {\n    \"description\": \"Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.\",\n    \"expected_defect_at_new_vertex\": 6.283185,\n    \"expected_chi_change\": 1\n  },\n  \"vertex_displacement\": {\n    \"description\": \"Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged).\"\n  },\n  \"note\": \"Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) Euler 特征数 χ = V − E + F 是多少？\n  (b) 曲面的亏格 g 是多少？（对球面 g=0）\n  (c) 在面 face_index=10 上做 stellar subdivision（在面内加一个顶点 v_new 并把该面分成 3 个三角形）。新顶点 v_new 的角缺 δ(v_new) 是多少？ 请回答 0 / 0.5 / 1.0 / 2.0（这些数表示该值是 2π 的倍数；例如 0 表示 δ=0, 0.5 表示 δ=π）。\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim3_q09",
+      "type": "invariance",
+      "stem": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "原网格的 Euler 特征数 χ 是多少？",
+          "answer_type": "integer",
+          "answer": 2
+        }
+      ],
+      "ground_truth": {
+        "chi": 2,
+        "stellar_chi_preserved": true,
+        "displacement_curvature_preserved": true
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 4,
+          "n_edges": 6,
+          "n_faces": 4,
+          "vertices": [
+            [
+              1.0,
+              1.0,
+              1.0
+            ],
+            [
+              -1.0,
+              -1.0,
+              1.0
+            ],
+            [
+              -1.0,
+              1.0,
+              -1.0
+            ],
+            [
+              1.0,
+              -1.0,
+              -1.0
+            ]
+          ],
+          "faces": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              1,
+              3
+            ],
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "angle_defects_per_vertex": {
+            "0": 3.1416,
+            "1": 3.1416,
+            "2": 3.1416,
+            "3": 3.1416
+          },
+          "vertex_degrees": {
+            "0": 3,
+            "1": 3,
+            "2": 3,
+            "3": 3
+          },
+          "note": "δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself."
+        },
+        "T": {
+          "operation": "stellar_subdivision",
+          "subdivided_face_index": 1,
+          "before": {
+            "n_vertices": 4,
+            "n_edges": 6,
+            "n_faces": 4
+          },
+          "after": {
+            "n_vertices": 5,
+            "n_edges": 9,
+            "n_faces": 6
+          },
+          "delta": {
+            "vertices_added": 1,
+            "edges_added": 3,
+            "faces_added": 2
+          },
+          "new_vertex_defect": -0.0,
+          "local_defect_sum_before": 9.424778,
+          "local_defect_sum_after": 9.424778,
+          "note": "Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature)."
+        },
+        "C": {
+          "incomplete_subdivision": {
+            "description": "Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.",
+            "expected_defect_at_new_vertex": 6.283185,
+            "expected_chi_change": 1
+          },
+          "vertex_displacement": {
+            "description": "Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged)."
+          },
+          "note": "Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not."
+        }
+      },
+      "prompts": {
+        "baseline": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n请回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 4,\n  \"n_edges\": 6,\n  \"n_faces\": 4,\n  \"vertices\": [\n    [\n      1.0,\n      1.0,\n      1.0\n    ],\n    [\n      -1.0,\n      -1.0,\n      1.0\n    ],\n    [\n      -1.0,\n      1.0,\n      -1.0\n    ],\n    [\n      1.0,\n      -1.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      1,\n      2\n    ],\n    [\n      0,\n      1,\n      3\n    ],\n    [\n      0,\n      2,\n      3\n    ],\n    [\n      1,\n      2,\n      3\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 3.1416,\n    \"1\": 3.1416,\n    \"2\": 3.1416,\n    \"3\": 3.1416\n  },\n  \"vertex_degrees\": {\n    \"0\": 3,\n    \"1\": 3,\n    \"2\": 3,\n    \"3\": 3\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 4,\n  \"n_edges\": 6,\n  \"n_faces\": 4,\n  \"vertices\": [\n    [\n      1.0,\n      1.0,\n      1.0\n    ],\n    [\n      -1.0,\n      -1.0,\n      1.0\n    ],\n    [\n      -1.0,\n      1.0,\n      -1.0\n    ],\n    [\n      1.0,\n      -1.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      1,\n      2\n    ],\n    [\n      0,\n      1,\n      3\n    ],\n    [\n      0,\n      2,\n      3\n    ],\n    [\n      1,\n      2,\n      3\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 3.1416,\n    \"1\": 3.1416,\n    \"2\": 3.1416,\n    \"3\": 3.1416\n  },\n  \"vertex_degrees\": {\n    \"0\": 3,\n    \"1\": 3,\n    \"2\": 3,\n    \"3\": 3\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"stellar_subdivision\",\n  \"subdivided_face_index\": 1,\n  \"before\": {\n    \"n_vertices\": 4,\n    \"n_edges\": 6,\n    \"n_faces\": 4\n  },\n  \"after\": {\n    \"n_vertices\": 5,\n    \"n_edges\": 9,\n    \"n_faces\": 6\n  },\n  \"delta\": {\n    \"vertices_added\": 1,\n    \"edges_added\": 3,\n    \"faces_added\": 2\n  },\n  \"new_vertex_defect\": -0.0,\n  \"local_defect_sum_before\": 9.424778,\n  \"local_defect_sum_after\": 9.424778,\n  \"note\": \"Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature).\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"incomplete_subdivision\": {\n    \"description\": \"Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.\",\n    \"expected_defect_at_new_vertex\": 6.283185,\n    \"expected_chi_change\": 1\n  },\n  \"vertex_displacement\": {\n    \"description\": \"Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged).\"\n  },\n  \"note\": \"Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim3_q10",
+      "type": "invariance",
+      "stem": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "原网格的 Euler 特征数 χ 是多少？",
+          "answer_type": "integer",
+          "answer": 2
+        }
+      ],
+      "ground_truth": {
+        "chi": 2,
+        "stellar_chi_preserved": true,
+        "displacement_curvature_preserved": true
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 4,
+          "n_edges": 6,
+          "n_faces": 4,
+          "vertices": [
+            [
+              1.0,
+              1.0,
+              1.0
+            ],
+            [
+              -1.0,
+              -1.0,
+              1.0
+            ],
+            [
+              -1.0,
+              1.0,
+              -1.0
+            ],
+            [
+              1.0,
+              -1.0,
+              -1.0
+            ]
+          ],
+          "faces": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              1,
+              3
+            ],
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "angle_defects_per_vertex": {
+            "0": 3.1416,
+            "1": 3.1416,
+            "2": 3.1416,
+            "3": 3.1416
+          },
+          "vertex_degrees": {
+            "0": 3,
+            "1": 3,
+            "2": 3,
+            "3": 3
+          },
+          "note": "δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself."
+        },
+        "T": {
+          "operation": "stellar_subdivision",
+          "subdivided_face_index": 3,
+          "before": {
+            "n_vertices": 4,
+            "n_edges": 6,
+            "n_faces": 4
+          },
+          "after": {
+            "n_vertices": 5,
+            "n_edges": 9,
+            "n_faces": 6
+          },
+          "delta": {
+            "vertices_added": 1,
+            "edges_added": 3,
+            "faces_added": 2
+          },
+          "new_vertex_defect": -0.0,
+          "local_defect_sum_before": 9.424778,
+          "local_defect_sum_after": 9.424778,
+          "note": "Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature)."
+        },
+        "C": {
+          "incomplete_subdivision": {
+            "description": "Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.",
+            "expected_defect_at_new_vertex": 6.283185,
+            "expected_chi_change": 1
+          },
+          "vertex_displacement": {
+            "description": "Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged)."
+          },
+          "note": "Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not."
+        }
+      },
+      "prompts": {
+        "baseline": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n请回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 4,\n  \"n_edges\": 6,\n  \"n_faces\": 4,\n  \"vertices\": [\n    [\n      1.0,\n      1.0,\n      1.0\n    ],\n    [\n      -1.0,\n      -1.0,\n      1.0\n    ],\n    [\n      -1.0,\n      1.0,\n      -1.0\n    ],\n    [\n      1.0,\n      -1.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      1,\n      2\n    ],\n    [\n      0,\n      1,\n      3\n    ],\n    [\n      0,\n      2,\n      3\n    ],\n    [\n      1,\n      2,\n      3\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 3.1416,\n    \"1\": 3.1416,\n    \"2\": 3.1416,\n    \"3\": 3.1416\n  },\n  \"vertex_degrees\": {\n    \"0\": 3,\n    \"1\": 3,\n    \"2\": 3,\n    \"3\": 3\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 4,\n  \"n_edges\": 6,\n  \"n_faces\": 4,\n  \"vertices\": [\n    [\n      1.0,\n      1.0,\n      1.0\n    ],\n    [\n      -1.0,\n      -1.0,\n      1.0\n    ],\n    [\n      -1.0,\n      1.0,\n      -1.0\n    ],\n    [\n      1.0,\n      -1.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      1,\n      2\n    ],\n    [\n      0,\n      1,\n      3\n    ],\n    [\n      0,\n      2,\n      3\n    ],\n    [\n      1,\n      2,\n      3\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 3.1416,\n    \"1\": 3.1416,\n    \"2\": 3.1416,\n    \"3\": 3.1416\n  },\n  \"vertex_degrees\": {\n    \"0\": 3,\n    \"1\": 3,\n    \"2\": 3,\n    \"3\": 3\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"stellar_subdivision\",\n  \"subdivided_face_index\": 3,\n  \"before\": {\n    \"n_vertices\": 4,\n    \"n_edges\": 6,\n    \"n_faces\": 4\n  },\n  \"after\": {\n    \"n_vertices\": 5,\n    \"n_edges\": 9,\n    \"n_faces\": 6\n  },\n  \"delta\": {\n    \"vertices_added\": 1,\n    \"edges_added\": 3,\n    \"faces_added\": 2\n  },\n  \"new_vertex_defect\": -0.0,\n  \"local_defect_sum_before\": 9.424778,\n  \"local_defect_sum_after\": 9.424778,\n  \"note\": \"Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature).\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"incomplete_subdivision\": {\n    \"description\": \"Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.\",\n    \"expected_defect_at_new_vertex\": 6.283185,\n    \"expected_chi_change\": 1\n  },\n  \"vertex_displacement\": {\n    \"description\": \"Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged).\"\n  },\n  \"note\": \"Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim3_q11",
+      "type": "invariance",
+      "stem": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "原网格的 Euler 特征数 χ 是多少？",
+          "answer_type": "integer",
+          "answer": 2
+        }
+      ],
+      "ground_truth": {
+        "chi": 2,
+        "stellar_chi_preserved": true,
+        "displacement_curvature_preserved": true
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 8,
+          "n_edges": 18,
+          "n_faces": 12,
+          "vertices": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              1.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0,
+              1.0
+            ]
+          ],
+          "faces": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              4,
+              6,
+              5
+            ],
+            [
+              4,
+              7,
+              6
+            ],
+            [
+              0,
+              5,
+              1
+            ],
+            [
+              0,
+              4,
+              5
+            ],
+            [
+              2,
+              7,
+              3
+            ],
+            [
+              2,
+              6,
+              7
+            ],
+            [
+              0,
+              3,
+              7
+            ],
+            [
+              0,
+              7,
+              4
+            ],
+            [
+              1,
+              6,
+              2
+            ],
+            [
+              1,
+              5,
+              6
+            ]
+          ],
+          "angle_defects_per_vertex": {
+            "0": 1.5708,
+            "1": 1.5708,
+            "2": 1.5708,
+            "3": 1.5708,
+            "4": 1.5708,
+            "5": 1.5708,
+            "6": 1.5708,
+            "7": 1.5708
+          },
+          "vertex_degrees": {
+            "0": 6,
+            "1": 4,
+            "2": 5,
+            "3": 3,
+            "4": 4,
+            "5": 4,
+            "6": 5,
+            "7": 5
+          },
+          "note": "δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself."
+        },
+        "T": {
+          "operation": "stellar_subdivision",
+          "subdivided_face_index": 2,
+          "before": {
+            "n_vertices": 8,
+            "n_edges": 18,
+            "n_faces": 12
+          },
+          "after": {
+            "n_vertices": 9,
+            "n_edges": 21,
+            "n_faces": 14
+          },
+          "delta": {
+            "vertices_added": 1,
+            "edges_added": 3,
+            "faces_added": 2
+          },
+          "new_vertex_defect": 0.0,
+          "local_defect_sum_before": 4.712389,
+          "local_defect_sum_after": 4.712389,
+          "note": "Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature)."
+        },
+        "C": {
+          "incomplete_subdivision": {
+            "description": "Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.",
+            "expected_defect_at_new_vertex": 6.283185,
+            "expected_chi_change": 1
+          },
+          "vertex_displacement": {
+            "description": "Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged)."
+          },
+          "note": "Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not."
+        }
+      },
+      "prompts": {
+        "baseline": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n请回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 8,\n  \"n_edges\": 18,\n  \"n_faces\": 12,\n  \"vertices\": [\n    [\n      0.0,\n      0.0,\n      0.0\n    ],\n    [\n      1.0,\n      0.0,\n      0.0\n    ],\n    [\n      1.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      0.0,\n      1.0\n    ],\n    [\n      1.0,\n      0.0,\n      1.0\n    ],\n    [\n      1.0,\n      1.0,\n      1.0\n    ],\n    [\n      0.0,\n      1.0,\n      1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      1,\n      2\n    ],\n    [\n      0,\n      2,\n      3\n    ],\n    [\n      4,\n      6,\n      5\n    ],\n    [\n      4,\n      7,\n      6\n    ],\n    [\n      0,\n      5,\n      1\n    ],\n    [\n      0,\n      4,\n      5\n    ],\n    [\n      2,\n      7,\n      3\n    ],\n    [\n      2,\n      6,\n      7\n    ],\n    [\n      0,\n      3,\n      7\n    ],\n    [\n      0,\n      7,\n      4\n    ],\n    [\n      1,\n      6,\n      2\n    ],\n    [\n      1,\n      5,\n      6\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 1.5708,\n    \"1\": 1.5708,\n    \"2\": 1.5708,\n    \"3\": 1.5708,\n    \"4\": 1.5708,\n    \"5\": 1.5708,\n    \"6\": 1.5708,\n    \"7\": 1.5708\n  },\n  \"vertex_degrees\": {\n    \"0\": 6,\n    \"1\": 4,\n    \"2\": 5,\n    \"3\": 3,\n    \"4\": 4,\n    \"5\": 4,\n    \"6\": 5,\n    \"7\": 5\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 8,\n  \"n_edges\": 18,\n  \"n_faces\": 12,\n  \"vertices\": [\n    [\n      0.0,\n      0.0,\n      0.0\n    ],\n    [\n      1.0,\n      0.0,\n      0.0\n    ],\n    [\n      1.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      0.0,\n      1.0\n    ],\n    [\n      1.0,\n      0.0,\n      1.0\n    ],\n    [\n      1.0,\n      1.0,\n      1.0\n    ],\n    [\n      0.0,\n      1.0,\n      1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      1,\n      2\n    ],\n    [\n      0,\n      2,\n      3\n    ],\n    [\n      4,\n      6,\n      5\n    ],\n    [\n      4,\n      7,\n      6\n    ],\n    [\n      0,\n      5,\n      1\n    ],\n    [\n      0,\n      4,\n      5\n    ],\n    [\n      2,\n      7,\n      3\n    ],\n    [\n      2,\n      6,\n      7\n    ],\n    [\n      0,\n      3,\n      7\n    ],\n    [\n      0,\n      7,\n      4\n    ],\n    [\n      1,\n      6,\n      2\n    ],\n    [\n      1,\n      5,\n      6\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 1.5708,\n    \"1\": 1.5708,\n    \"2\": 1.5708,\n    \"3\": 1.5708,\n    \"4\": 1.5708,\n    \"5\": 1.5708,\n    \"6\": 1.5708,\n    \"7\": 1.5708\n  },\n  \"vertex_degrees\": {\n    \"0\": 6,\n    \"1\": 4,\n    \"2\": 5,\n    \"3\": 3,\n    \"4\": 4,\n    \"5\": 4,\n    \"6\": 5,\n    \"7\": 5\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"stellar_subdivision\",\n  \"subdivided_face_index\": 2,\n  \"before\": {\n    \"n_vertices\": 8,\n    \"n_edges\": 18,\n    \"n_faces\": 12\n  },\n  \"after\": {\n    \"n_vertices\": 9,\n    \"n_edges\": 21,\n    \"n_faces\": 14\n  },\n  \"delta\": {\n    \"vertices_added\": 1,\n    \"edges_added\": 3,\n    \"faces_added\": 2\n  },\n  \"new_vertex_defect\": 0.0,\n  \"local_defect_sum_before\": 4.712389,\n  \"local_defect_sum_after\": 4.712389,\n  \"note\": \"Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature).\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"incomplete_subdivision\": {\n    \"description\": \"Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.\",\n    \"expected_defect_at_new_vertex\": 6.283185,\n    \"expected_chi_change\": 1\n  },\n  \"vertex_displacement\": {\n    \"description\": \"Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged).\"\n  },\n  \"note\": \"Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim3_q12",
+      "type": "invariance",
+      "stem": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "原网格的 Euler 特征数 χ 是多少？",
+          "answer_type": "integer",
+          "answer": 2
+        }
+      ],
+      "ground_truth": {
+        "chi": 2,
+        "stellar_chi_preserved": true,
+        "displacement_curvature_preserved": true
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 8,
+          "n_edges": 18,
+          "n_faces": 12,
+          "vertices": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              1.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0,
+              1.0
+            ]
+          ],
+          "faces": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              4,
+              6,
+              5
+            ],
+            [
+              4,
+              7,
+              6
+            ],
+            [
+              0,
+              5,
+              1
+            ],
+            [
+              0,
+              4,
+              5
+            ],
+            [
+              2,
+              7,
+              3
+            ],
+            [
+              2,
+              6,
+              7
+            ],
+            [
+              0,
+              3,
+              7
+            ],
+            [
+              0,
+              7,
+              4
+            ],
+            [
+              1,
+              6,
+              2
+            ],
+            [
+              1,
+              5,
+              6
+            ]
+          ],
+          "angle_defects_per_vertex": {
+            "0": 1.5708,
+            "1": 1.5708,
+            "2": 1.5708,
+            "3": 1.5708,
+            "4": 1.5708,
+            "5": 1.5708,
+            "6": 1.5708,
+            "7": 1.5708
+          },
+          "vertex_degrees": {
+            "0": 6,
+            "1": 4,
+            "2": 5,
+            "3": 3,
+            "4": 4,
+            "5": 4,
+            "6": 5,
+            "7": 5
+          },
+          "note": "δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself."
+        },
+        "T": {
+          "operation": "stellar_subdivision",
+          "subdivided_face_index": 8,
+          "before": {
+            "n_vertices": 8,
+            "n_edges": 18,
+            "n_faces": 12
+          },
+          "after": {
+            "n_vertices": 9,
+            "n_edges": 21,
+            "n_faces": 14
+          },
+          "delta": {
+            "vertices_added": 1,
+            "edges_added": 3,
+            "faces_added": 2
+          },
+          "new_vertex_defect": 0.0,
+          "local_defect_sum_before": 4.712389,
+          "local_defect_sum_after": 4.712389,
+          "note": "Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature)."
+        },
+        "C": {
+          "incomplete_subdivision": {
+            "description": "Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.",
+            "expected_defect_at_new_vertex": 6.283185,
+            "expected_chi_change": 1
+          },
+          "vertex_displacement": {
+            "description": "Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged)."
+          },
+          "note": "Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not."
+        }
+      },
+      "prompts": {
+        "baseline": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n请回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 8,\n  \"n_edges\": 18,\n  \"n_faces\": 12,\n  \"vertices\": [\n    [\n      0.0,\n      0.0,\n      0.0\n    ],\n    [\n      1.0,\n      0.0,\n      0.0\n    ],\n    [\n      1.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      0.0,\n      1.0\n    ],\n    [\n      1.0,\n      0.0,\n      1.0\n    ],\n    [\n      1.0,\n      1.0,\n      1.0\n    ],\n    [\n      0.0,\n      1.0,\n      1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      1,\n      2\n    ],\n    [\n      0,\n      2,\n      3\n    ],\n    [\n      4,\n      6,\n      5\n    ],\n    [\n      4,\n      7,\n      6\n    ],\n    [\n      0,\n      5,\n      1\n    ],\n    [\n      0,\n      4,\n      5\n    ],\n    [\n      2,\n      7,\n      3\n    ],\n    [\n      2,\n      6,\n      7\n    ],\n    [\n      0,\n      3,\n      7\n    ],\n    [\n      0,\n      7,\n      4\n    ],\n    [\n      1,\n      6,\n      2\n    ],\n    [\n      1,\n      5,\n      6\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 1.5708,\n    \"1\": 1.5708,\n    \"2\": 1.5708,\n    \"3\": 1.5708,\n    \"4\": 1.5708,\n    \"5\": 1.5708,\n    \"6\": 1.5708,\n    \"7\": 1.5708\n  },\n  \"vertex_degrees\": {\n    \"0\": 6,\n    \"1\": 4,\n    \"2\": 5,\n    \"3\": 3,\n    \"4\": 4,\n    \"5\": 4,\n    \"6\": 5,\n    \"7\": 5\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 8,\n  \"n_edges\": 18,\n  \"n_faces\": 12,\n  \"vertices\": [\n    [\n      0.0,\n      0.0,\n      0.0\n    ],\n    [\n      1.0,\n      0.0,\n      0.0\n    ],\n    [\n      1.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      0.0,\n      1.0\n    ],\n    [\n      1.0,\n      0.0,\n      1.0\n    ],\n    [\n      1.0,\n      1.0,\n      1.0\n    ],\n    [\n      0.0,\n      1.0,\n      1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      1,\n      2\n    ],\n    [\n      0,\n      2,\n      3\n    ],\n    [\n      4,\n      6,\n      5\n    ],\n    [\n      4,\n      7,\n      6\n    ],\n    [\n      0,\n      5,\n      1\n    ],\n    [\n      0,\n      4,\n      5\n    ],\n    [\n      2,\n      7,\n      3\n    ],\n    [\n      2,\n      6,\n      7\n    ],\n    [\n      0,\n      3,\n      7\n    ],\n    [\n      0,\n      7,\n      4\n    ],\n    [\n      1,\n      6,\n      2\n    ],\n    [\n      1,\n      5,\n      6\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 1.5708,\n    \"1\": 1.5708,\n    \"2\": 1.5708,\n    \"3\": 1.5708,\n    \"4\": 1.5708,\n    \"5\": 1.5708,\n    \"6\": 1.5708,\n    \"7\": 1.5708\n  },\n  \"vertex_degrees\": {\n    \"0\": 6,\n    \"1\": 4,\n    \"2\": 5,\n    \"3\": 3,\n    \"4\": 4,\n    \"5\": 4,\n    \"6\": 5,\n    \"7\": 5\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"stellar_subdivision\",\n  \"subdivided_face_index\": 8,\n  \"before\": {\n    \"n_vertices\": 8,\n    \"n_edges\": 18,\n    \"n_faces\": 12\n  },\n  \"after\": {\n    \"n_vertices\": 9,\n    \"n_edges\": 21,\n    \"n_faces\": 14\n  },\n  \"delta\": {\n    \"vertices_added\": 1,\n    \"edges_added\": 3,\n    \"faces_added\": 2\n  },\n  \"new_vertex_defect\": 0.0,\n  \"local_defect_sum_before\": 4.712389,\n  \"local_defect_sum_after\": 4.712389,\n  \"note\": \"Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature).\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"incomplete_subdivision\": {\n    \"description\": \"Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.\",\n    \"expected_defect_at_new_vertex\": 6.283185,\n    \"expected_chi_change\": 1\n  },\n  \"vertex_displacement\": {\n    \"description\": \"Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged).\"\n  },\n  \"note\": \"Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim3_q13",
+      "type": "invariance",
+      "stem": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "原网格的 Euler 特征数 χ 是多少？",
+          "answer_type": "integer",
+          "answer": 2
+        }
+      ],
+      "ground_truth": {
+        "chi": 2,
+        "stellar_chi_preserved": true,
+        "displacement_curvature_preserved": true
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 6,
+          "n_edges": 12,
+          "n_faces": 8,
+          "vertices": [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0
+            ]
+          ],
+          "faces": [
+            [
+              0,
+              2,
+              4
+            ],
+            [
+              2,
+              1,
+              4
+            ],
+            [
+              1,
+              3,
+              4
+            ],
+            [
+              3,
+              0,
+              4
+            ],
+            [
+              2,
+              0,
+              5
+            ],
+            [
+              1,
+              2,
+              5
+            ],
+            [
+              3,
+              1,
+              5
+            ],
+            [
+              0,
+              3,
+              5
+            ]
+          ],
+          "angle_defects_per_vertex": {
+            "0": 2.0944,
+            "1": 2.0944,
+            "2": 2.0944,
+            "3": 2.0944,
+            "4": 2.0944,
+            "5": 2.0944
+          },
+          "vertex_degrees": {
+            "0": 4,
+            "1": 4,
+            "2": 4,
+            "3": 4,
+            "4": 4,
+            "5": 4
+          },
+          "note": "δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself."
+        },
+        "T": {
+          "operation": "stellar_subdivision",
+          "subdivided_face_index": 1,
+          "before": {
+            "n_vertices": 6,
+            "n_edges": 12,
+            "n_faces": 8
+          },
+          "after": {
+            "n_vertices": 7,
+            "n_edges": 15,
+            "n_faces": 10
+          },
+          "delta": {
+            "vertices_added": 1,
+            "edges_added": 3,
+            "faces_added": 2
+          },
+          "new_vertex_defect": -0.0,
+          "local_defect_sum_before": 6.283185,
+          "local_defect_sum_after": 6.283185,
+          "note": "Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature)."
+        },
+        "C": {
+          "incomplete_subdivision": {
+            "description": "Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.",
+            "expected_defect_at_new_vertex": 6.283185,
+            "expected_chi_change": 1
+          },
+          "vertex_displacement": {
+            "description": "Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged)."
+          },
+          "note": "Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not."
+        }
+      },
+      "prompts": {
+        "baseline": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n请回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 12,\n  \"n_faces\": 8,\n  \"vertices\": [\n    [\n      1.0,\n      0.0,\n      0.0\n    ],\n    [\n      -1.0,\n      0.0,\n      0.0\n    ],\n    [\n      0.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      -1.0,\n      0.0\n    ],\n    [\n      0.0,\n      0.0,\n      1.0\n    ],\n    [\n      0.0,\n      0.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      2,\n      4\n    ],\n    [\n      2,\n      1,\n      4\n    ],\n    [\n      1,\n      3,\n      4\n    ],\n    [\n      3,\n      0,\n      4\n    ],\n    [\n      2,\n      0,\n      5\n    ],\n    [\n      1,\n      2,\n      5\n    ],\n    [\n      3,\n      1,\n      5\n    ],\n    [\n      0,\n      3,\n      5\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 2.0944,\n    \"1\": 2.0944,\n    \"2\": 2.0944,\n    \"3\": 2.0944,\n    \"4\": 2.0944,\n    \"5\": 2.0944\n  },\n  \"vertex_degrees\": {\n    \"0\": 4,\n    \"1\": 4,\n    \"2\": 4,\n    \"3\": 4,\n    \"4\": 4,\n    \"5\": 4\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 12,\n  \"n_faces\": 8,\n  \"vertices\": [\n    [\n      1.0,\n      0.0,\n      0.0\n    ],\n    [\n      -1.0,\n      0.0,\n      0.0\n    ],\n    [\n      0.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      -1.0,\n      0.0\n    ],\n    [\n      0.0,\n      0.0,\n      1.0\n    ],\n    [\n      0.0,\n      0.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      2,\n      4\n    ],\n    [\n      2,\n      1,\n      4\n    ],\n    [\n      1,\n      3,\n      4\n    ],\n    [\n      3,\n      0,\n      4\n    ],\n    [\n      2,\n      0,\n      5\n    ],\n    [\n      1,\n      2,\n      5\n    ],\n    [\n      3,\n      1,\n      5\n    ],\n    [\n      0,\n      3,\n      5\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 2.0944,\n    \"1\": 2.0944,\n    \"2\": 2.0944,\n    \"3\": 2.0944,\n    \"4\": 2.0944,\n    \"5\": 2.0944\n  },\n  \"vertex_degrees\": {\n    \"0\": 4,\n    \"1\": 4,\n    \"2\": 4,\n    \"3\": 4,\n    \"4\": 4,\n    \"5\": 4\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"stellar_subdivision\",\n  \"subdivided_face_index\": 1,\n  \"before\": {\n    \"n_vertices\": 6,\n    \"n_edges\": 12,\n    \"n_faces\": 8\n  },\n  \"after\": {\n    \"n_vertices\": 7,\n    \"n_edges\": 15,\n    \"n_faces\": 10\n  },\n  \"delta\": {\n    \"vertices_added\": 1,\n    \"edges_added\": 3,\n    \"faces_added\": 2\n  },\n  \"new_vertex_defect\": -0.0,\n  \"local_defect_sum_before\": 6.283185,\n  \"local_defect_sum_after\": 6.283185,\n  \"note\": \"Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature).\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"incomplete_subdivision\": {\n    \"description\": \"Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.\",\n    \"expected_defect_at_new_vertex\": 6.283185,\n    \"expected_chi_change\": 1\n  },\n  \"vertex_displacement\": {\n    \"description\": \"Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged).\"\n  },\n  \"note\": \"Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim3_q14",
+      "type": "invariance",
+      "stem": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "原网格的 Euler 特征数 χ 是多少？",
+          "answer_type": "integer",
+          "answer": 2
+        }
+      ],
+      "ground_truth": {
+        "chi": 2,
+        "stellar_chi_preserved": true,
+        "displacement_curvature_preserved": true
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 6,
+          "n_edges": 12,
+          "n_faces": 8,
+          "vertices": [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0
+            ]
+          ],
+          "faces": [
+            [
+              0,
+              2,
+              4
+            ],
+            [
+              2,
+              1,
+              4
+            ],
+            [
+              1,
+              3,
+              4
+            ],
+            [
+              3,
+              0,
+              4
+            ],
+            [
+              2,
+              0,
+              5
+            ],
+            [
+              1,
+              2,
+              5
+            ],
+            [
+              3,
+              1,
+              5
+            ],
+            [
+              0,
+              3,
+              5
+            ]
+          ],
+          "angle_defects_per_vertex": {
+            "0": 2.0944,
+            "1": 2.0944,
+            "2": 2.0944,
+            "3": 2.0944,
+            "4": 2.0944,
+            "5": 2.0944
+          },
+          "vertex_degrees": {
+            "0": 4,
+            "1": 4,
+            "2": 4,
+            "3": 4,
+            "4": 4,
+            "5": 4
+          },
+          "note": "δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself."
+        },
+        "T": {
+          "operation": "stellar_subdivision",
+          "subdivided_face_index": 6,
+          "before": {
+            "n_vertices": 6,
+            "n_edges": 12,
+            "n_faces": 8
+          },
+          "after": {
+            "n_vertices": 7,
+            "n_edges": 15,
+            "n_faces": 10
+          },
+          "delta": {
+            "vertices_added": 1,
+            "edges_added": 3,
+            "faces_added": 2
+          },
+          "new_vertex_defect": -0.0,
+          "local_defect_sum_before": 6.283185,
+          "local_defect_sum_after": 6.283185,
+          "note": "Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature)."
+        },
+        "C": {
+          "incomplete_subdivision": {
+            "description": "Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.",
+            "expected_defect_at_new_vertex": 6.283185,
+            "expected_chi_change": 1
+          },
+          "vertex_displacement": {
+            "description": "Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged)."
+          },
+          "note": "Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not."
+        }
+      },
+      "prompts": {
+        "baseline": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n请回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 12,\n  \"n_faces\": 8,\n  \"vertices\": [\n    [\n      1.0,\n      0.0,\n      0.0\n    ],\n    [\n      -1.0,\n      0.0,\n      0.0\n    ],\n    [\n      0.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      -1.0,\n      0.0\n    ],\n    [\n      0.0,\n      0.0,\n      1.0\n    ],\n    [\n      0.0,\n      0.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      2,\n      4\n    ],\n    [\n      2,\n      1,\n      4\n    ],\n    [\n      1,\n      3,\n      4\n    ],\n    [\n      3,\n      0,\n      4\n    ],\n    [\n      2,\n      0,\n      5\n    ],\n    [\n      1,\n      2,\n      5\n    ],\n    [\n      3,\n      1,\n      5\n    ],\n    [\n      0,\n      3,\n      5\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 2.0944,\n    \"1\": 2.0944,\n    \"2\": 2.0944,\n    \"3\": 2.0944,\n    \"4\": 2.0944,\n    \"5\": 2.0944\n  },\n  \"vertex_degrees\": {\n    \"0\": 4,\n    \"1\": 4,\n    \"2\": 4,\n    \"3\": 4,\n    \"4\": 4,\n    \"5\": 4\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 6,\n  \"n_edges\": 12,\n  \"n_faces\": 8,\n  \"vertices\": [\n    [\n      1.0,\n      0.0,\n      0.0\n    ],\n    [\n      -1.0,\n      0.0,\n      0.0\n    ],\n    [\n      0.0,\n      1.0,\n      0.0\n    ],\n    [\n      0.0,\n      -1.0,\n      0.0\n    ],\n    [\n      0.0,\n      0.0,\n      1.0\n    ],\n    [\n      0.0,\n      0.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      2,\n      4\n    ],\n    [\n      2,\n      1,\n      4\n    ],\n    [\n      1,\n      3,\n      4\n    ],\n    [\n      3,\n      0,\n      4\n    ],\n    [\n      2,\n      0,\n      5\n    ],\n    [\n      1,\n      2,\n      5\n    ],\n    [\n      3,\n      1,\n      5\n    ],\n    [\n      0,\n      3,\n      5\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 2.0944,\n    \"1\": 2.0944,\n    \"2\": 2.0944,\n    \"3\": 2.0944,\n    \"4\": 2.0944,\n    \"5\": 2.0944\n  },\n  \"vertex_degrees\": {\n    \"0\": 4,\n    \"1\": 4,\n    \"2\": 4,\n    \"3\": 4,\n    \"4\": 4,\n    \"5\": 4\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"stellar_subdivision\",\n  \"subdivided_face_index\": 6,\n  \"before\": {\n    \"n_vertices\": 6,\n    \"n_edges\": 12,\n    \"n_faces\": 8\n  },\n  \"after\": {\n    \"n_vertices\": 7,\n    \"n_edges\": 15,\n    \"n_faces\": 10\n  },\n  \"delta\": {\n    \"vertices_added\": 1,\n    \"edges_added\": 3,\n    \"faces_added\": 2\n  },\n  \"new_vertex_defect\": -0.0,\n  \"local_defect_sum_before\": 6.283185,\n  \"local_defect_sum_after\": 6.283185,\n  \"note\": \"Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature).\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"incomplete_subdivision\": {\n    \"description\": \"Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.\",\n    \"expected_defect_at_new_vertex\": 6.283185,\n    \"expected_chi_change\": 1\n  },\n  \"vertex_displacement\": {\n    \"description\": \"Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged).\"\n  },\n  \"note\": \"Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim3_q15",
+      "type": "invariance",
+      "stem": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "原网格的 Euler 特征数 χ 是多少？",
+          "answer_type": "integer",
+          "answer": 2
+        }
+      ],
+      "ground_truth": {
+        "chi": 2,
+        "stellar_chi_preserved": true,
+        "displacement_curvature_preserved": true
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 12,
+          "n_edges": 30,
+          "n_faces": 20,
+          "vertices": [
+            [
+              0.0,
+              1.0,
+              1.618
+            ],
+            [
+              0.0,
+              1.0,
+              -1.618
+            ],
+            [
+              0.0,
+              -1.0,
+              1.618
+            ],
+            [
+              0.0,
+              -1.0,
+              -1.618
+            ],
+            [
+              1.0,
+              1.618,
+              0.0
+            ],
+            [
+              -1.0,
+              1.618,
+              0.0
+            ],
+            [
+              1.0,
+              -1.618,
+              0.0
+            ],
+            [
+              -1.0,
+              -1.618,
+              0.0
+            ],
+            [
+              1.618,
+              0.0,
+              1.0
+            ],
+            [
+              -1.618,
+              0.0,
+              1.0
+            ],
+            [
+              1.618,
+              0.0,
+              -1.0
+            ],
+            [
+              -1.618,
+              0.0,
+              -1.0
+            ]
+          ],
+          "faces": [
+            [
+              0,
+              2,
+              8
+            ],
+            [
+              0,
+              8,
+              4
+            ],
+            [
+              0,
+              4,
+              5
+            ],
+            [
+              0,
+              5,
+              9
+            ],
+            [
+              0,
+              9,
+              2
+            ],
+            [
+              3,
+              6,
+              10
+            ],
+            [
+              3,
+              10,
+              1
+            ],
+            [
+              3,
+              1,
+              11
+            ],
+            [
+              3,
+              11,
+              7
+            ],
+            [
+              3,
+              7,
+              6
+            ],
+            [
+              2,
+              6,
+              8
+            ],
+            [
+              8,
+              10,
+              4
+            ],
+            [
+              4,
+              1,
+              5
+            ],
+            [
+              5,
+              11,
+              9
+            ],
+            [
+              9,
+              7,
+              2
+            ],
+            [
+              6,
+              2,
+              7
+            ],
+            [
+              10,
+              8,
+              6
+            ],
+            [
+              1,
+              4,
+              10
+            ],
+            [
+              11,
+              5,
+              1
+            ],
+            [
+              7,
+              9,
+              11
+            ]
+          ],
+          "angle_defects_per_vertex": {
+            "0": 1.0472,
+            "1": 1.0472,
+            "2": 1.0472,
+            "3": 1.0472,
+            "4": 1.0472,
+            "5": 1.0472,
+            "6": 1.0472,
+            "7": 1.0472,
+            "8": 1.0472,
+            "9": 1.0472,
+            "10": 1.0472,
+            "11": 1.0472
+          },
+          "vertex_degrees": {
+            "0": 5,
+            "1": 5,
+            "2": 5,
+            "3": 5,
+            "4": 5,
+            "5": 5,
+            "6": 5,
+            "7": 5,
+            "8": 5,
+            "9": 5,
+            "10": 5,
+            "11": 5
+          },
+          "note": "δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself."
+        },
+        "T": {
+          "operation": "stellar_subdivision",
+          "subdivided_face_index": 5,
+          "before": {
+            "n_vertices": 12,
+            "n_edges": 30,
+            "n_faces": 20
+          },
+          "after": {
+            "n_vertices": 13,
+            "n_edges": 33,
+            "n_faces": 22
+          },
+          "delta": {
+            "vertices_added": 1,
+            "edges_added": 3,
+            "faces_added": 2
+          },
+          "new_vertex_defect": -0.0,
+          "local_defect_sum_before": 3.141593,
+          "local_defect_sum_after": 3.141593,
+          "note": "Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature)."
+        },
+        "C": {
+          "incomplete_subdivision": {
+            "description": "Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.",
+            "expected_defect_at_new_vertex": 6.283185,
+            "expected_chi_change": 1
+          },
+          "vertex_displacement": {
+            "description": "Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged)."
+          },
+          "note": "Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not."
+        }
+      },
+      "prompts": {
+        "baseline": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n请回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 12,\n  \"n_edges\": 30,\n  \"n_faces\": 20,\n  \"vertices\": [\n    [\n      0.0,\n      1.0,\n      1.618\n    ],\n    [\n      0.0,\n      1.0,\n      -1.618\n    ],\n    [\n      0.0,\n      -1.0,\n      1.618\n    ],\n    [\n      0.0,\n      -1.0,\n      -1.618\n    ],\n    [\n      1.0,\n      1.618,\n      0.0\n    ],\n    [\n      -1.0,\n      1.618,\n      0.0\n    ],\n    [\n      1.0,\n      -1.618,\n      0.0\n    ],\n    [\n      -1.0,\n      -1.618,\n      0.0\n    ],\n    [\n      1.618,\n      0.0,\n      1.0\n    ],\n    [\n      -1.618,\n      0.0,\n      1.0\n    ],\n    [\n      1.618,\n      0.0,\n      -1.0\n    ],\n    [\n      -1.618,\n      0.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      2,\n      8\n    ],\n    [\n      0,\n      8,\n      4\n    ],\n    [\n      0,\n      4,\n      5\n    ],\n    [\n      0,\n      5,\n      9\n    ],\n    [\n      0,\n      9,\n      2\n    ],\n    [\n      3,\n      6,\n      10\n    ],\n    [\n      3,\n      10,\n      1\n    ],\n    [\n      3,\n      1,\n      11\n    ],\n    [\n      3,\n      11,\n      7\n    ],\n    [\n      3,\n      7,\n      6\n    ],\n    [\n      2,\n      6,\n      8\n    ],\n    [\n      8,\n      10,\n      4\n    ],\n    [\n      4,\n      1,\n      5\n    ],\n    [\n      5,\n      11,\n      9\n    ],\n    [\n      9,\n      7,\n      2\n    ],\n    [\n      6,\n      2,\n      7\n    ],\n    [\n      10,\n      8,\n      6\n    ],\n    [\n      1,\n      4,\n      10\n    ],\n    [\n      11,\n      5,\n      1\n    ],\n    [\n      7,\n      9,\n      11\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 1.0472,\n    \"1\": 1.0472,\n    \"2\": 1.0472,\n    \"3\": 1.0472,\n    \"4\": 1.0472,\n    \"5\": 1.0472,\n    \"6\": 1.0472,\n    \"7\": 1.0472,\n    \"8\": 1.0472,\n    \"9\": 1.0472,\n    \"10\": 1.0472,\n    \"11\": 1.0472\n  },\n  \"vertex_degrees\": {\n    \"0\": 5,\n    \"1\": 5,\n    \"2\": 5,\n    \"3\": 5,\n    \"4\": 5,\n    \"5\": 5,\n    \"6\": 5,\n    \"7\": 5,\n    \"8\": 5,\n    \"9\": 5,\n    \"10\": 5,\n    \"11\": 5\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 12,\n  \"n_edges\": 30,\n  \"n_faces\": 20,\n  \"vertices\": [\n    [\n      0.0,\n      1.0,\n      1.618\n    ],\n    [\n      0.0,\n      1.0,\n      -1.618\n    ],\n    [\n      0.0,\n      -1.0,\n      1.618\n    ],\n    [\n      0.0,\n      -1.0,\n      -1.618\n    ],\n    [\n      1.0,\n      1.618,\n      0.0\n    ],\n    [\n      -1.0,\n      1.618,\n      0.0\n    ],\n    [\n      1.0,\n      -1.618,\n      0.0\n    ],\n    [\n      -1.0,\n      -1.618,\n      0.0\n    ],\n    [\n      1.618,\n      0.0,\n      1.0\n    ],\n    [\n      -1.618,\n      0.0,\n      1.0\n    ],\n    [\n      1.618,\n      0.0,\n      -1.0\n    ],\n    [\n      -1.618,\n      0.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      2,\n      8\n    ],\n    [\n      0,\n      8,\n      4\n    ],\n    [\n      0,\n      4,\n      5\n    ],\n    [\n      0,\n      5,\n      9\n    ],\n    [\n      0,\n      9,\n      2\n    ],\n    [\n      3,\n      6,\n      10\n    ],\n    [\n      3,\n      10,\n      1\n    ],\n    [\n      3,\n      1,\n      11\n    ],\n    [\n      3,\n      11,\n      7\n    ],\n    [\n      3,\n      7,\n      6\n    ],\n    [\n      2,\n      6,\n      8\n    ],\n    [\n      8,\n      10,\n      4\n    ],\n    [\n      4,\n      1,\n      5\n    ],\n    [\n      5,\n      11,\n      9\n    ],\n    [\n      9,\n      7,\n      2\n    ],\n    [\n      6,\n      2,\n      7\n    ],\n    [\n      10,\n      8,\n      6\n    ],\n    [\n      1,\n      4,\n      10\n    ],\n    [\n      11,\n      5,\n      1\n    ],\n    [\n      7,\n      9,\n      11\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 1.0472,\n    \"1\": 1.0472,\n    \"2\": 1.0472,\n    \"3\": 1.0472,\n    \"4\": 1.0472,\n    \"5\": 1.0472,\n    \"6\": 1.0472,\n    \"7\": 1.0472,\n    \"8\": 1.0472,\n    \"9\": 1.0472,\n    \"10\": 1.0472,\n    \"11\": 1.0472\n  },\n  \"vertex_degrees\": {\n    \"0\": 5,\n    \"1\": 5,\n    \"2\": 5,\n    \"3\": 5,\n    \"4\": 5,\n    \"5\": 5,\n    \"6\": 5,\n    \"7\": 5,\n    \"8\": 5,\n    \"9\": 5,\n    \"10\": 5,\n    \"11\": 5\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"stellar_subdivision\",\n  \"subdivided_face_index\": 5,\n  \"before\": {\n    \"n_vertices\": 12,\n    \"n_edges\": 30,\n    \"n_faces\": 20\n  },\n  \"after\": {\n    \"n_vertices\": 13,\n    \"n_edges\": 33,\n    \"n_faces\": 22\n  },\n  \"delta\": {\n    \"vertices_added\": 1,\n    \"edges_added\": 3,\n    \"faces_added\": 2\n  },\n  \"new_vertex_defect\": -0.0,\n  \"local_defect_sum_before\": 3.141593,\n  \"local_defect_sum_after\": 3.141593,\n  \"note\": \"Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature).\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"incomplete_subdivision\": {\n    \"description\": \"Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.\",\n    \"expected_defect_at_new_vertex\": 6.283185,\n    \"expected_chi_change\": 1\n  },\n  \"vertex_displacement\": {\n    \"description\": \"Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged).\"\n  },\n  \"note\": \"Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    },
+    {
+      "question_id": "dim3_q16",
+      "type": "invariance",
+      "stem": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。",
+      "subquestions": [
+        {
+          "label": "(a)",
+          "text": "在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(b)",
+          "text": "在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。",
+          "answer_type": "integer",
+          "answer": 1
+        },
+        {
+          "label": "(c)",
+          "text": "原网格的 Euler 特征数 χ 是多少？",
+          "answer_type": "integer",
+          "answer": 2
+        }
+      ],
+      "ground_truth": {
+        "chi": 2,
+        "stellar_chi_preserved": true,
+        "displacement_curvature_preserved": true
+      },
+      "coe_data": {
+        "R": {
+          "n_vertices": 12,
+          "n_edges": 30,
+          "n_faces": 20,
+          "vertices": [
+            [
+              0.0,
+              1.0,
+              1.618
+            ],
+            [
+              0.0,
+              1.0,
+              -1.618
+            ],
+            [
+              0.0,
+              -1.0,
+              1.618
+            ],
+            [
+              0.0,
+              -1.0,
+              -1.618
+            ],
+            [
+              1.0,
+              1.618,
+              0.0
+            ],
+            [
+              -1.0,
+              1.618,
+              0.0
+            ],
+            [
+              1.0,
+              -1.618,
+              0.0
+            ],
+            [
+              -1.0,
+              -1.618,
+              0.0
+            ],
+            [
+              1.618,
+              0.0,
+              1.0
+            ],
+            [
+              -1.618,
+              0.0,
+              1.0
+            ],
+            [
+              1.618,
+              0.0,
+              -1.0
+            ],
+            [
+              -1.618,
+              0.0,
+              -1.0
+            ]
+          ],
+          "faces": [
+            [
+              0,
+              2,
+              8
+            ],
+            [
+              0,
+              8,
+              4
+            ],
+            [
+              0,
+              4,
+              5
+            ],
+            [
+              0,
+              5,
+              9
+            ],
+            [
+              0,
+              9,
+              2
+            ],
+            [
+              3,
+              6,
+              10
+            ],
+            [
+              3,
+              10,
+              1
+            ],
+            [
+              3,
+              1,
+              11
+            ],
+            [
+              3,
+              11,
+              7
+            ],
+            [
+              3,
+              7,
+              6
+            ],
+            [
+              2,
+              6,
+              8
+            ],
+            [
+              8,
+              10,
+              4
+            ],
+            [
+              4,
+              1,
+              5
+            ],
+            [
+              5,
+              11,
+              9
+            ],
+            [
+              9,
+              7,
+              2
+            ],
+            [
+              6,
+              2,
+              7
+            ],
+            [
+              10,
+              8,
+              6
+            ],
+            [
+              1,
+              4,
+              10
+            ],
+            [
+              11,
+              5,
+              1
+            ],
+            [
+              7,
+              9,
+              11
+            ]
+          ],
+          "angle_defects_per_vertex": {
+            "0": 1.0472,
+            "1": 1.0472,
+            "2": 1.0472,
+            "3": 1.0472,
+            "4": 1.0472,
+            "5": 1.0472,
+            "6": 1.0472,
+            "7": 1.0472,
+            "8": 1.0472,
+            "9": 1.0472,
+            "10": 1.0472,
+            "11": 1.0472
+          },
+          "vertex_degrees": {
+            "0": 5,
+            "1": 5,
+            "2": 5,
+            "3": 5,
+            "4": 5,
+            "5": 5,
+            "6": 5,
+            "7": 5,
+            "8": 5,
+            "9": 5,
+            "10": 5,
+            "11": 5
+          },
+          "note": "δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself."
+        },
+        "T": {
+          "operation": "stellar_subdivision",
+          "subdivided_face_index": 15,
+          "before": {
+            "n_vertices": 12,
+            "n_edges": 30,
+            "n_faces": 20
+          },
+          "after": {
+            "n_vertices": 13,
+            "n_edges": 33,
+            "n_faces": 22
+          },
+          "delta": {
+            "vertices_added": 1,
+            "edges_added": 3,
+            "faces_added": 2
+          },
+          "new_vertex_defect": 0.0,
+          "local_defect_sum_before": 3.141593,
+          "local_defect_sum_after": 3.141593,
+          "note": "Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature)."
+        },
+        "C": {
+          "incomplete_subdivision": {
+            "description": "Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.",
+            "expected_defect_at_new_vertex": 6.283185,
+            "expected_chi_change": 1
+          },
+          "vertex_displacement": {
+            "description": "Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged)."
+          },
+          "note": "Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not."
+        }
+      },
+      "prompts": {
+        "baseline": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n请回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "cot": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n请回答以下子问题。Let's think step by step —— 请逐步推理，先分析每个子问题的关键概念，再给出答案。\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_r": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n以下是 CoE 引擎提供的关系数据 (Relation)：\n```json\n{\n  \"n_vertices\": 12,\n  \"n_edges\": 30,\n  \"n_faces\": 20,\n  \"vertices\": [\n    [\n      0.0,\n      1.0,\n      1.618\n    ],\n    [\n      0.0,\n      1.0,\n      -1.618\n    ],\n    [\n      0.0,\n      -1.0,\n      1.618\n    ],\n    [\n      0.0,\n      -1.0,\n      -1.618\n    ],\n    [\n      1.0,\n      1.618,\n      0.0\n    ],\n    [\n      -1.0,\n      1.618,\n      0.0\n    ],\n    [\n      1.0,\n      -1.618,\n      0.0\n    ],\n    [\n      -1.0,\n      -1.618,\n      0.0\n    ],\n    [\n      1.618,\n      0.0,\n      1.0\n    ],\n    [\n      -1.618,\n      0.0,\n      1.0\n    ],\n    [\n      1.618,\n      0.0,\n      -1.0\n    ],\n    [\n      -1.618,\n      0.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      2,\n      8\n    ],\n    [\n      0,\n      8,\n      4\n    ],\n    [\n      0,\n      4,\n      5\n    ],\n    [\n      0,\n      5,\n      9\n    ],\n    [\n      0,\n      9,\n      2\n    ],\n    [\n      3,\n      6,\n      10\n    ],\n    [\n      3,\n      10,\n      1\n    ],\n    [\n      3,\n      1,\n      11\n    ],\n    [\n      3,\n      11,\n      7\n    ],\n    [\n      3,\n      7,\n      6\n    ],\n    [\n      2,\n      6,\n      8\n    ],\n    [\n      8,\n      10,\n      4\n    ],\n    [\n      4,\n      1,\n      5\n    ],\n    [\n      5,\n      11,\n      9\n    ],\n    [\n      9,\n      7,\n      2\n    ],\n    [\n      6,\n      2,\n      7\n    ],\n    [\n      10,\n      8,\n      6\n    ],\n    [\n      1,\n      4,\n      10\n    ],\n    [\n      11,\n      5,\n      1\n    ],\n    [\n      7,\n      9,\n      11\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 1.0472,\n    \"1\": 1.0472,\n    \"2\": 1.0472,\n    \"3\": 1.0472,\n    \"4\": 1.0472,\n    \"5\": 1.0472,\n    \"6\": 1.0472,\n    \"7\": 1.0472,\n    \"8\": 1.0472,\n    \"9\": 1.0472,\n    \"10\": 1.0472,\n    \"11\": 1.0472\n  },\n  \"vertex_degrees\": {\n    \"0\": 5,\n    \"1\": 5,\n    \"2\": 5,\n    \"3\": 5,\n    \"4\": 5,\n    \"5\": 5,\n    \"6\": 5,\n    \"7\": 5,\n    \"8\": 5,\n    \"9\": 5,\n    \"10\": 5,\n    \"11\": 5\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n",
+        "coe_ctr": "三角网格曲面，离散 Gauss-Bonnet：Σ_v δ(v) = 2π·χ。\n考虑两类操作：\n  (op1) stellar_subdivision: 在某个面内加一个新顶点，把该面分成 3 个三角形。\n  (op2) vertex_displacement: 移动一个已有顶点的空间位置（不改变拓扑）。\n\n以下是 CoE 引擎提供的完整数据。\n\n### Relation (R)\n```json\n{\n  \"n_vertices\": 12,\n  \"n_edges\": 30,\n  \"n_faces\": 20,\n  \"vertices\": [\n    [\n      0.0,\n      1.0,\n      1.618\n    ],\n    [\n      0.0,\n      1.0,\n      -1.618\n    ],\n    [\n      0.0,\n      -1.0,\n      1.618\n    ],\n    [\n      0.0,\n      -1.0,\n      -1.618\n    ],\n    [\n      1.0,\n      1.618,\n      0.0\n    ],\n    [\n      -1.0,\n      1.618,\n      0.0\n    ],\n    [\n      1.0,\n      -1.618,\n      0.0\n    ],\n    [\n      -1.0,\n      -1.618,\n      0.0\n    ],\n    [\n      1.618,\n      0.0,\n      1.0\n    ],\n    [\n      -1.618,\n      0.0,\n      1.0\n    ],\n    [\n      1.618,\n      0.0,\n      -1.0\n    ],\n    [\n      -1.618,\n      0.0,\n      -1.0\n    ]\n  ],\n  \"faces\": [\n    [\n      0,\n      2,\n      8\n    ],\n    [\n      0,\n      8,\n      4\n    ],\n    [\n      0,\n      4,\n      5\n    ],\n    [\n      0,\n      5,\n      9\n    ],\n    [\n      0,\n      9,\n      2\n    ],\n    [\n      3,\n      6,\n      10\n    ],\n    [\n      3,\n      10,\n      1\n    ],\n    [\n      3,\n      1,\n      11\n    ],\n    [\n      3,\n      11,\n      7\n    ],\n    [\n      3,\n      7,\n      6\n    ],\n    [\n      2,\n      6,\n      8\n    ],\n    [\n      8,\n      10,\n      4\n    ],\n    [\n      4,\n      1,\n      5\n    ],\n    [\n      5,\n      11,\n      9\n    ],\n    [\n      9,\n      7,\n      2\n    ],\n    [\n      6,\n      2,\n      7\n    ],\n    [\n      10,\n      8,\n      6\n    ],\n    [\n      1,\n      4,\n      10\n    ],\n    [\n      11,\n      5,\n      1\n    ],\n    [\n      7,\n      9,\n      11\n    ]\n  ],\n  \"angle_defects_per_vertex\": {\n    \"0\": 1.0472,\n    \"1\": 1.0472,\n    \"2\": 1.0472,\n    \"3\": 1.0472,\n    \"4\": 1.0472,\n    \"5\": 1.0472,\n    \"6\": 1.0472,\n    \"7\": 1.0472,\n    \"8\": 1.0472,\n    \"9\": 1.0472,\n    \"10\": 1.0472,\n    \"11\": 1.0472\n  },\n  \"vertex_degrees\": {\n    \"0\": 5,\n    \"1\": 5,\n    \"2\": 5,\n    \"3\": 5,\n    \"4\": 5,\n    \"5\": 5,\n    \"6\": 5,\n    \"7\": 5,\n    \"8\": 5,\n    \"9\": 5,\n    \"10\": 5,\n    \"11\": 5\n  },\n  \"note\": \"δ(v) = 2π − Σ(face-angles at v). Gauss-Bonnet says Σ_v δ(v) = 2π·χ. We do NOT pre-compute χ — derive it yourself.\"\n}\n```\n\n### Transform (T)\n```json\n{\n  \"operation\": \"stellar_subdivision\",\n  \"subdivided_face_index\": 15,\n  \"before\": {\n    \"n_vertices\": 12,\n    \"n_edges\": 30,\n    \"n_faces\": 20\n  },\n  \"after\": {\n    \"n_vertices\": 13,\n    \"n_edges\": 33,\n    \"n_faces\": 22\n  },\n  \"delta\": {\n    \"vertices_added\": 1,\n    \"edges_added\": 3,\n    \"faces_added\": 2\n  },\n  \"new_vertex_defect\": 0.0,\n  \"local_defect_sum_before\": 3.141593,\n  \"local_defect_sum_after\": 3.141593,\n  \"note\": \"Stellar subdivision: ΔV=+1, ΔE=+3, ΔF=+2 ⇒ Δχ = ΔV−ΔE+ΔF = 0. The sum of defects in the subdivided face's region also stays constant (locality of curvature).\"\n}\n```\n\n### Counterfactual (C)\n```json\n{\n  \"incomplete_subdivision\": {\n    \"description\": \"Adding a vertex without triangulating the surrounding face leaves a vertex with 0 incident face-angles, so its defect = 2π. χ also changes because ΔV=+1, ΔE=0, ΔF=0 ⇒ Δχ=+1.\",\n    \"expected_defect_at_new_vertex\": 6.283185,\n    \"expected_chi_change\": 1\n  },\n  \"vertex_displacement\": {\n    \"description\": \"Moving an existing vertex to a new spatial location changes individual defects but their sum stays at 2π·χ (and χ unchanged).\"\n  },\n  \"note\": \"Use the contrast to confirm: a 'proper' subdivision preserves χ; a vertex-without-faces does not.\"\n}\n```\n\n请基于上述数据回答以下子问题：\n  (a) 在 op1 之后，Euler 特征数 χ 是否保持不变？请回答 1（保持）或 0（改变）。\n  (b) 在 op2 之后，Σ_v δ(v) 是否保持不变？请回答 1（保持）或 0（改变）。\n  (c) 原网格的 Euler 特征数 χ 是多少？\n\n请严格按照以下格式输出答案（这部分会被自动评分系统解析）：\n\n[ANSWER]\n(a) <答案>\n(b) <答案>\n(c) <答案>\n[/ANSWER]\n\n答案规范：\n- 整数请直接写数字（如 3、130）。\n- 集合/列表请用花括号或方括号，元素间用逗号分隔（如 {0, 3} 或 [0,3]）。\n- 含多个整数的答案请用箭头或逗号分隔（如 130 -> 92 或 130, 92）。\n- 字符串答案请直接写文字（如 yes / no, preserved / changed）。\n- 不要在 [ANSWER] 块内添加解释。\n\n随后用 [REASONING] ... [/REASONING] 提供推理过程。\n"
+      }
+    }
+  ]
+}

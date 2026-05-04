@@ -1,0 +1,81 @@
+{
+  "params": {
+    "mu": 0.387,
+    "eta": 3.247,
+    "beta": 0.8,
+    "sigmas": [
+      0.01,
+      0.1,
+      0.5,
+      1.0
+    ]
+  },
+  "V1_PL_inequality": {
+    "n": 20000,
+    "min_ratio_grad_sq_over_x_sq": 0.18413170728989292,
+    "mu_squared": 0.149769,
+    "PL_holds": true,
+    "min_pl_form_ratio": 0.3932700659225681,
+    "mu_target": 0.387
+  },
+  "V2_V3_monte_carlo": {
+    "0.01": {
+      "sigma": 0.01,
+      "LB_x_sq_2eta2sigma2": 0.0021086018,
+      "E_x_sq_measured": 0.4521989736805749,
+      "LB_grad_sq_2mu2eta2sigma2": 0.00031580318298420003,
+      "E_grad_sq_measured": 0.3105601574077524,
+      "conditional_LB_mu2_E_x_sq": 0.06772538808916602,
+      "V2_OK": true,
+      "V3_OK": true,
+      "conditional_OK": true,
+      "tightness_x_sq": 214.4544188858109,
+      "tightness_grad_sq": 983.3978064220146
+    },
+    "0.1": {
+      "sigma": 0.1,
+      "LB_x_sq_2eta2sigma2": 0.21086018000000004,
+      "E_x_sq_measured": 0.9004660184109564,
+      "LB_grad_sq_2mu2eta2sigma2": 0.03158031829842001,
+      "E_grad_sq_measured": 0.3595376256421254,
+      "conditional_LB_mu2_E_x_sq": 0.13486189511139055,
+      "V2_OK": true,
+      "V3_OK": true,
+      "conditional_OK": true,
+      "tightness_x_sq": 4.2704412867851875,
+      "tightness_grad_sq": 11.38486389670472
+    },
+    "0.5": {
+      "sigma": 0.5,
+      "LB_x_sq_2eta2sigma2": 5.2715045,
+      "E_x_sq_measured": 16.80986089354524,
+      "LB_grad_sq_2mu2eta2sigma2": 0.7895079574605001,
+      "E_grad_sq_measured": 3.354919467284444,
+      "conditional_LB_mu2_E_x_sq": 2.517596056165377,
+      "V2_OK": true,
+      "V3_OK": true,
+      "conditional_OK": true,
+      "tightness_x_sq": 3.1888165690734476,
+      "tightness_grad_sq": 4.249380181139332
+    },
+    "1.0": {
+      "sigma": 1.0,
+      "LB_x_sq_2eta2sigma2": 21.086018,
+      "E_x_sq_measured": 60.69529380251278,
+      "LB_grad_sq_2mu2eta2sigma2": 3.1580318298420003,
+      "E_grad_sq_measured": 10.567779490820971,
+      "conditional_LB_mu2_E_x_sq": 9.090273457508538,
+      "V2_OK": true,
+      "V3_OK": true,
+      "conditional_OK": true,
+      "tightness_x_sq": 2.8784616328465993,
+      "tightness_grad_sq": 3.346318232438363
+    }
+  },
+  "V4_sigma_zero_limit": {
+    "x_sq_at_sigma_0": 0.49999999999999944,
+    "grad_sq_at_sigma_0": 0.34714947127523066,
+    "lambda_sq": 0.4999999999999999
+  },
+  "wall_time": 167.41139316558838
+}

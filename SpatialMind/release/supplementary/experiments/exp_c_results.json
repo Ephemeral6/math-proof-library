@@ -1,0 +1,64 @@
+{
+  "experiment": "C",
+  "description": "Human-machine scoring agreement: re-score 16 ablation outputs (8 domains x {000, RTC}), compare with original 自评, compute Cohen's kappa.",
+  "rubric": {
+    "0": "NO_SIGNAL — nothing useful or wrong",
+    "1": "NOTICE — observes structure but no answer",
+    "2": "PATTERN — identifies pattern, partial answer",
+    "3": "ARGUMENT — correct chain with minor gaps",
+    "4": "PROOF — rigorous derivation"
+  },
+  "subject": "claude-opus-4-7-as-test-subject (same model rated its own outputs at writing time and now re-rates them)",
+  "blinding_protocol": "I read the 数据分析 + 论证尝试 sections of each evaluation file. I formed an independent rating before consciously consulting the 自评 (final-line) score. NOTE: this is self-rating; not true human-machine inter-rater. Original ratings were also Claude's at the time of generation.",
+  "date": "2026-05-02",
+  "ratings": [
+    {"case": "boundary_interior/000", "original": 1, "mine": 1, "reason": "Identifies that 3 of 4 ops (translate/shear/add_vertex) preserve (A,B,I); pick_holds always True; cannot access raw A,B,I values to verify Pick formula. Real structural observation but no path to Pick. → NOTICE."},
+    {"case": "boundary_interior/RTC", "original": 4, "mine": 4, "reason": "Complete Pick proof: (A) Shoelace gives A from boundary, (B) Σ gcd gives B from boundary, (C) triangulation induction gives Pick formula, (D) det-criterion classifies operations, (E) CFs delimit application domain {lattice, simple}. All 87 cases doubly verified. → PROOF."},
+    {"case": "discrete_curvature/000", "original": 2, "mine": 2, "reason": "100/100 invariance of χ, Σδ, ratio observed; recognizes ΔV-ΔE+ΔF=0 combinatorial identity for stellar; suggests Σδ/(2π)=χ universal. No per-face angle data → no mechanism. → PATTERN."},
+    {"case": "discrete_curvature/RTC", "original": 3, "mine": 3, "reason": "Six-step proof: per-triangle π (from CF2) → per-vertex 2π-δ (from CF1) → double-count → 3F=2E → 2πχ=Σδ. Two acknowledged gaps: per-triangle angle from single CF point + 3F=2E only on 4 presets. → ARGUMENT (clean chain, real gaps)."},
+    {"case": "graph_connectivity/000", "original": 1, "mine": 1, "reason": "Sees 17/100 connectivity-loss frequency but cannot extract the predicting edge property (no R/T data on bridges). → NOTICE."},
+    {"case": "graph_connectivity/RTC", "original": 4, "mine": 4, "reason": "Full bidirectional theorem 'G−e disconnected ⇔ e is bridge' with both directions proved + R-components and T-trace giving 100-case verification. → PROOF."},
+    {"case": "knot_theory/000", "original": 1, "mine": 1, "reason": "writhe and linking number conservation observed (peripheral invariants); signature/det/Alexander completely absent from summary. Cannot verify the target theorem. → NOTICE."},
+    {"case": "knot_theory/RTC", "original": 3, "mine": 3, "reason": "Nine-step chain: R2 additivity + sign-pair (+1,-1) → writhe → det/Alex preservation; CFs handle critical conditions. Explicit unresolved gap: signature's mechanism via Seifert matrix not derived from data. → ARGUMENT."},
+    {"case": "projection/000", "original": 2, "mine": 2, "reason": "n_points conserved (66/66), dim drops 1 (definition), diameter loss is direction-dependent but direction info absent. No distance machinery. → PATTERN."},
+    {"case": "projection/RTC", "original": 4, "mine": 4, "reason": "Five-step proof: distance formula ‖π(p)-π(q)‖² = ‖p-q‖² - ⟨p-q,ê⟩² with triple verification (R distance matrix + T algebra + CF identity); collision/reconstruction analyzed. → PROOF."},
+    {"case": "surface_topology/000", "original": 0, "mine": 0, "reason": "Author honestly admits 'no signal' — data only verifies the conclusion (i preserved on 1563 cases) without any mechanism information. → NO_SIGNAL."},
+    {"case": "surface_topology/RTC", "original": 3, "mine": 3, "reason": "Seven steps; Steps 1-6 form coherent skeleton (i ≤ 1 critical, bigons-with-puncture essential, surgery preserves these); Step 7 (surgery's algorithmic guarantee) explicit gap due to T degeneracy on S_{1,2}. → ARGUMENT."},
+    {"case": "surface_topology_s21/000", "original": 2, "mine": 2, "reason": "Quantitative β_level analysis: 9% vs 49% vs 60% violation rates across β-levels — a real 5× discriminator. But still 9% exceptions at β_level=0; no geometric proof. → PATTERN."},
+    {"case": "surface_topology_s21/RTC", "original": 3, "mine": 3, "reason": "Joint discriminator D = (bigons_post>0) ∧ (all bigons puncture-containing) achieves 87/93 ≈ 93.5% precision; mechanism via parity + outer-region invariance. 11/128 residuals (especially 6 false-positives via shared-puncture nesting) admitted. → ARGUMENT (sketch-level)."},
+    {"case": "symmetry/000", "original": 2, "mine": 2, "reason": "Same-orbit preservation seen + Lagrange-divisor pattern (orbit_size ∈ {1,2,3,6}). No stabilizer / Fix(g) data → cannot reach Burnside. → PATTERN."},
+    {"case": "symmetry/RTC", "original": 4, "mine": 4, "reason": "Six-step Burnside proof: orbit-stabilizer + cycle structure → |Fix|=3^cycles → double counting → numerical closure 130 = (1/6)·780; R+T cross-verifies (D1, D2), C provides counterfactual (D3). → PROOF."}
+  ],
+  "agreement_matrix": {
+    "rows": "original score",
+    "cols": "my blind score",
+    "matrix": [
+      [1, 0, 0, 0, 0],
+      [0, 3, 0, 0, 0],
+      [0, 0, 4, 0, 0],
+      [0, 0, 0, 4, 0],
+      [0, 0, 0, 0, 4]
+    ],
+    "row_label": ["score=0", "score=1", "score=2", "score=3", "score=4"]
+  },
+  "kappa": {
+    "p_observed_agreement": 1.0000,
+    "p_chance_agreement": 0.2266,
+    "cohens_kappa_unweighted": 1.0000,
+    "cohens_kappa_linear_weighted": 1.0000,
+    "interpretation": "Perfect agreement across all 16 cases."
+  },
+  "caveats": [
+    "CRITICAL: this is NOT inter-rater (human vs machine) — it is intra-rater (same model at two times). Cohen's kappa for self-self is naturally inflated. The 'human' rater here is also Claude; what's measured is rubric stability over time / position in the document.",
+    "The original ratings were written together with the analyses — the 论证尝试 sections explicitly anticipate the rubric (e.g. 'PROOF/ARGUMENT/PATTERN' headers used as scaffolding), making the original 自评 a near-deterministic readout of the analysis structure.",
+    "True inter-rater reliability would require an independent human grader or a different model. With this data, kappa=1.0 reflects internal consistency of the rubric application, not human-machine agreement.",
+    "All 16 cases sit cleanly at one rubric level; there are no 0-2-vs-3 borderline cases that would stress agreement. A larger sample with more borderline cases would likely show some genuine disagreement."
+  ],
+  "honest_findings": [
+    "The rubric (NO_SIGNAL/NOTICE/PATTERN/ARGUMENT/PROOF, 0-4) is well-defined enough that an independent reading reproduces it.",
+    "Each evaluation explicitly enumerates its own gaps before scoring (e.g. surface_topology RTC names Step 7 missing; discrete_curvature RTC names per-triangle angle gap). This pre-commitment makes the score forced and reduces rater discretion.",
+    "Score 4 evaluations have at least 5 derivation steps + cross-verification + explicit application domain.",
+    "Score 3 evaluations have 6-9 step skeletons with one or two named gaps that block PROOF.",
+    "Score 0-2 evaluations are bottlenecked by data availability (NO_SIGNAL: only verifies result; NOTICE: structural facts but no mechanism; PATTERN: real signal but partial)."
+  ]
+}

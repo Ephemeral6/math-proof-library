@@ -1,0 +1,31 @@
+{
+  "theorem_name": "lipschitz_gradient_quadratic_upper_bound",
+  "layer": 1,
+  "substitution_note": "Used as substitute for 'standard Lipschitz definition' since optlib does not redefine Lipschitz; this is the closest baseline 'Lipschitz inequality' lemma in optlib.",
+  "natural_language_statement": "If a function f : E → ℝ on a real normed space E has Frechet derivative f' x at every point x, and the derivative map f' is Lipschitz with constant l, then for all x, y in E we have the quadratic upper bound f(y) ≤ f(x) + f'(x)(y - x) + (l / 2) * ‖y - x‖^2.",
+  "assumptions": [
+    "E is a real normed additive commutative group with a real normed space structure",
+    "f : E → ℝ",
+    "f' : E → (E →L[ℝ] ℝ) (continuous-linear-map valued derivative)",
+    "l : NNReal",
+    "hd : ∀ x : E, HasFDerivAt f (f' x) x",
+    "hl : LipschitzWith l f'"
+  ],
+  "conclusion": "∀ (x y : E), f y ≤ f x + (f' x) (y - x) + (l / 2) * ‖y - x‖ ^ 2",
+  "proof_sketch": [
+    "Reduce LipschitzWith to its norm-based inequality form via lipschitzWith_iff_norm_sub_le.",
+    "Define the 1D restriction g(t) = f(x + t·(y - x)) and its derivative g'(t) = f'(x + t·(y - x))(y - x).",
+    "Show g has the prescribed derivative everywhere using the chain rule via deriv_function_comp_segment.",
+    "Show that g'(u) - g'(v) is bounded by L*‖y-x‖^2 * |u - v| using LipschitzWith of f' applied to two segment points.",
+    "Define the parabolic majorant u(t) = g(0) + t·g'(0) + t^2 * L*‖y-x‖^2 / 2 with derivative u'(t) = g'(0) + L*‖y-x‖^2 * t.",
+    "Apply image_le_of_deriv_right_le_deriv_boundary on [0, 2] with bounds matching g' ≤ u' (using glip estimate at t and 0) to conclude g(1) ≤ u(1).",
+    "Unfold definitions to obtain the desired inequality."
+  ],
+  "key_mathlib_lemmas": [
+    "LipschitzWith.lipschitzWith_iff_norm_sub_le",
+    "ContinuousLinearMap.le_opNorm",
+    "image_le_of_deriv_right_le_deriv_boundary",
+    "HasDerivAt.add / .pow / .mul_const",
+    "norm_smul"
+  ]
+}

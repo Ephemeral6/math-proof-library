@@ -1,0 +1,82 @@
+{
+  "symmetry": {
+    "level_file": "level_4.json",
+    "sampled": [
+      "diff-163",
+      "same-028",
+      "same-006",
+      "diff-189",
+      "same-070"
+    ]
+  },
+  "knot_theory": {
+    "level_file": "level_4.json",
+    "sampled": [
+      "7_2-r2-1",
+      "4_1-r2-4",
+      "3_1-r2-3",
+      "7_3-r2-4",
+      "5_2-r2-5"
+    ]
+  },
+  "boundary_interior": {
+    "level_file": "level_4.json",
+    "sampled": [
+      "crosspair-4-L_shape-vs-staircase",
+      "rectangle_4x3-shear-1",
+      "unit_square-shear-0",
+      "L_shape-scale-0",
+      "L_shape-trans-1"
+    ]
+  },
+  "discrete_curvature": {
+    "level_file": "level_4.json",
+    "sampled": [
+      "cross-octahedron-vs-icosahedron-f1-1",
+      "cube_triangulated-subdiv-f4-4",
+      "tetrahedron-subdiv-f3-3",
+      "cross-icosahedron-vs-cube_triangulated-f4-4",
+      "icosahedron-disp-v0-0"
+    ]
+  },
+  "graph_connectivity": {
+    "level_file": "level_4.json",
+    "sampled": [
+      "R16_n12-t1",
+      "R02_n12-t4",
+      "R00_n8-t3",
+      "R18_n8-t4",
+      "R07_n8-t0"
+    ]
+  },
+  "projection": {
+    "level_file": "level_4.json",
+    "sampled": [
+      "self-triangular_prism-yz",
+      "self-cube-diagonal",
+      "cross-octahedron-xzvsyz",
+      "cross-tetrahedron-yzvsdiagonal",
+      "cross-tetrahedron-xyvsdiagonal"
+    ]
+  },
+  "surface_topology": {
+    "level_file": "level_4.json",
+    "sampled": [
+      "a331-b69",
+      "a62-b12",
+      "a12-b1",
+      "a390-b221",
+      "a131-b389"
+    ]
+  },
+  "surface_topology_s21": {
+    "level_file": "level_4.json",
+    "sampled": [
+      "a151-b6",
+      "a122-b28",
+      "a215-b1",
+      "a151-b181",
+      "a151-b103"
+    ]
+  }
+}

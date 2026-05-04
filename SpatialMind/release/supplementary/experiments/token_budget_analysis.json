@@ -1,0 +1,129 @@
+{
+  "n_trials_total": 464,
+  "trials_per_condition": {
+    "zero_cot": 104,
+    "cot_code": 104,
+    "cot_code_hint": 24,
+    "react_engine": 24,
+    "coe_r": 104,
+    "coe_rtc": 104
+  },
+  "notes": {
+    "prompt_len_unit": "characters",
+    "resp_len_unit": "characters",
+    "react_engine_prompt_proxy": "ReAct does not store its prompt in the result file. We use the matching zero_cot prompt (same domain+case_id) as a proxy for the baseline shown to the ReAct agent. Response = trajectory + final_answer."
+  },
+  "table1_per_condition": [
+    {
+      "condition": "zero_cot",
+      "label": "Zero-CoT",
+      "n": 104,
+      "avg_prompt_len": 309.46153846153845,
+      "avg_resp_len": 322.08653846153845,
+      "avg_score": 1.9038461538461537
+    },
+    {
+      "condition": "cot_code",
+      "label": "CoT+Code",
+      "n": 104,
+      "avg_prompt_len": 286.41346153846155,
+      "avg_resp_len": 457.21153846153845,
+      "avg_score": 2.423076923076923
+    },
+    {
+      "condition": "cot_code_hint",
+      "label": "CoT+Code+Hint",
+      "n": 24,
+      "avg_prompt_len": 771.4583333333334,
+      "avg_resp_len": 594.6666666666666,
+      "avg_score": 2.7916666666666665
+    },
+    {
+      "condition": "react_engine",
+      "label": "ReAct+Engine",
+      "n": 24,
+      "avg_prompt_len": 117.5,
+      "avg_resp_len": 282.8333333333333,
+      "avg_score": 3.625
+    },
+    {
+      "condition": "coe_r",
+      "label": "CoE-R",
+      "n": 104,
+      "avg_prompt_len": 1340.451923076923,
+      "avg_resp_len": 452.9519230769231,
+      "avg_score": 3.75
+    },
+    {
+      "condition": "coe_rtc",
+      "label": "CoE-RTC",
+      "n": 104,
+      "avg_prompt_len": 2103.0096153846152,
+      "avg_resp_len": 788.7307692307693,
+      "avg_score": 3.75
+    }
+  ],
+  "table2_spearman": {
+    "overall_prompt_vs_score": 0.32417999566270733,
+    "overall_resp_vs_score": 0.3872354935021899,
+    "within_condition": [
+      {
+        "condition": "zero_cot",
+        "label": "Zero-CoT",
+        "n": 104,
+        "spearman_prompt_score": 0.24257393205327032,
+        "spearman_resp_score": 0.21242402192372833
+      },
+      {
+        "condition": "cot_code",
+        "label": "CoT+Code",
+        "n": 104,
+        "spearman_prompt_score": 0.4091284002214921,
+        "spearman_resp_score": 0.4643921934157986
+      },
+      {
+        "condition": "cot_code_hint",
+        "label": "CoT+Code+Hint",
+        "n": 24,
+        "spearman_prompt_score": 0.45604973946896155,
+        "spearman_resp_score": 0.22049300681231515
+      },
+      {
+        "condition": "react_engine",
+        "label": "ReAct+Engine",
+        "n": 24,
+        "spearman_prompt_score": 0.21777390627607926,
+        "spearman_resp_score": 0.1368268747590162
+      },
+      {
+        "condition": "coe_r",
+        "label": "CoE-R",
+        "n": 104,
+        "spearman_prompt_score": -0.30780671007281957,
+        "spearman_resp_score": -0.3139331007893932
+      },
+      {
+        "condition": "coe_rtc",
+        "label": "CoE-RTC",
+        "n": 104,
+        "spearman_prompt_score": -0.3736366524546917,
+        "spearman_resp_score": -0.07182804612963319
+      }
+    ]
+  },
+  "table3_coe_r_vs_rtc": {
+    "n_pairs": 104,
+    "coe_r_avg_prompt_len": 1340.451923076923,
+    "coe_rtc_avg_prompt_len": 2103.0096153846152,
+    "coe_r_avg_resp_len": 452.9519230769231,
+    "coe_rtc_avg_resp_len": 788.7307692307693,
+    "coe_r_avg_score": 3.75,
+    "coe_rtc_avg_score": 3.75,
+    "n_score_equal": 104,
+    "n_rtc_higher": 0,
+    "n_r_higher": 0,
+    "prompt_len_delta_avg": 762.5576923076922,
+    "prompt_len_ratio": 1.5688810461454588,
+    "score_delta_avg": 0.0
+  }
+}
