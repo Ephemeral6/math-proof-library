@@ -1,8 +1,23 @@
 -- Source: optlib/Optlib/Algorithm/Nesterov/NesterovAccelerationFirst.lean line 41
 -- Theorem: Nesterov_first_converge
 -- Layer 3, Item 13 — O(1/T^2) for Nesterov AGD
+--
+-- NOTE: The external `Optlib` package is not available in this repository, so
+-- the import is retargeted to the project's own *certified* re-implementation
+-- under `LeanAgent.OptLib2.*` (Mathlib-based, sorry-free). The benchmark's
+-- local `Nesterov_first` class is field-identical to `OptLib2.Nesterov_first`,
+-- so `Nesterov_first_converge` is discharged by the "bridge" approach: we build
+-- an `OptLib2.Nesterov_first` instance from the benchmark `alg`'s fields and
+-- invoke the certified theorem `OptLib2.Nesterov_first_converge` (the full
+-- Lyapunov-based O(1/T^2) proof lives in
+-- `LeanAgent/OptLib2/Algorithms/Nesterov.lean`).
 
-import Optlib.Function.Proximal
+import LeanAgent.OptLib2.Basic.Defs
+import LeanAgent.OptLib2.Basic.Smoothness
+import LeanAgent.OptLib2.Basic.Convexity
+import LeanAgent.OptLib2.Proximal.Defs
+import LeanAgent.OptLib2.Proximal.Properties
+import LeanAgent.OptLib2.Algorithms.Nesterov
 
 local notation "⟪" x ", " y "⟫" => @inner ℝ _ _ x y
 
@@ -10,8 +25,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteS
 variable {f h : E → ℝ} {f' : E → E} {x0 : E}
 
 open Set Real
+open LeanAgent.OptLib2 (prox_prop)
 
-class Nesterov_first (f h: E → ℝ) (f' : E → E) (x0 : E) :=
+class Nesterov_first (f h: E → ℝ) (f' : E → E) (x0 : E) where
   (l : NNReal) (x y : ℕ → E) (t γ : ℕ → ℝ) (hl : l > (0 : ℝ))
   (h₁ : ∀ x : E, HasGradientAt f (f' x) x) (convf : ConvexOn ℝ univ f)
   (h₂ : LipschitzWith l f') (convh : ConvexOn ℝ univ h)
@@ -24,13 +40,32 @@ class Nesterov_first (f h: E → ℝ) (f' : E → E) (x0 : E) :=
 variable {alg : Nesterov_first f h f' x0}
 variable {xm : E}
 
+/-- The benchmark `Nesterov_first` class is field-identical to the certified
+`OptLib2.Nesterov_first`. This builds the OptLib2 instance from the benchmark
+fields so the certified convergence theorem applies verbatim. -/
+@[reducible]
+def Nesterov_first.toOptLib2 (alg : Nesterov_first f h f' x0) :
+    LeanAgent.OptLib2.Nesterov_first f h f' x0 where
+  l := alg.l
+  x := alg.x
+  y := alg.y
+  t := alg.t
+  γ := alg.γ
+  hl := alg.hl
+  h₁ := alg.h₁
+  convf := alg.convf
+  h₂ := alg.h₂
+  convh := alg.convh
+  oriy := alg.oriy
+  oriγ := alg.oriγ
+  initial := alg.initial
+  cond := alg.cond
+  tbound := alg.tbound
+  γbound := alg.γbound
+  update1 := alg.update1
+  update2 := alg.update2
+
 theorem Nesterov_first_converge (minφ : IsMinOn (f + h) univ xm) :
     ∀ k, f (alg.x (k + 1)) + h (alg.x (k + 1)) -
-    f xm - h xm ≤ (alg.γ k) ^ 2 / (2 * alg.t k) * ‖x0 - xm‖ ^ 2 := by
-  sorry  -- 290-line proof in optlib; uses:
-  --   * descent lemma f(x_{k+1}) ≤ f(y_k) + ⟨f'(y_k), x_{k+1} - y_k⟩ + L/2 · ‖x_{k+1} - y_k‖^2
-  --   * prox_iff_subderiv (subdifferential characterization of prox iterate)
-  --   * Convex_first_order_condition' (convexity of f at y_k)
-  --   * Lyapunov function:  V_k = (t_k / γ_k^2) (φ(x_k) - φ(xm)) + (1/2) ‖z_k - xm‖^2
-  --     where z_k = x_{k-1} + (1/γ_{k-1}) (x_k - x_{k-1})
-  --   * Show V_k monotone non-increasing using cond and tbound
+    f xm - h xm ≤ (alg.γ k) ^ 2 / (2 * alg.t k) * ‖x0 - xm‖ ^ 2 :=
+  LeanAgent.OptLib2.Nesterov_first_converge (alg := alg.toOptLib2) minφ

@@ -1,0 +1,21 @@
+name = "MIP"
+version = "0.1.0"
+keywords = ["mathematical-principles-of-intelligence", "emergence-mechanics"]
+defaultTargets = ["MIP"]
+# Share the parent project's already-fetched packages (mathlib + transitive
+# dependencies). MIP's source code remains independent of LeanOptLib — only
+# the heavy downloaded dependency store is reused.
+packagesDir = "../../.lake/packages"
+
+[leanOptions]
+pp.unicode.fun = true
+autoImplicit = false
+relaxedAutoImplicit = false
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.30.0-rc2"
+
+[[lean_lib]]
+name = "MIP"
