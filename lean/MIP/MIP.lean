@@ -308,3 +308,72 @@ import MIP.Results.IT13_SigmaStarUnique
 import MIP.Results.IT14_MultiYW1Hard
 -- Corollaries
 import MIP.Corollaries.C12_FreeEnergy
+-- Foundational lemmas L.1-L.7, L.3*, L.F (2026-05-27 gap-closure batch)
+import MIP.Lemmas.L1_DeltaRobustness
+import MIP.Lemmas.L2_AtomicExistence
+import MIP.Lemmas.L3_AtomicLower
+import MIP.Lemmas.L4_AtomicUpper
+import MIP.Lemmas.L5_AtomicExact
+import MIP.Lemmas.L3star_ReverseAtomic
+import MIP.Lemmas.L6_UnidirectionalAH
+import MIP.Lemmas.L7_UnidirectionalHA
+import MIP.Lemmas.LF_FrameCompat
+-- Corollaries C.1-C.8, C.10, C.11 (2026-05-27 gap-closure batch)
+import MIP.Corollaries.C1_Finiteness
+import MIP.Corollaries.C2_Solvability
+import MIP.Corollaries.C3_FrameworkValue
+import MIP.Corollaries.C4_NoviceExpert
+import MIP.Corollaries.C5_Decomposability
+import MIP.Corollaries.C6_PosetMonotone
+import MIP.Corollaries.C7_UnifiedMetric
+import MIP.Corollaries.C8_MetacogSubstitution
+import MIP.Corollaries.C10_BidirectionalStrict
+import MIP.Corollaries.C11_BidirectionalLowerBound
+-- R.72 xi-cooperation bound (2026-05-27)
+import MIP.Results.R72_XiCooperationBound
+-- Collaboration-dynamics branch R.810-R.820 (block 19, audited 2026-05-27)
+import MIP.Results.R810_SilenceCollapse
+import MIP.Results.R811_CollabFano
+import MIP.Results.R813_JointCoverage
+import MIP.Results.R814_CompositionGap
+import MIP.Results.R815_NoInjection
+import MIP.Results.R816_FlywheelTrap
+import MIP.Results.R817_InterventionReach
+import MIP.Results.R818_KappaCumulativeMonotone
+import MIP.Results.R819_ExpertDilution
+import MIP.Results.R820_MuOrthogonal
+-- Phase-2 gap-closure: canonical R.150-R.509 branch results (2026-05-27)
+-- Geometry branch (R.201-R.213)
+import MIP.Results.R201_ZInvFisherMetric
+import MIP.Results.R202_KHkFisherMetric
+import MIP.Results.R206_SigmaNormal4D
+import MIP.Results.R207_SigmaZFisherCurvature
+import MIP.Results.R208_GeodesicVsSteepest
+import MIP.Results.R210_Sigma0Embedding
+import MIP.Results.R211_KillingNoether
+import MIP.Results.R212_FocalTimeChaos
+import MIP.Results.R213_ThreeTrajectory
+-- Collective branch (R.500-R.508)
+import MIP.Results.R500_CoverageMonotonicity
+import MIP.Results.R501_DiversityRedundancy
+import MIP.Results.R502_StarTopology
+import MIP.Results.R503_ConnectivityBound
+import MIP.Results.R504_DiversityTransition
+import MIP.Results.R505_GeneralistSpecialist
+import MIP.Results.R506_CommConvergence
+import MIP.Results.R508_CoverageDecayRobust
+-- Decay branch (R.190-R.197)
+import MIP.Results.R190_DecayInflatesN
+import MIP.Results.R192_MaintLearnTradeoff
+import MIP.Results.R193_DecayLearnTransition
+import MIP.Results.R194_DecayModifiedOhm
+import MIP.Results.R195_FiveDPhaseSpace
+import MIP.Results.R197_HeteroDecayScaling
+-- Sociology branch (R.350-R.353)
+import MIP.Results.R350_EduOptimalAllocation
+import MIP.Results.R352_CivilizationPhase
+import MIP.Results.R353_CollabInequality
+-- Parallel emergence (R.175-R.177, Brent)
+import MIP.Results.R175_BrentLowerBound
+import MIP.Results.R176_BrentUpperBound
+import MIP.Results.R177_DAGGeometrySignal
